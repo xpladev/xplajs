@@ -1,0 +1,15 @@
+import { RpcResolver } from "../../../helper-func-types";
+import { QueryBalanceRequest, QueryBalanceResponse, QueryAllBalancesRequest, QueryAllBalancesResponse, QuerySpendableBalancesRequest, QuerySpendableBalancesResponse, QuerySpendableBalanceByDenomRequest, QuerySpendableBalanceByDenomResponse, QueryTotalSupplyRequest, QueryTotalSupplyResponse, QuerySupplyOfRequest, QuerySupplyOfResponse, QueryParamsRequest, QueryParamsResponse, QueryDenomMetadataRequest, QueryDenomMetadataResponse, QueryDenomMetadataByQueryStringRequest, QueryDenomMetadataByQueryStringResponse, QueryDenomsMetadataRequest, QueryDenomsMetadataResponse, QueryDenomOwnersRequest, QueryDenomOwnersResponse, QueryDenomOwnersByQueryRequest, QueryDenomOwnersByQueryResponse, QuerySendEnabledRequest, QuerySendEnabledResponse } from "./query";
+export declare const createGetBalance: (clientResolver?: RpcResolver) => (request: QueryBalanceRequest) => Promise<QueryBalanceResponse>;
+export declare const createGetAllBalances: (clientResolver?: RpcResolver) => (request: QueryAllBalancesRequest) => Promise<QueryAllBalancesResponse>;
+export declare const createGetSpendableBalances: (clientResolver?: RpcResolver) => (request: QuerySpendableBalancesRequest) => Promise<QuerySpendableBalancesResponse>;
+export declare const createGetSpendableBalanceByDenom: (clientResolver?: RpcResolver) => (request: QuerySpendableBalanceByDenomRequest) => Promise<QuerySpendableBalanceByDenomResponse>;
+export declare const createGetTotalSupply: (clientResolver?: RpcResolver) => (request: QueryTotalSupplyRequest) => Promise<QueryTotalSupplyResponse>;
+export declare const createGetSupplyOf: (clientResolver?: RpcResolver) => (request: QuerySupplyOfRequest) => Promise<QuerySupplyOfResponse>;
+export declare const createGetParams: (clientResolver?: RpcResolver) => (request: QueryParamsRequest) => Promise<QueryParamsResponse>;
+export declare const createGetDenomMetadata: (clientResolver?: RpcResolver) => (request: QueryDenomMetadataRequest) => Promise<QueryDenomMetadataResponse>;
+export declare const createGetDenomMetadataByQueryString: (clientResolver?: RpcResolver) => (request: QueryDenomMetadataByQueryStringRequest) => Promise<QueryDenomMetadataByQueryStringResponse>;
+export declare const createGetDenomsMetadata: (clientResolver?: RpcResolver) => (request: QueryDenomsMetadataRequest) => Promise<QueryDenomsMetadataResponse>;
+export declare const createGetDenomOwners: (clientResolver?: RpcResolver) => (request: QueryDenomOwnersRequest) => Promise<QueryDenomOwnersResponse>;
+export declare const createGetDenomOwnersByQuery: (clientResolver?: RpcResolver) => (request: QueryDenomOwnersByQueryRequest) => Promise<QueryDenomOwnersByQueryResponse>;
+export declare const createGetSendEnabled: (clientResolver?: RpcResolver) => (request: QuerySendEnabledRequest) => Promise<QuerySendEnabledResponse>;

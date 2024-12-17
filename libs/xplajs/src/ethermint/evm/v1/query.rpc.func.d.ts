@@ -1,0 +1,15 @@
+import { MsgEthereumTxResponse } from "./tx";
+import { RpcResolver } from "../../../helper-func-types";
+import { QueryAccountRequest, QueryAccountResponse, QueryCosmosAccountRequest, QueryCosmosAccountResponse, QueryValidatorAccountRequest, QueryValidatorAccountResponse, QueryBalanceRequest, QueryBalanceResponse, QueryStorageRequest, QueryStorageResponse, QueryCodeRequest, QueryCodeResponse, QueryParamsRequest, QueryParamsResponse, EthCallRequest, EstimateGasResponse, QueryTraceTxRequest, QueryTraceTxResponse, QueryTraceBlockRequest, QueryTraceBlockResponse, QueryBaseFeeRequest, QueryBaseFeeResponse } from "./query";
+export declare const createGetAccount: (clientResolver?: RpcResolver) => (request: QueryAccountRequest) => Promise<QueryAccountResponse>;
+export declare const createGetCosmosAccount: (clientResolver?: RpcResolver) => (request: QueryCosmosAccountRequest) => Promise<QueryCosmosAccountResponse>;
+export declare const createGetValidatorAccount: (clientResolver?: RpcResolver) => (request: QueryValidatorAccountRequest) => Promise<QueryValidatorAccountResponse>;
+export declare const createGetBalance: (clientResolver?: RpcResolver) => (request: QueryBalanceRequest) => Promise<QueryBalanceResponse>;
+export declare const createGetStorage: (clientResolver?: RpcResolver) => (request: QueryStorageRequest) => Promise<QueryStorageResponse>;
+export declare const createGetCode: (clientResolver?: RpcResolver) => (request: QueryCodeRequest) => Promise<QueryCodeResponse>;
+export declare const createGetParams: (clientResolver?: RpcResolver) => (request: QueryParamsRequest) => Promise<QueryParamsResponse>;
+export declare const createGetEthCall: (clientResolver?: RpcResolver) => (request: EthCallRequest) => Promise<MsgEthereumTxResponse>;
+export declare const createGetEstimateGas: (clientResolver?: RpcResolver) => (request: EthCallRequest) => Promise<EstimateGasResponse>;
+export declare const createGetTraceTx: (clientResolver?: RpcResolver) => (request: QueryTraceTxRequest) => Promise<QueryTraceTxResponse>;
+export declare const createGetTraceBlock: (clientResolver?: RpcResolver) => (request: QueryTraceBlockRequest) => Promise<QueryTraceBlockResponse>;
+export declare const createGetBaseFee: (clientResolver?: RpcResolver) => (request: QueryBaseFeeRequest) => Promise<QueryBaseFeeResponse>;

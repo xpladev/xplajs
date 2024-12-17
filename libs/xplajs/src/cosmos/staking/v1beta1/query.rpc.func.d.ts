@@ -1,0 +1,16 @@
+import { RpcResolver } from "../../../helper-func-types";
+import { QueryValidatorsRequest, QueryValidatorsResponse, QueryValidatorRequest, QueryValidatorResponse, QueryValidatorDelegationsRequest, QueryValidatorDelegationsResponse, QueryValidatorUnbondingDelegationsRequest, QueryValidatorUnbondingDelegationsResponse, QueryDelegationRequest, QueryDelegationResponse, QueryUnbondingDelegationRequest, QueryUnbondingDelegationResponse, QueryDelegatorDelegationsRequest, QueryDelegatorDelegationsResponse, QueryDelegatorUnbondingDelegationsRequest, QueryDelegatorUnbondingDelegationsResponse, QueryRedelegationsRequest, QueryRedelegationsResponse, QueryDelegatorValidatorsRequest, QueryDelegatorValidatorsResponse, QueryDelegatorValidatorRequest, QueryDelegatorValidatorResponse, QueryHistoricalInfoRequest, QueryHistoricalInfoResponse, QueryPoolRequest, QueryPoolResponse, QueryParamsRequest, QueryParamsResponse } from "./query";
+export declare const createGetValidators: (clientResolver?: RpcResolver) => (request: QueryValidatorsRequest) => Promise<QueryValidatorsResponse>;
+export declare const createGetValidator: (clientResolver?: RpcResolver) => (request: QueryValidatorRequest) => Promise<QueryValidatorResponse>;
+export declare const createGetValidatorDelegations: (clientResolver?: RpcResolver) => (request: QueryValidatorDelegationsRequest) => Promise<QueryValidatorDelegationsResponse>;
+export declare const createGetValidatorUnbondingDelegations: (clientResolver?: RpcResolver) => (request: QueryValidatorUnbondingDelegationsRequest) => Promise<QueryValidatorUnbondingDelegationsResponse>;
+export declare const createGetDelegation: (clientResolver?: RpcResolver) => (request: QueryDelegationRequest) => Promise<QueryDelegationResponse>;
+export declare const createGetUnbondingDelegation: (clientResolver?: RpcResolver) => (request: QueryUnbondingDelegationRequest) => Promise<QueryUnbondingDelegationResponse>;
+export declare const createGetDelegatorDelegations: (clientResolver?: RpcResolver) => (request: QueryDelegatorDelegationsRequest) => Promise<QueryDelegatorDelegationsResponse>;
+export declare const createGetDelegatorUnbondingDelegations: (clientResolver?: RpcResolver) => (request: QueryDelegatorUnbondingDelegationsRequest) => Promise<QueryDelegatorUnbondingDelegationsResponse>;
+export declare const createGetRedelegations: (clientResolver?: RpcResolver) => (request: QueryRedelegationsRequest) => Promise<QueryRedelegationsResponse>;
+export declare const createGetDelegatorValidators: (clientResolver?: RpcResolver) => (request: QueryDelegatorValidatorsRequest) => Promise<QueryDelegatorValidatorsResponse>;
+export declare const createGetDelegatorValidator: (clientResolver?: RpcResolver) => (request: QueryDelegatorValidatorRequest) => Promise<QueryDelegatorValidatorResponse>;
+export declare const createGetHistoricalInfo: (clientResolver?: RpcResolver) => (request: QueryHistoricalInfoRequest) => Promise<QueryHistoricalInfoResponse>;
+export declare const createGetPool: (clientResolver?: RpcResolver) => (request: QueryPoolRequest) => Promise<QueryPoolResponse>;
+export declare const createGetParams: (clientResolver?: RpcResolver) => (request: QueryParamsRequest) => Promise<QueryParamsResponse>;
