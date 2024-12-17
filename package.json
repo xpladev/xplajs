@@ -5,13 +5,20 @@
   "scripts": {
     "codegen:xpla": "telescope transpile --config ./scripts/xpla.telescope.json && telescope transpile --config ./scripts/xpla-query.telescope.json",
     "codegen:types": "telescope transpile --config ./scripts/cosmos-types.telescope.json",
-    "proto": "telescope download --config ./scripts/.xpla.protod.config.json"
+    "proto": "telescope download --config ./scripts/.xpla.protod.config.json",
+    "build": "lerna run build --stream",
+    "symlink": "symlink-workspace --logLevel error"
   },
+  "private": true,
+  "workspaces": [
+    "libs/*"
+  ],
   "author": "",
   "license": "ISC",
   "description": "",
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "devDependencies": {
-    "@cosmology/telescope": "^1.10.11"
+    "@cosmology/telescope": "^1.10.11",
+    "lerna": "^8.1.9"
   }
 }

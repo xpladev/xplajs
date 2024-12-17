@@ -1,0 +1,17 @@
+{
+  "name": "cosmos-types",
+  "version": "1.0.0",
+  "main": "index.js",
+  "module": "esm/index.js",
+  "scripts": {
+    "clean": "rimraf dist/**",
+    "build": "npm run clean; tsc; tsc -p tsconfig.esm.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@interchainjs/types": "^0.0.1-beta.34",
+    "@interchainjs/utils": "^0.0.1-beta.34"
+  }
+}
