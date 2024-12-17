@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "proto": "telescope download --config ./scripts/xpla.protod.config.json"
+    "codegen:xpla": "telescope transpile --config ./scripts/xpla.telescope.json && telescope transpile --config ./scripts/xpla-query.telescope.json",
+    "codegen:types": "telescope transpile --config ./scripts/cosmos-types.telescope.json",
+    "proto": "telescope download --config ./scripts/.xpla.protod.config.json"
   },
   "author": "",
   "license": "ISC",
