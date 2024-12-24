@@ -1,0 +1,49 @@
+{
+    "name": "xpla-react",
+    "version": "1.0.0",
+    "description": "xpla-react is a JavaScript library providing react query hooks for interacting with xpla sdk.",
+    "main": "index.js",
+    "module": "esm/index.js",
+    "types": "index.d.ts",
+    "author": "",
+    "homepage": "",
+    "repository": {
+      "type": "git",
+      "url": ""
+    },
+    "license": "MIT",
+    "publishConfig": {
+      "access": "public",
+      "directory": "dist"
+    },
+    "scripts": {
+      "copy": "copyfiles -f ../../LICENSE-MIT ../../LICENSE-Apache README.md package.json dist",
+      "clean": "rimraf dist/**",
+      "build": "npm run clean; tsc; tsc -p tsconfig.esm.json; npm run copy",
+      "build:dev": "npm run clean; tsc --declarationMap; tsc -p tsconfig.esm.json; npm run copy",
+      "lint": "eslint . --fix",
+      "prepare": "npm run build"
+    },
+    "dependencies": {
+      "@interchainjs/cosmos": "1.6.3",
+      "@interchainjs/cosmos-types": "1.6.3",
+      "@interchainjs/types": "1.6.3",
+      "@interchainjs/utils": "1.6.3",
+      "@noble/hashes": "^1.3.1",
+      "decimal.js": "^10.4.3"
+    },
+    "devDependencies": {
+      "@tanstack/react-query": "4.29.1"
+    },
+    "peerDependencies": {
+      "@tanstack/react-query": "4.29.1"
+    },
+    "keywords": [
+      "cosmos",
+      "blockchain",
+      "transaction",
+      "cosmjs",
+      "wallet"
+    ]
+  }
+  
