@@ -53,10 +53,23 @@
             "enabled": false
         },
         "lcdClients": {
-            "enabled": false
+            "enabled": true,
+            "scoped": [
+                {
+                    "dir": "xpla",
+                    "addToBundle": true
+                }
+            ]
         },
         "rpcClients": {
-            "enabled": false
+            "enabled": true,
+            "scoped": [
+                {
+                    "dir": "xpla",
+                    "addToBundle": true,
+                    "packages": []
+                }
+            ]
         },
         "helperFuncCreators": {
           "enabled": true,
