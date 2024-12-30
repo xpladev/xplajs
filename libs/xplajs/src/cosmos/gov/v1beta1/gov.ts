@@ -2,9 +2,10 @@ import { Coin, CoinAmino } from "../../base/v1beta1/coin";
 import { Any, AnyProtoMsg, AnyAmino } from "../../../google/protobuf/any";
 import { Timestamp } from "../../../google/protobuf/timestamp";
 import { Duration, DurationAmino } from "../../../google/protobuf/duration";
-import { CommunityPoolSpendProposal, CommunityPoolSpendProposalProtoMsg, CommunityPoolSpendProposalWithDeposit, CommunityPoolSpendProposalWithDepositProtoMsg } from "../../distribution/v1beta1/distribution";
-import { SoftwareUpgradeProposal, SoftwareUpgradeProposalProtoMsg, CancelSoftwareUpgradeProposal, CancelSoftwareUpgradeProposalProtoMsg } from "../../upgrade/v1beta1/upgrade";
 import { ClientUpdateProposal, ClientUpdateProposalProtoMsg, UpgradeProposal, UpgradeProposalProtoMsg } from "../../../ibc/core/client/v1/client";
+import { SoftwareUpgradeProposal, SoftwareUpgradeProposalProtoMsg, CancelSoftwareUpgradeProposal, CancelSoftwareUpgradeProposalProtoMsg } from "../../upgrade/v1beta1/upgrade";
+import { ParameterChangeProposal, ParameterChangeProposalProtoMsg } from "../../params/v1beta1/params";
+import { CommunityPoolSpendProposal, CommunityPoolSpendProposalProtoMsg, CommunityPoolSpendProposalWithDeposit, CommunityPoolSpendProposalWithDepositProtoMsg } from "../../distribution/v1beta1/distribution";
 import { isSet, DeepPartial, toTimestamp, fromTimestamp, bytesFromBase64, base64FromBytes } from "../../../helpers";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { GlobalDecoderRegistry } from "../../../registry";
@@ -235,7 +236,7 @@ export interface Proposal {
   /** proposal_id defines the unique id of the proposal. */
   proposalId: bigint;
   /** content is the proposal's content. */
-  content?: TextProposal | CommunityPoolSpendProposal | CommunityPoolSpendProposalWithDeposit | SoftwareUpgradeProposal | CancelSoftwareUpgradeProposal | ClientUpdateProposal | UpgradeProposal | Any | undefined;
+  content?: TextProposal | ClientUpdateProposal | UpgradeProposal | SoftwareUpgradeProposal | CancelSoftwareUpgradeProposal | ParameterChangeProposal | CommunityPoolSpendProposal | CommunityPoolSpendProposalWithDeposit | Any | undefined;
   /** status defines the proposal status. */
   status: ProposalStatus;
   /**
@@ -260,7 +261,7 @@ export interface ProposalProtoMsg {
   value: Uint8Array;
 }
 export type ProposalEncoded = Omit<Proposal, "content"> & {
-  /** content is the proposal's content. */content?: TextProposalProtoMsg | CommunityPoolSpendProposalProtoMsg | CommunityPoolSpendProposalWithDepositProtoMsg | SoftwareUpgradeProposalProtoMsg | CancelSoftwareUpgradeProposalProtoMsg | ClientUpdateProposalProtoMsg | UpgradeProposalProtoMsg | AnyProtoMsg | undefined;
+  /** content is the proposal's content. */content?: TextProposalProtoMsg | ClientUpdateProposalProtoMsg | UpgradeProposalProtoMsg | SoftwareUpgradeProposalProtoMsg | CancelSoftwareUpgradeProposalProtoMsg | ParameterChangeProposalProtoMsg | CommunityPoolSpendProposalProtoMsg | CommunityPoolSpendProposalWithDepositProtoMsg | AnyProtoMsg | undefined;
 };
 /** Proposal defines the core field members of a governance proposal. */
 export interface ProposalAmino {

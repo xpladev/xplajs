@@ -1,0 +1,3 @@
+import { TelescopeGeneratedType } from "../../../types";
+import { MsgRegisterVolunteerValidator, MsgUnregisterVolunteerValidator } from "./tx";
+export const registry: ReadonlyArray<[string, TelescopeGeneratedType<any, any, any>]> = [["/xpla.volunteer.v1beta1.MsgRegisterVolunteerValidator", MsgRegisterVolunteerValidator], ["/xpla.volunteer.v1beta1.MsgUnregisterVolunteerValidator", MsgUnregisterVolunteerValidator]];

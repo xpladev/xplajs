@@ -1,5 +1,8 @@
 import { Any, AnyProtoMsg, AnyAmino } from "../../../google/protobuf/any";
 import { Timestamp } from "../../../google/protobuf/timestamp";
+import { TransferAuthorization, TransferAuthorizationProtoMsg } from "../../../ibc/applications/transfer/v1/authz";
+import { StakeAuthorization, StakeAuthorizationProtoMsg } from "../../staking/v1beta1/authz";
+import { SendAuthorization, SendAuthorizationProtoMsg } from "../../bank/v1beta1/authz";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial, toTimestamp, fromTimestamp } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
@@ -32,7 +35,7 @@ export interface GenericAuthorizationAminoMsg {
  * the provide method with expiration time.
  */
 export interface Grant {
-  authorization?: GenericAuthorization | Any | undefined;
+  authorization?: GenericAuthorization | TransferAuthorization | StakeAuthorization | SendAuthorization | Any | undefined;
   /**
    * time when the grant will expire and will be pruned. If null, then the grant
    * doesn't have a time expiration (other conditions  in `authorization`
@@ -45,7 +48,7 @@ export interface GrantProtoMsg {
   value: Uint8Array;
 }
 export type GrantEncoded = Omit<Grant, "authorization"> & {
-  authorization?: GenericAuthorizationProtoMsg | AnyProtoMsg | undefined;
+  authorization?: GenericAuthorizationProtoMsg | TransferAuthorizationProtoMsg | StakeAuthorizationProtoMsg | SendAuthorizationProtoMsg | AnyProtoMsg | undefined;
 };
 /**
  * Grant gives permissions to execute
@@ -71,7 +74,7 @@ export interface GrantAminoMsg {
 export interface GrantAuthorization {
   granter: string;
   grantee: string;
-  authorization?: GenericAuthorization | Any | undefined;
+  authorization?: GenericAuthorization | TransferAuthorization | StakeAuthorization | SendAuthorization | Any | undefined;
   expiration?: Date;
 }
 export interface GrantAuthorizationProtoMsg {
@@ -79,7 +82,7 @@ export interface GrantAuthorizationProtoMsg {
   value: Uint8Array;
 }
 export type GrantAuthorizationEncoded = Omit<GrantAuthorization, "authorization"> & {
-  authorization?: GenericAuthorizationProtoMsg | AnyProtoMsg | undefined;
+  authorization?: GenericAuthorizationProtoMsg | TransferAuthorizationProtoMsg | StakeAuthorizationProtoMsg | SendAuthorizationProtoMsg | AnyProtoMsg | undefined;
 };
 /**
  * GrantAuthorization extends a grant with both the addresses of the grantee and granter.

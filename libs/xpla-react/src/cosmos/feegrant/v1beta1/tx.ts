@@ -1,4 +1,5 @@
 import { Any, AnyProtoMsg, AnyAmino } from "../../../google/protobuf/any";
+import { BasicAllowance, BasicAllowanceProtoMsg, PeriodicAllowance, PeriodicAllowanceProtoMsg, AllowedMsgAllowance, AllowedMsgAllowanceProtoMsg } from "./feegrant";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
@@ -12,14 +13,14 @@ export interface MsgGrantAllowance {
   /** grantee is the address of the user being granted an allowance of another user's funds. */
   grantee: string;
   /** allowance can be any of basic, periodic, allowed fee allowance. */
-  allowance?: Any | undefined;
+  allowance?: BasicAllowance | PeriodicAllowance | AllowedMsgAllowance | Any | undefined;
 }
 export interface MsgGrantAllowanceProtoMsg {
   typeUrl: "/cosmos.feegrant.v1beta1.MsgGrantAllowance";
   value: Uint8Array;
 }
 export type MsgGrantAllowanceEncoded = Omit<MsgGrantAllowance, "allowance"> & {
-  /** allowance can be any of basic, periodic, allowed fee allowance. */allowance?: AnyProtoMsg | undefined;
+  /** allowance can be any of basic, periodic, allowed fee allowance. */allowance?: BasicAllowanceProtoMsg | PeriodicAllowanceProtoMsg | AllowedMsgAllowanceProtoMsg | AnyProtoMsg | undefined;
 };
 /**
  * MsgGrantAllowance adds permission for Grantee to spend up to Allowance

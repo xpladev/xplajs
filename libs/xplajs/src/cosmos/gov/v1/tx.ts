@@ -2,10 +2,11 @@ import { Any, AnyProtoMsg, AnyAmino } from "../../../google/protobuf/any";
 import { Coin, CoinAmino } from "../../base/v1beta1/coin";
 import { VoteOption, WeightedVoteOption, WeightedVoteOptionAmino, Params, ParamsAmino } from "./gov";
 import { Timestamp } from "../../../google/protobuf/timestamp";
-import { CommunityPoolSpendProposal, CommunityPoolSpendProposalProtoMsg, CommunityPoolSpendProposalWithDeposit, CommunityPoolSpendProposalWithDepositProtoMsg } from "../../distribution/v1beta1/distribution";
-import { TextProposal, TextProposalProtoMsg } from "../v1beta1/gov";
-import { SoftwareUpgradeProposal, SoftwareUpgradeProposalProtoMsg, CancelSoftwareUpgradeProposal, CancelSoftwareUpgradeProposalProtoMsg } from "../../upgrade/v1beta1/upgrade";
 import { ClientUpdateProposal, ClientUpdateProposalProtoMsg, UpgradeProposal, UpgradeProposalProtoMsg } from "../../../ibc/core/client/v1/client";
+import { SoftwareUpgradeProposal, SoftwareUpgradeProposalProtoMsg, CancelSoftwareUpgradeProposal, CancelSoftwareUpgradeProposalProtoMsg } from "../../upgrade/v1beta1/upgrade";
+import { ParameterChangeProposal, ParameterChangeProposalProtoMsg } from "../../params/v1beta1/params";
+import { TextProposal, TextProposalProtoMsg } from "../v1beta1/gov";
+import { CommunityPoolSpendProposal, CommunityPoolSpendProposalProtoMsg, CommunityPoolSpendProposalWithDeposit, CommunityPoolSpendProposalWithDepositProtoMsg } from "../../distribution/v1beta1/distribution";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial, isSet, toTimestamp, fromTimestamp } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
@@ -105,7 +106,7 @@ export interface MsgSubmitProposalResponseAminoMsg {
  */
 export interface MsgExecLegacyContent {
   /** content is the proposal's content. */
-  content?: CommunityPoolSpendProposal | CommunityPoolSpendProposalWithDeposit | TextProposal | SoftwareUpgradeProposal | CancelSoftwareUpgradeProposal | ClientUpdateProposal | UpgradeProposal | Any | undefined;
+  content?: ClientUpdateProposal | UpgradeProposal | SoftwareUpgradeProposal | CancelSoftwareUpgradeProposal | ParameterChangeProposal | TextProposal | CommunityPoolSpendProposal | CommunityPoolSpendProposalWithDeposit | Any | undefined;
   /** authority must be the gov module address. */
   authority: string;
 }
@@ -114,7 +115,7 @@ export interface MsgExecLegacyContentProtoMsg {
   value: Uint8Array;
 }
 export type MsgExecLegacyContentEncoded = Omit<MsgExecLegacyContent, "content"> & {
-  /** content is the proposal's content. */content?: CommunityPoolSpendProposalProtoMsg | CommunityPoolSpendProposalWithDepositProtoMsg | TextProposalProtoMsg | SoftwareUpgradeProposalProtoMsg | CancelSoftwareUpgradeProposalProtoMsg | ClientUpdateProposalProtoMsg | UpgradeProposalProtoMsg | AnyProtoMsg | undefined;
+  /** content is the proposal's content. */content?: ClientUpdateProposalProtoMsg | UpgradeProposalProtoMsg | SoftwareUpgradeProposalProtoMsg | CancelSoftwareUpgradeProposalProtoMsg | ParameterChangeProposalProtoMsg | TextProposalProtoMsg | CommunityPoolSpendProposalProtoMsg | CommunityPoolSpendProposalWithDepositProtoMsg | AnyProtoMsg | undefined;
 };
 /**
  * MsgExecLegacyContent is used to wrap the legacy content field into a message.

@@ -8,6 +8,9 @@
     "build": "npm run clean; tsc; tsc -p tsconfig.esm.json"
   },
   "dependencies": {
+    "@cosmjs/stargate": "^0.32.4",
+    "@cosmjs/tendermint-rpc": "^0.32.4",
+    "@cosmology/lcd": "^0.14.0",
     "@interchainjs/cosmos": "^0.0.1-beta.34",
     "@interchainjs/cosmos-types": "^0.0.1-beta.34",
     "@interchainjs/types": "^0.0.1-beta.34",
