@@ -15,11 +15,11 @@
 Transaction codec and client to communicate with any xpla blockchain.
 
 ## Usage
-
+### Install
 ```sh
 npm install @interchainjs/xpla
 ```
-
+### Example
 Taking `direct` signing mode as example.
 
 ```ts
