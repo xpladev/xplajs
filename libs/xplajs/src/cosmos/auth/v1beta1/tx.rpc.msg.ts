@@ -9,7 +9,7 @@ export interface Msg {
    * 
    * Since: cosmos-sdk 0.47
    */
-  UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
+  updateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
 }
 export class MsgClientImpl implements Msg {
   private readonly rpc: TxRpc;
@@ -20,7 +20,7 @@ export class MsgClientImpl implements Msg {
    parameters. The authority defaults to the x/gov module account.
   
    Since: cosmos-sdk 0.47 */
-  UpdateParams = async (request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> => {
+  updateParams = async (request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> => {
     const data = MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request("cosmos.auth.v1beta1.Msg", "UpdateParams", data);
     return promise.then(data => MsgUpdateParamsResponse.decode(new BinaryReader(data)));

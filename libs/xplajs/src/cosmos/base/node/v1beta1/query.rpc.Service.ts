@@ -5,9 +5,9 @@ import { ConfigRequest, ConfigResponse, StatusRequest, StatusResponse } from "./
 /** Service defines the gRPC querier service for node related queries. */
 export interface Service {
   /** Config queries for the operator configuration. */
-  Config(request?: ConfigRequest): Promise<ConfigResponse>;
+  config(request?: ConfigRequest): Promise<ConfigResponse>;
   /** Status queries for the node status. */
-  Status(request?: StatusRequest): Promise<StatusResponse>;
+  status(request?: StatusRequest): Promise<StatusResponse>;
 }
 export class ServiceClientImpl implements Service {
   private readonly rpc: TxRpc;
@@ -15,13 +15,13 @@ export class ServiceClientImpl implements Service {
     this.rpc = rpc;
   }
   /* Config queries for the operator configuration. */
-  Config = async (request: ConfigRequest = {}): Promise<ConfigResponse> => {
+  config = async (request: ConfigRequest = {}): Promise<ConfigResponse> => {
     const data = ConfigRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.base.node.v1beta1.Service", "Config", data);
     return promise.then(data => ConfigResponse.decode(new BinaryReader(data)));
   };
   /* Status queries for the node status. */
-  Status = async (request: StatusRequest = {}): Promise<StatusResponse> => {
+  status = async (request: StatusRequest = {}): Promise<StatusResponse> => {
     const data = StatusRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.base.node.v1beta1.Service", "Status", data);
     return promise.then(data => StatusResponse.decode(new BinaryReader(data)));
@@ -31,11 +31,11 @@ export const createRpcQueryExtension = (base: QueryClient) => {
   const rpc = createProtobufRpcClient(base);
   const queryService = new ServiceClientImpl(rpc);
   return {
-    Config(request?: ConfigRequest): Promise<ConfigResponse> {
-      return queryService.Config(request);
+    config(request?: ConfigRequest): Promise<ConfigResponse> {
+      return queryService.config(request);
     },
-    Status(request?: StatusRequest): Promise<StatusResponse> {
-      return queryService.Status(request);
+    status(request?: StatusRequest): Promise<StatusResponse> {
+      return queryService.status(request);
     }
   };
 };

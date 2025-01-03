@@ -5,17 +5,17 @@ import { GetNodeInfoRequest, GetNodeInfoResponse, GetSyncingRequest, GetSyncingR
 /** Service defines the gRPC querier service for tendermint queries. */
 export interface Service {
   /** GetNodeInfo queries the current node info. */
-  GetNodeInfo(request?: GetNodeInfoRequest): Promise<GetNodeInfoResponse>;
+  getNodeInfo(request?: GetNodeInfoRequest): Promise<GetNodeInfoResponse>;
   /** GetSyncing queries node syncing. */
-  GetSyncing(request?: GetSyncingRequest): Promise<GetSyncingResponse>;
+  getSyncing(request?: GetSyncingRequest): Promise<GetSyncingResponse>;
   /** GetLatestBlock returns the latest block. */
-  GetLatestBlock(request?: GetLatestBlockRequest): Promise<GetLatestBlockResponse>;
+  getLatestBlock(request?: GetLatestBlockRequest): Promise<GetLatestBlockResponse>;
   /** GetBlockByHeight queries block for given height. */
-  GetBlockByHeight(request: GetBlockByHeightRequest): Promise<GetBlockByHeightResponse>;
+  getBlockByHeight(request: GetBlockByHeightRequest): Promise<GetBlockByHeightResponse>;
   /** GetLatestValidatorSet queries latest validator-set. */
-  GetLatestValidatorSet(request?: GetLatestValidatorSetRequest): Promise<GetLatestValidatorSetResponse>;
+  getLatestValidatorSet(request?: GetLatestValidatorSetRequest): Promise<GetLatestValidatorSetResponse>;
   /** GetValidatorSetByHeight queries validator-set at a given height. */
-  GetValidatorSetByHeight(request: GetValidatorSetByHeightRequest): Promise<GetValidatorSetByHeightResponse>;
+  getValidatorSetByHeight(request: GetValidatorSetByHeightRequest): Promise<GetValidatorSetByHeightResponse>;
   /**
    * ABCIQuery defines a query handler that supports ABCI queries directly to the
    * application, bypassing Tendermint completely. The ABCI query must contain
@@ -23,7 +23,7 @@ export interface Service {
    * 
    * Since: cosmos-sdk 0.46
    */
-  ABCIQuery(request: ABCIQueryRequest): Promise<ABCIQueryResponse>;
+  aBCIQuery(request: ABCIQueryRequest): Promise<ABCIQueryResponse>;
 }
 export class ServiceClientImpl implements Service {
   private readonly rpc: TxRpc;
@@ -31,31 +31,31 @@ export class ServiceClientImpl implements Service {
     this.rpc = rpc;
   }
   /* GetNodeInfo queries the current node info. */
-  GetNodeInfo = async (request: GetNodeInfoRequest = {}): Promise<GetNodeInfoResponse> => {
+  getNodeInfo = async (request: GetNodeInfoRequest = {}): Promise<GetNodeInfoResponse> => {
     const data = GetNodeInfoRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.base.tendermint.v1beta1.Service", "GetNodeInfo", data);
     return promise.then(data => GetNodeInfoResponse.decode(new BinaryReader(data)));
   };
   /* GetSyncing queries node syncing. */
-  GetSyncing = async (request: GetSyncingRequest = {}): Promise<GetSyncingResponse> => {
+  getSyncing = async (request: GetSyncingRequest = {}): Promise<GetSyncingResponse> => {
     const data = GetSyncingRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.base.tendermint.v1beta1.Service", "GetSyncing", data);
     return promise.then(data => GetSyncingResponse.decode(new BinaryReader(data)));
   };
   /* GetLatestBlock returns the latest block. */
-  GetLatestBlock = async (request: GetLatestBlockRequest = {}): Promise<GetLatestBlockResponse> => {
+  getLatestBlock = async (request: GetLatestBlockRequest = {}): Promise<GetLatestBlockResponse> => {
     const data = GetLatestBlockRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.base.tendermint.v1beta1.Service", "GetLatestBlock", data);
     return promise.then(data => GetLatestBlockResponse.decode(new BinaryReader(data)));
   };
   /* GetBlockByHeight queries block for given height. */
-  GetBlockByHeight = async (request: GetBlockByHeightRequest): Promise<GetBlockByHeightResponse> => {
+  getBlockByHeight = async (request: GetBlockByHeightRequest): Promise<GetBlockByHeightResponse> => {
     const data = GetBlockByHeightRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.base.tendermint.v1beta1.Service", "GetBlockByHeight", data);
     return promise.then(data => GetBlockByHeightResponse.decode(new BinaryReader(data)));
   };
   /* GetLatestValidatorSet queries latest validator-set. */
-  GetLatestValidatorSet = async (request: GetLatestValidatorSetRequest = {
+  getLatestValidatorSet = async (request: GetLatestValidatorSetRequest = {
     pagination: undefined
   }): Promise<GetLatestValidatorSetResponse> => {
     const data = GetLatestValidatorSetRequest.encode(request).finish();
@@ -63,7 +63,7 @@ export class ServiceClientImpl implements Service {
     return promise.then(data => GetLatestValidatorSetResponse.decode(new BinaryReader(data)));
   };
   /* GetValidatorSetByHeight queries validator-set at a given height. */
-  GetValidatorSetByHeight = async (request: GetValidatorSetByHeightRequest): Promise<GetValidatorSetByHeightResponse> => {
+  getValidatorSetByHeight = async (request: GetValidatorSetByHeightRequest): Promise<GetValidatorSetByHeightResponse> => {
     const data = GetValidatorSetByHeightRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.base.tendermint.v1beta1.Service", "GetValidatorSetByHeight", data);
     return promise.then(data => GetValidatorSetByHeightResponse.decode(new BinaryReader(data)));
@@ -73,7 +73,7 @@ export class ServiceClientImpl implements Service {
    a valid and supported path, including app, custom, p2p, and store.
   
    Since: cosmos-sdk 0.46 */
-  ABCIQuery = async (request: ABCIQueryRequest): Promise<ABCIQueryResponse> => {
+  aBCIQuery = async (request: ABCIQueryRequest): Promise<ABCIQueryResponse> => {
     const data = ABCIQueryRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.base.tendermint.v1beta1.Service", "ABCIQuery", data);
     return promise.then(data => ABCIQueryResponse.decode(new BinaryReader(data)));
@@ -83,26 +83,26 @@ export const createRpcQueryExtension = (base: QueryClient) => {
   const rpc = createProtobufRpcClient(base);
   const queryService = new ServiceClientImpl(rpc);
   return {
-    GetNodeInfo(request?: GetNodeInfoRequest): Promise<GetNodeInfoResponse> {
-      return queryService.GetNodeInfo(request);
+    getNodeInfo(request?: GetNodeInfoRequest): Promise<GetNodeInfoResponse> {
+      return queryService.getNodeInfo(request);
     },
-    GetSyncing(request?: GetSyncingRequest): Promise<GetSyncingResponse> {
-      return queryService.GetSyncing(request);
+    getSyncing(request?: GetSyncingRequest): Promise<GetSyncingResponse> {
+      return queryService.getSyncing(request);
     },
-    GetLatestBlock(request?: GetLatestBlockRequest): Promise<GetLatestBlockResponse> {
-      return queryService.GetLatestBlock(request);
+    getLatestBlock(request?: GetLatestBlockRequest): Promise<GetLatestBlockResponse> {
+      return queryService.getLatestBlock(request);
     },
-    GetBlockByHeight(request: GetBlockByHeightRequest): Promise<GetBlockByHeightResponse> {
-      return queryService.GetBlockByHeight(request);
+    getBlockByHeight(request: GetBlockByHeightRequest): Promise<GetBlockByHeightResponse> {
+      return queryService.getBlockByHeight(request);
     },
-    GetLatestValidatorSet(request?: GetLatestValidatorSetRequest): Promise<GetLatestValidatorSetResponse> {
-      return queryService.GetLatestValidatorSet(request);
+    getLatestValidatorSet(request?: GetLatestValidatorSetRequest): Promise<GetLatestValidatorSetResponse> {
+      return queryService.getLatestValidatorSet(request);
     },
-    GetValidatorSetByHeight(request: GetValidatorSetByHeightRequest): Promise<GetValidatorSetByHeightResponse> {
-      return queryService.GetValidatorSetByHeight(request);
+    getValidatorSetByHeight(request: GetValidatorSetByHeightRequest): Promise<GetValidatorSetByHeightResponse> {
+      return queryService.getValidatorSetByHeight(request);
     },
-    ABCIQuery(request: ABCIQueryRequest): Promise<ABCIQueryResponse> {
-      return queryService.ABCIQuery(request);
+    aBCIQuery(request: ABCIQueryRequest): Promise<ABCIQueryResponse> {
+      return queryService.aBCIQuery(request);
     }
   };
 };

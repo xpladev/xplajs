@@ -58,6 +58,11 @@ export const createRPCQueryClient = async ({
         v1: (await import("../ethermint/evm/v1/query.rpc.Query")).createRpcQueryExtension(client)
       }
     },
+    cosmwasm: {
+      wasm: {
+        v1: (await import("../cosmwasm/wasm/v1/query.rpc.Query")).createRpcQueryExtension(client)
+      }
+    },
     cosmos: {
       upgrade: {
         v1beta1: (await import("../cosmos/upgrade/v1beta1/query.rpc.Query")).createRpcQueryExtension(client)

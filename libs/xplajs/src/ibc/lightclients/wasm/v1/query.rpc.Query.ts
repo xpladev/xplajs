@@ -5,9 +5,9 @@ import { QueryChecksumsRequest, QueryChecksumsResponse, QueryCodeRequest, QueryC
 /** Query service for wasm module */
 export interface Query {
   /** Get all Wasm checksums */
-  Checksums(request?: QueryChecksumsRequest): Promise<QueryChecksumsResponse>;
+  checksums(request?: QueryChecksumsRequest): Promise<QueryChecksumsResponse>;
   /** Get Wasm code for given checksum */
-  Code(request: QueryCodeRequest): Promise<QueryCodeResponse>;
+  code(request: QueryCodeRequest): Promise<QueryCodeResponse>;
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: TxRpc;
@@ -15,7 +15,7 @@ export class QueryClientImpl implements Query {
     this.rpc = rpc;
   }
   /* Get all Wasm checksums */
-  Checksums = async (request: QueryChecksumsRequest = {
+  checksums = async (request: QueryChecksumsRequest = {
     pagination: undefined
   }): Promise<QueryChecksumsResponse> => {
     const data = QueryChecksumsRequest.encode(request).finish();
@@ -23,7 +23,7 @@ export class QueryClientImpl implements Query {
     return promise.then(data => QueryChecksumsResponse.decode(new BinaryReader(data)));
   };
   /* Get Wasm code for given checksum */
-  Code = async (request: QueryCodeRequest): Promise<QueryCodeResponse> => {
+  code = async (request: QueryCodeRequest): Promise<QueryCodeResponse> => {
     const data = QueryCodeRequest.encode(request).finish();
     const promise = this.rpc.request("ibc.lightclients.wasm.v1.Query", "Code", data);
     return promise.then(data => QueryCodeResponse.decode(new BinaryReader(data)));
@@ -33,11 +33,11 @@ export const createRpcQueryExtension = (base: QueryClient) => {
   const rpc = createProtobufRpcClient(base);
   const queryService = new QueryClientImpl(rpc);
   return {
-    Checksums(request?: QueryChecksumsRequest): Promise<QueryChecksumsResponse> {
-      return queryService.Checksums(request);
+    checksums(request?: QueryChecksumsRequest): Promise<QueryChecksumsResponse> {
+      return queryService.checksums(request);
     },
-    Code(request: QueryCodeRequest): Promise<QueryCodeResponse> {
-      return queryService.Code(request);
+    code(request: QueryCodeRequest): Promise<QueryCodeResponse> {
+      return queryService.code(request);
     }
   };
 };

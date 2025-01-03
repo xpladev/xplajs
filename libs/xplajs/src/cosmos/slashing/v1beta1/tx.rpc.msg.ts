@@ -8,14 +8,14 @@ export interface Msg {
    * them into the bonded validator set, so they can begin receiving provisions
    * and rewards again.
    */
-  Unjail(request: MsgUnjail): Promise<MsgUnjailResponse>;
+  unjail(request: MsgUnjail): Promise<MsgUnjailResponse>;
   /**
    * UpdateParams defines a governance operation for updating the x/slashing module
    * parameters. The authority defaults to the x/gov module account.
    * 
    * Since: cosmos-sdk 0.47
    */
-  UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
+  updateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
 }
 export class MsgClientImpl implements Msg {
   private readonly rpc: TxRpc;
@@ -25,7 +25,7 @@ export class MsgClientImpl implements Msg {
   /* Unjail defines a method for unjailing a jailed validator, thus returning
    them into the bonded validator set, so they can begin receiving provisions
    and rewards again. */
-  Unjail = async (request: MsgUnjail): Promise<MsgUnjailResponse> => {
+  unjail = async (request: MsgUnjail): Promise<MsgUnjailResponse> => {
     const data = MsgUnjail.encode(request).finish();
     const promise = this.rpc.request("cosmos.slashing.v1beta1.Msg", "Unjail", data);
     return promise.then(data => MsgUnjailResponse.decode(new BinaryReader(data)));
@@ -34,7 +34,7 @@ export class MsgClientImpl implements Msg {
    parameters. The authority defaults to the x/gov module account.
   
    Since: cosmos-sdk 0.47 */
-  UpdateParams = async (request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> => {
+  updateParams = async (request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> => {
     const data = MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request("cosmos.slashing.v1beta1.Msg", "UpdateParams", data);
     return promise.then(data => MsgUpdateParamsResponse.decode(new BinaryReader(data)));

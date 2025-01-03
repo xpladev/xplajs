@@ -4,19 +4,19 @@ import { MsgCreateClient, MsgCreateClientResponse, MsgUpdateClient, MsgUpdateCli
 /** Msg defines the ibc/client Msg service. */
 export interface Msg {
   /** CreateClient defines a rpc handler method for MsgCreateClient. */
-  CreateClient(request: MsgCreateClient): Promise<MsgCreateClientResponse>;
+  createClient(request: MsgCreateClient): Promise<MsgCreateClientResponse>;
   /** UpdateClient defines a rpc handler method for MsgUpdateClient. */
-  UpdateClient(request: MsgUpdateClient): Promise<MsgUpdateClientResponse>;
+  updateClient(request: MsgUpdateClient): Promise<MsgUpdateClientResponse>;
   /** UpgradeClient defines a rpc handler method for MsgUpgradeClient. */
-  UpgradeClient(request: MsgUpgradeClient): Promise<MsgUpgradeClientResponse>;
+  upgradeClient(request: MsgUpgradeClient): Promise<MsgUpgradeClientResponse>;
   /** SubmitMisbehaviour defines a rpc handler method for MsgSubmitMisbehaviour. */
-  SubmitMisbehaviour(request: MsgSubmitMisbehaviour): Promise<MsgSubmitMisbehaviourResponse>;
+  submitMisbehaviour(request: MsgSubmitMisbehaviour): Promise<MsgSubmitMisbehaviourResponse>;
   /** RecoverClient defines a rpc handler method for MsgRecoverClient. */
-  RecoverClient(request: MsgRecoverClient): Promise<MsgRecoverClientResponse>;
+  recoverClient(request: MsgRecoverClient): Promise<MsgRecoverClientResponse>;
   /** IBCSoftwareUpgrade defines a rpc handler method for MsgIBCSoftwareUpgrade. */
-  IBCSoftwareUpgrade(request: MsgIBCSoftwareUpgrade): Promise<MsgIBCSoftwareUpgradeResponse>;
+  iBCSoftwareUpgrade(request: MsgIBCSoftwareUpgrade): Promise<MsgIBCSoftwareUpgradeResponse>;
   /** UpdateClientParams defines a rpc handler method for MsgUpdateParams. */
-  UpdateClientParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
+  updateClientParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
 }
 export class MsgClientImpl implements Msg {
   private readonly rpc: TxRpc;
@@ -24,43 +24,43 @@ export class MsgClientImpl implements Msg {
     this.rpc = rpc;
   }
   /* CreateClient defines a rpc handler method for MsgCreateClient. */
-  CreateClient = async (request: MsgCreateClient): Promise<MsgCreateClientResponse> => {
+  createClient = async (request: MsgCreateClient): Promise<MsgCreateClientResponse> => {
     const data = MsgCreateClient.encode(request).finish();
     const promise = this.rpc.request("ibc.core.client.v1.Msg", "CreateClient", data);
     return promise.then(data => MsgCreateClientResponse.decode(new BinaryReader(data)));
   };
   /* UpdateClient defines a rpc handler method for MsgUpdateClient. */
-  UpdateClient = async (request: MsgUpdateClient): Promise<MsgUpdateClientResponse> => {
+  updateClient = async (request: MsgUpdateClient): Promise<MsgUpdateClientResponse> => {
     const data = MsgUpdateClient.encode(request).finish();
     const promise = this.rpc.request("ibc.core.client.v1.Msg", "UpdateClient", data);
     return promise.then(data => MsgUpdateClientResponse.decode(new BinaryReader(data)));
   };
   /* UpgradeClient defines a rpc handler method for MsgUpgradeClient. */
-  UpgradeClient = async (request: MsgUpgradeClient): Promise<MsgUpgradeClientResponse> => {
+  upgradeClient = async (request: MsgUpgradeClient): Promise<MsgUpgradeClientResponse> => {
     const data = MsgUpgradeClient.encode(request).finish();
     const promise = this.rpc.request("ibc.core.client.v1.Msg", "UpgradeClient", data);
     return promise.then(data => MsgUpgradeClientResponse.decode(new BinaryReader(data)));
   };
   /* SubmitMisbehaviour defines a rpc handler method for MsgSubmitMisbehaviour. */
-  SubmitMisbehaviour = async (request: MsgSubmitMisbehaviour): Promise<MsgSubmitMisbehaviourResponse> => {
+  submitMisbehaviour = async (request: MsgSubmitMisbehaviour): Promise<MsgSubmitMisbehaviourResponse> => {
     const data = MsgSubmitMisbehaviour.encode(request).finish();
     const promise = this.rpc.request("ibc.core.client.v1.Msg", "SubmitMisbehaviour", data);
     return promise.then(data => MsgSubmitMisbehaviourResponse.decode(new BinaryReader(data)));
   };
   /* RecoverClient defines a rpc handler method for MsgRecoverClient. */
-  RecoverClient = async (request: MsgRecoverClient): Promise<MsgRecoverClientResponse> => {
+  recoverClient = async (request: MsgRecoverClient): Promise<MsgRecoverClientResponse> => {
     const data = MsgRecoverClient.encode(request).finish();
     const promise = this.rpc.request("ibc.core.client.v1.Msg", "RecoverClient", data);
     return promise.then(data => MsgRecoverClientResponse.decode(new BinaryReader(data)));
   };
   /* IBCSoftwareUpgrade defines a rpc handler method for MsgIBCSoftwareUpgrade. */
-  IBCSoftwareUpgrade = async (request: MsgIBCSoftwareUpgrade): Promise<MsgIBCSoftwareUpgradeResponse> => {
+  iBCSoftwareUpgrade = async (request: MsgIBCSoftwareUpgrade): Promise<MsgIBCSoftwareUpgradeResponse> => {
     const data = MsgIBCSoftwareUpgrade.encode(request).finish();
     const promise = this.rpc.request("ibc.core.client.v1.Msg", "IBCSoftwareUpgrade", data);
     return promise.then(data => MsgIBCSoftwareUpgradeResponse.decode(new BinaryReader(data)));
   };
   /* UpdateClientParams defines a rpc handler method for MsgUpdateParams. */
-  UpdateClientParams = async (request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> => {
+  updateClientParams = async (request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> => {
     const data = MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request("ibc.core.client.v1.Msg", "UpdateClientParams", data);
     return promise.then(data => MsgUpdateParamsResponse.decode(new BinaryReader(data)));

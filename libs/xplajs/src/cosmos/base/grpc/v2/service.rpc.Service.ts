@@ -5,9 +5,9 @@ import { QueryRequest, QueryResponse, ListQueryHandlersRequest, ListQueryHandler
 /** Service defines the gRPC service for query server for v2 */
 export interface Service {
   /** Query queries the server with a request, the request can be any sdk Msg. */
-  Query(request: QueryRequest): Promise<QueryResponse>;
+  query(request: QueryRequest): Promise<QueryResponse>;
   /** ListQueryHandlers lists all the available query handlers. */
-  ListQueryHandlers(request?: ListQueryHandlersRequest): Promise<ListQueryHandlersResponse>;
+  listQueryHandlers(request?: ListQueryHandlersRequest): Promise<ListQueryHandlersResponse>;
 }
 export class ServiceClientImpl implements Service {
   private readonly rpc: TxRpc;
@@ -15,13 +15,13 @@ export class ServiceClientImpl implements Service {
     this.rpc = rpc;
   }
   /* Query queries the server with a request, the request can be any sdk Msg. */
-  Query = async (request: QueryRequest): Promise<QueryResponse> => {
+  query = async (request: QueryRequest): Promise<QueryResponse> => {
     const data = QueryRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.base.grpc.v2.Service", "Query", data);
     return promise.then(data => QueryResponse.decode(new BinaryReader(data)));
   };
   /* ListQueryHandlers lists all the available query handlers. */
-  ListQueryHandlers = async (request: ListQueryHandlersRequest = {}): Promise<ListQueryHandlersResponse> => {
+  listQueryHandlers = async (request: ListQueryHandlersRequest = {}): Promise<ListQueryHandlersResponse> => {
     const data = ListQueryHandlersRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.base.grpc.v2.Service", "ListQueryHandlers", data);
     return promise.then(data => ListQueryHandlersResponse.decode(new BinaryReader(data)));
@@ -31,11 +31,11 @@ export const createRpcQueryExtension = (base: QueryClient) => {
   const rpc = createProtobufRpcClient(base);
   const queryService = new ServiceClientImpl(rpc);
   return {
-    Query(request: QueryRequest): Promise<QueryResponse> {
-      return queryService.Query(request);
+    query(request: QueryRequest): Promise<QueryResponse> {
+      return queryService.query(request);
     },
-    ListQueryHandlers(request?: ListQueryHandlersRequest): Promise<ListQueryHandlersResponse> {
-      return queryService.ListQueryHandlers(request);
+    listQueryHandlers(request?: ListQueryHandlersRequest): Promise<ListQueryHandlersResponse> {
+      return queryService.listQueryHandlers(request);
     }
   };
 };

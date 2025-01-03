@@ -5,7 +5,7 @@ import { QueryVolunteerValidatorsRequest, QueryVolunteerValidatorsResponse } fro
 /** Query defines the gRPC querier service for volunteer module. */
 export interface Query {
   /** VolunteerValidators */
-  VolunteerValidators(request?: QueryVolunteerValidatorsRequest): Promise<QueryVolunteerValidatorsResponse>;
+  volunteerValidators(request?: QueryVolunteerValidatorsRequest): Promise<QueryVolunteerValidatorsResponse>;
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: TxRpc;
@@ -13,7 +13,7 @@ export class QueryClientImpl implements Query {
     this.rpc = rpc;
   }
   /* VolunteerValidators */
-  VolunteerValidators = async (request: QueryVolunteerValidatorsRequest = {}): Promise<QueryVolunteerValidatorsResponse> => {
+  volunteerValidators = async (request: QueryVolunteerValidatorsRequest = {}): Promise<QueryVolunteerValidatorsResponse> => {
     const data = QueryVolunteerValidatorsRequest.encode(request).finish();
     const promise = this.rpc.request("xpla.volunteer.v1beta1.Query", "VolunteerValidators", data);
     return promise.then(data => QueryVolunteerValidatorsResponse.decode(new BinaryReader(data)));
@@ -23,8 +23,8 @@ export const createRpcQueryExtension = (base: QueryClient) => {
   const rpc = createProtobufRpcClient(base);
   const queryService = new QueryClientImpl(rpc);
   return {
-    VolunteerValidators(request?: QueryVolunteerValidatorsRequest): Promise<QueryVolunteerValidatorsResponse> {
-      return queryService.VolunteerValidators(request);
+    volunteerValidators(request?: QueryVolunteerValidatorsRequest): Promise<QueryVolunteerValidatorsResponse> {
+      return queryService.volunteerValidators(request);
     }
   };
 };

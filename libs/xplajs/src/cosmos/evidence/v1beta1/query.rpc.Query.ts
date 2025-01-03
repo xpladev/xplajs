@@ -5,9 +5,9 @@ import { QueryEvidenceRequest, QueryEvidenceResponse, QueryAllEvidenceRequest, Q
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Evidence queries evidence based on evidence hash. */
-  Evidence(request: QueryEvidenceRequest): Promise<QueryEvidenceResponse>;
+  evidence(request: QueryEvidenceRequest): Promise<QueryEvidenceResponse>;
   /** AllEvidence queries all evidence. */
-  AllEvidence(request?: QueryAllEvidenceRequest): Promise<QueryAllEvidenceResponse>;
+  allEvidence(request?: QueryAllEvidenceRequest): Promise<QueryAllEvidenceResponse>;
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: TxRpc;
@@ -15,13 +15,13 @@ export class QueryClientImpl implements Query {
     this.rpc = rpc;
   }
   /* Evidence queries evidence based on evidence hash. */
-  Evidence = async (request: QueryEvidenceRequest): Promise<QueryEvidenceResponse> => {
+  evidence = async (request: QueryEvidenceRequest): Promise<QueryEvidenceResponse> => {
     const data = QueryEvidenceRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.evidence.v1beta1.Query", "Evidence", data);
     return promise.then(data => QueryEvidenceResponse.decode(new BinaryReader(data)));
   };
   /* AllEvidence queries all evidence. */
-  AllEvidence = async (request: QueryAllEvidenceRequest = {
+  allEvidence = async (request: QueryAllEvidenceRequest = {
     pagination: undefined
   }): Promise<QueryAllEvidenceResponse> => {
     const data = QueryAllEvidenceRequest.encode(request).finish();
@@ -33,11 +33,11 @@ export const createRpcQueryExtension = (base: QueryClient) => {
   const rpc = createProtobufRpcClient(base);
   const queryService = new QueryClientImpl(rpc);
   return {
-    Evidence(request: QueryEvidenceRequest): Promise<QueryEvidenceResponse> {
-      return queryService.Evidence(request);
+    evidence(request: QueryEvidenceRequest): Promise<QueryEvidenceResponse> {
+      return queryService.evidence(request);
     },
-    AllEvidence(request?: QueryAllEvidenceRequest): Promise<QueryAllEvidenceResponse> {
-      return queryService.AllEvidence(request);
+    allEvidence(request?: QueryAllEvidenceRequest): Promise<QueryAllEvidenceResponse> {
+      return queryService.allEvidence(request);
     }
   };
 };

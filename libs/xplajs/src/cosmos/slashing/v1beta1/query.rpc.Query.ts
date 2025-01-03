@@ -1,4 +1,3 @@
-import { Params } from "./slashing";
 import { TxRpc } from "../../../types";
 import { BinaryReader } from "../../../binary";
 import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
@@ -6,11 +5,11 @@ import { QueryParamsRequest, QueryParamsResponse, QuerySigningInfoRequest, Query
 /** Query provides defines the gRPC querier service */
 export interface Query {
   /** Params queries the parameters of slashing module */
-  Params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
+  params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
   /** SigningInfo queries the signing info of given cons address */
-  SigningInfo(request: QuerySigningInfoRequest): Promise<QuerySigningInfoResponse>;
+  signingInfo(request: QuerySigningInfoRequest): Promise<QuerySigningInfoResponse>;
   /** SigningInfos queries signing info of all validators */
-  SigningInfos(request?: QuerySigningInfosRequest): Promise<QuerySigningInfosResponse>;
+  signingInfos(request?: QuerySigningInfosRequest): Promise<QuerySigningInfosResponse>;
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: TxRpc;
@@ -18,19 +17,19 @@ export class QueryClientImpl implements Query {
     this.rpc = rpc;
   }
   /* Params queries the parameters of slashing module */
-  Params = async (request: QueryParamsRequest = {}): Promise<QueryParamsResponse> => {
+  params = async (request: QueryParamsRequest = {}): Promise<QueryParamsResponse> => {
     const data = QueryParamsRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.slashing.v1beta1.Query", "Params", data);
     return promise.then(data => QueryParamsResponse.decode(new BinaryReader(data)));
   };
   /* SigningInfo queries the signing info of given cons address */
-  SigningInfo = async (request: QuerySigningInfoRequest): Promise<QuerySigningInfoResponse> => {
+  signingInfo = async (request: QuerySigningInfoRequest): Promise<QuerySigningInfoResponse> => {
     const data = QuerySigningInfoRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.slashing.v1beta1.Query", "SigningInfo", data);
     return promise.then(data => QuerySigningInfoResponse.decode(new BinaryReader(data)));
   };
   /* SigningInfos queries signing info of all validators */
-  SigningInfos = async (request: QuerySigningInfosRequest = {
+  signingInfos = async (request: QuerySigningInfosRequest = {
     pagination: undefined
   }): Promise<QuerySigningInfosResponse> => {
     const data = QuerySigningInfosRequest.encode(request).finish();
@@ -42,14 +41,14 @@ export const createRpcQueryExtension = (base: QueryClient) => {
   const rpc = createProtobufRpcClient(base);
   const queryService = new QueryClientImpl(rpc);
   return {
-    Params(request?: QueryParamsRequest): Promise<QueryParamsResponse> {
-      return queryService.Params(request);
+    params(request?: QueryParamsRequest): Promise<QueryParamsResponse> {
+      return queryService.params(request);
     },
-    SigningInfo(request: QuerySigningInfoRequest): Promise<QuerySigningInfoResponse> {
-      return queryService.SigningInfo(request);
+    signingInfo(request: QuerySigningInfoRequest): Promise<QuerySigningInfoResponse> {
+      return queryService.signingInfo(request);
     },
-    SigningInfos(request?: QuerySigningInfosRequest): Promise<QuerySigningInfosResponse> {
-      return queryService.SigningInfos(request);
+    signingInfos(request?: QuerySigningInfosRequest): Promise<QuerySigningInfosResponse> {
+      return queryService.signingInfos(request);
     }
   };
 };

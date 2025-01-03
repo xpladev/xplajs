@@ -1,4 +1,3 @@
-import { Params } from "./controller";
 import { TxRpc } from "../../../../../types";
 import { BinaryReader } from "../../../../../binary";
 import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
@@ -6,9 +5,9 @@ import { QueryInterchainAccountRequest, QueryInterchainAccountResponse, QueryPar
 /** Query provides defines the gRPC querier service. */
 export interface Query {
   /** InterchainAccount returns the interchain account address for a given owner address on a given connection */
-  InterchainAccount(request: QueryInterchainAccountRequest): Promise<QueryInterchainAccountResponse>;
+  interchainAccount(request: QueryInterchainAccountRequest): Promise<QueryInterchainAccountResponse>;
   /** Params queries all parameters of the ICA controller submodule. */
-  Params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
+  params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: TxRpc;
@@ -16,13 +15,13 @@ export class QueryClientImpl implements Query {
     this.rpc = rpc;
   }
   /* InterchainAccount returns the interchain account address for a given owner address on a given connection */
-  InterchainAccount = async (request: QueryInterchainAccountRequest): Promise<QueryInterchainAccountResponse> => {
+  interchainAccount = async (request: QueryInterchainAccountRequest): Promise<QueryInterchainAccountResponse> => {
     const data = QueryInterchainAccountRequest.encode(request).finish();
     const promise = this.rpc.request("ibc.applications.interchain_accounts.controller.v1.Query", "InterchainAccount", data);
     return promise.then(data => QueryInterchainAccountResponse.decode(new BinaryReader(data)));
   };
   /* Params queries all parameters of the ICA controller submodule. */
-  Params = async (request: QueryParamsRequest = {}): Promise<QueryParamsResponse> => {
+  params = async (request: QueryParamsRequest = {}): Promise<QueryParamsResponse> => {
     const data = QueryParamsRequest.encode(request).finish();
     const promise = this.rpc.request("ibc.applications.interchain_accounts.controller.v1.Query", "Params", data);
     return promise.then(data => QueryParamsResponse.decode(new BinaryReader(data)));
@@ -32,11 +31,11 @@ export const createRpcQueryExtension = (base: QueryClient) => {
   const rpc = createProtobufRpcClient(base);
   const queryService = new QueryClientImpl(rpc);
   return {
-    InterchainAccount(request: QueryInterchainAccountRequest): Promise<QueryInterchainAccountResponse> {
-      return queryService.InterchainAccount(request);
+    interchainAccount(request: QueryInterchainAccountRequest): Promise<QueryInterchainAccountResponse> {
+      return queryService.interchainAccount(request);
     },
-    Params(request?: QueryParamsRequest): Promise<QueryParamsResponse> {
-      return queryService.Params(request);
+    params(request?: QueryParamsRequest): Promise<QueryParamsResponse> {
+      return queryService.params(request);
     }
   };
 };

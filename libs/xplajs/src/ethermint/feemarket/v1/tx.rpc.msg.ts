@@ -7,7 +7,7 @@ export interface Msg {
    * UpdateParams defined a governance operation for updating the x/feemarket module parameters.
    * The authority is hard-coded to the Cosmos SDK x/gov module account
    */
-  UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
+  updateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
 }
 export class MsgClientImpl implements Msg {
   private readonly rpc: TxRpc;
@@ -16,7 +16,7 @@ export class MsgClientImpl implements Msg {
   }
   /* UpdateParams defined a governance operation for updating the x/feemarket module parameters.
    The authority is hard-coded to the Cosmos SDK x/gov module account */
-  UpdateParams = async (request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> => {
+  updateParams = async (request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> => {
     const data = MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request("ethermint.feemarket.v1.Msg", "UpdateParams", data);
     return promise.then(data => MsgUpdateParamsResponse.decode(new BinaryReader(data)));

@@ -30,7 +30,7 @@ export class LCDQueryClient {
       params: {}
     };
     if (typeof params?.packetId !== "undefined") {
-      options.params.packetId = params.packetId;
+      options.params.packet_id = params.packetId;
     }
     if (typeof params?.queryHeight !== "undefined") {
       options.params.query_height = params.queryHeight;
@@ -58,7 +58,7 @@ export class LCDQueryClient {
       params: {}
     };
     if (typeof params?.packetId !== "undefined") {
-      options.params.packetId = params.packetId;
+      options.params.packet_id = params.packetId;
     }
     const endpoint = `ibc/apps/fee/v1/channels/${params.packetId.channelId}/ports/${params.packetId.portId}/sequences/${params.packetId.sequence}/total_recv_fees`;
     return await this.req.get<QueryTotalRecvFeesResponse>(endpoint, options);
@@ -69,7 +69,7 @@ export class LCDQueryClient {
       params: {}
     };
     if (typeof params?.packetId !== "undefined") {
-      options.params.packetId = params.packetId;
+      options.params.packet_id = params.packetId;
     }
     const endpoint = `ibc/apps/fee/v1/channels/${params.packetId.channelId}/ports/${params.packetId.portId}/sequences/${params.packetId.sequence}/total_ack_fees`;
     return await this.req.get<QueryTotalAckFeesResponse>(endpoint, options);
@@ -80,7 +80,7 @@ export class LCDQueryClient {
       params: {}
     };
     if (typeof params?.packetId !== "undefined") {
-      options.params.packetId = params.packetId;
+      options.params.packet_id = params.packetId;
     }
     const endpoint = `ibc/apps/fee/v1/channels/${params.packetId.channelId}/ports/${params.packetId.portId}/sequences/${params.packetId.sequence}/total_timeout_fees`;
     return await this.req.get<QueryTotalTimeoutFeesResponse>(endpoint, options);

@@ -82,6 +82,13 @@ export const createLCDClient = async ({
         })
       }
     },
+    cosmwasm: {
+      wasm: {
+        v1: new (await import("../cosmwasm/wasm/v1/query.lcd")).LCDQueryClient({
+          requestClient
+        })
+      }
+    },
     cosmos: {
       upgrade: {
         v1beta1: new (await import("../cosmos/upgrade/v1beta1/query.lcd")).LCDQueryClient({

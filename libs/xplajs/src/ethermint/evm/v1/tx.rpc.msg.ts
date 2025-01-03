@@ -4,12 +4,12 @@ import { MsgEthereumTx, MsgEthereumTxResponse, MsgUpdateParams, MsgUpdateParamsR
 /** Msg defines the evm Msg service. */
 export interface Msg {
   /** EthereumTx defines a method submitting Ethereum transactions. */
-  EthereumTx(request: MsgEthereumTx): Promise<MsgEthereumTxResponse>;
+  ethereumTx(request: MsgEthereumTx): Promise<MsgEthereumTxResponse>;
   /**
    * UpdateParams defined a governance operation for updating the x/evm module parameters.
    * The authority is hard-coded to the Cosmos SDK x/gov module account
    */
-  UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
+  updateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
 }
 export class MsgClientImpl implements Msg {
   private readonly rpc: TxRpc;
@@ -17,14 +17,14 @@ export class MsgClientImpl implements Msg {
     this.rpc = rpc;
   }
   /* EthereumTx defines a method submitting Ethereum transactions. */
-  EthereumTx = async (request: MsgEthereumTx): Promise<MsgEthereumTxResponse> => {
+  ethereumTx = async (request: MsgEthereumTx): Promise<MsgEthereumTxResponse> => {
     const data = MsgEthereumTx.encode(request).finish();
     const promise = this.rpc.request("ethermint.evm.v1.Msg", "EthereumTx", data);
     return promise.then(data => MsgEthereumTxResponse.decode(new BinaryReader(data)));
   };
   /* UpdateParams defined a governance operation for updating the x/evm module parameters.
    The authority is hard-coded to the Cosmos SDK x/gov module account */
-  UpdateParams = async (request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> => {
+  updateParams = async (request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> => {
     const data = MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request("ethermint.evm.v1.Msg", "UpdateParams", data);
     return promise.then(data => MsgUpdateParamsResponse.decode(new BinaryReader(data)));
