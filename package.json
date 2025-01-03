@@ -4,14 +4,14 @@
   "main": "index.js",
   "scripts": {
     "codegen:xpla": "telescope transpile --config ./scripts/xpla.telescope.json && telescope transpile --config ./scripts/xpla-react.telescope.json",
-    "codegen:types": "telescope transpile --config ./scripts/cosmos-types.telescope.json",
     "proto": "telescope download --config ./scripts/xpla.protod.config.json",
     "build": "lerna run build --stream",
     "symlink": "symlink-workspace --logLevel error"
   },
   "private": true,
   "workspaces": [
-    "libs/*"
+    "libs/*",
+    "networks/*"
   ],
   "author": "",
   "license": "ISC",

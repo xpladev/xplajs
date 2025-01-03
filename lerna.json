@@ -6,7 +6,8 @@
     "--no-lockfile"
   ],
   "packages": [
-    "libs/*"
+    "libs/*",
+    "networks/*"
   ],
   "version": "independent",
   "registry": "https://registry.npmjs.org",

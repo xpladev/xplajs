@@ -1,0 +1,45 @@
+{
+  "name": "@interchainjs/xpla",
+  "version": "1.0.0",
+  "main": "index.js",
+  "module": "esm/index.js",
+  "types": "index.d.ts",
+  "author": "",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist"
+  },
+  "scripts": {
+    "clean": "rimraf dist/**",
+    "build": "npm run clean; tsc; tsc -p tsconfig.esm.json",
+    "build:dev": "npm run clean; tsc --declarationMap; tsc -p tsconfig.esm.json",
+    "lint": "eslint . --fix",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "@interchainjs/auth": "^1.6.3",
+    "@interchainjs/cosmos": "1.6.3",
+    "@interchainjs/cosmos-types": "1.6.3",
+    "@interchainjs/ethereum": "1.6.3",
+    "@interchainjs/types": "1.6.3",
+    "@interchainjs/utils": "1.6.3",
+    "@scure/bip32": "^1.6.0",
+    "decimal.js": "^10.4.3",
+    "interchainjs": "^1.6.5",
+    "xplajs": "file:../../libs/xplajs"
+  },
+  "keywords": [
+    "xpla"
+  ],
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "bech32": "^2.0.0",
+    "dotenv": "^16.4.5"
+  }
+}
