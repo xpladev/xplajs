@@ -6,8 +6,7 @@ import { RpcClient } from '@interchainjs/cosmos/query/rpc';
 import { AminoSigner } from "./signers/amino";
 import { DirectSigner } from "./signers/direct";
 import { ICosmosGenericOfflineSigner } from "@interchainjs/cosmos/types/wallet";
-import { defaultAccountParser, defaultAminoConverter, defaultRegistry, defaultSignerOptions } from "./defaults";
-import { toEncoder } from "@interchainjs/cosmos/utils";
+import { defaultAccountParser, defaultSignerOptions } from "./defaults";
 
 
 /**
@@ -28,17 +27,6 @@ export class XplaSigningClient extends SigningClient {
       signer,
       options
     )
-
-    // encoders
-    const encoders = defaultRegistry.map(([, registry]) => toEncoder(registry)) || [];
-    signingClient.addEncoders(encoders);
-
-    // amino conveters
-    const converters = Object.entries(defaultAminoConverter).map(([typeUrl, converter]) => ({
-      typeUrl,
-      ...converter
-    }));
-    signingClient.addConverters(converters);
 
     await signingClient.connect();
 
