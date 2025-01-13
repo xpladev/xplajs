@@ -23,23 +23,23 @@ npm install @interchainjs/xpla
 Taking `direct` signing mode as example.
 
 ```ts
-import { StdFee } from "@interchainjs/types"
 import { XplaSigningClient } from "./signing-client"
 import { EthSecp256k1HDWallet } from "./wallets/ethSecp256k1hd"
-import { MsgSend } from "xplajs/cosmos/bank/v1beta1/tx"
 import { Network } from "./defaults"
+import { createSend } from "xplajs/cosmos/bank/v1beta1/tx.rpc.func"
+import { MsgSend } from "xplajs/cosmos/bank/v1beta1/tx"
+import { StdFee } from "@interchainjs/types"
 
 const wallet = EthSecp256k1HDWallet.fromMnemonic("<MNEMONIC>")
 const signer = wallet.toGenericOfflineSigner("direct")
 const client = await XplaSigningClient.connectWithSigner(Network.Mainnet.rpc, signer)
 
-const msg = {
-  typeUrl: MsgSend.typeUrl,
-  value: MsgSend.fromPartial({
-    amount: [{amount: "1", denom: "axpla"}],
-    fromAddress: accounts[0].address,
-    toAddress: "xpla1888g76xr3phk7qkfknnn8hvxyzfj0e2vuh4jmw"
-  })
+const send = createSend(client)
+
+const msg: MsgSend = {
+  amount: [{amount: "1", denom: "axpla"}],
+  fromAddress: wallet.accounts[0].address,
+  toAddress: "xpla1888g76xr3phk7qkfknnn8hvxyzfj0e2vuh4jmw"
 }
 
 const fee: StdFee = {
@@ -47,30 +47,30 @@ const fee: StdFee = {
   gas: "100000"
 }
 
-const tx = await client.signAndBroadcastSync(accounts[0].address, [msg], fee, "<MEMO>")
-console.log(tx.hash); // the hash of TxRaw
+const tx = await send(wallet.accounts[0].address, msg, fee, "<MEMO>")
+console.log(tx.hash) // the hash of TxRaw
 ```
 
 Taking `amino` signing mode as example.
 
 ```ts
-import { StdFee } from "@interchainjs/types"
 import { XplaSigningClient } from "./signing-client"
 import { EthSecp256k1HDWallet } from "./wallets/ethSecp256k1hd"
-import { MsgSend } from "xplajs/cosmos/bank/v1beta1/tx"
 import { Network } from "./defaults"
+import { createSend } from "xplajs/cosmos/bank/v1beta1/tx.rpc.func"
+import { MsgSend } from "xplajs/cosmos/bank/v1beta1/tx"
+import { StdFee } from "@interchainjs/types"
 
 const wallet = EthSecp256k1HDWallet.fromMnemonic("<MNEMONIC>")
 const signer = wallet.toGenericOfflineSigner("amino")
 const client = await XplaSigningClient.connectWithSigner(Network.Mainnet.rpc, signer)
 
-const msg = {
-  typeUrl: MsgSend.typeUrl,
-  value: MsgSend.fromAmino({
-    amount: [{amount: "1", denom: "axpla"}],
-    from_address: accounts[0].address,
-    to_address: "xpla1888g76xr3phk7qkfknnn8hvxyzfj0e2vuh4jmw"
-  })
+const send = createSend(client)
+
+const msg: MsgSend = {
+  amount: [{amount: "1", denom: "axpla"}],
+  fromAddress: wallet.accounts[0].address,
+  toAddress: "xpla1888g76xr3phk7qkfknnn8hvxyzfj0e2vuh4jmw"
 }
 
 const fee: StdFee = {
@@ -78,8 +78,8 @@ const fee: StdFee = {
   gas: "100000"
 }
 
-const tx = await client.signAndBroadcastSync(accounts[0].address, [msg], fee, "<MEMO>")
-console.log(tx.hash); // the hash of TxRaw
+const tx = await send(wallet.accounts[0].address, msg, fee, "<MEMO>")
+console.log(tx.hash) // the hash of TxRaw
 ```
 
 - See [@interchainjs/auth](/packages/auth/README.md) to construct `<AUTH>`
