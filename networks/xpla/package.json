@@ -8,13 +8,9 @@
   "homepage": "https://github.com/xpladev/xplajs",
   "repository": {
     "type": "git",
-    "url": "https://github.com/xpladev/xplajs"
+    "url": "git+https://github.com/xpladev/xplajs.git"
   },
   "license": "MIT",
-  "publishConfig": {
-    "access": "public",
-    "directory": "dist"
-  },
   "scripts": {
     "clean": "rimraf dist/**",
     "build": "npm run clean; tsc; tsc -p tsconfig.esm.json",
