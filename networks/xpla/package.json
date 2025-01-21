@@ -1,6 +1,6 @@
 {
   "name": "@xpla/xpla",
-  "version": "1.7.0-beta.2",
+  "version": "1.7.0-beta.3",
   "main": "index.js",
   "module": "esm/index.js",
   "types": "index.d.ts",
@@ -30,7 +30,7 @@
     "@interchainjs/types": "1.6.3",
     "@interchainjs/utils": "1.6.3",
     "@scure/bip32": "^1.6.0",
-    "@xpla/xplajs": "^1.7.0-beta.2",
+    "@xpla/xplajs": "^1.7.0-beta.3",
     "decimal.js": "^10.4.3",
     "interchainjs": "^1.6.5"
   },
