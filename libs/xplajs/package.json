@@ -1,16 +1,18 @@
 {
   "name": "@xpla/xplajs",
   "version": "1.7.0-beta.5",
-  "main": "dist/index.js",
+  "main": "index.js",
   "module": "esm/index.js",
-  "files": [
-    "dist"
-  ],
   "author": "Joowon Yun <joowon@delightlabs.io>",
   "homepage": "https://github.com/xpladev/xplajs",
   "scripts": {
+    "copy": "copyfiles -f README.md package.json dist",
     "clean": "rimraf dist/**",
-    "build": "npm run clean; tsc; tsc -p tsconfig.esm.json"
+    "build": "npm run clean; tsc; tsc -p tsconfig.esm.json; npm run copy"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist"
   },
   "dependencies": {
     "@cosmjs/stargate": "^0.32.4",
