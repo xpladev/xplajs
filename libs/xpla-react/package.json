@@ -1,6 +1,6 @@
 {
   "name": "@xpla/xpla-react",
-  "version": "1.7.0-beta.2",
+  "version": "1.7.0-beta.3",
   "description": "xpla-react is a JavaScript library providing react query hooks for interacting with xpla sdk.",
   "main": "dist/index.js",
   "module": "esm/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "@xpla/xplajs",
-  "version": "1.7.0-beta.3",
+  "version": "1.7.0-beta.4",
   "main": "dist/index.js",
   "module": "esm/index.js",
   "files": [
