@@ -18,6 +18,10 @@
     "lint": "eslint . --fix",
     "prepare": "npm run build"
   },
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist"
+  },
   "dependencies": {
     "@interchainjs/auth": "^1.6.3",
     "@interchainjs/cosmos": "1.6.3",

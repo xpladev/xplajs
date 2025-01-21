@@ -1,6 +1,7 @@
 {
   "name": "xplajs",
   "version": "1.7.0-beta",
+  "private": true,
   "main": "index.js",
   "repository": "git@github.com:xpladev/xplajs.git",
   "scripts": {

@@ -2,7 +2,6 @@ import {
   SignerConfig,
 } from '@interchainjs/types';
 import { Auth } from '@interchainjs/types';
-import { fromNumber, toPrefixedHex } from '@interchainjs/utils';
 
 import { defaultPublicKeyConfig } from './defaults';
 import { DomainOptions, EthAccount } from './types';
@@ -16,7 +15,7 @@ export function getAccountFromAuth(
   return {
     algo: auth.algo,
     publicKey,
-    cosmosAddress: pubKeyHash.toBech32('inj'),
+    cosmosAddress: pubKeyHash.toBech32('xpla'),
     ethereumAddress: pubKeyHash.toPrefixedHex(),
   };
 }
