@@ -1,4 +1,4 @@
-# @interchainjs/xplajs
+# @xpla/xplajs
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/545047/188804067-28e67e5e-0214-4449-ab04-2e0c564a6885.svg" width="80">
@@ -18,7 +18,7 @@ Query to communicate with any xpla blockchain.
 ### Install
 
 ```sh
-npm install @interchainjs/xplajs
+npm install @xpla/xplajs
 ```
 
 ### Example

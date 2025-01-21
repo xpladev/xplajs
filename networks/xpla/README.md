@@ -1,4 +1,4 @@
-# @interchainjs/xpla
+# @xpla/xpla
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/545047/188804067-28e67e5e-0214-4449-ab04-2e0c564a6885.svg" width="80">
@@ -17,7 +17,7 @@ Transaction codec and client to communicate with any xpla blockchain.
 ## Usage
 ### Install
 ```sh
-npm install @interchainjs/xpla
+npm install @xpla/xpla
 ```
 ### Example
 Taking `direct` signing mode as example.
@@ -26,8 +26,8 @@ Taking `direct` signing mode as example.
 import { XplaSigningClient } from "./signing-client"
 import { EthSecp256k1HDWallet } from "./wallets/ethSecp256k1hd"
 import { Network } from "./defaults"
-import { createSend } from "xplajs/cosmos/bank/v1beta1/tx.rpc.func"
-import { MsgSend } from "xplajs/cosmos/bank/v1beta1/tx"
+import { createSend } from "@xpla/xplajs/cosmos/bank/v1beta1/tx.rpc.func"
+import { MsgSend } from "@xpla/xplajs/cosmos/bank/v1beta1/tx"
 import { StdFee } from "@interchainjs/types"
 
 const wallet = EthSecp256k1HDWallet.fromMnemonic("<MNEMONIC>")
@@ -92,5 +92,3 @@ console.log(tx.hash) // the hash of TxRaw
 ## License
 
 MIT License (MIT) & Apache License
-
-Copyright (c) 2024 Cosmology (https://cosmology.zone/)
