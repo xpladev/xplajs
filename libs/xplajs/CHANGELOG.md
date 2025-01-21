@@ -8,10 +8,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* XplaSigningClient ([b1d82b7](https://github.com/xpladev/xplajs/commit/b1d82b7a673a420976809ca23164873132aeab04))
-
-
-
-
-
-# Change Log
+* lerna build ([5be17e0](https://github.com/xpladev/xplajs/commit/5be17e07a1c23bafc11c2619d8c8aae0ad43b5c9))

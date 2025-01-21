@@ -5,13 +5,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # 1.7.0-beta.0 (2025-01-21)
 
-
-### Features
-
-* XplaSigningClient ([b1d82b7](https://github.com/xpladev/xplajs/commit/b1d82b7a673a420976809ca23164873132aeab04))
-
-
-
-
-
-# Change Log
+**Note:** Version bump only for package @xpla/xpla-react
