@@ -2,11 +2,14 @@
   "name": "@xpla/xpla-react",
   "version": "1.7.0-beta.2",
   "description": "xpla-react is a JavaScript library providing react query hooks for interacting with xpla sdk.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "module": "esm/index.js",
   "types": "index.d.ts",
   "author": "Joowon Yun <joowon@delightlabs.io>",
   "homepage": "https://github.com/xpladev/xplajs",
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/xpladev/xplajs"

@@ -1,8 +1,11 @@
 {
   "name": "@xpla/xpla",
   "version": "1.7.0-beta.3",
-  "main": "index.js",
+  "main": "dist/index.js",
   "module": "esm/index.js",
+  "files": [
+    "dist"
+  ],
   "types": "index.d.ts",
   "author": "Joowon Yun <joowon@delightlabs.io>",
   "homepage": "https://github.com/xpladev/xplajs",
