@@ -1,6 +1,7 @@
 {
   "name": "xplajs",
   "version": "1.7.0-beta",
+  "private": true,
   "main": "index.js",
   "repository": "git@github.com:xpladev/xplajs.git",
   "scripts": {
@@ -19,6 +20,7 @@
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "devDependencies": {
     "@cosmology/telescope": "^1.11.2",
-    "lerna": "^8.1.9"
+    "lerna": "^8.1.9",
+    "copyfiles": "^2.4.1"
   }
 }
