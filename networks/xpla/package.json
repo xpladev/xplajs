@@ -1,14 +1,14 @@
 {
-  "name": "@interchainjs/xpla",
-  "version": "1.0.0",
+  "name": "@xpla/xpla",
+  "version": "1.7.0-beta",
   "main": "index.js",
   "module": "esm/index.js",
   "types": "index.d.ts",
-  "author": "",
-  "homepage": "",
+  "author": "Joowon Yun <joowon@delightlabs.io>",
+  "homepage": "https://github.com/xpladev/xplajs",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/xpladev/xplajs"
   },
   "license": "MIT",
   "publishConfig": {
@@ -32,7 +32,7 @@
     "@scure/bip32": "^1.6.0",
     "decimal.js": "^10.4.3",
     "interchainjs": "^1.6.5",
-    "xplajs": "file:../../libs/xplajs"
+    "@xpla/xplajs": "^1.7.0-beta"
   },
   "keywords": [
     "xpla"
