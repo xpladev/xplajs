@@ -12,10 +12,6 @@
     "clean": "rimraf dist/**",
     "build": "npm run clean; tsc; tsc -p tsconfig.esm.json"
   },
-  "publishConfig": {
-    "access": "public",
-    "directory": "dist"
-  },
   "dependencies": {
     "@cosmjs/stargate": "^0.32.4",
     "@cosmjs/tendermint-rpc": "^0.32.4",
