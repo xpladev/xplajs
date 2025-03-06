@@ -2,7 +2,7 @@
     "repos": [
       { "owner": "cosmos", "repo": "cosmos-sdk", "branch": "release/v0.50.x" },
       { "owner": "cosmos", "repo": "ibc-go", "branch": "release/v8.4.x" },
-      { "owner": "cosmwasm", "repo": "wasmd", "branch": "releases/v0.4x" },
+      { "owner": "cosmwasm", "repo": "wasmd", "branch": "releases/v0.53.x" },
       { "owner": "xpladev", "repo": "xpla", "branch": "release/v1.7.x" },
       { "owner": "xpladev", "repo": "ethermint", "branch": "release/v0.24.x-xpla" }
     ],
