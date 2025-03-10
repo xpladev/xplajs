@@ -1,6 +1,6 @@
 {
   "name": "@xpla/xpla",
-  "version": "1.7.0-beta.10",
+  "version": "1.7.0-beta.11",
   "main": "index.js",
   "module": "esm/index.js",
   "types": "index.d.ts",
