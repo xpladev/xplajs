@@ -10,7 +10,7 @@
         "useSDKTypes": false,
         "prototypes": {
             "enableRegistryLoader": false,
-            "enableMessageComposer": true,
+            "enableMessageComposer": false,
             "enabled": true,
             "parser": {
                 "keepCase": false
@@ -40,7 +40,8 @@
                 "useDeepPartial": true,
                 "num64": "bigint",
                 "customTypes": {
-                    "useCosmosSDKDec": false
+                    "useCosmosSDKDec": true,
+                    "useEnhancedDecimal": false
                 },
                 "useTelescopeGeneratedType": true,
                 "autoFixUndefinedEnumDefault": true
@@ -58,20 +59,28 @@
         "rpcClients": {
             "enabled": false
         },
-        "helperFuncCreators": {
-          "enabled": true,
-          "genCustomHooks": true
+        "helperFunctions": {
+            "enabled": true,
+            "useGlobalDecoderRegistry": true,
+            "hooks": {
+              "react": true,
+              "vue": false
+            }
         },
         "interfaces": {
             "enabled": true,
             "useGlobalDecoderRegistry": true,
+            "registerAllDecodersToGlobal": false,
             "useUnionTypes": true
         },
         "aminoEncoding": {
             "enabled": true,
             "useLegacyInlineEncoding": false,
             "disableMsgTypes": false,
-            "useProtoOptionality": true
+            "useProtoOptionality": true,
+            "customTypes": {
+              "useCosmosSDKDec": true
+            }
         }
     }
 }

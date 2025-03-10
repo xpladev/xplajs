@@ -10,7 +10,7 @@
         "useSDKTypes": false,
         "prototypes": {
             "enableRegistryLoader": false,
-            "enableMessageComposer": false,
+            "enableMessageComposer": true,
             "enabled": true,
             "parser": {
                 "keepCase": false
@@ -40,7 +40,8 @@
                 "useDeepPartial": true,
                 "num64": "bigint",
                 "customTypes": {
-                    "useCosmosSDKDec": false
+                    "useCosmosSDKDec": true,
+                    "useEnhancedDecimal": false
                 },
                 "useTelescopeGeneratedType": true,
                 "autoFixUndefinedEnumDefault": true
@@ -53,13 +54,7 @@
             "enabled": false
         },
         "lcdClients": {
-            "enabled": true,
-            "scoped": [
-                {
-                    "dir": "xpla",
-                    "addToBundle": true
-                }
-            ]
+            "enabled": false
         },
         "rpcClients": {
             "enabled": true,
@@ -70,21 +65,30 @@
                     "packages": []
                 }
             ]
+
         },
-        "helperFuncCreators": {
-          "enabled": true,
-          "genCustomHooks": false
+        "helperFunctions": {
+            "enabled": true,
+            "useGlobalDecoderRegistry": true,
+            "hooks": {
+              "react": false,
+              "vue": false
+            }
         },
         "interfaces": {
             "enabled": true,
             "useGlobalDecoderRegistry": true,
+            "registerAllDecodersToGlobal": false,
             "useUnionTypes": true
         },
         "aminoEncoding": {
             "enabled": true,
             "useLegacyInlineEncoding": false,
             "disableMsgTypes": false,
-            "useProtoOptionality": true
+            "useProtoOptionality": true,
+            "customTypes": {
+              "useCosmosSDKDec": true
+            }
         }
     }
 }
