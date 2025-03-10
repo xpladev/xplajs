@@ -1,7 +1,7 @@
 import { Params, ParamsAmino, State, StateAmino } from "./evm";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { DeepPartial } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { DeepPartial } from "../../../helpers";
 /** GenesisState defines the evm module's genesis state. */
 export interface GenesisState {
   /** accounts is an array containing the ethereum genesis accounts. */

@@ -1,7 +1,7 @@
 import { Any, AnyAmino } from "../../../../google/protobuf/any";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { DeepPartial } from "../../../../helpers";
 import { GlobalDecoderRegistry } from "../../../../registry";
+import { DeepPartial } from "../../../../helpers";
 /** QueryRequest is the request for the Query method */
 export interface QueryRequest {
   request?: Any;

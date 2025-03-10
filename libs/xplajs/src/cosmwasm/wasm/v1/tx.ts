@@ -1,9 +1,9 @@
 import { AccessConfig, AccessConfigAmino, Params, ParamsAmino } from "./types";
 import { Coin, CoinAmino } from "../../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../helpers";
-import { fromBase64, toBase64, toUtf8, fromUtf8 } from "@cosmjs/encoding";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../helpers";
+import { fromBase64, toBase64, toUtf8, fromUtf8 } from "@interchainjs/encoding";
 /** MsgStoreCode submit Wasm code to the system */
 export interface MsgStoreCode {
   /** Sender is the actor that signed the messages */
@@ -126,7 +126,7 @@ export interface MsgInstantiateContractResponseAminoMsg {
 }
 /**
  * MsgInstantiateContract2 create a new smart contract instance for the given
- * code id with a predicable address.
+ * code id with a predictable address.
  */
 export interface MsgInstantiateContract2 {
   /** Sender is the that actor that signed the messages */
@@ -155,7 +155,7 @@ export interface MsgInstantiateContract2ProtoMsg {
 }
 /**
  * MsgInstantiateContract2 create a new smart contract instance for the given
- * code id with a predicable address.
+ * code id with a predictable address.
  */
 export interface MsgInstantiateContract2Amino {
   /** Sender is the that actor that signed the messages */

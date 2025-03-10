@@ -1,8 +1,8 @@
 import { PageRequest, PageRequestAmino, PageResponse, PageResponseAmino } from "../../base/query/v1beta1/pagination";
 import { Validator, ValidatorAmino, DelegationResponse, DelegationResponseAmino, UnbondingDelegation, UnbondingDelegationAmino, RedelegationResponse, RedelegationResponseAmino, HistoricalInfo, HistoricalInfoAmino, Pool, PoolAmino, Params, ParamsAmino } from "./staking";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { DeepPartial } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { DeepPartial } from "../../../helpers";
 /** QueryValidatorsRequest is request type for Query/Validators RPC method. */
 export interface QueryValidatorsRequest {
   /** status enables to query for validators matching a given status. */

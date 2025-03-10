@@ -1,7 +1,7 @@
 import { BlockParams, BlockParamsAmino, EvidenceParams, EvidenceParamsAmino, ValidatorParams, ValidatorParamsAmino, ABCIParams, ABCIParamsAmino } from "../../../tendermint/types/params";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { DeepPartial } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { DeepPartial } from "../../../helpers";
 /** MsgUpdateParams is the Msg/UpdateParams request type. */
 export interface MsgUpdateParams {
   /** authority is the address that controls the module (defaults to x/gov unless overwritten). */

@@ -1,7 +1,7 @@
 import { Any, AnyAmino } from "../../../../google/protobuf/any";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../../helpers";
 import { GlobalDecoderRegistry } from "../../../../registry";
+import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../../helpers";
 /**
  * ClientState defines a solo machine client that tracks the current consensus
  * state and if the client is frozen.

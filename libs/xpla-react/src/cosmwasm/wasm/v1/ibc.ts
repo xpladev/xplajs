@@ -67,6 +67,18 @@ export interface MsgIBCSendResponseAminoMsg {
   type: "wasm/MsgIBCSendResponse";
   value: MsgIBCSendResponseAmino;
 }
+/** MsgIBCWriteAcknowledgementResponse */
+export interface MsgIBCWriteAcknowledgementResponse {}
+export interface MsgIBCWriteAcknowledgementResponseProtoMsg {
+  typeUrl: "/cosmwasm.wasm.v1.MsgIBCWriteAcknowledgementResponse";
+  value: Uint8Array;
+}
+/** MsgIBCWriteAcknowledgementResponse */
+export interface MsgIBCWriteAcknowledgementResponseAmino {}
+export interface MsgIBCWriteAcknowledgementResponseAminoMsg {
+  type: "wasm/MsgIBCWriteAcknowledgementResponse";
+  value: MsgIBCWriteAcknowledgementResponseAmino;
+}
 /** MsgIBCCloseChannel port and channel need to be owned by the contract */
 export interface MsgIBCCloseChannel {
   channel: string;
@@ -275,6 +287,71 @@ export const MsgIBCSendResponse = {
 };
 GlobalDecoderRegistry.register(MsgIBCSendResponse.typeUrl, MsgIBCSendResponse);
 GlobalDecoderRegistry.registerAminoProtoMapping(MsgIBCSendResponse.aminoType, MsgIBCSendResponse.typeUrl);
+function createBaseMsgIBCWriteAcknowledgementResponse(): MsgIBCWriteAcknowledgementResponse {
+  return {};
+}
+export const MsgIBCWriteAcknowledgementResponse = {
+  typeUrl: "/cosmwasm.wasm.v1.MsgIBCWriteAcknowledgementResponse",
+  aminoType: "wasm/MsgIBCWriteAcknowledgementResponse",
+  is(o: any): o is MsgIBCWriteAcknowledgementResponse {
+    return o && o.$typeUrl === MsgIBCWriteAcknowledgementResponse.typeUrl;
+  },
+  isAmino(o: any): o is MsgIBCWriteAcknowledgementResponseAmino {
+    return o && o.$typeUrl === MsgIBCWriteAcknowledgementResponse.typeUrl;
+  },
+  encode(_: MsgIBCWriteAcknowledgementResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): MsgIBCWriteAcknowledgementResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgIBCWriteAcknowledgementResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(_: DeepPartial<MsgIBCWriteAcknowledgementResponse>): MsgIBCWriteAcknowledgementResponse {
+    const message = createBaseMsgIBCWriteAcknowledgementResponse();
+    return message;
+  },
+  fromAmino(_: MsgIBCWriteAcknowledgementResponseAmino): MsgIBCWriteAcknowledgementResponse {
+    const message = createBaseMsgIBCWriteAcknowledgementResponse();
+    return message;
+  },
+  toAmino(_: MsgIBCWriteAcknowledgementResponse): MsgIBCWriteAcknowledgementResponseAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: MsgIBCWriteAcknowledgementResponseAminoMsg): MsgIBCWriteAcknowledgementResponse {
+    return MsgIBCWriteAcknowledgementResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgIBCWriteAcknowledgementResponse): MsgIBCWriteAcknowledgementResponseAminoMsg {
+    return {
+      type: "wasm/MsgIBCWriteAcknowledgementResponse",
+      value: MsgIBCWriteAcknowledgementResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message: MsgIBCWriteAcknowledgementResponseProtoMsg): MsgIBCWriteAcknowledgementResponse {
+    return MsgIBCWriteAcknowledgementResponse.decode(message.value);
+  },
+  toProto(message: MsgIBCWriteAcknowledgementResponse): Uint8Array {
+    return MsgIBCWriteAcknowledgementResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgIBCWriteAcknowledgementResponse): MsgIBCWriteAcknowledgementResponseProtoMsg {
+    return {
+      typeUrl: "/cosmwasm.wasm.v1.MsgIBCWriteAcknowledgementResponse",
+      value: MsgIBCWriteAcknowledgementResponse.encode(message).finish()
+    };
+  }
+};
+GlobalDecoderRegistry.register(MsgIBCWriteAcknowledgementResponse.typeUrl, MsgIBCWriteAcknowledgementResponse);
+GlobalDecoderRegistry.registerAminoProtoMapping(MsgIBCWriteAcknowledgementResponse.aminoType, MsgIBCWriteAcknowledgementResponse.typeUrl);
 function createBaseMsgIBCCloseChannel(): MsgIBCCloseChannel {
   return {
     channel: ""

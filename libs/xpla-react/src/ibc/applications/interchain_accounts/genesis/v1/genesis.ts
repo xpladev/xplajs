@@ -3,8 +3,8 @@ import { ParamsAmino as Params1Amino } from "../../controller/v1/controller";
 import { Params as Params2 } from "../../host/v1/host";
 import { ParamsAmino as Params2Amino } from "../../host/v1/host";
 import { BinaryReader, BinaryWriter } from "../../../../../binary";
-import { DeepPartial } from "../../../../../helpers";
 import { GlobalDecoderRegistry } from "../../../../../registry";
+import { DeepPartial } from "../../../../../helpers";
 /** GenesisState defines the interchain accounts genesis state */
 export interface GenesisState {
   controllerGenesisState: ControllerGenesisState;

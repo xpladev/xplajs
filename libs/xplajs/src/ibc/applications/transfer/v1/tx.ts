@@ -1,8 +1,8 @@
 import { Coin, CoinAmino } from "../../../../cosmos/base/v1beta1/coin";
 import { Height, HeightAmino, Params, ParamsAmino } from "../../../core/client/v1/client";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { DeepPartial } from "../../../../helpers";
 import { GlobalDecoderRegistry } from "../../../../registry";
+import { DeepPartial } from "../../../../helpers";
 /**
  * MsgTransfer defines a msg to transfer fungible tokens (i.e Coins) between
  * ICS20 enabled chains. See ICS Spec here:

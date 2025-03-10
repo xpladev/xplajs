@@ -1,8 +1,8 @@
 import { Params, ParamsAmino, Metadata, MetadataAmino, SendEnabled, SendEnabledAmino } from "./bank";
 import { Coin, CoinAmino } from "../../base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { DeepPartial } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { DeepPartial } from "../../../helpers";
 /** GenesisState defines the bank module's genesis state. */
 export interface GenesisState {
   /** params defines all the parameters of the module. */

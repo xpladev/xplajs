@@ -1,7 +1,7 @@
 import { IdentifiedConnection, IdentifiedConnectionAmino, ConnectionPaths, ConnectionPathsAmino, Params, ParamsAmino } from "./connection";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { DeepPartial } from "../../../../helpers";
 import { GlobalDecoderRegistry } from "../../../../registry";
+import { DeepPartial } from "../../../../helpers";
 /** GenesisState defines the ibc connection submodule's genesis state. */
 export interface GenesisState {
   connections: IdentifiedConnection[];

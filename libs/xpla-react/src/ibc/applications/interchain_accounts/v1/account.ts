@@ -1,7 +1,7 @@
 import { BaseAccount, BaseAccountAmino } from "../../../../cosmos/auth/v1beta1/auth";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { DeepPartial } from "../../../../helpers";
 import { GlobalDecoderRegistry } from "../../../../registry";
+import { DeepPartial } from "../../../../helpers";
 /** An InterchainAccount is defined as a BaseAccount & the address of the account owner on the controller chain */
 export interface InterchainAccount {
   baseAccount?: BaseAccount;

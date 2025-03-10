@@ -1,7 +1,7 @@
 import { Deposit, DepositAmino, Vote, VoteAmino, Proposal, ProposalAmino, DepositParams, DepositParamsAmino, VotingParams, VotingParamsAmino, TallyParams, TallyParamsAmino, Params, ParamsAmino } from "./gov";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { DeepPartial } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { DeepPartial } from "../../../helpers";
 /** GenesisState defines the gov module's genesis state. */
 export interface GenesisState {
   /** starting_proposal_id is the ID of the starting proposal. */

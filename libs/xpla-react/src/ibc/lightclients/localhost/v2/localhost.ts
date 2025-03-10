@@ -1,7 +1,7 @@
 import { Height, HeightAmino } from "../../../core/client/v1/client";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { DeepPartial } from "../../../../helpers";
 import { GlobalDecoderRegistry } from "../../../../registry";
+import { DeepPartial } from "../../../../helpers";
 /** ClientState defines the 09-localhost client state */
 export interface ClientState {
   /** the latest block height */

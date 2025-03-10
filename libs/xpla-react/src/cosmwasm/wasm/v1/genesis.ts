@@ -1,7 +1,7 @@
 import { Params, ParamsAmino, CodeInfo, CodeInfoAmino, ContractInfo, ContractInfoAmino, Model, ModelAmino, ContractCodeHistoryEntry, ContractCodeHistoryEntryAmino } from "./types";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../helpers";
 /** GenesisState - genesis state of x/wasm */
 export interface GenesisState {
   params: Params;

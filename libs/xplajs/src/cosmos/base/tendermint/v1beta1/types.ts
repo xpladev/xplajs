@@ -3,8 +3,8 @@ import { EvidenceList, EvidenceListAmino } from "../../../../tendermint/types/ev
 import { Consensus, ConsensusAmino } from "../../../../tendermint/version/types";
 import { Timestamp } from "../../../../google/protobuf/timestamp";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { DeepPartial, toTimestamp, fromTimestamp, bytesFromBase64, base64FromBytes } from "../../../../helpers";
 import { GlobalDecoderRegistry } from "../../../../registry";
+import { DeepPartial, toTimestamp, fromTimestamp, bytesFromBase64, base64FromBytes } from "../../../../helpers";
 /**
  * Block is tendermint type Block, with the Header proposer address
  * field converted to bech32 string.

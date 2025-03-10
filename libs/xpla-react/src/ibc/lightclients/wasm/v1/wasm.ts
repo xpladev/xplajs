@@ -1,7 +1,7 @@
 import { Height, HeightAmino } from "../../../core/client/v1/client";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../../helpers";
 import { GlobalDecoderRegistry } from "../../../../registry";
+import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../../helpers";
 /** Wasm light client's Client state */
 export interface ClientState {
   /**

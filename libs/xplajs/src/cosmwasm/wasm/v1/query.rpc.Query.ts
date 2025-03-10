@@ -1,7 +1,7 @@
 import { TxRpc } from "../../../types";
 import { BinaryReader } from "../../../binary";
 import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryContractInfoRequest, QueryContractInfoResponse, QueryContractHistoryRequest, QueryContractHistoryResponse, QueryContractsByCodeRequest, QueryContractsByCodeResponse, QueryAllContractStateRequest, QueryAllContractStateResponse, QueryRawContractStateRequest, QueryRawContractStateResponse, QuerySmartContractStateRequest, QuerySmartContractStateResponse, QueryCodeRequest, QueryCodeResponse, QueryCodesRequest, QueryCodesResponse, QueryPinnedCodesRequest, QueryPinnedCodesResponse, QueryParamsRequest, QueryParamsResponse, QueryContractsByCreatorRequest, QueryContractsByCreatorResponse } from "./query";
+import { QueryContractInfoRequest, QueryContractInfoResponse, QueryContractHistoryRequest, QueryContractHistoryResponse, QueryContractsByCodeRequest, QueryContractsByCodeResponse, QueryAllContractStateRequest, QueryAllContractStateResponse, QueryRawContractStateRequest, QueryRawContractStateResponse, QuerySmartContractStateRequest, QuerySmartContractStateResponse, QueryCodeRequest, QueryCodeResponse, QueryCodesRequest, QueryCodesResponse, QueryPinnedCodesRequest, QueryPinnedCodesResponse, QueryParamsRequest, QueryParamsResponse, QueryContractsByCreatorRequest, QueryContractsByCreatorResponse, QueryBuildAddressRequest, QueryBuildAddressResponse } from "./query";
 /** Query provides defines the gRPC querier service */
 export interface Query {
   /** ContractInfo gets the contract meta data */
@@ -26,6 +26,8 @@ export interface Query {
   params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
   /** ContractsByCreator gets the contracts by creator */
   contractsByCreator(request: QueryContractsByCreatorRequest): Promise<QueryContractsByCreatorResponse>;
+  /** BuildAddress builds a contract address */
+  buildAddress(request: QueryBuildAddressRequest): Promise<QueryBuildAddressResponse>;
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: TxRpc;
@@ -102,6 +104,12 @@ export class QueryClientImpl implements Query {
     const promise = this.rpc.request("cosmwasm.wasm.v1.Query", "ContractsByCreator", data);
     return promise.then(data => QueryContractsByCreatorResponse.decode(new BinaryReader(data)));
   };
+  /* BuildAddress builds a contract address */
+  buildAddress = async (request: QueryBuildAddressRequest): Promise<QueryBuildAddressResponse> => {
+    const data = QueryBuildAddressRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmwasm.wasm.v1.Query", "BuildAddress", data);
+    return promise.then(data => QueryBuildAddressResponse.decode(new BinaryReader(data)));
+  };
 }
 export const createRpcQueryExtension = (base: QueryClient) => {
   const rpc = createProtobufRpcClient(base);
@@ -139,6 +147,9 @@ export const createRpcQueryExtension = (base: QueryClient) => {
     },
     contractsByCreator(request: QueryContractsByCreatorRequest): Promise<QueryContractsByCreatorResponse> {
       return queryService.contractsByCreator(request);
+    },
+    buildAddress(request: QueryBuildAddressRequest): Promise<QueryBuildAddressResponse> {
+      return queryService.buildAddress(request);
     }
   };
 };

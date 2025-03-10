@@ -2,11 +2,11 @@ import { Coin, CoinAmino } from "../../base/v1beta1/coin";
 import { Any, AnyProtoMsg, AnyAmino } from "../../../google/protobuf/any";
 import { Timestamp } from "../../../google/protobuf/timestamp";
 import { Duration, DurationAmino } from "../../../google/protobuf/duration";
-import { ClientUpdateProposal, ClientUpdateProposalProtoMsg, UpgradeProposal, UpgradeProposalProtoMsg } from "../../../ibc/core/client/v1/client";
-import { StoreCodeProposal, StoreCodeProposalProtoMsg, InstantiateContractProposal, InstantiateContractProposalProtoMsg, InstantiateContract2Proposal, InstantiateContract2ProposalProtoMsg, MigrateContractProposal, MigrateContractProposalProtoMsg, SudoContractProposal, SudoContractProposalProtoMsg, ExecuteContractProposal, ExecuteContractProposalProtoMsg, UpdateAdminProposal, UpdateAdminProposalProtoMsg, ClearAdminProposal, ClearAdminProposalProtoMsg, PinCodesProposal, PinCodesProposalProtoMsg, UnpinCodesProposal, UnpinCodesProposalProtoMsg, UpdateInstantiateConfigProposal, UpdateInstantiateConfigProposalProtoMsg, StoreAndInstantiateContractProposal, StoreAndInstantiateContractProposalProtoMsg } from "../../../cosmwasm/wasm/v1/proposal_legacy";
-import { SoftwareUpgradeProposal, SoftwareUpgradeProposalProtoMsg, CancelSoftwareUpgradeProposal, CancelSoftwareUpgradeProposalProtoMsg } from "../../upgrade/v1beta1/upgrade";
-import { ParameterChangeProposal, ParameterChangeProposalProtoMsg } from "../../params/v1beta1/params";
 import { CommunityPoolSpendProposal, CommunityPoolSpendProposalProtoMsg, CommunityPoolSpendProposalWithDeposit, CommunityPoolSpendProposalWithDepositProtoMsg } from "../../distribution/v1beta1/distribution";
+import { ParameterChangeProposal, ParameterChangeProposalProtoMsg } from "../../params/v1beta1/params";
+import { SoftwareUpgradeProposal, SoftwareUpgradeProposalProtoMsg, CancelSoftwareUpgradeProposal, CancelSoftwareUpgradeProposalProtoMsg } from "../../upgrade/v1beta1/upgrade";
+import { StoreCodeProposal, StoreCodeProposalProtoMsg, InstantiateContractProposal, InstantiateContractProposalProtoMsg, InstantiateContract2Proposal, InstantiateContract2ProposalProtoMsg, MigrateContractProposal, MigrateContractProposalProtoMsg, SudoContractProposal, SudoContractProposalProtoMsg, ExecuteContractProposal, ExecuteContractProposalProtoMsg, UpdateAdminProposal, UpdateAdminProposalProtoMsg, ClearAdminProposal, ClearAdminProposalProtoMsg, PinCodesProposal, PinCodesProposalProtoMsg, UnpinCodesProposal, UnpinCodesProposalProtoMsg, UpdateInstantiateConfigProposal, UpdateInstantiateConfigProposalProtoMsg, StoreAndInstantiateContractProposal, StoreAndInstantiateContractProposalProtoMsg } from "../../../cosmwasm/wasm/v1/proposal_legacy";
+import { ClientUpdateProposal, ClientUpdateProposalProtoMsg, UpgradeProposal, UpgradeProposalProtoMsg } from "../../../ibc/core/client/v1/client";
 import { isSet, DeepPartial, toTimestamp, fromTimestamp, bytesFromBase64, base64FromBytes } from "../../../helpers";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { GlobalDecoderRegistry } from "../../../registry";
@@ -237,7 +237,7 @@ export interface Proposal {
   /** proposal_id defines the unique id of the proposal. */
   proposalId: bigint;
   /** content is the proposal's content. */
-  content?: TextProposal | ClientUpdateProposal | UpgradeProposal | StoreCodeProposal | InstantiateContractProposal | InstantiateContract2Proposal | MigrateContractProposal | SudoContractProposal | ExecuteContractProposal | UpdateAdminProposal | ClearAdminProposal | PinCodesProposal | UnpinCodesProposal | UpdateInstantiateConfigProposal | StoreAndInstantiateContractProposal | SoftwareUpgradeProposal | CancelSoftwareUpgradeProposal | ParameterChangeProposal | CommunityPoolSpendProposal | CommunityPoolSpendProposalWithDeposit | Any | undefined;
+  content?: TextProposal | CommunityPoolSpendProposal | CommunityPoolSpendProposalWithDeposit | ParameterChangeProposal | SoftwareUpgradeProposal | CancelSoftwareUpgradeProposal | StoreCodeProposal | InstantiateContractProposal | InstantiateContract2Proposal | MigrateContractProposal | SudoContractProposal | ExecuteContractProposal | UpdateAdminProposal | ClearAdminProposal | PinCodesProposal | UnpinCodesProposal | UpdateInstantiateConfigProposal | StoreAndInstantiateContractProposal | ClientUpdateProposal | UpgradeProposal | Any | undefined;
   /** status defines the proposal status. */
   status: ProposalStatus;
   /**
@@ -262,7 +262,7 @@ export interface ProposalProtoMsg {
   value: Uint8Array;
 }
 export type ProposalEncoded = Omit<Proposal, "content"> & {
-  /** content is the proposal's content. */content?: TextProposalProtoMsg | ClientUpdateProposalProtoMsg | UpgradeProposalProtoMsg | StoreCodeProposalProtoMsg | InstantiateContractProposalProtoMsg | InstantiateContract2ProposalProtoMsg | MigrateContractProposalProtoMsg | SudoContractProposalProtoMsg | ExecuteContractProposalProtoMsg | UpdateAdminProposalProtoMsg | ClearAdminProposalProtoMsg | PinCodesProposalProtoMsg | UnpinCodesProposalProtoMsg | UpdateInstantiateConfigProposalProtoMsg | StoreAndInstantiateContractProposalProtoMsg | SoftwareUpgradeProposalProtoMsg | CancelSoftwareUpgradeProposalProtoMsg | ParameterChangeProposalProtoMsg | CommunityPoolSpendProposalProtoMsg | CommunityPoolSpendProposalWithDepositProtoMsg | AnyProtoMsg | undefined;
+  /** content is the proposal's content. */content?: TextProposalProtoMsg | CommunityPoolSpendProposalProtoMsg | CommunityPoolSpendProposalWithDepositProtoMsg | ParameterChangeProposalProtoMsg | SoftwareUpgradeProposalProtoMsg | CancelSoftwareUpgradeProposalProtoMsg | StoreCodeProposalProtoMsg | InstantiateContractProposalProtoMsg | InstantiateContract2ProposalProtoMsg | MigrateContractProposalProtoMsg | SudoContractProposalProtoMsg | ExecuteContractProposalProtoMsg | UpdateAdminProposalProtoMsg | ClearAdminProposalProtoMsg | PinCodesProposalProtoMsg | UnpinCodesProposalProtoMsg | UpdateInstantiateConfigProposalProtoMsg | StoreAndInstantiateContractProposalProtoMsg | ClientUpdateProposalProtoMsg | UpgradeProposalProtoMsg | AnyProtoMsg | undefined;
 };
 /** Proposal defines the core field members of a governance proposal. */
 export interface ProposalAmino {

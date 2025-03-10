@@ -1,7 +1,7 @@
 import { IdentifiedClientState, IdentifiedClientStateAmino, ClientConsensusStates, ClientConsensusStatesAmino, Params, ParamsAmino } from "./client";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../../helpers";
 import { GlobalDecoderRegistry } from "../../../../registry";
+import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../../helpers";
 /** GenesisState defines the ibc client submodule's genesis state. */
 export interface GenesisState {
   /** client states with their corresponding identifiers */

@@ -1,7 +1,7 @@
 import { Params, ParamsAmino, Validator, ValidatorAmino, Delegation, DelegationAmino, UnbondingDelegation, UnbondingDelegationAmino, Redelegation, RedelegationAmino } from "./staking";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../helpers";
 /** GenesisState defines the staking module's genesis state. */
 export interface GenesisState {
   /** params defines all the parameters of related to deposit. */

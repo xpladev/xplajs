@@ -2,9 +2,9 @@ import { Description, DescriptionAmino } from "../../../cosmos/staking/v1beta1/s
 import { Any, AnyProtoMsg, AnyAmino } from "../../../google/protobuf/any";
 import { Coin, CoinAmino } from "../../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { DeepPartial } from "../../../helpers";
-import { encodePubkey, decodePubkey } from "@cosmjs/proto-signing";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { DeepPartial } from "../../../helpers";
+import { encodePubkey, decodePubkey } from "@interchainjs/pubkey";
 /**
  * MsgRegisterVolunteerValidator defines a message to register a new volunteer
  * validator.

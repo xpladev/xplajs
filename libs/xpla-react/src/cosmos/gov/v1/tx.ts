@@ -2,12 +2,12 @@ import { Any, AnyProtoMsg, AnyAmino } from "../../../google/protobuf/any";
 import { Coin, CoinAmino } from "../../base/v1beta1/coin";
 import { VoteOption, WeightedVoteOption, WeightedVoteOptionAmino, Params, ParamsAmino } from "./gov";
 import { Timestamp } from "../../../google/protobuf/timestamp";
-import { ClientUpdateProposal, ClientUpdateProposalProtoMsg, UpgradeProposal, UpgradeProposalProtoMsg } from "../../../ibc/core/client/v1/client";
-import { StoreCodeProposal, StoreCodeProposalProtoMsg, InstantiateContractProposal, InstantiateContractProposalProtoMsg, InstantiateContract2Proposal, InstantiateContract2ProposalProtoMsg, MigrateContractProposal, MigrateContractProposalProtoMsg, SudoContractProposal, SudoContractProposalProtoMsg, ExecuteContractProposal, ExecuteContractProposalProtoMsg, UpdateAdminProposal, UpdateAdminProposalProtoMsg, ClearAdminProposal, ClearAdminProposalProtoMsg, PinCodesProposal, PinCodesProposalProtoMsg, UnpinCodesProposal, UnpinCodesProposalProtoMsg, UpdateInstantiateConfigProposal, UpdateInstantiateConfigProposalProtoMsg, StoreAndInstantiateContractProposal, StoreAndInstantiateContractProposalProtoMsg } from "../../../cosmwasm/wasm/v1/proposal_legacy";
-import { SoftwareUpgradeProposal, SoftwareUpgradeProposalProtoMsg, CancelSoftwareUpgradeProposal, CancelSoftwareUpgradeProposalProtoMsg } from "../../upgrade/v1beta1/upgrade";
-import { ParameterChangeProposal, ParameterChangeProposalProtoMsg } from "../../params/v1beta1/params";
-import { TextProposal, TextProposalProtoMsg } from "../v1beta1/gov";
 import { CommunityPoolSpendProposal, CommunityPoolSpendProposalProtoMsg, CommunityPoolSpendProposalWithDeposit, CommunityPoolSpendProposalWithDepositProtoMsg } from "../../distribution/v1beta1/distribution";
+import { TextProposal, TextProposalProtoMsg } from "../v1beta1/gov";
+import { ParameterChangeProposal, ParameterChangeProposalProtoMsg } from "../../params/v1beta1/params";
+import { SoftwareUpgradeProposal, SoftwareUpgradeProposalProtoMsg, CancelSoftwareUpgradeProposal, CancelSoftwareUpgradeProposalProtoMsg } from "../../upgrade/v1beta1/upgrade";
+import { StoreCodeProposal, StoreCodeProposalProtoMsg, InstantiateContractProposal, InstantiateContractProposalProtoMsg, InstantiateContract2Proposal, InstantiateContract2ProposalProtoMsg, MigrateContractProposal, MigrateContractProposalProtoMsg, SudoContractProposal, SudoContractProposalProtoMsg, ExecuteContractProposal, ExecuteContractProposalProtoMsg, UpdateAdminProposal, UpdateAdminProposalProtoMsg, ClearAdminProposal, ClearAdminProposalProtoMsg, PinCodesProposal, PinCodesProposalProtoMsg, UnpinCodesProposal, UnpinCodesProposalProtoMsg, UpdateInstantiateConfigProposal, UpdateInstantiateConfigProposalProtoMsg, StoreAndInstantiateContractProposal, StoreAndInstantiateContractProposalProtoMsg } from "../../../cosmwasm/wasm/v1/proposal_legacy";
+import { ClientUpdateProposal, ClientUpdateProposalProtoMsg, UpgradeProposal, UpgradeProposalProtoMsg } from "../../../ibc/core/client/v1/client";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial, isSet, toTimestamp, fromTimestamp } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
@@ -107,7 +107,7 @@ export interface MsgSubmitProposalResponseAminoMsg {
  */
 export interface MsgExecLegacyContent {
   /** content is the proposal's content. */
-  content?: ClientUpdateProposal | UpgradeProposal | StoreCodeProposal | InstantiateContractProposal | InstantiateContract2Proposal | MigrateContractProposal | SudoContractProposal | ExecuteContractProposal | UpdateAdminProposal | ClearAdminProposal | PinCodesProposal | UnpinCodesProposal | UpdateInstantiateConfigProposal | StoreAndInstantiateContractProposal | SoftwareUpgradeProposal | CancelSoftwareUpgradeProposal | ParameterChangeProposal | TextProposal | CommunityPoolSpendProposal | CommunityPoolSpendProposalWithDeposit | Any | undefined;
+  content?: CommunityPoolSpendProposal | CommunityPoolSpendProposalWithDeposit | TextProposal | ParameterChangeProposal | SoftwareUpgradeProposal | CancelSoftwareUpgradeProposal | StoreCodeProposal | InstantiateContractProposal | InstantiateContract2Proposal | MigrateContractProposal | SudoContractProposal | ExecuteContractProposal | UpdateAdminProposal | ClearAdminProposal | PinCodesProposal | UnpinCodesProposal | UpdateInstantiateConfigProposal | StoreAndInstantiateContractProposal | ClientUpdateProposal | UpgradeProposal | Any | undefined;
   /** authority must be the gov module address. */
   authority: string;
 }
@@ -116,7 +116,7 @@ export interface MsgExecLegacyContentProtoMsg {
   value: Uint8Array;
 }
 export type MsgExecLegacyContentEncoded = Omit<MsgExecLegacyContent, "content"> & {
-  /** content is the proposal's content. */content?: ClientUpdateProposalProtoMsg | UpgradeProposalProtoMsg | StoreCodeProposalProtoMsg | InstantiateContractProposalProtoMsg | InstantiateContract2ProposalProtoMsg | MigrateContractProposalProtoMsg | SudoContractProposalProtoMsg | ExecuteContractProposalProtoMsg | UpdateAdminProposalProtoMsg | ClearAdminProposalProtoMsg | PinCodesProposalProtoMsg | UnpinCodesProposalProtoMsg | UpdateInstantiateConfigProposalProtoMsg | StoreAndInstantiateContractProposalProtoMsg | SoftwareUpgradeProposalProtoMsg | CancelSoftwareUpgradeProposalProtoMsg | ParameterChangeProposalProtoMsg | TextProposalProtoMsg | CommunityPoolSpendProposalProtoMsg | CommunityPoolSpendProposalWithDepositProtoMsg | AnyProtoMsg | undefined;
+  /** content is the proposal's content. */content?: CommunityPoolSpendProposalProtoMsg | CommunityPoolSpendProposalWithDepositProtoMsg | TextProposalProtoMsg | ParameterChangeProposalProtoMsg | SoftwareUpgradeProposalProtoMsg | CancelSoftwareUpgradeProposalProtoMsg | StoreCodeProposalProtoMsg | InstantiateContractProposalProtoMsg | InstantiateContract2ProposalProtoMsg | MigrateContractProposalProtoMsg | SudoContractProposalProtoMsg | ExecuteContractProposalProtoMsg | UpdateAdminProposalProtoMsg | ClearAdminProposalProtoMsg | PinCodesProposalProtoMsg | UnpinCodesProposalProtoMsg | UpdateInstantiateConfigProposalProtoMsg | StoreAndInstantiateContractProposalProtoMsg | ClientUpdateProposalProtoMsg | UpgradeProposalProtoMsg | AnyProtoMsg | undefined;
 };
 /**
  * MsgExecLegacyContent is used to wrap the legacy content field into a message.

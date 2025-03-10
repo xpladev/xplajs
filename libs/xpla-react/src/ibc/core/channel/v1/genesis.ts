@@ -1,7 +1,7 @@
 import { IdentifiedChannel, IdentifiedChannelAmino, PacketState, PacketStateAmino, Params, ParamsAmino } from "./channel";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { DeepPartial } from "../../../../helpers";
 import { GlobalDecoderRegistry } from "../../../../registry";
+import { DeepPartial } from "../../../../helpers";
 /** GenesisState defines the ibc channel submodule's genesis state. */
 export interface GenesisState {
   channels: IdentifiedChannel[];

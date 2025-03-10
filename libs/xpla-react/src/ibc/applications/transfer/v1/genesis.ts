@@ -1,8 +1,8 @@
 import { DenomTrace, DenomTraceAmino, Params, ParamsAmino } from "./transfer";
 import { Coin, CoinAmino } from "../../../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { DeepPartial } from "../../../../helpers";
 import { GlobalDecoderRegistry } from "../../../../registry";
+import { DeepPartial } from "../../../../helpers";
 /** GenesisState defines the ibc-transfer genesis state */
 export interface GenesisState {
   portId: string;

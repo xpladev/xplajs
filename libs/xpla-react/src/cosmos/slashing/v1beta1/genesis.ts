@@ -1,7 +1,7 @@
 import { Params, ParamsAmino, ValidatorSigningInfo, ValidatorSigningInfoAmino } from "./slashing";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { DeepPartial } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { DeepPartial } from "../../../helpers";
 /** GenesisState defines the slashing module's genesis state. */
 export interface GenesisState {
   /** params defines all the parameters of the module. */

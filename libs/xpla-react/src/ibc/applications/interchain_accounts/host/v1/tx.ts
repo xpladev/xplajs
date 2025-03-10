@@ -1,7 +1,7 @@
 import { Params, ParamsAmino, QueryRequest, QueryRequestAmino } from "./host";
 import { BinaryReader, BinaryWriter } from "../../../../../binary";
-import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../../../helpers";
 import { GlobalDecoderRegistry } from "../../../../../registry";
+import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../../../helpers";
 /** MsgUpdateParams defines the payload for Msg/UpdateParams */
 export interface MsgUpdateParams {
   /** signer address */

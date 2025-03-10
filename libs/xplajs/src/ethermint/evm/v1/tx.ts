@@ -1,8 +1,8 @@
 import { Any, AnyAmino } from "../../../google/protobuf/any";
 import { Params, ParamsAmino, AccessTuple, AccessTupleAmino, Log, LogAmino } from "./evm";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../helpers";
 /** MsgEthereumTx encapsulates an Ethereum transaction as an SDK message. */
 export interface MsgEthereumTx {
   /** data is inner transaction data of the Ethereum transaction */

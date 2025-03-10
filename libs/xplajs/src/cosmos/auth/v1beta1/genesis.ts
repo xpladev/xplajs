@@ -1,8 +1,8 @@
 import { Params, ParamsAmino } from "./auth";
 import { Any, AnyAmino } from "../../../google/protobuf/any";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { DeepPartial } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { DeepPartial } from "../../../helpers";
 /** GenesisState defines the auth module's genesis state. */
 export interface GenesisState {
   /** params defines all the parameters of the module. */

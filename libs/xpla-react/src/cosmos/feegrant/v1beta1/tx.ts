@@ -1,8 +1,8 @@
 import { Any, AnyProtoMsg, AnyAmino } from "../../../google/protobuf/any";
 import { BasicAllowance, BasicAllowanceProtoMsg, PeriodicAllowance, PeriodicAllowanceProtoMsg, AllowedMsgAllowance, AllowedMsgAllowanceProtoMsg } from "./feegrant";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { DeepPartial } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { DeepPartial } from "../../../helpers";
 /**
  * MsgGrantAllowance adds permission for Grantee to spend up to Allowance
  * of fees from the account of Granter.

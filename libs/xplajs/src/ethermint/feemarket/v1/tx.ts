@@ -1,7 +1,7 @@
 import { Params, ParamsAmino } from "./feemarket";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { DeepPartial } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { DeepPartial } from "../../../helpers";
 /** MsgUpdateParams defines a Msg for updating the x/feemarket module parameters. */
 export interface MsgUpdateParams {
   /** authority is the address of the governance account. */

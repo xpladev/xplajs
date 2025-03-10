@@ -2,8 +2,8 @@ import { Any, AnyAmino } from "../../../../google/protobuf/any";
 import { ConnectionEnd, ConnectionEndAmino } from "../../../core/connection/v1/connection";
 import { Channel, ChannelAmino } from "../../../core/channel/v1/channel";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { DeepPartial, bytesFromBase64, base64FromBytes, isSet } from "../../../../helpers";
 import { GlobalDecoderRegistry } from "../../../../registry";
+import { DeepPartial, bytesFromBase64, base64FromBytes, isSet } from "../../../../helpers";
 /**
  * DataType defines the type of solo machine proof being created. This is done
  * to preserve uniqueness of different data sign byte encodings.

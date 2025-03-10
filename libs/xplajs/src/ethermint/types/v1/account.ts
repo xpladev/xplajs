@@ -1,7 +1,7 @@
 import { BaseAccount, BaseAccountAmino } from "../../../cosmos/auth/v1beta1/auth";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { DeepPartial } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { DeepPartial } from "../../../helpers";
 /**
  * EthAccount implements the sdk.AccountI interface and embeds an
  * authtypes.BaseAccount type. It is compatible with the auth AccountKeeper.

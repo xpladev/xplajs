@@ -7,8 +7,8 @@ import { Block as Block2 } from "./types";
 import { BlockAmino as Block2Amino } from "./types";
 import { DefaultNodeInfo, DefaultNodeInfoAmino } from "../../../../tendermint/p2p/types";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../../helpers";
 import { GlobalDecoderRegistry } from "../../../../registry";
+import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../../helpers";
 /** GetValidatorSetByHeightRequest is the request type for the Query/GetValidatorSetByHeight RPC method. */
 export interface GetValidatorSetByHeightRequest {
   height: bigint;

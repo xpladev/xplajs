@@ -1,6 +1,6 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { DeepPartial, isSet } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { DeepPartial, isSet } from "../../../helpers";
 /** ModuleOptions describes the CLI options for a Cosmos SDK module. */
 export interface ModuleOptions {
   /** tx describes the tx commands for the module. */

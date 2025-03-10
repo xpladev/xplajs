@@ -1,6 +1,6 @@
 import { setPaginationParams } from "../../../helpers";
 import { LCDClient } from "@cosmology/lcd";
-import { QueryContractInfoRequest, QueryContractInfoResponse, QueryContractHistoryRequest, QueryContractHistoryResponse, QueryContractsByCodeRequest, QueryContractsByCodeResponse, QueryAllContractStateRequest, QueryAllContractStateResponse, QueryRawContractStateRequest, QueryRawContractStateResponse, QuerySmartContractStateRequest, QuerySmartContractStateResponse, QueryCodeRequest, QueryCodeResponse, QueryCodesRequest, QueryCodesResponse, QueryPinnedCodesRequest, QueryPinnedCodesResponse, QueryParamsRequest, QueryParamsResponse, QueryContractsByCreatorRequest, QueryContractsByCreatorResponse } from "./query";
+import { QueryContractInfoRequest, QueryContractInfoResponse, QueryContractHistoryRequest, QueryContractHistoryResponse, QueryContractsByCodeRequest, QueryContractsByCodeResponse, QueryAllContractStateRequest, QueryAllContractStateResponse, QueryRawContractStateRequest, QueryRawContractStateResponse, QuerySmartContractStateRequest, QuerySmartContractStateResponse, QueryCodeRequest, QueryCodeResponse, QueryCodesRequest, QueryCodesResponse, QueryPinnedCodesRequest, QueryPinnedCodesResponse, QueryParamsRequest, QueryParamsResponse, QueryContractsByCreatorRequest, QueryContractsByCreatorResponse, QueryBuildAddressRequest, QueryBuildAddressResponse } from "./query";
 export class LCDQueryClient {
   req: LCDClient;
   constructor({
@@ -104,5 +104,25 @@ export class LCDQueryClient {
     }
     const endpoint = `cosmwasm/wasm/v1/contracts/creator/${params.creatorAddress}`;
     return await this.req.get<QueryContractsByCreatorResponse>(endpoint, options);
+  };
+  /* BuildAddress builds a contract address */
+  buildAddress = async (params: QueryBuildAddressRequest): Promise<QueryBuildAddressResponse> => {
+    const options: any = {
+      params: {}
+    };
+    if (typeof params?.codeHash !== "undefined") {
+      options.params.code_hash = params.codeHash;
+    }
+    if (typeof params?.creatorAddress !== "undefined") {
+      options.params.creator_address = params.creatorAddress;
+    }
+    if (typeof params?.salt !== "undefined") {
+      options.params.salt = params.salt;
+    }
+    if (typeof params?.initArgs !== "undefined") {
+      options.params.init_args = params.initArgs;
+    }
+    const endpoint = `cosmwasm/wasm/v1/contract/build_address`;
+    return await this.req.get<QueryBuildAddressResponse>(endpoint, options);
   };
 }

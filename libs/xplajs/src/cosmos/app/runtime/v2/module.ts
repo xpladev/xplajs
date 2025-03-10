@@ -1,6 +1,6 @@
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { DeepPartial } from "../../../../helpers";
 import { GlobalDecoderRegistry } from "../../../../registry";
+import { DeepPartial } from "../../../../helpers";
 /** Module is the config object for the runtime module. */
 export interface Module {
   /** app_name is the name of the app. */

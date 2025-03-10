@@ -4,8 +4,8 @@ import { IdentifiedPacketFees, IdentifiedPacketFeesAmino } from "./fee";
 import { Coin, CoinAmino } from "../../../../cosmos/base/v1beta1/coin";
 import { FeeEnabledChannel, FeeEnabledChannelAmino } from "./genesis";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { DeepPartial } from "../../../../helpers";
 import { GlobalDecoderRegistry } from "../../../../registry";
+import { DeepPartial } from "../../../../helpers";
 /** QueryIncentivizedPacketsRequest defines the request type for the IncentivizedPackets rpc */
 export interface QueryIncentivizedPacketsRequest {
   /** pagination defines an optional pagination for the request. */

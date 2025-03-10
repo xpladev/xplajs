@@ -5,8 +5,8 @@ import { GenesisStateAmino as GenesisState2Amino } from "../../connection/v1/gen
 import { GenesisState as GenesisState3 } from "../../channel/v1/genesis";
 import { GenesisStateAmino as GenesisState3Amino } from "../../channel/v1/genesis";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { DeepPartial } from "../../../../helpers";
 import { GlobalDecoderRegistry } from "../../../../registry";
+import { DeepPartial } from "../../../../helpers";
 /** GenesisState defines the ibc module's genesis state. */
 export interface GenesisState {
   /** ICS002 - Clients genesis state */

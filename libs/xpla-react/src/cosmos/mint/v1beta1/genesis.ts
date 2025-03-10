@@ -1,7 +1,7 @@
 import { Minter, MinterAmino, Params, ParamsAmino } from "./mint";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { DeepPartial } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { DeepPartial } from "../../../helpers";
 /** GenesisState defines the mint module's genesis state. */
 export interface GenesisState {
   /** minter is a space for holding current inflation information. */

@@ -1,8 +1,8 @@
 import { Grant, GrantAmino } from "./authz";
 import { Any, AnyProtoMsg, AnyAmino } from "../../../google/protobuf/any";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../helpers";
 /**
  * MsgGrant is a request type for Grant method. It declares authorization to the grantee
  * on behalf of the granter with the provided expiration time.
