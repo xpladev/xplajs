@@ -5,11 +5,13 @@ export const createEthereumTx = (clientResolver?: SigningClientResolver) => buil
   clientResolver,
   typeUrl: MsgEthereumTx.typeUrl,
   encoders: toEncoders(MsgEthereumTx),
-  converters: toConverters(MsgEthereumTx)
+  converters: toConverters(MsgEthereumTx),
+  deps: [MsgEthereumTx]
 });
 export const createUpdateParams = (clientResolver?: SigningClientResolver) => buildTx<MsgUpdateParams>({
   clientResolver,
   typeUrl: MsgUpdateParams.typeUrl,
   encoders: toEncoders(MsgUpdateParams),
-  converters: toConverters(MsgUpdateParams)
+  converters: toConverters(MsgUpdateParams),
+  deps: [MsgUpdateParams]
 });

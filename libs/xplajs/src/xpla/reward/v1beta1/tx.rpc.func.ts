@@ -5,11 +5,13 @@ export const createFundRewardPool = (clientResolver?: SigningClientResolver) => 
   clientResolver,
   typeUrl: MsgFundRewardPool.typeUrl,
   encoders: toEncoders(MsgFundRewardPool),
-  converters: toConverters(MsgFundRewardPool)
+  converters: toConverters(MsgFundRewardPool),
+  deps: [MsgFundRewardPool]
 });
 export const createUpdateParams = (clientResolver?: SigningClientResolver) => buildTx<MsgUpdateParams>({
   clientResolver,
   typeUrl: MsgUpdateParams.typeUrl,
   encoders: toEncoders(MsgUpdateParams),
-  converters: toConverters(MsgUpdateParams)
+  converters: toConverters(MsgUpdateParams),
+  deps: [MsgUpdateParams]
 });

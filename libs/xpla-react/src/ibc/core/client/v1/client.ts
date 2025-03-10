@@ -345,10 +345,9 @@ export const IdentifiedClientState = {
       typeUrl: "/ibc.core.client.v1.IdentifiedClientState",
       value: IdentifiedClientState.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(IdentifiedClientState.typeUrl, IdentifiedClientState);
-GlobalDecoderRegistry.registerAminoProtoMapping(IdentifiedClientState.aminoType, IdentifiedClientState.typeUrl);
 function createBaseConsensusStateWithHeight(): ConsensusStateWithHeight {
   return {
     height: Height.fromPartial({}),
@@ -435,10 +434,9 @@ export const ConsensusStateWithHeight = {
       typeUrl: "/ibc.core.client.v1.ConsensusStateWithHeight",
       value: ConsensusStateWithHeight.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(ConsensusStateWithHeight.typeUrl, ConsensusStateWithHeight);
-GlobalDecoderRegistry.registerAminoProtoMapping(ConsensusStateWithHeight.aminoType, ConsensusStateWithHeight.typeUrl);
 function createBaseClientConsensusStates(): ClientConsensusStates {
   return {
     clientId: "",
@@ -527,10 +525,11 @@ export const ClientConsensusStates = {
       typeUrl: "/ibc.core.client.v1.ClientConsensusStates",
       value: ClientConsensusStates.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    ConsensusStateWithHeight.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(ClientConsensusStates.typeUrl, ClientConsensusStates);
-GlobalDecoderRegistry.registerAminoProtoMapping(ClientConsensusStates.aminoType, ClientConsensusStates.typeUrl);
 function createBaseHeight(): Height {
   return {
     revisionNumber: BigInt(0),
@@ -613,10 +612,9 @@ export const Height = {
       typeUrl: "/ibc.core.client.v1.Height",
       value: Height.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(Height.typeUrl, Height);
-GlobalDecoderRegistry.registerAminoProtoMapping(Height.aminoType, Height.typeUrl);
 function createBaseParams(): Params {
   return {
     allowedClients: []
@@ -693,10 +691,9 @@ export const Params = {
       typeUrl: "/ibc.core.client.v1.Params",
       value: Params.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(Params.typeUrl, Params);
-GlobalDecoderRegistry.registerAminoProtoMapping(Params.aminoType, Params.typeUrl);
 function createBaseClientUpdateProposal(): ClientUpdateProposal {
   return {
     title: "",
@@ -807,10 +804,12 @@ export const ClientUpdateProposal = {
       typeUrl: "/ibc.core.client.v1.ClientUpdateProposal",
       value: ClientUpdateProposal.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    GlobalDecoderRegistry.register(ClientUpdateProposal.typeUrl, ClientUpdateProposal);
+    GlobalDecoderRegistry.registerAminoProtoMapping(ClientUpdateProposal.aminoType, ClientUpdateProposal.typeUrl);
   }
 };
-GlobalDecoderRegistry.register(ClientUpdateProposal.typeUrl, ClientUpdateProposal);
-GlobalDecoderRegistry.registerAminoProtoMapping(ClientUpdateProposal.aminoType, ClientUpdateProposal.typeUrl);
 function createBaseUpgradeProposal(): UpgradeProposal {
   return {
     title: "",
@@ -921,7 +920,9 @@ export const UpgradeProposal = {
       typeUrl: "/ibc.core.client.v1.UpgradeProposal",
       value: UpgradeProposal.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    GlobalDecoderRegistry.register(UpgradeProposal.typeUrl, UpgradeProposal);
+    GlobalDecoderRegistry.registerAminoProtoMapping(UpgradeProposal.aminoType, UpgradeProposal.typeUrl);
   }
 };
-GlobalDecoderRegistry.register(UpgradeProposal.typeUrl, UpgradeProposal);
-GlobalDecoderRegistry.registerAminoProtoMapping(UpgradeProposal.aminoType, UpgradeProposal.typeUrl);

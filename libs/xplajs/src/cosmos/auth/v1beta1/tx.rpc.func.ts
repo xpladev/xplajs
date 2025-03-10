@@ -5,5 +5,6 @@ export const createUpdateParams = (clientResolver?: SigningClientResolver) => bu
   clientResolver,
   typeUrl: MsgUpdateParams.typeUrl,
   encoders: toEncoders(MsgUpdateParams),
-  converters: toConverters(MsgUpdateParams)
+  converters: toConverters(MsgUpdateParams),
+  deps: [MsgUpdateParams]
 });

@@ -5,19 +5,22 @@ export const createGetGrants = (clientResolver?: RpcResolver) => buildQuery<Quer
   decode: QueryGrantsResponse.decode,
   service: "cosmos.authz.v1beta1.Query",
   method: "Grants",
-  clientResolver
+  clientResolver,
+  deps: [QueryGrantsRequest, QueryGrantsResponse]
 });
 export const createGetGranterGrants = (clientResolver?: RpcResolver) => buildQuery<QueryGranterGrantsRequest, QueryGranterGrantsResponse>({
   encode: QueryGranterGrantsRequest.encode,
   decode: QueryGranterGrantsResponse.decode,
   service: "cosmos.authz.v1beta1.Query",
   method: "GranterGrants",
-  clientResolver
+  clientResolver,
+  deps: [QueryGranterGrantsRequest, QueryGranterGrantsResponse]
 });
 export const createGetGranteeGrants = (clientResolver?: RpcResolver) => buildQuery<QueryGranteeGrantsRequest, QueryGranteeGrantsResponse>({
   encode: QueryGranteeGrantsRequest.encode,
   decode: QueryGranteeGrantsResponse.decode,
   service: "cosmos.authz.v1beta1.Query",
   method: "GranteeGrants",
-  clientResolver
+  clientResolver,
+  deps: [QueryGranteeGrantsRequest, QueryGranteeGrantsResponse]
 });

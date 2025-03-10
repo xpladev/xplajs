@@ -1,6 +1,5 @@
 import { BinaryReader, BinaryWriter } from "../../../../binary";
 import { DeepPartial } from "../../../../helpers";
-import { GlobalDecoderRegistry } from "../../../../registry";
 /**
  * DenomTrace contains the base denomination for ICS20 fungible tokens and the
  * source tracing information path.
@@ -165,10 +164,9 @@ export const DenomTrace = {
       typeUrl: "/ibc.applications.transfer.v1.DenomTrace",
       value: DenomTrace.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(DenomTrace.typeUrl, DenomTrace);
-GlobalDecoderRegistry.registerAminoProtoMapping(DenomTrace.aminoType, DenomTrace.typeUrl);
 function createBaseParams(): Params {
   return {
     sendEnabled: false,
@@ -255,7 +253,6 @@ export const Params = {
       typeUrl: "/ibc.applications.transfer.v1.Params",
       value: Params.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(Params.typeUrl, Params);
-GlobalDecoderRegistry.registerAminoProtoMapping(Params.aminoType, Params.typeUrl);

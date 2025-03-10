@@ -5,12 +5,14 @@ export const createGetConfig = (clientResolver?: RpcResolver) => buildQuery<Conf
   decode: ConfigResponse.decode,
   service: "cosmos.base.node.v1beta1.Service",
   method: "Config",
-  clientResolver
+  clientResolver,
+  deps: [ConfigRequest, ConfigResponse]
 });
 export const createGetStatus = (clientResolver?: RpcResolver) => buildQuery<StatusRequest, StatusResponse>({
   encode: StatusRequest.encode,
   decode: StatusResponse.decode,
   service: "cosmos.base.node.v1beta1.Service",
   method: "Status",
-  clientResolver
+  clientResolver,
+  deps: [StatusRequest, StatusResponse]
 });

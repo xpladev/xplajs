@@ -542,10 +542,11 @@ export const MsgSubmitProposal = {
       typeUrl: "/cosmos.gov.v1.MsgSubmitProposal",
       value: MsgSubmitProposal.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Coin.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(MsgSubmitProposal.typeUrl, MsgSubmitProposal);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgSubmitProposal.aminoType, MsgSubmitProposal.typeUrl);
 function createBaseMsgSubmitProposalResponse(): MsgSubmitProposalResponse {
   return {
     proposalId: BigInt(0)
@@ -620,10 +621,9 @@ export const MsgSubmitProposalResponse = {
       typeUrl: "/cosmos.gov.v1.MsgSubmitProposalResponse",
       value: MsgSubmitProposalResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgSubmitProposalResponse.typeUrl, MsgSubmitProposalResponse);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgSubmitProposalResponse.aminoType, MsgSubmitProposalResponse.typeUrl);
 function createBaseMsgExecLegacyContent(): MsgExecLegacyContent {
   return {
     content: undefined,
@@ -710,10 +710,30 @@ export const MsgExecLegacyContent = {
       typeUrl: "/cosmos.gov.v1.MsgExecLegacyContent",
       value: MsgExecLegacyContent.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    CommunityPoolSpendProposal.registerTypeUrl();
+    CommunityPoolSpendProposalWithDeposit.registerTypeUrl();
+    TextProposal.registerTypeUrl();
+    ParameterChangeProposal.registerTypeUrl();
+    SoftwareUpgradeProposal.registerTypeUrl();
+    CancelSoftwareUpgradeProposal.registerTypeUrl();
+    StoreCodeProposal.registerTypeUrl();
+    InstantiateContractProposal.registerTypeUrl();
+    InstantiateContract2Proposal.registerTypeUrl();
+    MigrateContractProposal.registerTypeUrl();
+    SudoContractProposal.registerTypeUrl();
+    ExecuteContractProposal.registerTypeUrl();
+    UpdateAdminProposal.registerTypeUrl();
+    ClearAdminProposal.registerTypeUrl();
+    PinCodesProposal.registerTypeUrl();
+    UnpinCodesProposal.registerTypeUrl();
+    UpdateInstantiateConfigProposal.registerTypeUrl();
+    StoreAndInstantiateContractProposal.registerTypeUrl();
+    ClientUpdateProposal.registerTypeUrl();
+    UpgradeProposal.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(MsgExecLegacyContent.typeUrl, MsgExecLegacyContent);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgExecLegacyContent.aminoType, MsgExecLegacyContent.typeUrl);
 function createBaseMsgExecLegacyContentResponse(): MsgExecLegacyContentResponse {
   return {};
 }
@@ -775,10 +795,9 @@ export const MsgExecLegacyContentResponse = {
       typeUrl: "/cosmos.gov.v1.MsgExecLegacyContentResponse",
       value: MsgExecLegacyContentResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgExecLegacyContentResponse.typeUrl, MsgExecLegacyContentResponse);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgExecLegacyContentResponse.aminoType, MsgExecLegacyContentResponse.typeUrl);
 function createBaseMsgVote(): MsgVote {
   return {
     proposalId: BigInt(0),
@@ -889,10 +908,9 @@ export const MsgVote = {
       typeUrl: "/cosmos.gov.v1.MsgVote",
       value: MsgVote.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgVote.typeUrl, MsgVote);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgVote.aminoType, MsgVote.typeUrl);
 function createBaseMsgVoteResponse(): MsgVoteResponse {
   return {};
 }
@@ -954,10 +972,9 @@ export const MsgVoteResponse = {
       typeUrl: "/cosmos.gov.v1.MsgVoteResponse",
       value: MsgVoteResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgVoteResponse.typeUrl, MsgVoteResponse);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgVoteResponse.aminoType, MsgVoteResponse.typeUrl);
 function createBaseMsgVoteWeighted(): MsgVoteWeighted {
   return {
     proposalId: BigInt(0),
@@ -1070,10 +1087,11 @@ export const MsgVoteWeighted = {
       typeUrl: "/cosmos.gov.v1.MsgVoteWeighted",
       value: MsgVoteWeighted.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    WeightedVoteOption.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(MsgVoteWeighted.typeUrl, MsgVoteWeighted);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgVoteWeighted.aminoType, MsgVoteWeighted.typeUrl);
 function createBaseMsgVoteWeightedResponse(): MsgVoteWeightedResponse {
   return {};
 }
@@ -1135,10 +1153,9 @@ export const MsgVoteWeightedResponse = {
       typeUrl: "/cosmos.gov.v1.MsgVoteWeightedResponse",
       value: MsgVoteWeightedResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgVoteWeightedResponse.typeUrl, MsgVoteWeightedResponse);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgVoteWeightedResponse.aminoType, MsgVoteWeightedResponse.typeUrl);
 function createBaseMsgDeposit(): MsgDeposit {
   return {
     proposalId: BigInt(0),
@@ -1239,10 +1256,11 @@ export const MsgDeposit = {
       typeUrl: "/cosmos.gov.v1.MsgDeposit",
       value: MsgDeposit.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Coin.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(MsgDeposit.typeUrl, MsgDeposit);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgDeposit.aminoType, MsgDeposit.typeUrl);
 function createBaseMsgDepositResponse(): MsgDepositResponse {
   return {};
 }
@@ -1304,10 +1322,9 @@ export const MsgDepositResponse = {
       typeUrl: "/cosmos.gov.v1.MsgDepositResponse",
       value: MsgDepositResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgDepositResponse.typeUrl, MsgDepositResponse);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgDepositResponse.aminoType, MsgDepositResponse.typeUrl);
 function createBaseMsgUpdateParams(): MsgUpdateParams {
   return {
     authority: "",
@@ -1394,10 +1411,11 @@ export const MsgUpdateParams = {
       typeUrl: "/cosmos.gov.v1.MsgUpdateParams",
       value: MsgUpdateParams.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Params.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(MsgUpdateParams.typeUrl, MsgUpdateParams);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgUpdateParams.aminoType, MsgUpdateParams.typeUrl);
 function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
   return {};
 }
@@ -1459,10 +1477,9 @@ export const MsgUpdateParamsResponse = {
       typeUrl: "/cosmos.gov.v1.MsgUpdateParamsResponse",
       value: MsgUpdateParamsResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgUpdateParamsResponse.typeUrl, MsgUpdateParamsResponse);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgUpdateParamsResponse.aminoType, MsgUpdateParamsResponse.typeUrl);
 function createBaseMsgCancelProposal(): MsgCancelProposal {
   return {
     proposalId: BigInt(0),
@@ -1549,10 +1566,9 @@ export const MsgCancelProposal = {
       typeUrl: "/cosmos.gov.v1.MsgCancelProposal",
       value: MsgCancelProposal.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgCancelProposal.typeUrl, MsgCancelProposal);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgCancelProposal.aminoType, MsgCancelProposal.typeUrl);
 function createBaseMsgCancelProposalResponse(): MsgCancelProposalResponse {
   return {
     proposalId: BigInt(0),
@@ -1651,7 +1667,6 @@ export const MsgCancelProposalResponse = {
       typeUrl: "/cosmos.gov.v1.MsgCancelProposalResponse",
       value: MsgCancelProposalResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgCancelProposalResponse.typeUrl, MsgCancelProposalResponse);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgCancelProposalResponse.aminoType, MsgCancelProposalResponse.typeUrl);

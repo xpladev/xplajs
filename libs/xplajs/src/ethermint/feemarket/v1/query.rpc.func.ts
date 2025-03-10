@@ -5,19 +5,22 @@ export const createGetParams = (clientResolver?: RpcResolver) => buildQuery<Quer
   decode: QueryParamsResponse.decode,
   service: "ethermint.feemarket.v1.Query",
   method: "Params",
-  clientResolver
+  clientResolver,
+  deps: [QueryParamsRequest, QueryParamsResponse]
 });
 export const createGetBaseFee = (clientResolver?: RpcResolver) => buildQuery<QueryBaseFeeRequest, QueryBaseFeeResponse>({
   encode: QueryBaseFeeRequest.encode,
   decode: QueryBaseFeeResponse.decode,
   service: "ethermint.feemarket.v1.Query",
   method: "BaseFee",
-  clientResolver
+  clientResolver,
+  deps: [QueryBaseFeeRequest, QueryBaseFeeResponse]
 });
 export const createGetBlockGas = (clientResolver?: RpcResolver) => buildQuery<QueryBlockGasRequest, QueryBlockGasResponse>({
   encode: QueryBlockGasRequest.encode,
   decode: QueryBlockGasResponse.decode,
   service: "ethermint.feemarket.v1.Query",
   method: "BlockGas",
-  clientResolver
+  clientResolver,
+  deps: [QueryBlockGasRequest, QueryBlockGasResponse]
 });

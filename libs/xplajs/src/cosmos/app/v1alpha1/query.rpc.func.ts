@@ -5,5 +5,6 @@ export const createGetConfig = (clientResolver?: RpcResolver) => buildQuery<Quer
   decode: QueryConfigResponse.decode,
   service: "cosmos.app.v1alpha1.Query",
   method: "Config",
-  clientResolver
+  clientResolver,
+  deps: [QueryConfigRequest, QueryConfigResponse]
 });

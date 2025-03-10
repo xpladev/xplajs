@@ -5,12 +5,14 @@ export const createGetEvidence = (clientResolver?: RpcResolver) => buildQuery<Qu
   decode: QueryEvidenceResponse.decode,
   service: "cosmos.evidence.v1beta1.Query",
   method: "Evidence",
-  clientResolver
+  clientResolver,
+  deps: [QueryEvidenceRequest, QueryEvidenceResponse]
 });
 export const createGetAllEvidence = (clientResolver?: RpcResolver) => buildQuery<QueryAllEvidenceRequest, QueryAllEvidenceResponse>({
   encode: QueryAllEvidenceRequest.encode,
   decode: QueryAllEvidenceResponse.decode,
   service: "cosmos.evidence.v1beta1.Query",
   method: "AllEvidence",
-  clientResolver
+  clientResolver,
+  deps: [QueryAllEvidenceRequest, QueryAllEvidenceResponse]
 });

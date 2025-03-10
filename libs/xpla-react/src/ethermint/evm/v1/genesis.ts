@@ -1,6 +1,5 @@
 import { Params, ParamsAmino, State, StateAmino } from "./evm";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { GlobalDecoderRegistry } from "../../../registry";
 import { DeepPartial } from "../../../helpers";
 /** GenesisState defines the evm module's genesis state. */
 export interface GenesisState {
@@ -139,9 +138,12 @@ export const GenesisState = {
       typeUrl: "/ethermint.evm.v1.GenesisState",
       value: GenesisState.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    GenesisAccount.registerTypeUrl();
+    Params.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(GenesisState.typeUrl, GenesisState);
 function createBaseGenesisAccount(): GenesisAccount {
   return {
     address: "",
@@ -235,6 +237,8 @@ export const GenesisAccount = {
       typeUrl: "/ethermint.evm.v1.GenesisAccount",
       value: GenesisAccount.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    State.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(GenesisAccount.typeUrl, GenesisAccount);

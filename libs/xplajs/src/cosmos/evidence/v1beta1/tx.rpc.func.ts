@@ -5,5 +5,6 @@ export const createSubmitEvidence = (clientResolver?: SigningClientResolver) => 
   clientResolver,
   typeUrl: MsgSubmitEvidence.typeUrl,
   encoders: toEncoders(MsgSubmitEvidence),
-  converters: toConverters(MsgSubmitEvidence)
+  converters: toConverters(MsgSubmitEvidence),
+  deps: [MsgSubmitEvidence]
 });

@@ -1,6 +1,5 @@
 import { Params, ParamsAmino } from "./feemarket";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { GlobalDecoderRegistry } from "../../../registry";
 import { DeepPartial } from "../../../helpers";
 /** GenesisState defines the feemarket module's genesis state. */
 export interface GenesisState {
@@ -109,6 +108,8 @@ export const GenesisState = {
       typeUrl: "/ethermint.feemarket.v1.GenesisState",
       value: GenesisState.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Params.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(GenesisState.typeUrl, GenesisState);

@@ -1,6 +1,5 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial } from "../../../helpers";
-import { GlobalDecoderRegistry } from "../../../registry";
 /** EventFeeMarket is the event type for the fee market module */
 export interface EventFeeMarket {
   /** base_fee for EIP-1559 blocks */
@@ -108,9 +107,9 @@ export const EventFeeMarket = {
       typeUrl: "/ethermint.feemarket.v1.EventFeeMarket",
       value: EventFeeMarket.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(EventFeeMarket.typeUrl, EventFeeMarket);
 function createBaseEventBlockGas(): EventBlockGas {
   return {
     height: "",
@@ -190,6 +189,6 @@ export const EventBlockGas = {
       typeUrl: "/ethermint.feemarket.v1.EventBlockGas",
       value: EventBlockGas.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(EventBlockGas.typeUrl, EventBlockGas);

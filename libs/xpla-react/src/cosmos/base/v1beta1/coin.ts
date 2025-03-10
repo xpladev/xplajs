@@ -1,6 +1,6 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial } from "../../../helpers";
-import { GlobalDecoderRegistry } from "../../../registry";
+import { Decimal } from "@interchainjs/math";
 /**
  * Coin defines a token with a denomination and an amount.
  * 
@@ -187,10 +187,9 @@ export const Coin = {
       typeUrl: "/cosmos.base.v1beta1.Coin",
       value: Coin.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(Coin.typeUrl, Coin);
-GlobalDecoderRegistry.registerAminoProtoMapping(Coin.aminoType, Coin.typeUrl);
 function createBaseDecCoin(): DecCoin {
   return {
     denom: "",
@@ -211,7 +210,7 @@ export const DecCoin = {
       writer.uint32(10).string(message.denom);
     }
     if (message.amount !== "") {
-      writer.uint32(18).string(message.amount);
+      writer.uint32(18).string(Decimal.fromUserInput(message.amount, 18).atomics);
     }
     return writer;
   },
@@ -226,7 +225,7 @@ export const DecCoin = {
           message.denom = reader.string();
           break;
         case 2:
-          message.amount = reader.string();
+          message.amount = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         default:
           reader.skipType(tag & 7);
@@ -254,7 +253,7 @@ export const DecCoin = {
   toAmino(message: DecCoin): DecCoinAmino {
     const obj: any = {};
     obj.denom = message.denom === "" ? undefined : message.denom;
-    obj.amount = message.amount === "" ? undefined : message.amount;
+    obj.amount = message.amount === "" ? undefined : Decimal.fromUserInput(message.amount, 18).atomics;
     return obj;
   },
   fromAminoMsg(object: DecCoinAminoMsg): DecCoin {
@@ -277,10 +276,9 @@ export const DecCoin = {
       typeUrl: "/cosmos.base.v1beta1.DecCoin",
       value: DecCoin.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(DecCoin.typeUrl, DecCoin);
-GlobalDecoderRegistry.registerAminoProtoMapping(DecCoin.aminoType, DecCoin.typeUrl);
 function createBaseIntProto(): IntProto {
   return {
     int: ""
@@ -355,10 +353,9 @@ export const IntProto = {
       typeUrl: "/cosmos.base.v1beta1.IntProto",
       value: IntProto.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(IntProto.typeUrl, IntProto);
-GlobalDecoderRegistry.registerAminoProtoMapping(IntProto.aminoType, IntProto.typeUrl);
 function createBaseDecProto(): DecProto {
   return {
     dec: ""
@@ -375,7 +372,7 @@ export const DecProto = {
   },
   encode(message: DecProto, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     if (message.dec !== "") {
-      writer.uint32(10).string(message.dec);
+      writer.uint32(10).string(Decimal.fromUserInput(message.dec, 18).atomics);
     }
     return writer;
   },
@@ -387,7 +384,7 @@ export const DecProto = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.dec = reader.string();
+          message.dec = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         default:
           reader.skipType(tag & 7);
@@ -410,7 +407,7 @@ export const DecProto = {
   },
   toAmino(message: DecProto): DecProtoAmino {
     const obj: any = {};
-    obj.dec = message.dec === "" ? undefined : message.dec;
+    obj.dec = message.dec === "" ? undefined : Decimal.fromUserInput(message.dec, 18).atomics;
     return obj;
   },
   fromAminoMsg(object: DecProtoAminoMsg): DecProto {
@@ -433,7 +430,6 @@ export const DecProto = {
       typeUrl: "/cosmos.base.v1beta1.DecProto",
       value: DecProto.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(DecProto.typeUrl, DecProto);
-GlobalDecoderRegistry.registerAminoProtoMapping(DecProto.aminoType, DecProto.typeUrl);

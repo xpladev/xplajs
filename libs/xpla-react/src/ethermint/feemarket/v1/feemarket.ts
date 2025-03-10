@@ -1,6 +1,6 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
+import { Decimal } from "@interchainjs/math";
 import { DeepPartial } from "../../../helpers";
-import { GlobalDecoderRegistry } from "../../../registry";
 /** Params defines the EVM module parameters */
 export interface Params {
   /** no_base_fee forces the EIP-1559 base fee to 0 (needed for 0 price calls) */
@@ -98,10 +98,10 @@ export const Params = {
       writer.uint32(50).string(message.baseFee);
     }
     if (message.minGasPrice !== "") {
-      writer.uint32(58).string(message.minGasPrice);
+      writer.uint32(58).string(Decimal.fromUserInput(message.minGasPrice, 18).atomics);
     }
     if (message.minGasMultiplier !== "") {
-      writer.uint32(66).string(message.minGasMultiplier);
+      writer.uint32(66).string(Decimal.fromUserInput(message.minGasMultiplier, 18).atomics);
     }
     return writer;
   },
@@ -128,10 +128,10 @@ export const Params = {
           message.baseFee = reader.string();
           break;
         case 7:
-          message.minGasPrice = reader.string();
+          message.minGasPrice = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 8:
-          message.minGasMultiplier = reader.string();
+          message.minGasMultiplier = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         default:
           reader.skipType(tag & 7);
@@ -183,8 +183,8 @@ export const Params = {
     obj.elasticity_multiplier = message.elasticityMultiplier === 0 ? undefined : message.elasticityMultiplier;
     obj.enable_height = message.enableHeight !== BigInt(0) ? message.enableHeight?.toString() : undefined;
     obj.base_fee = message.baseFee ?? "";
-    obj.min_gas_price = message.minGasPrice ?? "";
-    obj.min_gas_multiplier = message.minGasMultiplier ?? "";
+    obj.min_gas_price = Decimal.fromUserInput(message.minGasPrice, 18).atomics ?? "";
+    obj.min_gas_multiplier = Decimal.fromUserInput(message.minGasMultiplier, 18).atomics ?? "";
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {
@@ -207,7 +207,6 @@ export const Params = {
       typeUrl: "/ethermint.feemarket.v1.Params",
       value: Params.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(Params.typeUrl, Params);
-GlobalDecoderRegistry.registerAminoProtoMapping(Params.aminoType, Params.typeUrl);

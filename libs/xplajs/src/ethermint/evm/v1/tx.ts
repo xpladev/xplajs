@@ -441,10 +441,9 @@ export const MsgEthereumTx = {
       typeUrl: "/ethermint.evm.v1.MsgEthereumTx",
       value: MsgEthereumTx.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgEthereumTx.typeUrl, MsgEthereumTx);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgEthereumTx.aminoType, MsgEthereumTx.typeUrl);
 function createBaseLegacyTx(): LegacyTx {
   return {
     nonce: BigInt(0),
@@ -608,9 +607,11 @@ export const LegacyTx = {
       typeUrl: "/ethermint.evm.v1.LegacyTx",
       value: LegacyTx.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    GlobalDecoderRegistry.register(LegacyTx.typeUrl, LegacyTx);
   }
 };
-GlobalDecoderRegistry.register(LegacyTx.typeUrl, LegacyTx);
 function createBaseAccessListTx(): AccessListTx {
   return {
     chainId: "",
@@ -800,9 +801,12 @@ export const AccessListTx = {
       typeUrl: "/ethermint.evm.v1.AccessListTx",
       value: AccessListTx.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    GlobalDecoderRegistry.register(AccessListTx.typeUrl, AccessListTx);
+    AccessTuple.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(AccessListTx.typeUrl, AccessListTx);
 function createBaseDynamicFeeTx(): DynamicFeeTx {
   return {
     chainId: "",
@@ -1004,9 +1008,12 @@ export const DynamicFeeTx = {
       typeUrl: "/ethermint.evm.v1.DynamicFeeTx",
       value: DynamicFeeTx.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    GlobalDecoderRegistry.register(DynamicFeeTx.typeUrl, DynamicFeeTx);
+    AccessTuple.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(DynamicFeeTx.typeUrl, DynamicFeeTx);
 function createBaseExtensionOptionsEthereumTx(): ExtensionOptionsEthereumTx {
   return {};
 }
@@ -1061,9 +1068,9 @@ export const ExtensionOptionsEthereumTx = {
       typeUrl: "/ethermint.evm.v1.ExtensionOptionsEthereumTx",
       value: ExtensionOptionsEthereumTx.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(ExtensionOptionsEthereumTx.typeUrl, ExtensionOptionsEthereumTx);
 function createBaseMsgEthereumTxResponse(): MsgEthereumTxResponse {
   return {
     hash: "",
@@ -1181,9 +1188,11 @@ export const MsgEthereumTxResponse = {
       typeUrl: "/ethermint.evm.v1.MsgEthereumTxResponse",
       value: MsgEthereumTxResponse.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Log.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(MsgEthereumTxResponse.typeUrl, MsgEthereumTxResponse);
 function createBaseMsgUpdateParams(): MsgUpdateParams {
   return {
     authority: "",
@@ -1270,10 +1279,11 @@ export const MsgUpdateParams = {
       typeUrl: "/ethermint.evm.v1.MsgUpdateParams",
       value: MsgUpdateParams.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Params.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(MsgUpdateParams.typeUrl, MsgUpdateParams);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgUpdateParams.aminoType, MsgUpdateParams.typeUrl);
 function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
   return {};
 }
@@ -1328,6 +1338,6 @@ export const MsgUpdateParamsResponse = {
       typeUrl: "/ethermint.evm.v1.MsgUpdateParamsResponse",
       value: MsgUpdateParamsResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgUpdateParamsResponse.typeUrl, MsgUpdateParamsResponse);

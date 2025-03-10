@@ -1,7 +1,6 @@
 import { VolunteerValidator, VolunteerValidatorAmino } from "./volunteervalidator";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial } from "../../../helpers";
-import { GlobalDecoderRegistry } from "../../../registry";
 /** GenesisState defines the volunteer module's genesis state. */
 export interface GenesisState {
   volunteerValidators: VolunteerValidator[];
@@ -87,6 +86,8 @@ export const GenesisState = {
       typeUrl: "/xpla.volunteer.v1beta1.GenesisState",
       value: GenesisState.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    VolunteerValidator.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(GenesisState.typeUrl, GenesisState);

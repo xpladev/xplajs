@@ -1,6 +1,5 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial } from "../../../helpers";
-import { GlobalDecoderRegistry } from "../../../registry";
 /** VolunteerValidator required for validator set update logic. */
 export interface VolunteerValidator {
   /** address is the address of the validator. */
@@ -102,6 +101,6 @@ export const VolunteerValidator = {
       typeUrl: "/xpla.volunteer.v1beta1.VolunteerValidator",
       value: VolunteerValidator.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(VolunteerValidator.typeUrl, VolunteerValidator);

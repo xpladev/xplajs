@@ -5,33 +5,38 @@ export const createGetCurrentPlan = (clientResolver?: RpcResolver) => buildQuery
   decode: QueryCurrentPlanResponse.decode,
   service: "cosmos.upgrade.v1beta1.Query",
   method: "CurrentPlan",
-  clientResolver
+  clientResolver,
+  deps: [QueryCurrentPlanRequest, QueryCurrentPlanResponse]
 });
 export const createGetAppliedPlan = (clientResolver?: RpcResolver) => buildQuery<QueryAppliedPlanRequest, QueryAppliedPlanResponse>({
   encode: QueryAppliedPlanRequest.encode,
   decode: QueryAppliedPlanResponse.decode,
   service: "cosmos.upgrade.v1beta1.Query",
   method: "AppliedPlan",
-  clientResolver
+  clientResolver,
+  deps: [QueryAppliedPlanRequest, QueryAppliedPlanResponse]
 });
 export const createGetUpgradedConsensusState = (clientResolver?: RpcResolver) => buildQuery<QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse>({
   encode: QueryUpgradedConsensusStateRequest.encode,
   decode: QueryUpgradedConsensusStateResponse.decode,
   service: "cosmos.upgrade.v1beta1.Query",
   method: "UpgradedConsensusState",
-  clientResolver
+  clientResolver,
+  deps: [QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse]
 });
 export const createGetModuleVersions = (clientResolver?: RpcResolver) => buildQuery<QueryModuleVersionsRequest, QueryModuleVersionsResponse>({
   encode: QueryModuleVersionsRequest.encode,
   decode: QueryModuleVersionsResponse.decode,
   service: "cosmos.upgrade.v1beta1.Query",
   method: "ModuleVersions",
-  clientResolver
+  clientResolver,
+  deps: [QueryModuleVersionsRequest, QueryModuleVersionsResponse]
 });
 export const createGetAuthority = (clientResolver?: RpcResolver) => buildQuery<QueryAuthorityRequest, QueryAuthorityResponse>({
   encode: QueryAuthorityRequest.encode,
   decode: QueryAuthorityResponse.decode,
   service: "cosmos.upgrade.v1beta1.Query",
   method: "Authority",
-  clientResolver
+  clientResolver,
+  deps: [QueryAuthorityRequest, QueryAuthorityResponse]
 });

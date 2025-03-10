@@ -5,12 +5,14 @@ export const createGetQuery = (clientResolver?: RpcResolver) => buildQuery<Query
   decode: QueryResponse.decode,
   service: "cosmos.base.grpc.v2.Service",
   method: "Query",
-  clientResolver
+  clientResolver,
+  deps: [QueryRequest, QueryResponse]
 });
 export const createGetListQueryHandlers = (clientResolver?: RpcResolver) => buildQuery<ListQueryHandlersRequest, ListQueryHandlersResponse>({
   encode: ListQueryHandlersRequest.encode,
   decode: ListQueryHandlersResponse.decode,
   service: "cosmos.base.grpc.v2.Service",
   method: "ListQueryHandlers",
-  clientResolver
+  clientResolver,
+  deps: [ListQueryHandlersRequest, ListQueryHandlersResponse]
 });

@@ -1,6 +1,5 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../helpers";
-import { GlobalDecoderRegistry } from "../../../registry";
 /**
  * ExtensionOptionsWeb3Tx is an extension option that specifies the typed chain id,
  * the fee payer as well as its signature data.
@@ -142,6 +141,6 @@ export const ExtensionOptionsWeb3Tx = {
       typeUrl: "/ethermint.types.v1.ExtensionOptionsWeb3Tx",
       value: ExtensionOptionsWeb3Tx.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(ExtensionOptionsWeb3Tx.typeUrl, ExtensionOptionsWeb3Tx);

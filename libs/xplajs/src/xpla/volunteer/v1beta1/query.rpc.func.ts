@@ -5,5 +5,6 @@ export const createGetVolunteerValidators = (clientResolver?: RpcResolver) => bu
   decode: QueryVolunteerValidatorsResponse.decode,
   service: "xpla.volunteer.v1beta1.Query",
   method: "VolunteerValidators",
-  clientResolver
+  clientResolver,
+  deps: [QueryVolunteerValidatorsRequest, QueryVolunteerValidatorsResponse]
 });

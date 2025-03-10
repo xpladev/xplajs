@@ -5,11 +5,13 @@ export const createUpdateParams = (clientResolver?: SigningClientResolver) => bu
   clientResolver,
   typeUrl: MsgUpdateParams.typeUrl,
   encoders: toEncoders(MsgUpdateParams),
-  converters: toConverters(MsgUpdateParams)
+  converters: toConverters(MsgUpdateParams),
+  deps: [MsgUpdateParams]
 });
 export const createModuleQuerySafe = (clientResolver?: SigningClientResolver) => buildTx<MsgModuleQuerySafe>({
   clientResolver,
   typeUrl: MsgModuleQuerySafe.typeUrl,
   encoders: toEncoders(MsgModuleQuerySafe),
-  converters: toConverters(MsgModuleQuerySafe)
+  converters: toConverters(MsgModuleQuerySafe),
+  deps: [MsgModuleQuerySafe]
 });

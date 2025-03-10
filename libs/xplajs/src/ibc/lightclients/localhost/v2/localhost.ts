@@ -1,6 +1,5 @@
 import { Height, HeightAmino } from "../../../core/client/v1/client";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { GlobalDecoderRegistry } from "../../../../registry";
 import { DeepPartial } from "../../../../helpers";
 /** ClientState defines the 09-localhost client state */
 export interface ClientState {
@@ -94,7 +93,8 @@ export const ClientState = {
       typeUrl: "/ibc.lightclients.localhost.v2.ClientState",
       value: ClientState.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Height.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(ClientState.typeUrl, ClientState);
-GlobalDecoderRegistry.registerAminoProtoMapping(ClientState.aminoType, ClientState.typeUrl);

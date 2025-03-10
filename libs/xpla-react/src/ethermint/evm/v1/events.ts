@@ -1,6 +1,5 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial } from "../../../helpers";
-import { GlobalDecoderRegistry } from "../../../registry";
 /** EventEthereumTx defines the event for an Ethereum transaction */
 export interface EventEthereumTx {
   /** amount */
@@ -244,9 +243,9 @@ export const EventEthereumTx = {
       typeUrl: "/ethermint.evm.v1.EventEthereumTx",
       value: EventEthereumTx.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(EventEthereumTx.typeUrl, EventEthereumTx);
 function createBaseEventTxLog(): EventTxLog {
   return {
     txLogs: []
@@ -316,9 +315,9 @@ export const EventTxLog = {
       typeUrl: "/ethermint.evm.v1.EventTxLog",
       value: EventTxLog.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(EventTxLog.typeUrl, EventTxLog);
 function createBaseEventMessage(): EventMessage {
   return {
     module: "",
@@ -410,9 +409,9 @@ export const EventMessage = {
       typeUrl: "/ethermint.evm.v1.EventMessage",
       value: EventMessage.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(EventMessage.typeUrl, EventMessage);
 function createBaseEventBlockBloom(): EventBlockBloom {
   return {
     bloom: ""
@@ -480,6 +479,6 @@ export const EventBlockBloom = {
       typeUrl: "/ethermint.evm.v1.EventBlockBloom",
       value: EventBlockBloom.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(EventBlockBloom.typeUrl, EventBlockBloom);

@@ -2,7 +2,6 @@ import { Coin, CoinAmino } from "../../../cosmos/base/v1beta1/coin";
 import { Params, ParamsAmino } from "./reward";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial } from "../../../helpers";
-import { GlobalDecoderRegistry } from "../../../registry";
 /**
  * MsgFundRewardPool allows an account to directly
  * fund the reward pool.
@@ -181,10 +180,11 @@ export const MsgFundRewardPool = {
       typeUrl: "/xpla.reward.v1beta1.MsgFundRewardPool",
       value: MsgFundRewardPool.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Coin.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(MsgFundRewardPool.typeUrl, MsgFundRewardPool);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgFundRewardPool.aminoType, MsgFundRewardPool.typeUrl);
 function createBaseMsgFundRewardPoolResponse(): MsgFundRewardPoolResponse {
   return {};
 }
@@ -239,9 +239,9 @@ export const MsgFundRewardPoolResponse = {
       typeUrl: "/xpla.reward.v1beta1.MsgFundRewardPoolResponse",
       value: MsgFundRewardPoolResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgFundRewardPoolResponse.typeUrl, MsgFundRewardPoolResponse);
 function createBaseMsgUpdateParams(): MsgUpdateParams {
   return {
     authority: "",
@@ -328,10 +328,11 @@ export const MsgUpdateParams = {
       typeUrl: "/xpla.reward.v1beta1.MsgUpdateParams",
       value: MsgUpdateParams.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Params.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(MsgUpdateParams.typeUrl, MsgUpdateParams);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgUpdateParams.aminoType, MsgUpdateParams.typeUrl);
 function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
   return {};
 }
@@ -386,6 +387,6 @@ export const MsgUpdateParamsResponse = {
       typeUrl: "/xpla.reward.v1beta1.MsgUpdateParamsResponse",
       value: MsgUpdateParamsResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgUpdateParamsResponse.typeUrl, MsgUpdateParamsResponse);

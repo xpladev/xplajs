@@ -238,10 +238,11 @@ export const MsgRegisterVolunteerValidator = {
       typeUrl: "/xpla.volunteer.v1beta1.MsgRegisterVolunteerValidator",
       value: MsgRegisterVolunteerValidator.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Coin.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(MsgRegisterVolunteerValidator.typeUrl, MsgRegisterVolunteerValidator);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgRegisterVolunteerValidator.aminoType, MsgRegisterVolunteerValidator.typeUrl);
 function createBaseMsgRegisterVolunteerValidatorResponse(): MsgRegisterVolunteerValidatorResponse {
   return {};
 }
@@ -296,9 +297,9 @@ export const MsgRegisterVolunteerValidatorResponse = {
       typeUrl: "/xpla.volunteer.v1beta1.MsgRegisterVolunteerValidatorResponse",
       value: MsgRegisterVolunteerValidatorResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgRegisterVolunteerValidatorResponse.typeUrl, MsgRegisterVolunteerValidatorResponse);
 function createBaseMsgUnregisterVolunteerValidator(): MsgUnregisterVolunteerValidator {
   return {
     authority: "",
@@ -385,10 +386,9 @@ export const MsgUnregisterVolunteerValidator = {
       typeUrl: "/xpla.volunteer.v1beta1.MsgUnregisterVolunteerValidator",
       value: MsgUnregisterVolunteerValidator.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgUnregisterVolunteerValidator.typeUrl, MsgUnregisterVolunteerValidator);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgUnregisterVolunteerValidator.aminoType, MsgUnregisterVolunteerValidator.typeUrl);
 function createBaseMsgUnregisterVolunteerValidatorResponse(): MsgUnregisterVolunteerValidatorResponse {
   return {};
 }
@@ -443,6 +443,6 @@ export const MsgUnregisterVolunteerValidatorResponse = {
       typeUrl: "/xpla.volunteer.v1beta1.MsgUnregisterVolunteerValidatorResponse",
       value: MsgUnregisterVolunteerValidatorResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgUnregisterVolunteerValidatorResponse.typeUrl, MsgUnregisterVolunteerValidatorResponse);

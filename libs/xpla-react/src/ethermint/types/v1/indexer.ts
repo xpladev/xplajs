@@ -1,6 +1,5 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial } from "../../../helpers";
-import { GlobalDecoderRegistry } from "../../../registry";
 /** TxResult is the value stored in eth tx indexer */
 export interface TxResult {
   /** height of the blockchain */
@@ -200,6 +199,6 @@ export const TxResult = {
       typeUrl: "/ethermint.types.v1.TxResult",
       value: TxResult.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(TxResult.typeUrl, TxResult);

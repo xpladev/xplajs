@@ -194,10 +194,11 @@ export const Allocation = {
       typeUrl: "/ibc.applications.transfer.v1.Allocation",
       value: Allocation.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Coin.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(Allocation.typeUrl, Allocation);
-GlobalDecoderRegistry.registerAminoProtoMapping(Allocation.aminoType, Allocation.typeUrl);
 function createBaseTransferAuthorization(): TransferAuthorization {
   return {
     allocations: []
@@ -274,7 +275,10 @@ export const TransferAuthorization = {
       typeUrl: "/ibc.applications.transfer.v1.TransferAuthorization",
       value: TransferAuthorization.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    GlobalDecoderRegistry.register(TransferAuthorization.typeUrl, TransferAuthorization);
+    GlobalDecoderRegistry.registerAminoProtoMapping(TransferAuthorization.aminoType, TransferAuthorization.typeUrl);
+    Allocation.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(TransferAuthorization.typeUrl, TransferAuthorization);
-GlobalDecoderRegistry.registerAminoProtoMapping(TransferAuthorization.aminoType, TransferAuthorization.typeUrl);

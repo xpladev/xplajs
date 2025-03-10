@@ -2,7 +2,6 @@ import { Params, ParamsAmino } from "./reward";
 import { Coin, CoinAmino } from "../../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial } from "../../../helpers";
-import { GlobalDecoderRegistry } from "../../../registry";
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {}
 export interface QueryParamsRequestProtoMsg {
@@ -129,9 +128,9 @@ export const QueryParamsRequest = {
       typeUrl: "/xpla.reward.v1beta1.QueryParamsRequest",
       value: QueryParamsRequest.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryParamsRequest.typeUrl, QueryParamsRequest);
 function createBaseQueryParamsResponse(): QueryParamsResponse {
   return {
     params: Params.fromPartial({})
@@ -199,9 +198,11 @@ export const QueryParamsResponse = {
       typeUrl: "/xpla.reward.v1beta1.QueryParamsResponse",
       value: QueryParamsResponse.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Params.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(QueryParamsResponse.typeUrl, QueryParamsResponse);
 function createBaseQueryPoolRequest(): QueryPoolRequest {
   return {};
 }
@@ -256,9 +257,9 @@ export const QueryPoolRequest = {
       typeUrl: "/xpla.reward.v1beta1.QueryPoolRequest",
       value: QueryPoolRequest.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryPoolRequest.typeUrl, QueryPoolRequest);
 function createBaseQueryPoolResponse(): QueryPoolResponse {
   return {
     pool: []
@@ -328,6 +329,8 @@ export const QueryPoolResponse = {
       typeUrl: "/xpla.reward.v1beta1.QueryPoolResponse",
       value: QueryPoolResponse.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Coin.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(QueryPoolResponse.typeUrl, QueryPoolResponse);

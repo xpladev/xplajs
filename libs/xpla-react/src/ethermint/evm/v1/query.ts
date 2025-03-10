@@ -4,7 +4,6 @@ import { Timestamp } from "../../../google/protobuf/timestamp";
 import { PageRequest, PageRequestAmino, PageResponse, PageResponseAmino } from "../../../cosmos/base/query/v1beta1/pagination";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial, bytesFromBase64, base64FromBytes, toTimestamp, fromTimestamp } from "../../../helpers";
-import { GlobalDecoderRegistry } from "../../../registry";
 /** QueryAccountRequest is the request type for the Query/Account RPC method. */
 export interface QueryAccountRequest {
   /** address is the ethereum hex address to query the account for. */
@@ -640,9 +639,9 @@ export const QueryAccountRequest = {
       typeUrl: "/ethermint.evm.v1.QueryAccountRequest",
       value: QueryAccountRequest.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryAccountRequest.typeUrl, QueryAccountRequest);
 function createBaseQueryAccountResponse(): QueryAccountResponse {
   return {
     balance: "",
@@ -734,9 +733,9 @@ export const QueryAccountResponse = {
       typeUrl: "/ethermint.evm.v1.QueryAccountResponse",
       value: QueryAccountResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryAccountResponse.typeUrl, QueryAccountResponse);
 function createBaseQueryCosmosAccountRequest(): QueryCosmosAccountRequest {
   return {
     address: ""
@@ -804,9 +803,9 @@ export const QueryCosmosAccountRequest = {
       typeUrl: "/ethermint.evm.v1.QueryCosmosAccountRequest",
       value: QueryCosmosAccountRequest.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryCosmosAccountRequest.typeUrl, QueryCosmosAccountRequest);
 function createBaseQueryCosmosAccountResponse(): QueryCosmosAccountResponse {
   return {
     cosmosAddress: "",
@@ -898,9 +897,9 @@ export const QueryCosmosAccountResponse = {
       typeUrl: "/ethermint.evm.v1.QueryCosmosAccountResponse",
       value: QueryCosmosAccountResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryCosmosAccountResponse.typeUrl, QueryCosmosAccountResponse);
 function createBaseQueryValidatorAccountRequest(): QueryValidatorAccountRequest {
   return {
     consAddress: ""
@@ -968,9 +967,9 @@ export const QueryValidatorAccountRequest = {
       typeUrl: "/ethermint.evm.v1.QueryValidatorAccountRequest",
       value: QueryValidatorAccountRequest.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryValidatorAccountRequest.typeUrl, QueryValidatorAccountRequest);
 function createBaseQueryValidatorAccountResponse(): QueryValidatorAccountResponse {
   return {
     accountAddress: "",
@@ -1062,9 +1061,9 @@ export const QueryValidatorAccountResponse = {
       typeUrl: "/ethermint.evm.v1.QueryValidatorAccountResponse",
       value: QueryValidatorAccountResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryValidatorAccountResponse.typeUrl, QueryValidatorAccountResponse);
 function createBaseQueryBalanceRequest(): QueryBalanceRequest {
   return {
     address: ""
@@ -1132,9 +1131,9 @@ export const QueryBalanceRequest = {
       typeUrl: "/ethermint.evm.v1.QueryBalanceRequest",
       value: QueryBalanceRequest.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryBalanceRequest.typeUrl, QueryBalanceRequest);
 function createBaseQueryBalanceResponse(): QueryBalanceResponse {
   return {
     balance: ""
@@ -1202,9 +1201,9 @@ export const QueryBalanceResponse = {
       typeUrl: "/ethermint.evm.v1.QueryBalanceResponse",
       value: QueryBalanceResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryBalanceResponse.typeUrl, QueryBalanceResponse);
 function createBaseQueryStorageRequest(): QueryStorageRequest {
   return {
     address: "",
@@ -1284,9 +1283,9 @@ export const QueryStorageRequest = {
       typeUrl: "/ethermint.evm.v1.QueryStorageRequest",
       value: QueryStorageRequest.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryStorageRequest.typeUrl, QueryStorageRequest);
 function createBaseQueryStorageResponse(): QueryStorageResponse {
   return {
     value: ""
@@ -1354,9 +1353,9 @@ export const QueryStorageResponse = {
       typeUrl: "/ethermint.evm.v1.QueryStorageResponse",
       value: QueryStorageResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryStorageResponse.typeUrl, QueryStorageResponse);
 function createBaseQueryCodeRequest(): QueryCodeRequest {
   return {
     address: ""
@@ -1424,9 +1423,9 @@ export const QueryCodeRequest = {
       typeUrl: "/ethermint.evm.v1.QueryCodeRequest",
       value: QueryCodeRequest.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryCodeRequest.typeUrl, QueryCodeRequest);
 function createBaseQueryCodeResponse(): QueryCodeResponse {
   return {
     code: new Uint8Array()
@@ -1494,9 +1493,9 @@ export const QueryCodeResponse = {
       typeUrl: "/ethermint.evm.v1.QueryCodeResponse",
       value: QueryCodeResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryCodeResponse.typeUrl, QueryCodeResponse);
 function createBaseQueryTxLogsRequest(): QueryTxLogsRequest {
   return {
     hash: "",
@@ -1576,9 +1575,11 @@ export const QueryTxLogsRequest = {
       typeUrl: "/ethermint.evm.v1.QueryTxLogsRequest",
       value: QueryTxLogsRequest.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    PageRequest.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(QueryTxLogsRequest.typeUrl, QueryTxLogsRequest);
 function createBaseQueryTxLogsResponse(): QueryTxLogsResponse {
   return {
     logs: [],
@@ -1660,9 +1661,12 @@ export const QueryTxLogsResponse = {
       typeUrl: "/ethermint.evm.v1.QueryTxLogsResponse",
       value: QueryTxLogsResponse.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Log.registerTypeUrl();
+    PageResponse.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(QueryTxLogsResponse.typeUrl, QueryTxLogsResponse);
 function createBaseQueryParamsRequest(): QueryParamsRequest {
   return {};
 }
@@ -1717,9 +1721,9 @@ export const QueryParamsRequest = {
       typeUrl: "/ethermint.evm.v1.QueryParamsRequest",
       value: QueryParamsRequest.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryParamsRequest.typeUrl, QueryParamsRequest);
 function createBaseQueryParamsResponse(): QueryParamsResponse {
   return {
     params: Params.fromPartial({})
@@ -1787,9 +1791,11 @@ export const QueryParamsResponse = {
       typeUrl: "/ethermint.evm.v1.QueryParamsResponse",
       value: QueryParamsResponse.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Params.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(QueryParamsResponse.typeUrl, QueryParamsResponse);
 function createBaseEthCallRequest(): EthCallRequest {
   return {
     args: new Uint8Array(),
@@ -1893,9 +1899,9 @@ export const EthCallRequest = {
       typeUrl: "/ethermint.evm.v1.EthCallRequest",
       value: EthCallRequest.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(EthCallRequest.typeUrl, EthCallRequest);
 function createBaseEstimateGasResponse(): EstimateGasResponse {
   return {
     gas: BigInt(0)
@@ -1963,9 +1969,9 @@ export const EstimateGasResponse = {
       typeUrl: "/ethermint.evm.v1.EstimateGasResponse",
       value: EstimateGasResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(EstimateGasResponse.typeUrl, EstimateGasResponse);
 function createBaseQueryTraceTxRequest(): QueryTraceTxRequest {
   return {
     msg: undefined,
@@ -2119,9 +2125,12 @@ export const QueryTraceTxRequest = {
       typeUrl: "/ethermint.evm.v1.QueryTraceTxRequest",
       value: QueryTraceTxRequest.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    MsgEthereumTx.registerTypeUrl();
+    TraceConfig.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(QueryTraceTxRequest.typeUrl, QueryTraceTxRequest);
 function createBaseQueryTraceTxResponse(): QueryTraceTxResponse {
   return {
     data: new Uint8Array()
@@ -2189,9 +2198,9 @@ export const QueryTraceTxResponse = {
       typeUrl: "/ethermint.evm.v1.QueryTraceTxResponse",
       value: QueryTraceTxResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryTraceTxResponse.typeUrl, QueryTraceTxResponse);
 function createBaseQueryTraceBlockRequest(): QueryTraceBlockRequest {
   return {
     txs: [],
@@ -2333,9 +2342,12 @@ export const QueryTraceBlockRequest = {
       typeUrl: "/ethermint.evm.v1.QueryTraceBlockRequest",
       value: QueryTraceBlockRequest.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    MsgEthereumTx.registerTypeUrl();
+    TraceConfig.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(QueryTraceBlockRequest.typeUrl, QueryTraceBlockRequest);
 function createBaseQueryTraceBlockResponse(): QueryTraceBlockResponse {
   return {
     data: new Uint8Array()
@@ -2403,9 +2415,9 @@ export const QueryTraceBlockResponse = {
       typeUrl: "/ethermint.evm.v1.QueryTraceBlockResponse",
       value: QueryTraceBlockResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryTraceBlockResponse.typeUrl, QueryTraceBlockResponse);
 function createBaseQueryBaseFeeRequest(): QueryBaseFeeRequest {
   return {};
 }
@@ -2460,9 +2472,9 @@ export const QueryBaseFeeRequest = {
       typeUrl: "/ethermint.evm.v1.QueryBaseFeeRequest",
       value: QueryBaseFeeRequest.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryBaseFeeRequest.typeUrl, QueryBaseFeeRequest);
 function createBaseQueryBaseFeeResponse(): QueryBaseFeeResponse {
   return {
     baseFee: ""
@@ -2530,6 +2542,6 @@ export const QueryBaseFeeResponse = {
       typeUrl: "/ethermint.evm.v1.QueryBaseFeeResponse",
       value: QueryBaseFeeResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryBaseFeeResponse.typeUrl, QueryBaseFeeResponse);

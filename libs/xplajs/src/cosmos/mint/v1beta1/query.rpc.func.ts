@@ -5,19 +5,22 @@ export const createGetParams = (clientResolver?: RpcResolver) => buildQuery<Quer
   decode: QueryParamsResponse.decode,
   service: "cosmos.mint.v1beta1.Query",
   method: "Params",
-  clientResolver
+  clientResolver,
+  deps: [QueryParamsRequest, QueryParamsResponse]
 });
 export const createGetInflation = (clientResolver?: RpcResolver) => buildQuery<QueryInflationRequest, QueryInflationResponse>({
   encode: QueryInflationRequest.encode,
   decode: QueryInflationResponse.decode,
   service: "cosmos.mint.v1beta1.Query",
   method: "Inflation",
-  clientResolver
+  clientResolver,
+  deps: [QueryInflationRequest, QueryInflationResponse]
 });
 export const createGetAnnualProvisions = (clientResolver?: RpcResolver) => buildQuery<QueryAnnualProvisionsRequest, QueryAnnualProvisionsResponse>({
   encode: QueryAnnualProvisionsRequest.encode,
   decode: QueryAnnualProvisionsResponse.decode,
   service: "cosmos.mint.v1beta1.Query",
   method: "AnnualProvisions",
-  clientResolver
+  clientResolver,
+  deps: [QueryAnnualProvisionsRequest, QueryAnnualProvisionsResponse]
 });

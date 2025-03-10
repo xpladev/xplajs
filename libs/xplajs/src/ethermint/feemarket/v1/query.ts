@@ -1,7 +1,6 @@
 import { Params, ParamsAmino } from "./feemarket";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial } from "../../../helpers";
-import { GlobalDecoderRegistry } from "../../../registry";
 /** QueryParamsRequest defines the request type for querying x/evm parameters. */
 export interface QueryParamsRequest {}
 export interface QueryParamsRequestProtoMsg {
@@ -158,9 +157,9 @@ export const QueryParamsRequest = {
       typeUrl: "/ethermint.feemarket.v1.QueryParamsRequest",
       value: QueryParamsRequest.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryParamsRequest.typeUrl, QueryParamsRequest);
 function createBaseQueryParamsResponse(): QueryParamsResponse {
   return {
     params: Params.fromPartial({})
@@ -228,9 +227,11 @@ export const QueryParamsResponse = {
       typeUrl: "/ethermint.feemarket.v1.QueryParamsResponse",
       value: QueryParamsResponse.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Params.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(QueryParamsResponse.typeUrl, QueryParamsResponse);
 function createBaseQueryBaseFeeRequest(): QueryBaseFeeRequest {
   return {};
 }
@@ -285,9 +286,9 @@ export const QueryBaseFeeRequest = {
       typeUrl: "/ethermint.feemarket.v1.QueryBaseFeeRequest",
       value: QueryBaseFeeRequest.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryBaseFeeRequest.typeUrl, QueryBaseFeeRequest);
 function createBaseQueryBaseFeeResponse(): QueryBaseFeeResponse {
   return {
     baseFee: ""
@@ -355,9 +356,9 @@ export const QueryBaseFeeResponse = {
       typeUrl: "/ethermint.feemarket.v1.QueryBaseFeeResponse",
       value: QueryBaseFeeResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryBaseFeeResponse.typeUrl, QueryBaseFeeResponse);
 function createBaseQueryBlockGasRequest(): QueryBlockGasRequest {
   return {};
 }
@@ -412,9 +413,9 @@ export const QueryBlockGasRequest = {
       typeUrl: "/ethermint.feemarket.v1.QueryBlockGasRequest",
       value: QueryBlockGasRequest.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryBlockGasRequest.typeUrl, QueryBlockGasRequest);
 function createBaseQueryBlockGasResponse(): QueryBlockGasResponse {
   return {
     gas: BigInt(0)
@@ -482,6 +483,6 @@ export const QueryBlockGasResponse = {
       typeUrl: "/ethermint.feemarket.v1.QueryBlockGasResponse",
       value: QueryBlockGasResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryBlockGasResponse.typeUrl, QueryBlockGasResponse);

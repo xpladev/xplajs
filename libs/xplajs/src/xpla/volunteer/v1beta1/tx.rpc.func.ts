@@ -5,11 +5,13 @@ export const createRegisterVolunteerValidator = (clientResolver?: SigningClientR
   clientResolver,
   typeUrl: MsgRegisterVolunteerValidator.typeUrl,
   encoders: toEncoders(MsgRegisterVolunteerValidator),
-  converters: toConverters(MsgRegisterVolunteerValidator)
+  converters: toConverters(MsgRegisterVolunteerValidator),
+  deps: [MsgRegisterVolunteerValidator]
 });
 export const createUnregisterVolunteerValidator = (clientResolver?: SigningClientResolver) => buildTx<MsgUnregisterVolunteerValidator>({
   clientResolver,
   typeUrl: MsgUnregisterVolunteerValidator.typeUrl,
   encoders: toEncoders(MsgUnregisterVolunteerValidator),
-  converters: toConverters(MsgUnregisterVolunteerValidator)
+  converters: toConverters(MsgUnregisterVolunteerValidator),
+  deps: [MsgUnregisterVolunteerValidator]
 });

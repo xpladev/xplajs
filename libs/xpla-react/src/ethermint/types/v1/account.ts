@@ -109,6 +109,9 @@ export const EthAccount = {
       typeUrl: "/ethermint.types.v1.EthAccount",
       value: EthAccount.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    GlobalDecoderRegistry.register(EthAccount.typeUrl, EthAccount);
+    BaseAccount.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(EthAccount.typeUrl, EthAccount);

@@ -5,11 +5,13 @@ export const createSoftwareUpgrade = (clientResolver?: SigningClientResolver) =>
   clientResolver,
   typeUrl: MsgSoftwareUpgrade.typeUrl,
   encoders: toEncoders(MsgSoftwareUpgrade),
-  converters: toConverters(MsgSoftwareUpgrade)
+  converters: toConverters(MsgSoftwareUpgrade),
+  deps: [MsgSoftwareUpgrade]
 });
 export const createCancelUpgrade = (clientResolver?: SigningClientResolver) => buildTx<MsgCancelUpgrade>({
   clientResolver,
   typeUrl: MsgCancelUpgrade.typeUrl,
   encoders: toEncoders(MsgCancelUpgrade),
-  converters: toConverters(MsgCancelUpgrade)
+  converters: toConverters(MsgCancelUpgrade),
+  deps: [MsgCancelUpgrade]
 });

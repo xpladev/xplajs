@@ -1,6 +1,6 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
+import { Decimal } from "@interchainjs/math";
 import { DeepPartial } from "../../../helpers";
-import { GlobalDecoderRegistry } from "../../../registry";
 /** Params defines the set of params for the reward module. */
 export interface Params {
   feePoolRate: string;
@@ -45,13 +45,13 @@ export const Params = {
   },
   encode(message: Params, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     if (message.feePoolRate !== "") {
-      writer.uint32(10).string(message.feePoolRate);
+      writer.uint32(10).string(Decimal.fromUserInput(message.feePoolRate, 18).atomics);
     }
     if (message.communityPoolRate !== "") {
-      writer.uint32(18).string(message.communityPoolRate);
+      writer.uint32(18).string(Decimal.fromUserInput(message.communityPoolRate, 18).atomics);
     }
     if (message.reserveRate !== "") {
-      writer.uint32(26).string(message.reserveRate);
+      writer.uint32(26).string(Decimal.fromUserInput(message.reserveRate, 18).atomics);
     }
     if (message.reserveAccount !== "") {
       writer.uint32(34).string(message.reserveAccount);
@@ -69,13 +69,13 @@ export const Params = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.feePoolRate = reader.string();
+          message.feePoolRate = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 2:
-          message.communityPoolRate = reader.string();
+          message.communityPoolRate = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 3:
-          message.reserveRate = reader.string();
+          message.reserveRate = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 4:
           message.reserveAccount = reader.string();
@@ -120,9 +120,9 @@ export const Params = {
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    obj.fee_pool_rate = message.feePoolRate ?? "";
-    obj.community_pool_rate = message.communityPoolRate ?? "";
-    obj.reserve_rate = message.reserveRate ?? "";
+    obj.fee_pool_rate = Decimal.fromUserInput(message.feePoolRate, 18).atomics ?? "";
+    obj.community_pool_rate = Decimal.fromUserInput(message.communityPoolRate, 18).atomics ?? "";
+    obj.reserve_rate = Decimal.fromUserInput(message.reserveRate, 18).atomics ?? "";
     obj.reserve_account = message.reserveAccount === "" ? undefined : message.reserveAccount;
     obj.reward_distribute_account = message.rewardDistributeAccount === "" ? undefined : message.rewardDistributeAccount;
     return obj;
@@ -147,7 +147,6 @@ export const Params = {
       typeUrl: "/xpla.reward.v1beta1.Params",
       value: Params.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(Params.typeUrl, Params);
-GlobalDecoderRegistry.registerAminoProtoMapping(Params.aminoType, Params.typeUrl);

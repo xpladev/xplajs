@@ -1,6 +1,5 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial } from "../../../helpers";
-import { GlobalDecoderRegistry } from "../../../registry";
 /** ExtensionOptionDynamicFeeTx is an extension option that specifies the maxPrioPrice for cosmos tx */
 export interface ExtensionOptionDynamicFeeTx {
   /** max_priority_price is the same as `max_priority_fee_per_gas` in eip-1559 spec */
@@ -86,6 +85,6 @@ export const ExtensionOptionDynamicFeeTx = {
       typeUrl: "/ethermint.types.v1.ExtensionOptionDynamicFeeTx",
       value: ExtensionOptionDynamicFeeTx.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(ExtensionOptionDynamicFeeTx.typeUrl, ExtensionOptionDynamicFeeTx);

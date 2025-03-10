@@ -1,6 +1,5 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial } from "../../../helpers";
-import { GlobalDecoderRegistry } from "../../../registry";
 /** QueryVolunteerValidatorsRequest */
 export interface QueryVolunteerValidatorsRequest {}
 export interface QueryVolunteerValidatorsRequestProtoMsg {
@@ -83,9 +82,9 @@ export const QueryVolunteerValidatorsRequest = {
       typeUrl: "/xpla.volunteer.v1beta1.QueryVolunteerValidatorsRequest",
       value: QueryVolunteerValidatorsRequest.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryVolunteerValidatorsRequest.typeUrl, QueryVolunteerValidatorsRequest);
 function createBaseQueryVolunteerValidatorsResponse(): QueryVolunteerValidatorsResponse {
   return {
     volunteerValidators: []
@@ -155,6 +154,6 @@ export const QueryVolunteerValidatorsResponse = {
       typeUrl: "/xpla.volunteer.v1beta1.QueryVolunteerValidatorsResponse",
       value: QueryVolunteerValidatorsResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryVolunteerValidatorsResponse.typeUrl, QueryVolunteerValidatorsResponse);

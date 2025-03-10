@@ -265,10 +265,11 @@ export const RegisterVolunteerValidatorProposal = {
       typeUrl: "/xpla.volunteer.v1beta1.RegisterVolunteerValidatorProposal",
       value: RegisterVolunteerValidatorProposal.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Coin.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(RegisterVolunteerValidatorProposal.typeUrl, RegisterVolunteerValidatorProposal);
-GlobalDecoderRegistry.registerAminoProtoMapping(RegisterVolunteerValidatorProposal.aminoType, RegisterVolunteerValidatorProposal.typeUrl);
 function createBaseRegisterVolunteerValidatorProposalWithDeposit(): RegisterVolunteerValidatorProposalWithDeposit {
   return {
     title: "",
@@ -427,10 +428,11 @@ export const RegisterVolunteerValidatorProposalWithDeposit = {
       typeUrl: "/xpla.volunteer.v1beta1.RegisterVolunteerValidatorProposalWithDeposit",
       value: RegisterVolunteerValidatorProposalWithDeposit.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Coin.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(RegisterVolunteerValidatorProposalWithDeposit.typeUrl, RegisterVolunteerValidatorProposalWithDeposit);
-GlobalDecoderRegistry.registerAminoProtoMapping(RegisterVolunteerValidatorProposalWithDeposit.aminoType, RegisterVolunteerValidatorProposalWithDeposit.typeUrl);
 function createBaseUnregisterVolunteerValidatorProposal(): UnregisterVolunteerValidatorProposal {
   return {
     title: "",
@@ -529,10 +531,9 @@ export const UnregisterVolunteerValidatorProposal = {
       typeUrl: "/xpla.volunteer.v1beta1.UnregisterVolunteerValidatorProposal",
       value: UnregisterVolunteerValidatorProposal.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(UnregisterVolunteerValidatorProposal.typeUrl, UnregisterVolunteerValidatorProposal);
-GlobalDecoderRegistry.registerAminoProtoMapping(UnregisterVolunteerValidatorProposal.aminoType, UnregisterVolunteerValidatorProposal.typeUrl);
 function createBaseUnregisterVolunteerValidatorProposalWithDeposit(): UnregisterVolunteerValidatorProposalWithDeposit {
   return {
     title: "",
@@ -643,7 +644,6 @@ export const UnregisterVolunteerValidatorProposalWithDeposit = {
       typeUrl: "/xpla.volunteer.v1beta1.UnregisterVolunteerValidatorProposalWithDeposit",
       value: UnregisterVolunteerValidatorProposalWithDeposit.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(UnregisterVolunteerValidatorProposalWithDeposit.typeUrl, UnregisterVolunteerValidatorProposalWithDeposit);
-GlobalDecoderRegistry.registerAminoProtoMapping(UnregisterVolunteerValidatorProposalWithDeposit.aminoType, UnregisterVolunteerValidatorProposalWithDeposit.typeUrl);

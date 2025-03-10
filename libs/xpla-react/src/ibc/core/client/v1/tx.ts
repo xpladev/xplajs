@@ -2,7 +2,6 @@ import { Any, AnyAmino } from "../../../../google/protobuf/any";
 import { Plan, PlanAmino } from "../../../../cosmos/upgrade/v1beta1/upgrade";
 import { Params, ParamsAmino } from "./client";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { GlobalDecoderRegistry } from "../../../../registry";
 import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../../helpers";
 /** MsgCreateClient defines a message to create an IBC client */
 export interface MsgCreateClient {
@@ -446,10 +445,9 @@ export const MsgCreateClient = {
       typeUrl: "/ibc.core.client.v1.MsgCreateClient",
       value: MsgCreateClient.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgCreateClient.typeUrl, MsgCreateClient);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgCreateClient.aminoType, MsgCreateClient.typeUrl);
 function createBaseMsgCreateClientResponse(): MsgCreateClientResponse {
   return {};
 }
@@ -511,10 +509,9 @@ export const MsgCreateClientResponse = {
       typeUrl: "/ibc.core.client.v1.MsgCreateClientResponse",
       value: MsgCreateClientResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgCreateClientResponse.typeUrl, MsgCreateClientResponse);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgCreateClientResponse.aminoType, MsgCreateClientResponse.typeUrl);
 function createBaseMsgUpdateClient(): MsgUpdateClient {
   return {
     clientId: "",
@@ -613,10 +610,9 @@ export const MsgUpdateClient = {
       typeUrl: "/ibc.core.client.v1.MsgUpdateClient",
       value: MsgUpdateClient.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgUpdateClient.typeUrl, MsgUpdateClient);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgUpdateClient.aminoType, MsgUpdateClient.typeUrl);
 function createBaseMsgUpdateClientResponse(): MsgUpdateClientResponse {
   return {};
 }
@@ -678,10 +674,9 @@ export const MsgUpdateClientResponse = {
       typeUrl: "/ibc.core.client.v1.MsgUpdateClientResponse",
       value: MsgUpdateClientResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgUpdateClientResponse.typeUrl, MsgUpdateClientResponse);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgUpdateClientResponse.aminoType, MsgUpdateClientResponse.typeUrl);
 function createBaseMsgUpgradeClient(): MsgUpgradeClient {
   return {
     clientId: "",
@@ -816,10 +811,9 @@ export const MsgUpgradeClient = {
       typeUrl: "/ibc.core.client.v1.MsgUpgradeClient",
       value: MsgUpgradeClient.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgUpgradeClient.typeUrl, MsgUpgradeClient);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgUpgradeClient.aminoType, MsgUpgradeClient.typeUrl);
 function createBaseMsgUpgradeClientResponse(): MsgUpgradeClientResponse {
   return {};
 }
@@ -881,10 +875,9 @@ export const MsgUpgradeClientResponse = {
       typeUrl: "/ibc.core.client.v1.MsgUpgradeClientResponse",
       value: MsgUpgradeClientResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgUpgradeClientResponse.typeUrl, MsgUpgradeClientResponse);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgUpgradeClientResponse.aminoType, MsgUpgradeClientResponse.typeUrl);
 function createBaseMsgSubmitMisbehaviour(): MsgSubmitMisbehaviour {
   return {
     clientId: "",
@@ -983,10 +976,9 @@ export const MsgSubmitMisbehaviour = {
       typeUrl: "/ibc.core.client.v1.MsgSubmitMisbehaviour",
       value: MsgSubmitMisbehaviour.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgSubmitMisbehaviour.typeUrl, MsgSubmitMisbehaviour);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgSubmitMisbehaviour.aminoType, MsgSubmitMisbehaviour.typeUrl);
 function createBaseMsgSubmitMisbehaviourResponse(): MsgSubmitMisbehaviourResponse {
   return {};
 }
@@ -1048,10 +1040,9 @@ export const MsgSubmitMisbehaviourResponse = {
       typeUrl: "/ibc.core.client.v1.MsgSubmitMisbehaviourResponse",
       value: MsgSubmitMisbehaviourResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgSubmitMisbehaviourResponse.typeUrl, MsgSubmitMisbehaviourResponse);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgSubmitMisbehaviourResponse.aminoType, MsgSubmitMisbehaviourResponse.typeUrl);
 function createBaseMsgRecoverClient(): MsgRecoverClient {
   return {
     subjectClientId: "",
@@ -1150,10 +1141,9 @@ export const MsgRecoverClient = {
       typeUrl: "/ibc.core.client.v1.MsgRecoverClient",
       value: MsgRecoverClient.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgRecoverClient.typeUrl, MsgRecoverClient);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgRecoverClient.aminoType, MsgRecoverClient.typeUrl);
 function createBaseMsgRecoverClientResponse(): MsgRecoverClientResponse {
   return {};
 }
@@ -1215,10 +1205,9 @@ export const MsgRecoverClientResponse = {
       typeUrl: "/ibc.core.client.v1.MsgRecoverClientResponse",
       value: MsgRecoverClientResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgRecoverClientResponse.typeUrl, MsgRecoverClientResponse);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgRecoverClientResponse.aminoType, MsgRecoverClientResponse.typeUrl);
 function createBaseMsgIBCSoftwareUpgrade(): MsgIBCSoftwareUpgrade {
   return {
     plan: Plan.fromPartial({}),
@@ -1317,10 +1306,9 @@ export const MsgIBCSoftwareUpgrade = {
       typeUrl: "/ibc.core.client.v1.MsgIBCSoftwareUpgrade",
       value: MsgIBCSoftwareUpgrade.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgIBCSoftwareUpgrade.typeUrl, MsgIBCSoftwareUpgrade);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgIBCSoftwareUpgrade.aminoType, MsgIBCSoftwareUpgrade.typeUrl);
 function createBaseMsgIBCSoftwareUpgradeResponse(): MsgIBCSoftwareUpgradeResponse {
   return {};
 }
@@ -1382,10 +1370,9 @@ export const MsgIBCSoftwareUpgradeResponse = {
       typeUrl: "/ibc.core.client.v1.MsgIBCSoftwareUpgradeResponse",
       value: MsgIBCSoftwareUpgradeResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgIBCSoftwareUpgradeResponse.typeUrl, MsgIBCSoftwareUpgradeResponse);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgIBCSoftwareUpgradeResponse.aminoType, MsgIBCSoftwareUpgradeResponse.typeUrl);
 function createBaseMsgUpdateParams(): MsgUpdateParams {
   return {
     signer: "",
@@ -1472,10 +1459,11 @@ export const MsgUpdateParams = {
       typeUrl: "/ibc.core.client.v1.MsgUpdateParams",
       value: MsgUpdateParams.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Params.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(MsgUpdateParams.typeUrl, MsgUpdateParams);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgUpdateParams.aminoType, MsgUpdateParams.typeUrl);
 function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
   return {};
 }
@@ -1537,7 +1525,6 @@ export const MsgUpdateParamsResponse = {
       typeUrl: "/ibc.core.client.v1.MsgUpdateParamsResponse",
       value: MsgUpdateParamsResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(MsgUpdateParamsResponse.typeUrl, MsgUpdateParamsResponse);
-GlobalDecoderRegistry.registerAminoProtoMapping(MsgUpdateParamsResponse.aminoType, MsgUpdateParamsResponse.typeUrl);

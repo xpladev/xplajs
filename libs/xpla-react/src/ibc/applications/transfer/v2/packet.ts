@@ -1,6 +1,5 @@
 import { BinaryReader, BinaryWriter } from "../../../../binary";
 import { DeepPartial } from "../../../../helpers";
-import { GlobalDecoderRegistry } from "../../../../registry";
 /**
  * FungibleTokenPacketData defines a struct for the packet payload
  * See FungibleTokenPacketData spec:
@@ -165,7 +164,6 @@ export const FungibleTokenPacketData = {
       typeUrl: "/ibc.applications.transfer.v2.FungibleTokenPacketData",
       value: FungibleTokenPacketData.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(FungibleTokenPacketData.typeUrl, FungibleTokenPacketData);
-GlobalDecoderRegistry.registerAminoProtoMapping(FungibleTokenPacketData.aminoType, FungibleTokenPacketData.typeUrl);

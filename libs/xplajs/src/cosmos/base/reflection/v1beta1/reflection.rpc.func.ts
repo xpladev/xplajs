@@ -5,12 +5,14 @@ export const createGetListAllInterfaces = (clientResolver?: RpcResolver) => buil
   decode: ListAllInterfacesResponse.decode,
   service: "cosmos.base.reflection.v1beta1.ReflectionService",
   method: "ListAllInterfaces",
-  clientResolver
+  clientResolver,
+  deps: [ListAllInterfacesRequest, ListAllInterfacesResponse]
 });
 export const createGetListImplementations = (clientResolver?: RpcResolver) => buildQuery<ListImplementationsRequest, ListImplementationsResponse>({
   encode: ListImplementationsRequest.encode,
   decode: ListImplementationsResponse.decode,
   service: "cosmos.base.reflection.v1beta1.ReflectionService",
   method: "ListImplementations",
-  clientResolver
+  clientResolver,
+  deps: [ListImplementationsRequest, ListImplementationsResponse]
 });

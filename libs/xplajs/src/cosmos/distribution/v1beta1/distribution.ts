@@ -1,5 +1,6 @@
 import { DecCoin, DecCoinAmino, Coin, CoinAmino } from "../../base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
+import { Decimal } from "@interchainjs/math";
 import { DeepPartial } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
 /** Params defines the set of params for the distribution module. */
@@ -367,13 +368,13 @@ export const Params = {
   },
   encode(message: Params, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     if (message.communityTax !== "") {
-      writer.uint32(10).string(message.communityTax);
+      writer.uint32(10).string(Decimal.fromUserInput(message.communityTax, 18).atomics);
     }
     if (message.baseProposerReward !== "") {
-      writer.uint32(18).string(message.baseProposerReward);
+      writer.uint32(18).string(Decimal.fromUserInput(message.baseProposerReward, 18).atomics);
     }
     if (message.bonusProposerReward !== "") {
-      writer.uint32(26).string(message.bonusProposerReward);
+      writer.uint32(26).string(Decimal.fromUserInput(message.bonusProposerReward, 18).atomics);
     }
     if (message.withdrawAddrEnabled === true) {
       writer.uint32(32).bool(message.withdrawAddrEnabled);
@@ -388,13 +389,13 @@ export const Params = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.communityTax = reader.string();
+          message.communityTax = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 2:
-          message.baseProposerReward = reader.string();
+          message.baseProposerReward = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 3:
-          message.bonusProposerReward = reader.string();
+          message.bonusProposerReward = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 4:
           message.withdrawAddrEnabled = reader.bool();
@@ -432,9 +433,9 @@ export const Params = {
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    obj.community_tax = message.communityTax ?? "";
-    obj.base_proposer_reward = message.baseProposerReward ?? "";
-    obj.bonus_proposer_reward = message.bonusProposerReward ?? "";
+    obj.community_tax = Decimal.fromUserInput(message.communityTax, 18).atomics ?? "";
+    obj.base_proposer_reward = Decimal.fromUserInput(message.baseProposerReward, 18).atomics ?? "";
+    obj.bonus_proposer_reward = Decimal.fromUserInput(message.bonusProposerReward, 18).atomics ?? "";
     obj.withdraw_addr_enabled = message.withdrawAddrEnabled === false ? undefined : message.withdrawAddrEnabled;
     return obj;
   },
@@ -458,10 +459,9 @@ export const Params = {
       typeUrl: "/cosmos.distribution.v1beta1.Params",
       value: Params.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(Params.typeUrl, Params);
-GlobalDecoderRegistry.registerAminoProtoMapping(Params.aminoType, Params.typeUrl);
 function createBaseValidatorHistoricalRewards(): ValidatorHistoricalRewards {
   return {
     cumulativeRewardRatio: [],
@@ -550,10 +550,11 @@ export const ValidatorHistoricalRewards = {
       typeUrl: "/cosmos.distribution.v1beta1.ValidatorHistoricalRewards",
       value: ValidatorHistoricalRewards.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    DecCoin.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(ValidatorHistoricalRewards.typeUrl, ValidatorHistoricalRewards);
-GlobalDecoderRegistry.registerAminoProtoMapping(ValidatorHistoricalRewards.aminoType, ValidatorHistoricalRewards.typeUrl);
 function createBaseValidatorCurrentRewards(): ValidatorCurrentRewards {
   return {
     rewards: [],
@@ -642,10 +643,11 @@ export const ValidatorCurrentRewards = {
       typeUrl: "/cosmos.distribution.v1beta1.ValidatorCurrentRewards",
       value: ValidatorCurrentRewards.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    DecCoin.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(ValidatorCurrentRewards.typeUrl, ValidatorCurrentRewards);
-GlobalDecoderRegistry.registerAminoProtoMapping(ValidatorCurrentRewards.aminoType, ValidatorCurrentRewards.typeUrl);
 function createBaseValidatorAccumulatedCommission(): ValidatorAccumulatedCommission {
   return {
     commission: []
@@ -722,10 +724,11 @@ export const ValidatorAccumulatedCommission = {
       typeUrl: "/cosmos.distribution.v1beta1.ValidatorAccumulatedCommission",
       value: ValidatorAccumulatedCommission.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    DecCoin.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(ValidatorAccumulatedCommission.typeUrl, ValidatorAccumulatedCommission);
-GlobalDecoderRegistry.registerAminoProtoMapping(ValidatorAccumulatedCommission.aminoType, ValidatorAccumulatedCommission.typeUrl);
 function createBaseValidatorOutstandingRewards(): ValidatorOutstandingRewards {
   return {
     rewards: []
@@ -802,10 +805,11 @@ export const ValidatorOutstandingRewards = {
       typeUrl: "/cosmos.distribution.v1beta1.ValidatorOutstandingRewards",
       value: ValidatorOutstandingRewards.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    DecCoin.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(ValidatorOutstandingRewards.typeUrl, ValidatorOutstandingRewards);
-GlobalDecoderRegistry.registerAminoProtoMapping(ValidatorOutstandingRewards.aminoType, ValidatorOutstandingRewards.typeUrl);
 function createBaseValidatorSlashEvent(): ValidatorSlashEvent {
   return {
     validatorPeriod: BigInt(0),
@@ -826,7 +830,7 @@ export const ValidatorSlashEvent = {
       writer.uint32(8).uint64(message.validatorPeriod);
     }
     if (message.fraction !== "") {
-      writer.uint32(18).string(message.fraction);
+      writer.uint32(18).string(Decimal.fromUserInput(message.fraction, 18).atomics);
     }
     return writer;
   },
@@ -841,7 +845,7 @@ export const ValidatorSlashEvent = {
           message.validatorPeriod = reader.uint64();
           break;
         case 2:
-          message.fraction = reader.string();
+          message.fraction = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         default:
           reader.skipType(tag & 7);
@@ -869,7 +873,7 @@ export const ValidatorSlashEvent = {
   toAmino(message: ValidatorSlashEvent): ValidatorSlashEventAmino {
     const obj: any = {};
     obj.validator_period = message.validatorPeriod !== BigInt(0) ? message.validatorPeriod?.toString() : undefined;
-    obj.fraction = message.fraction === "" ? undefined : message.fraction;
+    obj.fraction = message.fraction === "" ? undefined : Decimal.fromUserInput(message.fraction, 18).atomics;
     return obj;
   },
   fromAminoMsg(object: ValidatorSlashEventAminoMsg): ValidatorSlashEvent {
@@ -892,10 +896,9 @@ export const ValidatorSlashEvent = {
       typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEvent",
       value: ValidatorSlashEvent.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(ValidatorSlashEvent.typeUrl, ValidatorSlashEvent);
-GlobalDecoderRegistry.registerAminoProtoMapping(ValidatorSlashEvent.aminoType, ValidatorSlashEvent.typeUrl);
 function createBaseValidatorSlashEvents(): ValidatorSlashEvents {
   return {
     validatorSlashEvents: []
@@ -972,10 +975,11 @@ export const ValidatorSlashEvents = {
       typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEvents",
       value: ValidatorSlashEvents.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    ValidatorSlashEvent.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(ValidatorSlashEvents.typeUrl, ValidatorSlashEvents);
-GlobalDecoderRegistry.registerAminoProtoMapping(ValidatorSlashEvents.aminoType, ValidatorSlashEvents.typeUrl);
 function createBaseFeePool(): FeePool {
   return {
     communityPool: []
@@ -1052,10 +1056,11 @@ export const FeePool = {
       typeUrl: "/cosmos.distribution.v1beta1.FeePool",
       value: FeePool.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    DecCoin.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(FeePool.typeUrl, FeePool);
-GlobalDecoderRegistry.registerAminoProtoMapping(FeePool.aminoType, FeePool.typeUrl);
 function createBaseCommunityPoolSpendProposal(): CommunityPoolSpendProposal {
   return {
     title: "",
@@ -1168,10 +1173,13 @@ export const CommunityPoolSpendProposal = {
       typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal",
       value: CommunityPoolSpendProposal.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    GlobalDecoderRegistry.register(CommunityPoolSpendProposal.typeUrl, CommunityPoolSpendProposal);
+    GlobalDecoderRegistry.registerAminoProtoMapping(CommunityPoolSpendProposal.aminoType, CommunityPoolSpendProposal.typeUrl);
+    Coin.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(CommunityPoolSpendProposal.typeUrl, CommunityPoolSpendProposal);
-GlobalDecoderRegistry.registerAminoProtoMapping(CommunityPoolSpendProposal.aminoType, CommunityPoolSpendProposal.typeUrl);
 function createBaseDelegatorStartingInfo(): DelegatorStartingInfo {
   return {
     previousPeriod: BigInt(0),
@@ -1193,7 +1201,7 @@ export const DelegatorStartingInfo = {
       writer.uint32(8).uint64(message.previousPeriod);
     }
     if (message.stake !== "") {
-      writer.uint32(18).string(message.stake);
+      writer.uint32(18).string(Decimal.fromUserInput(message.stake, 18).atomics);
     }
     if (message.height !== BigInt(0)) {
       writer.uint32(24).uint64(message.height);
@@ -1211,7 +1219,7 @@ export const DelegatorStartingInfo = {
           message.previousPeriod = reader.uint64();
           break;
         case 2:
-          message.stake = reader.string();
+          message.stake = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 3:
           message.height = reader.uint64();
@@ -1246,7 +1254,7 @@ export const DelegatorStartingInfo = {
   toAmino(message: DelegatorStartingInfo): DelegatorStartingInfoAmino {
     const obj: any = {};
     obj.previous_period = message.previousPeriod !== BigInt(0) ? message.previousPeriod?.toString() : undefined;
-    obj.stake = message.stake ?? "";
+    obj.stake = Decimal.fromUserInput(message.stake, 18).atomics ?? "";
     obj.height = message.height ? message.height?.toString() : "0";
     return obj;
   },
@@ -1270,10 +1278,9 @@ export const DelegatorStartingInfo = {
       typeUrl: "/cosmos.distribution.v1beta1.DelegatorStartingInfo",
       value: DelegatorStartingInfo.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(DelegatorStartingInfo.typeUrl, DelegatorStartingInfo);
-GlobalDecoderRegistry.registerAminoProtoMapping(DelegatorStartingInfo.aminoType, DelegatorStartingInfo.typeUrl);
 function createBaseDelegationDelegatorReward(): DelegationDelegatorReward {
   return {
     validatorAddress: "",
@@ -1362,10 +1369,11 @@ export const DelegationDelegatorReward = {
       typeUrl: "/cosmos.distribution.v1beta1.DelegationDelegatorReward",
       value: DelegationDelegatorReward.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    DecCoin.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(DelegationDelegatorReward.typeUrl, DelegationDelegatorReward);
-GlobalDecoderRegistry.registerAminoProtoMapping(DelegationDelegatorReward.aminoType, DelegationDelegatorReward.typeUrl);
 function createBaseCommunityPoolSpendProposalWithDeposit(): CommunityPoolSpendProposalWithDeposit {
   return {
     title: "",
@@ -1488,7 +1496,9 @@ export const CommunityPoolSpendProposalWithDeposit = {
       typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit",
       value: CommunityPoolSpendProposalWithDeposit.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    GlobalDecoderRegistry.register(CommunityPoolSpendProposalWithDeposit.typeUrl, CommunityPoolSpendProposalWithDeposit);
+    GlobalDecoderRegistry.registerAminoProtoMapping(CommunityPoolSpendProposalWithDeposit.aminoType, CommunityPoolSpendProposalWithDeposit.typeUrl);
   }
 };
-GlobalDecoderRegistry.register(CommunityPoolSpendProposalWithDeposit.typeUrl, CommunityPoolSpendProposalWithDeposit);
-GlobalDecoderRegistry.registerAminoProtoMapping(CommunityPoolSpendProposalWithDeposit.aminoType, CommunityPoolSpendProposalWithDeposit.typeUrl);

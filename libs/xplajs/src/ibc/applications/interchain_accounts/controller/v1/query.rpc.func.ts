@@ -5,12 +5,14 @@ export const createGetInterchainAccount = (clientResolver?: RpcResolver) => buil
   decode: QueryInterchainAccountResponse.decode,
   service: "ibc.applications.interchain_accounts.controller.v1.Query",
   method: "InterchainAccount",
-  clientResolver
+  clientResolver,
+  deps: [QueryInterchainAccountRequest, QueryInterchainAccountResponse]
 });
 export const createGetParams = (clientResolver?: RpcResolver) => buildQuery<QueryParamsRequest, QueryParamsResponse>({
   encode: QueryParamsRequest.encode,
   decode: QueryParamsResponse.decode,
   service: "ibc.applications.interchain_accounts.controller.v1.Query",
   method: "Params",
-  clientResolver
+  clientResolver,
+  deps: [QueryParamsRequest, QueryParamsResponse]
 });

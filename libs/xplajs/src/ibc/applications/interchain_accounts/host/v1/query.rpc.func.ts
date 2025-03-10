@@ -5,5 +5,6 @@ export const createGetParams = (clientResolver?: RpcResolver) => buildQuery<Quer
   decode: QueryParamsResponse.decode,
   service: "ibc.applications.interchain_accounts.host.v1.Query",
   method: "Params",
-  clientResolver
+  clientResolver,
+  deps: [QueryParamsRequest, QueryParamsResponse]
 });

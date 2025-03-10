@@ -1,5 +1,4 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { GlobalDecoderRegistry } from "../../../registry";
 import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../helpers";
 /** Params defines the EVM module parameters */
 export interface Params {
@@ -560,10 +559,11 @@ export const Params = {
       typeUrl: "/ethermint.evm.v1.Params",
       value: Params.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    ChainConfig.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(Params.typeUrl, Params);
-GlobalDecoderRegistry.registerAminoProtoMapping(Params.aminoType, Params.typeUrl);
 function createBaseChainConfig(): ChainConfig {
   return {
     homesteadBlock: "",
@@ -847,9 +847,9 @@ export const ChainConfig = {
       typeUrl: "/ethermint.evm.v1.ChainConfig",
       value: ChainConfig.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(ChainConfig.typeUrl, ChainConfig);
 function createBaseState(): State {
   return {
     key: "",
@@ -929,9 +929,9 @@ export const State = {
       typeUrl: "/ethermint.evm.v1.State",
       value: State.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(State.typeUrl, State);
 function createBaseTransactionLogs(): TransactionLogs {
   return {
     hash: "",
@@ -1013,9 +1013,11 @@ export const TransactionLogs = {
       typeUrl: "/ethermint.evm.v1.TransactionLogs",
       value: TransactionLogs.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Log.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(TransactionLogs.typeUrl, TransactionLogs);
 function createBaseLog(): Log {
   return {
     address: "",
@@ -1181,9 +1183,9 @@ export const Log = {
       typeUrl: "/ethermint.evm.v1.Log",
       value: Log.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(Log.typeUrl, Log);
 function createBaseTxResult(): TxResult {
   return {
     contractAddress: "",
@@ -1311,9 +1313,11 @@ export const TxResult = {
       typeUrl: "/ethermint.evm.v1.TxResult",
       value: TxResult.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    TransactionLogs.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(TxResult.typeUrl, TxResult);
 function createBaseAccessTuple(): AccessTuple {
   return {
     address: "",
@@ -1395,9 +1399,9 @@ export const AccessTuple = {
       typeUrl: "/ethermint.evm.v1.AccessTuple",
       value: AccessTuple.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(AccessTuple.typeUrl, AccessTuple);
 function createBaseTraceConfig(): TraceConfig {
   return {
     tracer: "",
@@ -1585,6 +1589,8 @@ export const TraceConfig = {
       typeUrl: "/ethermint.evm.v1.TraceConfig",
       value: TraceConfig.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    ChainConfig.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(TraceConfig.typeUrl, TraceConfig);

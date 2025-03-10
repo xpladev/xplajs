@@ -5,68 +5,78 @@ export const createGetClientState = (clientResolver?: RpcResolver) => buildQuery
   decode: QueryClientStateResponse.decode,
   service: "ibc.core.client.v1.Query",
   method: "ClientState",
-  clientResolver
+  clientResolver,
+  deps: [QueryClientStateRequest, QueryClientStateResponse]
 });
 export const createGetClientStates = (clientResolver?: RpcResolver) => buildQuery<QueryClientStatesRequest, QueryClientStatesResponse>({
   encode: QueryClientStatesRequest.encode,
   decode: QueryClientStatesResponse.decode,
   service: "ibc.core.client.v1.Query",
   method: "ClientStates",
-  clientResolver
+  clientResolver,
+  deps: [QueryClientStatesRequest, QueryClientStatesResponse]
 });
 export const createGetConsensusState = (clientResolver?: RpcResolver) => buildQuery<QueryConsensusStateRequest, QueryConsensusStateResponse>({
   encode: QueryConsensusStateRequest.encode,
   decode: QueryConsensusStateResponse.decode,
   service: "ibc.core.client.v1.Query",
   method: "ConsensusState",
-  clientResolver
+  clientResolver,
+  deps: [QueryConsensusStateRequest, QueryConsensusStateResponse]
 });
 export const createGetConsensusStates = (clientResolver?: RpcResolver) => buildQuery<QueryConsensusStatesRequest, QueryConsensusStatesResponse>({
   encode: QueryConsensusStatesRequest.encode,
   decode: QueryConsensusStatesResponse.decode,
   service: "ibc.core.client.v1.Query",
   method: "ConsensusStates",
-  clientResolver
+  clientResolver,
+  deps: [QueryConsensusStatesRequest, QueryConsensusStatesResponse]
 });
 export const createGetConsensusStateHeights = (clientResolver?: RpcResolver) => buildQuery<QueryConsensusStateHeightsRequest, QueryConsensusStateHeightsResponse>({
   encode: QueryConsensusStateHeightsRequest.encode,
   decode: QueryConsensusStateHeightsResponse.decode,
   service: "ibc.core.client.v1.Query",
   method: "ConsensusStateHeights",
-  clientResolver
+  clientResolver,
+  deps: [QueryConsensusStateHeightsRequest, QueryConsensusStateHeightsResponse]
 });
 export const createGetClientStatus = (clientResolver?: RpcResolver) => buildQuery<QueryClientStatusRequest, QueryClientStatusResponse>({
   encode: QueryClientStatusRequest.encode,
   decode: QueryClientStatusResponse.decode,
   service: "ibc.core.client.v1.Query",
   method: "ClientStatus",
-  clientResolver
+  clientResolver,
+  deps: [QueryClientStatusRequest, QueryClientStatusResponse]
 });
 export const createGetClientParams = (clientResolver?: RpcResolver) => buildQuery<QueryClientParamsRequest, QueryClientParamsResponse>({
   encode: QueryClientParamsRequest.encode,
   decode: QueryClientParamsResponse.decode,
   service: "ibc.core.client.v1.Query",
   method: "ClientParams",
-  clientResolver
+  clientResolver,
+  deps: [QueryClientParamsRequest, QueryClientParamsResponse]
 });
 export const createGetUpgradedClientState = (clientResolver?: RpcResolver) => buildQuery<QueryUpgradedClientStateRequest, QueryUpgradedClientStateResponse>({
   encode: QueryUpgradedClientStateRequest.encode,
   decode: QueryUpgradedClientStateResponse.decode,
   service: "ibc.core.client.v1.Query",
   method: "UpgradedClientState",
-  clientResolver
+  clientResolver,
+  deps: [QueryUpgradedClientStateRequest, QueryUpgradedClientStateResponse]
 });
 export const createGetUpgradedConsensusState = (clientResolver?: RpcResolver) => buildQuery<QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse>({
   encode: QueryUpgradedConsensusStateRequest.encode,
   decode: QueryUpgradedConsensusStateResponse.decode,
   service: "ibc.core.client.v1.Query",
   method: "UpgradedConsensusState",
-  clientResolver
+  clientResolver,
+  deps: [QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse]
 });
 export const createGetVerifyMembership = (clientResolver?: RpcResolver) => buildQuery<QueryVerifyMembershipRequest, QueryVerifyMembershipResponse>({
   encode: QueryVerifyMembershipRequest.encode,
   decode: QueryVerifyMembershipResponse.decode,
   service: "ibc.core.client.v1.Query",
   method: "VerifyMembership",
-  clientResolver
+  clientResolver,
+  deps: [QueryVerifyMembershipRequest, QueryVerifyMembershipResponse]
 });

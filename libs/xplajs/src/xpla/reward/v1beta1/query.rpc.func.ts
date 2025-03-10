@@ -5,12 +5,14 @@ export const createGetParams = (clientResolver?: RpcResolver) => buildQuery<Quer
   decode: QueryParamsResponse.decode,
   service: "xpla.reward.v1beta1.Query",
   method: "Params",
-  clientResolver
+  clientResolver,
+  deps: [QueryParamsRequest, QueryParamsResponse]
 });
 export const createGetPool = (clientResolver?: RpcResolver) => buildQuery<QueryPoolRequest, QueryPoolResponse>({
   encode: QueryPoolRequest.encode,
   decode: QueryPoolResponse.decode,
   service: "xpla.reward.v1beta1.Query",
   method: "Pool",
-  clientResolver
+  clientResolver,
+  deps: [QueryPoolRequest, QueryPoolResponse]
 });

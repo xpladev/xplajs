@@ -5,17 +5,20 @@ export const createRegisterInterchainAccount = (clientResolver?: SigningClientRe
   clientResolver,
   typeUrl: MsgRegisterInterchainAccount.typeUrl,
   encoders: toEncoders(MsgRegisterInterchainAccount),
-  converters: toConverters(MsgRegisterInterchainAccount)
+  converters: toConverters(MsgRegisterInterchainAccount),
+  deps: [MsgRegisterInterchainAccount]
 });
 export const createSendTx = (clientResolver?: SigningClientResolver) => buildTx<MsgSendTx>({
   clientResolver,
   typeUrl: MsgSendTx.typeUrl,
   encoders: toEncoders(MsgSendTx),
-  converters: toConverters(MsgSendTx)
+  converters: toConverters(MsgSendTx),
+  deps: [MsgSendTx]
 });
 export const createUpdateParams = (clientResolver?: SigningClientResolver) => buildTx<MsgUpdateParams>({
   clientResolver,
   typeUrl: MsgUpdateParams.typeUrl,
   encoders: toEncoders(MsgUpdateParams),
-  converters: toConverters(MsgUpdateParams)
+  converters: toConverters(MsgUpdateParams),
+  deps: [MsgUpdateParams]
 });

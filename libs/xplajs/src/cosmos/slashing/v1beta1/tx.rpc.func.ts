@@ -5,11 +5,13 @@ export const createUnjail = (clientResolver?: SigningClientResolver) => buildTx<
   clientResolver,
   typeUrl: MsgUnjail.typeUrl,
   encoders: toEncoders(MsgUnjail),
-  converters: toConverters(MsgUnjail)
+  converters: toConverters(MsgUnjail),
+  deps: [MsgUnjail]
 });
 export const createUpdateParams = (clientResolver?: SigningClientResolver) => buildTx<MsgUpdateParams>({
   clientResolver,
   typeUrl: MsgUpdateParams.typeUrl,
   encoders: toEncoders(MsgUpdateParams),
-  converters: toConverters(MsgUpdateParams)
+  converters: toConverters(MsgUpdateParams),
+  deps: [MsgUpdateParams]
 });

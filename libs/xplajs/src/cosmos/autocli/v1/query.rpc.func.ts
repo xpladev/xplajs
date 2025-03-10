@@ -5,5 +5,6 @@ export const createGetAppOptions = (clientResolver?: RpcResolver) => buildQuery<
   decode: AppOptionsResponse.decode,
   service: "cosmos.autocli.v1.Query",
   method: "AppOptions",
-  clientResolver
+  clientResolver,
+  deps: [AppOptionsRequest, AppOptionsResponse]
 });

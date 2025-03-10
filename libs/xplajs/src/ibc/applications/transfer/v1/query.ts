@@ -3,7 +3,6 @@ import { DenomTrace, DenomTraceAmino, Params, ParamsAmino } from "./transfer";
 import { Coin, CoinAmino } from "../../../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
 import { DeepPartial } from "../../../../helpers";
-import { GlobalDecoderRegistry } from "../../../../registry";
 /**
  * QueryDenomTraceRequest is the request type for the Query/DenomTrace RPC
  * method
@@ -328,10 +327,9 @@ export const QueryDenomTraceRequest = {
       typeUrl: "/ibc.applications.transfer.v1.QueryDenomTraceRequest",
       value: QueryDenomTraceRequest.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryDenomTraceRequest.typeUrl, QueryDenomTraceRequest);
-GlobalDecoderRegistry.registerAminoProtoMapping(QueryDenomTraceRequest.aminoType, QueryDenomTraceRequest.typeUrl);
 function createBaseQueryDenomTraceResponse(): QueryDenomTraceResponse {
   return {
     denomTrace: undefined
@@ -406,10 +404,11 @@ export const QueryDenomTraceResponse = {
       typeUrl: "/ibc.applications.transfer.v1.QueryDenomTraceResponse",
       value: QueryDenomTraceResponse.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    DenomTrace.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(QueryDenomTraceResponse.typeUrl, QueryDenomTraceResponse);
-GlobalDecoderRegistry.registerAminoProtoMapping(QueryDenomTraceResponse.aminoType, QueryDenomTraceResponse.typeUrl);
 function createBaseQueryDenomTracesRequest(): QueryDenomTracesRequest {
   return {
     pagination: undefined
@@ -484,10 +483,11 @@ export const QueryDenomTracesRequest = {
       typeUrl: "/ibc.applications.transfer.v1.QueryDenomTracesRequest",
       value: QueryDenomTracesRequest.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    PageRequest.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(QueryDenomTracesRequest.typeUrl, QueryDenomTracesRequest);
-GlobalDecoderRegistry.registerAminoProtoMapping(QueryDenomTracesRequest.aminoType, QueryDenomTracesRequest.typeUrl);
 function createBaseQueryDenomTracesResponse(): QueryDenomTracesResponse {
   return {
     denomTraces: [],
@@ -576,10 +576,12 @@ export const QueryDenomTracesResponse = {
       typeUrl: "/ibc.applications.transfer.v1.QueryDenomTracesResponse",
       value: QueryDenomTracesResponse.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    DenomTrace.registerTypeUrl();
+    PageResponse.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(QueryDenomTracesResponse.typeUrl, QueryDenomTracesResponse);
-GlobalDecoderRegistry.registerAminoProtoMapping(QueryDenomTracesResponse.aminoType, QueryDenomTracesResponse.typeUrl);
 function createBaseQueryParamsRequest(): QueryParamsRequest {
   return {};
 }
@@ -641,10 +643,9 @@ export const QueryParamsRequest = {
       typeUrl: "/ibc.applications.transfer.v1.QueryParamsRequest",
       value: QueryParamsRequest.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryParamsRequest.typeUrl, QueryParamsRequest);
-GlobalDecoderRegistry.registerAminoProtoMapping(QueryParamsRequest.aminoType, QueryParamsRequest.typeUrl);
 function createBaseQueryParamsResponse(): QueryParamsResponse {
   return {
     params: undefined
@@ -719,10 +720,11 @@ export const QueryParamsResponse = {
       typeUrl: "/ibc.applications.transfer.v1.QueryParamsResponse",
       value: QueryParamsResponse.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Params.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(QueryParamsResponse.typeUrl, QueryParamsResponse);
-GlobalDecoderRegistry.registerAminoProtoMapping(QueryParamsResponse.aminoType, QueryParamsResponse.typeUrl);
 function createBaseQueryDenomHashRequest(): QueryDenomHashRequest {
   return {
     trace: ""
@@ -797,10 +799,9 @@ export const QueryDenomHashRequest = {
       typeUrl: "/ibc.applications.transfer.v1.QueryDenomHashRequest",
       value: QueryDenomHashRequest.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryDenomHashRequest.typeUrl, QueryDenomHashRequest);
-GlobalDecoderRegistry.registerAminoProtoMapping(QueryDenomHashRequest.aminoType, QueryDenomHashRequest.typeUrl);
 function createBaseQueryDenomHashResponse(): QueryDenomHashResponse {
   return {
     hash: ""
@@ -875,10 +876,9 @@ export const QueryDenomHashResponse = {
       typeUrl: "/ibc.applications.transfer.v1.QueryDenomHashResponse",
       value: QueryDenomHashResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryDenomHashResponse.typeUrl, QueryDenomHashResponse);
-GlobalDecoderRegistry.registerAminoProtoMapping(QueryDenomHashResponse.aminoType, QueryDenomHashResponse.typeUrl);
 function createBaseQueryEscrowAddressRequest(): QueryEscrowAddressRequest {
   return {
     portId: "",
@@ -965,10 +965,9 @@ export const QueryEscrowAddressRequest = {
       typeUrl: "/ibc.applications.transfer.v1.QueryEscrowAddressRequest",
       value: QueryEscrowAddressRequest.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryEscrowAddressRequest.typeUrl, QueryEscrowAddressRequest);
-GlobalDecoderRegistry.registerAminoProtoMapping(QueryEscrowAddressRequest.aminoType, QueryEscrowAddressRequest.typeUrl);
 function createBaseQueryEscrowAddressResponse(): QueryEscrowAddressResponse {
   return {
     escrowAddress: ""
@@ -1043,10 +1042,9 @@ export const QueryEscrowAddressResponse = {
       typeUrl: "/ibc.applications.transfer.v1.QueryEscrowAddressResponse",
       value: QueryEscrowAddressResponse.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryEscrowAddressResponse.typeUrl, QueryEscrowAddressResponse);
-GlobalDecoderRegistry.registerAminoProtoMapping(QueryEscrowAddressResponse.aminoType, QueryEscrowAddressResponse.typeUrl);
 function createBaseQueryTotalEscrowForDenomRequest(): QueryTotalEscrowForDenomRequest {
   return {
     denom: ""
@@ -1121,10 +1119,9 @@ export const QueryTotalEscrowForDenomRequest = {
       typeUrl: "/ibc.applications.transfer.v1.QueryTotalEscrowForDenomRequest",
       value: QueryTotalEscrowForDenomRequest.encode(message).finish()
     };
-  }
+  },
+  registerTypeUrl() {}
 };
-GlobalDecoderRegistry.register(QueryTotalEscrowForDenomRequest.typeUrl, QueryTotalEscrowForDenomRequest);
-GlobalDecoderRegistry.registerAminoProtoMapping(QueryTotalEscrowForDenomRequest.aminoType, QueryTotalEscrowForDenomRequest.typeUrl);
 function createBaseQueryTotalEscrowForDenomResponse(): QueryTotalEscrowForDenomResponse {
   return {
     amount: Coin.fromPartial({})
@@ -1199,7 +1196,8 @@ export const QueryTotalEscrowForDenomResponse = {
       typeUrl: "/ibc.applications.transfer.v1.QueryTotalEscrowForDenomResponse",
       value: QueryTotalEscrowForDenomResponse.encode(message).finish()
     };
+  },
+  registerTypeUrl() {
+    Coin.registerTypeUrl();
   }
 };
-GlobalDecoderRegistry.register(QueryTotalEscrowForDenomResponse.typeUrl, QueryTotalEscrowForDenomResponse);
-GlobalDecoderRegistry.registerAminoProtoMapping(QueryTotalEscrowForDenomResponse.aminoType, QueryTotalEscrowForDenomResponse.typeUrl);
