@@ -1,19 +1,16 @@
-import { EthSecp256k1Auth } from '@interchainjs/auth/ethSecp256k1';
 import { AddrDerivation, Auth, SignerConfig } from '@interchainjs/types';
 
 import { AminoDocSigner } from '../signers/amino';
-import { defaultSignerOptions } from '../defaults';
+import { defaultSignerOptions, defaultWalletOptions } from '../defaults';
 import { DirectDocSigner } from '../signers/direct';
 import { ICosmosAccount } from '@interchainjs/cosmos/types';
-import { BaseCosmosWallet } from "@interchainjs/cosmos/base/base-wallet";
 import { WalletOptions } from '@interchainjs/cosmos/types/wallet';
-import { EthAccount } from '../accounts/eth-account';
+import { HDWallet } from '@interchainjs/cosmos/wallets/secp256k1hd';
 
 /**
  * Cosmos HD Wallet for secp256k1
  */
-export class EthSecp256k1HDWallet extends BaseCosmosWallet<DirectDocSigner, AminoDocSigner>
-{
+export class EthSecp256k1HDWallet extends HDWallet {
   constructor(
     accounts: ICosmosAccount[],
     options: SignerConfig
@@ -42,17 +39,8 @@ export class EthSecp256k1HDWallet extends BaseCosmosWallet<DirectDocSigner, Amin
     derivations: AddrDerivation[] = [{hdPath: "m/44'/60'/0'/0/0", prefix:"xpla"}],
     options: WalletOptions = {bip39Password: "", signerConfig: defaultSignerOptions.Cosmos}
   ) {
-    const hdPaths = derivations.map((derivation) => derivation.hdPath);
+    const opts = { ...defaultWalletOptions, ...options };
 
-    const auths: Auth[] = EthSecp256k1Auth.fromMnemonic(mnemonic, hdPaths, {
-      bip39Password: options?.bip39Password,
-    });
-
-    const accounts = auths.map((auth, i) => {
-      const derivation = derivations[i];
-      return new EthAccount(derivation.prefix, auth);
-    });
-
-    return new EthSecp256k1HDWallet(accounts, options?.signerConfig);
+    return super.fromMnemonic(mnemonic, derivations, opts);
   }
 }

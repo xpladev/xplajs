@@ -23,10 +23,10 @@ npm install @xpla/xplajs
 
 ### Example
 ```ts
-import { createLCDClient } from "./xpla/lcd";
+import { createRPCQueryClient } from "@xpla/xplajs/xpla/rpc.query";
 
-const lcd = await createLCDClient({restEndpoint: "https://cube-lcd.xpla.io"});
+const client = await createRPCQueryClient({rpcEndpoint: "https://cube-lcd.xpla.io"});
 
-const res = await lcd.cosmos.auth.v1beta1.params()
+const res = await client.cosmos.auth.v1beta1.params()
 console.log(res)
 ```
