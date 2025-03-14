@@ -4,7 +4,7 @@ import {
 import { Auth } from '@interchainjs/types';
 
 import { defaultPublicKeyConfig } from './defaults';
-import { DomainOptions, EthAccount } from './types';
+import { EthAccount } from './types';
 
 export function getAccountFromAuth(
   auth: Auth,

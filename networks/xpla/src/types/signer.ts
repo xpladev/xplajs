@@ -5,28 +5,17 @@ import {
 import {
   CosmosAminoSigner,
   CosmosDirectSigner,
-  UniCosmosBaseSigner,
 } from '@interchainjs/cosmos/types';
 import {
   BaseWalletAccount,
-  Eip712Data,
-  InjectiveDomain,
-  InjectiveEip712Message,
 } from '@interchainjs/types';
 
 export type XplaDirectSigner = CosmosDirectSigner;
 export type XplaAminoSigner = CosmosAminoSigner;
-export type XplaEip712Signer = UniCosmosBaseSigner<XplaEip712Doc>;
-
 export interface EthAccount extends BaseWalletAccount {
   cosmosAddress: string;
   ethereumAddress: string;
 }
-
-export type XplaEip712Doc = Eip712Data<
-  InjectiveDomain,
-  InjectiveEip712Message
->;
 
 export type XplaEip712SignArgs = CosmosSignArgs<DocOptions>;
 
@@ -42,12 +31,4 @@ export enum EthereumChainId {
   HardHat = 31337,
 }
 
-export type DocOptions = CosmosDocOptions & DomainOptions;
-
-export interface DomainOptions {
-  name?: string;
-  version?: string;
-  ethereumChainId?: EthereumChainId;
-  salt?: string;
-  verifyingContract?: string;
-}
+export type DocOptions = CosmosDocOptions;
