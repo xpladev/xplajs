@@ -49,7 +49,7 @@ const fee: StdFee = {
 const { send } = MessageComposer.fromPartial
 const msgs = [send(msg)]
 
-const fee: StdFee = await signer.signAndBroadcast({messages: [msgs]})
+const fee: StdFee = await signer.estimateFee({messages: [msgs]})
 
 const res = await signer.signAndBroadcast({messages: [msgs], fee})
 console.log(res.hash) // the hash of TxRaw
@@ -84,18 +84,16 @@ const fee: StdFee = {
 const { send } = MessageComposer.fromPartial
 const msgs = [send(msg)]
 
-const fee: StdFee = await signer.signAndBroadcast({messages: [msgs]})
+const fee: StdFee = await signer.estimateFee({messages: [msgs]})
 
 const res = await signer.signAndBroadcast({messages: [msgs], fee})
 console.log(res.hash) // the hash of TxRaw
 ```
 
-- See [@interchainjs/auth](/packages/auth/README.md) to construct `<AUTH>`
-
 ## Implementations
 
-- **direct signer** from `@interchainjs/xpla/signers/direct`
-- **amino signer** from `@interchainjs/xpla/signers/amino`
+- **direct signer** from `@xpla/xpla/signers/direct`
+- **amino signer** from `@xpla/xpla/signers/amino`
 
 ## License
 
