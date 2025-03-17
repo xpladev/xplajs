@@ -7,11 +7,11 @@ import { DeepPartial } from "../../../helpers";
  * a delegator (or validator self-delegation).
  */
 export interface MsgSetWithdrawAddress {
-  delegatorAddress: string;
-  withdrawAddress: string;
+  delegator_address: string;
+  withdraw_address: string;
 }
 export interface MsgSetWithdrawAddressProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.MsgSetWithdrawAddress";
+  type_url: "/cosmos.distribution.v1beta1.MsgSetWithdrawAddress";
   value: Uint8Array;
 }
 /**
@@ -32,7 +32,7 @@ export interface MsgSetWithdrawAddressAminoMsg {
  */
 export interface MsgSetWithdrawAddressResponse {}
 export interface MsgSetWithdrawAddressResponseProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.MsgSetWithdrawAddressResponse";
+  type_url: "/cosmos.distribution.v1beta1.MsgSetWithdrawAddressResponse";
   value: Uint8Array;
 }
 /**
@@ -49,11 +49,11 @@ export interface MsgSetWithdrawAddressResponseAminoMsg {
  * from a single validator.
  */
 export interface MsgWithdrawDelegatorReward {
-  delegatorAddress: string;
-  validatorAddress: string;
+  delegator_address: string;
+  validator_address: string;
 }
 export interface MsgWithdrawDelegatorRewardProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward";
+  type_url: "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward";
   value: Uint8Array;
 }
 /**
@@ -77,7 +77,7 @@ export interface MsgWithdrawDelegatorRewardResponse {
   amount: Coin[];
 }
 export interface MsgWithdrawDelegatorRewardResponseProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorRewardResponse";
+  type_url: "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorRewardResponse";
   value: Uint8Array;
 }
 /**
@@ -97,10 +97,10 @@ export interface MsgWithdrawDelegatorRewardResponseAminoMsg {
  * address.
  */
 export interface MsgWithdrawValidatorCommission {
-  validatorAddress: string;
+  validator_address: string;
 }
 export interface MsgWithdrawValidatorCommissionProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission";
+  type_url: "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission";
   value: Uint8Array;
 }
 /**
@@ -123,7 +123,7 @@ export interface MsgWithdrawValidatorCommissionResponse {
   amount: Coin[];
 }
 export interface MsgWithdrawValidatorCommissionResponseProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommissionResponse";
+  type_url: "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommissionResponse";
   value: Uint8Array;
 }
 /**
@@ -147,7 +147,7 @@ export interface MsgFundCommunityPool {
   depositor: string;
 }
 export interface MsgFundCommunityPoolProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.MsgFundCommunityPool";
+  type_url: "/cosmos.distribution.v1beta1.MsgFundCommunityPool";
   value: Uint8Array;
 }
 /**
@@ -165,7 +165,7 @@ export interface MsgFundCommunityPoolAminoMsg {
 /** MsgFundCommunityPoolResponse defines the Msg/FundCommunityPool response type. */
 export interface MsgFundCommunityPoolResponse {}
 export interface MsgFundCommunityPoolResponseProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.MsgFundCommunityPoolResponse";
+  type_url: "/cosmos.distribution.v1beta1.MsgFundCommunityPoolResponse";
   value: Uint8Array;
 }
 /** MsgFundCommunityPoolResponse defines the Msg/FundCommunityPool response type. */
@@ -190,7 +190,7 @@ export interface MsgUpdateParams {
   params: Params;
 }
 export interface MsgUpdateParamsProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.MsgUpdateParams";
+  type_url: "/cosmos.distribution.v1beta1.MsgUpdateParams";
   value: Uint8Array;
 }
 /**
@@ -220,7 +220,7 @@ export interface MsgUpdateParamsAminoMsg {
  */
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.MsgUpdateParamsResponse";
+  type_url: "/cosmos.distribution.v1beta1.MsgUpdateParamsResponse";
   value: Uint8Array;
 }
 /**
@@ -248,7 +248,7 @@ export interface MsgCommunityPoolSpend {
   amount: Coin[];
 }
 export interface MsgCommunityPoolSpendProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.MsgCommunityPoolSpend";
+  type_url: "/cosmos.distribution.v1beta1.MsgCommunityPoolSpend";
   value: Uint8Array;
 }
 /**
@@ -276,7 +276,7 @@ export interface MsgCommunityPoolSpendAminoMsg {
  */
 export interface MsgCommunityPoolSpendResponse {}
 export interface MsgCommunityPoolSpendResponseProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.MsgCommunityPoolSpendResponse";
+  type_url: "/cosmos.distribution.v1beta1.MsgCommunityPoolSpendResponse";
   value: Uint8Array;
 }
 /**
@@ -298,11 +298,11 @@ export interface MsgCommunityPoolSpendResponseAminoMsg {
  */
 export interface MsgDepositValidatorRewardsPool {
   depositor: string;
-  validatorAddress: string;
+  validator_address: string;
   amount: Coin[];
 }
 export interface MsgDepositValidatorRewardsPoolProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPool";
+  type_url: "/cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPool";
   value: Uint8Array;
 }
 /**
@@ -328,7 +328,7 @@ export interface MsgDepositValidatorRewardsPoolAminoMsg {
  */
 export interface MsgDepositValidatorRewardsPoolResponse {}
 export interface MsgDepositValidatorRewardsPoolResponseProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPoolResponse";
+  type_url: "/cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPoolResponse";
   value: Uint8Array;
 }
 /**
@@ -344,25 +344,25 @@ export interface MsgDepositValidatorRewardsPoolResponseAminoMsg {
 }
 function createBaseMsgSetWithdrawAddress(): MsgSetWithdrawAddress {
   return {
-    delegatorAddress: "",
-    withdrawAddress: ""
+    delegator_address: "",
+    withdraw_address: ""
   };
 }
 export const MsgSetWithdrawAddress = {
   typeUrl: "/cosmos.distribution.v1beta1.MsgSetWithdrawAddress",
   aminoType: "cosmos-sdk/MsgModifyWithdrawAddress",
   is(o: any): o is MsgSetWithdrawAddress {
-    return o && (o.$typeUrl === MsgSetWithdrawAddress.typeUrl || typeof o.delegatorAddress === "string" && typeof o.withdrawAddress === "string");
+    return o && (o.$typeUrl === MsgSetWithdrawAddress.typeUrl || typeof o.delegator_address === "string" && typeof o.withdraw_address === "string");
   },
   isAmino(o: any): o is MsgSetWithdrawAddressAmino {
     return o && (o.$typeUrl === MsgSetWithdrawAddress.typeUrl || typeof o.delegator_address === "string" && typeof o.withdraw_address === "string");
   },
   encode(message: MsgSetWithdrawAddress, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.delegatorAddress !== "") {
-      writer.uint32(10).string(message.delegatorAddress);
+    if (message.delegator_address !== "") {
+      writer.uint32(10).string(message.delegator_address);
     }
-    if (message.withdrawAddress !== "") {
-      writer.uint32(18).string(message.withdrawAddress);
+    if (message.withdraw_address !== "") {
+      writer.uint32(18).string(message.withdraw_address);
     }
     return writer;
   },
@@ -374,10 +374,10 @@ export const MsgSetWithdrawAddress = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.delegatorAddress = reader.string();
+          message.delegator_address = reader.string();
           break;
         case 2:
-          message.withdrawAddress = reader.string();
+          message.withdraw_address = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -388,24 +388,24 @@ export const MsgSetWithdrawAddress = {
   },
   fromPartial(object: DeepPartial<MsgSetWithdrawAddress>): MsgSetWithdrawAddress {
     const message = createBaseMsgSetWithdrawAddress();
-    message.delegatorAddress = object.delegatorAddress ?? "";
-    message.withdrawAddress = object.withdrawAddress ?? "";
+    message.delegator_address = object.delegator_address ?? "";
+    message.withdraw_address = object.withdraw_address ?? "";
     return message;
   },
   fromAmino(object: MsgSetWithdrawAddressAmino): MsgSetWithdrawAddress {
     const message = createBaseMsgSetWithdrawAddress();
     if (object.delegator_address !== undefined && object.delegator_address !== null) {
-      message.delegatorAddress = object.delegator_address;
+      message.delegator_address = object.delegator_address;
     }
     if (object.withdraw_address !== undefined && object.withdraw_address !== null) {
-      message.withdrawAddress = object.withdraw_address;
+      message.withdraw_address = object.withdraw_address;
     }
     return message;
   },
   toAmino(message: MsgSetWithdrawAddress): MsgSetWithdrawAddressAmino {
     const obj: any = {};
-    obj.delegator_address = message.delegatorAddress === "" ? undefined : message.delegatorAddress;
-    obj.withdraw_address = message.withdrawAddress === "" ? undefined : message.withdrawAddress;
+    obj.delegator_address = message.delegator_address === "" ? undefined : message.delegator_address;
+    obj.withdraw_address = message.withdraw_address === "" ? undefined : message.withdraw_address;
     return obj;
   },
   fromAminoMsg(object: MsgSetWithdrawAddressAminoMsg): MsgSetWithdrawAddress {
@@ -497,25 +497,25 @@ export const MsgSetWithdrawAddressResponse = {
 };
 function createBaseMsgWithdrawDelegatorReward(): MsgWithdrawDelegatorReward {
   return {
-    delegatorAddress: "",
-    validatorAddress: ""
+    delegator_address: "",
+    validator_address: ""
   };
 }
 export const MsgWithdrawDelegatorReward = {
   typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward",
   aminoType: "cosmos-sdk/MsgWithdrawDelegationReward",
   is(o: any): o is MsgWithdrawDelegatorReward {
-    return o && (o.$typeUrl === MsgWithdrawDelegatorReward.typeUrl || typeof o.delegatorAddress === "string" && typeof o.validatorAddress === "string");
+    return o && (o.$typeUrl === MsgWithdrawDelegatorReward.typeUrl || typeof o.delegator_address === "string" && typeof o.validator_address === "string");
   },
   isAmino(o: any): o is MsgWithdrawDelegatorRewardAmino {
     return o && (o.$typeUrl === MsgWithdrawDelegatorReward.typeUrl || typeof o.delegator_address === "string" && typeof o.validator_address === "string");
   },
   encode(message: MsgWithdrawDelegatorReward, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.delegatorAddress !== "") {
-      writer.uint32(10).string(message.delegatorAddress);
+    if (message.delegator_address !== "") {
+      writer.uint32(10).string(message.delegator_address);
     }
-    if (message.validatorAddress !== "") {
-      writer.uint32(18).string(message.validatorAddress);
+    if (message.validator_address !== "") {
+      writer.uint32(18).string(message.validator_address);
     }
     return writer;
   },
@@ -527,10 +527,10 @@ export const MsgWithdrawDelegatorReward = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.delegatorAddress = reader.string();
+          message.delegator_address = reader.string();
           break;
         case 2:
-          message.validatorAddress = reader.string();
+          message.validator_address = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -541,24 +541,24 @@ export const MsgWithdrawDelegatorReward = {
   },
   fromPartial(object: DeepPartial<MsgWithdrawDelegatorReward>): MsgWithdrawDelegatorReward {
     const message = createBaseMsgWithdrawDelegatorReward();
-    message.delegatorAddress = object.delegatorAddress ?? "";
-    message.validatorAddress = object.validatorAddress ?? "";
+    message.delegator_address = object.delegator_address ?? "";
+    message.validator_address = object.validator_address ?? "";
     return message;
   },
   fromAmino(object: MsgWithdrawDelegatorRewardAmino): MsgWithdrawDelegatorReward {
     const message = createBaseMsgWithdrawDelegatorReward();
     if (object.delegator_address !== undefined && object.delegator_address !== null) {
-      message.delegatorAddress = object.delegator_address;
+      message.delegator_address = object.delegator_address;
     }
     if (object.validator_address !== undefined && object.validator_address !== null) {
-      message.validatorAddress = object.validator_address;
+      message.validator_address = object.validator_address;
     }
     return message;
   },
   toAmino(message: MsgWithdrawDelegatorReward): MsgWithdrawDelegatorRewardAmino {
     const obj: any = {};
-    obj.delegator_address = message.delegatorAddress === "" ? undefined : message.delegatorAddress;
-    obj.validator_address = message.validatorAddress === "" ? undefined : message.validatorAddress;
+    obj.delegator_address = message.delegator_address === "" ? undefined : message.delegator_address;
+    obj.validator_address = message.validator_address === "" ? undefined : message.validator_address;
     return obj;
   },
   fromAminoMsg(object: MsgWithdrawDelegatorRewardAminoMsg): MsgWithdrawDelegatorReward {
@@ -667,21 +667,21 @@ export const MsgWithdrawDelegatorRewardResponse = {
 };
 function createBaseMsgWithdrawValidatorCommission(): MsgWithdrawValidatorCommission {
   return {
-    validatorAddress: ""
+    validator_address: ""
   };
 }
 export const MsgWithdrawValidatorCommission = {
   typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission",
   aminoType: "cosmos-sdk/MsgWithdrawValidatorCommission",
   is(o: any): o is MsgWithdrawValidatorCommission {
-    return o && (o.$typeUrl === MsgWithdrawValidatorCommission.typeUrl || typeof o.validatorAddress === "string");
+    return o && (o.$typeUrl === MsgWithdrawValidatorCommission.typeUrl || typeof o.validator_address === "string");
   },
   isAmino(o: any): o is MsgWithdrawValidatorCommissionAmino {
     return o && (o.$typeUrl === MsgWithdrawValidatorCommission.typeUrl || typeof o.validator_address === "string");
   },
   encode(message: MsgWithdrawValidatorCommission, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.validatorAddress !== "") {
-      writer.uint32(10).string(message.validatorAddress);
+    if (message.validator_address !== "") {
+      writer.uint32(10).string(message.validator_address);
     }
     return writer;
   },
@@ -693,7 +693,7 @@ export const MsgWithdrawValidatorCommission = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.validatorAddress = reader.string();
+          message.validator_address = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -704,19 +704,19 @@ export const MsgWithdrawValidatorCommission = {
   },
   fromPartial(object: DeepPartial<MsgWithdrawValidatorCommission>): MsgWithdrawValidatorCommission {
     const message = createBaseMsgWithdrawValidatorCommission();
-    message.validatorAddress = object.validatorAddress ?? "";
+    message.validator_address = object.validator_address ?? "";
     return message;
   },
   fromAmino(object: MsgWithdrawValidatorCommissionAmino): MsgWithdrawValidatorCommission {
     const message = createBaseMsgWithdrawValidatorCommission();
     if (object.validator_address !== undefined && object.validator_address !== null) {
-      message.validatorAddress = object.validator_address;
+      message.validator_address = object.validator_address;
     }
     return message;
   },
   toAmino(message: MsgWithdrawValidatorCommission): MsgWithdrawValidatorCommissionAmino {
     const obj: any = {};
-    obj.validator_address = message.validatorAddress === "" ? undefined : message.validatorAddress;
+    obj.validator_address = message.validator_address === "" ? undefined : message.validator_address;
     return obj;
   },
   fromAminoMsg(object: MsgWithdrawValidatorCommissionAminoMsg): MsgWithdrawValidatorCommission {
@@ -1307,7 +1307,7 @@ export const MsgCommunityPoolSpendResponse = {
 function createBaseMsgDepositValidatorRewardsPool(): MsgDepositValidatorRewardsPool {
   return {
     depositor: "",
-    validatorAddress: "",
+    validator_address: "",
     amount: []
   };
 }
@@ -1315,7 +1315,7 @@ export const MsgDepositValidatorRewardsPool = {
   typeUrl: "/cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPool",
   aminoType: "cosmos-sdk/distr/MsgDepositValRewards",
   is(o: any): o is MsgDepositValidatorRewardsPool {
-    return o && (o.$typeUrl === MsgDepositValidatorRewardsPool.typeUrl || typeof o.depositor === "string" && typeof o.validatorAddress === "string" && Array.isArray(o.amount) && (!o.amount.length || Coin.is(o.amount[0])));
+    return o && (o.$typeUrl === MsgDepositValidatorRewardsPool.typeUrl || typeof o.depositor === "string" && typeof o.validator_address === "string" && Array.isArray(o.amount) && (!o.amount.length || Coin.is(o.amount[0])));
   },
   isAmino(o: any): o is MsgDepositValidatorRewardsPoolAmino {
     return o && (o.$typeUrl === MsgDepositValidatorRewardsPool.typeUrl || typeof o.depositor === "string" && typeof o.validator_address === "string" && Array.isArray(o.amount) && (!o.amount.length || Coin.isAmino(o.amount[0])));
@@ -1324,8 +1324,8 @@ export const MsgDepositValidatorRewardsPool = {
     if (message.depositor !== "") {
       writer.uint32(10).string(message.depositor);
     }
-    if (message.validatorAddress !== "") {
-      writer.uint32(18).string(message.validatorAddress);
+    if (message.validator_address !== "") {
+      writer.uint32(18).string(message.validator_address);
     }
     for (const v of message.amount) {
       Coin.encode(v!, writer.uint32(26).fork()).ldelim();
@@ -1343,7 +1343,7 @@ export const MsgDepositValidatorRewardsPool = {
           message.depositor = reader.string();
           break;
         case 2:
-          message.validatorAddress = reader.string();
+          message.validator_address = reader.string();
           break;
         case 3:
           message.amount.push(Coin.decode(reader, reader.uint32()));
@@ -1358,7 +1358,7 @@ export const MsgDepositValidatorRewardsPool = {
   fromPartial(object: DeepPartial<MsgDepositValidatorRewardsPool>): MsgDepositValidatorRewardsPool {
     const message = createBaseMsgDepositValidatorRewardsPool();
     message.depositor = object.depositor ?? "";
-    message.validatorAddress = object.validatorAddress ?? "";
+    message.validator_address = object.validator_address ?? "";
     message.amount = object.amount?.map(e => Coin.fromPartial(e)) || [];
     return message;
   },
@@ -1368,7 +1368,7 @@ export const MsgDepositValidatorRewardsPool = {
       message.depositor = object.depositor;
     }
     if (object.validator_address !== undefined && object.validator_address !== null) {
-      message.validatorAddress = object.validator_address;
+      message.validator_address = object.validator_address;
     }
     message.amount = object.amount?.map(e => Coin.fromAmino(e)) || [];
     return message;
@@ -1376,7 +1376,7 @@ export const MsgDepositValidatorRewardsPool = {
   toAmino(message: MsgDepositValidatorRewardsPool): MsgDepositValidatorRewardsPoolAmino {
     const obj: any = {};
     obj.depositor = message.depositor === "" ? undefined : message.depositor;
-    obj.validator_address = message.validatorAddress === "" ? undefined : message.validatorAddress;
+    obj.validator_address = message.validator_address === "" ? undefined : message.validator_address;
     if (message.amount) {
       obj.amount = message.amount.map(e => e ? Coin.toAmino(e) : undefined);
     } else {

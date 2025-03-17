@@ -9,17 +9,17 @@ import { GlobalDecoderRegistry } from "../../../registry";
  * Since: cosmos-sdk 0.43
  */
 export interface SendAuthorization {
-  spendLimit: Coin[];
+  spend_limit: Coin[];
   /**
    * allow_list specifies an optional list of addresses to whom the grantee can send tokens on behalf of the
    * granter. If omitted, any recipient is allowed.
    * 
    * Since: cosmos-sdk 0.47
    */
-  allowList: string[];
+  allow_list: string[];
 }
 export interface SendAuthorizationProtoMsg {
-  typeUrl: "/cosmos.bank.v1beta1.SendAuthorization";
+  type_url: "/cosmos.bank.v1beta1.SendAuthorization";
   value: Uint8Array;
 }
 /**
@@ -44,24 +44,24 @@ export interface SendAuthorizationAminoMsg {
 }
 function createBaseSendAuthorization(): SendAuthorization {
   return {
-    spendLimit: [],
-    allowList: []
+    spend_limit: [],
+    allow_list: []
   };
 }
 export const SendAuthorization = {
   typeUrl: "/cosmos.bank.v1beta1.SendAuthorization",
   aminoType: "cosmos-sdk/SendAuthorization",
   is(o: any): o is SendAuthorization {
-    return o && (o.$typeUrl === SendAuthorization.typeUrl || Array.isArray(o.spendLimit) && (!o.spendLimit.length || Coin.is(o.spendLimit[0])) && Array.isArray(o.allowList) && (!o.allowList.length || typeof o.allowList[0] === "string"));
+    return o && (o.$typeUrl === SendAuthorization.typeUrl || Array.isArray(o.spend_limit) && (!o.spend_limit.length || Coin.is(o.spend_limit[0])) && Array.isArray(o.allow_list) && (!o.allow_list.length || typeof o.allow_list[0] === "string"));
   },
   isAmino(o: any): o is SendAuthorizationAmino {
     return o && (o.$typeUrl === SendAuthorization.typeUrl || Array.isArray(o.spend_limit) && (!o.spend_limit.length || Coin.isAmino(o.spend_limit[0])) && Array.isArray(o.allow_list) && (!o.allow_list.length || typeof o.allow_list[0] === "string"));
   },
   encode(message: SendAuthorization, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.spendLimit) {
+    for (const v of message.spend_limit) {
       Coin.encode(v!, writer.uint32(10).fork()).ldelim();
     }
-    for (const v of message.allowList) {
+    for (const v of message.allow_list) {
       writer.uint32(18).string(v!);
     }
     return writer;
@@ -74,10 +74,10 @@ export const SendAuthorization = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.spendLimit.push(Coin.decode(reader, reader.uint32()));
+          message.spend_limit.push(Coin.decode(reader, reader.uint32()));
           break;
         case 2:
-          message.allowList.push(reader.string());
+          message.allow_list.push(reader.string());
           break;
         default:
           reader.skipType(tag & 7);
@@ -88,27 +88,27 @@ export const SendAuthorization = {
   },
   fromPartial(object: DeepPartial<SendAuthorization>): SendAuthorization {
     const message = createBaseSendAuthorization();
-    message.spendLimit = object.spendLimit?.map(e => Coin.fromPartial(e)) || [];
-    message.allowList = object.allowList?.map(e => e) || [];
+    message.spend_limit = object.spend_limit?.map(e => Coin.fromPartial(e)) || [];
+    message.allow_list = object.allow_list?.map(e => e) || [];
     return message;
   },
   fromAmino(object: SendAuthorizationAmino): SendAuthorization {
     const message = createBaseSendAuthorization();
-    message.spendLimit = object.spend_limit?.map(e => Coin.fromAmino(e)) || [];
-    message.allowList = object.allow_list?.map(e => e) || [];
+    message.spend_limit = object.spend_limit?.map(e => Coin.fromAmino(e)) || [];
+    message.allow_list = object.allow_list?.map(e => e) || [];
     return message;
   },
   toAmino(message: SendAuthorization): SendAuthorizationAmino {
     const obj: any = {};
-    if (message.spendLimit) {
-      obj.spend_limit = message.spendLimit.map(e => e ? Coin.toAmino(e) : undefined);
+    if (message.spend_limit) {
+      obj.spend_limit = message.spend_limit.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
-      obj.spend_limit = message.spendLimit;
+      obj.spend_limit = message.spend_limit;
     }
-    if (message.allowList) {
-      obj.allow_list = message.allowList.map(e => e);
+    if (message.allow_list) {
+      obj.allow_list = message.allow_list.map(e => e);
     } else {
-      obj.allow_list = message.allowList;
+      obj.allow_list = message.allow_list;
     }
     return obj;
   },

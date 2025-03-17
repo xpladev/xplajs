@@ -9,10 +9,10 @@ export interface GenesisState {
    * block_gas is the amount of gas wanted on the last block before the upgrade.
    * Zero by default.
    */
-  blockGas: bigint;
+  block_gas: bigint;
 }
 export interface GenesisStateProtoMsg {
-  typeUrl: "/ethermint.feemarket.v1.GenesisState";
+  type_url: "/ethermint.feemarket.v1.GenesisState";
   value: Uint8Array;
 }
 /** GenesisState defines the feemarket module's genesis state. */
@@ -32,13 +32,13 @@ export interface GenesisStateAminoMsg {
 function createBaseGenesisState(): GenesisState {
   return {
     params: Params.fromPartial({}),
-    blockGas: BigInt(0)
+    block_gas: BigInt(0)
   };
 }
 export const GenesisState = {
   typeUrl: "/ethermint.feemarket.v1.GenesisState",
   is(o: any): o is GenesisState {
-    return o && (o.$typeUrl === GenesisState.typeUrl || Params.is(o.params) && typeof o.blockGas === "bigint");
+    return o && (o.$typeUrl === GenesisState.typeUrl || Params.is(o.params) && typeof o.block_gas === "bigint");
   },
   isAmino(o: any): o is GenesisStateAmino {
     return o && (o.$typeUrl === GenesisState.typeUrl || Params.isAmino(o.params) && typeof o.block_gas === "bigint");
@@ -47,8 +47,8 @@ export const GenesisState = {
     if (message.params !== undefined) {
       Params.encode(message.params, writer.uint32(10).fork()).ldelim();
     }
-    if (message.blockGas !== BigInt(0)) {
-      writer.uint32(24).uint64(message.blockGas);
+    if (message.block_gas !== BigInt(0)) {
+      writer.uint32(24).uint64(message.block_gas);
     }
     return writer;
   },
@@ -63,7 +63,7 @@ export const GenesisState = {
           message.params = Params.decode(reader, reader.uint32());
           break;
         case 3:
-          message.blockGas = reader.uint64();
+          message.block_gas = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -75,7 +75,7 @@ export const GenesisState = {
   fromPartial(object: DeepPartial<GenesisState>): GenesisState {
     const message = createBaseGenesisState();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
-    message.blockGas = object.blockGas !== undefined && object.blockGas !== null ? BigInt(object.blockGas.toString()) : BigInt(0);
+    message.block_gas = object.block_gas !== undefined && object.block_gas !== null ? BigInt(object.block_gas.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
@@ -84,14 +84,14 @@ export const GenesisState = {
       message.params = Params.fromAmino(object.params);
     }
     if (object.block_gas !== undefined && object.block_gas !== null) {
-      message.blockGas = BigInt(object.block_gas);
+      message.block_gas = BigInt(object.block_gas);
     }
     return message;
   },
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
     obj.params = message.params ? Params.toAmino(message.params) : Params.toAmino(Params.fromPartial({}));
-    obj.block_gas = message.blockGas !== BigInt(0) ? message.blockGas?.toString() : undefined;
+    obj.block_gas = message.block_gas !== BigInt(0) ? message.block_gas?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: GenesisStateAminoMsg): GenesisState {

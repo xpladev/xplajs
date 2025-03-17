@@ -7,7 +7,7 @@ export interface GenesisState {
   params: Params;
 }
 export interface GenesisStateProtoMsg {
-  typeUrl: "/xpla.reward.v1beta1.GenesisState";
+  type_url: "/xpla.reward.v1beta1.GenesisState";
   value: Uint8Array;
 }
 /** GenesisState defines the reward module's genesis state. */

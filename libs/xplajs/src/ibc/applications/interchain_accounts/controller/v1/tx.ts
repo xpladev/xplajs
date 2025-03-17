@@ -6,12 +6,12 @@ import { BinaryReader, BinaryWriter } from "../../../../../binary";
 /** MsgRegisterInterchainAccount defines the payload for Msg/RegisterAccount */
 export interface MsgRegisterInterchainAccount {
   owner: string;
-  connectionId: string;
+  connection_id: string;
   version: string;
   ordering: Order;
 }
 export interface MsgRegisterInterchainAccountProtoMsg {
-  typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgRegisterInterchainAccount";
+  type_url: "/ibc.applications.interchain_accounts.controller.v1.MsgRegisterInterchainAccount";
   value: Uint8Array;
 }
 /** MsgRegisterInterchainAccount defines the payload for Msg/RegisterAccount */
@@ -27,11 +27,11 @@ export interface MsgRegisterInterchainAccountAminoMsg {
 }
 /** MsgRegisterInterchainAccountResponse defines the response for Msg/RegisterAccount */
 export interface MsgRegisterInterchainAccountResponse {
-  channelId: string;
-  portId: string;
+  channel_id: string;
+  port_id: string;
 }
 export interface MsgRegisterInterchainAccountResponseProtoMsg {
-  typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgRegisterInterchainAccountResponse";
+  type_url: "/ibc.applications.interchain_accounts.controller.v1.MsgRegisterInterchainAccountResponse";
   value: Uint8Array;
 }
 /** MsgRegisterInterchainAccountResponse defines the response for Msg/RegisterAccount */
@@ -46,16 +46,16 @@ export interface MsgRegisterInterchainAccountResponseAminoMsg {
 /** MsgSendTx defines the payload for Msg/SendTx */
 export interface MsgSendTx {
   owner: string;
-  connectionId: string;
-  packetData: InterchainAccountPacketData;
+  connection_id: string;
+  packet_data: InterchainAccountPacketData;
   /**
    * Relative timeout timestamp provided will be added to the current block time during transaction execution.
    * The timeout timestamp must be non-zero.
    */
-  relativeTimeout: bigint;
+  relative_timeout: bigint;
 }
 export interface MsgSendTxProtoMsg {
-  typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgSendTx";
+  type_url: "/ibc.applications.interchain_accounts.controller.v1.MsgSendTx";
   value: Uint8Array;
 }
 /** MsgSendTx defines the payload for Msg/SendTx */
@@ -78,7 +78,7 @@ export interface MsgSendTxResponse {
   sequence: bigint;
 }
 export interface MsgSendTxResponseProtoMsg {
-  typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgSendTxResponse";
+  type_url: "/ibc.applications.interchain_accounts.controller.v1.MsgSendTxResponse";
   value: Uint8Array;
 }
 /** MsgSendTxResponse defines the response for MsgSendTx */
@@ -101,7 +101,7 @@ export interface MsgUpdateParams {
   params: Params;
 }
 export interface MsgUpdateParamsProtoMsg {
-  typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgUpdateParams";
+  type_url: "/ibc.applications.interchain_accounts.controller.v1.MsgUpdateParams";
   value: Uint8Array;
 }
 /** MsgUpdateParams defines the payload for Msg/UpdateParams */
@@ -122,7 +122,7 @@ export interface MsgUpdateParamsAminoMsg {
 /** MsgUpdateParamsResponse defines the response for Msg/UpdateParams */
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
-  typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgUpdateParamsResponse";
+  type_url: "/ibc.applications.interchain_accounts.controller.v1.MsgUpdateParamsResponse";
   value: Uint8Array;
 }
 /** MsgUpdateParamsResponse defines the response for Msg/UpdateParams */
@@ -134,7 +134,7 @@ export interface MsgUpdateParamsResponseAminoMsg {
 function createBaseMsgRegisterInterchainAccount(): MsgRegisterInterchainAccount {
   return {
     owner: "",
-    connectionId: "",
+    connection_id: "",
     version: "",
     ordering: 0
   };
@@ -143,7 +143,7 @@ export const MsgRegisterInterchainAccount = {
   typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgRegisterInterchainAccount",
   aminoType: "cosmos-sdk/MsgRegisterInterchainAccount",
   is(o: any): o is MsgRegisterInterchainAccount {
-    return o && (o.$typeUrl === MsgRegisterInterchainAccount.typeUrl || typeof o.owner === "string" && typeof o.connectionId === "string" && typeof o.version === "string" && isSet(o.ordering));
+    return o && (o.$typeUrl === MsgRegisterInterchainAccount.typeUrl || typeof o.owner === "string" && typeof o.connection_id === "string" && typeof o.version === "string" && isSet(o.ordering));
   },
   isAmino(o: any): o is MsgRegisterInterchainAccountAmino {
     return o && (o.$typeUrl === MsgRegisterInterchainAccount.typeUrl || typeof o.owner === "string" && typeof o.connection_id === "string" && typeof o.version === "string" && isSet(o.ordering));
@@ -152,8 +152,8 @@ export const MsgRegisterInterchainAccount = {
     if (message.owner !== "") {
       writer.uint32(10).string(message.owner);
     }
-    if (message.connectionId !== "") {
-      writer.uint32(18).string(message.connectionId);
+    if (message.connection_id !== "") {
+      writer.uint32(18).string(message.connection_id);
     }
     if (message.version !== "") {
       writer.uint32(26).string(message.version);
@@ -174,7 +174,7 @@ export const MsgRegisterInterchainAccount = {
           message.owner = reader.string();
           break;
         case 2:
-          message.connectionId = reader.string();
+          message.connection_id = reader.string();
           break;
         case 3:
           message.version = reader.string();
@@ -192,7 +192,7 @@ export const MsgRegisterInterchainAccount = {
   fromPartial(object: DeepPartial<MsgRegisterInterchainAccount>): MsgRegisterInterchainAccount {
     const message = createBaseMsgRegisterInterchainAccount();
     message.owner = object.owner ?? "";
-    message.connectionId = object.connectionId ?? "";
+    message.connection_id = object.connection_id ?? "";
     message.version = object.version ?? "";
     message.ordering = object.ordering ?? 0;
     return message;
@@ -203,7 +203,7 @@ export const MsgRegisterInterchainAccount = {
       message.owner = object.owner;
     }
     if (object.connection_id !== undefined && object.connection_id !== null) {
-      message.connectionId = object.connection_id;
+      message.connection_id = object.connection_id;
     }
     if (object.version !== undefined && object.version !== null) {
       message.version = object.version;
@@ -216,7 +216,7 @@ export const MsgRegisterInterchainAccount = {
   toAmino(message: MsgRegisterInterchainAccount): MsgRegisterInterchainAccountAmino {
     const obj: any = {};
     obj.owner = message.owner === "" ? undefined : message.owner;
-    obj.connection_id = message.connectionId === "" ? undefined : message.connectionId;
+    obj.connection_id = message.connection_id === "" ? undefined : message.connection_id;
     obj.version = message.version === "" ? undefined : message.version;
     obj.ordering = message.ordering === 0 ? undefined : message.ordering;
     return obj;
@@ -246,25 +246,25 @@ export const MsgRegisterInterchainAccount = {
 };
 function createBaseMsgRegisterInterchainAccountResponse(): MsgRegisterInterchainAccountResponse {
   return {
-    channelId: "",
-    portId: ""
+    channel_id: "",
+    port_id: ""
   };
 }
 export const MsgRegisterInterchainAccountResponse = {
   typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgRegisterInterchainAccountResponse",
   aminoType: "cosmos-sdk/MsgRegisterInterchainAccountResponse",
   is(o: any): o is MsgRegisterInterchainAccountResponse {
-    return o && (o.$typeUrl === MsgRegisterInterchainAccountResponse.typeUrl || typeof o.channelId === "string" && typeof o.portId === "string");
+    return o && (o.$typeUrl === MsgRegisterInterchainAccountResponse.typeUrl || typeof o.channel_id === "string" && typeof o.port_id === "string");
   },
   isAmino(o: any): o is MsgRegisterInterchainAccountResponseAmino {
     return o && (o.$typeUrl === MsgRegisterInterchainAccountResponse.typeUrl || typeof o.channel_id === "string" && typeof o.port_id === "string");
   },
   encode(message: MsgRegisterInterchainAccountResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.channelId !== "") {
-      writer.uint32(10).string(message.channelId);
+    if (message.channel_id !== "") {
+      writer.uint32(10).string(message.channel_id);
     }
-    if (message.portId !== "") {
-      writer.uint32(18).string(message.portId);
+    if (message.port_id !== "") {
+      writer.uint32(18).string(message.port_id);
     }
     return writer;
   },
@@ -276,10 +276,10 @@ export const MsgRegisterInterchainAccountResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.channelId = reader.string();
+          message.channel_id = reader.string();
           break;
         case 2:
-          message.portId = reader.string();
+          message.port_id = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -290,24 +290,24 @@ export const MsgRegisterInterchainAccountResponse = {
   },
   fromPartial(object: DeepPartial<MsgRegisterInterchainAccountResponse>): MsgRegisterInterchainAccountResponse {
     const message = createBaseMsgRegisterInterchainAccountResponse();
-    message.channelId = object.channelId ?? "";
-    message.portId = object.portId ?? "";
+    message.channel_id = object.channel_id ?? "";
+    message.port_id = object.port_id ?? "";
     return message;
   },
   fromAmino(object: MsgRegisterInterchainAccountResponseAmino): MsgRegisterInterchainAccountResponse {
     const message = createBaseMsgRegisterInterchainAccountResponse();
     if (object.channel_id !== undefined && object.channel_id !== null) {
-      message.channelId = object.channel_id;
+      message.channel_id = object.channel_id;
     }
     if (object.port_id !== undefined && object.port_id !== null) {
-      message.portId = object.port_id;
+      message.port_id = object.port_id;
     }
     return message;
   },
   toAmino(message: MsgRegisterInterchainAccountResponse): MsgRegisterInterchainAccountResponseAmino {
     const obj: any = {};
-    obj.channel_id = message.channelId === "" ? undefined : message.channelId;
-    obj.port_id = message.portId === "" ? undefined : message.portId;
+    obj.channel_id = message.channel_id === "" ? undefined : message.channel_id;
+    obj.port_id = message.port_id === "" ? undefined : message.port_id;
     return obj;
   },
   fromAminoMsg(object: MsgRegisterInterchainAccountResponseAminoMsg): MsgRegisterInterchainAccountResponse {
@@ -336,16 +336,16 @@ export const MsgRegisterInterchainAccountResponse = {
 function createBaseMsgSendTx(): MsgSendTx {
   return {
     owner: "",
-    connectionId: "",
-    packetData: InterchainAccountPacketData.fromPartial({}),
-    relativeTimeout: BigInt(0)
+    connection_id: "",
+    packet_data: InterchainAccountPacketData.fromPartial({}),
+    relative_timeout: BigInt(0)
   };
 }
 export const MsgSendTx = {
   typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgSendTx",
   aminoType: "cosmos-sdk/MsgSendTx",
   is(o: any): o is MsgSendTx {
-    return o && (o.$typeUrl === MsgSendTx.typeUrl || typeof o.owner === "string" && typeof o.connectionId === "string" && InterchainAccountPacketData.is(o.packetData) && typeof o.relativeTimeout === "bigint");
+    return o && (o.$typeUrl === MsgSendTx.typeUrl || typeof o.owner === "string" && typeof o.connection_id === "string" && InterchainAccountPacketData.is(o.packet_data) && typeof o.relative_timeout === "bigint");
   },
   isAmino(o: any): o is MsgSendTxAmino {
     return o && (o.$typeUrl === MsgSendTx.typeUrl || typeof o.owner === "string" && typeof o.connection_id === "string" && InterchainAccountPacketData.isAmino(o.packet_data) && typeof o.relative_timeout === "bigint");
@@ -354,14 +354,14 @@ export const MsgSendTx = {
     if (message.owner !== "") {
       writer.uint32(10).string(message.owner);
     }
-    if (message.connectionId !== "") {
-      writer.uint32(18).string(message.connectionId);
+    if (message.connection_id !== "") {
+      writer.uint32(18).string(message.connection_id);
     }
-    if (message.packetData !== undefined) {
-      InterchainAccountPacketData.encode(message.packetData, writer.uint32(26).fork()).ldelim();
+    if (message.packet_data !== undefined) {
+      InterchainAccountPacketData.encode(message.packet_data, writer.uint32(26).fork()).ldelim();
     }
-    if (message.relativeTimeout !== BigInt(0)) {
-      writer.uint32(32).uint64(message.relativeTimeout);
+    if (message.relative_timeout !== BigInt(0)) {
+      writer.uint32(32).uint64(message.relative_timeout);
     }
     return writer;
   },
@@ -376,13 +376,13 @@ export const MsgSendTx = {
           message.owner = reader.string();
           break;
         case 2:
-          message.connectionId = reader.string();
+          message.connection_id = reader.string();
           break;
         case 3:
-          message.packetData = InterchainAccountPacketData.decode(reader, reader.uint32());
+          message.packet_data = InterchainAccountPacketData.decode(reader, reader.uint32());
           break;
         case 4:
-          message.relativeTimeout = reader.uint64();
+          message.relative_timeout = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -394,9 +394,9 @@ export const MsgSendTx = {
   fromPartial(object: DeepPartial<MsgSendTx>): MsgSendTx {
     const message = createBaseMsgSendTx();
     message.owner = object.owner ?? "";
-    message.connectionId = object.connectionId ?? "";
-    message.packetData = object.packetData !== undefined && object.packetData !== null ? InterchainAccountPacketData.fromPartial(object.packetData) : undefined;
-    message.relativeTimeout = object.relativeTimeout !== undefined && object.relativeTimeout !== null ? BigInt(object.relativeTimeout.toString()) : BigInt(0);
+    message.connection_id = object.connection_id ?? "";
+    message.packet_data = object.packet_data !== undefined && object.packet_data !== null ? InterchainAccountPacketData.fromPartial(object.packet_data) : undefined;
+    message.relative_timeout = object.relative_timeout !== undefined && object.relative_timeout !== null ? BigInt(object.relative_timeout.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: MsgSendTxAmino): MsgSendTx {
@@ -405,22 +405,22 @@ export const MsgSendTx = {
       message.owner = object.owner;
     }
     if (object.connection_id !== undefined && object.connection_id !== null) {
-      message.connectionId = object.connection_id;
+      message.connection_id = object.connection_id;
     }
     if (object.packet_data !== undefined && object.packet_data !== null) {
-      message.packetData = InterchainAccountPacketData.fromAmino(object.packet_data);
+      message.packet_data = InterchainAccountPacketData.fromAmino(object.packet_data);
     }
     if (object.relative_timeout !== undefined && object.relative_timeout !== null) {
-      message.relativeTimeout = BigInt(object.relative_timeout);
+      message.relative_timeout = BigInt(object.relative_timeout);
     }
     return message;
   },
   toAmino(message: MsgSendTx): MsgSendTxAmino {
     const obj: any = {};
     obj.owner = message.owner === "" ? undefined : message.owner;
-    obj.connection_id = message.connectionId === "" ? undefined : message.connectionId;
-    obj.packet_data = message.packetData ? InterchainAccountPacketData.toAmino(message.packetData) : undefined;
-    obj.relative_timeout = message.relativeTimeout !== BigInt(0) ? message.relativeTimeout?.toString() : undefined;
+    obj.connection_id = message.connection_id === "" ? undefined : message.connection_id;
+    obj.packet_data = message.packet_data ? InterchainAccountPacketData.toAmino(message.packet_data) : undefined;
+    obj.relative_timeout = message.relative_timeout !== BigInt(0) ? message.relative_timeout?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: MsgSendTxAminoMsg): MsgSendTx {

@@ -9,10 +9,10 @@ export interface ClientState {
    */
   data: Uint8Array;
   checksum: Uint8Array;
-  latestHeight: Height;
+  latest_height: Height;
 }
 export interface ClientStateProtoMsg {
-  typeUrl: "/ibc.lightclients.wasm.v1.ClientState";
+  type_url: "/ibc.lightclients.wasm.v1.ClientState";
   value: Uint8Array;
 }
 /** Wasm light client's Client state */
@@ -38,7 +38,7 @@ export interface ConsensusState {
   data: Uint8Array;
 }
 export interface ConsensusStateProtoMsg {
-  typeUrl: "/ibc.lightclients.wasm.v1.ConsensusState";
+  type_url: "/ibc.lightclients.wasm.v1.ConsensusState";
   value: Uint8Array;
 }
 /** Wasm light client's ConsensusState */
@@ -58,7 +58,7 @@ export interface ClientMessage {
   data: Uint8Array;
 }
 export interface ClientMessageProtoMsg {
-  typeUrl: "/ibc.lightclients.wasm.v1.ClientMessage";
+  type_url: "/ibc.lightclients.wasm.v1.ClientMessage";
   value: Uint8Array;
 }
 /** Wasm light client message (either header(s) or misbehaviour) */
@@ -80,7 +80,7 @@ export interface Checksums {
   checksums: Uint8Array[];
 }
 export interface ChecksumsProtoMsg {
-  typeUrl: "/ibc.lightclients.wasm.v1.Checksums";
+  type_url: "/ibc.lightclients.wasm.v1.Checksums";
   value: Uint8Array;
 }
 /**
@@ -101,14 +101,14 @@ function createBaseClientState(): ClientState {
   return {
     data: new Uint8Array(),
     checksum: new Uint8Array(),
-    latestHeight: Height.fromPartial({})
+    latest_height: Height.fromPartial({})
   };
 }
 export const ClientState = {
   typeUrl: "/ibc.lightclients.wasm.v1.ClientState",
   aminoType: "cosmos-sdk/ClientState",
   is(o: any): o is ClientState {
-    return o && (o.$typeUrl === ClientState.typeUrl || (o.data instanceof Uint8Array || typeof o.data === "string") && (o.checksum instanceof Uint8Array || typeof o.checksum === "string") && Height.is(o.latestHeight));
+    return o && (o.$typeUrl === ClientState.typeUrl || (o.data instanceof Uint8Array || typeof o.data === "string") && (o.checksum instanceof Uint8Array || typeof o.checksum === "string") && Height.is(o.latest_height));
   },
   isAmino(o: any): o is ClientStateAmino {
     return o && (o.$typeUrl === ClientState.typeUrl || (o.data instanceof Uint8Array || typeof o.data === "string") && (o.checksum instanceof Uint8Array || typeof o.checksum === "string") && Height.isAmino(o.latest_height));
@@ -120,8 +120,8 @@ export const ClientState = {
     if (message.checksum.length !== 0) {
       writer.uint32(18).bytes(message.checksum);
     }
-    if (message.latestHeight !== undefined) {
-      Height.encode(message.latestHeight, writer.uint32(26).fork()).ldelim();
+    if (message.latest_height !== undefined) {
+      Height.encode(message.latest_height, writer.uint32(26).fork()).ldelim();
     }
     return writer;
   },
@@ -139,7 +139,7 @@ export const ClientState = {
           message.checksum = reader.bytes();
           break;
         case 3:
-          message.latestHeight = Height.decode(reader, reader.uint32());
+          message.latest_height = Height.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -152,7 +152,7 @@ export const ClientState = {
     const message = createBaseClientState();
     message.data = object.data ?? new Uint8Array();
     message.checksum = object.checksum ?? new Uint8Array();
-    message.latestHeight = object.latestHeight !== undefined && object.latestHeight !== null ? Height.fromPartial(object.latestHeight) : undefined;
+    message.latest_height = object.latest_height !== undefined && object.latest_height !== null ? Height.fromPartial(object.latest_height) : undefined;
     return message;
   },
   fromAmino(object: ClientStateAmino): ClientState {
@@ -164,7 +164,7 @@ export const ClientState = {
       message.checksum = bytesFromBase64(object.checksum);
     }
     if (object.latest_height !== undefined && object.latest_height !== null) {
-      message.latestHeight = Height.fromAmino(object.latest_height);
+      message.latest_height = Height.fromAmino(object.latest_height);
     }
     return message;
   },
@@ -172,7 +172,7 @@ export const ClientState = {
     const obj: any = {};
     obj.data = message.data ? base64FromBytes(message.data) : undefined;
     obj.checksum = message.checksum ? base64FromBytes(message.checksum) : undefined;
-    obj.latest_height = message.latestHeight ? Height.toAmino(message.latestHeight) : {};
+    obj.latest_height = message.latest_height ? Height.toAmino(message.latest_height) : {};
     return obj;
   },
   fromAminoMsg(object: ClientStateAminoMsg): ClientState {

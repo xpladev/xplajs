@@ -20,10 +20,10 @@ export interface Http {
    * The default behavior is to not decode RFC 6570 reserved characters in multi
    * segment matches.
    */
-  fullyDecodeReservedExpansion: boolean;
+  fully_decode_reserved_expansion: boolean;
 }
 export interface HttpProtoMsg {
-  typeUrl: "/google.api.Http";
+  type_url: "/google.api.Http";
   value: Uint8Array;
 }
 /**
@@ -363,16 +363,16 @@ export interface HttpRule {
    * NOTE: The referred field must be present at the top-level of the response
    * message type.
    */
-  responseBody: string;
+  response_body: string;
   /**
    * Additional HTTP bindings for the selector. Nested bindings must
    * not contain an `additional_bindings` field themselves (that is,
    * the nesting may only be one level deep).
    */
-  additionalBindings: HttpRule[];
+  additional_bindings: HttpRule[];
 }
 export interface HttpRuleProtoMsg {
-  typeUrl: "/google.api.HttpRule";
+  type_url: "/google.api.HttpRule";
   value: Uint8Array;
 }
 /**
@@ -706,7 +706,7 @@ export interface CustomHttpPattern {
   path: string;
 }
 export interface CustomHttpPatternProtoMsg {
-  typeUrl: "/google.api.CustomHttpPattern";
+  type_url: "/google.api.CustomHttpPattern";
   value: Uint8Array;
 }
 /** A custom pattern is used for defining custom HTTP verb. */
@@ -723,13 +723,13 @@ export interface CustomHttpPatternAminoMsg {
 function createBaseHttp(): Http {
   return {
     rules: [],
-    fullyDecodeReservedExpansion: false
+    fully_decode_reserved_expansion: false
   };
 }
 export const Http = {
   typeUrl: "/google.api.Http",
   is(o: any): o is Http {
-    return o && (o.$typeUrl === Http.typeUrl || Array.isArray(o.rules) && (!o.rules.length || HttpRule.is(o.rules[0])) && typeof o.fullyDecodeReservedExpansion === "boolean");
+    return o && (o.$typeUrl === Http.typeUrl || Array.isArray(o.rules) && (!o.rules.length || HttpRule.is(o.rules[0])) && typeof o.fully_decode_reserved_expansion === "boolean");
   },
   isAmino(o: any): o is HttpAmino {
     return o && (o.$typeUrl === Http.typeUrl || Array.isArray(o.rules) && (!o.rules.length || HttpRule.isAmino(o.rules[0])) && typeof o.fully_decode_reserved_expansion === "boolean");
@@ -738,8 +738,8 @@ export const Http = {
     for (const v of message.rules) {
       HttpRule.encode(v!, writer.uint32(10).fork()).ldelim();
     }
-    if (message.fullyDecodeReservedExpansion === true) {
-      writer.uint32(16).bool(message.fullyDecodeReservedExpansion);
+    if (message.fully_decode_reserved_expansion === true) {
+      writer.uint32(16).bool(message.fully_decode_reserved_expansion);
     }
     return writer;
   },
@@ -754,7 +754,7 @@ export const Http = {
           message.rules.push(HttpRule.decode(reader, reader.uint32()));
           break;
         case 2:
-          message.fullyDecodeReservedExpansion = reader.bool();
+          message.fully_decode_reserved_expansion = reader.bool();
           break;
         default:
           reader.skipType(tag & 7);
@@ -766,14 +766,14 @@ export const Http = {
   fromPartial(object: DeepPartial<Http>): Http {
     const message = createBaseHttp();
     message.rules = object.rules?.map(e => HttpRule.fromPartial(e)) || [];
-    message.fullyDecodeReservedExpansion = object.fullyDecodeReservedExpansion ?? false;
+    message.fully_decode_reserved_expansion = object.fully_decode_reserved_expansion ?? false;
     return message;
   },
   fromAmino(object: HttpAmino): Http {
     const message = createBaseHttp();
     message.rules = object.rules?.map(e => HttpRule.fromAmino(e)) || [];
     if (object.fully_decode_reserved_expansion !== undefined && object.fully_decode_reserved_expansion !== null) {
-      message.fullyDecodeReservedExpansion = object.fully_decode_reserved_expansion;
+      message.fully_decode_reserved_expansion = object.fully_decode_reserved_expansion;
     }
     return message;
   },
@@ -784,7 +784,7 @@ export const Http = {
     } else {
       obj.rules = message.rules;
     }
-    obj.fully_decode_reserved_expansion = message.fullyDecodeReservedExpansion === false ? undefined : message.fullyDecodeReservedExpansion;
+    obj.fully_decode_reserved_expansion = message.fully_decode_reserved_expansion === false ? undefined : message.fully_decode_reserved_expansion;
     return obj;
   },
   fromAminoMsg(object: HttpAminoMsg): Http {
@@ -816,14 +816,14 @@ function createBaseHttpRule(): HttpRule {
     patch: undefined,
     custom: undefined,
     body: "",
-    responseBody: "",
-    additionalBindings: []
+    response_body: "",
+    additional_bindings: []
   };
 }
 export const HttpRule = {
   typeUrl: "/google.api.HttpRule",
   is(o: any): o is HttpRule {
-    return o && (o.$typeUrl === HttpRule.typeUrl || typeof o.selector === "string" && typeof o.body === "string" && typeof o.responseBody === "string" && Array.isArray(o.additionalBindings) && (!o.additionalBindings.length || HttpRule.is(o.additionalBindings[0])));
+    return o && (o.$typeUrl === HttpRule.typeUrl || typeof o.selector === "string" && typeof o.body === "string" && typeof o.response_body === "string" && Array.isArray(o.additional_bindings) && (!o.additional_bindings.length || HttpRule.is(o.additional_bindings[0])));
   },
   isAmino(o: any): o is HttpRuleAmino {
     return o && (o.$typeUrl === HttpRule.typeUrl || typeof o.selector === "string" && typeof o.body === "string" && typeof o.response_body === "string" && Array.isArray(o.additional_bindings) && (!o.additional_bindings.length || HttpRule.isAmino(o.additional_bindings[0])));
@@ -853,10 +853,10 @@ export const HttpRule = {
     if (message.body !== "") {
       writer.uint32(58).string(message.body);
     }
-    if (message.responseBody !== "") {
-      writer.uint32(98).string(message.responseBody);
+    if (message.response_body !== "") {
+      writer.uint32(98).string(message.response_body);
     }
-    for (const v of message.additionalBindings) {
+    for (const v of message.additional_bindings) {
       HttpRule.encode(v!, writer.uint32(90).fork()).ldelim();
     }
     return writer;
@@ -893,10 +893,10 @@ export const HttpRule = {
           message.body = reader.string();
           break;
         case 12:
-          message.responseBody = reader.string();
+          message.response_body = reader.string();
           break;
         case 11:
-          message.additionalBindings.push(HttpRule.decode(reader, reader.uint32()));
+          message.additional_bindings.push(HttpRule.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -915,8 +915,8 @@ export const HttpRule = {
     message.patch = object.patch ?? undefined;
     message.custom = object.custom !== undefined && object.custom !== null ? CustomHttpPattern.fromPartial(object.custom) : undefined;
     message.body = object.body ?? "";
-    message.responseBody = object.responseBody ?? "";
-    message.additionalBindings = object.additionalBindings?.map(e => HttpRule.fromPartial(e)) || [];
+    message.response_body = object.response_body ?? "";
+    message.additional_bindings = object.additional_bindings?.map(e => HttpRule.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: HttpRuleAmino): HttpRule {
@@ -946,9 +946,9 @@ export const HttpRule = {
       message.body = object.body;
     }
     if (object.response_body !== undefined && object.response_body !== null) {
-      message.responseBody = object.response_body;
+      message.response_body = object.response_body;
     }
-    message.additionalBindings = object.additional_bindings?.map(e => HttpRule.fromAmino(e)) || [];
+    message.additional_bindings = object.additional_bindings?.map(e => HttpRule.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: HttpRule): HttpRuleAmino {
@@ -961,11 +961,11 @@ export const HttpRule = {
     obj.patch = message.patch === null ? undefined : message.patch;
     obj.custom = message.custom ? CustomHttpPattern.toAmino(message.custom) : undefined;
     obj.body = message.body === "" ? undefined : message.body;
-    obj.response_body = message.responseBody === "" ? undefined : message.responseBody;
-    if (message.additionalBindings) {
-      obj.additional_bindings = message.additionalBindings.map(e => e ? HttpRule.toAmino(e) : undefined);
+    obj.response_body = message.response_body === "" ? undefined : message.response_body;
+    if (message.additional_bindings) {
+      obj.additional_bindings = message.additional_bindings.map(e => e ? HttpRule.toAmino(e) : undefined);
     } else {
-      obj.additional_bindings = message.additionalBindings;
+      obj.additional_bindings = message.additional_bindings;
     }
     return obj;
   },

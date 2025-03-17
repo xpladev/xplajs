@@ -4,7 +4,7 @@ import { DeepPartial } from "../../../helpers";
 /** QueryParamsRequest defines the request type for querying x/evm parameters. */
 export interface QueryParamsRequest {}
 export interface QueryParamsRequestProtoMsg {
-  typeUrl: "/ethermint.feemarket.v1.QueryParamsRequest";
+  type_url: "/ethermint.feemarket.v1.QueryParamsRequest";
   value: Uint8Array;
 }
 /** QueryParamsRequest defines the request type for querying x/evm parameters. */
@@ -19,7 +19,7 @@ export interface QueryParamsResponse {
   params: Params;
 }
 export interface QueryParamsResponseProtoMsg {
-  typeUrl: "/ethermint.feemarket.v1.QueryParamsResponse";
+  type_url: "/ethermint.feemarket.v1.QueryParamsResponse";
   value: Uint8Array;
 }
 /** QueryParamsResponse defines the response type for querying x/evm parameters. */
@@ -37,7 +37,7 @@ export interface QueryParamsResponseAminoMsg {
  */
 export interface QueryBaseFeeRequest {}
 export interface QueryBaseFeeRequestProtoMsg {
-  typeUrl: "/ethermint.feemarket.v1.QueryBaseFeeRequest";
+  type_url: "/ethermint.feemarket.v1.QueryBaseFeeRequest";
   value: Uint8Array;
 }
 /**
@@ -52,10 +52,10 @@ export interface QueryBaseFeeRequestAminoMsg {
 /** QueryBaseFeeResponse returns the EIP1559 base fee. */
 export interface QueryBaseFeeResponse {
   /** base_fee is the EIP1559 base fee */
-  baseFee: string;
+  base_fee: string;
 }
 export interface QueryBaseFeeResponseProtoMsg {
-  typeUrl: "/ethermint.feemarket.v1.QueryBaseFeeResponse";
+  type_url: "/ethermint.feemarket.v1.QueryBaseFeeResponse";
   value: Uint8Array;
 }
 /** QueryBaseFeeResponse returns the EIP1559 base fee. */
@@ -73,7 +73,7 @@ export interface QueryBaseFeeResponseAminoMsg {
  */
 export interface QueryBlockGasRequest {}
 export interface QueryBlockGasRequestProtoMsg {
-  typeUrl: "/ethermint.feemarket.v1.QueryBlockGasRequest";
+  type_url: "/ethermint.feemarket.v1.QueryBlockGasRequest";
   value: Uint8Array;
 }
 /**
@@ -91,7 +91,7 @@ export interface QueryBlockGasResponse {
   gas: bigint;
 }
 export interface QueryBlockGasResponseProtoMsg {
-  typeUrl: "/ethermint.feemarket.v1.QueryBlockGasResponse";
+  type_url: "/ethermint.feemarket.v1.QueryBlockGasResponse";
   value: Uint8Array;
 }
 /** QueryBlockGasResponse returns block gas used for a given height. */
@@ -291,20 +291,20 @@ export const QueryBaseFeeRequest = {
 };
 function createBaseQueryBaseFeeResponse(): QueryBaseFeeResponse {
   return {
-    baseFee: ""
+    base_fee: ""
   };
 }
 export const QueryBaseFeeResponse = {
   typeUrl: "/ethermint.feemarket.v1.QueryBaseFeeResponse",
   is(o: any): o is QueryBaseFeeResponse {
-    return o && (o.$typeUrl === QueryBaseFeeResponse.typeUrl || typeof o.baseFee === "string");
+    return o && (o.$typeUrl === QueryBaseFeeResponse.typeUrl || typeof o.base_fee === "string");
   },
   isAmino(o: any): o is QueryBaseFeeResponseAmino {
     return o && (o.$typeUrl === QueryBaseFeeResponse.typeUrl || typeof o.base_fee === "string");
   },
   encode(message: QueryBaseFeeResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.baseFee !== "") {
-      writer.uint32(10).string(message.baseFee);
+    if (message.base_fee !== "") {
+      writer.uint32(10).string(message.base_fee);
     }
     return writer;
   },
@@ -316,7 +316,7 @@ export const QueryBaseFeeResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.baseFee = reader.string();
+          message.base_fee = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -327,19 +327,19 @@ export const QueryBaseFeeResponse = {
   },
   fromPartial(object: DeepPartial<QueryBaseFeeResponse>): QueryBaseFeeResponse {
     const message = createBaseQueryBaseFeeResponse();
-    message.baseFee = object.baseFee ?? "";
+    message.base_fee = object.base_fee ?? "";
     return message;
   },
   fromAmino(object: QueryBaseFeeResponseAmino): QueryBaseFeeResponse {
     const message = createBaseQueryBaseFeeResponse();
     if (object.base_fee !== undefined && object.base_fee !== null) {
-      message.baseFee = object.base_fee;
+      message.base_fee = object.base_fee;
     }
     return message;
   },
   toAmino(message: QueryBaseFeeResponse): QueryBaseFeeResponseAmino {
     const obj: any = {};
-    obj.base_fee = message.baseFee === "" ? undefined : message.baseFee;
+    obj.base_fee = message.base_fee === "" ? undefined : message.base_fee;
     return obj;
   },
   fromAminoMsg(object: QueryBaseFeeResponseAminoMsg): QueryBaseFeeResponse {

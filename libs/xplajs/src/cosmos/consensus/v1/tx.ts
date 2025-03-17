@@ -19,7 +19,7 @@ export interface MsgUpdateParams {
   abci?: ABCIParams;
 }
 export interface MsgUpdateParamsProtoMsg {
-  typeUrl: "/cosmos.consensus.v1.MsgUpdateParams";
+  type_url: "/cosmos.consensus.v1.MsgUpdateParams";
   value: Uint8Array;
 }
 /** MsgUpdateParams is the Msg/UpdateParams request type. */
@@ -49,7 +49,7 @@ export interface MsgUpdateParamsAminoMsg {
  */
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
-  typeUrl: "/cosmos.consensus.v1.MsgUpdateParamsResponse";
+  type_url: "/cosmos.consensus.v1.MsgUpdateParamsResponse";
   value: Uint8Array;
 }
 /**

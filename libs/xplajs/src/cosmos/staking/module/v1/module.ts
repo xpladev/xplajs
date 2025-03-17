@@ -7,16 +7,16 @@ export interface Module {
    * of module names which provide a staking hooks instance. If no order is
    * provided, then hooks will be applied in alphabetical order of module names.
    */
-  hooksOrder: string[];
+  hooks_order: string[];
   /** authority defines the custom module authority. If not set, defaults to the governance module. */
   authority: string;
   /** bech32_prefix_validator is the bech32 validator prefix for the app. */
-  bech32PrefixValidator: string;
+  bech32_prefix_validator: string;
   /** bech32_prefix_consensus is the bech32 consensus node prefix for the app. */
-  bech32PrefixConsensus: string;
+  bech32_prefix_consensus: string;
 }
 export interface ModuleProtoMsg {
-  typeUrl: "/cosmos.staking.module.v1.Module";
+  type_url: "/cosmos.staking.module.v1.Module";
   value: Uint8Array;
 }
 /** Module is the config object of the staking module. */
@@ -40,33 +40,33 @@ export interface ModuleAminoMsg {
 }
 function createBaseModule(): Module {
   return {
-    hooksOrder: [],
+    hooks_order: [],
     authority: "",
-    bech32PrefixValidator: "",
-    bech32PrefixConsensus: ""
+    bech32_prefix_validator: "",
+    bech32_prefix_consensus: ""
   };
 }
 export const Module = {
   typeUrl: "/cosmos.staking.module.v1.Module",
   aminoType: "cosmos-sdk/Module",
   is(o: any): o is Module {
-    return o && (o.$typeUrl === Module.typeUrl || Array.isArray(o.hooksOrder) && (!o.hooksOrder.length || typeof o.hooksOrder[0] === "string") && typeof o.authority === "string" && typeof o.bech32PrefixValidator === "string" && typeof o.bech32PrefixConsensus === "string");
+    return o && (o.$typeUrl === Module.typeUrl || Array.isArray(o.hooks_order) && (!o.hooks_order.length || typeof o.hooks_order[0] === "string") && typeof o.authority === "string" && typeof o.bech32_prefix_validator === "string" && typeof o.bech32_prefix_consensus === "string");
   },
   isAmino(o: any): o is ModuleAmino {
     return o && (o.$typeUrl === Module.typeUrl || Array.isArray(o.hooks_order) && (!o.hooks_order.length || typeof o.hooks_order[0] === "string") && typeof o.authority === "string" && typeof o.bech32_prefix_validator === "string" && typeof o.bech32_prefix_consensus === "string");
   },
   encode(message: Module, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.hooksOrder) {
+    for (const v of message.hooks_order) {
       writer.uint32(10).string(v!);
     }
     if (message.authority !== "") {
       writer.uint32(18).string(message.authority);
     }
-    if (message.bech32PrefixValidator !== "") {
-      writer.uint32(26).string(message.bech32PrefixValidator);
+    if (message.bech32_prefix_validator !== "") {
+      writer.uint32(26).string(message.bech32_prefix_validator);
     }
-    if (message.bech32PrefixConsensus !== "") {
-      writer.uint32(34).string(message.bech32PrefixConsensus);
+    if (message.bech32_prefix_consensus !== "") {
+      writer.uint32(34).string(message.bech32_prefix_consensus);
     }
     return writer;
   },
@@ -78,16 +78,16 @@ export const Module = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.hooksOrder.push(reader.string());
+          message.hooks_order.push(reader.string());
           break;
         case 2:
           message.authority = reader.string();
           break;
         case 3:
-          message.bech32PrefixValidator = reader.string();
+          message.bech32_prefix_validator = reader.string();
           break;
         case 4:
-          message.bech32PrefixConsensus = reader.string();
+          message.bech32_prefix_consensus = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -98,36 +98,36 @@ export const Module = {
   },
   fromPartial(object: DeepPartial<Module>): Module {
     const message = createBaseModule();
-    message.hooksOrder = object.hooksOrder?.map(e => e) || [];
+    message.hooks_order = object.hooks_order?.map(e => e) || [];
     message.authority = object.authority ?? "";
-    message.bech32PrefixValidator = object.bech32PrefixValidator ?? "";
-    message.bech32PrefixConsensus = object.bech32PrefixConsensus ?? "";
+    message.bech32_prefix_validator = object.bech32_prefix_validator ?? "";
+    message.bech32_prefix_consensus = object.bech32_prefix_consensus ?? "";
     return message;
   },
   fromAmino(object: ModuleAmino): Module {
     const message = createBaseModule();
-    message.hooksOrder = object.hooks_order?.map(e => e) || [];
+    message.hooks_order = object.hooks_order?.map(e => e) || [];
     if (object.authority !== undefined && object.authority !== null) {
       message.authority = object.authority;
     }
     if (object.bech32_prefix_validator !== undefined && object.bech32_prefix_validator !== null) {
-      message.bech32PrefixValidator = object.bech32_prefix_validator;
+      message.bech32_prefix_validator = object.bech32_prefix_validator;
     }
     if (object.bech32_prefix_consensus !== undefined && object.bech32_prefix_consensus !== null) {
-      message.bech32PrefixConsensus = object.bech32_prefix_consensus;
+      message.bech32_prefix_consensus = object.bech32_prefix_consensus;
     }
     return message;
   },
   toAmino(message: Module): ModuleAmino {
     const obj: any = {};
-    if (message.hooksOrder) {
-      obj.hooks_order = message.hooksOrder.map(e => e);
+    if (message.hooks_order) {
+      obj.hooks_order = message.hooks_order.map(e => e);
     } else {
-      obj.hooks_order = message.hooksOrder;
+      obj.hooks_order = message.hooks_order;
     }
     obj.authority = message.authority === "" ? undefined : message.authority;
-    obj.bech32_prefix_validator = message.bech32PrefixValidator === "" ? undefined : message.bech32PrefixValidator;
-    obj.bech32_prefix_consensus = message.bech32PrefixConsensus === "" ? undefined : message.bech32PrefixConsensus;
+    obj.bech32_prefix_validator = message.bech32_prefix_validator === "" ? undefined : message.bech32_prefix_validator;
+    obj.bech32_prefix_consensus = message.bech32_prefix_consensus === "" ? undefined : message.bech32_prefix_consensus;
     return obj;
   },
   fromAminoMsg(object: ModuleAminoMsg): Module {

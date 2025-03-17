@@ -5,29 +5,29 @@ export interface TxResult {
   /** height of the blockchain */
   height: bigint;
   /** tx_index of the cosmos transaction */
-  txIndex: number;
+  tx_index: number;
   /** msg_index in a batch transaction */
-  msgIndex: number;
+  msg_index: number;
   /**
    * eth_tx_index is the index in the list of valid eth tx in the block,
    * aka. the transaction list returned by eth_getBlock api.
    */
-  ethTxIndex: number;
+  eth_tx_index: number;
   /** failed is true if the eth transaction did not go succeed */
   failed: boolean;
   /**
    * gas_used by the transaction. If it exceeds the block gas limit,
    * it's set to gas limit, which is what's actually deducted by ante handler.
    */
-  gasUsed: bigint;
+  gas_used: bigint;
   /**
    * cumulative_gas_used specifies the cumulated amount of gas used for all
    * processed messages within the current batch transaction.
    */
-  cumulativeGasUsed: bigint;
+  cumulative_gas_used: bigint;
 }
 export interface TxResultProtoMsg {
-  typeUrl: "/ethermint.types.v1.TxResult";
+  type_url: "/ethermint.types.v1.TxResult";
   value: Uint8Array;
 }
 /** TxResult is the value stored in eth tx indexer */
@@ -63,18 +63,18 @@ export interface TxResultAminoMsg {
 function createBaseTxResult(): TxResult {
   return {
     height: BigInt(0),
-    txIndex: 0,
-    msgIndex: 0,
-    ethTxIndex: 0,
+    tx_index: 0,
+    msg_index: 0,
+    eth_tx_index: 0,
     failed: false,
-    gasUsed: BigInt(0),
-    cumulativeGasUsed: BigInt(0)
+    gas_used: BigInt(0),
+    cumulative_gas_used: BigInt(0)
   };
 }
 export const TxResult = {
   typeUrl: "/ethermint.types.v1.TxResult",
   is(o: any): o is TxResult {
-    return o && (o.$typeUrl === TxResult.typeUrl || typeof o.height === "bigint" && typeof o.txIndex === "number" && typeof o.msgIndex === "number" && typeof o.ethTxIndex === "number" && typeof o.failed === "boolean" && typeof o.gasUsed === "bigint" && typeof o.cumulativeGasUsed === "bigint");
+    return o && (o.$typeUrl === TxResult.typeUrl || typeof o.height === "bigint" && typeof o.tx_index === "number" && typeof o.msg_index === "number" && typeof o.eth_tx_index === "number" && typeof o.failed === "boolean" && typeof o.gas_used === "bigint" && typeof o.cumulative_gas_used === "bigint");
   },
   isAmino(o: any): o is TxResultAmino {
     return o && (o.$typeUrl === TxResult.typeUrl || typeof o.height === "bigint" && typeof o.tx_index === "number" && typeof o.msg_index === "number" && typeof o.eth_tx_index === "number" && typeof o.failed === "boolean" && typeof o.gas_used === "bigint" && typeof o.cumulative_gas_used === "bigint");
@@ -83,23 +83,23 @@ export const TxResult = {
     if (message.height !== BigInt(0)) {
       writer.uint32(8).int64(message.height);
     }
-    if (message.txIndex !== 0) {
-      writer.uint32(16).uint32(message.txIndex);
+    if (message.tx_index !== 0) {
+      writer.uint32(16).uint32(message.tx_index);
     }
-    if (message.msgIndex !== 0) {
-      writer.uint32(24).uint32(message.msgIndex);
+    if (message.msg_index !== 0) {
+      writer.uint32(24).uint32(message.msg_index);
     }
-    if (message.ethTxIndex !== 0) {
-      writer.uint32(32).int32(message.ethTxIndex);
+    if (message.eth_tx_index !== 0) {
+      writer.uint32(32).int32(message.eth_tx_index);
     }
     if (message.failed === true) {
       writer.uint32(40).bool(message.failed);
     }
-    if (message.gasUsed !== BigInt(0)) {
-      writer.uint32(48).uint64(message.gasUsed);
+    if (message.gas_used !== BigInt(0)) {
+      writer.uint32(48).uint64(message.gas_used);
     }
-    if (message.cumulativeGasUsed !== BigInt(0)) {
-      writer.uint32(56).uint64(message.cumulativeGasUsed);
+    if (message.cumulative_gas_used !== BigInt(0)) {
+      writer.uint32(56).uint64(message.cumulative_gas_used);
     }
     return writer;
   },
@@ -114,22 +114,22 @@ export const TxResult = {
           message.height = reader.int64();
           break;
         case 2:
-          message.txIndex = reader.uint32();
+          message.tx_index = reader.uint32();
           break;
         case 3:
-          message.msgIndex = reader.uint32();
+          message.msg_index = reader.uint32();
           break;
         case 4:
-          message.ethTxIndex = reader.int32();
+          message.eth_tx_index = reader.int32();
           break;
         case 5:
           message.failed = reader.bool();
           break;
         case 6:
-          message.gasUsed = reader.uint64();
+          message.gas_used = reader.uint64();
           break;
         case 7:
-          message.cumulativeGasUsed = reader.uint64();
+          message.cumulative_gas_used = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -141,12 +141,12 @@ export const TxResult = {
   fromPartial(object: DeepPartial<TxResult>): TxResult {
     const message = createBaseTxResult();
     message.height = object.height !== undefined && object.height !== null ? BigInt(object.height.toString()) : BigInt(0);
-    message.txIndex = object.txIndex ?? 0;
-    message.msgIndex = object.msgIndex ?? 0;
-    message.ethTxIndex = object.ethTxIndex ?? 0;
+    message.tx_index = object.tx_index ?? 0;
+    message.msg_index = object.msg_index ?? 0;
+    message.eth_tx_index = object.eth_tx_index ?? 0;
     message.failed = object.failed ?? false;
-    message.gasUsed = object.gasUsed !== undefined && object.gasUsed !== null ? BigInt(object.gasUsed.toString()) : BigInt(0);
-    message.cumulativeGasUsed = object.cumulativeGasUsed !== undefined && object.cumulativeGasUsed !== null ? BigInt(object.cumulativeGasUsed.toString()) : BigInt(0);
+    message.gas_used = object.gas_used !== undefined && object.gas_used !== null ? BigInt(object.gas_used.toString()) : BigInt(0);
+    message.cumulative_gas_used = object.cumulative_gas_used !== undefined && object.cumulative_gas_used !== null ? BigInt(object.cumulative_gas_used.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: TxResultAmino): TxResult {
@@ -155,34 +155,34 @@ export const TxResult = {
       message.height = BigInt(object.height);
     }
     if (object.tx_index !== undefined && object.tx_index !== null) {
-      message.txIndex = object.tx_index;
+      message.tx_index = object.tx_index;
     }
     if (object.msg_index !== undefined && object.msg_index !== null) {
-      message.msgIndex = object.msg_index;
+      message.msg_index = object.msg_index;
     }
     if (object.eth_tx_index !== undefined && object.eth_tx_index !== null) {
-      message.ethTxIndex = object.eth_tx_index;
+      message.eth_tx_index = object.eth_tx_index;
     }
     if (object.failed !== undefined && object.failed !== null) {
       message.failed = object.failed;
     }
     if (object.gas_used !== undefined && object.gas_used !== null) {
-      message.gasUsed = BigInt(object.gas_used);
+      message.gas_used = BigInt(object.gas_used);
     }
     if (object.cumulative_gas_used !== undefined && object.cumulative_gas_used !== null) {
-      message.cumulativeGasUsed = BigInt(object.cumulative_gas_used);
+      message.cumulative_gas_used = BigInt(object.cumulative_gas_used);
     }
     return message;
   },
   toAmino(message: TxResult): TxResultAmino {
     const obj: any = {};
     obj.height = message.height !== BigInt(0) ? message.height?.toString() : undefined;
-    obj.tx_index = message.txIndex === 0 ? undefined : message.txIndex;
-    obj.msg_index = message.msgIndex === 0 ? undefined : message.msgIndex;
-    obj.eth_tx_index = message.ethTxIndex === 0 ? undefined : message.ethTxIndex;
+    obj.tx_index = message.tx_index === 0 ? undefined : message.tx_index;
+    obj.msg_index = message.msg_index === 0 ? undefined : message.msg_index;
+    obj.eth_tx_index = message.eth_tx_index === 0 ? undefined : message.eth_tx_index;
     obj.failed = message.failed === false ? undefined : message.failed;
-    obj.gas_used = message.gasUsed !== BigInt(0) ? message.gasUsed?.toString() : undefined;
-    obj.cumulative_gas_used = message.cumulativeGasUsed !== BigInt(0) ? message.cumulativeGasUsed?.toString() : undefined;
+    obj.gas_used = message.gas_used !== BigInt(0) ? message.gas_used?.toString() : undefined;
+    obj.cumulative_gas_used = message.cumulative_gas_used !== BigInt(0) ? message.cumulative_gas_used?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: TxResultAminoMsg): TxResult {

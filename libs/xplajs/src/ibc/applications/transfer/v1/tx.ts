@@ -9,9 +9,9 @@ import { DeepPartial } from "../../../../helpers";
  */
 export interface MsgTransfer {
   /** the port on which the packet will be sent */
-  sourcePort: string;
+  source_port: string;
   /** the channel by which the packet will be sent */
-  sourceChannel: string;
+  source_channel: string;
   /** the tokens to be transferred */
   token: Coin;
   /** the sender address */
@@ -22,17 +22,17 @@ export interface MsgTransfer {
    * Timeout height relative to the current block height.
    * The timeout is disabled when set to 0.
    */
-  timeoutHeight: Height;
+  timeout_height: Height;
   /**
    * Timeout timestamp in absolute nanoseconds since unix epoch.
    * The timeout is disabled when set to 0.
    */
-  timeoutTimestamp: bigint;
+  timeout_timestamp: bigint;
   /** optional memo */
   memo: string;
 }
 export interface MsgTransferProtoMsg {
-  typeUrl: "/ibc.applications.transfer.v1.MsgTransfer";
+  type_url: "/ibc.applications.transfer.v1.MsgTransfer";
   value: Uint8Array;
 }
 /**
@@ -74,7 +74,7 @@ export interface MsgTransferResponse {
   sequence: bigint;
 }
 export interface MsgTransferResponseProtoMsg {
-  typeUrl: "/ibc.applications.transfer.v1.MsgTransferResponse";
+  type_url: "/ibc.applications.transfer.v1.MsgTransferResponse";
   value: Uint8Array;
 }
 /** MsgTransferResponse defines the Msg/Transfer response type. */
@@ -98,7 +98,7 @@ export interface MsgUpdateParams {
   params: Params;
 }
 export interface MsgUpdateParamsProtoMsg {
-  typeUrl: "/ibc.applications.transfer.v1.MsgUpdateParams";
+  type_url: "/ibc.applications.transfer.v1.MsgUpdateParams";
   value: Uint8Array;
 }
 /** MsgUpdateParams is the Msg/UpdateParams request type. */
@@ -122,7 +122,7 @@ export interface MsgUpdateParamsAminoMsg {
  */
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
-  typeUrl: "/ibc.applications.transfer.v1.MsgUpdateParamsResponse";
+  type_url: "/ibc.applications.transfer.v1.MsgUpdateParamsResponse";
   value: Uint8Array;
 }
 /**
@@ -136,13 +136,13 @@ export interface MsgUpdateParamsResponseAminoMsg {
 }
 function createBaseMsgTransfer(): MsgTransfer {
   return {
-    sourcePort: "",
-    sourceChannel: "",
+    source_port: "",
+    source_channel: "",
     token: Coin.fromPartial({}),
     sender: "",
     receiver: "",
-    timeoutHeight: Height.fromPartial({}),
-    timeoutTimestamp: BigInt(0),
+    timeout_height: Height.fromPartial({}),
+    timeout_timestamp: BigInt(0),
     memo: ""
   };
 }
@@ -150,17 +150,17 @@ export const MsgTransfer = {
   typeUrl: "/ibc.applications.transfer.v1.MsgTransfer",
   aminoType: "cosmos-sdk/MsgTransfer",
   is(o: any): o is MsgTransfer {
-    return o && (o.$typeUrl === MsgTransfer.typeUrl || typeof o.sourcePort === "string" && typeof o.sourceChannel === "string" && Coin.is(o.token) && typeof o.sender === "string" && typeof o.receiver === "string" && Height.is(o.timeoutHeight) && typeof o.timeoutTimestamp === "bigint" && typeof o.memo === "string");
+    return o && (o.$typeUrl === MsgTransfer.typeUrl || typeof o.source_port === "string" && typeof o.source_channel === "string" && Coin.is(o.token) && typeof o.sender === "string" && typeof o.receiver === "string" && Height.is(o.timeout_height) && typeof o.timeout_timestamp === "bigint" && typeof o.memo === "string");
   },
   isAmino(o: any): o is MsgTransferAmino {
     return o && (o.$typeUrl === MsgTransfer.typeUrl || typeof o.source_port === "string" && typeof o.source_channel === "string" && Coin.isAmino(o.token) && typeof o.sender === "string" && typeof o.receiver === "string" && Height.isAmino(o.timeout_height) && typeof o.timeout_timestamp === "bigint" && typeof o.memo === "string");
   },
   encode(message: MsgTransfer, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.sourcePort !== "") {
-      writer.uint32(10).string(message.sourcePort);
+    if (message.source_port !== "") {
+      writer.uint32(10).string(message.source_port);
     }
-    if (message.sourceChannel !== "") {
-      writer.uint32(18).string(message.sourceChannel);
+    if (message.source_channel !== "") {
+      writer.uint32(18).string(message.source_channel);
     }
     if (message.token !== undefined) {
       Coin.encode(message.token, writer.uint32(26).fork()).ldelim();
@@ -171,11 +171,11 @@ export const MsgTransfer = {
     if (message.receiver !== "") {
       writer.uint32(42).string(message.receiver);
     }
-    if (message.timeoutHeight !== undefined) {
-      Height.encode(message.timeoutHeight, writer.uint32(50).fork()).ldelim();
+    if (message.timeout_height !== undefined) {
+      Height.encode(message.timeout_height, writer.uint32(50).fork()).ldelim();
     }
-    if (message.timeoutTimestamp !== BigInt(0)) {
-      writer.uint32(56).uint64(message.timeoutTimestamp);
+    if (message.timeout_timestamp !== BigInt(0)) {
+      writer.uint32(56).uint64(message.timeout_timestamp);
     }
     if (message.memo !== "") {
       writer.uint32(66).string(message.memo);
@@ -190,10 +190,10 @@ export const MsgTransfer = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.sourcePort = reader.string();
+          message.source_port = reader.string();
           break;
         case 2:
-          message.sourceChannel = reader.string();
+          message.source_channel = reader.string();
           break;
         case 3:
           message.token = Coin.decode(reader, reader.uint32());
@@ -205,10 +205,10 @@ export const MsgTransfer = {
           message.receiver = reader.string();
           break;
         case 6:
-          message.timeoutHeight = Height.decode(reader, reader.uint32());
+          message.timeout_height = Height.decode(reader, reader.uint32());
           break;
         case 7:
-          message.timeoutTimestamp = reader.uint64();
+          message.timeout_timestamp = reader.uint64();
           break;
         case 8:
           message.memo = reader.string();
@@ -222,23 +222,23 @@ export const MsgTransfer = {
   },
   fromPartial(object: DeepPartial<MsgTransfer>): MsgTransfer {
     const message = createBaseMsgTransfer();
-    message.sourcePort = object.sourcePort ?? "";
-    message.sourceChannel = object.sourceChannel ?? "";
+    message.source_port = object.source_port ?? "";
+    message.source_channel = object.source_channel ?? "";
     message.token = object.token !== undefined && object.token !== null ? Coin.fromPartial(object.token) : undefined;
     message.sender = object.sender ?? "";
     message.receiver = object.receiver ?? "";
-    message.timeoutHeight = object.timeoutHeight !== undefined && object.timeoutHeight !== null ? Height.fromPartial(object.timeoutHeight) : undefined;
-    message.timeoutTimestamp = object.timeoutTimestamp !== undefined && object.timeoutTimestamp !== null ? BigInt(object.timeoutTimestamp.toString()) : BigInt(0);
+    message.timeout_height = object.timeout_height !== undefined && object.timeout_height !== null ? Height.fromPartial(object.timeout_height) : undefined;
+    message.timeout_timestamp = object.timeout_timestamp !== undefined && object.timeout_timestamp !== null ? BigInt(object.timeout_timestamp.toString()) : BigInt(0);
     message.memo = object.memo ?? "";
     return message;
   },
   fromAmino(object: MsgTransferAmino): MsgTransfer {
     const message = createBaseMsgTransfer();
     if (object.source_port !== undefined && object.source_port !== null) {
-      message.sourcePort = object.source_port;
+      message.source_port = object.source_port;
     }
     if (object.source_channel !== undefined && object.source_channel !== null) {
-      message.sourceChannel = object.source_channel;
+      message.source_channel = object.source_channel;
     }
     if (object.token !== undefined && object.token !== null) {
       message.token = Coin.fromAmino(object.token);
@@ -250,10 +250,10 @@ export const MsgTransfer = {
       message.receiver = object.receiver;
     }
     if (object.timeout_height !== undefined && object.timeout_height !== null) {
-      message.timeoutHeight = Height.fromAmino(object.timeout_height);
+      message.timeout_height = Height.fromAmino(object.timeout_height);
     }
     if (object.timeout_timestamp !== undefined && object.timeout_timestamp !== null) {
-      message.timeoutTimestamp = BigInt(object.timeout_timestamp);
+      message.timeout_timestamp = BigInt(object.timeout_timestamp);
     }
     if (object.memo !== undefined && object.memo !== null) {
       message.memo = object.memo;
@@ -262,13 +262,13 @@ export const MsgTransfer = {
   },
   toAmino(message: MsgTransfer): MsgTransferAmino {
     const obj: any = {};
-    obj.source_port = message.sourcePort === "" ? undefined : message.sourcePort;
-    obj.source_channel = message.sourceChannel === "" ? undefined : message.sourceChannel;
+    obj.source_port = message.source_port === "" ? undefined : message.source_port;
+    obj.source_channel = message.source_channel === "" ? undefined : message.source_channel;
     obj.token = message.token ? Coin.toAmino(message.token) : Coin.toAmino(Coin.fromPartial({}));
     obj.sender = message.sender === "" ? undefined : message.sender;
     obj.receiver = message.receiver === "" ? undefined : message.receiver;
-    obj.timeout_height = message.timeoutHeight ? Height.toAmino(message.timeoutHeight) : {};
-    obj.timeout_timestamp = message.timeoutTimestamp !== BigInt(0) ? message.timeoutTimestamp?.toString() : undefined;
+    obj.timeout_height = message.timeout_height ? Height.toAmino(message.timeout_height) : {};
+    obj.timeout_timestamp = message.timeout_timestamp !== BigInt(0) ? message.timeout_timestamp?.toString() : undefined;
     obj.memo = message.memo === "" ? undefined : message.memo;
     return obj;
   },

@@ -16,7 +16,7 @@ export interface MsgGrantAllowance {
   allowance?: BasicAllowance | PeriodicAllowance | AllowedMsgAllowance | Any | undefined;
 }
 export interface MsgGrantAllowanceProtoMsg {
-  typeUrl: "/cosmos.feegrant.v1beta1.MsgGrantAllowance";
+  type_url: "/cosmos.feegrant.v1beta1.MsgGrantAllowance";
   value: Uint8Array;
 }
 export type MsgGrantAllowanceEncoded = Omit<MsgGrantAllowance, "allowance"> & {
@@ -41,7 +41,7 @@ export interface MsgGrantAllowanceAminoMsg {
 /** MsgGrantAllowanceResponse defines the Msg/GrantAllowanceResponse response type. */
 export interface MsgGrantAllowanceResponse {}
 export interface MsgGrantAllowanceResponseProtoMsg {
-  typeUrl: "/cosmos.feegrant.v1beta1.MsgGrantAllowanceResponse";
+  type_url: "/cosmos.feegrant.v1beta1.MsgGrantAllowanceResponse";
   value: Uint8Array;
 }
 /** MsgGrantAllowanceResponse defines the Msg/GrantAllowanceResponse response type. */
@@ -58,7 +58,7 @@ export interface MsgRevokeAllowance {
   grantee: string;
 }
 export interface MsgRevokeAllowanceProtoMsg {
-  typeUrl: "/cosmos.feegrant.v1beta1.MsgRevokeAllowance";
+  type_url: "/cosmos.feegrant.v1beta1.MsgRevokeAllowance";
   value: Uint8Array;
 }
 /** MsgRevokeAllowance removes any existing Allowance from Granter to Grantee. */
@@ -75,7 +75,7 @@ export interface MsgRevokeAllowanceAminoMsg {
 /** MsgRevokeAllowanceResponse defines the Msg/RevokeAllowanceResponse response type. */
 export interface MsgRevokeAllowanceResponse {}
 export interface MsgRevokeAllowanceResponseProtoMsg {
-  typeUrl: "/cosmos.feegrant.v1beta1.MsgRevokeAllowanceResponse";
+  type_url: "/cosmos.feegrant.v1beta1.MsgRevokeAllowanceResponse";
   value: Uint8Array;
 }
 /** MsgRevokeAllowanceResponse defines the Msg/RevokeAllowanceResponse response type. */
@@ -94,7 +94,7 @@ export interface MsgPruneAllowances {
   pruner: string;
 }
 export interface MsgPruneAllowancesProtoMsg {
-  typeUrl: "/cosmos.feegrant.v1beta1.MsgPruneAllowances";
+  type_url: "/cosmos.feegrant.v1beta1.MsgPruneAllowances";
   value: Uint8Array;
 }
 /**
@@ -117,7 +117,7 @@ export interface MsgPruneAllowancesAminoMsg {
  */
 export interface MsgPruneAllowancesResponse {}
 export interface MsgPruneAllowancesResponseProtoMsg {
-  typeUrl: "/cosmos.feegrant.v1beta1.MsgPruneAllowancesResponse";
+  type_url: "/cosmos.feegrant.v1beta1.MsgPruneAllowancesResponse";
   value: Uint8Array;
 }
 /**

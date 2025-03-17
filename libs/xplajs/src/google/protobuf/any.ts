@@ -118,12 +118,12 @@ export interface Any {
    * Schemes other than `http`, `https` (or the empty scheme) might be
    * used with implementation specific semantics.
    */
-  typeUrl: string;
+  type_url: string;
   /** Must be a valid serialized protocol buffer of the above specified type. */
   value: Uint8Array;
 }
 export interface AnyProtoMsg {
-  typeUrl: "/google.protobuf.Any";
+  type_url: "/google.protobuf.Any";
   value: Uint8Array;
 }
 /**
@@ -254,21 +254,21 @@ export interface AnyAminoMsg {
 }
 function createBaseAny(): Any {
   return {
-    typeUrl: "",
+    type_url: "",
     value: new Uint8Array()
   };
 }
 export const Any = {
   typeUrl: "/google.protobuf.Any",
   is(o: any): o is Any {
-    return o && (o.$typeUrl === Any.typeUrl || typeof o.typeUrl === "string" && (o.value instanceof Uint8Array || typeof o.value === "string"));
+    return o && (o.$typeUrl === Any.typeUrl || typeof o.type_url === "string" && (o.value instanceof Uint8Array || typeof o.value === "string"));
   },
   isAmino(o: any): o is AnyAmino {
     return o && (o.$typeUrl === Any.typeUrl || typeof o.type === "string" && (o.value instanceof Uint8Array || typeof o.value === "string"));
   },
   encode(message: Any, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.typeUrl !== "") {
-      writer.uint32(10).string(message.typeUrl);
+    if (message.type_url !== "") {
+      writer.uint32(10).string(message.type_url);
     }
     if (message.value.length !== 0) {
       writer.uint32(18).bytes(message.value);
@@ -283,7 +283,7 @@ export const Any = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.typeUrl = reader.string();
+          message.type_url = reader.string();
           break;
         case 2:
           message.value = reader.bytes();
@@ -297,7 +297,7 @@ export const Any = {
   },
   fromPartial(object: DeepPartial<Any>): Any {
     const message = createBaseAny();
-    message.typeUrl = object.typeUrl ?? "";
+    message.type_url = object.type_url ?? "";
     message.value = object.value ?? new Uint8Array();
     return message;
   },

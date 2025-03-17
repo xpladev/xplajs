@@ -10,7 +10,7 @@ import { DeepPartial } from "../../../helpers";
  */
 export interface QueryLegacyAccount {}
 export interface QueryLegacyAccountProtoMsg {
-  typeUrl: "/cosmos.auth.v1beta1.QueryLegacyAccount";
+  type_url: "/cosmos.auth.v1beta1.QueryLegacyAccount";
   value: Uint8Array;
 }
 /**
@@ -43,7 +43,7 @@ export interface QueryLegacyAccountResponse {
   base?: BaseAccount;
 }
 export interface QueryLegacyAccountResponseProtoMsg {
-  typeUrl: "/cosmos.auth.v1beta1.QueryLegacyAccountResponse";
+  type_url: "/cosmos.auth.v1beta1.QueryLegacyAccountResponse";
   value: Uint8Array;
 }
 /**

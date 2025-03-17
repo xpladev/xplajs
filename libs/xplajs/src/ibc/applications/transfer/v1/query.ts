@@ -12,7 +12,7 @@ export interface QueryDenomTraceRequest {
   hash: string;
 }
 export interface QueryDenomTraceRequestProtoMsg {
-  typeUrl: "/ibc.applications.transfer.v1.QueryDenomTraceRequest";
+  type_url: "/ibc.applications.transfer.v1.QueryDenomTraceRequest";
   value: Uint8Array;
 }
 /**
@@ -33,10 +33,10 @@ export interface QueryDenomTraceRequestAminoMsg {
  */
 export interface QueryDenomTraceResponse {
   /** denom_trace returns the requested denomination trace information. */
-  denomTrace?: DenomTrace;
+  denom_trace?: DenomTrace;
 }
 export interface QueryDenomTraceResponseProtoMsg {
-  typeUrl: "/ibc.applications.transfer.v1.QueryDenomTraceResponse";
+  type_url: "/ibc.applications.transfer.v1.QueryDenomTraceResponse";
   value: Uint8Array;
 }
 /**
@@ -60,7 +60,7 @@ export interface QueryDenomTracesRequest {
   pagination?: PageRequest;
 }
 export interface QueryDenomTracesRequestProtoMsg {
-  typeUrl: "/ibc.applications.transfer.v1.QueryDenomTracesRequest";
+  type_url: "/ibc.applications.transfer.v1.QueryDenomTracesRequest";
   value: Uint8Array;
 }
 /**
@@ -81,12 +81,12 @@ export interface QueryDenomTracesRequestAminoMsg {
  */
 export interface QueryDenomTracesResponse {
   /** denom_traces returns all denominations trace information. */
-  denomTraces: DenomTrace[];
+  denom_traces: DenomTrace[];
   /** pagination defines the pagination in the response. */
   pagination?: PageResponse;
 }
 export interface QueryDenomTracesResponseProtoMsg {
-  typeUrl: "/ibc.applications.transfer.v1.QueryDenomTracesResponse";
+  type_url: "/ibc.applications.transfer.v1.QueryDenomTracesResponse";
   value: Uint8Array;
 }
 /**
@@ -106,7 +106,7 @@ export interface QueryDenomTracesResponseAminoMsg {
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {}
 export interface QueryParamsRequestProtoMsg {
-  typeUrl: "/ibc.applications.transfer.v1.QueryParamsRequest";
+  type_url: "/ibc.applications.transfer.v1.QueryParamsRequest";
   value: Uint8Array;
 }
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
@@ -121,7 +121,7 @@ export interface QueryParamsResponse {
   params?: Params;
 }
 export interface QueryParamsResponseProtoMsg {
-  typeUrl: "/ibc.applications.transfer.v1.QueryParamsResponse";
+  type_url: "/ibc.applications.transfer.v1.QueryParamsResponse";
   value: Uint8Array;
 }
 /** QueryParamsResponse is the response type for the Query/Params RPC method. */
@@ -142,7 +142,7 @@ export interface QueryDenomHashRequest {
   trace: string;
 }
 export interface QueryDenomHashRequestProtoMsg {
-  typeUrl: "/ibc.applications.transfer.v1.QueryDenomHashRequest";
+  type_url: "/ibc.applications.transfer.v1.QueryDenomHashRequest";
   value: Uint8Array;
 }
 /**
@@ -166,7 +166,7 @@ export interface QueryDenomHashResponse {
   hash: string;
 }
 export interface QueryDenomHashResponseProtoMsg {
-  typeUrl: "/ibc.applications.transfer.v1.QueryDenomHashResponse";
+  type_url: "/ibc.applications.transfer.v1.QueryDenomHashResponse";
   value: Uint8Array;
 }
 /**
@@ -184,12 +184,12 @@ export interface QueryDenomHashResponseAminoMsg {
 /** QueryEscrowAddressRequest is the request type for the EscrowAddress RPC method. */
 export interface QueryEscrowAddressRequest {
   /** unique port identifier */
-  portId: string;
+  port_id: string;
   /** unique channel identifier */
-  channelId: string;
+  channel_id: string;
 }
 export interface QueryEscrowAddressRequestProtoMsg {
-  typeUrl: "/ibc.applications.transfer.v1.QueryEscrowAddressRequest";
+  type_url: "/ibc.applications.transfer.v1.QueryEscrowAddressRequest";
   value: Uint8Array;
 }
 /** QueryEscrowAddressRequest is the request type for the EscrowAddress RPC method. */
@@ -206,10 +206,10 @@ export interface QueryEscrowAddressRequestAminoMsg {
 /** QueryEscrowAddressResponse is the response type of the EscrowAddress RPC method. */
 export interface QueryEscrowAddressResponse {
   /** the escrow account address */
-  escrowAddress: string;
+  escrow_address: string;
 }
 export interface QueryEscrowAddressResponseProtoMsg {
-  typeUrl: "/ibc.applications.transfer.v1.QueryEscrowAddressResponse";
+  type_url: "/ibc.applications.transfer.v1.QueryEscrowAddressResponse";
   value: Uint8Array;
 }
 /** QueryEscrowAddressResponse is the response type of the EscrowAddress RPC method. */
@@ -226,7 +226,7 @@ export interface QueryTotalEscrowForDenomRequest {
   denom: string;
 }
 export interface QueryTotalEscrowForDenomRequestProtoMsg {
-  typeUrl: "/ibc.applications.transfer.v1.QueryTotalEscrowForDenomRequest";
+  type_url: "/ibc.applications.transfer.v1.QueryTotalEscrowForDenomRequest";
   value: Uint8Array;
 }
 /** QueryTotalEscrowForDenomRequest is the request type for TotalEscrowForDenom RPC method. */
@@ -242,7 +242,7 @@ export interface QueryTotalEscrowForDenomResponse {
   amount: Coin;
 }
 export interface QueryTotalEscrowForDenomResponseProtoMsg {
-  typeUrl: "/ibc.applications.transfer.v1.QueryTotalEscrowForDenomResponse";
+  type_url: "/ibc.applications.transfer.v1.QueryTotalEscrowForDenomResponse";
   value: Uint8Array;
 }
 /** QueryTotalEscrowForDenomResponse is the response type for TotalEscrowForDenom RPC method. */
@@ -332,7 +332,7 @@ export const QueryDenomTraceRequest = {
 };
 function createBaseQueryDenomTraceResponse(): QueryDenomTraceResponse {
   return {
-    denomTrace: undefined
+    denom_trace: undefined
   };
 }
 export const QueryDenomTraceResponse = {
@@ -345,8 +345,8 @@ export const QueryDenomTraceResponse = {
     return o && o.$typeUrl === QueryDenomTraceResponse.typeUrl;
   },
   encode(message: QueryDenomTraceResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.denomTrace !== undefined) {
-      DenomTrace.encode(message.denomTrace, writer.uint32(10).fork()).ldelim();
+    if (message.denom_trace !== undefined) {
+      DenomTrace.encode(message.denom_trace, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -358,7 +358,7 @@ export const QueryDenomTraceResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.denomTrace = DenomTrace.decode(reader, reader.uint32());
+          message.denom_trace = DenomTrace.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -369,19 +369,19 @@ export const QueryDenomTraceResponse = {
   },
   fromPartial(object: DeepPartial<QueryDenomTraceResponse>): QueryDenomTraceResponse {
     const message = createBaseQueryDenomTraceResponse();
-    message.denomTrace = object.denomTrace !== undefined && object.denomTrace !== null ? DenomTrace.fromPartial(object.denomTrace) : undefined;
+    message.denom_trace = object.denom_trace !== undefined && object.denom_trace !== null ? DenomTrace.fromPartial(object.denom_trace) : undefined;
     return message;
   },
   fromAmino(object: QueryDenomTraceResponseAmino): QueryDenomTraceResponse {
     const message = createBaseQueryDenomTraceResponse();
     if (object.denom_trace !== undefined && object.denom_trace !== null) {
-      message.denomTrace = DenomTrace.fromAmino(object.denom_trace);
+      message.denom_trace = DenomTrace.fromAmino(object.denom_trace);
     }
     return message;
   },
   toAmino(message: QueryDenomTraceResponse): QueryDenomTraceResponseAmino {
     const obj: any = {};
-    obj.denom_trace = message.denomTrace ? DenomTrace.toAmino(message.denomTrace) : undefined;
+    obj.denom_trace = message.denom_trace ? DenomTrace.toAmino(message.denom_trace) : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryDenomTraceResponseAminoMsg): QueryDenomTraceResponse {
@@ -490,7 +490,7 @@ export const QueryDenomTracesRequest = {
 };
 function createBaseQueryDenomTracesResponse(): QueryDenomTracesResponse {
   return {
-    denomTraces: [],
+    denom_traces: [],
     pagination: undefined
   };
 }
@@ -498,13 +498,13 @@ export const QueryDenomTracesResponse = {
   typeUrl: "/ibc.applications.transfer.v1.QueryDenomTracesResponse",
   aminoType: "cosmos-sdk/QueryDenomTracesResponse",
   is(o: any): o is QueryDenomTracesResponse {
-    return o && (o.$typeUrl === QueryDenomTracesResponse.typeUrl || Array.isArray(o.denomTraces) && (!o.denomTraces.length || DenomTrace.is(o.denomTraces[0])));
+    return o && (o.$typeUrl === QueryDenomTracesResponse.typeUrl || Array.isArray(o.denom_traces) && (!o.denom_traces.length || DenomTrace.is(o.denom_traces[0])));
   },
   isAmino(o: any): o is QueryDenomTracesResponseAmino {
     return o && (o.$typeUrl === QueryDenomTracesResponse.typeUrl || Array.isArray(o.denom_traces) && (!o.denom_traces.length || DenomTrace.isAmino(o.denom_traces[0])));
   },
   encode(message: QueryDenomTracesResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.denomTraces) {
+    for (const v of message.denom_traces) {
       DenomTrace.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     if (message.pagination !== undefined) {
@@ -520,7 +520,7 @@ export const QueryDenomTracesResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.denomTraces.push(DenomTrace.decode(reader, reader.uint32()));
+          message.denom_traces.push(DenomTrace.decode(reader, reader.uint32()));
           break;
         case 2:
           message.pagination = PageResponse.decode(reader, reader.uint32());
@@ -534,13 +534,13 @@ export const QueryDenomTracesResponse = {
   },
   fromPartial(object: DeepPartial<QueryDenomTracesResponse>): QueryDenomTracesResponse {
     const message = createBaseQueryDenomTracesResponse();
-    message.denomTraces = object.denomTraces?.map(e => DenomTrace.fromPartial(e)) || [];
+    message.denom_traces = object.denom_traces?.map(e => DenomTrace.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
   },
   fromAmino(object: QueryDenomTracesResponseAmino): QueryDenomTracesResponse {
     const message = createBaseQueryDenomTracesResponse();
-    message.denomTraces = object.denom_traces?.map(e => DenomTrace.fromAmino(e)) || [];
+    message.denom_traces = object.denom_traces?.map(e => DenomTrace.fromAmino(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromAmino(object.pagination);
     }
@@ -548,10 +548,10 @@ export const QueryDenomTracesResponse = {
   },
   toAmino(message: QueryDenomTracesResponse): QueryDenomTracesResponseAmino {
     const obj: any = {};
-    if (message.denomTraces) {
-      obj.denom_traces = message.denomTraces.map(e => e ? DenomTrace.toAmino(e) : undefined);
+    if (message.denom_traces) {
+      obj.denom_traces = message.denom_traces.map(e => e ? DenomTrace.toAmino(e) : undefined);
     } else {
-      obj.denom_traces = message.denomTraces;
+      obj.denom_traces = message.denom_traces;
     }
     obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
     return obj;
@@ -881,25 +881,25 @@ export const QueryDenomHashResponse = {
 };
 function createBaseQueryEscrowAddressRequest(): QueryEscrowAddressRequest {
   return {
-    portId: "",
-    channelId: ""
+    port_id: "",
+    channel_id: ""
   };
 }
 export const QueryEscrowAddressRequest = {
   typeUrl: "/ibc.applications.transfer.v1.QueryEscrowAddressRequest",
   aminoType: "cosmos-sdk/QueryEscrowAddressRequest",
   is(o: any): o is QueryEscrowAddressRequest {
-    return o && (o.$typeUrl === QueryEscrowAddressRequest.typeUrl || typeof o.portId === "string" && typeof o.channelId === "string");
+    return o && (o.$typeUrl === QueryEscrowAddressRequest.typeUrl || typeof o.port_id === "string" && typeof o.channel_id === "string");
   },
   isAmino(o: any): o is QueryEscrowAddressRequestAmino {
     return o && (o.$typeUrl === QueryEscrowAddressRequest.typeUrl || typeof o.port_id === "string" && typeof o.channel_id === "string");
   },
   encode(message: QueryEscrowAddressRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.portId !== "") {
-      writer.uint32(10).string(message.portId);
+    if (message.port_id !== "") {
+      writer.uint32(10).string(message.port_id);
     }
-    if (message.channelId !== "") {
-      writer.uint32(18).string(message.channelId);
+    if (message.channel_id !== "") {
+      writer.uint32(18).string(message.channel_id);
     }
     return writer;
   },
@@ -911,10 +911,10 @@ export const QueryEscrowAddressRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.portId = reader.string();
+          message.port_id = reader.string();
           break;
         case 2:
-          message.channelId = reader.string();
+          message.channel_id = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -925,24 +925,24 @@ export const QueryEscrowAddressRequest = {
   },
   fromPartial(object: DeepPartial<QueryEscrowAddressRequest>): QueryEscrowAddressRequest {
     const message = createBaseQueryEscrowAddressRequest();
-    message.portId = object.portId ?? "";
-    message.channelId = object.channelId ?? "";
+    message.port_id = object.port_id ?? "";
+    message.channel_id = object.channel_id ?? "";
     return message;
   },
   fromAmino(object: QueryEscrowAddressRequestAmino): QueryEscrowAddressRequest {
     const message = createBaseQueryEscrowAddressRequest();
     if (object.port_id !== undefined && object.port_id !== null) {
-      message.portId = object.port_id;
+      message.port_id = object.port_id;
     }
     if (object.channel_id !== undefined && object.channel_id !== null) {
-      message.channelId = object.channel_id;
+      message.channel_id = object.channel_id;
     }
     return message;
   },
   toAmino(message: QueryEscrowAddressRequest): QueryEscrowAddressRequestAmino {
     const obj: any = {};
-    obj.port_id = message.portId === "" ? undefined : message.portId;
-    obj.channel_id = message.channelId === "" ? undefined : message.channelId;
+    obj.port_id = message.port_id === "" ? undefined : message.port_id;
+    obj.channel_id = message.channel_id === "" ? undefined : message.channel_id;
     return obj;
   },
   fromAminoMsg(object: QueryEscrowAddressRequestAminoMsg): QueryEscrowAddressRequest {
@@ -970,21 +970,21 @@ export const QueryEscrowAddressRequest = {
 };
 function createBaseQueryEscrowAddressResponse(): QueryEscrowAddressResponse {
   return {
-    escrowAddress: ""
+    escrow_address: ""
   };
 }
 export const QueryEscrowAddressResponse = {
   typeUrl: "/ibc.applications.transfer.v1.QueryEscrowAddressResponse",
   aminoType: "cosmos-sdk/QueryEscrowAddressResponse",
   is(o: any): o is QueryEscrowAddressResponse {
-    return o && (o.$typeUrl === QueryEscrowAddressResponse.typeUrl || typeof o.escrowAddress === "string");
+    return o && (o.$typeUrl === QueryEscrowAddressResponse.typeUrl || typeof o.escrow_address === "string");
   },
   isAmino(o: any): o is QueryEscrowAddressResponseAmino {
     return o && (o.$typeUrl === QueryEscrowAddressResponse.typeUrl || typeof o.escrow_address === "string");
   },
   encode(message: QueryEscrowAddressResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.escrowAddress !== "") {
-      writer.uint32(10).string(message.escrowAddress);
+    if (message.escrow_address !== "") {
+      writer.uint32(10).string(message.escrow_address);
     }
     return writer;
   },
@@ -996,7 +996,7 @@ export const QueryEscrowAddressResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.escrowAddress = reader.string();
+          message.escrow_address = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1007,19 +1007,19 @@ export const QueryEscrowAddressResponse = {
   },
   fromPartial(object: DeepPartial<QueryEscrowAddressResponse>): QueryEscrowAddressResponse {
     const message = createBaseQueryEscrowAddressResponse();
-    message.escrowAddress = object.escrowAddress ?? "";
+    message.escrow_address = object.escrow_address ?? "";
     return message;
   },
   fromAmino(object: QueryEscrowAddressResponseAmino): QueryEscrowAddressResponse {
     const message = createBaseQueryEscrowAddressResponse();
     if (object.escrow_address !== undefined && object.escrow_address !== null) {
-      message.escrowAddress = object.escrow_address;
+      message.escrow_address = object.escrow_address;
     }
     return message;
   },
   toAmino(message: QueryEscrowAddressResponse): QueryEscrowAddressResponseAmino {
     const obj: any = {};
-    obj.escrow_address = message.escrowAddress === "" ? undefined : message.escrowAddress;
+    obj.escrow_address = message.escrow_address === "" ? undefined : message.escrow_address;
     return obj;
   },
   fromAminoMsg(object: QueryEscrowAddressResponseAminoMsg): QueryEscrowAddressResponse {

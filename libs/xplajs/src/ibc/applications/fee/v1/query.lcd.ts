@@ -18,8 +18,8 @@ export class LCDQueryClient {
     if (typeof params?.pagination !== "undefined") {
       setPaginationParams(options, params.pagination);
     }
-    if (typeof params?.queryHeight !== "undefined") {
-      options.params.query_height = params.queryHeight;
+    if (typeof params?.query_height !== "undefined") {
+      options.params.query_height = params.query_height;
     }
     const endpoint = `ibc/apps/fee/v1/incentivized_packets`;
     return await this.req.get<QueryIncentivizedPacketsResponse>(endpoint, options);
@@ -29,13 +29,13 @@ export class LCDQueryClient {
     const options: any = {
       params: {}
     };
-    if (typeof params?.packetId !== "undefined") {
-      options.params.packet_id = params.packetId;
+    if (typeof params?.packet_id !== "undefined") {
+      options.params.packet_id = params.packet_id;
     }
-    if (typeof params?.queryHeight !== "undefined") {
-      options.params.query_height = params.queryHeight;
+    if (typeof params?.query_height !== "undefined") {
+      options.params.query_height = params.query_height;
     }
-    const endpoint = `ibc/apps/fee/v1/channels/${params.packetId.channelId}/ports/${params.packetId.portId}/sequences/${params.packetId.sequence}/incentivized_packet`;
+    const endpoint = `ibc/apps/fee/v1/channels/${params.packet_id.channel_id}/ports/${params.packet_id.port_id}/sequences/${params.packet_id.sequence}/incentivized_packet`;
     return await this.req.get<QueryIncentivizedPacketResponse>(endpoint, options);
   };
   /* Gets all incentivized packets for a specific channel */
@@ -46,10 +46,10 @@ export class LCDQueryClient {
     if (typeof params?.pagination !== "undefined") {
       setPaginationParams(options, params.pagination);
     }
-    if (typeof params?.queryHeight !== "undefined") {
-      options.params.query_height = params.queryHeight;
+    if (typeof params?.query_height !== "undefined") {
+      options.params.query_height = params.query_height;
     }
-    const endpoint = `ibc/apps/fee/v1/channels/${params.channelId}/ports/${params.portId}/incentivized_packets`;
+    const endpoint = `ibc/apps/fee/v1/channels/${params.channel_id}/ports/${params.port_id}/incentivized_packets`;
     return await this.req.get<QueryIncentivizedPacketsForChannelResponse>(endpoint, options);
   };
   /* TotalRecvFees returns the total receive fees for a packet given its identifier */
@@ -57,10 +57,10 @@ export class LCDQueryClient {
     const options: any = {
       params: {}
     };
-    if (typeof params?.packetId !== "undefined") {
-      options.params.packet_id = params.packetId;
+    if (typeof params?.packet_id !== "undefined") {
+      options.params.packet_id = params.packet_id;
     }
-    const endpoint = `ibc/apps/fee/v1/channels/${params.packetId.channelId}/ports/${params.packetId.portId}/sequences/${params.packetId.sequence}/total_recv_fees`;
+    const endpoint = `ibc/apps/fee/v1/channels/${params.packet_id.channel_id}/ports/${params.packet_id.port_id}/sequences/${params.packet_id.sequence}/total_recv_fees`;
     return await this.req.get<QueryTotalRecvFeesResponse>(endpoint, options);
   };
   /* TotalAckFees returns the total acknowledgement fees for a packet given its identifier */
@@ -68,10 +68,10 @@ export class LCDQueryClient {
     const options: any = {
       params: {}
     };
-    if (typeof params?.packetId !== "undefined") {
-      options.params.packet_id = params.packetId;
+    if (typeof params?.packet_id !== "undefined") {
+      options.params.packet_id = params.packet_id;
     }
-    const endpoint = `ibc/apps/fee/v1/channels/${params.packetId.channelId}/ports/${params.packetId.portId}/sequences/${params.packetId.sequence}/total_ack_fees`;
+    const endpoint = `ibc/apps/fee/v1/channels/${params.packet_id.channel_id}/ports/${params.packet_id.port_id}/sequences/${params.packet_id.sequence}/total_ack_fees`;
     return await this.req.get<QueryTotalAckFeesResponse>(endpoint, options);
   };
   /* TotalTimeoutFees returns the total timeout fees for a packet given its identifier */
@@ -79,20 +79,20 @@ export class LCDQueryClient {
     const options: any = {
       params: {}
     };
-    if (typeof params?.packetId !== "undefined") {
-      options.params.packet_id = params.packetId;
+    if (typeof params?.packet_id !== "undefined") {
+      options.params.packet_id = params.packet_id;
     }
-    const endpoint = `ibc/apps/fee/v1/channels/${params.packetId.channelId}/ports/${params.packetId.portId}/sequences/${params.packetId.sequence}/total_timeout_fees`;
+    const endpoint = `ibc/apps/fee/v1/channels/${params.packet_id.channel_id}/ports/${params.packet_id.port_id}/sequences/${params.packet_id.sequence}/total_timeout_fees`;
     return await this.req.get<QueryTotalTimeoutFeesResponse>(endpoint, options);
   };
   /* Payee returns the registered payee address for a specific channel given the relayer address */
   payee = async (params: QueryPayeeRequest): Promise<QueryPayeeResponse> => {
-    const endpoint = `ibc/apps/fee/v1/channels/${params.channelId}/relayers/${params.relayer}/payee`;
+    const endpoint = `ibc/apps/fee/v1/channels/${params.channel_id}/relayers/${params.relayer}/payee`;
     return await this.req.get<QueryPayeeResponse>(endpoint);
   };
   /* CounterpartyPayee returns the registered counterparty payee for forward relaying */
   counterpartyPayee = async (params: QueryCounterpartyPayeeRequest): Promise<QueryCounterpartyPayeeResponse> => {
-    const endpoint = `ibc/apps/fee/v1/channels/${params.channelId}/relayers/${params.relayer}/counterparty_payee`;
+    const endpoint = `ibc/apps/fee/v1/channels/${params.channel_id}/relayers/${params.relayer}/counterparty_payee`;
     return await this.req.get<QueryCounterpartyPayeeResponse>(endpoint);
   };
   /* FeeEnabledChannels returns a list of all fee enabled channels */
@@ -103,15 +103,15 @@ export class LCDQueryClient {
     if (typeof params?.pagination !== "undefined") {
       setPaginationParams(options, params.pagination);
     }
-    if (typeof params?.queryHeight !== "undefined") {
-      options.params.query_height = params.queryHeight;
+    if (typeof params?.query_height !== "undefined") {
+      options.params.query_height = params.query_height;
     }
     const endpoint = `ibc/apps/fee/v1/fee_enabled`;
     return await this.req.get<QueryFeeEnabledChannelsResponse>(endpoint, options);
   };
   /* FeeEnabledChannel returns true if the provided port and channel identifiers belong to a fee enabled channel */
   feeEnabledChannel = async (params: QueryFeeEnabledChannelRequest): Promise<QueryFeeEnabledChannelResponse> => {
-    const endpoint = `ibc/apps/fee/v1/channels/${params.channelId}/ports/${params.portId}/fee_enabled`;
+    const endpoint = `ibc/apps/fee/v1/channels/${params.channel_id}/ports/${params.port_id}/fee_enabled`;
     return await this.req.get<QueryFeeEnabledChannelResponse>(endpoint);
   };
 }

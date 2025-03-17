@@ -19,7 +19,7 @@ export interface MsgEthereumTx {
   from: string;
 }
 export interface MsgEthereumTxProtoMsg {
-  typeUrl: "/ethermint.evm.v1.MsgEthereumTx";
+  type_url: "/ethermint.evm.v1.MsgEthereumTx";
   value: Uint8Array;
 }
 /** MsgEthereumTx encapsulates an Ethereum transaction as an SDK message. */
@@ -50,7 +50,7 @@ export interface LegacyTx {
   /** nonce corresponds to the account nonce (transaction sequence). */
   nonce: bigint;
   /** gas_price defines the value for each gas unit */
-  gasPrice: string;
+  gas_price: string;
   /** gas defines the gas limit defined for the transaction. */
   gas: bigint;
   /** to is the hex formatted address of the recipient */
@@ -67,7 +67,7 @@ export interface LegacyTx {
   s: Uint8Array;
 }
 export interface LegacyTxProtoMsg {
-  typeUrl: "/ethermint.evm.v1.LegacyTx";
+  type_url: "/ethermint.evm.v1.LegacyTx";
   value: Uint8Array;
 }
 /**
@@ -102,11 +102,11 @@ export interface LegacyTxAminoMsg {
 /** AccessListTx is the data of EIP-2930 access list transactions. */
 export interface AccessListTx {
   /** chain_id of the destination EVM chain */
-  chainId: string;
+  chain_id: string;
   /** nonce corresponds to the account nonce (transaction sequence). */
   nonce: bigint;
   /** gas_price defines the value for each gas unit */
-  gasPrice: string;
+  gas_price: string;
   /** gas defines the gas limit defined for the transaction. */
   gas: bigint;
   /** to is the recipient address in hex format */
@@ -125,7 +125,7 @@ export interface AccessListTx {
   s: Uint8Array;
 }
 export interface AccessListTxProtoMsg {
-  typeUrl: "/ethermint.evm.v1.AccessListTx";
+  type_url: "/ethermint.evm.v1.AccessListTx";
   value: Uint8Array;
 }
 /** AccessListTx is the data of EIP-2930 access list transactions. */
@@ -160,13 +160,13 @@ export interface AccessListTxAminoMsg {
 /** DynamicFeeTx is the data of EIP-1559 dynamic fee transactions. */
 export interface DynamicFeeTx {
   /** chain_id of the destination EVM chain */
-  chainId: string;
+  chain_id: string;
   /** nonce corresponds to the account nonce (transaction sequence). */
   nonce: bigint;
   /** gas_tip_cap defines the max value for the gas tip */
-  gasTipCap: string;
+  gas_tip_cap: string;
   /** gas_fee_cap defines the max value for the gas fee */
-  gasFeeCap: string;
+  gas_fee_cap: string;
   /** gas defines the gas limit defined for the transaction. */
   gas: bigint;
   /** to is the hex formatted address of the recipient */
@@ -185,7 +185,7 @@ export interface DynamicFeeTx {
   s: Uint8Array;
 }
 export interface DynamicFeeTxProtoMsg {
-  typeUrl: "/ethermint.evm.v1.DynamicFeeTx";
+  type_url: "/ethermint.evm.v1.DynamicFeeTx";
   value: Uint8Array;
 }
 /** DynamicFeeTx is the data of EIP-1559 dynamic fee transactions. */
@@ -222,7 +222,7 @@ export interface DynamicFeeTxAminoMsg {
 /** ExtensionOptionsEthereumTx is an extension option for ethereum transactions */
 export interface ExtensionOptionsEthereumTx {}
 export interface ExtensionOptionsEthereumTxProtoMsg {
-  typeUrl: "/ethermint.evm.v1.ExtensionOptionsEthereumTx";
+  type_url: "/ethermint.evm.v1.ExtensionOptionsEthereumTx";
   value: Uint8Array;
 }
 /** ExtensionOptionsEthereumTx is an extension option for ethereum transactions */
@@ -250,12 +250,12 @@ export interface MsgEthereumTxResponse {
    */
   ret: Uint8Array;
   /** vm_error is the error returned by vm execution */
-  vmError: string;
+  vm_error: string;
   /** gas_used specifies how much gas was consumed by the transaction */
-  gasUsed: bigint;
+  gas_used: bigint;
 }
 export interface MsgEthereumTxResponseProtoMsg {
-  typeUrl: "/ethermint.evm.v1.MsgEthereumTxResponse";
+  type_url: "/ethermint.evm.v1.MsgEthereumTxResponse";
   value: Uint8Array;
 }
 /** MsgEthereumTxResponse defines the Msg/EthereumTx response type. */
@@ -296,7 +296,7 @@ export interface MsgUpdateParams {
   params: Params;
 }
 export interface MsgUpdateParamsProtoMsg {
-  typeUrl: "/ethermint.evm.v1.MsgUpdateParams";
+  type_url: "/ethermint.evm.v1.MsgUpdateParams";
   value: Uint8Array;
 }
 /** MsgUpdateParams defines a Msg for updating the x/evm module parameters. */
@@ -319,7 +319,7 @@ export interface MsgUpdateParamsAminoMsg {
  */
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
-  typeUrl: "/ethermint.evm.v1.MsgUpdateParamsResponse";
+  type_url: "/ethermint.evm.v1.MsgUpdateParamsResponse";
   value: Uint8Array;
 }
 /**
@@ -447,7 +447,7 @@ export const MsgEthereumTx = {
 function createBaseLegacyTx(): LegacyTx {
   return {
     nonce: BigInt(0),
-    gasPrice: "",
+    gas_price: "",
     gas: BigInt(0),
     to: "",
     value: "",
@@ -460,7 +460,7 @@ function createBaseLegacyTx(): LegacyTx {
 export const LegacyTx = {
   typeUrl: "/ethermint.evm.v1.LegacyTx",
   is(o: any): o is LegacyTx {
-    return o && (o.$typeUrl === LegacyTx.typeUrl || typeof o.nonce === "bigint" && typeof o.gasPrice === "string" && typeof o.gas === "bigint" && typeof o.to === "string" && typeof o.value === "string" && (o.data instanceof Uint8Array || typeof o.data === "string") && (o.v instanceof Uint8Array || typeof o.v === "string") && (o.r instanceof Uint8Array || typeof o.r === "string") && (o.s instanceof Uint8Array || typeof o.s === "string"));
+    return o && (o.$typeUrl === LegacyTx.typeUrl || typeof o.nonce === "bigint" && typeof o.gas_price === "string" && typeof o.gas === "bigint" && typeof o.to === "string" && typeof o.value === "string" && (o.data instanceof Uint8Array || typeof o.data === "string") && (o.v instanceof Uint8Array || typeof o.v === "string") && (o.r instanceof Uint8Array || typeof o.r === "string") && (o.s instanceof Uint8Array || typeof o.s === "string"));
   },
   isAmino(o: any): o is LegacyTxAmino {
     return o && (o.$typeUrl === LegacyTx.typeUrl || typeof o.nonce === "bigint" && typeof o.gas_price === "string" && typeof o.gas === "bigint" && typeof o.to === "string" && typeof o.value === "string" && (o.data instanceof Uint8Array || typeof o.data === "string") && (o.v instanceof Uint8Array || typeof o.v === "string") && (o.r instanceof Uint8Array || typeof o.r === "string") && (o.s instanceof Uint8Array || typeof o.s === "string"));
@@ -469,8 +469,8 @@ export const LegacyTx = {
     if (message.nonce !== BigInt(0)) {
       writer.uint32(8).uint64(message.nonce);
     }
-    if (message.gasPrice !== "") {
-      writer.uint32(18).string(message.gasPrice);
+    if (message.gas_price !== "") {
+      writer.uint32(18).string(message.gas_price);
     }
     if (message.gas !== BigInt(0)) {
       writer.uint32(24).uint64(message.gas);
@@ -506,7 +506,7 @@ export const LegacyTx = {
           message.nonce = reader.uint64();
           break;
         case 2:
-          message.gasPrice = reader.string();
+          message.gas_price = reader.string();
           break;
         case 3:
           message.gas = reader.uint64();
@@ -539,7 +539,7 @@ export const LegacyTx = {
   fromPartial(object: DeepPartial<LegacyTx>): LegacyTx {
     const message = createBaseLegacyTx();
     message.nonce = object.nonce !== undefined && object.nonce !== null ? BigInt(object.nonce.toString()) : BigInt(0);
-    message.gasPrice = object.gasPrice ?? "";
+    message.gas_price = object.gas_price ?? "";
     message.gas = object.gas !== undefined && object.gas !== null ? BigInt(object.gas.toString()) : BigInt(0);
     message.to = object.to ?? "";
     message.value = object.value ?? "";
@@ -555,7 +555,7 @@ export const LegacyTx = {
       message.nonce = BigInt(object.nonce);
     }
     if (object.gas_price !== undefined && object.gas_price !== null) {
-      message.gasPrice = object.gas_price;
+      message.gas_price = object.gas_price;
     }
     if (object.gas !== undefined && object.gas !== null) {
       message.gas = BigInt(object.gas);
@@ -583,7 +583,7 @@ export const LegacyTx = {
   toAmino(message: LegacyTx): LegacyTxAmino {
     const obj: any = {};
     obj.nonce = message.nonce !== BigInt(0) ? message.nonce?.toString() : undefined;
-    obj.gas_price = message.gasPrice === "" ? undefined : message.gasPrice;
+    obj.gas_price = message.gas_price === "" ? undefined : message.gas_price;
     obj.gas = message.gas !== BigInt(0) ? message.gas?.toString() : undefined;
     obj.to = message.to === "" ? undefined : message.to;
     obj.value = message.value === "" ? undefined : message.value;
@@ -614,9 +614,9 @@ export const LegacyTx = {
 };
 function createBaseAccessListTx(): AccessListTx {
   return {
-    chainId: "",
+    chain_id: "",
     nonce: BigInt(0),
-    gasPrice: "",
+    gas_price: "",
     gas: BigInt(0),
     to: "",
     value: "",
@@ -630,20 +630,20 @@ function createBaseAccessListTx(): AccessListTx {
 export const AccessListTx = {
   typeUrl: "/ethermint.evm.v1.AccessListTx",
   is(o: any): o is AccessListTx {
-    return o && (o.$typeUrl === AccessListTx.typeUrl || typeof o.chainId === "string" && typeof o.nonce === "bigint" && typeof o.gasPrice === "string" && typeof o.gas === "bigint" && typeof o.to === "string" && typeof o.value === "string" && (o.data instanceof Uint8Array || typeof o.data === "string") && Array.isArray(o.accesses) && (!o.accesses.length || AccessTuple.is(o.accesses[0])) && (o.v instanceof Uint8Array || typeof o.v === "string") && (o.r instanceof Uint8Array || typeof o.r === "string") && (o.s instanceof Uint8Array || typeof o.s === "string"));
+    return o && (o.$typeUrl === AccessListTx.typeUrl || typeof o.chain_id === "string" && typeof o.nonce === "bigint" && typeof o.gas_price === "string" && typeof o.gas === "bigint" && typeof o.to === "string" && typeof o.value === "string" && (o.data instanceof Uint8Array || typeof o.data === "string") && Array.isArray(o.accesses) && (!o.accesses.length || AccessTuple.is(o.accesses[0])) && (o.v instanceof Uint8Array || typeof o.v === "string") && (o.r instanceof Uint8Array || typeof o.r === "string") && (o.s instanceof Uint8Array || typeof o.s === "string"));
   },
   isAmino(o: any): o is AccessListTxAmino {
     return o && (o.$typeUrl === AccessListTx.typeUrl || typeof o.chain_id === "string" && typeof o.nonce === "bigint" && typeof o.gas_price === "string" && typeof o.gas === "bigint" && typeof o.to === "string" && typeof o.value === "string" && (o.data instanceof Uint8Array || typeof o.data === "string") && Array.isArray(o.accesses) && (!o.accesses.length || AccessTuple.isAmino(o.accesses[0])) && (o.v instanceof Uint8Array || typeof o.v === "string") && (o.r instanceof Uint8Array || typeof o.r === "string") && (o.s instanceof Uint8Array || typeof o.s === "string"));
   },
   encode(message: AccessListTx, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.chainId !== "") {
-      writer.uint32(10).string(message.chainId);
+    if (message.chain_id !== "") {
+      writer.uint32(10).string(message.chain_id);
     }
     if (message.nonce !== BigInt(0)) {
       writer.uint32(16).uint64(message.nonce);
     }
-    if (message.gasPrice !== "") {
-      writer.uint32(26).string(message.gasPrice);
+    if (message.gas_price !== "") {
+      writer.uint32(26).string(message.gas_price);
     }
     if (message.gas !== BigInt(0)) {
       writer.uint32(32).uint64(message.gas);
@@ -679,13 +679,13 @@ export const AccessListTx = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.chainId = reader.string();
+          message.chain_id = reader.string();
           break;
         case 2:
           message.nonce = reader.uint64();
           break;
         case 3:
-          message.gasPrice = reader.string();
+          message.gas_price = reader.string();
           break;
         case 4:
           message.gas = reader.uint64();
@@ -720,9 +720,9 @@ export const AccessListTx = {
   },
   fromPartial(object: DeepPartial<AccessListTx>): AccessListTx {
     const message = createBaseAccessListTx();
-    message.chainId = object.chainId ?? "";
+    message.chain_id = object.chain_id ?? "";
     message.nonce = object.nonce !== undefined && object.nonce !== null ? BigInt(object.nonce.toString()) : BigInt(0);
-    message.gasPrice = object.gasPrice ?? "";
+    message.gas_price = object.gas_price ?? "";
     message.gas = object.gas !== undefined && object.gas !== null ? BigInt(object.gas.toString()) : BigInt(0);
     message.to = object.to ?? "";
     message.value = object.value ?? "";
@@ -736,13 +736,13 @@ export const AccessListTx = {
   fromAmino(object: AccessListTxAmino): AccessListTx {
     const message = createBaseAccessListTx();
     if (object.chain_id !== undefined && object.chain_id !== null) {
-      message.chainId = object.chain_id;
+      message.chain_id = object.chain_id;
     }
     if (object.nonce !== undefined && object.nonce !== null) {
       message.nonce = BigInt(object.nonce);
     }
     if (object.gas_price !== undefined && object.gas_price !== null) {
-      message.gasPrice = object.gas_price;
+      message.gas_price = object.gas_price;
     }
     if (object.gas !== undefined && object.gas !== null) {
       message.gas = BigInt(object.gas);
@@ -770,9 +770,9 @@ export const AccessListTx = {
   },
   toAmino(message: AccessListTx): AccessListTxAmino {
     const obj: any = {};
-    obj.chain_id = message.chainId ?? "";
+    obj.chain_id = message.chain_id ?? "";
     obj.nonce = message.nonce !== BigInt(0) ? message.nonce?.toString() : undefined;
-    obj.gas_price = message.gasPrice === "" ? undefined : message.gasPrice;
+    obj.gas_price = message.gas_price === "" ? undefined : message.gas_price;
     obj.gas = message.gas !== BigInt(0) ? message.gas?.toString() : undefined;
     obj.to = message.to === "" ? undefined : message.to;
     obj.value = message.value === "" ? undefined : message.value;
@@ -809,10 +809,10 @@ export const AccessListTx = {
 };
 function createBaseDynamicFeeTx(): DynamicFeeTx {
   return {
-    chainId: "",
+    chain_id: "",
     nonce: BigInt(0),
-    gasTipCap: "",
-    gasFeeCap: "",
+    gas_tip_cap: "",
+    gas_fee_cap: "",
     gas: BigInt(0),
     to: "",
     value: "",
@@ -826,23 +826,23 @@ function createBaseDynamicFeeTx(): DynamicFeeTx {
 export const DynamicFeeTx = {
   typeUrl: "/ethermint.evm.v1.DynamicFeeTx",
   is(o: any): o is DynamicFeeTx {
-    return o && (o.$typeUrl === DynamicFeeTx.typeUrl || typeof o.chainId === "string" && typeof o.nonce === "bigint" && typeof o.gasTipCap === "string" && typeof o.gasFeeCap === "string" && typeof o.gas === "bigint" && typeof o.to === "string" && typeof o.value === "string" && (o.data instanceof Uint8Array || typeof o.data === "string") && Array.isArray(o.accesses) && (!o.accesses.length || AccessTuple.is(o.accesses[0])) && (o.v instanceof Uint8Array || typeof o.v === "string") && (o.r instanceof Uint8Array || typeof o.r === "string") && (o.s instanceof Uint8Array || typeof o.s === "string"));
+    return o && (o.$typeUrl === DynamicFeeTx.typeUrl || typeof o.chain_id === "string" && typeof o.nonce === "bigint" && typeof o.gas_tip_cap === "string" && typeof o.gas_fee_cap === "string" && typeof o.gas === "bigint" && typeof o.to === "string" && typeof o.value === "string" && (o.data instanceof Uint8Array || typeof o.data === "string") && Array.isArray(o.accesses) && (!o.accesses.length || AccessTuple.is(o.accesses[0])) && (o.v instanceof Uint8Array || typeof o.v === "string") && (o.r instanceof Uint8Array || typeof o.r === "string") && (o.s instanceof Uint8Array || typeof o.s === "string"));
   },
   isAmino(o: any): o is DynamicFeeTxAmino {
     return o && (o.$typeUrl === DynamicFeeTx.typeUrl || typeof o.chain_id === "string" && typeof o.nonce === "bigint" && typeof o.gas_tip_cap === "string" && typeof o.gas_fee_cap === "string" && typeof o.gas === "bigint" && typeof o.to === "string" && typeof o.value === "string" && (o.data instanceof Uint8Array || typeof o.data === "string") && Array.isArray(o.accesses) && (!o.accesses.length || AccessTuple.isAmino(o.accesses[0])) && (o.v instanceof Uint8Array || typeof o.v === "string") && (o.r instanceof Uint8Array || typeof o.r === "string") && (o.s instanceof Uint8Array || typeof o.s === "string"));
   },
   encode(message: DynamicFeeTx, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.chainId !== "") {
-      writer.uint32(10).string(message.chainId);
+    if (message.chain_id !== "") {
+      writer.uint32(10).string(message.chain_id);
     }
     if (message.nonce !== BigInt(0)) {
       writer.uint32(16).uint64(message.nonce);
     }
-    if (message.gasTipCap !== "") {
-      writer.uint32(26).string(message.gasTipCap);
+    if (message.gas_tip_cap !== "") {
+      writer.uint32(26).string(message.gas_tip_cap);
     }
-    if (message.gasFeeCap !== "") {
-      writer.uint32(34).string(message.gasFeeCap);
+    if (message.gas_fee_cap !== "") {
+      writer.uint32(34).string(message.gas_fee_cap);
     }
     if (message.gas !== BigInt(0)) {
       writer.uint32(40).uint64(message.gas);
@@ -878,16 +878,16 @@ export const DynamicFeeTx = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.chainId = reader.string();
+          message.chain_id = reader.string();
           break;
         case 2:
           message.nonce = reader.uint64();
           break;
         case 3:
-          message.gasTipCap = reader.string();
+          message.gas_tip_cap = reader.string();
           break;
         case 4:
-          message.gasFeeCap = reader.string();
+          message.gas_fee_cap = reader.string();
           break;
         case 5:
           message.gas = reader.uint64();
@@ -922,10 +922,10 @@ export const DynamicFeeTx = {
   },
   fromPartial(object: DeepPartial<DynamicFeeTx>): DynamicFeeTx {
     const message = createBaseDynamicFeeTx();
-    message.chainId = object.chainId ?? "";
+    message.chain_id = object.chain_id ?? "";
     message.nonce = object.nonce !== undefined && object.nonce !== null ? BigInt(object.nonce.toString()) : BigInt(0);
-    message.gasTipCap = object.gasTipCap ?? "";
-    message.gasFeeCap = object.gasFeeCap ?? "";
+    message.gas_tip_cap = object.gas_tip_cap ?? "";
+    message.gas_fee_cap = object.gas_fee_cap ?? "";
     message.gas = object.gas !== undefined && object.gas !== null ? BigInt(object.gas.toString()) : BigInt(0);
     message.to = object.to ?? "";
     message.value = object.value ?? "";
@@ -939,16 +939,16 @@ export const DynamicFeeTx = {
   fromAmino(object: DynamicFeeTxAmino): DynamicFeeTx {
     const message = createBaseDynamicFeeTx();
     if (object.chain_id !== undefined && object.chain_id !== null) {
-      message.chainId = object.chain_id;
+      message.chain_id = object.chain_id;
     }
     if (object.nonce !== undefined && object.nonce !== null) {
       message.nonce = BigInt(object.nonce);
     }
     if (object.gas_tip_cap !== undefined && object.gas_tip_cap !== null) {
-      message.gasTipCap = object.gas_tip_cap;
+      message.gas_tip_cap = object.gas_tip_cap;
     }
     if (object.gas_fee_cap !== undefined && object.gas_fee_cap !== null) {
-      message.gasFeeCap = object.gas_fee_cap;
+      message.gas_fee_cap = object.gas_fee_cap;
     }
     if (object.gas !== undefined && object.gas !== null) {
       message.gas = BigInt(object.gas);
@@ -976,10 +976,10 @@ export const DynamicFeeTx = {
   },
   toAmino(message: DynamicFeeTx): DynamicFeeTxAmino {
     const obj: any = {};
-    obj.chain_id = message.chainId ?? "";
+    obj.chain_id = message.chain_id ?? "";
     obj.nonce = message.nonce !== BigInt(0) ? message.nonce?.toString() : undefined;
-    obj.gas_tip_cap = message.gasTipCap === "" ? undefined : message.gasTipCap;
-    obj.gas_fee_cap = message.gasFeeCap === "" ? undefined : message.gasFeeCap;
+    obj.gas_tip_cap = message.gas_tip_cap === "" ? undefined : message.gas_tip_cap;
+    obj.gas_fee_cap = message.gas_fee_cap === "" ? undefined : message.gas_fee_cap;
     obj.gas = message.gas !== BigInt(0) ? message.gas?.toString() : undefined;
     obj.to = message.to === "" ? undefined : message.to;
     obj.value = message.value === "" ? undefined : message.value;
@@ -1076,14 +1076,14 @@ function createBaseMsgEthereumTxResponse(): MsgEthereumTxResponse {
     hash: "",
     logs: [],
     ret: new Uint8Array(),
-    vmError: "",
-    gasUsed: BigInt(0)
+    vm_error: "",
+    gas_used: BigInt(0)
   };
 }
 export const MsgEthereumTxResponse = {
   typeUrl: "/ethermint.evm.v1.MsgEthereumTxResponse",
   is(o: any): o is MsgEthereumTxResponse {
-    return o && (o.$typeUrl === MsgEthereumTxResponse.typeUrl || typeof o.hash === "string" && Array.isArray(o.logs) && (!o.logs.length || Log.is(o.logs[0])) && (o.ret instanceof Uint8Array || typeof o.ret === "string") && typeof o.vmError === "string" && typeof o.gasUsed === "bigint");
+    return o && (o.$typeUrl === MsgEthereumTxResponse.typeUrl || typeof o.hash === "string" && Array.isArray(o.logs) && (!o.logs.length || Log.is(o.logs[0])) && (o.ret instanceof Uint8Array || typeof o.ret === "string") && typeof o.vm_error === "string" && typeof o.gas_used === "bigint");
   },
   isAmino(o: any): o is MsgEthereumTxResponseAmino {
     return o && (o.$typeUrl === MsgEthereumTxResponse.typeUrl || typeof o.hash === "string" && Array.isArray(o.logs) && (!o.logs.length || Log.isAmino(o.logs[0])) && (o.ret instanceof Uint8Array || typeof o.ret === "string") && typeof o.vm_error === "string" && typeof o.gas_used === "bigint");
@@ -1098,11 +1098,11 @@ export const MsgEthereumTxResponse = {
     if (message.ret.length !== 0) {
       writer.uint32(26).bytes(message.ret);
     }
-    if (message.vmError !== "") {
-      writer.uint32(34).string(message.vmError);
+    if (message.vm_error !== "") {
+      writer.uint32(34).string(message.vm_error);
     }
-    if (message.gasUsed !== BigInt(0)) {
-      writer.uint32(40).uint64(message.gasUsed);
+    if (message.gas_used !== BigInt(0)) {
+      writer.uint32(40).uint64(message.gas_used);
     }
     return writer;
   },
@@ -1123,10 +1123,10 @@ export const MsgEthereumTxResponse = {
           message.ret = reader.bytes();
           break;
         case 4:
-          message.vmError = reader.string();
+          message.vm_error = reader.string();
           break;
         case 5:
-          message.gasUsed = reader.uint64();
+          message.gas_used = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1140,8 +1140,8 @@ export const MsgEthereumTxResponse = {
     message.hash = object.hash ?? "";
     message.logs = object.logs?.map(e => Log.fromPartial(e)) || [];
     message.ret = object.ret ?? new Uint8Array();
-    message.vmError = object.vmError ?? "";
-    message.gasUsed = object.gasUsed !== undefined && object.gasUsed !== null ? BigInt(object.gasUsed.toString()) : BigInt(0);
+    message.vm_error = object.vm_error ?? "";
+    message.gas_used = object.gas_used !== undefined && object.gas_used !== null ? BigInt(object.gas_used.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: MsgEthereumTxResponseAmino): MsgEthereumTxResponse {
@@ -1154,10 +1154,10 @@ export const MsgEthereumTxResponse = {
       message.ret = bytesFromBase64(object.ret);
     }
     if (object.vm_error !== undefined && object.vm_error !== null) {
-      message.vmError = object.vm_error;
+      message.vm_error = object.vm_error;
     }
     if (object.gas_used !== undefined && object.gas_used !== null) {
-      message.gasUsed = BigInt(object.gas_used);
+      message.gas_used = BigInt(object.gas_used);
     }
     return message;
   },
@@ -1170,8 +1170,8 @@ export const MsgEthereumTxResponse = {
       obj.logs = message.logs;
     }
     obj.ret = message.ret ? base64FromBytes(message.ret) : undefined;
-    obj.vm_error = message.vmError === "" ? undefined : message.vmError;
-    obj.gas_used = message.gasUsed !== BigInt(0) ? message.gasUsed?.toString() : undefined;
+    obj.vm_error = message.vm_error === "" ? undefined : message.vm_error;
+    obj.gas_used = message.gas_used !== BigInt(0) ? message.gas_used?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: MsgEthereumTxResponseAminoMsg): MsgEthereumTxResponse {

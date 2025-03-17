@@ -4,17 +4,17 @@ import { BinaryReader, BinaryWriter } from "../../../../binary";
 import { DeepPartial } from "../../../../helpers";
 /** GenesisState defines the ibc-transfer genesis state */
 export interface GenesisState {
-  portId: string;
-  denomTraces: DenomTrace[];
+  port_id: string;
+  denom_traces: DenomTrace[];
   params: Params;
   /**
    * total_escrowed contains the total amount of tokens escrowed
    * by the transfer module
    */
-  totalEscrowed: Coin[];
+  total_escrowed: Coin[];
 }
 export interface GenesisStateProtoMsg {
-  typeUrl: "/ibc.applications.transfer.v1.GenesisState";
+  type_url: "/ibc.applications.transfer.v1.GenesisState";
   value: Uint8Array;
 }
 /** GenesisState defines the ibc-transfer genesis state */
@@ -34,32 +34,32 @@ export interface GenesisStateAminoMsg {
 }
 function createBaseGenesisState(): GenesisState {
   return {
-    portId: "",
-    denomTraces: [],
+    port_id: "",
+    denom_traces: [],
     params: Params.fromPartial({}),
-    totalEscrowed: []
+    total_escrowed: []
   };
 }
 export const GenesisState = {
   typeUrl: "/ibc.applications.transfer.v1.GenesisState",
   aminoType: "cosmos-sdk/GenesisState",
   is(o: any): o is GenesisState {
-    return o && (o.$typeUrl === GenesisState.typeUrl || typeof o.portId === "string" && Array.isArray(o.denomTraces) && (!o.denomTraces.length || DenomTrace.is(o.denomTraces[0])) && Params.is(o.params) && Array.isArray(o.totalEscrowed) && (!o.totalEscrowed.length || Coin.is(o.totalEscrowed[0])));
+    return o && (o.$typeUrl === GenesisState.typeUrl || typeof o.port_id === "string" && Array.isArray(o.denom_traces) && (!o.denom_traces.length || DenomTrace.is(o.denom_traces[0])) && Params.is(o.params) && Array.isArray(o.total_escrowed) && (!o.total_escrowed.length || Coin.is(o.total_escrowed[0])));
   },
   isAmino(o: any): o is GenesisStateAmino {
     return o && (o.$typeUrl === GenesisState.typeUrl || typeof o.port_id === "string" && Array.isArray(o.denom_traces) && (!o.denom_traces.length || DenomTrace.isAmino(o.denom_traces[0])) && Params.isAmino(o.params) && Array.isArray(o.total_escrowed) && (!o.total_escrowed.length || Coin.isAmino(o.total_escrowed[0])));
   },
   encode(message: GenesisState, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.portId !== "") {
-      writer.uint32(10).string(message.portId);
+    if (message.port_id !== "") {
+      writer.uint32(10).string(message.port_id);
     }
-    for (const v of message.denomTraces) {
+    for (const v of message.denom_traces) {
       DenomTrace.encode(v!, writer.uint32(18).fork()).ldelim();
     }
     if (message.params !== undefined) {
       Params.encode(message.params, writer.uint32(26).fork()).ldelim();
     }
-    for (const v of message.totalEscrowed) {
+    for (const v of message.total_escrowed) {
       Coin.encode(v!, writer.uint32(34).fork()).ldelim();
     }
     return writer;
@@ -72,16 +72,16 @@ export const GenesisState = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.portId = reader.string();
+          message.port_id = reader.string();
           break;
         case 2:
-          message.denomTraces.push(DenomTrace.decode(reader, reader.uint32()));
+          message.denom_traces.push(DenomTrace.decode(reader, reader.uint32()));
           break;
         case 3:
           message.params = Params.decode(reader, reader.uint32());
           break;
         case 4:
-          message.totalEscrowed.push(Coin.decode(reader, reader.uint32()));
+          message.total_escrowed.push(Coin.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -92,37 +92,37 @@ export const GenesisState = {
   },
   fromPartial(object: DeepPartial<GenesisState>): GenesisState {
     const message = createBaseGenesisState();
-    message.portId = object.portId ?? "";
-    message.denomTraces = object.denomTraces?.map(e => DenomTrace.fromPartial(e)) || [];
+    message.port_id = object.port_id ?? "";
+    message.denom_traces = object.denom_traces?.map(e => DenomTrace.fromPartial(e)) || [];
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
-    message.totalEscrowed = object.totalEscrowed?.map(e => Coin.fromPartial(e)) || [];
+    message.total_escrowed = object.total_escrowed?.map(e => Coin.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
     const message = createBaseGenesisState();
     if (object.port_id !== undefined && object.port_id !== null) {
-      message.portId = object.port_id;
+      message.port_id = object.port_id;
     }
-    message.denomTraces = object.denom_traces?.map(e => DenomTrace.fromAmino(e)) || [];
+    message.denom_traces = object.denom_traces?.map(e => DenomTrace.fromAmino(e)) || [];
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromAmino(object.params);
     }
-    message.totalEscrowed = object.total_escrowed?.map(e => Coin.fromAmino(e)) || [];
+    message.total_escrowed = object.total_escrowed?.map(e => Coin.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
-    obj.port_id = message.portId === "" ? undefined : message.portId;
-    if (message.denomTraces) {
-      obj.denom_traces = message.denomTraces.map(e => e ? DenomTrace.toAmino(e) : undefined);
+    obj.port_id = message.port_id === "" ? undefined : message.port_id;
+    if (message.denom_traces) {
+      obj.denom_traces = message.denom_traces.map(e => e ? DenomTrace.toAmino(e) : undefined);
     } else {
-      obj.denom_traces = message.denomTraces;
+      obj.denom_traces = message.denom_traces;
     }
     obj.params = message.params ? Params.toAmino(message.params) : undefined;
-    if (message.totalEscrowed) {
-      obj.total_escrowed = message.totalEscrowed.map(e => e ? Coin.toAmino(e) : undefined);
+    if (message.total_escrowed) {
+      obj.total_escrowed = message.total_escrowed.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
-      obj.total_escrowed = message.totalEscrowed;
+      obj.total_escrowed = message.total_escrowed;
     }
     return obj;
   },

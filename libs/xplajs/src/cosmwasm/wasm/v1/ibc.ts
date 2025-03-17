@@ -8,12 +8,12 @@ export interface MsgIBCSend {
    * Timeout height relative to the current block height.
    * The timeout is disabled when set to 0.
    */
-  timeoutHeight: bigint;
+  timeout_height: bigint;
   /**
    * Timeout timestamp (in nanoseconds) relative to the current block timestamp.
    * The timeout is disabled when set to 0.
    */
-  timeoutTimestamp: bigint;
+  timeout_timestamp: bigint;
   /**
    * Data is the payload to transfer. We must not make assumption what format or
    * content is in here.
@@ -21,7 +21,7 @@ export interface MsgIBCSend {
   data: Uint8Array;
 }
 export interface MsgIBCSendProtoMsg {
-  typeUrl: "/cosmwasm.wasm.v1.MsgIBCSend";
+  type_url: "/cosmwasm.wasm.v1.MsgIBCSend";
   value: Uint8Array;
 }
 /** MsgIBCSend */
@@ -54,7 +54,7 @@ export interface MsgIBCSendResponse {
   sequence: bigint;
 }
 export interface MsgIBCSendResponseProtoMsg {
-  typeUrl: "/cosmwasm.wasm.v1.MsgIBCSendResponse";
+  type_url: "/cosmwasm.wasm.v1.MsgIBCSendResponse";
   value: Uint8Array;
 }
 /** MsgIBCSendResponse */
@@ -69,7 +69,7 @@ export interface MsgIBCSendResponseAminoMsg {
 /** MsgIBCWriteAcknowledgementResponse */
 export interface MsgIBCWriteAcknowledgementResponse {}
 export interface MsgIBCWriteAcknowledgementResponseProtoMsg {
-  typeUrl: "/cosmwasm.wasm.v1.MsgIBCWriteAcknowledgementResponse";
+  type_url: "/cosmwasm.wasm.v1.MsgIBCWriteAcknowledgementResponse";
   value: Uint8Array;
 }
 /** MsgIBCWriteAcknowledgementResponse */
@@ -83,7 +83,7 @@ export interface MsgIBCCloseChannel {
   channel: string;
 }
 export interface MsgIBCCloseChannelProtoMsg {
-  typeUrl: "/cosmwasm.wasm.v1.MsgIBCCloseChannel";
+  type_url: "/cosmwasm.wasm.v1.MsgIBCCloseChannel";
   value: Uint8Array;
 }
 /** MsgIBCCloseChannel port and channel need to be owned by the contract */
@@ -97,8 +97,8 @@ export interface MsgIBCCloseChannelAminoMsg {
 function createBaseMsgIBCSend(): MsgIBCSend {
   return {
     channel: "",
-    timeoutHeight: BigInt(0),
-    timeoutTimestamp: BigInt(0),
+    timeout_height: BigInt(0),
+    timeout_timestamp: BigInt(0),
     data: new Uint8Array()
   };
 }
@@ -106,7 +106,7 @@ export const MsgIBCSend = {
   typeUrl: "/cosmwasm.wasm.v1.MsgIBCSend",
   aminoType: "wasm/MsgIBCSend",
   is(o: any): o is MsgIBCSend {
-    return o && (o.$typeUrl === MsgIBCSend.typeUrl || typeof o.channel === "string" && typeof o.timeoutHeight === "bigint" && typeof o.timeoutTimestamp === "bigint" && (o.data instanceof Uint8Array || typeof o.data === "string"));
+    return o && (o.$typeUrl === MsgIBCSend.typeUrl || typeof o.channel === "string" && typeof o.timeout_height === "bigint" && typeof o.timeout_timestamp === "bigint" && (o.data instanceof Uint8Array || typeof o.data === "string"));
   },
   isAmino(o: any): o is MsgIBCSendAmino {
     return o && (o.$typeUrl === MsgIBCSend.typeUrl || typeof o.channel === "string" && typeof o.timeout_height === "bigint" && typeof o.timeout_timestamp === "bigint" && (o.data instanceof Uint8Array || typeof o.data === "string"));
@@ -115,11 +115,11 @@ export const MsgIBCSend = {
     if (message.channel !== "") {
       writer.uint32(18).string(message.channel);
     }
-    if (message.timeoutHeight !== BigInt(0)) {
-      writer.uint32(32).uint64(message.timeoutHeight);
+    if (message.timeout_height !== BigInt(0)) {
+      writer.uint32(32).uint64(message.timeout_height);
     }
-    if (message.timeoutTimestamp !== BigInt(0)) {
-      writer.uint32(40).uint64(message.timeoutTimestamp);
+    if (message.timeout_timestamp !== BigInt(0)) {
+      writer.uint32(40).uint64(message.timeout_timestamp);
     }
     if (message.data.length !== 0) {
       writer.uint32(50).bytes(message.data);
@@ -137,10 +137,10 @@ export const MsgIBCSend = {
           message.channel = reader.string();
           break;
         case 4:
-          message.timeoutHeight = reader.uint64();
+          message.timeout_height = reader.uint64();
           break;
         case 5:
-          message.timeoutTimestamp = reader.uint64();
+          message.timeout_timestamp = reader.uint64();
           break;
         case 6:
           message.data = reader.bytes();
@@ -155,8 +155,8 @@ export const MsgIBCSend = {
   fromPartial(object: DeepPartial<MsgIBCSend>): MsgIBCSend {
     const message = createBaseMsgIBCSend();
     message.channel = object.channel ?? "";
-    message.timeoutHeight = object.timeoutHeight !== undefined && object.timeoutHeight !== null ? BigInt(object.timeoutHeight.toString()) : BigInt(0);
-    message.timeoutTimestamp = object.timeoutTimestamp !== undefined && object.timeoutTimestamp !== null ? BigInt(object.timeoutTimestamp.toString()) : BigInt(0);
+    message.timeout_height = object.timeout_height !== undefined && object.timeout_height !== null ? BigInt(object.timeout_height.toString()) : BigInt(0);
+    message.timeout_timestamp = object.timeout_timestamp !== undefined && object.timeout_timestamp !== null ? BigInt(object.timeout_timestamp.toString()) : BigInt(0);
     message.data = object.data ?? new Uint8Array();
     return message;
   },
@@ -166,10 +166,10 @@ export const MsgIBCSend = {
       message.channel = object.channel;
     }
     if (object.timeout_height !== undefined && object.timeout_height !== null) {
-      message.timeoutHeight = BigInt(object.timeout_height);
+      message.timeout_height = BigInt(object.timeout_height);
     }
     if (object.timeout_timestamp !== undefined && object.timeout_timestamp !== null) {
-      message.timeoutTimestamp = BigInt(object.timeout_timestamp);
+      message.timeout_timestamp = BigInt(object.timeout_timestamp);
     }
     if (object.data !== undefined && object.data !== null) {
       message.data = bytesFromBase64(object.data);
@@ -179,8 +179,8 @@ export const MsgIBCSend = {
   toAmino(message: MsgIBCSend): MsgIBCSendAmino {
     const obj: any = {};
     obj.channel = message.channel === "" ? undefined : message.channel;
-    obj.timeout_height = message.timeoutHeight !== BigInt(0) ? message.timeoutHeight?.toString() : undefined;
-    obj.timeout_timestamp = message.timeoutTimestamp !== BigInt(0) ? message.timeoutTimestamp?.toString() : undefined;
+    obj.timeout_height = message.timeout_height !== BigInt(0) ? message.timeout_height?.toString() : undefined;
+    obj.timeout_timestamp = message.timeout_timestamp !== BigInt(0) ? message.timeout_timestamp?.toString() : undefined;
     obj.data = message.data ? base64FromBytes(message.data) : undefined;
     return obj;
   },

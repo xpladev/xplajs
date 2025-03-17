@@ -9,7 +9,7 @@ export interface GenesisState {
   sequences: Sequence[];
 }
 export interface GenesisStateProtoMsg {
-  typeUrl: "/cosmwasm.wasm.v1.GenesisState";
+  type_url: "/cosmwasm.wasm.v1.GenesisState";
   value: Uint8Array;
 }
 /** GenesisState - genesis state of x/wasm */
@@ -25,14 +25,14 @@ export interface GenesisStateAminoMsg {
 }
 /** Code struct encompasses CodeInfo and CodeBytes */
 export interface Code {
-  codeId: bigint;
-  codeInfo: CodeInfo;
-  codeBytes: Uint8Array;
+  code_id: bigint;
+  code_info: CodeInfo;
+  code_bytes: Uint8Array;
   /** Pinned to wasmvm cache */
   pinned: boolean;
 }
 export interface CodeProtoMsg {
-  typeUrl: "/cosmwasm.wasm.v1.Code";
+  type_url: "/cosmwasm.wasm.v1.Code";
   value: Uint8Array;
 }
 /** Code struct encompasses CodeInfo and CodeBytes */
@@ -49,13 +49,13 @@ export interface CodeAminoMsg {
 }
 /** Contract struct encompasses ContractAddress, ContractInfo, and ContractState */
 export interface Contract {
-  contractAddress: string;
-  contractInfo: ContractInfo;
-  contractState: Model[];
-  contractCodeHistory: ContractCodeHistoryEntry[];
+  contract_address: string;
+  contract_info: ContractInfo;
+  contract_state: Model[];
+  contract_code_history: ContractCodeHistoryEntry[];
 }
 export interface ContractProtoMsg {
-  typeUrl: "/cosmwasm.wasm.v1.Contract";
+  type_url: "/cosmwasm.wasm.v1.Contract";
   value: Uint8Array;
 }
 /** Contract struct encompasses ContractAddress, ContractInfo, and ContractState */
@@ -71,11 +71,11 @@ export interface ContractAminoMsg {
 }
 /** Sequence key and value of an id generation counter */
 export interface Sequence {
-  idKey: Uint8Array;
+  id_key: Uint8Array;
   value: bigint;
 }
 export interface SequenceProtoMsg {
-  typeUrl: "/cosmwasm.wasm.v1.Sequence";
+  type_url: "/cosmwasm.wasm.v1.Sequence";
   value: Uint8Array;
 }
 /** Sequence key and value of an id generation counter */
@@ -213,9 +213,9 @@ export const GenesisState = {
 };
 function createBaseCode(): Code {
   return {
-    codeId: BigInt(0),
-    codeInfo: CodeInfo.fromPartial({}),
-    codeBytes: new Uint8Array(),
+    code_id: BigInt(0),
+    code_info: CodeInfo.fromPartial({}),
+    code_bytes: new Uint8Array(),
     pinned: false
   };
 }
@@ -223,20 +223,20 @@ export const Code = {
   typeUrl: "/cosmwasm.wasm.v1.Code",
   aminoType: "wasm/Code",
   is(o: any): o is Code {
-    return o && (o.$typeUrl === Code.typeUrl || typeof o.codeId === "bigint" && CodeInfo.is(o.codeInfo) && (o.codeBytes instanceof Uint8Array || typeof o.codeBytes === "string") && typeof o.pinned === "boolean");
+    return o && (o.$typeUrl === Code.typeUrl || typeof o.code_id === "bigint" && CodeInfo.is(o.code_info) && (o.code_bytes instanceof Uint8Array || typeof o.code_bytes === "string") && typeof o.pinned === "boolean");
   },
   isAmino(o: any): o is CodeAmino {
     return o && (o.$typeUrl === Code.typeUrl || typeof o.code_id === "bigint" && CodeInfo.isAmino(o.code_info) && (o.code_bytes instanceof Uint8Array || typeof o.code_bytes === "string") && typeof o.pinned === "boolean");
   },
   encode(message: Code, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.codeId !== BigInt(0)) {
-      writer.uint32(8).uint64(message.codeId);
+    if (message.code_id !== BigInt(0)) {
+      writer.uint32(8).uint64(message.code_id);
     }
-    if (message.codeInfo !== undefined) {
-      CodeInfo.encode(message.codeInfo, writer.uint32(18).fork()).ldelim();
+    if (message.code_info !== undefined) {
+      CodeInfo.encode(message.code_info, writer.uint32(18).fork()).ldelim();
     }
-    if (message.codeBytes.length !== 0) {
-      writer.uint32(26).bytes(message.codeBytes);
+    if (message.code_bytes.length !== 0) {
+      writer.uint32(26).bytes(message.code_bytes);
     }
     if (message.pinned === true) {
       writer.uint32(32).bool(message.pinned);
@@ -251,13 +251,13 @@ export const Code = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.codeId = reader.uint64();
+          message.code_id = reader.uint64();
           break;
         case 2:
-          message.codeInfo = CodeInfo.decode(reader, reader.uint32());
+          message.code_info = CodeInfo.decode(reader, reader.uint32());
           break;
         case 3:
-          message.codeBytes = reader.bytes();
+          message.code_bytes = reader.bytes();
           break;
         case 4:
           message.pinned = reader.bool();
@@ -271,22 +271,22 @@ export const Code = {
   },
   fromPartial(object: DeepPartial<Code>): Code {
     const message = createBaseCode();
-    message.codeId = object.codeId !== undefined && object.codeId !== null ? BigInt(object.codeId.toString()) : BigInt(0);
-    message.codeInfo = object.codeInfo !== undefined && object.codeInfo !== null ? CodeInfo.fromPartial(object.codeInfo) : undefined;
-    message.codeBytes = object.codeBytes ?? new Uint8Array();
+    message.code_id = object.code_id !== undefined && object.code_id !== null ? BigInt(object.code_id.toString()) : BigInt(0);
+    message.code_info = object.code_info !== undefined && object.code_info !== null ? CodeInfo.fromPartial(object.code_info) : undefined;
+    message.code_bytes = object.code_bytes ?? new Uint8Array();
     message.pinned = object.pinned ?? false;
     return message;
   },
   fromAmino(object: CodeAmino): Code {
     const message = createBaseCode();
     if (object.code_id !== undefined && object.code_id !== null) {
-      message.codeId = BigInt(object.code_id);
+      message.code_id = BigInt(object.code_id);
     }
     if (object.code_info !== undefined && object.code_info !== null) {
-      message.codeInfo = CodeInfo.fromAmino(object.code_info);
+      message.code_info = CodeInfo.fromAmino(object.code_info);
     }
     if (object.code_bytes !== undefined && object.code_bytes !== null) {
-      message.codeBytes = bytesFromBase64(object.code_bytes);
+      message.code_bytes = bytesFromBase64(object.code_bytes);
     }
     if (object.pinned !== undefined && object.pinned !== null) {
       message.pinned = object.pinned;
@@ -295,9 +295,9 @@ export const Code = {
   },
   toAmino(message: Code): CodeAmino {
     const obj: any = {};
-    obj.code_id = message.codeId !== BigInt(0) ? message.codeId?.toString() : undefined;
-    obj.code_info = message.codeInfo ? CodeInfo.toAmino(message.codeInfo) : CodeInfo.toAmino(CodeInfo.fromPartial({}));
-    obj.code_bytes = message.codeBytes ? base64FromBytes(message.codeBytes) : undefined;
+    obj.code_id = message.code_id !== BigInt(0) ? message.code_id?.toString() : undefined;
+    obj.code_info = message.code_info ? CodeInfo.toAmino(message.code_info) : CodeInfo.toAmino(CodeInfo.fromPartial({}));
+    obj.code_bytes = message.code_bytes ? base64FromBytes(message.code_bytes) : undefined;
     obj.pinned = message.pinned === false ? undefined : message.pinned;
     return obj;
   },
@@ -328,32 +328,32 @@ export const Code = {
 };
 function createBaseContract(): Contract {
   return {
-    contractAddress: "",
-    contractInfo: ContractInfo.fromPartial({}),
-    contractState: [],
-    contractCodeHistory: []
+    contract_address: "",
+    contract_info: ContractInfo.fromPartial({}),
+    contract_state: [],
+    contract_code_history: []
   };
 }
 export const Contract = {
   typeUrl: "/cosmwasm.wasm.v1.Contract",
   aminoType: "wasm/Contract",
   is(o: any): o is Contract {
-    return o && (o.$typeUrl === Contract.typeUrl || typeof o.contractAddress === "string" && ContractInfo.is(o.contractInfo) && Array.isArray(o.contractState) && (!o.contractState.length || Model.is(o.contractState[0])) && Array.isArray(o.contractCodeHistory) && (!o.contractCodeHistory.length || ContractCodeHistoryEntry.is(o.contractCodeHistory[0])));
+    return o && (o.$typeUrl === Contract.typeUrl || typeof o.contract_address === "string" && ContractInfo.is(o.contract_info) && Array.isArray(o.contract_state) && (!o.contract_state.length || Model.is(o.contract_state[0])) && Array.isArray(o.contract_code_history) && (!o.contract_code_history.length || ContractCodeHistoryEntry.is(o.contract_code_history[0])));
   },
   isAmino(o: any): o is ContractAmino {
     return o && (o.$typeUrl === Contract.typeUrl || typeof o.contract_address === "string" && ContractInfo.isAmino(o.contract_info) && Array.isArray(o.contract_state) && (!o.contract_state.length || Model.isAmino(o.contract_state[0])) && Array.isArray(o.contract_code_history) && (!o.contract_code_history.length || ContractCodeHistoryEntry.isAmino(o.contract_code_history[0])));
   },
   encode(message: Contract, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.contractAddress !== "") {
-      writer.uint32(10).string(message.contractAddress);
+    if (message.contract_address !== "") {
+      writer.uint32(10).string(message.contract_address);
     }
-    if (message.contractInfo !== undefined) {
-      ContractInfo.encode(message.contractInfo, writer.uint32(18).fork()).ldelim();
+    if (message.contract_info !== undefined) {
+      ContractInfo.encode(message.contract_info, writer.uint32(18).fork()).ldelim();
     }
-    for (const v of message.contractState) {
+    for (const v of message.contract_state) {
       Model.encode(v!, writer.uint32(26).fork()).ldelim();
     }
-    for (const v of message.contractCodeHistory) {
+    for (const v of message.contract_code_history) {
       ContractCodeHistoryEntry.encode(v!, writer.uint32(34).fork()).ldelim();
     }
     return writer;
@@ -366,16 +366,16 @@ export const Contract = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.contractAddress = reader.string();
+          message.contract_address = reader.string();
           break;
         case 2:
-          message.contractInfo = ContractInfo.decode(reader, reader.uint32());
+          message.contract_info = ContractInfo.decode(reader, reader.uint32());
           break;
         case 3:
-          message.contractState.push(Model.decode(reader, reader.uint32()));
+          message.contract_state.push(Model.decode(reader, reader.uint32()));
           break;
         case 4:
-          message.contractCodeHistory.push(ContractCodeHistoryEntry.decode(reader, reader.uint32()));
+          message.contract_code_history.push(ContractCodeHistoryEntry.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -386,37 +386,37 @@ export const Contract = {
   },
   fromPartial(object: DeepPartial<Contract>): Contract {
     const message = createBaseContract();
-    message.contractAddress = object.contractAddress ?? "";
-    message.contractInfo = object.contractInfo !== undefined && object.contractInfo !== null ? ContractInfo.fromPartial(object.contractInfo) : undefined;
-    message.contractState = object.contractState?.map(e => Model.fromPartial(e)) || [];
-    message.contractCodeHistory = object.contractCodeHistory?.map(e => ContractCodeHistoryEntry.fromPartial(e)) || [];
+    message.contract_address = object.contract_address ?? "";
+    message.contract_info = object.contract_info !== undefined && object.contract_info !== null ? ContractInfo.fromPartial(object.contract_info) : undefined;
+    message.contract_state = object.contract_state?.map(e => Model.fromPartial(e)) || [];
+    message.contract_code_history = object.contract_code_history?.map(e => ContractCodeHistoryEntry.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: ContractAmino): Contract {
     const message = createBaseContract();
     if (object.contract_address !== undefined && object.contract_address !== null) {
-      message.contractAddress = object.contract_address;
+      message.contract_address = object.contract_address;
     }
     if (object.contract_info !== undefined && object.contract_info !== null) {
-      message.contractInfo = ContractInfo.fromAmino(object.contract_info);
+      message.contract_info = ContractInfo.fromAmino(object.contract_info);
     }
-    message.contractState = object.contract_state?.map(e => Model.fromAmino(e)) || [];
-    message.contractCodeHistory = object.contract_code_history?.map(e => ContractCodeHistoryEntry.fromAmino(e)) || [];
+    message.contract_state = object.contract_state?.map(e => Model.fromAmino(e)) || [];
+    message.contract_code_history = object.contract_code_history?.map(e => ContractCodeHistoryEntry.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: Contract): ContractAmino {
     const obj: any = {};
-    obj.contract_address = message.contractAddress === "" ? undefined : message.contractAddress;
-    obj.contract_info = message.contractInfo ? ContractInfo.toAmino(message.contractInfo) : ContractInfo.toAmino(ContractInfo.fromPartial({}));
-    if (message.contractState) {
-      obj.contract_state = message.contractState.map(e => e ? Model.toAmino(e) : undefined);
+    obj.contract_address = message.contract_address === "" ? undefined : message.contract_address;
+    obj.contract_info = message.contract_info ? ContractInfo.toAmino(message.contract_info) : ContractInfo.toAmino(ContractInfo.fromPartial({}));
+    if (message.contract_state) {
+      obj.contract_state = message.contract_state.map(e => e ? Model.toAmino(e) : undefined);
     } else {
-      obj.contract_state = message.contractState;
+      obj.contract_state = message.contract_state;
     }
-    if (message.contractCodeHistory) {
-      obj.contract_code_history = message.contractCodeHistory.map(e => e ? ContractCodeHistoryEntry.toAmino(e) : undefined);
+    if (message.contract_code_history) {
+      obj.contract_code_history = message.contract_code_history.map(e => e ? ContractCodeHistoryEntry.toAmino(e) : undefined);
     } else {
-      obj.contract_code_history = message.contractCodeHistory;
+      obj.contract_code_history = message.contract_code_history;
     }
     return obj;
   },
@@ -449,7 +449,7 @@ export const Contract = {
 };
 function createBaseSequence(): Sequence {
   return {
-    idKey: new Uint8Array(),
+    id_key: new Uint8Array(),
     value: BigInt(0)
   };
 }
@@ -457,14 +457,14 @@ export const Sequence = {
   typeUrl: "/cosmwasm.wasm.v1.Sequence",
   aminoType: "wasm/Sequence",
   is(o: any): o is Sequence {
-    return o && (o.$typeUrl === Sequence.typeUrl || (o.idKey instanceof Uint8Array || typeof o.idKey === "string") && typeof o.value === "bigint");
+    return o && (o.$typeUrl === Sequence.typeUrl || (o.id_key instanceof Uint8Array || typeof o.id_key === "string") && typeof o.value === "bigint");
   },
   isAmino(o: any): o is SequenceAmino {
     return o && (o.$typeUrl === Sequence.typeUrl || (o.id_key instanceof Uint8Array || typeof o.id_key === "string") && typeof o.value === "bigint");
   },
   encode(message: Sequence, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.idKey.length !== 0) {
-      writer.uint32(10).bytes(message.idKey);
+    if (message.id_key.length !== 0) {
+      writer.uint32(10).bytes(message.id_key);
     }
     if (message.value !== BigInt(0)) {
       writer.uint32(16).uint64(message.value);
@@ -479,7 +479,7 @@ export const Sequence = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.idKey = reader.bytes();
+          message.id_key = reader.bytes();
           break;
         case 2:
           message.value = reader.uint64();
@@ -493,14 +493,14 @@ export const Sequence = {
   },
   fromPartial(object: DeepPartial<Sequence>): Sequence {
     const message = createBaseSequence();
-    message.idKey = object.idKey ?? new Uint8Array();
+    message.id_key = object.id_key ?? new Uint8Array();
     message.value = object.value !== undefined && object.value !== null ? BigInt(object.value.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: SequenceAmino): Sequence {
     const message = createBaseSequence();
     if (object.id_key !== undefined && object.id_key !== null) {
-      message.idKey = bytesFromBase64(object.id_key);
+      message.id_key = bytesFromBase64(object.id_key);
     }
     if (object.value !== undefined && object.value !== null) {
       message.value = BigInt(object.value);
@@ -509,7 +509,7 @@ export const Sequence = {
   },
   toAmino(message: Sequence): SequenceAmino {
     const obj: any = {};
-    obj.id_key = message.idKey ? base64FromBytes(message.idKey) : undefined;
+    obj.id_key = message.id_key ? base64FromBytes(message.id_key) : undefined;
     obj.value = message.value !== BigInt(0) ? message.value?.toString() : undefined;
     return obj;
   },

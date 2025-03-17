@@ -5,7 +5,7 @@ import { DeepPartial } from "../../../helpers";
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {}
 export interface QueryParamsRequestProtoMsg {
-  typeUrl: "/xpla.reward.v1beta1.QueryParamsRequest";
+  type_url: "/xpla.reward.v1beta1.QueryParamsRequest";
   value: Uint8Array;
 }
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
@@ -20,7 +20,7 @@ export interface QueryParamsResponse {
   params: Params;
 }
 export interface QueryParamsResponseProtoMsg {
-  typeUrl: "/xpla.reward.v1beta1.QueryParamsResponse";
+  type_url: "/xpla.reward.v1beta1.QueryParamsResponse";
   value: Uint8Array;
 }
 /** QueryParamsResponse is the response type for the Query/Params RPC method. */
@@ -38,7 +38,7 @@ export interface QueryParamsResponseAminoMsg {
  */
 export interface QueryPoolRequest {}
 export interface QueryPoolRequestProtoMsg {
-  typeUrl: "/xpla.reward.v1beta1.QueryPoolRequest";
+  type_url: "/xpla.reward.v1beta1.QueryPoolRequest";
   value: Uint8Array;
 }
 /**
@@ -59,7 +59,7 @@ export interface QueryPoolResponse {
   pool: Coin[];
 }
 export interface QueryPoolResponseProtoMsg {
-  typeUrl: "/xpla.reward.v1beta1.QueryPoolResponse";
+  type_url: "/xpla.reward.v1beta1.QueryPoolResponse";
   value: Uint8Array;
 }
 /**

@@ -8,7 +8,7 @@ export interface ParameterChangeProposal {
   changes: ParamChange[];
 }
 export interface ParameterChangeProposalProtoMsg {
-  typeUrl: "/cosmos.params.v1beta1.ParameterChangeProposal";
+  type_url: "/cosmos.params.v1beta1.ParameterChangeProposal";
   value: Uint8Array;
 }
 /** ParameterChangeProposal defines a proposal to change one or more parameters. */
@@ -31,7 +31,7 @@ export interface ParamChange {
   value: string;
 }
 export interface ParamChangeProtoMsg {
-  typeUrl: "/cosmos.params.v1beta1.ParamChange";
+  type_url: "/cosmos.params.v1beta1.ParamChange";
   value: Uint8Array;
 }
 /**

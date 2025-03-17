@@ -4,10 +4,10 @@ import { DeepPartial } from "../../../../../helpers";
 /** QueryInterchainAccountRequest is the request type for the Query/InterchainAccount RPC method. */
 export interface QueryInterchainAccountRequest {
   owner: string;
-  connectionId: string;
+  connection_id: string;
 }
 export interface QueryInterchainAccountRequestProtoMsg {
-  typeUrl: "/ibc.applications.interchain_accounts.controller.v1.QueryInterchainAccountRequest";
+  type_url: "/ibc.applications.interchain_accounts.controller.v1.QueryInterchainAccountRequest";
   value: Uint8Array;
 }
 /** QueryInterchainAccountRequest is the request type for the Query/InterchainAccount RPC method. */
@@ -24,7 +24,7 @@ export interface QueryInterchainAccountResponse {
   address: string;
 }
 export interface QueryInterchainAccountResponseProtoMsg {
-  typeUrl: "/ibc.applications.interchain_accounts.controller.v1.QueryInterchainAccountResponse";
+  type_url: "/ibc.applications.interchain_accounts.controller.v1.QueryInterchainAccountResponse";
   value: Uint8Array;
 }
 /** QueryInterchainAccountResponse the response type for the Query/InterchainAccount RPC method. */
@@ -38,7 +38,7 @@ export interface QueryInterchainAccountResponseAminoMsg {
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {}
 export interface QueryParamsRequestProtoMsg {
-  typeUrl: "/ibc.applications.interchain_accounts.controller.v1.QueryParamsRequest";
+  type_url: "/ibc.applications.interchain_accounts.controller.v1.QueryParamsRequest";
   value: Uint8Array;
 }
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
@@ -53,7 +53,7 @@ export interface QueryParamsResponse {
   params?: Params;
 }
 export interface QueryParamsResponseProtoMsg {
-  typeUrl: "/ibc.applications.interchain_accounts.controller.v1.QueryParamsResponse";
+  type_url: "/ibc.applications.interchain_accounts.controller.v1.QueryParamsResponse";
   value: Uint8Array;
 }
 /** QueryParamsResponse is the response type for the Query/Params RPC method. */
@@ -68,14 +68,14 @@ export interface QueryParamsResponseAminoMsg {
 function createBaseQueryInterchainAccountRequest(): QueryInterchainAccountRequest {
   return {
     owner: "",
-    connectionId: ""
+    connection_id: ""
   };
 }
 export const QueryInterchainAccountRequest = {
   typeUrl: "/ibc.applications.interchain_accounts.controller.v1.QueryInterchainAccountRequest",
   aminoType: "cosmos-sdk/QueryInterchainAccountRequest",
   is(o: any): o is QueryInterchainAccountRequest {
-    return o && (o.$typeUrl === QueryInterchainAccountRequest.typeUrl || typeof o.owner === "string" && typeof o.connectionId === "string");
+    return o && (o.$typeUrl === QueryInterchainAccountRequest.typeUrl || typeof o.owner === "string" && typeof o.connection_id === "string");
   },
   isAmino(o: any): o is QueryInterchainAccountRequestAmino {
     return o && (o.$typeUrl === QueryInterchainAccountRequest.typeUrl || typeof o.owner === "string" && typeof o.connection_id === "string");
@@ -84,8 +84,8 @@ export const QueryInterchainAccountRequest = {
     if (message.owner !== "") {
       writer.uint32(10).string(message.owner);
     }
-    if (message.connectionId !== "") {
-      writer.uint32(18).string(message.connectionId);
+    if (message.connection_id !== "") {
+      writer.uint32(18).string(message.connection_id);
     }
     return writer;
   },
@@ -100,7 +100,7 @@ export const QueryInterchainAccountRequest = {
           message.owner = reader.string();
           break;
         case 2:
-          message.connectionId = reader.string();
+          message.connection_id = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -112,7 +112,7 @@ export const QueryInterchainAccountRequest = {
   fromPartial(object: DeepPartial<QueryInterchainAccountRequest>): QueryInterchainAccountRequest {
     const message = createBaseQueryInterchainAccountRequest();
     message.owner = object.owner ?? "";
-    message.connectionId = object.connectionId ?? "";
+    message.connection_id = object.connection_id ?? "";
     return message;
   },
   fromAmino(object: QueryInterchainAccountRequestAmino): QueryInterchainAccountRequest {
@@ -121,14 +121,14 @@ export const QueryInterchainAccountRequest = {
       message.owner = object.owner;
     }
     if (object.connection_id !== undefined && object.connection_id !== null) {
-      message.connectionId = object.connection_id;
+      message.connection_id = object.connection_id;
     }
     return message;
   },
   toAmino(message: QueryInterchainAccountRequest): QueryInterchainAccountRequestAmino {
     const obj: any = {};
     obj.owner = message.owner === "" ? undefined : message.owner;
-    obj.connection_id = message.connectionId === "" ? undefined : message.connectionId;
+    obj.connection_id = message.connection_id === "" ? undefined : message.connection_id;
     return obj;
   },
   fromAminoMsg(object: QueryInterchainAccountRequestAminoMsg): QueryInterchainAccountRequest {

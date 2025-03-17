@@ -13,10 +13,10 @@ export interface Equivocation {
   /** power is the equivocation validator power. */
   power: bigint;
   /** consensus_address is the equivocation validator consensus address. */
-  consensusAddress: string;
+  consensus_address: string;
 }
 export interface EquivocationProtoMsg {
-  typeUrl: "/cosmos.evidence.v1beta1.Equivocation";
+  type_url: "/cosmos.evidence.v1beta1.Equivocation";
   value: Uint8Array;
 }
 /**
@@ -42,14 +42,14 @@ function createBaseEquivocation(): Equivocation {
     height: BigInt(0),
     time: new Date(),
     power: BigInt(0),
-    consensusAddress: ""
+    consensus_address: ""
   };
 }
 export const Equivocation = {
   typeUrl: "/cosmos.evidence.v1beta1.Equivocation",
   aminoType: "cosmos-sdk/Equivocation",
   is(o: any): o is Equivocation {
-    return o && (o.$typeUrl === Equivocation.typeUrl || typeof o.height === "bigint" && Timestamp.is(o.time) && typeof o.power === "bigint" && typeof o.consensusAddress === "string");
+    return o && (o.$typeUrl === Equivocation.typeUrl || typeof o.height === "bigint" && Timestamp.is(o.time) && typeof o.power === "bigint" && typeof o.consensus_address === "string");
   },
   isAmino(o: any): o is EquivocationAmino {
     return o && (o.$typeUrl === Equivocation.typeUrl || typeof o.height === "bigint" && Timestamp.isAmino(o.time) && typeof o.power === "bigint" && typeof o.consensus_address === "string");
@@ -64,8 +64,8 @@ export const Equivocation = {
     if (message.power !== BigInt(0)) {
       writer.uint32(24).int64(message.power);
     }
-    if (message.consensusAddress !== "") {
-      writer.uint32(34).string(message.consensusAddress);
+    if (message.consensus_address !== "") {
+      writer.uint32(34).string(message.consensus_address);
     }
     return writer;
   },
@@ -86,7 +86,7 @@ export const Equivocation = {
           message.power = reader.int64();
           break;
         case 4:
-          message.consensusAddress = reader.string();
+          message.consensus_address = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -100,7 +100,7 @@ export const Equivocation = {
     message.height = object.height !== undefined && object.height !== null ? BigInt(object.height.toString()) : BigInt(0);
     message.time = object.time ?? undefined;
     message.power = object.power !== undefined && object.power !== null ? BigInt(object.power.toString()) : BigInt(0);
-    message.consensusAddress = object.consensusAddress ?? "";
+    message.consensus_address = object.consensus_address ?? "";
     return message;
   },
   fromAmino(object: EquivocationAmino): Equivocation {
@@ -115,7 +115,7 @@ export const Equivocation = {
       message.power = BigInt(object.power);
     }
     if (object.consensus_address !== undefined && object.consensus_address !== null) {
-      message.consensusAddress = object.consensus_address;
+      message.consensus_address = object.consensus_address;
     }
     return message;
   },
@@ -124,7 +124,7 @@ export const Equivocation = {
     obj.height = message.height !== BigInt(0) ? message.height?.toString() : undefined;
     obj.time = message.time ? Timestamp.toAmino(toTimestamp(message.time)) : new Date();
     obj.power = message.power !== BigInt(0) ? message.power?.toString() : undefined;
-    obj.consensus_address = message.consensusAddress === "" ? undefined : message.consensusAddress;
+    obj.consensus_address = message.consensus_address === "" ? undefined : message.consensus_address;
     return obj;
   },
   fromAminoMsg(object: EquivocationAminoMsg): Equivocation {

@@ -4,7 +4,7 @@ import { DeepPartial } from "../../../../../helpers";
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {}
 export interface QueryParamsRequestProtoMsg {
-  typeUrl: "/ibc.applications.interchain_accounts.host.v1.QueryParamsRequest";
+  type_url: "/ibc.applications.interchain_accounts.host.v1.QueryParamsRequest";
   value: Uint8Array;
 }
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
@@ -19,7 +19,7 @@ export interface QueryParamsResponse {
   params?: Params;
 }
 export interface QueryParamsResponseProtoMsg {
-  typeUrl: "/ibc.applications.interchain_accounts.host.v1.QueryParamsResponse";
+  type_url: "/ibc.applications.interchain_accounts.host.v1.QueryParamsResponse";
   value: Uint8Array;
 }
 /** QueryParamsResponse is the response type for the Query/Params RPC method. */

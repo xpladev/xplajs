@@ -15,12 +15,12 @@ export interface BasicAllowance {
    * by this allowance and will be updated as coins are spent. If it is
    * empty, there is no spend limit and any amount of coins can be spent.
    */
-  spendLimit: Coin[];
+  spend_limit: Coin[];
   /** expiration specifies an optional time when this allowance expires */
   expiration?: Date;
 }
 export interface BasicAllowanceProtoMsg {
-  typeUrl: "/cosmos.feegrant.v1beta1.BasicAllowance";
+  type_url: "/cosmos.feegrant.v1beta1.BasicAllowance";
   value: Uint8Array;
 }
 /**
@@ -57,18 +57,18 @@ export interface PeriodicAllowance {
    * period_spend_limit specifies the maximum number of coins that can be spent
    * in the period
    */
-  periodSpendLimit: Coin[];
+  period_spend_limit: Coin[];
   /** period_can_spend is the number of coins left to be spent before the period_reset time */
-  periodCanSpend: Coin[];
+  period_can_spend: Coin[];
   /**
    * period_reset is the time at which this period resets and a new one begins,
    * it is calculated from the start time of the first transaction after the
    * last period ended
    */
-  periodReset: Date;
+  period_reset: Date;
 }
 export interface PeriodicAllowanceProtoMsg {
-  typeUrl: "/cosmos.feegrant.v1beta1.PeriodicAllowance";
+  type_url: "/cosmos.feegrant.v1beta1.PeriodicAllowance";
   value: Uint8Array;
 }
 /**
@@ -106,10 +106,10 @@ export interface AllowedMsgAllowance {
   /** allowance can be any of basic and periodic fee allowance. */
   allowance?: BasicAllowance | PeriodicAllowance | AllowedMsgAllowance | Any | undefined;
   /** allowed_messages are the messages for which the grantee has the access. */
-  allowedMessages: string[];
+  allowed_messages: string[];
 }
 export interface AllowedMsgAllowanceProtoMsg {
-  typeUrl: "/cosmos.feegrant.v1beta1.AllowedMsgAllowance";
+  type_url: "/cosmos.feegrant.v1beta1.AllowedMsgAllowance";
   value: Uint8Array;
 }
 export type AllowedMsgAllowanceEncoded = Omit<AllowedMsgAllowance, "allowance"> & {
@@ -136,7 +136,7 @@ export interface Grant {
   allowance?: BasicAllowance | PeriodicAllowance | AllowedMsgAllowance | Any | undefined;
 }
 export interface GrantProtoMsg {
-  typeUrl: "/cosmos.feegrant.v1beta1.Grant";
+  type_url: "/cosmos.feegrant.v1beta1.Grant";
   value: Uint8Array;
 }
 export type GrantEncoded = Omit<Grant, "allowance"> & {
@@ -157,7 +157,7 @@ export interface GrantAminoMsg {
 }
 function createBaseBasicAllowance(): BasicAllowance {
   return {
-    spendLimit: [],
+    spend_limit: [],
     expiration: undefined
   };
 }
@@ -165,13 +165,13 @@ export const BasicAllowance = {
   typeUrl: "/cosmos.feegrant.v1beta1.BasicAllowance",
   aminoType: "cosmos-sdk/BasicAllowance",
   is(o: any): o is BasicAllowance {
-    return o && (o.$typeUrl === BasicAllowance.typeUrl || Array.isArray(o.spendLimit) && (!o.spendLimit.length || Coin.is(o.spendLimit[0])));
+    return o && (o.$typeUrl === BasicAllowance.typeUrl || Array.isArray(o.spend_limit) && (!o.spend_limit.length || Coin.is(o.spend_limit[0])));
   },
   isAmino(o: any): o is BasicAllowanceAmino {
     return o && (o.$typeUrl === BasicAllowance.typeUrl || Array.isArray(o.spend_limit) && (!o.spend_limit.length || Coin.isAmino(o.spend_limit[0])));
   },
   encode(message: BasicAllowance, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.spendLimit) {
+    for (const v of message.spend_limit) {
       Coin.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     if (message.expiration !== undefined) {
@@ -187,7 +187,7 @@ export const BasicAllowance = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.spendLimit.push(Coin.decode(reader, reader.uint32()));
+          message.spend_limit.push(Coin.decode(reader, reader.uint32()));
           break;
         case 2:
           message.expiration = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
@@ -201,13 +201,13 @@ export const BasicAllowance = {
   },
   fromPartial(object: DeepPartial<BasicAllowance>): BasicAllowance {
     const message = createBaseBasicAllowance();
-    message.spendLimit = object.spendLimit?.map(e => Coin.fromPartial(e)) || [];
+    message.spend_limit = object.spend_limit?.map(e => Coin.fromPartial(e)) || [];
     message.expiration = object.expiration ?? undefined;
     return message;
   },
   fromAmino(object: BasicAllowanceAmino): BasicAllowance {
     const message = createBaseBasicAllowance();
-    message.spendLimit = object.spend_limit?.map(e => Coin.fromAmino(e)) || [];
+    message.spend_limit = object.spend_limit?.map(e => Coin.fromAmino(e)) || [];
     if (object.expiration !== undefined && object.expiration !== null) {
       message.expiration = fromTimestamp(Timestamp.fromAmino(object.expiration));
     }
@@ -215,10 +215,10 @@ export const BasicAllowance = {
   },
   toAmino(message: BasicAllowance): BasicAllowanceAmino {
     const obj: any = {};
-    if (message.spendLimit) {
-      obj.spend_limit = message.spendLimit.map(e => e ? Coin.toAmino(e) : undefined);
+    if (message.spend_limit) {
+      obj.spend_limit = message.spend_limit.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
-      obj.spend_limit = message.spendLimit;
+      obj.spend_limit = message.spend_limit;
     }
     obj.expiration = message.expiration ? Timestamp.toAmino(toTimestamp(message.expiration)) : undefined;
     return obj;
@@ -254,16 +254,16 @@ function createBasePeriodicAllowance(): PeriodicAllowance {
   return {
     basic: BasicAllowance.fromPartial({}),
     period: Duration.fromPartial({}),
-    periodSpendLimit: [],
-    periodCanSpend: [],
-    periodReset: new Date()
+    period_spend_limit: [],
+    period_can_spend: [],
+    period_reset: new Date()
   };
 }
 export const PeriodicAllowance = {
   typeUrl: "/cosmos.feegrant.v1beta1.PeriodicAllowance",
   aminoType: "cosmos-sdk/PeriodicAllowance",
   is(o: any): o is PeriodicAllowance {
-    return o && (o.$typeUrl === PeriodicAllowance.typeUrl || BasicAllowance.is(o.basic) && Duration.is(o.period) && Array.isArray(o.periodSpendLimit) && (!o.periodSpendLimit.length || Coin.is(o.periodSpendLimit[0])) && Array.isArray(o.periodCanSpend) && (!o.periodCanSpend.length || Coin.is(o.periodCanSpend[0])) && Timestamp.is(o.periodReset));
+    return o && (o.$typeUrl === PeriodicAllowance.typeUrl || BasicAllowance.is(o.basic) && Duration.is(o.period) && Array.isArray(o.period_spend_limit) && (!o.period_spend_limit.length || Coin.is(o.period_spend_limit[0])) && Array.isArray(o.period_can_spend) && (!o.period_can_spend.length || Coin.is(o.period_can_spend[0])) && Timestamp.is(o.period_reset));
   },
   isAmino(o: any): o is PeriodicAllowanceAmino {
     return o && (o.$typeUrl === PeriodicAllowance.typeUrl || BasicAllowance.isAmino(o.basic) && Duration.isAmino(o.period) && Array.isArray(o.period_spend_limit) && (!o.period_spend_limit.length || Coin.isAmino(o.period_spend_limit[0])) && Array.isArray(o.period_can_spend) && (!o.period_can_spend.length || Coin.isAmino(o.period_can_spend[0])) && Timestamp.isAmino(o.period_reset));
@@ -275,14 +275,14 @@ export const PeriodicAllowance = {
     if (message.period !== undefined) {
       Duration.encode(message.period, writer.uint32(18).fork()).ldelim();
     }
-    for (const v of message.periodSpendLimit) {
+    for (const v of message.period_spend_limit) {
       Coin.encode(v!, writer.uint32(26).fork()).ldelim();
     }
-    for (const v of message.periodCanSpend) {
+    for (const v of message.period_can_spend) {
       Coin.encode(v!, writer.uint32(34).fork()).ldelim();
     }
-    if (message.periodReset !== undefined) {
-      Timestamp.encode(toTimestamp(message.periodReset), writer.uint32(42).fork()).ldelim();
+    if (message.period_reset !== undefined) {
+      Timestamp.encode(toTimestamp(message.period_reset), writer.uint32(42).fork()).ldelim();
     }
     return writer;
   },
@@ -300,13 +300,13 @@ export const PeriodicAllowance = {
           message.period = Duration.decode(reader, reader.uint32());
           break;
         case 3:
-          message.periodSpendLimit.push(Coin.decode(reader, reader.uint32()));
+          message.period_spend_limit.push(Coin.decode(reader, reader.uint32()));
           break;
         case 4:
-          message.periodCanSpend.push(Coin.decode(reader, reader.uint32()));
+          message.period_can_spend.push(Coin.decode(reader, reader.uint32()));
           break;
         case 5:
-          message.periodReset = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.period_reset = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -319,9 +319,9 @@ export const PeriodicAllowance = {
     const message = createBasePeriodicAllowance();
     message.basic = object.basic !== undefined && object.basic !== null ? BasicAllowance.fromPartial(object.basic) : undefined;
     message.period = object.period !== undefined && object.period !== null ? Duration.fromPartial(object.period) : undefined;
-    message.periodSpendLimit = object.periodSpendLimit?.map(e => Coin.fromPartial(e)) || [];
-    message.periodCanSpend = object.periodCanSpend?.map(e => Coin.fromPartial(e)) || [];
-    message.periodReset = object.periodReset ?? undefined;
+    message.period_spend_limit = object.period_spend_limit?.map(e => Coin.fromPartial(e)) || [];
+    message.period_can_spend = object.period_can_spend?.map(e => Coin.fromPartial(e)) || [];
+    message.period_reset = object.period_reset ?? undefined;
     return message;
   },
   fromAmino(object: PeriodicAllowanceAmino): PeriodicAllowance {
@@ -332,10 +332,10 @@ export const PeriodicAllowance = {
     if (object.period !== undefined && object.period !== null) {
       message.period = Duration.fromAmino(object.period);
     }
-    message.periodSpendLimit = object.period_spend_limit?.map(e => Coin.fromAmino(e)) || [];
-    message.periodCanSpend = object.period_can_spend?.map(e => Coin.fromAmino(e)) || [];
+    message.period_spend_limit = object.period_spend_limit?.map(e => Coin.fromAmino(e)) || [];
+    message.period_can_spend = object.period_can_spend?.map(e => Coin.fromAmino(e)) || [];
     if (object.period_reset !== undefined && object.period_reset !== null) {
-      message.periodReset = fromTimestamp(Timestamp.fromAmino(object.period_reset));
+      message.period_reset = fromTimestamp(Timestamp.fromAmino(object.period_reset));
     }
     return message;
   },
@@ -343,17 +343,17 @@ export const PeriodicAllowance = {
     const obj: any = {};
     obj.basic = message.basic ? BasicAllowance.toAmino(message.basic) : BasicAllowance.toAmino(BasicAllowance.fromPartial({}));
     obj.period = message.period ? Duration.toAmino(message.period) : Duration.toAmino(Duration.fromPartial({}));
-    if (message.periodSpendLimit) {
-      obj.period_spend_limit = message.periodSpendLimit.map(e => e ? Coin.toAmino(e) : undefined);
+    if (message.period_spend_limit) {
+      obj.period_spend_limit = message.period_spend_limit.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
-      obj.period_spend_limit = message.periodSpendLimit;
+      obj.period_spend_limit = message.period_spend_limit;
     }
-    if (message.periodCanSpend) {
-      obj.period_can_spend = message.periodCanSpend.map(e => e ? Coin.toAmino(e) : undefined);
+    if (message.period_can_spend) {
+      obj.period_can_spend = message.period_can_spend.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
-      obj.period_can_spend = message.periodCanSpend;
+      obj.period_can_spend = message.period_can_spend;
     }
-    obj.period_reset = message.periodReset ? Timestamp.toAmino(toTimestamp(message.periodReset)) : new Date();
+    obj.period_reset = message.period_reset ? Timestamp.toAmino(toTimestamp(message.period_reset)) : new Date();
     return obj;
   },
   fromAminoMsg(object: PeriodicAllowanceAminoMsg): PeriodicAllowance {
@@ -387,14 +387,14 @@ export const PeriodicAllowance = {
 function createBaseAllowedMsgAllowance(): AllowedMsgAllowance {
   return {
     allowance: undefined,
-    allowedMessages: []
+    allowed_messages: []
   };
 }
 export const AllowedMsgAllowance = {
   typeUrl: "/cosmos.feegrant.v1beta1.AllowedMsgAllowance",
   aminoType: "cosmos-sdk/AllowedMsgAllowance",
   is(o: any): o is AllowedMsgAllowance {
-    return o && (o.$typeUrl === AllowedMsgAllowance.typeUrl || Array.isArray(o.allowedMessages) && (!o.allowedMessages.length || typeof o.allowedMessages[0] === "string"));
+    return o && (o.$typeUrl === AllowedMsgAllowance.typeUrl || Array.isArray(o.allowed_messages) && (!o.allowed_messages.length || typeof o.allowed_messages[0] === "string"));
   },
   isAmino(o: any): o is AllowedMsgAllowanceAmino {
     return o && (o.$typeUrl === AllowedMsgAllowance.typeUrl || Array.isArray(o.allowed_messages) && (!o.allowed_messages.length || typeof o.allowed_messages[0] === "string"));
@@ -403,7 +403,7 @@ export const AllowedMsgAllowance = {
     if (message.allowance !== undefined) {
       Any.encode(GlobalDecoderRegistry.wrapAny(message.allowance), writer.uint32(10).fork()).ldelim();
     }
-    for (const v of message.allowedMessages) {
+    for (const v of message.allowed_messages) {
       writer.uint32(18).string(v!);
     }
     return writer;
@@ -419,7 +419,7 @@ export const AllowedMsgAllowance = {
           message.allowance = GlobalDecoderRegistry.unwrapAny(reader);
           break;
         case 2:
-          message.allowedMessages.push(reader.string());
+          message.allowed_messages.push(reader.string());
           break;
         default:
           reader.skipType(tag & 7);
@@ -431,7 +431,7 @@ export const AllowedMsgAllowance = {
   fromPartial(object: DeepPartial<AllowedMsgAllowance>): AllowedMsgAllowance {
     const message = createBaseAllowedMsgAllowance();
     message.allowance = object.allowance !== undefined && object.allowance !== null ? GlobalDecoderRegistry.fromPartial(object.allowance) : undefined;
-    message.allowedMessages = object.allowedMessages?.map(e => e) || [];
+    message.allowed_messages = object.allowed_messages?.map(e => e) || [];
     return message;
   },
   fromAmino(object: AllowedMsgAllowanceAmino): AllowedMsgAllowance {
@@ -439,16 +439,16 @@ export const AllowedMsgAllowance = {
     if (object.allowance !== undefined && object.allowance !== null) {
       message.allowance = GlobalDecoderRegistry.fromAminoMsg(object.allowance);
     }
-    message.allowedMessages = object.allowed_messages?.map(e => e) || [];
+    message.allowed_messages = object.allowed_messages?.map(e => e) || [];
     return message;
   },
   toAmino(message: AllowedMsgAllowance): AllowedMsgAllowanceAmino {
     const obj: any = {};
     obj.allowance = message.allowance ? GlobalDecoderRegistry.toAminoMsg(message.allowance) : undefined;
-    if (message.allowedMessages) {
-      obj.allowed_messages = message.allowedMessages.map(e => e);
+    if (message.allowed_messages) {
+      obj.allowed_messages = message.allowed_messages.map(e => e);
     } else {
-      obj.allowed_messages = message.allowedMessages;
+      obj.allowed_messages = message.allowed_messages;
     }
     return obj;
   },

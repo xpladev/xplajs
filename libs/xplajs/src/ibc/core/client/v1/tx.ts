@@ -6,17 +6,17 @@ import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../../helpe
 /** MsgCreateClient defines a message to create an IBC client */
 export interface MsgCreateClient {
   /** light client state */
-  clientState?: Any;
+  client_state?: Any;
   /**
    * consensus state associated with the client that corresponds to a given
    * height.
    */
-  consensusState?: Any;
+  consensus_state?: Any;
   /** signer address */
   signer: string;
 }
 export interface MsgCreateClientProtoMsg {
-  typeUrl: "/ibc.core.client.v1.MsgCreateClient";
+  type_url: "/ibc.core.client.v1.MsgCreateClient";
   value: Uint8Array;
 }
 /** MsgCreateClient defines a message to create an IBC client */
@@ -38,7 +38,7 @@ export interface MsgCreateClientAminoMsg {
 /** MsgCreateClientResponse defines the Msg/CreateClient response type. */
 export interface MsgCreateClientResponse {}
 export interface MsgCreateClientResponseProtoMsg {
-  typeUrl: "/ibc.core.client.v1.MsgCreateClientResponse";
+  type_url: "/ibc.core.client.v1.MsgCreateClientResponse";
   value: Uint8Array;
 }
 /** MsgCreateClientResponse defines the Msg/CreateClient response type. */
@@ -53,14 +53,14 @@ export interface MsgCreateClientResponseAminoMsg {
  */
 export interface MsgUpdateClient {
   /** client unique identifier */
-  clientId: string;
+  client_id: string;
   /** client message to update the light client */
-  clientMessage?: Any;
+  client_message?: Any;
   /** signer address */
   signer: string;
 }
 export interface MsgUpdateClientProtoMsg {
-  typeUrl: "/ibc.core.client.v1.MsgUpdateClient";
+  type_url: "/ibc.core.client.v1.MsgUpdateClient";
   value: Uint8Array;
 }
 /**
@@ -82,7 +82,7 @@ export interface MsgUpdateClientAminoMsg {
 /** MsgUpdateClientResponse defines the Msg/UpdateClient response type. */
 export interface MsgUpdateClientResponse {}
 export interface MsgUpdateClientResponseProtoMsg {
-  typeUrl: "/ibc.core.client.v1.MsgUpdateClientResponse";
+  type_url: "/ibc.core.client.v1.MsgUpdateClientResponse";
   value: Uint8Array;
 }
 /** MsgUpdateClientResponse defines the Msg/UpdateClient response type. */
@@ -97,23 +97,23 @@ export interface MsgUpdateClientResponseAminoMsg {
  */
 export interface MsgUpgradeClient {
   /** client unique identifier */
-  clientId: string;
+  client_id: string;
   /** upgraded client state */
-  clientState?: Any;
+  client_state?: Any;
   /**
    * upgraded consensus state, only contains enough information to serve as a
    * basis of trust in update logic
    */
-  consensusState?: Any;
+  consensus_state?: Any;
   /** proof that old chain committed to new client */
-  proofUpgradeClient: Uint8Array;
+  proof_upgrade_client: Uint8Array;
   /** proof that old chain committed to new consensus state */
-  proofUpgradeConsensusState: Uint8Array;
+  proof_upgrade_consensus_state: Uint8Array;
   /** signer address */
   signer: string;
 }
 export interface MsgUpgradeClientProtoMsg {
-  typeUrl: "/ibc.core.client.v1.MsgUpgradeClient";
+  type_url: "/ibc.core.client.v1.MsgUpgradeClient";
   value: Uint8Array;
 }
 /**
@@ -144,7 +144,7 @@ export interface MsgUpgradeClientAminoMsg {
 /** MsgUpgradeClientResponse defines the Msg/UpgradeClient response type. */
 export interface MsgUpgradeClientResponse {}
 export interface MsgUpgradeClientResponseProtoMsg {
-  typeUrl: "/ibc.core.client.v1.MsgUpgradeClientResponse";
+  type_url: "/ibc.core.client.v1.MsgUpgradeClientResponse";
   value: Uint8Array;
 }
 /** MsgUpgradeClientResponse defines the Msg/UpgradeClient response type. */
@@ -161,14 +161,14 @@ export interface MsgUpgradeClientResponseAminoMsg {
 /** @deprecated */
 export interface MsgSubmitMisbehaviour {
   /** client unique identifier */
-  clientId: string;
+  client_id: string;
   /** misbehaviour used for freezing the light client */
   misbehaviour?: Any;
   /** signer address */
   signer: string;
 }
 export interface MsgSubmitMisbehaviourProtoMsg {
-  typeUrl: "/ibc.core.client.v1.MsgSubmitMisbehaviour";
+  type_url: "/ibc.core.client.v1.MsgSubmitMisbehaviour";
   value: Uint8Array;
 }
 /**
@@ -195,7 +195,7 @@ export interface MsgSubmitMisbehaviourAminoMsg {
  */
 export interface MsgSubmitMisbehaviourResponse {}
 export interface MsgSubmitMisbehaviourResponseProtoMsg {
-  typeUrl: "/ibc.core.client.v1.MsgSubmitMisbehaviourResponse";
+  type_url: "/ibc.core.client.v1.MsgSubmitMisbehaviourResponse";
   value: Uint8Array;
 }
 /**
@@ -210,17 +210,17 @@ export interface MsgSubmitMisbehaviourResponseAminoMsg {
 /** MsgRecoverClient defines the message used to recover a frozen or expired client. */
 export interface MsgRecoverClient {
   /** the client identifier for the client to be updated if the proposal passes */
-  subjectClientId: string;
+  subject_client_id: string;
   /**
    * the substitute client identifier for the client which will replace the subject
    * client
    */
-  substituteClientId: string;
+  substitute_client_id: string;
   /** signer address */
   signer: string;
 }
 export interface MsgRecoverClientProtoMsg {
-  typeUrl: "/ibc.core.client.v1.MsgRecoverClient";
+  type_url: "/ibc.core.client.v1.MsgRecoverClient";
   value: Uint8Array;
 }
 /** MsgRecoverClient defines the message used to recover a frozen or expired client. */
@@ -242,7 +242,7 @@ export interface MsgRecoverClientAminoMsg {
 /** MsgRecoverClientResponse defines the Msg/RecoverClient response type. */
 export interface MsgRecoverClientResponse {}
 export interface MsgRecoverClientResponseProtoMsg {
-  typeUrl: "/ibc.core.client.v1.MsgRecoverClientResponse";
+  type_url: "/ibc.core.client.v1.MsgRecoverClientResponse";
   value: Uint8Array;
 }
 /** MsgRecoverClientResponse defines the Msg/RecoverClient response type. */
@@ -264,12 +264,12 @@ export interface MsgIBCSoftwareUpgrade {
    * deprecated in the Cosmos SDK to allow for this logic to exist solely in
    * the 02-client module.
    */
-  upgradedClientState?: Any;
+  upgraded_client_state?: Any;
   /** signer address */
   signer: string;
 }
 export interface MsgIBCSoftwareUpgradeProtoMsg {
-  typeUrl: "/ibc.core.client.v1.MsgIBCSoftwareUpgrade";
+  type_url: "/ibc.core.client.v1.MsgIBCSoftwareUpgrade";
   value: Uint8Array;
 }
 /** MsgIBCSoftwareUpgrade defines the message used to schedule an upgrade of an IBC client using a v1 governance proposal */
@@ -296,7 +296,7 @@ export interface MsgIBCSoftwareUpgradeAminoMsg {
 /** MsgIBCSoftwareUpgradeResponse defines the Msg/IBCSoftwareUpgrade response type. */
 export interface MsgIBCSoftwareUpgradeResponse {}
 export interface MsgIBCSoftwareUpgradeResponseProtoMsg {
-  typeUrl: "/ibc.core.client.v1.MsgIBCSoftwareUpgradeResponse";
+  type_url: "/ibc.core.client.v1.MsgIBCSoftwareUpgradeResponse";
   value: Uint8Array;
 }
 /** MsgIBCSoftwareUpgradeResponse defines the Msg/IBCSoftwareUpgrade response type. */
@@ -317,7 +317,7 @@ export interface MsgUpdateParams {
   params: Params;
 }
 export interface MsgUpdateParamsProtoMsg {
-  typeUrl: "/ibc.core.client.v1.MsgUpdateParams";
+  type_url: "/ibc.core.client.v1.MsgUpdateParams";
   value: Uint8Array;
 }
 /** MsgUpdateParams defines the sdk.Msg type to update the client parameters. */
@@ -338,7 +338,7 @@ export interface MsgUpdateParamsAminoMsg {
 /** MsgUpdateParamsResponse defines the MsgUpdateParams response type. */
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
-  typeUrl: "/ibc.core.client.v1.MsgUpdateParamsResponse";
+  type_url: "/ibc.core.client.v1.MsgUpdateParamsResponse";
   value: Uint8Array;
 }
 /** MsgUpdateParamsResponse defines the MsgUpdateParams response type. */
@@ -349,8 +349,8 @@ export interface MsgUpdateParamsResponseAminoMsg {
 }
 function createBaseMsgCreateClient(): MsgCreateClient {
   return {
-    clientState: undefined,
-    consensusState: undefined,
+    client_state: undefined,
+    consensus_state: undefined,
     signer: ""
   };
 }
@@ -364,11 +364,11 @@ export const MsgCreateClient = {
     return o && (o.$typeUrl === MsgCreateClient.typeUrl || typeof o.signer === "string");
   },
   encode(message: MsgCreateClient, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.clientState !== undefined) {
-      Any.encode(message.clientState, writer.uint32(10).fork()).ldelim();
+    if (message.client_state !== undefined) {
+      Any.encode(message.client_state, writer.uint32(10).fork()).ldelim();
     }
-    if (message.consensusState !== undefined) {
-      Any.encode(message.consensusState, writer.uint32(18).fork()).ldelim();
+    if (message.consensus_state !== undefined) {
+      Any.encode(message.consensus_state, writer.uint32(18).fork()).ldelim();
     }
     if (message.signer !== "") {
       writer.uint32(26).string(message.signer);
@@ -383,10 +383,10 @@ export const MsgCreateClient = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.clientState = Any.decode(reader, reader.uint32());
+          message.client_state = Any.decode(reader, reader.uint32());
           break;
         case 2:
-          message.consensusState = Any.decode(reader, reader.uint32());
+          message.consensus_state = Any.decode(reader, reader.uint32());
           break;
         case 3:
           message.signer = reader.string();
@@ -400,18 +400,18 @@ export const MsgCreateClient = {
   },
   fromPartial(object: DeepPartial<MsgCreateClient>): MsgCreateClient {
     const message = createBaseMsgCreateClient();
-    message.clientState = object.clientState !== undefined && object.clientState !== null ? Any.fromPartial(object.clientState) : undefined;
-    message.consensusState = object.consensusState !== undefined && object.consensusState !== null ? Any.fromPartial(object.consensusState) : undefined;
+    message.client_state = object.client_state !== undefined && object.client_state !== null ? Any.fromPartial(object.client_state) : undefined;
+    message.consensus_state = object.consensus_state !== undefined && object.consensus_state !== null ? Any.fromPartial(object.consensus_state) : undefined;
     message.signer = object.signer ?? "";
     return message;
   },
   fromAmino(object: MsgCreateClientAmino): MsgCreateClient {
     const message = createBaseMsgCreateClient();
     if (object.client_state !== undefined && object.client_state !== null) {
-      message.clientState = Any.fromAmino(object.client_state);
+      message.client_state = Any.fromAmino(object.client_state);
     }
     if (object.consensus_state !== undefined && object.consensus_state !== null) {
-      message.consensusState = Any.fromAmino(object.consensus_state);
+      message.consensus_state = Any.fromAmino(object.consensus_state);
     }
     if (object.signer !== undefined && object.signer !== null) {
       message.signer = object.signer;
@@ -420,8 +420,8 @@ export const MsgCreateClient = {
   },
   toAmino(message: MsgCreateClient): MsgCreateClientAmino {
     const obj: any = {};
-    obj.client_state = message.clientState ? Any.toAmino(message.clientState) : undefined;
-    obj.consensus_state = message.consensusState ? Any.toAmino(message.consensusState) : undefined;
+    obj.client_state = message.client_state ? Any.toAmino(message.client_state) : undefined;
+    obj.consensus_state = message.consensus_state ? Any.toAmino(message.consensus_state) : undefined;
     obj.signer = message.signer === "" ? undefined : message.signer;
     return obj;
   },
@@ -514,8 +514,8 @@ export const MsgCreateClientResponse = {
 };
 function createBaseMsgUpdateClient(): MsgUpdateClient {
   return {
-    clientId: "",
-    clientMessage: undefined,
+    client_id: "",
+    client_message: undefined,
     signer: ""
   };
 }
@@ -523,17 +523,17 @@ export const MsgUpdateClient = {
   typeUrl: "/ibc.core.client.v1.MsgUpdateClient",
   aminoType: "cosmos-sdk/MsgUpdateClient",
   is(o: any): o is MsgUpdateClient {
-    return o && (o.$typeUrl === MsgUpdateClient.typeUrl || typeof o.clientId === "string" && typeof o.signer === "string");
+    return o && (o.$typeUrl === MsgUpdateClient.typeUrl || typeof o.client_id === "string" && typeof o.signer === "string");
   },
   isAmino(o: any): o is MsgUpdateClientAmino {
     return o && (o.$typeUrl === MsgUpdateClient.typeUrl || typeof o.client_id === "string" && typeof o.signer === "string");
   },
   encode(message: MsgUpdateClient, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.clientId !== "") {
-      writer.uint32(10).string(message.clientId);
+    if (message.client_id !== "") {
+      writer.uint32(10).string(message.client_id);
     }
-    if (message.clientMessage !== undefined) {
-      Any.encode(message.clientMessage, writer.uint32(18).fork()).ldelim();
+    if (message.client_message !== undefined) {
+      Any.encode(message.client_message, writer.uint32(18).fork()).ldelim();
     }
     if (message.signer !== "") {
       writer.uint32(26).string(message.signer);
@@ -548,10 +548,10 @@ export const MsgUpdateClient = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.clientId = reader.string();
+          message.client_id = reader.string();
           break;
         case 2:
-          message.clientMessage = Any.decode(reader, reader.uint32());
+          message.client_message = Any.decode(reader, reader.uint32());
           break;
         case 3:
           message.signer = reader.string();
@@ -565,18 +565,18 @@ export const MsgUpdateClient = {
   },
   fromPartial(object: DeepPartial<MsgUpdateClient>): MsgUpdateClient {
     const message = createBaseMsgUpdateClient();
-    message.clientId = object.clientId ?? "";
-    message.clientMessage = object.clientMessage !== undefined && object.clientMessage !== null ? Any.fromPartial(object.clientMessage) : undefined;
+    message.client_id = object.client_id ?? "";
+    message.client_message = object.client_message !== undefined && object.client_message !== null ? Any.fromPartial(object.client_message) : undefined;
     message.signer = object.signer ?? "";
     return message;
   },
   fromAmino(object: MsgUpdateClientAmino): MsgUpdateClient {
     const message = createBaseMsgUpdateClient();
     if (object.client_id !== undefined && object.client_id !== null) {
-      message.clientId = object.client_id;
+      message.client_id = object.client_id;
     }
     if (object.client_message !== undefined && object.client_message !== null) {
-      message.clientMessage = Any.fromAmino(object.client_message);
+      message.client_message = Any.fromAmino(object.client_message);
     }
     if (object.signer !== undefined && object.signer !== null) {
       message.signer = object.signer;
@@ -585,8 +585,8 @@ export const MsgUpdateClient = {
   },
   toAmino(message: MsgUpdateClient): MsgUpdateClientAmino {
     const obj: any = {};
-    obj.client_id = message.clientId === "" ? undefined : message.clientId;
-    obj.client_message = message.clientMessage ? Any.toAmino(message.clientMessage) : undefined;
+    obj.client_id = message.client_id === "" ? undefined : message.client_id;
+    obj.client_message = message.client_message ? Any.toAmino(message.client_message) : undefined;
     obj.signer = message.signer === "" ? undefined : message.signer;
     return obj;
   },
@@ -679,11 +679,11 @@ export const MsgUpdateClientResponse = {
 };
 function createBaseMsgUpgradeClient(): MsgUpgradeClient {
   return {
-    clientId: "",
-    clientState: undefined,
-    consensusState: undefined,
-    proofUpgradeClient: new Uint8Array(),
-    proofUpgradeConsensusState: new Uint8Array(),
+    client_id: "",
+    client_state: undefined,
+    consensus_state: undefined,
+    proof_upgrade_client: new Uint8Array(),
+    proof_upgrade_consensus_state: new Uint8Array(),
     signer: ""
   };
 }
@@ -691,26 +691,26 @@ export const MsgUpgradeClient = {
   typeUrl: "/ibc.core.client.v1.MsgUpgradeClient",
   aminoType: "cosmos-sdk/MsgUpgradeClient",
   is(o: any): o is MsgUpgradeClient {
-    return o && (o.$typeUrl === MsgUpgradeClient.typeUrl || typeof o.clientId === "string" && (o.proofUpgradeClient instanceof Uint8Array || typeof o.proofUpgradeClient === "string") && (o.proofUpgradeConsensusState instanceof Uint8Array || typeof o.proofUpgradeConsensusState === "string") && typeof o.signer === "string");
+    return o && (o.$typeUrl === MsgUpgradeClient.typeUrl || typeof o.client_id === "string" && (o.proof_upgrade_client instanceof Uint8Array || typeof o.proof_upgrade_client === "string") && (o.proof_upgrade_consensus_state instanceof Uint8Array || typeof o.proof_upgrade_consensus_state === "string") && typeof o.signer === "string");
   },
   isAmino(o: any): o is MsgUpgradeClientAmino {
     return o && (o.$typeUrl === MsgUpgradeClient.typeUrl || typeof o.client_id === "string" && (o.proof_upgrade_client instanceof Uint8Array || typeof o.proof_upgrade_client === "string") && (o.proof_upgrade_consensus_state instanceof Uint8Array || typeof o.proof_upgrade_consensus_state === "string") && typeof o.signer === "string");
   },
   encode(message: MsgUpgradeClient, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.clientId !== "") {
-      writer.uint32(10).string(message.clientId);
+    if (message.client_id !== "") {
+      writer.uint32(10).string(message.client_id);
     }
-    if (message.clientState !== undefined) {
-      Any.encode(message.clientState, writer.uint32(18).fork()).ldelim();
+    if (message.client_state !== undefined) {
+      Any.encode(message.client_state, writer.uint32(18).fork()).ldelim();
     }
-    if (message.consensusState !== undefined) {
-      Any.encode(message.consensusState, writer.uint32(26).fork()).ldelim();
+    if (message.consensus_state !== undefined) {
+      Any.encode(message.consensus_state, writer.uint32(26).fork()).ldelim();
     }
-    if (message.proofUpgradeClient.length !== 0) {
-      writer.uint32(34).bytes(message.proofUpgradeClient);
+    if (message.proof_upgrade_client.length !== 0) {
+      writer.uint32(34).bytes(message.proof_upgrade_client);
     }
-    if (message.proofUpgradeConsensusState.length !== 0) {
-      writer.uint32(42).bytes(message.proofUpgradeConsensusState);
+    if (message.proof_upgrade_consensus_state.length !== 0) {
+      writer.uint32(42).bytes(message.proof_upgrade_consensus_state);
     }
     if (message.signer !== "") {
       writer.uint32(50).string(message.signer);
@@ -725,19 +725,19 @@ export const MsgUpgradeClient = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.clientId = reader.string();
+          message.client_id = reader.string();
           break;
         case 2:
-          message.clientState = Any.decode(reader, reader.uint32());
+          message.client_state = Any.decode(reader, reader.uint32());
           break;
         case 3:
-          message.consensusState = Any.decode(reader, reader.uint32());
+          message.consensus_state = Any.decode(reader, reader.uint32());
           break;
         case 4:
-          message.proofUpgradeClient = reader.bytes();
+          message.proof_upgrade_client = reader.bytes();
           break;
         case 5:
-          message.proofUpgradeConsensusState = reader.bytes();
+          message.proof_upgrade_consensus_state = reader.bytes();
           break;
         case 6:
           message.signer = reader.string();
@@ -751,30 +751,30 @@ export const MsgUpgradeClient = {
   },
   fromPartial(object: DeepPartial<MsgUpgradeClient>): MsgUpgradeClient {
     const message = createBaseMsgUpgradeClient();
-    message.clientId = object.clientId ?? "";
-    message.clientState = object.clientState !== undefined && object.clientState !== null ? Any.fromPartial(object.clientState) : undefined;
-    message.consensusState = object.consensusState !== undefined && object.consensusState !== null ? Any.fromPartial(object.consensusState) : undefined;
-    message.proofUpgradeClient = object.proofUpgradeClient ?? new Uint8Array();
-    message.proofUpgradeConsensusState = object.proofUpgradeConsensusState ?? new Uint8Array();
+    message.client_id = object.client_id ?? "";
+    message.client_state = object.client_state !== undefined && object.client_state !== null ? Any.fromPartial(object.client_state) : undefined;
+    message.consensus_state = object.consensus_state !== undefined && object.consensus_state !== null ? Any.fromPartial(object.consensus_state) : undefined;
+    message.proof_upgrade_client = object.proof_upgrade_client ?? new Uint8Array();
+    message.proof_upgrade_consensus_state = object.proof_upgrade_consensus_state ?? new Uint8Array();
     message.signer = object.signer ?? "";
     return message;
   },
   fromAmino(object: MsgUpgradeClientAmino): MsgUpgradeClient {
     const message = createBaseMsgUpgradeClient();
     if (object.client_id !== undefined && object.client_id !== null) {
-      message.clientId = object.client_id;
+      message.client_id = object.client_id;
     }
     if (object.client_state !== undefined && object.client_state !== null) {
-      message.clientState = Any.fromAmino(object.client_state);
+      message.client_state = Any.fromAmino(object.client_state);
     }
     if (object.consensus_state !== undefined && object.consensus_state !== null) {
-      message.consensusState = Any.fromAmino(object.consensus_state);
+      message.consensus_state = Any.fromAmino(object.consensus_state);
     }
     if (object.proof_upgrade_client !== undefined && object.proof_upgrade_client !== null) {
-      message.proofUpgradeClient = bytesFromBase64(object.proof_upgrade_client);
+      message.proof_upgrade_client = bytesFromBase64(object.proof_upgrade_client);
     }
     if (object.proof_upgrade_consensus_state !== undefined && object.proof_upgrade_consensus_state !== null) {
-      message.proofUpgradeConsensusState = bytesFromBase64(object.proof_upgrade_consensus_state);
+      message.proof_upgrade_consensus_state = bytesFromBase64(object.proof_upgrade_consensus_state);
     }
     if (object.signer !== undefined && object.signer !== null) {
       message.signer = object.signer;
@@ -783,11 +783,11 @@ export const MsgUpgradeClient = {
   },
   toAmino(message: MsgUpgradeClient): MsgUpgradeClientAmino {
     const obj: any = {};
-    obj.client_id = message.clientId === "" ? undefined : message.clientId;
-    obj.client_state = message.clientState ? Any.toAmino(message.clientState) : undefined;
-    obj.consensus_state = message.consensusState ? Any.toAmino(message.consensusState) : undefined;
-    obj.proof_upgrade_client = message.proofUpgradeClient ? base64FromBytes(message.proofUpgradeClient) : undefined;
-    obj.proof_upgrade_consensus_state = message.proofUpgradeConsensusState ? base64FromBytes(message.proofUpgradeConsensusState) : undefined;
+    obj.client_id = message.client_id === "" ? undefined : message.client_id;
+    obj.client_state = message.client_state ? Any.toAmino(message.client_state) : undefined;
+    obj.consensus_state = message.consensus_state ? Any.toAmino(message.consensus_state) : undefined;
+    obj.proof_upgrade_client = message.proof_upgrade_client ? base64FromBytes(message.proof_upgrade_client) : undefined;
+    obj.proof_upgrade_consensus_state = message.proof_upgrade_consensus_state ? base64FromBytes(message.proof_upgrade_consensus_state) : undefined;
     obj.signer = message.signer === "" ? undefined : message.signer;
     return obj;
   },
@@ -880,7 +880,7 @@ export const MsgUpgradeClientResponse = {
 };
 function createBaseMsgSubmitMisbehaviour(): MsgSubmitMisbehaviour {
   return {
-    clientId: "",
+    client_id: "",
     misbehaviour: undefined,
     signer: ""
   };
@@ -889,14 +889,14 @@ export const MsgSubmitMisbehaviour = {
   typeUrl: "/ibc.core.client.v1.MsgSubmitMisbehaviour",
   aminoType: "cosmos-sdk/MsgSubmitMisbehaviour",
   is(o: any): o is MsgSubmitMisbehaviour {
-    return o && (o.$typeUrl === MsgSubmitMisbehaviour.typeUrl || typeof o.clientId === "string" && typeof o.signer === "string");
+    return o && (o.$typeUrl === MsgSubmitMisbehaviour.typeUrl || typeof o.client_id === "string" && typeof o.signer === "string");
   },
   isAmino(o: any): o is MsgSubmitMisbehaviourAmino {
     return o && (o.$typeUrl === MsgSubmitMisbehaviour.typeUrl || typeof o.client_id === "string" && typeof o.signer === "string");
   },
   encode(message: MsgSubmitMisbehaviour, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.clientId !== "") {
-      writer.uint32(10).string(message.clientId);
+    if (message.client_id !== "") {
+      writer.uint32(10).string(message.client_id);
     }
     if (message.misbehaviour !== undefined) {
       Any.encode(message.misbehaviour, writer.uint32(18).fork()).ldelim();
@@ -914,7 +914,7 @@ export const MsgSubmitMisbehaviour = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.clientId = reader.string();
+          message.client_id = reader.string();
           break;
         case 2:
           message.misbehaviour = Any.decode(reader, reader.uint32());
@@ -931,7 +931,7 @@ export const MsgSubmitMisbehaviour = {
   },
   fromPartial(object: DeepPartial<MsgSubmitMisbehaviour>): MsgSubmitMisbehaviour {
     const message = createBaseMsgSubmitMisbehaviour();
-    message.clientId = object.clientId ?? "";
+    message.client_id = object.client_id ?? "";
     message.misbehaviour = object.misbehaviour !== undefined && object.misbehaviour !== null ? Any.fromPartial(object.misbehaviour) : undefined;
     message.signer = object.signer ?? "";
     return message;
@@ -939,7 +939,7 @@ export const MsgSubmitMisbehaviour = {
   fromAmino(object: MsgSubmitMisbehaviourAmino): MsgSubmitMisbehaviour {
     const message = createBaseMsgSubmitMisbehaviour();
     if (object.client_id !== undefined && object.client_id !== null) {
-      message.clientId = object.client_id;
+      message.client_id = object.client_id;
     }
     if (object.misbehaviour !== undefined && object.misbehaviour !== null) {
       message.misbehaviour = Any.fromAmino(object.misbehaviour);
@@ -951,7 +951,7 @@ export const MsgSubmitMisbehaviour = {
   },
   toAmino(message: MsgSubmitMisbehaviour): MsgSubmitMisbehaviourAmino {
     const obj: any = {};
-    obj.client_id = message.clientId === "" ? undefined : message.clientId;
+    obj.client_id = message.client_id === "" ? undefined : message.client_id;
     obj.misbehaviour = message.misbehaviour ? Any.toAmino(message.misbehaviour) : undefined;
     obj.signer = message.signer === "" ? undefined : message.signer;
     return obj;
@@ -1045,8 +1045,8 @@ export const MsgSubmitMisbehaviourResponse = {
 };
 function createBaseMsgRecoverClient(): MsgRecoverClient {
   return {
-    subjectClientId: "",
-    substituteClientId: "",
+    subject_client_id: "",
+    substitute_client_id: "",
     signer: ""
   };
 }
@@ -1054,17 +1054,17 @@ export const MsgRecoverClient = {
   typeUrl: "/ibc.core.client.v1.MsgRecoverClient",
   aminoType: "cosmos-sdk/MsgRecoverClient",
   is(o: any): o is MsgRecoverClient {
-    return o && (o.$typeUrl === MsgRecoverClient.typeUrl || typeof o.subjectClientId === "string" && typeof o.substituteClientId === "string" && typeof o.signer === "string");
+    return o && (o.$typeUrl === MsgRecoverClient.typeUrl || typeof o.subject_client_id === "string" && typeof o.substitute_client_id === "string" && typeof o.signer === "string");
   },
   isAmino(o: any): o is MsgRecoverClientAmino {
     return o && (o.$typeUrl === MsgRecoverClient.typeUrl || typeof o.subject_client_id === "string" && typeof o.substitute_client_id === "string" && typeof o.signer === "string");
   },
   encode(message: MsgRecoverClient, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.subjectClientId !== "") {
-      writer.uint32(10).string(message.subjectClientId);
+    if (message.subject_client_id !== "") {
+      writer.uint32(10).string(message.subject_client_id);
     }
-    if (message.substituteClientId !== "") {
-      writer.uint32(18).string(message.substituteClientId);
+    if (message.substitute_client_id !== "") {
+      writer.uint32(18).string(message.substitute_client_id);
     }
     if (message.signer !== "") {
       writer.uint32(26).string(message.signer);
@@ -1079,10 +1079,10 @@ export const MsgRecoverClient = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.subjectClientId = reader.string();
+          message.subject_client_id = reader.string();
           break;
         case 2:
-          message.substituteClientId = reader.string();
+          message.substitute_client_id = reader.string();
           break;
         case 3:
           message.signer = reader.string();
@@ -1096,18 +1096,18 @@ export const MsgRecoverClient = {
   },
   fromPartial(object: DeepPartial<MsgRecoverClient>): MsgRecoverClient {
     const message = createBaseMsgRecoverClient();
-    message.subjectClientId = object.subjectClientId ?? "";
-    message.substituteClientId = object.substituteClientId ?? "";
+    message.subject_client_id = object.subject_client_id ?? "";
+    message.substitute_client_id = object.substitute_client_id ?? "";
     message.signer = object.signer ?? "";
     return message;
   },
   fromAmino(object: MsgRecoverClientAmino): MsgRecoverClient {
     const message = createBaseMsgRecoverClient();
     if (object.subject_client_id !== undefined && object.subject_client_id !== null) {
-      message.subjectClientId = object.subject_client_id;
+      message.subject_client_id = object.subject_client_id;
     }
     if (object.substitute_client_id !== undefined && object.substitute_client_id !== null) {
-      message.substituteClientId = object.substitute_client_id;
+      message.substitute_client_id = object.substitute_client_id;
     }
     if (object.signer !== undefined && object.signer !== null) {
       message.signer = object.signer;
@@ -1116,8 +1116,8 @@ export const MsgRecoverClient = {
   },
   toAmino(message: MsgRecoverClient): MsgRecoverClientAmino {
     const obj: any = {};
-    obj.subject_client_id = message.subjectClientId === "" ? undefined : message.subjectClientId;
-    obj.substitute_client_id = message.substituteClientId === "" ? undefined : message.substituteClientId;
+    obj.subject_client_id = message.subject_client_id === "" ? undefined : message.subject_client_id;
+    obj.substitute_client_id = message.substitute_client_id === "" ? undefined : message.substitute_client_id;
     obj.signer = message.signer === "" ? undefined : message.signer;
     return obj;
   },
@@ -1211,7 +1211,7 @@ export const MsgRecoverClientResponse = {
 function createBaseMsgIBCSoftwareUpgrade(): MsgIBCSoftwareUpgrade {
   return {
     plan: Plan.fromPartial({}),
-    upgradedClientState: undefined,
+    upgraded_client_state: undefined,
     signer: ""
   };
 }
@@ -1228,8 +1228,8 @@ export const MsgIBCSoftwareUpgrade = {
     if (message.plan !== undefined) {
       Plan.encode(message.plan, writer.uint32(10).fork()).ldelim();
     }
-    if (message.upgradedClientState !== undefined) {
-      Any.encode(message.upgradedClientState, writer.uint32(18).fork()).ldelim();
+    if (message.upgraded_client_state !== undefined) {
+      Any.encode(message.upgraded_client_state, writer.uint32(18).fork()).ldelim();
     }
     if (message.signer !== "") {
       writer.uint32(26).string(message.signer);
@@ -1247,7 +1247,7 @@ export const MsgIBCSoftwareUpgrade = {
           message.plan = Plan.decode(reader, reader.uint32());
           break;
         case 2:
-          message.upgradedClientState = Any.decode(reader, reader.uint32());
+          message.upgraded_client_state = Any.decode(reader, reader.uint32());
           break;
         case 3:
           message.signer = reader.string();
@@ -1262,7 +1262,7 @@ export const MsgIBCSoftwareUpgrade = {
   fromPartial(object: DeepPartial<MsgIBCSoftwareUpgrade>): MsgIBCSoftwareUpgrade {
     const message = createBaseMsgIBCSoftwareUpgrade();
     message.plan = object.plan !== undefined && object.plan !== null ? Plan.fromPartial(object.plan) : undefined;
-    message.upgradedClientState = object.upgradedClientState !== undefined && object.upgradedClientState !== null ? Any.fromPartial(object.upgradedClientState) : undefined;
+    message.upgraded_client_state = object.upgraded_client_state !== undefined && object.upgraded_client_state !== null ? Any.fromPartial(object.upgraded_client_state) : undefined;
     message.signer = object.signer ?? "";
     return message;
   },
@@ -1272,7 +1272,7 @@ export const MsgIBCSoftwareUpgrade = {
       message.plan = Plan.fromAmino(object.plan);
     }
     if (object.upgraded_client_state !== undefined && object.upgraded_client_state !== null) {
-      message.upgradedClientState = Any.fromAmino(object.upgraded_client_state);
+      message.upgraded_client_state = Any.fromAmino(object.upgraded_client_state);
     }
     if (object.signer !== undefined && object.signer !== null) {
       message.signer = object.signer;
@@ -1282,7 +1282,7 @@ export const MsgIBCSoftwareUpgrade = {
   toAmino(message: MsgIBCSoftwareUpgrade): MsgIBCSoftwareUpgradeAmino {
     const obj: any = {};
     obj.plan = message.plan ? Plan.toAmino(message.plan) : undefined;
-    obj.upgraded_client_state = message.upgradedClientState ? Any.toAmino(message.upgradedClientState) : undefined;
+    obj.upgraded_client_state = message.upgraded_client_state ? Any.toAmino(message.upgraded_client_state) : undefined;
     obj.signer = message.signer === "" ? undefined : message.signer;
     return obj;
   },

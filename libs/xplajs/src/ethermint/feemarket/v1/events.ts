@@ -3,10 +3,10 @@ import { DeepPartial } from "../../../helpers";
 /** EventFeeMarket is the event type for the fee market module */
 export interface EventFeeMarket {
   /** base_fee for EIP-1559 blocks */
-  baseFee: string;
+  base_fee: string;
 }
 export interface EventFeeMarketProtoMsg {
-  typeUrl: "/ethermint.feemarket.v1.EventFeeMarket";
+  type_url: "/ethermint.feemarket.v1.EventFeeMarket";
   value: Uint8Array;
 }
 /** EventFeeMarket is the event type for the fee market module */
@@ -26,7 +26,7 @@ export interface EventBlockGas {
   amount: string;
 }
 export interface EventBlockGasProtoMsg {
-  typeUrl: "/ethermint.feemarket.v1.EventBlockGas";
+  type_url: "/ethermint.feemarket.v1.EventBlockGas";
   value: Uint8Array;
 }
 /** EventBlockGas defines an Ethereum block gas event */
@@ -42,20 +42,20 @@ export interface EventBlockGasAminoMsg {
 }
 function createBaseEventFeeMarket(): EventFeeMarket {
   return {
-    baseFee: ""
+    base_fee: ""
   };
 }
 export const EventFeeMarket = {
   typeUrl: "/ethermint.feemarket.v1.EventFeeMarket",
   is(o: any): o is EventFeeMarket {
-    return o && (o.$typeUrl === EventFeeMarket.typeUrl || typeof o.baseFee === "string");
+    return o && (o.$typeUrl === EventFeeMarket.typeUrl || typeof o.base_fee === "string");
   },
   isAmino(o: any): o is EventFeeMarketAmino {
     return o && (o.$typeUrl === EventFeeMarket.typeUrl || typeof o.base_fee === "string");
   },
   encode(message: EventFeeMarket, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.baseFee !== "") {
-      writer.uint32(10).string(message.baseFee);
+    if (message.base_fee !== "") {
+      writer.uint32(10).string(message.base_fee);
     }
     return writer;
   },
@@ -67,7 +67,7 @@ export const EventFeeMarket = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.baseFee = reader.string();
+          message.base_fee = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -78,19 +78,19 @@ export const EventFeeMarket = {
   },
   fromPartial(object: DeepPartial<EventFeeMarket>): EventFeeMarket {
     const message = createBaseEventFeeMarket();
-    message.baseFee = object.baseFee ?? "";
+    message.base_fee = object.base_fee ?? "";
     return message;
   },
   fromAmino(object: EventFeeMarketAmino): EventFeeMarket {
     const message = createBaseEventFeeMarket();
     if (object.base_fee !== undefined && object.base_fee !== null) {
-      message.baseFee = object.base_fee;
+      message.base_fee = object.base_fee;
     }
     return message;
   },
   toAmino(message: EventFeeMarket): EventFeeMarketAmino {
     const obj: any = {};
-    obj.base_fee = message.baseFee === "" ? undefined : message.baseFee;
+    obj.base_fee = message.base_fee === "" ? undefined : message.base_fee;
     return obj;
   },
   fromAminoMsg(object: EventFeeMarketAminoMsg): EventFeeMarket {

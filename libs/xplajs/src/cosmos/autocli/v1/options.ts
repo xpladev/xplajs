@@ -8,7 +8,7 @@ export interface ModuleOptions {
   query?: ServiceCommandDescriptor;
 }
 export interface ModuleOptionsProtoMsg {
-  typeUrl: "/cosmos.autocli.v1.ModuleOptions";
+  type_url: "/cosmos.autocli.v1.ModuleOptions";
   value: Uint8Array;
 }
 /** ModuleOptions describes the CLI options for a Cosmos SDK module. */
@@ -27,7 +27,7 @@ export interface ServiceCommandDescriptor_SubCommandsEntry {
   value?: ServiceCommandDescriptor;
 }
 export interface ServiceCommandDescriptor_SubCommandsEntryProtoMsg {
-  typeUrl: string;
+  type_url: string;
   value: Uint8Array;
 }
 export interface ServiceCommandDescriptor_SubCommandsEntryAmino {
@@ -51,18 +51,18 @@ export interface ServiceCommandDescriptor {
    * If no options are specified for a given rpc method on the service, a
    * command will be generated for that method with the default options.
    */
-  rpcCommandOptions: RpcCommandOptions[];
+  rpc_command_options: RpcCommandOptions[];
   /**
    * sub_commands is a map of optional sub-commands for this command based on
    * different protobuf services. The map key is used as the name of the
    * sub-command.
    */
-  subCommands: {
+  sub_commands: {
     [key: string]: ServiceCommandDescriptor;
   };
 }
 export interface ServiceCommandDescriptorProtoMsg {
-  typeUrl: "/cosmos.autocli.v1.ServiceCommandDescriptor";
+  type_url: "/cosmos.autocli.v1.ServiceCommandDescriptor";
   value: Uint8Array;
 }
 /** ServiceCommandDescriptor describes a CLI command based on a protobuf service. */
@@ -97,7 +97,7 @@ export interface RpcCommandOptions_FlagOptionsEntry {
   value?: FlagOptions;
 }
 export interface RpcCommandOptions_FlagOptionsEntryProtoMsg {
-  typeUrl: string;
+  type_url: string;
   value: Uint8Array;
 }
 export interface RpcCommandOptions_FlagOptionsEntryAmino {
@@ -117,7 +117,7 @@ export interface RpcCommandOptions {
    * rpc_method is short name of the protobuf rpc method that this command is
    * generated from.
    */
-  rpcMethod: string;
+  rpc_method: string;
   /**
    * use is the one-line usage method. It also allows specifying an alternate
    * name for the command as the first word of the usage text.
@@ -138,7 +138,7 @@ export interface RpcCommandOptions {
    * suggest_for is an array of command names for which this command will be suggested -
    * similar to aliases but only suggests.
    */
-  suggestFor: string[];
+  suggest_for: string[];
   /** deprecated defines, if this command is deprecated and should print this string when used. */
   deprecated: string;
   /**
@@ -153,16 +153,16 @@ export interface RpcCommandOptions {
    * By default all request fields are configured as flags. They can
    * also be configured as positional args instead using positional_args.
    */
-  flagOptions: {
+  flag_options: {
     [key: string]: FlagOptions;
   };
   /** positional_args specifies positional arguments for the command. */
-  positionalArgs: PositionalArgDescriptor[];
+  positional_args: PositionalArgDescriptor[];
   /** skip specifies whether to skip this rpc method when generating commands. */
   skip: boolean;
 }
 export interface RpcCommandOptionsProtoMsg {
-  typeUrl: "/cosmos.autocli.v1.RpcCommandOptions";
+  type_url: "/cosmos.autocli.v1.RpcCommandOptions";
   value: Uint8Array;
 }
 /**
@@ -236,16 +236,16 @@ export interface FlagOptions {
   /** usage is the help message. */
   usage: string;
   /** default_value is the default value as text. */
-  defaultValue: string;
+  default_value: string;
   /** deprecated is the usage text to show if this flag is deprecated. */
   deprecated: string;
   /** shorthand_deprecated is the usage text to show if the shorthand of this flag is deprecated. */
-  shorthandDeprecated: string;
+  shorthand_deprecated: string;
   /** hidden hides the flag from help/usage text */
   hidden: boolean;
 }
 export interface FlagOptionsProtoMsg {
-  typeUrl: "/cosmos.autocli.v1.FlagOptions";
+  type_url: "/cosmos.autocli.v1.FlagOptions";
   value: Uint8Array;
 }
 /**
@@ -280,7 +280,7 @@ export interface PositionalArgDescriptor {
    * proto_field specifies the proto field to use as the positional arg. Any
    * fields used as positional args will not have a flag generated.
    */
-  protoField: string;
+  proto_field: string;
   /**
    * varargs makes a positional parameter a varargs parameter. This can only be
    * applied to last positional parameter and the proto_field must a repeated
@@ -289,7 +289,7 @@ export interface PositionalArgDescriptor {
   varargs: boolean;
 }
 export interface PositionalArgDescriptorProtoMsg {
-  typeUrl: "/cosmos.autocli.v1.PositionalArgDescriptor";
+  type_url: "/cosmos.autocli.v1.PositionalArgDescriptor";
   value: Uint8Array;
 }
 /** PositionalArgDescriptor describes a positional argument. */
@@ -475,15 +475,15 @@ export const ServiceCommandDescriptor_SubCommandsEntry = {
 function createBaseServiceCommandDescriptor(): ServiceCommandDescriptor {
   return {
     service: "",
-    rpcCommandOptions: [],
-    subCommands: {}
+    rpc_command_options: [],
+    sub_commands: {}
   };
 }
 export const ServiceCommandDescriptor = {
   typeUrl: "/cosmos.autocli.v1.ServiceCommandDescriptor",
   aminoType: "cosmos-sdk/ServiceCommandDescriptor",
   is(o: any): o is ServiceCommandDescriptor {
-    return o && (o.$typeUrl === ServiceCommandDescriptor.typeUrl || typeof o.service === "string" && Array.isArray(o.rpcCommandOptions) && (!o.rpcCommandOptions.length || RpcCommandOptions.is(o.rpcCommandOptions[0])) && isSet(o.subCommands));
+    return o && (o.$typeUrl === ServiceCommandDescriptor.typeUrl || typeof o.service === "string" && Array.isArray(o.rpc_command_options) && (!o.rpc_command_options.length || RpcCommandOptions.is(o.rpc_command_options[0])) && isSet(o.sub_commands));
   },
   isAmino(o: any): o is ServiceCommandDescriptorAmino {
     return o && (o.$typeUrl === ServiceCommandDescriptor.typeUrl || typeof o.service === "string" && Array.isArray(o.rpc_command_options) && (!o.rpc_command_options.length || RpcCommandOptions.isAmino(o.rpc_command_options[0])) && isSet(o.sub_commands));
@@ -492,10 +492,10 @@ export const ServiceCommandDescriptor = {
     if (message.service !== "") {
       writer.uint32(10).string(message.service);
     }
-    for (const v of message.rpcCommandOptions) {
+    for (const v of message.rpc_command_options) {
       RpcCommandOptions.encode(v!, writer.uint32(18).fork()).ldelim();
     }
-    Object.entries(message.subCommands).forEach(([key, value]) => {
+    Object.entries(message.sub_commands).forEach(([key, value]) => {
       ServiceCommandDescriptor_SubCommandsEntry.encode({
         key: key as any,
         value
@@ -514,12 +514,12 @@ export const ServiceCommandDescriptor = {
           message.service = reader.string();
           break;
         case 2:
-          message.rpcCommandOptions.push(RpcCommandOptions.decode(reader, reader.uint32()));
+          message.rpc_command_options.push(RpcCommandOptions.decode(reader, reader.uint32()));
           break;
         case 3:
           const entry3 = ServiceCommandDescriptor_SubCommandsEntry.decode(reader, reader.uint32());
           if (entry3.value !== undefined) {
-            message.subCommands[entry3.key] = entry3.value;
+            message.sub_commands[entry3.key] = entry3.value;
           }
           break;
         default:
@@ -532,8 +532,8 @@ export const ServiceCommandDescriptor = {
   fromPartial(object: DeepPartial<ServiceCommandDescriptor>): ServiceCommandDescriptor {
     const message = createBaseServiceCommandDescriptor();
     message.service = object.service ?? "";
-    message.rpcCommandOptions = object.rpcCommandOptions?.map(e => RpcCommandOptions.fromPartial(e)) || [];
-    message.subCommands = Object.entries(object.subCommands ?? {}).reduce<{
+    message.rpc_command_options = object.rpc_command_options?.map(e => RpcCommandOptions.fromPartial(e)) || [];
+    message.sub_commands = Object.entries(object.sub_commands ?? {}).reduce<{
       [key: string]: ServiceCommandDescriptor;
     }>((acc, [key, value]) => {
       if (value !== undefined) {
@@ -548,8 +548,8 @@ export const ServiceCommandDescriptor = {
     if (object.service !== undefined && object.service !== null) {
       message.service = object.service;
     }
-    message.rpcCommandOptions = object.rpc_command_options?.map(e => RpcCommandOptions.fromAmino(e)) || [];
-    message.subCommands = Object.entries(object.sub_commands ?? {}).reduce<{
+    message.rpc_command_options = object.rpc_command_options?.map(e => RpcCommandOptions.fromAmino(e)) || [];
+    message.sub_commands = Object.entries(object.sub_commands ?? {}).reduce<{
       [key: string]: ServiceCommandDescriptor;
     }>((acc, [key, value]) => {
       if (value !== undefined) {
@@ -562,14 +562,14 @@ export const ServiceCommandDescriptor = {
   toAmino(message: ServiceCommandDescriptor): ServiceCommandDescriptorAmino {
     const obj: any = {};
     obj.service = message.service === "" ? undefined : message.service;
-    if (message.rpcCommandOptions) {
-      obj.rpc_command_options = message.rpcCommandOptions.map(e => e ? RpcCommandOptions.toAmino(e) : undefined);
+    if (message.rpc_command_options) {
+      obj.rpc_command_options = message.rpc_command_options.map(e => e ? RpcCommandOptions.toAmino(e) : undefined);
     } else {
-      obj.rpc_command_options = message.rpcCommandOptions;
+      obj.rpc_command_options = message.rpc_command_options;
     }
     obj.sub_commands = {};
-    if (message.subCommands) {
-      Object.entries(message.subCommands).forEach(([k, v]) => {
+    if (message.sub_commands) {
+      Object.entries(message.sub_commands).forEach(([k, v]) => {
         obj.sub_commands[k] = ServiceCommandDescriptor.toAmino(v);
       });
     }
@@ -674,17 +674,17 @@ export const RpcCommandOptions_FlagOptionsEntry = {
 };
 function createBaseRpcCommandOptions(): RpcCommandOptions {
   return {
-    rpcMethod: "",
+    rpc_method: "",
     use: "",
     long: "",
     short: "",
     example: "",
     alias: [],
-    suggestFor: [],
+    suggest_for: [],
     deprecated: "",
     version: "",
-    flagOptions: {},
-    positionalArgs: [],
+    flag_options: {},
+    positional_args: [],
     skip: false
   };
 }
@@ -692,14 +692,14 @@ export const RpcCommandOptions = {
   typeUrl: "/cosmos.autocli.v1.RpcCommandOptions",
   aminoType: "cosmos-sdk/RpcCommandOptions",
   is(o: any): o is RpcCommandOptions {
-    return o && (o.$typeUrl === RpcCommandOptions.typeUrl || typeof o.rpcMethod === "string" && typeof o.use === "string" && typeof o.long === "string" && typeof o.short === "string" && typeof o.example === "string" && Array.isArray(o.alias) && (!o.alias.length || typeof o.alias[0] === "string") && Array.isArray(o.suggestFor) && (!o.suggestFor.length || typeof o.suggestFor[0] === "string") && typeof o.deprecated === "string" && typeof o.version === "string" && isSet(o.flagOptions) && Array.isArray(o.positionalArgs) && (!o.positionalArgs.length || PositionalArgDescriptor.is(o.positionalArgs[0])) && typeof o.skip === "boolean");
+    return o && (o.$typeUrl === RpcCommandOptions.typeUrl || typeof o.rpc_method === "string" && typeof o.use === "string" && typeof o.long === "string" && typeof o.short === "string" && typeof o.example === "string" && Array.isArray(o.alias) && (!o.alias.length || typeof o.alias[0] === "string") && Array.isArray(o.suggest_for) && (!o.suggest_for.length || typeof o.suggest_for[0] === "string") && typeof o.deprecated === "string" && typeof o.version === "string" && isSet(o.flag_options) && Array.isArray(o.positional_args) && (!o.positional_args.length || PositionalArgDescriptor.is(o.positional_args[0])) && typeof o.skip === "boolean");
   },
   isAmino(o: any): o is RpcCommandOptionsAmino {
     return o && (o.$typeUrl === RpcCommandOptions.typeUrl || typeof o.rpc_method === "string" && typeof o.use === "string" && typeof o.long === "string" && typeof o.short === "string" && typeof o.example === "string" && Array.isArray(o.alias) && (!o.alias.length || typeof o.alias[0] === "string") && Array.isArray(o.suggest_for) && (!o.suggest_for.length || typeof o.suggest_for[0] === "string") && typeof o.deprecated === "string" && typeof o.version === "string" && isSet(o.flag_options) && Array.isArray(o.positional_args) && (!o.positional_args.length || PositionalArgDescriptor.isAmino(o.positional_args[0])) && typeof o.skip === "boolean");
   },
   encode(message: RpcCommandOptions, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.rpcMethod !== "") {
-      writer.uint32(10).string(message.rpcMethod);
+    if (message.rpc_method !== "") {
+      writer.uint32(10).string(message.rpc_method);
     }
     if (message.use !== "") {
       writer.uint32(18).string(message.use);
@@ -716,7 +716,7 @@ export const RpcCommandOptions = {
     for (const v of message.alias) {
       writer.uint32(50).string(v!);
     }
-    for (const v of message.suggestFor) {
+    for (const v of message.suggest_for) {
       writer.uint32(58).string(v!);
     }
     if (message.deprecated !== "") {
@@ -725,13 +725,13 @@ export const RpcCommandOptions = {
     if (message.version !== "") {
       writer.uint32(74).string(message.version);
     }
-    Object.entries(message.flagOptions).forEach(([key, value]) => {
+    Object.entries(message.flag_options).forEach(([key, value]) => {
       RpcCommandOptions_FlagOptionsEntry.encode({
         key: key as any,
         value
       }, writer.uint32(82).fork()).ldelim();
     });
-    for (const v of message.positionalArgs) {
+    for (const v of message.positional_args) {
       PositionalArgDescriptor.encode(v!, writer.uint32(90).fork()).ldelim();
     }
     if (message.skip === true) {
@@ -747,7 +747,7 @@ export const RpcCommandOptions = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.rpcMethod = reader.string();
+          message.rpc_method = reader.string();
           break;
         case 2:
           message.use = reader.string();
@@ -765,7 +765,7 @@ export const RpcCommandOptions = {
           message.alias.push(reader.string());
           break;
         case 7:
-          message.suggestFor.push(reader.string());
+          message.suggest_for.push(reader.string());
           break;
         case 8:
           message.deprecated = reader.string();
@@ -776,11 +776,11 @@ export const RpcCommandOptions = {
         case 10:
           const entry10 = RpcCommandOptions_FlagOptionsEntry.decode(reader, reader.uint32());
           if (entry10.value !== undefined) {
-            message.flagOptions[entry10.key] = entry10.value;
+            message.flag_options[entry10.key] = entry10.value;
           }
           break;
         case 11:
-          message.positionalArgs.push(PositionalArgDescriptor.decode(reader, reader.uint32()));
+          message.positional_args.push(PositionalArgDescriptor.decode(reader, reader.uint32()));
           break;
         case 12:
           message.skip = reader.bool();
@@ -794,16 +794,16 @@ export const RpcCommandOptions = {
   },
   fromPartial(object: DeepPartial<RpcCommandOptions>): RpcCommandOptions {
     const message = createBaseRpcCommandOptions();
-    message.rpcMethod = object.rpcMethod ?? "";
+    message.rpc_method = object.rpc_method ?? "";
     message.use = object.use ?? "";
     message.long = object.long ?? "";
     message.short = object.short ?? "";
     message.example = object.example ?? "";
     message.alias = object.alias?.map(e => e) || [];
-    message.suggestFor = object.suggestFor?.map(e => e) || [];
+    message.suggest_for = object.suggest_for?.map(e => e) || [];
     message.deprecated = object.deprecated ?? "";
     message.version = object.version ?? "";
-    message.flagOptions = Object.entries(object.flagOptions ?? {}).reduce<{
+    message.flag_options = Object.entries(object.flag_options ?? {}).reduce<{
       [key: string]: FlagOptions;
     }>((acc, [key, value]) => {
       if (value !== undefined) {
@@ -811,14 +811,14 @@ export const RpcCommandOptions = {
       }
       return acc;
     }, {});
-    message.positionalArgs = object.positionalArgs?.map(e => PositionalArgDescriptor.fromPartial(e)) || [];
+    message.positional_args = object.positional_args?.map(e => PositionalArgDescriptor.fromPartial(e)) || [];
     message.skip = object.skip ?? false;
     return message;
   },
   fromAmino(object: RpcCommandOptionsAmino): RpcCommandOptions {
     const message = createBaseRpcCommandOptions();
     if (object.rpc_method !== undefined && object.rpc_method !== null) {
-      message.rpcMethod = object.rpc_method;
+      message.rpc_method = object.rpc_method;
     }
     if (object.use !== undefined && object.use !== null) {
       message.use = object.use;
@@ -833,14 +833,14 @@ export const RpcCommandOptions = {
       message.example = object.example;
     }
     message.alias = object.alias?.map(e => e) || [];
-    message.suggestFor = object.suggest_for?.map(e => e) || [];
+    message.suggest_for = object.suggest_for?.map(e => e) || [];
     if (object.deprecated !== undefined && object.deprecated !== null) {
       message.deprecated = object.deprecated;
     }
     if (object.version !== undefined && object.version !== null) {
       message.version = object.version;
     }
-    message.flagOptions = Object.entries(object.flag_options ?? {}).reduce<{
+    message.flag_options = Object.entries(object.flag_options ?? {}).reduce<{
       [key: string]: FlagOptions;
     }>((acc, [key, value]) => {
       if (value !== undefined) {
@@ -848,7 +848,7 @@ export const RpcCommandOptions = {
       }
       return acc;
     }, {});
-    message.positionalArgs = object.positional_args?.map(e => PositionalArgDescriptor.fromAmino(e)) || [];
+    message.positional_args = object.positional_args?.map(e => PositionalArgDescriptor.fromAmino(e)) || [];
     if (object.skip !== undefined && object.skip !== null) {
       message.skip = object.skip;
     }
@@ -856,7 +856,7 @@ export const RpcCommandOptions = {
   },
   toAmino(message: RpcCommandOptions): RpcCommandOptionsAmino {
     const obj: any = {};
-    obj.rpc_method = message.rpcMethod === "" ? undefined : message.rpcMethod;
+    obj.rpc_method = message.rpc_method === "" ? undefined : message.rpc_method;
     obj.use = message.use === "" ? undefined : message.use;
     obj.long = message.long === "" ? undefined : message.long;
     obj.short = message.short === "" ? undefined : message.short;
@@ -866,23 +866,23 @@ export const RpcCommandOptions = {
     } else {
       obj.alias = message.alias;
     }
-    if (message.suggestFor) {
-      obj.suggest_for = message.suggestFor.map(e => e);
+    if (message.suggest_for) {
+      obj.suggest_for = message.suggest_for.map(e => e);
     } else {
-      obj.suggest_for = message.suggestFor;
+      obj.suggest_for = message.suggest_for;
     }
     obj.deprecated = message.deprecated === "" ? undefined : message.deprecated;
     obj.version = message.version === "" ? undefined : message.version;
     obj.flag_options = {};
-    if (message.flagOptions) {
-      Object.entries(message.flagOptions).forEach(([k, v]) => {
+    if (message.flag_options) {
+      Object.entries(message.flag_options).forEach(([k, v]) => {
         obj.flag_options[k] = FlagOptions.toAmino(v);
       });
     }
-    if (message.positionalArgs) {
-      obj.positional_args = message.positionalArgs.map(e => e ? PositionalArgDescriptor.toAmino(e) : undefined);
+    if (message.positional_args) {
+      obj.positional_args = message.positional_args.map(e => e ? PositionalArgDescriptor.toAmino(e) : undefined);
     } else {
-      obj.positional_args = message.positionalArgs;
+      obj.positional_args = message.positional_args;
     }
     obj.skip = message.skip === false ? undefined : message.skip;
     return obj;
@@ -918,9 +918,9 @@ function createBaseFlagOptions(): FlagOptions {
     name: "",
     shorthand: "",
     usage: "",
-    defaultValue: "",
+    default_value: "",
     deprecated: "",
-    shorthandDeprecated: "",
+    shorthand_deprecated: "",
     hidden: false
   };
 }
@@ -928,7 +928,7 @@ export const FlagOptions = {
   typeUrl: "/cosmos.autocli.v1.FlagOptions",
   aminoType: "cosmos-sdk/FlagOptions",
   is(o: any): o is FlagOptions {
-    return o && (o.$typeUrl === FlagOptions.typeUrl || typeof o.name === "string" && typeof o.shorthand === "string" && typeof o.usage === "string" && typeof o.defaultValue === "string" && typeof o.deprecated === "string" && typeof o.shorthandDeprecated === "string" && typeof o.hidden === "boolean");
+    return o && (o.$typeUrl === FlagOptions.typeUrl || typeof o.name === "string" && typeof o.shorthand === "string" && typeof o.usage === "string" && typeof o.default_value === "string" && typeof o.deprecated === "string" && typeof o.shorthand_deprecated === "string" && typeof o.hidden === "boolean");
   },
   isAmino(o: any): o is FlagOptionsAmino {
     return o && (o.$typeUrl === FlagOptions.typeUrl || typeof o.name === "string" && typeof o.shorthand === "string" && typeof o.usage === "string" && typeof o.default_value === "string" && typeof o.deprecated === "string" && typeof o.shorthand_deprecated === "string" && typeof o.hidden === "boolean");
@@ -943,14 +943,14 @@ export const FlagOptions = {
     if (message.usage !== "") {
       writer.uint32(26).string(message.usage);
     }
-    if (message.defaultValue !== "") {
-      writer.uint32(34).string(message.defaultValue);
+    if (message.default_value !== "") {
+      writer.uint32(34).string(message.default_value);
     }
     if (message.deprecated !== "") {
       writer.uint32(50).string(message.deprecated);
     }
-    if (message.shorthandDeprecated !== "") {
-      writer.uint32(58).string(message.shorthandDeprecated);
+    if (message.shorthand_deprecated !== "") {
+      writer.uint32(58).string(message.shorthand_deprecated);
     }
     if (message.hidden === true) {
       writer.uint32(64).bool(message.hidden);
@@ -974,13 +974,13 @@ export const FlagOptions = {
           message.usage = reader.string();
           break;
         case 4:
-          message.defaultValue = reader.string();
+          message.default_value = reader.string();
           break;
         case 6:
           message.deprecated = reader.string();
           break;
         case 7:
-          message.shorthandDeprecated = reader.string();
+          message.shorthand_deprecated = reader.string();
           break;
         case 8:
           message.hidden = reader.bool();
@@ -997,9 +997,9 @@ export const FlagOptions = {
     message.name = object.name ?? "";
     message.shorthand = object.shorthand ?? "";
     message.usage = object.usage ?? "";
-    message.defaultValue = object.defaultValue ?? "";
+    message.default_value = object.default_value ?? "";
     message.deprecated = object.deprecated ?? "";
-    message.shorthandDeprecated = object.shorthandDeprecated ?? "";
+    message.shorthand_deprecated = object.shorthand_deprecated ?? "";
     message.hidden = object.hidden ?? false;
     return message;
   },
@@ -1015,13 +1015,13 @@ export const FlagOptions = {
       message.usage = object.usage;
     }
     if (object.default_value !== undefined && object.default_value !== null) {
-      message.defaultValue = object.default_value;
+      message.default_value = object.default_value;
     }
     if (object.deprecated !== undefined && object.deprecated !== null) {
       message.deprecated = object.deprecated;
     }
     if (object.shorthand_deprecated !== undefined && object.shorthand_deprecated !== null) {
-      message.shorthandDeprecated = object.shorthand_deprecated;
+      message.shorthand_deprecated = object.shorthand_deprecated;
     }
     if (object.hidden !== undefined && object.hidden !== null) {
       message.hidden = object.hidden;
@@ -1033,9 +1033,9 @@ export const FlagOptions = {
     obj.name = message.name === "" ? undefined : message.name;
     obj.shorthand = message.shorthand === "" ? undefined : message.shorthand;
     obj.usage = message.usage === "" ? undefined : message.usage;
-    obj.default_value = message.defaultValue === "" ? undefined : message.defaultValue;
+    obj.default_value = message.default_value === "" ? undefined : message.default_value;
     obj.deprecated = message.deprecated === "" ? undefined : message.deprecated;
-    obj.shorthand_deprecated = message.shorthandDeprecated === "" ? undefined : message.shorthandDeprecated;
+    obj.shorthand_deprecated = message.shorthand_deprecated === "" ? undefined : message.shorthand_deprecated;
     obj.hidden = message.hidden === false ? undefined : message.hidden;
     return obj;
   },
@@ -1064,7 +1064,7 @@ export const FlagOptions = {
 };
 function createBasePositionalArgDescriptor(): PositionalArgDescriptor {
   return {
-    protoField: "",
+    proto_field: "",
     varargs: false
   };
 }
@@ -1072,14 +1072,14 @@ export const PositionalArgDescriptor = {
   typeUrl: "/cosmos.autocli.v1.PositionalArgDescriptor",
   aminoType: "cosmos-sdk/PositionalArgDescriptor",
   is(o: any): o is PositionalArgDescriptor {
-    return o && (o.$typeUrl === PositionalArgDescriptor.typeUrl || typeof o.protoField === "string" && typeof o.varargs === "boolean");
+    return o && (o.$typeUrl === PositionalArgDescriptor.typeUrl || typeof o.proto_field === "string" && typeof o.varargs === "boolean");
   },
   isAmino(o: any): o is PositionalArgDescriptorAmino {
     return o && (o.$typeUrl === PositionalArgDescriptor.typeUrl || typeof o.proto_field === "string" && typeof o.varargs === "boolean");
   },
   encode(message: PositionalArgDescriptor, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.protoField !== "") {
-      writer.uint32(10).string(message.protoField);
+    if (message.proto_field !== "") {
+      writer.uint32(10).string(message.proto_field);
     }
     if (message.varargs === true) {
       writer.uint32(16).bool(message.varargs);
@@ -1094,7 +1094,7 @@ export const PositionalArgDescriptor = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.protoField = reader.string();
+          message.proto_field = reader.string();
           break;
         case 2:
           message.varargs = reader.bool();
@@ -1108,14 +1108,14 @@ export const PositionalArgDescriptor = {
   },
   fromPartial(object: DeepPartial<PositionalArgDescriptor>): PositionalArgDescriptor {
     const message = createBasePositionalArgDescriptor();
-    message.protoField = object.protoField ?? "";
+    message.proto_field = object.proto_field ?? "";
     message.varargs = object.varargs ?? false;
     return message;
   },
   fromAmino(object: PositionalArgDescriptorAmino): PositionalArgDescriptor {
     const message = createBasePositionalArgDescriptor();
     if (object.proto_field !== undefined && object.proto_field !== null) {
-      message.protoField = object.proto_field;
+      message.proto_field = object.proto_field;
     }
     if (object.varargs !== undefined && object.varargs !== null) {
       message.varargs = object.varargs;
@@ -1124,7 +1124,7 @@ export const PositionalArgDescriptor = {
   },
   toAmino(message: PositionalArgDescriptor): PositionalArgDescriptorAmino {
     const obj: any = {};
-    obj.proto_field = message.protoField === "" ? undefined : message.protoField;
+    obj.proto_field = message.proto_field === "" ? undefined : message.proto_field;
     obj.varargs = message.varargs === false ? undefined : message.varargs;
     return obj;
   },

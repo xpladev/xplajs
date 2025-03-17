@@ -12,7 +12,7 @@ export interface MsgUpdateParams {
   params: Params;
 }
 export interface MsgUpdateParamsProtoMsg {
-  typeUrl: "/ethermint.feemarket.v1.MsgUpdateParams";
+  type_url: "/ethermint.feemarket.v1.MsgUpdateParams";
   value: Uint8Array;
 }
 /** MsgUpdateParams defines a Msg for updating the x/feemarket module parameters. */
@@ -35,7 +35,7 @@ export interface MsgUpdateParamsAminoMsg {
  */
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
-  typeUrl: "/ethermint.feemarket.v1.MsgUpdateParamsResponse";
+  type_url: "/ethermint.feemarket.v1.MsgUpdateParamsResponse";
   value: Uint8Array;
 }
 /**

@@ -3,14 +3,14 @@ import { DeepPartial } from "../../../../helpers";
 /** Module is the config object for the auth module. */
 export interface Module {
   /** bech32_prefix is the bech32 account prefix for the app. */
-  bech32Prefix: string;
+  bech32_prefix: string;
   /** module_account_permissions are module account permissions. */
-  moduleAccountPermissions: ModuleAccountPermission[];
+  module_account_permissions: ModuleAccountPermission[];
   /** authority defines the custom module authority. If not set, defaults to the governance module. */
   authority: string;
 }
 export interface ModuleProtoMsg {
-  typeUrl: "/cosmos.auth.module.v1.Module";
+  type_url: "/cosmos.auth.module.v1.Module";
   value: Uint8Array;
 }
 /** Module is the config object for the auth module. */
@@ -37,7 +37,7 @@ export interface ModuleAccountPermission {
   permissions: string[];
 }
 export interface ModuleAccountPermissionProtoMsg {
-  typeUrl: "/cosmos.auth.module.v1.ModuleAccountPermission";
+  type_url: "/cosmos.auth.module.v1.ModuleAccountPermission";
   value: Uint8Array;
 }
 /** ModuleAccountPermission represents permissions for a module account. */
@@ -56,8 +56,8 @@ export interface ModuleAccountPermissionAminoMsg {
 }
 function createBaseModule(): Module {
   return {
-    bech32Prefix: "",
-    moduleAccountPermissions: [],
+    bech32_prefix: "",
+    module_account_permissions: [],
     authority: ""
   };
 }
@@ -65,16 +65,16 @@ export const Module = {
   typeUrl: "/cosmos.auth.module.v1.Module",
   aminoType: "cosmos-sdk/Module",
   is(o: any): o is Module {
-    return o && (o.$typeUrl === Module.typeUrl || typeof o.bech32Prefix === "string" && Array.isArray(o.moduleAccountPermissions) && (!o.moduleAccountPermissions.length || ModuleAccountPermission.is(o.moduleAccountPermissions[0])) && typeof o.authority === "string");
+    return o && (o.$typeUrl === Module.typeUrl || typeof o.bech32_prefix === "string" && Array.isArray(o.module_account_permissions) && (!o.module_account_permissions.length || ModuleAccountPermission.is(o.module_account_permissions[0])) && typeof o.authority === "string");
   },
   isAmino(o: any): o is ModuleAmino {
     return o && (o.$typeUrl === Module.typeUrl || typeof o.bech32_prefix === "string" && Array.isArray(o.module_account_permissions) && (!o.module_account_permissions.length || ModuleAccountPermission.isAmino(o.module_account_permissions[0])) && typeof o.authority === "string");
   },
   encode(message: Module, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.bech32Prefix !== "") {
-      writer.uint32(10).string(message.bech32Prefix);
+    if (message.bech32_prefix !== "") {
+      writer.uint32(10).string(message.bech32_prefix);
     }
-    for (const v of message.moduleAccountPermissions) {
+    for (const v of message.module_account_permissions) {
       ModuleAccountPermission.encode(v!, writer.uint32(18).fork()).ldelim();
     }
     if (message.authority !== "") {
@@ -90,10 +90,10 @@ export const Module = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.bech32Prefix = reader.string();
+          message.bech32_prefix = reader.string();
           break;
         case 2:
-          message.moduleAccountPermissions.push(ModuleAccountPermission.decode(reader, reader.uint32()));
+          message.module_account_permissions.push(ModuleAccountPermission.decode(reader, reader.uint32()));
           break;
         case 3:
           message.authority = reader.string();
@@ -107,17 +107,17 @@ export const Module = {
   },
   fromPartial(object: DeepPartial<Module>): Module {
     const message = createBaseModule();
-    message.bech32Prefix = object.bech32Prefix ?? "";
-    message.moduleAccountPermissions = object.moduleAccountPermissions?.map(e => ModuleAccountPermission.fromPartial(e)) || [];
+    message.bech32_prefix = object.bech32_prefix ?? "";
+    message.module_account_permissions = object.module_account_permissions?.map(e => ModuleAccountPermission.fromPartial(e)) || [];
     message.authority = object.authority ?? "";
     return message;
   },
   fromAmino(object: ModuleAmino): Module {
     const message = createBaseModule();
     if (object.bech32_prefix !== undefined && object.bech32_prefix !== null) {
-      message.bech32Prefix = object.bech32_prefix;
+      message.bech32_prefix = object.bech32_prefix;
     }
-    message.moduleAccountPermissions = object.module_account_permissions?.map(e => ModuleAccountPermission.fromAmino(e)) || [];
+    message.module_account_permissions = object.module_account_permissions?.map(e => ModuleAccountPermission.fromAmino(e)) || [];
     if (object.authority !== undefined && object.authority !== null) {
       message.authority = object.authority;
     }
@@ -125,11 +125,11 @@ export const Module = {
   },
   toAmino(message: Module): ModuleAmino {
     const obj: any = {};
-    obj.bech32_prefix = message.bech32Prefix === "" ? undefined : message.bech32Prefix;
-    if (message.moduleAccountPermissions) {
-      obj.module_account_permissions = message.moduleAccountPermissions.map(e => e ? ModuleAccountPermission.toAmino(e) : undefined);
+    obj.bech32_prefix = message.bech32_prefix === "" ? undefined : message.bech32_prefix;
+    if (message.module_account_permissions) {
+      obj.module_account_permissions = message.module_account_permissions.map(e => e ? ModuleAccountPermission.toAmino(e) : undefined);
     } else {
-      obj.module_account_permissions = message.moduleAccountPermissions;
+      obj.module_account_permissions = message.module_account_permissions;
     }
     obj.authority = message.authority === "" ? undefined : message.authority;
     return obj;

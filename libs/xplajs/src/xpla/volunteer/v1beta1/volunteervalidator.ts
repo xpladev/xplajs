@@ -8,7 +8,7 @@ export interface VolunteerValidator {
   power: bigint;
 }
 export interface VolunteerValidatorProtoMsg {
-  typeUrl: "/xpla.volunteer.v1beta1.VolunteerValidator";
+  type_url: "/xpla.volunteer.v1beta1.VolunteerValidator";
   value: Uint8Array;
 }
 /** VolunteerValidator required for validator set update logic. */

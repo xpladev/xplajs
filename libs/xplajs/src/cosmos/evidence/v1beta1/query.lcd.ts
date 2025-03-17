@@ -15,8 +15,8 @@ export class LCDQueryClient {
     const options: any = {
       params: {}
     };
-    if (typeof params?.evidenceHash !== "undefined") {
-      options.params.evidence_hash = params.evidenceHash;
+    if (typeof params?.evidence_hash !== "undefined") {
+      options.params.evidence_hash = params.evidence_hash;
     }
     const endpoint = `cosmos/evidence/v1beta1/evidence/${params.hash}`;
     return await this.req.get<QueryEvidenceResponse>(endpoint, options);

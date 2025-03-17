@@ -33,7 +33,7 @@ export interface PageRequest {
    * count_total is only respected when offset is used. It is ignored when key
    * is set.
    */
-  countTotal: boolean;
+  count_total: boolean;
   /**
    * reverse is set to true if results are to be returned in the descending order.
    * 
@@ -42,7 +42,7 @@ export interface PageRequest {
   reverse: boolean;
 }
 export interface PageRequestProtoMsg {
-  typeUrl: "/cosmos.base.query.v1beta1.PageRequest";
+  type_url: "/cosmos.base.query.v1beta1.PageRequest";
   value: Uint8Array;
 }
 /**
@@ -105,7 +105,7 @@ export interface PageResponse {
    * query the next page most efficiently. It will be empty if
    * there are no more results.
    */
-  nextKey: Uint8Array;
+  next_key: Uint8Array;
   /**
    * total is total number of results available if PageRequest.count_total
    * was set, its value is undefined otherwise
@@ -113,7 +113,7 @@ export interface PageResponse {
   total: bigint;
 }
 export interface PageResponseProtoMsg {
-  typeUrl: "/cosmos.base.query.v1beta1.PageResponse";
+  type_url: "/cosmos.base.query.v1beta1.PageResponse";
   value: Uint8Array;
 }
 /**
@@ -147,7 +147,7 @@ function createBasePageRequest(): PageRequest {
     key: new Uint8Array(),
     offset: BigInt(0),
     limit: BigInt(0),
-    countTotal: false,
+    count_total: false,
     reverse: false
   };
 }
@@ -155,7 +155,7 @@ export const PageRequest = {
   typeUrl: "/cosmos.base.query.v1beta1.PageRequest",
   aminoType: "cosmos-sdk/PageRequest",
   is(o: any): o is PageRequest {
-    return o && (o.$typeUrl === PageRequest.typeUrl || (o.key instanceof Uint8Array || typeof o.key === "string") && typeof o.offset === "bigint" && typeof o.limit === "bigint" && typeof o.countTotal === "boolean" && typeof o.reverse === "boolean");
+    return o && (o.$typeUrl === PageRequest.typeUrl || (o.key instanceof Uint8Array || typeof o.key === "string") && typeof o.offset === "bigint" && typeof o.limit === "bigint" && typeof o.count_total === "boolean" && typeof o.reverse === "boolean");
   },
   isAmino(o: any): o is PageRequestAmino {
     return o && (o.$typeUrl === PageRequest.typeUrl || (o.key instanceof Uint8Array || typeof o.key === "string") && typeof o.offset === "bigint" && typeof o.limit === "bigint" && typeof o.count_total === "boolean" && typeof o.reverse === "boolean");
@@ -170,8 +170,8 @@ export const PageRequest = {
     if (message.limit !== BigInt(0)) {
       writer.uint32(24).uint64(message.limit);
     }
-    if (message.countTotal === true) {
-      writer.uint32(32).bool(message.countTotal);
+    if (message.count_total === true) {
+      writer.uint32(32).bool(message.count_total);
     }
     if (message.reverse === true) {
       writer.uint32(40).bool(message.reverse);
@@ -195,7 +195,7 @@ export const PageRequest = {
           message.limit = reader.uint64();
           break;
         case 4:
-          message.countTotal = reader.bool();
+          message.count_total = reader.bool();
           break;
         case 5:
           message.reverse = reader.bool();
@@ -212,7 +212,7 @@ export const PageRequest = {
     message.key = object.key ?? new Uint8Array();
     message.offset = object.offset !== undefined && object.offset !== null ? BigInt(object.offset.toString()) : BigInt(0);
     message.limit = object.limit !== undefined && object.limit !== null ? BigInt(object.limit.toString()) : BigInt(0);
-    message.countTotal = object.countTotal ?? false;
+    message.count_total = object.count_total ?? false;
     message.reverse = object.reverse ?? false;
     return message;
   },
@@ -228,7 +228,7 @@ export const PageRequest = {
       message.limit = BigInt(object.limit);
     }
     if (object.count_total !== undefined && object.count_total !== null) {
-      message.countTotal = object.count_total;
+      message.count_total = object.count_total;
     }
     if (object.reverse !== undefined && object.reverse !== null) {
       message.reverse = object.reverse;
@@ -240,7 +240,7 @@ export const PageRequest = {
     obj.key = message.key ? base64FromBytes(message.key) : undefined;
     obj.offset = message.offset !== BigInt(0) ? message.offset?.toString() : undefined;
     obj.limit = message.limit !== BigInt(0) ? message.limit?.toString() : undefined;
-    obj.count_total = message.countTotal === false ? undefined : message.countTotal;
+    obj.count_total = message.count_total === false ? undefined : message.count_total;
     obj.reverse = message.reverse === false ? undefined : message.reverse;
     return obj;
   },
@@ -269,7 +269,7 @@ export const PageRequest = {
 };
 function createBasePageResponse(): PageResponse {
   return {
-    nextKey: new Uint8Array(),
+    next_key: new Uint8Array(),
     total: BigInt(0)
   };
 }
@@ -277,14 +277,14 @@ export const PageResponse = {
   typeUrl: "/cosmos.base.query.v1beta1.PageResponse",
   aminoType: "cosmos-sdk/PageResponse",
   is(o: any): o is PageResponse {
-    return o && (o.$typeUrl === PageResponse.typeUrl || (o.nextKey instanceof Uint8Array || typeof o.nextKey === "string") && typeof o.total === "bigint");
+    return o && (o.$typeUrl === PageResponse.typeUrl || (o.next_key instanceof Uint8Array || typeof o.next_key === "string") && typeof o.total === "bigint");
   },
   isAmino(o: any): o is PageResponseAmino {
     return o && (o.$typeUrl === PageResponse.typeUrl || (o.next_key instanceof Uint8Array || typeof o.next_key === "string") && typeof o.total === "bigint");
   },
   encode(message: PageResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.nextKey.length !== 0) {
-      writer.uint32(10).bytes(message.nextKey);
+    if (message.next_key.length !== 0) {
+      writer.uint32(10).bytes(message.next_key);
     }
     if (message.total !== BigInt(0)) {
       writer.uint32(16).uint64(message.total);
@@ -299,7 +299,7 @@ export const PageResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.nextKey = reader.bytes();
+          message.next_key = reader.bytes();
           break;
         case 2:
           message.total = reader.uint64();
@@ -313,14 +313,14 @@ export const PageResponse = {
   },
   fromPartial(object: DeepPartial<PageResponse>): PageResponse {
     const message = createBasePageResponse();
-    message.nextKey = object.nextKey ?? new Uint8Array();
+    message.next_key = object.next_key ?? new Uint8Array();
     message.total = object.total !== undefined && object.total !== null ? BigInt(object.total.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: PageResponseAmino): PageResponse {
     const message = createBasePageResponse();
     if (object.next_key !== undefined && object.next_key !== null) {
-      message.nextKey = bytesFromBase64(object.next_key);
+      message.next_key = bytesFromBase64(object.next_key);
     }
     if (object.total !== undefined && object.total !== null) {
       message.total = BigInt(object.total);
@@ -329,7 +329,7 @@ export const PageResponse = {
   },
   toAmino(message: PageResponse): PageResponseAmino {
     const obj: any = {};
-    obj.next_key = message.nextKey ? base64FromBytes(message.nextKey) : undefined;
+    obj.next_key = message.next_key ? base64FromBytes(message.next_key) : undefined;
     obj.total = message.total !== BigInt(0) ? message.total?.toString() : undefined;
     return obj;
   },

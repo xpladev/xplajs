@@ -8,12 +8,12 @@ import { DeepPartial } from "../../../helpers";
  */
 export interface EthAccount {
   /** base_account is an authtypes.BaseAccount */
-  baseAccount?: BaseAccount;
+  base_account?: BaseAccount;
   /** code_hash is the hash calculated from the code contents */
-  codeHash: string;
+  code_hash: string;
 }
 export interface EthAccountProtoMsg {
-  typeUrl: "/ethermint.types.v1.EthAccount";
+  type_url: "/ethermint.types.v1.EthAccount";
   value: Uint8Array;
 }
 /**
@@ -32,24 +32,24 @@ export interface EthAccountAminoMsg {
 }
 function createBaseEthAccount(): EthAccount {
   return {
-    baseAccount: undefined,
-    codeHash: ""
+    base_account: undefined,
+    code_hash: ""
   };
 }
 export const EthAccount = {
   typeUrl: "/ethermint.types.v1.EthAccount",
   is(o: any): o is EthAccount {
-    return o && (o.$typeUrl === EthAccount.typeUrl || typeof o.codeHash === "string");
+    return o && (o.$typeUrl === EthAccount.typeUrl || typeof o.code_hash === "string");
   },
   isAmino(o: any): o is EthAccountAmino {
     return o && (o.$typeUrl === EthAccount.typeUrl || typeof o.code_hash === "string");
   },
   encode(message: EthAccount, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.baseAccount !== undefined) {
-      BaseAccount.encode(message.baseAccount, writer.uint32(10).fork()).ldelim();
+    if (message.base_account !== undefined) {
+      BaseAccount.encode(message.base_account, writer.uint32(10).fork()).ldelim();
     }
-    if (message.codeHash !== "") {
-      writer.uint32(18).string(message.codeHash);
+    if (message.code_hash !== "") {
+      writer.uint32(18).string(message.code_hash);
     }
     return writer;
   },
@@ -61,10 +61,10 @@ export const EthAccount = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.baseAccount = BaseAccount.decode(reader, reader.uint32());
+          message.base_account = BaseAccount.decode(reader, reader.uint32());
           break;
         case 2:
-          message.codeHash = reader.string();
+          message.code_hash = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -75,24 +75,24 @@ export const EthAccount = {
   },
   fromPartial(object: DeepPartial<EthAccount>): EthAccount {
     const message = createBaseEthAccount();
-    message.baseAccount = object.baseAccount !== undefined && object.baseAccount !== null ? BaseAccount.fromPartial(object.baseAccount) : undefined;
-    message.codeHash = object.codeHash ?? "";
+    message.base_account = object.base_account !== undefined && object.base_account !== null ? BaseAccount.fromPartial(object.base_account) : undefined;
+    message.code_hash = object.code_hash ?? "";
     return message;
   },
   fromAmino(object: EthAccountAmino): EthAccount {
     const message = createBaseEthAccount();
     if (object.base_account !== undefined && object.base_account !== null) {
-      message.baseAccount = BaseAccount.fromAmino(object.base_account);
+      message.base_account = BaseAccount.fromAmino(object.base_account);
     }
     if (object.code_hash !== undefined && object.code_hash !== null) {
-      message.codeHash = object.code_hash;
+      message.code_hash = object.code_hash;
     }
     return message;
   },
   toAmino(message: EthAccount): EthAccountAmino {
     const obj: any = {};
-    obj.base_account = message.baseAccount ? BaseAccount.toAmino(message.baseAccount) : undefined;
-    obj.code_hash = message.codeHash === "" ? undefined : message.codeHash;
+    obj.base_account = message.base_account ? BaseAccount.toAmino(message.base_account) : undefined;
+    obj.code_hash = message.code_hash === "" ? undefined : message.code_hash;
     return obj;
   },
   fromAminoMsg(object: EthAccountAminoMsg): EthAccount {

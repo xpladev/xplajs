@@ -4,13 +4,13 @@ import { DeepPartial } from "../../../../helpers";
 /** GenesisState defines the ibc connection submodule's genesis state. */
 export interface GenesisState {
   connections: IdentifiedConnection[];
-  clientConnectionPaths: ConnectionPaths[];
+  client_connection_paths: ConnectionPaths[];
   /** the sequence for the next generated connection identifier */
-  nextConnectionSequence: bigint;
+  next_connection_sequence: bigint;
   params: Params;
 }
 export interface GenesisStateProtoMsg {
-  typeUrl: "/ibc.core.connection.v1.GenesisState";
+  type_url: "/ibc.core.connection.v1.GenesisState";
   value: Uint8Array;
 }
 /** GenesisState defines the ibc connection submodule's genesis state. */
@@ -28,8 +28,8 @@ export interface GenesisStateAminoMsg {
 function createBaseGenesisState(): GenesisState {
   return {
     connections: [],
-    clientConnectionPaths: [],
-    nextConnectionSequence: BigInt(0),
+    client_connection_paths: [],
+    next_connection_sequence: BigInt(0),
     params: Params.fromPartial({})
   };
 }
@@ -37,7 +37,7 @@ export const GenesisState = {
   typeUrl: "/ibc.core.connection.v1.GenesisState",
   aminoType: "cosmos-sdk/GenesisState",
   is(o: any): o is GenesisState {
-    return o && (o.$typeUrl === GenesisState.typeUrl || Array.isArray(o.connections) && (!o.connections.length || IdentifiedConnection.is(o.connections[0])) && Array.isArray(o.clientConnectionPaths) && (!o.clientConnectionPaths.length || ConnectionPaths.is(o.clientConnectionPaths[0])) && typeof o.nextConnectionSequence === "bigint" && Params.is(o.params));
+    return o && (o.$typeUrl === GenesisState.typeUrl || Array.isArray(o.connections) && (!o.connections.length || IdentifiedConnection.is(o.connections[0])) && Array.isArray(o.client_connection_paths) && (!o.client_connection_paths.length || ConnectionPaths.is(o.client_connection_paths[0])) && typeof o.next_connection_sequence === "bigint" && Params.is(o.params));
   },
   isAmino(o: any): o is GenesisStateAmino {
     return o && (o.$typeUrl === GenesisState.typeUrl || Array.isArray(o.connections) && (!o.connections.length || IdentifiedConnection.isAmino(o.connections[0])) && Array.isArray(o.client_connection_paths) && (!o.client_connection_paths.length || ConnectionPaths.isAmino(o.client_connection_paths[0])) && typeof o.next_connection_sequence === "bigint" && Params.isAmino(o.params));
@@ -46,11 +46,11 @@ export const GenesisState = {
     for (const v of message.connections) {
       IdentifiedConnection.encode(v!, writer.uint32(10).fork()).ldelim();
     }
-    for (const v of message.clientConnectionPaths) {
+    for (const v of message.client_connection_paths) {
       ConnectionPaths.encode(v!, writer.uint32(18).fork()).ldelim();
     }
-    if (message.nextConnectionSequence !== BigInt(0)) {
-      writer.uint32(24).uint64(message.nextConnectionSequence);
+    if (message.next_connection_sequence !== BigInt(0)) {
+      writer.uint32(24).uint64(message.next_connection_sequence);
     }
     if (message.params !== undefined) {
       Params.encode(message.params, writer.uint32(34).fork()).ldelim();
@@ -68,10 +68,10 @@ export const GenesisState = {
           message.connections.push(IdentifiedConnection.decode(reader, reader.uint32()));
           break;
         case 2:
-          message.clientConnectionPaths.push(ConnectionPaths.decode(reader, reader.uint32()));
+          message.client_connection_paths.push(ConnectionPaths.decode(reader, reader.uint32()));
           break;
         case 3:
-          message.nextConnectionSequence = reader.uint64();
+          message.next_connection_sequence = reader.uint64();
           break;
         case 4:
           message.params = Params.decode(reader, reader.uint32());
@@ -86,17 +86,17 @@ export const GenesisState = {
   fromPartial(object: DeepPartial<GenesisState>): GenesisState {
     const message = createBaseGenesisState();
     message.connections = object.connections?.map(e => IdentifiedConnection.fromPartial(e)) || [];
-    message.clientConnectionPaths = object.clientConnectionPaths?.map(e => ConnectionPaths.fromPartial(e)) || [];
-    message.nextConnectionSequence = object.nextConnectionSequence !== undefined && object.nextConnectionSequence !== null ? BigInt(object.nextConnectionSequence.toString()) : BigInt(0);
+    message.client_connection_paths = object.client_connection_paths?.map(e => ConnectionPaths.fromPartial(e)) || [];
+    message.next_connection_sequence = object.next_connection_sequence !== undefined && object.next_connection_sequence !== null ? BigInt(object.next_connection_sequence.toString()) : BigInt(0);
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
     const message = createBaseGenesisState();
     message.connections = object.connections?.map(e => IdentifiedConnection.fromAmino(e)) || [];
-    message.clientConnectionPaths = object.client_connection_paths?.map(e => ConnectionPaths.fromAmino(e)) || [];
+    message.client_connection_paths = object.client_connection_paths?.map(e => ConnectionPaths.fromAmino(e)) || [];
     if (object.next_connection_sequence !== undefined && object.next_connection_sequence !== null) {
-      message.nextConnectionSequence = BigInt(object.next_connection_sequence);
+      message.next_connection_sequence = BigInt(object.next_connection_sequence);
     }
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromAmino(object.params);
@@ -110,12 +110,12 @@ export const GenesisState = {
     } else {
       obj.connections = message.connections;
     }
-    if (message.clientConnectionPaths) {
-      obj.client_connection_paths = message.clientConnectionPaths.map(e => e ? ConnectionPaths.toAmino(e) : undefined);
+    if (message.client_connection_paths) {
+      obj.client_connection_paths = message.client_connection_paths.map(e => e ? ConnectionPaths.toAmino(e) : undefined);
     } else {
-      obj.client_connection_paths = message.clientConnectionPaths;
+      obj.client_connection_paths = message.client_connection_paths;
     }
-    obj.next_connection_sequence = message.nextConnectionSequence !== BigInt(0) ? message.nextConnectionSequence?.toString() : undefined;
+    obj.next_connection_sequence = message.next_connection_sequence !== BigInt(0) ? message.next_connection_sequence?.toString() : undefined;
     obj.params = message.params ? Params.toAmino(message.params) : undefined;
     return obj;
   },

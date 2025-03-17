@@ -197,7 +197,7 @@ export interface ExistenceProof {
   path: InnerOp[];
 }
 export interface ExistenceProofProtoMsg {
-  typeUrl: "/cosmos.ics23.v1.ExistenceProof";
+  type_url: "/cosmos.ics23.v1.ExistenceProof";
   value: Uint8Array;
 }
 /**
@@ -243,7 +243,7 @@ export interface NonExistenceProof {
   right?: ExistenceProof;
 }
 export interface NonExistenceProofProtoMsg {
-  typeUrl: "/cosmos.ics23.v1.NonExistenceProof";
+  type_url: "/cosmos.ics23.v1.NonExistenceProof";
   value: Uint8Array;
 }
 /**
@@ -269,7 +269,7 @@ export interface CommitmentProof {
   compressed?: CompressedBatchProof;
 }
 export interface CommitmentProofProtoMsg {
-  typeUrl: "/cosmos.ics23.v1.CommitmentProof";
+  type_url: "/cosmos.ics23.v1.CommitmentProof";
   value: Uint8Array;
 }
 /** CommitmentProof is either an ExistenceProof or a NonExistenceProof, or a Batch of such messages */
@@ -301,8 +301,8 @@ export interface CommitmentProofAminoMsg {
  */
 export interface LeafOp {
   hash: HashOp;
-  prehashKey: HashOp;
-  prehashValue: HashOp;
+  prehash_key: HashOp;
+  prehash_value: HashOp;
   length: LengthOp;
   /**
    * prefix is a fixed bytes that may optionally be included at the beginning to differentiate
@@ -311,7 +311,7 @@ export interface LeafOp {
   prefix: Uint8Array;
 }
 export interface LeafOpProtoMsg {
-  typeUrl: "/cosmos.ics23.v1.LeafOp";
+  type_url: "/cosmos.ics23.v1.LeafOp";
   value: Uint8Array;
 }
 /**
@@ -368,7 +368,7 @@ export interface InnerOp {
   suffix: Uint8Array;
 }
 export interface InnerOpProtoMsg {
-  typeUrl: "/cosmos.ics23.v1.InnerOp";
+  type_url: "/cosmos.ics23.v1.InnerOp";
   value: Uint8Array;
 }
 /**
@@ -414,24 +414,24 @@ export interface ProofSpec {
    * any field in the ExistenceProof must be the same as in this spec.
    * except Prefix, which is just the first bytes of prefix (spec can be longer)
    */
-  leafSpec?: LeafOp;
-  innerSpec?: InnerSpec;
+  leaf_spec?: LeafOp;
+  inner_spec?: InnerSpec;
   /**
    * max_depth (if > 0) is the maximum number of InnerOps allowed (mainly for fixed-depth tries)
    * the max_depth is interpreted as 128 if set to 0
    */
-  maxDepth: number;
+  max_depth: number;
   /** min_depth (if > 0) is the minimum number of InnerOps allowed (mainly for fixed-depth tries) */
-  minDepth: number;
+  min_depth: number;
   /**
    * prehash_key_before_comparison is a flag that indicates whether to use the
    * prehash_key specified by LeafOp to compare lexical ordering of keys for
    * non-existence proofs.
    */
-  prehashKeyBeforeComparison: boolean;
+  prehash_key_before_comparison: boolean;
 }
 export interface ProofSpecProtoMsg {
-  typeUrl: "/cosmos.ics23.v1.ProofSpec";
+  type_url: "/cosmos.ics23.v1.ProofSpec";
   value: Uint8Array;
 }
 /**
@@ -487,18 +487,18 @@ export interface InnerSpec {
    * iavl tree is [0, 1] (left then right)
    * merk is [0, 2, 1] (left, right, here)
    */
-  childOrder: number[];
-  childSize: number;
-  minPrefixLength: number;
+  child_order: number[];
+  child_size: number;
+  min_prefix_length: number;
   /** the max prefix length must be less than the minimum prefix length + child size */
-  maxPrefixLength: number;
+  max_prefix_length: number;
   /** empty child is the prehash image that is used when one child is nil (eg. 20 bytes of 0) */
-  emptyChild: Uint8Array;
+  empty_child: Uint8Array;
   /** hash is the algorithm that must be used for each InnerOp */
   hash: HashOp;
 }
 export interface InnerSpecProtoMsg {
-  typeUrl: "/cosmos.ics23.v1.InnerSpec";
+  type_url: "/cosmos.ics23.v1.InnerSpec";
   value: Uint8Array;
 }
 /**
@@ -536,7 +536,7 @@ export interface BatchProof {
   entries: BatchEntry[];
 }
 export interface BatchProofProtoMsg {
-  typeUrl: "/cosmos.ics23.v1.BatchProof";
+  type_url: "/cosmos.ics23.v1.BatchProof";
   value: Uint8Array;
 }
 /** BatchProof is a group of multiple proof types than can be compressed */
@@ -553,7 +553,7 @@ export interface BatchEntry {
   nonexist?: NonExistenceProof;
 }
 export interface BatchEntryProtoMsg {
-  typeUrl: "/cosmos.ics23.v1.BatchEntry";
+  type_url: "/cosmos.ics23.v1.BatchEntry";
   value: Uint8Array;
 }
 /** Use BatchEntry not CommitmentProof, to avoid recursion */
@@ -567,10 +567,10 @@ export interface BatchEntryAminoMsg {
 }
 export interface CompressedBatchProof {
   entries: CompressedBatchEntry[];
-  lookupInners: InnerOp[];
+  lookup_inners: InnerOp[];
 }
 export interface CompressedBatchProofProtoMsg {
-  typeUrl: "/cosmos.ics23.v1.CompressedBatchProof";
+  type_url: "/cosmos.ics23.v1.CompressedBatchProof";
   value: Uint8Array;
 }
 export interface CompressedBatchProofAmino {
@@ -587,7 +587,7 @@ export interface CompressedBatchEntry {
   nonexist?: CompressedNonExistenceProof;
 }
 export interface CompressedBatchEntryProtoMsg {
-  typeUrl: "/cosmos.ics23.v1.CompressedBatchEntry";
+  type_url: "/cosmos.ics23.v1.CompressedBatchEntry";
   value: Uint8Array;
 }
 /** Use BatchEntry not CommitmentProof, to avoid recursion */
@@ -607,7 +607,7 @@ export interface CompressedExistenceProof {
   path: number[];
 }
 export interface CompressedExistenceProofProtoMsg {
-  typeUrl: "/cosmos.ics23.v1.CompressedExistenceProof";
+  type_url: "/cosmos.ics23.v1.CompressedExistenceProof";
   value: Uint8Array;
 }
 export interface CompressedExistenceProofAmino {
@@ -628,7 +628,7 @@ export interface CompressedNonExistenceProof {
   right?: CompressedExistenceProof;
 }
 export interface CompressedNonExistenceProofProtoMsg {
-  typeUrl: "/cosmos.ics23.v1.CompressedNonExistenceProof";
+  type_url: "/cosmos.ics23.v1.CompressedNonExistenceProof";
   value: Uint8Array;
 }
 export interface CompressedNonExistenceProofAmino {
@@ -983,8 +983,8 @@ export const CommitmentProof = {
 function createBaseLeafOp(): LeafOp {
   return {
     hash: 0,
-    prehashKey: 0,
-    prehashValue: 0,
+    prehash_key: 0,
+    prehash_value: 0,
     length: 0,
     prefix: new Uint8Array()
   };
@@ -993,7 +993,7 @@ export const LeafOp = {
   typeUrl: "/cosmos.ics23.v1.LeafOp",
   aminoType: "cosmos-sdk/LeafOp",
   is(o: any): o is LeafOp {
-    return o && (o.$typeUrl === LeafOp.typeUrl || isSet(o.hash) && isSet(o.prehashKey) && isSet(o.prehashValue) && isSet(o.length) && (o.prefix instanceof Uint8Array || typeof o.prefix === "string"));
+    return o && (o.$typeUrl === LeafOp.typeUrl || isSet(o.hash) && isSet(o.prehash_key) && isSet(o.prehash_value) && isSet(o.length) && (o.prefix instanceof Uint8Array || typeof o.prefix === "string"));
   },
   isAmino(o: any): o is LeafOpAmino {
     return o && (o.$typeUrl === LeafOp.typeUrl || isSet(o.hash) && isSet(o.prehash_key) && isSet(o.prehash_value) && isSet(o.length) && (o.prefix instanceof Uint8Array || typeof o.prefix === "string"));
@@ -1002,11 +1002,11 @@ export const LeafOp = {
     if (message.hash !== 0) {
       writer.uint32(8).int32(message.hash);
     }
-    if (message.prehashKey !== 0) {
-      writer.uint32(16).int32(message.prehashKey);
+    if (message.prehash_key !== 0) {
+      writer.uint32(16).int32(message.prehash_key);
     }
-    if (message.prehashValue !== 0) {
-      writer.uint32(24).int32(message.prehashValue);
+    if (message.prehash_value !== 0) {
+      writer.uint32(24).int32(message.prehash_value);
     }
     if (message.length !== 0) {
       writer.uint32(32).int32(message.length);
@@ -1027,10 +1027,10 @@ export const LeafOp = {
           message.hash = reader.int32() as any;
           break;
         case 2:
-          message.prehashKey = reader.int32() as any;
+          message.prehash_key = reader.int32() as any;
           break;
         case 3:
-          message.prehashValue = reader.int32() as any;
+          message.prehash_value = reader.int32() as any;
           break;
         case 4:
           message.length = reader.int32() as any;
@@ -1048,8 +1048,8 @@ export const LeafOp = {
   fromPartial(object: DeepPartial<LeafOp>): LeafOp {
     const message = createBaseLeafOp();
     message.hash = object.hash ?? 0;
-    message.prehashKey = object.prehashKey ?? 0;
-    message.prehashValue = object.prehashValue ?? 0;
+    message.prehash_key = object.prehash_key ?? 0;
+    message.prehash_value = object.prehash_value ?? 0;
     message.length = object.length ?? 0;
     message.prefix = object.prefix ?? new Uint8Array();
     return message;
@@ -1060,10 +1060,10 @@ export const LeafOp = {
       message.hash = object.hash;
     }
     if (object.prehash_key !== undefined && object.prehash_key !== null) {
-      message.prehashKey = object.prehash_key;
+      message.prehash_key = object.prehash_key;
     }
     if (object.prehash_value !== undefined && object.prehash_value !== null) {
-      message.prehashValue = object.prehash_value;
+      message.prehash_value = object.prehash_value;
     }
     if (object.length !== undefined && object.length !== null) {
       message.length = object.length;
@@ -1076,8 +1076,8 @@ export const LeafOp = {
   toAmino(message: LeafOp): LeafOpAmino {
     const obj: any = {};
     obj.hash = message.hash === 0 ? undefined : message.hash;
-    obj.prehash_key = message.prehashKey === 0 ? undefined : message.prehashKey;
-    obj.prehash_value = message.prehashValue === 0 ? undefined : message.prehashValue;
+    obj.prehash_key = message.prehash_key === 0 ? undefined : message.prehash_key;
+    obj.prehash_value = message.prehash_value === 0 ? undefined : message.prehash_value;
     obj.length = message.length === 0 ? undefined : message.length;
     obj.prefix = message.prefix ? base64FromBytes(message.prefix) : undefined;
     return obj;
@@ -1208,37 +1208,37 @@ export const InnerOp = {
 };
 function createBaseProofSpec(): ProofSpec {
   return {
-    leafSpec: undefined,
-    innerSpec: undefined,
-    maxDepth: 0,
-    minDepth: 0,
-    prehashKeyBeforeComparison: false
+    leaf_spec: undefined,
+    inner_spec: undefined,
+    max_depth: 0,
+    min_depth: 0,
+    prehash_key_before_comparison: false
   };
 }
 export const ProofSpec = {
   typeUrl: "/cosmos.ics23.v1.ProofSpec",
   aminoType: "cosmos-sdk/ProofSpec",
   is(o: any): o is ProofSpec {
-    return o && (o.$typeUrl === ProofSpec.typeUrl || typeof o.maxDepth === "number" && typeof o.minDepth === "number" && typeof o.prehashKeyBeforeComparison === "boolean");
+    return o && (o.$typeUrl === ProofSpec.typeUrl || typeof o.max_depth === "number" && typeof o.min_depth === "number" && typeof o.prehash_key_before_comparison === "boolean");
   },
   isAmino(o: any): o is ProofSpecAmino {
     return o && (o.$typeUrl === ProofSpec.typeUrl || typeof o.max_depth === "number" && typeof o.min_depth === "number" && typeof o.prehash_key_before_comparison === "boolean");
   },
   encode(message: ProofSpec, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.leafSpec !== undefined) {
-      LeafOp.encode(message.leafSpec, writer.uint32(10).fork()).ldelim();
+    if (message.leaf_spec !== undefined) {
+      LeafOp.encode(message.leaf_spec, writer.uint32(10).fork()).ldelim();
     }
-    if (message.innerSpec !== undefined) {
-      InnerSpec.encode(message.innerSpec, writer.uint32(18).fork()).ldelim();
+    if (message.inner_spec !== undefined) {
+      InnerSpec.encode(message.inner_spec, writer.uint32(18).fork()).ldelim();
     }
-    if (message.maxDepth !== 0) {
-      writer.uint32(24).int32(message.maxDepth);
+    if (message.max_depth !== 0) {
+      writer.uint32(24).int32(message.max_depth);
     }
-    if (message.minDepth !== 0) {
-      writer.uint32(32).int32(message.minDepth);
+    if (message.min_depth !== 0) {
+      writer.uint32(32).int32(message.min_depth);
     }
-    if (message.prehashKeyBeforeComparison === true) {
-      writer.uint32(40).bool(message.prehashKeyBeforeComparison);
+    if (message.prehash_key_before_comparison === true) {
+      writer.uint32(40).bool(message.prehash_key_before_comparison);
     }
     return writer;
   },
@@ -1250,19 +1250,19 @@ export const ProofSpec = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.leafSpec = LeafOp.decode(reader, reader.uint32());
+          message.leaf_spec = LeafOp.decode(reader, reader.uint32());
           break;
         case 2:
-          message.innerSpec = InnerSpec.decode(reader, reader.uint32());
+          message.inner_spec = InnerSpec.decode(reader, reader.uint32());
           break;
         case 3:
-          message.maxDepth = reader.int32();
+          message.max_depth = reader.int32();
           break;
         case 4:
-          message.minDepth = reader.int32();
+          message.min_depth = reader.int32();
           break;
         case 5:
-          message.prehashKeyBeforeComparison = reader.bool();
+          message.prehash_key_before_comparison = reader.bool();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1273,39 +1273,39 @@ export const ProofSpec = {
   },
   fromPartial(object: DeepPartial<ProofSpec>): ProofSpec {
     const message = createBaseProofSpec();
-    message.leafSpec = object.leafSpec !== undefined && object.leafSpec !== null ? LeafOp.fromPartial(object.leafSpec) : undefined;
-    message.innerSpec = object.innerSpec !== undefined && object.innerSpec !== null ? InnerSpec.fromPartial(object.innerSpec) : undefined;
-    message.maxDepth = object.maxDepth ?? 0;
-    message.minDepth = object.minDepth ?? 0;
-    message.prehashKeyBeforeComparison = object.prehashKeyBeforeComparison ?? false;
+    message.leaf_spec = object.leaf_spec !== undefined && object.leaf_spec !== null ? LeafOp.fromPartial(object.leaf_spec) : undefined;
+    message.inner_spec = object.inner_spec !== undefined && object.inner_spec !== null ? InnerSpec.fromPartial(object.inner_spec) : undefined;
+    message.max_depth = object.max_depth ?? 0;
+    message.min_depth = object.min_depth ?? 0;
+    message.prehash_key_before_comparison = object.prehash_key_before_comparison ?? false;
     return message;
   },
   fromAmino(object: ProofSpecAmino): ProofSpec {
     const message = createBaseProofSpec();
     if (object.leaf_spec !== undefined && object.leaf_spec !== null) {
-      message.leafSpec = LeafOp.fromAmino(object.leaf_spec);
+      message.leaf_spec = LeafOp.fromAmino(object.leaf_spec);
     }
     if (object.inner_spec !== undefined && object.inner_spec !== null) {
-      message.innerSpec = InnerSpec.fromAmino(object.inner_spec);
+      message.inner_spec = InnerSpec.fromAmino(object.inner_spec);
     }
     if (object.max_depth !== undefined && object.max_depth !== null) {
-      message.maxDepth = object.max_depth;
+      message.max_depth = object.max_depth;
     }
     if (object.min_depth !== undefined && object.min_depth !== null) {
-      message.minDepth = object.min_depth;
+      message.min_depth = object.min_depth;
     }
     if (object.prehash_key_before_comparison !== undefined && object.prehash_key_before_comparison !== null) {
-      message.prehashKeyBeforeComparison = object.prehash_key_before_comparison;
+      message.prehash_key_before_comparison = object.prehash_key_before_comparison;
     }
     return message;
   },
   toAmino(message: ProofSpec): ProofSpecAmino {
     const obj: any = {};
-    obj.leaf_spec = message.leafSpec ? LeafOp.toAmino(message.leafSpec) : undefined;
-    obj.inner_spec = message.innerSpec ? InnerSpec.toAmino(message.innerSpec) : undefined;
-    obj.max_depth = message.maxDepth === 0 ? undefined : message.maxDepth;
-    obj.min_depth = message.minDepth === 0 ? undefined : message.minDepth;
-    obj.prehash_key_before_comparison = message.prehashKeyBeforeComparison === false ? undefined : message.prehashKeyBeforeComparison;
+    obj.leaf_spec = message.leaf_spec ? LeafOp.toAmino(message.leaf_spec) : undefined;
+    obj.inner_spec = message.inner_spec ? InnerSpec.toAmino(message.inner_spec) : undefined;
+    obj.max_depth = message.max_depth === 0 ? undefined : message.max_depth;
+    obj.min_depth = message.min_depth === 0 ? undefined : message.min_depth;
+    obj.prehash_key_before_comparison = message.prehash_key_before_comparison === false ? undefined : message.prehash_key_before_comparison;
     return obj;
   },
   fromAminoMsg(object: ProofSpecAminoMsg): ProofSpec {
@@ -1336,11 +1336,11 @@ export const ProofSpec = {
 };
 function createBaseInnerSpec(): InnerSpec {
   return {
-    childOrder: [],
-    childSize: 0,
-    minPrefixLength: 0,
-    maxPrefixLength: 0,
-    emptyChild: new Uint8Array(),
+    child_order: [],
+    child_size: 0,
+    min_prefix_length: 0,
+    max_prefix_length: 0,
+    empty_child: new Uint8Array(),
     hash: 0
   };
 }
@@ -1348,28 +1348,28 @@ export const InnerSpec = {
   typeUrl: "/cosmos.ics23.v1.InnerSpec",
   aminoType: "cosmos-sdk/InnerSpec",
   is(o: any): o is InnerSpec {
-    return o && (o.$typeUrl === InnerSpec.typeUrl || Array.isArray(o.childOrder) && (!o.childOrder.length || typeof o.childOrder[0] === "number") && typeof o.childSize === "number" && typeof o.minPrefixLength === "number" && typeof o.maxPrefixLength === "number" && (o.emptyChild instanceof Uint8Array || typeof o.emptyChild === "string") && isSet(o.hash));
+    return o && (o.$typeUrl === InnerSpec.typeUrl || Array.isArray(o.child_order) && (!o.child_order.length || typeof o.child_order[0] === "number") && typeof o.child_size === "number" && typeof o.min_prefix_length === "number" && typeof o.max_prefix_length === "number" && (o.empty_child instanceof Uint8Array || typeof o.empty_child === "string") && isSet(o.hash));
   },
   isAmino(o: any): o is InnerSpecAmino {
     return o && (o.$typeUrl === InnerSpec.typeUrl || Array.isArray(o.child_order) && (!o.child_order.length || typeof o.child_order[0] === "number") && typeof o.child_size === "number" && typeof o.min_prefix_length === "number" && typeof o.max_prefix_length === "number" && (o.empty_child instanceof Uint8Array || typeof o.empty_child === "string") && isSet(o.hash));
   },
   encode(message: InnerSpec, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     writer.uint32(10).fork();
-    for (const v of message.childOrder) {
+    for (const v of message.child_order) {
       writer.int32(v);
     }
     writer.ldelim();
-    if (message.childSize !== 0) {
-      writer.uint32(16).int32(message.childSize);
+    if (message.child_size !== 0) {
+      writer.uint32(16).int32(message.child_size);
     }
-    if (message.minPrefixLength !== 0) {
-      writer.uint32(24).int32(message.minPrefixLength);
+    if (message.min_prefix_length !== 0) {
+      writer.uint32(24).int32(message.min_prefix_length);
     }
-    if (message.maxPrefixLength !== 0) {
-      writer.uint32(32).int32(message.maxPrefixLength);
+    if (message.max_prefix_length !== 0) {
+      writer.uint32(32).int32(message.max_prefix_length);
     }
-    if (message.emptyChild.length !== 0) {
-      writer.uint32(42).bytes(message.emptyChild);
+    if (message.empty_child.length !== 0) {
+      writer.uint32(42).bytes(message.empty_child);
     }
     if (message.hash !== 0) {
       writer.uint32(48).int32(message.hash);
@@ -1387,23 +1387,23 @@ export const InnerSpec = {
           if ((tag & 7) === 2) {
             const end2 = reader.uint32() + reader.pos;
             while (reader.pos < end2) {
-              message.childOrder.push(reader.int32());
+              message.child_order.push(reader.int32());
             }
           } else {
-            message.childOrder.push(reader.int32());
+            message.child_order.push(reader.int32());
           }
           break;
         case 2:
-          message.childSize = reader.int32();
+          message.child_size = reader.int32();
           break;
         case 3:
-          message.minPrefixLength = reader.int32();
+          message.min_prefix_length = reader.int32();
           break;
         case 4:
-          message.maxPrefixLength = reader.int32();
+          message.max_prefix_length = reader.int32();
           break;
         case 5:
-          message.emptyChild = reader.bytes();
+          message.empty_child = reader.bytes();
           break;
         case 6:
           message.hash = reader.int32() as any;
@@ -1417,28 +1417,28 @@ export const InnerSpec = {
   },
   fromPartial(object: DeepPartial<InnerSpec>): InnerSpec {
     const message = createBaseInnerSpec();
-    message.childOrder = object.childOrder?.map(e => e) || [];
-    message.childSize = object.childSize ?? 0;
-    message.minPrefixLength = object.minPrefixLength ?? 0;
-    message.maxPrefixLength = object.maxPrefixLength ?? 0;
-    message.emptyChild = object.emptyChild ?? new Uint8Array();
+    message.child_order = object.child_order?.map(e => e) || [];
+    message.child_size = object.child_size ?? 0;
+    message.min_prefix_length = object.min_prefix_length ?? 0;
+    message.max_prefix_length = object.max_prefix_length ?? 0;
+    message.empty_child = object.empty_child ?? new Uint8Array();
     message.hash = object.hash ?? 0;
     return message;
   },
   fromAmino(object: InnerSpecAmino): InnerSpec {
     const message = createBaseInnerSpec();
-    message.childOrder = object.child_order?.map(e => e) || [];
+    message.child_order = object.child_order?.map(e => e) || [];
     if (object.child_size !== undefined && object.child_size !== null) {
-      message.childSize = object.child_size;
+      message.child_size = object.child_size;
     }
     if (object.min_prefix_length !== undefined && object.min_prefix_length !== null) {
-      message.minPrefixLength = object.min_prefix_length;
+      message.min_prefix_length = object.min_prefix_length;
     }
     if (object.max_prefix_length !== undefined && object.max_prefix_length !== null) {
-      message.maxPrefixLength = object.max_prefix_length;
+      message.max_prefix_length = object.max_prefix_length;
     }
     if (object.empty_child !== undefined && object.empty_child !== null) {
-      message.emptyChild = bytesFromBase64(object.empty_child);
+      message.empty_child = bytesFromBase64(object.empty_child);
     }
     if (object.hash !== undefined && object.hash !== null) {
       message.hash = object.hash;
@@ -1447,15 +1447,15 @@ export const InnerSpec = {
   },
   toAmino(message: InnerSpec): InnerSpecAmino {
     const obj: any = {};
-    if (message.childOrder) {
-      obj.child_order = message.childOrder.map(e => e);
+    if (message.child_order) {
+      obj.child_order = message.child_order.map(e => e);
     } else {
-      obj.child_order = message.childOrder;
+      obj.child_order = message.child_order;
     }
-    obj.child_size = message.childSize === 0 ? undefined : message.childSize;
-    obj.min_prefix_length = message.minPrefixLength === 0 ? undefined : message.minPrefixLength;
-    obj.max_prefix_length = message.maxPrefixLength === 0 ? undefined : message.maxPrefixLength;
-    obj.empty_child = message.emptyChild ? base64FromBytes(message.emptyChild) : undefined;
+    obj.child_size = message.child_size === 0 ? undefined : message.child_size;
+    obj.min_prefix_length = message.min_prefix_length === 0 ? undefined : message.min_prefix_length;
+    obj.max_prefix_length = message.max_prefix_length === 0 ? undefined : message.max_prefix_length;
+    obj.empty_child = message.empty_child ? base64FromBytes(message.empty_child) : undefined;
     obj.hash = message.hash === 0 ? undefined : message.hash;
     return obj;
   },
@@ -1658,14 +1658,14 @@ export const BatchEntry = {
 function createBaseCompressedBatchProof(): CompressedBatchProof {
   return {
     entries: [],
-    lookupInners: []
+    lookup_inners: []
   };
 }
 export const CompressedBatchProof = {
   typeUrl: "/cosmos.ics23.v1.CompressedBatchProof",
   aminoType: "cosmos-sdk/CompressedBatchProof",
   is(o: any): o is CompressedBatchProof {
-    return o && (o.$typeUrl === CompressedBatchProof.typeUrl || Array.isArray(o.entries) && (!o.entries.length || CompressedBatchEntry.is(o.entries[0])) && Array.isArray(o.lookupInners) && (!o.lookupInners.length || InnerOp.is(o.lookupInners[0])));
+    return o && (o.$typeUrl === CompressedBatchProof.typeUrl || Array.isArray(o.entries) && (!o.entries.length || CompressedBatchEntry.is(o.entries[0])) && Array.isArray(o.lookup_inners) && (!o.lookup_inners.length || InnerOp.is(o.lookup_inners[0])));
   },
   isAmino(o: any): o is CompressedBatchProofAmino {
     return o && (o.$typeUrl === CompressedBatchProof.typeUrl || Array.isArray(o.entries) && (!o.entries.length || CompressedBatchEntry.isAmino(o.entries[0])) && Array.isArray(o.lookup_inners) && (!o.lookup_inners.length || InnerOp.isAmino(o.lookup_inners[0])));
@@ -1674,7 +1674,7 @@ export const CompressedBatchProof = {
     for (const v of message.entries) {
       CompressedBatchEntry.encode(v!, writer.uint32(10).fork()).ldelim();
     }
-    for (const v of message.lookupInners) {
+    for (const v of message.lookup_inners) {
       InnerOp.encode(v!, writer.uint32(18).fork()).ldelim();
     }
     return writer;
@@ -1690,7 +1690,7 @@ export const CompressedBatchProof = {
           message.entries.push(CompressedBatchEntry.decode(reader, reader.uint32()));
           break;
         case 2:
-          message.lookupInners.push(InnerOp.decode(reader, reader.uint32()));
+          message.lookup_inners.push(InnerOp.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -1702,13 +1702,13 @@ export const CompressedBatchProof = {
   fromPartial(object: DeepPartial<CompressedBatchProof>): CompressedBatchProof {
     const message = createBaseCompressedBatchProof();
     message.entries = object.entries?.map(e => CompressedBatchEntry.fromPartial(e)) || [];
-    message.lookupInners = object.lookupInners?.map(e => InnerOp.fromPartial(e)) || [];
+    message.lookup_inners = object.lookup_inners?.map(e => InnerOp.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: CompressedBatchProofAmino): CompressedBatchProof {
     const message = createBaseCompressedBatchProof();
     message.entries = object.entries?.map(e => CompressedBatchEntry.fromAmino(e)) || [];
-    message.lookupInners = object.lookup_inners?.map(e => InnerOp.fromAmino(e)) || [];
+    message.lookup_inners = object.lookup_inners?.map(e => InnerOp.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: CompressedBatchProof): CompressedBatchProofAmino {
@@ -1718,10 +1718,10 @@ export const CompressedBatchProof = {
     } else {
       obj.entries = message.entries;
     }
-    if (message.lookupInners) {
-      obj.lookup_inners = message.lookupInners.map(e => e ? InnerOp.toAmino(e) : undefined);
+    if (message.lookup_inners) {
+      obj.lookup_inners = message.lookup_inners.map(e => e ? InnerOp.toAmino(e) : undefined);
     } else {
-      obj.lookup_inners = message.lookupInners;
+      obj.lookup_inners = message.lookup_inners;
     }
     return obj;
   },

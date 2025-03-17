@@ -35,10 +35,10 @@ export interface Plan {
    * If this field is not empty, an error will be thrown.
    */
   /** @deprecated */
-  upgradedClientState?: Any;
+  upgraded_client_state?: Any;
 }
 export interface PlanProtoMsg {
-  typeUrl: "/cosmos.upgrade.v1beta1.Plan";
+  type_url: "/cosmos.upgrade.v1beta1.Plan";
   value: Uint8Array;
 }
 /** Plan specifies information about a planned upgrade and when it should occur. */
@@ -95,7 +95,7 @@ export interface SoftwareUpgradeProposal {
   plan: Plan;
 }
 export interface SoftwareUpgradeProposalProtoMsg {
-  typeUrl: "/cosmos.upgrade.v1beta1.SoftwareUpgradeProposal";
+  type_url: "/cosmos.upgrade.v1beta1.SoftwareUpgradeProposal";
   value: Uint8Array;
 }
 /**
@@ -131,7 +131,7 @@ export interface CancelSoftwareUpgradeProposal {
   description: string;
 }
 export interface CancelSoftwareUpgradeProposalProtoMsg {
-  typeUrl: "/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal";
+  type_url: "/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal";
   value: Uint8Array;
 }
 /**
@@ -163,7 +163,7 @@ export interface ModuleVersion {
   version: bigint;
 }
 export interface ModuleVersionProtoMsg {
-  typeUrl: "/cosmos.upgrade.v1beta1.ModuleVersion";
+  type_url: "/cosmos.upgrade.v1beta1.ModuleVersion";
   value: Uint8Array;
 }
 /**
@@ -187,7 +187,7 @@ function createBasePlan(): Plan {
     time: new Date(),
     height: BigInt(0),
     info: "",
-    upgradedClientState: undefined
+    upgraded_client_state: undefined
   };
 }
 export const Plan = {
@@ -212,8 +212,8 @@ export const Plan = {
     if (message.info !== "") {
       writer.uint32(34).string(message.info);
     }
-    if (message.upgradedClientState !== undefined) {
-      Any.encode(message.upgradedClientState, writer.uint32(42).fork()).ldelim();
+    if (message.upgraded_client_state !== undefined) {
+      Any.encode(message.upgraded_client_state, writer.uint32(42).fork()).ldelim();
     }
     return writer;
   },
@@ -237,7 +237,7 @@ export const Plan = {
           message.info = reader.string();
           break;
         case 5:
-          message.upgradedClientState = Any.decode(reader, reader.uint32());
+          message.upgraded_client_state = Any.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -252,7 +252,7 @@ export const Plan = {
     message.time = object.time ?? undefined;
     message.height = object.height !== undefined && object.height !== null ? BigInt(object.height.toString()) : BigInt(0);
     message.info = object.info ?? "";
-    message.upgradedClientState = object.upgradedClientState !== undefined && object.upgradedClientState !== null ? Any.fromPartial(object.upgradedClientState) : undefined;
+    message.upgraded_client_state = object.upgraded_client_state !== undefined && object.upgraded_client_state !== null ? Any.fromPartial(object.upgraded_client_state) : undefined;
     return message;
   },
   fromAmino(object: PlanAmino): Plan {
@@ -270,7 +270,7 @@ export const Plan = {
       message.info = object.info;
     }
     if (object.upgraded_client_state !== undefined && object.upgraded_client_state !== null) {
-      message.upgradedClientState = Any.fromAmino(object.upgraded_client_state);
+      message.upgraded_client_state = Any.fromAmino(object.upgraded_client_state);
     }
     return message;
   },
@@ -280,7 +280,7 @@ export const Plan = {
     obj.time = message.time ? Timestamp.toAmino(toTimestamp(message.time)) : new Date();
     obj.height = message.height !== BigInt(0) ? message.height?.toString() : undefined;
     obj.info = message.info === "" ? undefined : message.info;
-    obj.upgraded_client_state = message.upgradedClientState ? Any.toAmino(message.upgradedClientState) : undefined;
+    obj.upgraded_client_state = message.upgraded_client_state ? Any.toAmino(message.upgraded_client_state) : undefined;
     return obj;
   },
   fromAminoMsg(object: PlanAminoMsg): Plan {

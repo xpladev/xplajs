@@ -12,7 +12,7 @@ export class LCDQueryClient {
   }
   /* ClientState queries an IBC light client. */
   clientState = async (params: QueryClientStateRequest): Promise<QueryClientStateResponse> => {
-    const endpoint = `ibc/core/client/v1/client_states/${params.clientId}`;
+    const endpoint = `ibc/core/client/v1/client_states/${params.client_id}`;
     return await this.req.get<QueryClientStateResponse>(endpoint);
   };
   /* ClientStates queries all the IBC light clients of a chain. */
@@ -34,10 +34,10 @@ export class LCDQueryClient {
     const options: any = {
       params: {}
     };
-    if (typeof params?.latestHeight !== "undefined") {
-      options.params.latest_height = params.latestHeight;
+    if (typeof params?.latest_height !== "undefined") {
+      options.params.latest_height = params.latest_height;
     }
-    const endpoint = `ibc/core/client/v1/consensus_states/${params.clientId}/revision/${params.revisionNumber}/height/${params.revisionHeight}`;
+    const endpoint = `ibc/core/client/v1/consensus_states/${params.client_id}/revision/${params.revision_number}/height/${params.revision_height}`;
     return await this.req.get<QueryConsensusStateResponse>(endpoint, options);
   };
   /* ConsensusStates queries all the consensus state associated with a given
@@ -49,7 +49,7 @@ export class LCDQueryClient {
     if (typeof params?.pagination !== "undefined") {
       setPaginationParams(options, params.pagination);
     }
-    const endpoint = `ibc/core/client/v1/consensus_states/${params.clientId}`;
+    const endpoint = `ibc/core/client/v1/consensus_states/${params.client_id}`;
     return await this.req.get<QueryConsensusStatesResponse>(endpoint, options);
   };
   /* ConsensusStateHeights queries the height of every consensus states associated with a given client. */
@@ -60,12 +60,12 @@ export class LCDQueryClient {
     if (typeof params?.pagination !== "undefined") {
       setPaginationParams(options, params.pagination);
     }
-    const endpoint = `ibc/core/client/v1/consensus_states/${params.clientId}/heights`;
+    const endpoint = `ibc/core/client/v1/consensus_states/${params.client_id}/heights`;
     return await this.req.get<QueryConsensusStateHeightsResponse>(endpoint, options);
   };
   /* Status queries the status of an IBC client. */
   clientStatus = async (params: QueryClientStatusRequest): Promise<QueryClientStatusResponse> => {
-    const endpoint = `ibc/core/client/v1/client_status/${params.clientId}`;
+    const endpoint = `ibc/core/client/v1/client_status/${params.client_id}`;
     return await this.req.get<QueryClientStatusResponse>(endpoint);
   };
   /* ClientParams queries all parameters of the ibc client submodule. */

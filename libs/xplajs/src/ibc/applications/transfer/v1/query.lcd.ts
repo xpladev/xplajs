@@ -52,7 +52,7 @@ export class LCDQueryClient {
   };
   /* EscrowAddress returns the escrow address for a particular port and channel id. */
   escrowAddress = async (params: QueryEscrowAddressRequest): Promise<QueryEscrowAddressResponse> => {
-    const endpoint = `ibc/apps/transfer/v1/channels/${params.channelId}/ports/${params.portId}/escrow_address`;
+    const endpoint = `ibc/apps/transfer/v1/channels/${params.channel_id}/ports/${params.port_id}/escrow_address`;
     return await this.req.get<QueryEscrowAddressResponse>(endpoint);
   };
   /* TotalEscrowForDenom returns the total amount of tokens in escrow based on the denom. */

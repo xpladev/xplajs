@@ -6,7 +6,7 @@ export interface PublicKey {
   secp256k1?: Uint8Array;
 }
 export interface PublicKeyProtoMsg {
-  typeUrl: "/tendermint.crypto.PublicKey";
+  type_url: "/tendermint.crypto.PublicKey";
   value: Uint8Array;
 }
 /** PublicKey defines the keys available for use with Validators */

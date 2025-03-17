@@ -9,14 +9,14 @@ import { DeepPartial } from "../../../../helpers";
 /** GenesisState defines the ibc module's genesis state. */
 export interface GenesisState {
   /** ICS002 - Clients genesis state */
-  clientGenesis: GenesisState1;
+  client_genesis: GenesisState1;
   /** ICS003 - Connections genesis state */
-  connectionGenesis: GenesisState2;
+  connection_genesis: GenesisState2;
   /** ICS004 - Channel genesis state */
-  channelGenesis: GenesisState3;
+  channel_genesis: GenesisState3;
 }
 export interface GenesisStateProtoMsg {
-  typeUrl: "/ibc.core.types.v1.GenesisState";
+  type_url: "/ibc.core.types.v1.GenesisState";
   value: Uint8Array;
 }
 /** GenesisState defines the ibc module's genesis state. */
@@ -34,29 +34,29 @@ export interface GenesisStateAminoMsg {
 }
 function createBaseGenesisState(): GenesisState {
   return {
-    clientGenesis: GenesisState1.fromPartial({}),
-    connectionGenesis: GenesisState2.fromPartial({}),
-    channelGenesis: GenesisState3.fromPartial({})
+    client_genesis: GenesisState1.fromPartial({}),
+    connection_genesis: GenesisState2.fromPartial({}),
+    channel_genesis: GenesisState3.fromPartial({})
   };
 }
 export const GenesisState = {
   typeUrl: "/ibc.core.types.v1.GenesisState",
   aminoType: "cosmos-sdk/GenesisState",
   is(o: any): o is GenesisState {
-    return o && (o.$typeUrl === GenesisState.typeUrl || GenesisState1.is(o.clientGenesis) && GenesisState2.is(o.connectionGenesis) && GenesisState3.is(o.channelGenesis));
+    return o && (o.$typeUrl === GenesisState.typeUrl || GenesisState1.is(o.client_genesis) && GenesisState2.is(o.connection_genesis) && GenesisState3.is(o.channel_genesis));
   },
   isAmino(o: any): o is GenesisStateAmino {
     return o && (o.$typeUrl === GenesisState.typeUrl || GenesisState1.isAmino(o.client_genesis) && GenesisState2.isAmino(o.connection_genesis) && GenesisState3.isAmino(o.channel_genesis));
   },
   encode(message: GenesisState, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.clientGenesis !== undefined) {
-      GenesisState1.encode(message.clientGenesis, writer.uint32(10).fork()).ldelim();
+    if (message.client_genesis !== undefined) {
+      GenesisState1.encode(message.client_genesis, writer.uint32(10).fork()).ldelim();
     }
-    if (message.connectionGenesis !== undefined) {
-      GenesisState2.encode(message.connectionGenesis, writer.uint32(18).fork()).ldelim();
+    if (message.connection_genesis !== undefined) {
+      GenesisState2.encode(message.connection_genesis, writer.uint32(18).fork()).ldelim();
     }
-    if (message.channelGenesis !== undefined) {
-      GenesisState3.encode(message.channelGenesis, writer.uint32(26).fork()).ldelim();
+    if (message.channel_genesis !== undefined) {
+      GenesisState3.encode(message.channel_genesis, writer.uint32(26).fork()).ldelim();
     }
     return writer;
   },
@@ -68,13 +68,13 @@ export const GenesisState = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.clientGenesis = GenesisState1.decode(reader, reader.uint32());
+          message.client_genesis = GenesisState1.decode(reader, reader.uint32());
           break;
         case 2:
-          message.connectionGenesis = GenesisState2.decode(reader, reader.uint32());
+          message.connection_genesis = GenesisState2.decode(reader, reader.uint32());
           break;
         case 3:
-          message.channelGenesis = GenesisState3.decode(reader, reader.uint32());
+          message.channel_genesis = GenesisState3.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -85,29 +85,29 @@ export const GenesisState = {
   },
   fromPartial(object: DeepPartial<GenesisState>): GenesisState {
     const message = createBaseGenesisState();
-    message.clientGenesis = object.clientGenesis !== undefined && object.clientGenesis !== null ? GenesisState1.fromPartial(object.clientGenesis) : undefined;
-    message.connectionGenesis = object.connectionGenesis !== undefined && object.connectionGenesis !== null ? GenesisState2.fromPartial(object.connectionGenesis) : undefined;
-    message.channelGenesis = object.channelGenesis !== undefined && object.channelGenesis !== null ? GenesisState3.fromPartial(object.channelGenesis) : undefined;
+    message.client_genesis = object.client_genesis !== undefined && object.client_genesis !== null ? GenesisState1.fromPartial(object.client_genesis) : undefined;
+    message.connection_genesis = object.connection_genesis !== undefined && object.connection_genesis !== null ? GenesisState2.fromPartial(object.connection_genesis) : undefined;
+    message.channel_genesis = object.channel_genesis !== undefined && object.channel_genesis !== null ? GenesisState3.fromPartial(object.channel_genesis) : undefined;
     return message;
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
     const message = createBaseGenesisState();
     if (object.client_genesis !== undefined && object.client_genesis !== null) {
-      message.clientGenesis = GenesisState1.fromAmino(object.client_genesis);
+      message.client_genesis = GenesisState1.fromAmino(object.client_genesis);
     }
     if (object.connection_genesis !== undefined && object.connection_genesis !== null) {
-      message.connectionGenesis = GenesisState2.fromAmino(object.connection_genesis);
+      message.connection_genesis = GenesisState2.fromAmino(object.connection_genesis);
     }
     if (object.channel_genesis !== undefined && object.channel_genesis !== null) {
-      message.channelGenesis = GenesisState3.fromAmino(object.channel_genesis);
+      message.channel_genesis = GenesisState3.fromAmino(object.channel_genesis);
     }
     return message;
   },
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
-    obj.client_genesis = message.clientGenesis ? GenesisState1.toAmino(message.clientGenesis) : undefined;
-    obj.connection_genesis = message.connectionGenesis ? GenesisState2.toAmino(message.connectionGenesis) : undefined;
-    obj.channel_genesis = message.channelGenesis ? GenesisState3.toAmino(message.channelGenesis) : undefined;
+    obj.client_genesis = message.client_genesis ? GenesisState1.toAmino(message.client_genesis) : undefined;
+    obj.connection_genesis = message.connection_genesis ? GenesisState2.toAmino(message.connection_genesis) : undefined;
+    obj.channel_genesis = message.channel_genesis ? GenesisState3.toAmino(message.channel_genesis) : undefined;
     return obj;
   },
   fromAminoMsg(object: GenesisStateAminoMsg): GenesisState {

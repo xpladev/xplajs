@@ -10,7 +10,7 @@ export interface PubKey {
   key: Uint8Array;
 }
 export interface PubKeyProtoMsg {
-  typeUrl: "/ethermint.crypto.v1.ethsecp256k1.PubKey";
+  type_url: "/ethermint.crypto.v1.ethsecp256k1.PubKey";
   value: Uint8Array;
 }
 /**
@@ -35,7 +35,7 @@ export interface PrivKey {
   key: Uint8Array;
 }
 export interface PrivKeyProtoMsg {
-  typeUrl: "/ethermint.crypto.v1.ethsecp256k1.PrivKey";
+  type_url: "/ethermint.crypto.v1.ethsecp256k1.PrivKey";
   value: Uint8Array;
 }
 /**

@@ -11,7 +11,7 @@ export interface MsgFundRewardPool {
   depositor: string;
 }
 export interface MsgFundRewardPoolProtoMsg {
-  typeUrl: "/xpla.reward.v1beta1.MsgFundRewardPool";
+  type_url: "/xpla.reward.v1beta1.MsgFundRewardPool";
   value: Uint8Array;
 }
 /**
@@ -29,7 +29,7 @@ export interface MsgFundRewardPoolAminoMsg {
 /** MsgFundRewardPoolResponse defines the Msg/FundRewardPool response type. */
 export interface MsgFundRewardPoolResponse {}
 export interface MsgFundRewardPoolResponseProtoMsg {
-  typeUrl: "/xpla.reward.v1beta1.MsgFundRewardPoolResponse";
+  type_url: "/xpla.reward.v1beta1.MsgFundRewardPoolResponse";
   value: Uint8Array;
 }
 /** MsgFundRewardPoolResponse defines the Msg/FundRewardPool response type. */
@@ -52,7 +52,7 @@ export interface MsgUpdateParams {
   params: Params;
 }
 export interface MsgUpdateParamsProtoMsg {
-  typeUrl: "/xpla.reward.v1beta1.MsgUpdateParams";
+  type_url: "/xpla.reward.v1beta1.MsgUpdateParams";
   value: Uint8Array;
 }
 /**
@@ -79,7 +79,7 @@ export interface MsgUpdateParamsAminoMsg {
  */
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
-  typeUrl: "/xpla.reward.v1beta1.MsgUpdateParamsResponse";
+  type_url: "/xpla.reward.v1beta1.MsgUpdateParamsResponse";
   value: Uint8Array;
 }
 /**

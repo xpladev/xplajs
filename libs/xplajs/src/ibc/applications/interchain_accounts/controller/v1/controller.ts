@@ -6,10 +6,10 @@ import { DeepPartial } from "../../../../../helpers";
  */
 export interface Params {
   /** controller_enabled enables or disables the controller submodule. */
-  controllerEnabled: boolean;
+  controller_enabled: boolean;
 }
 export interface ParamsProtoMsg {
-  typeUrl: "/ibc.applications.interchain_accounts.controller.v1.Params";
+  type_url: "/ibc.applications.interchain_accounts.controller.v1.Params";
   value: Uint8Array;
 }
 /**
@@ -26,21 +26,21 @@ export interface ParamsAminoMsg {
 }
 function createBaseParams(): Params {
   return {
-    controllerEnabled: false
+    controller_enabled: false
   };
 }
 export const Params = {
   typeUrl: "/ibc.applications.interchain_accounts.controller.v1.Params",
   aminoType: "cosmos-sdk/Params",
   is(o: any): o is Params {
-    return o && (o.$typeUrl === Params.typeUrl || typeof o.controllerEnabled === "boolean");
+    return o && (o.$typeUrl === Params.typeUrl || typeof o.controller_enabled === "boolean");
   },
   isAmino(o: any): o is ParamsAmino {
     return o && (o.$typeUrl === Params.typeUrl || typeof o.controller_enabled === "boolean");
   },
   encode(message: Params, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.controllerEnabled === true) {
-      writer.uint32(8).bool(message.controllerEnabled);
+    if (message.controller_enabled === true) {
+      writer.uint32(8).bool(message.controller_enabled);
     }
     return writer;
   },
@@ -52,7 +52,7 @@ export const Params = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.controllerEnabled = reader.bool();
+          message.controller_enabled = reader.bool();
           break;
         default:
           reader.skipType(tag & 7);
@@ -63,19 +63,19 @@ export const Params = {
   },
   fromPartial(object: DeepPartial<Params>): Params {
     const message = createBaseParams();
-    message.controllerEnabled = object.controllerEnabled ?? false;
+    message.controller_enabled = object.controller_enabled ?? false;
     return message;
   },
   fromAmino(object: ParamsAmino): Params {
     const message = createBaseParams();
     if (object.controller_enabled !== undefined && object.controller_enabled !== null) {
-      message.controllerEnabled = object.controller_enabled;
+      message.controller_enabled = object.controller_enabled;
     }
     return message;
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    obj.controller_enabled = message.controllerEnabled === false ? undefined : message.controllerEnabled;
+    obj.controller_enabled = message.controller_enabled === false ? undefined : message.controller_enabled;
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {

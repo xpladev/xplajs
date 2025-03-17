@@ -10,7 +10,7 @@ export interface QueryAllowanceRequest {
   grantee: string;
 }
 export interface QueryAllowanceRequestProtoMsg {
-  typeUrl: "/cosmos.feegrant.v1beta1.QueryAllowanceRequest";
+  type_url: "/cosmos.feegrant.v1beta1.QueryAllowanceRequest";
   value: Uint8Array;
 }
 /** QueryAllowanceRequest is the request type for the Query/Allowance RPC method. */
@@ -30,7 +30,7 @@ export interface QueryAllowanceResponse {
   allowance?: Grant;
 }
 export interface QueryAllowanceResponseProtoMsg {
-  typeUrl: "/cosmos.feegrant.v1beta1.QueryAllowanceResponse";
+  type_url: "/cosmos.feegrant.v1beta1.QueryAllowanceResponse";
   value: Uint8Array;
 }
 /** QueryAllowanceResponse is the response type for the Query/Allowance RPC method. */
@@ -49,7 +49,7 @@ export interface QueryAllowancesRequest {
   pagination?: PageRequest;
 }
 export interface QueryAllowancesRequestProtoMsg {
-  typeUrl: "/cosmos.feegrant.v1beta1.QueryAllowancesRequest";
+  type_url: "/cosmos.feegrant.v1beta1.QueryAllowancesRequest";
   value: Uint8Array;
 }
 /** QueryAllowancesRequest is the request type for the Query/Allowances RPC method. */
@@ -70,7 +70,7 @@ export interface QueryAllowancesResponse {
   pagination?: PageResponse;
 }
 export interface QueryAllowancesResponseProtoMsg {
-  typeUrl: "/cosmos.feegrant.v1beta1.QueryAllowancesResponse";
+  type_url: "/cosmos.feegrant.v1beta1.QueryAllowancesResponse";
   value: Uint8Array;
 }
 /** QueryAllowancesResponse is the response type for the Query/Allowances RPC method. */
@@ -95,7 +95,7 @@ export interface QueryAllowancesByGranterRequest {
   pagination?: PageRequest;
 }
 export interface QueryAllowancesByGranterRequestProtoMsg {
-  typeUrl: "/cosmos.feegrant.v1beta1.QueryAllowancesByGranterRequest";
+  type_url: "/cosmos.feegrant.v1beta1.QueryAllowancesByGranterRequest";
   value: Uint8Array;
 }
 /**
@@ -124,7 +124,7 @@ export interface QueryAllowancesByGranterResponse {
   pagination?: PageResponse;
 }
 export interface QueryAllowancesByGranterResponseProtoMsg {
-  typeUrl: "/cosmos.feegrant.v1beta1.QueryAllowancesByGranterResponse";
+  type_url: "/cosmos.feegrant.v1beta1.QueryAllowancesByGranterResponse";
   value: Uint8Array;
 }
 /**

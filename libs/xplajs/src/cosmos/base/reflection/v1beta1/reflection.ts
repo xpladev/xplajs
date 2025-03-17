@@ -3,7 +3,7 @@ import { DeepPartial } from "../../../../helpers";
 /** ListAllInterfacesRequest is the request type of the ListAllInterfaces RPC. */
 export interface ListAllInterfacesRequest {}
 export interface ListAllInterfacesRequestProtoMsg {
-  typeUrl: "/cosmos.base.reflection.v1beta1.ListAllInterfacesRequest";
+  type_url: "/cosmos.base.reflection.v1beta1.ListAllInterfacesRequest";
   value: Uint8Array;
 }
 /** ListAllInterfacesRequest is the request type of the ListAllInterfaces RPC. */
@@ -15,10 +15,10 @@ export interface ListAllInterfacesRequestAminoMsg {
 /** ListAllInterfacesResponse is the response type of the ListAllInterfaces RPC. */
 export interface ListAllInterfacesResponse {
   /** interface_names is an array of all the registered interfaces. */
-  interfaceNames: string[];
+  interface_names: string[];
 }
 export interface ListAllInterfacesResponseProtoMsg {
-  typeUrl: "/cosmos.base.reflection.v1beta1.ListAllInterfacesResponse";
+  type_url: "/cosmos.base.reflection.v1beta1.ListAllInterfacesResponse";
   value: Uint8Array;
 }
 /** ListAllInterfacesResponse is the response type of the ListAllInterfaces RPC. */
@@ -36,10 +36,10 @@ export interface ListAllInterfacesResponseAminoMsg {
  */
 export interface ListImplementationsRequest {
   /** interface_name defines the interface to query the implementations for. */
-  interfaceName: string;
+  interface_name: string;
 }
 export interface ListImplementationsRequestProtoMsg {
-  typeUrl: "/cosmos.base.reflection.v1beta1.ListImplementationsRequest";
+  type_url: "/cosmos.base.reflection.v1beta1.ListImplementationsRequest";
   value: Uint8Array;
 }
 /**
@@ -59,10 +59,10 @@ export interface ListImplementationsRequestAminoMsg {
  * RPC.
  */
 export interface ListImplementationsResponse {
-  implementationMessageNames: string[];
+  implementation_message_names: string[];
 }
 export interface ListImplementationsResponseProtoMsg {
-  typeUrl: "/cosmos.base.reflection.v1beta1.ListImplementationsResponse";
+  type_url: "/cosmos.base.reflection.v1beta1.ListImplementationsResponse";
   value: Uint8Array;
 }
 /**
@@ -142,20 +142,20 @@ export const ListAllInterfacesRequest = {
 };
 function createBaseListAllInterfacesResponse(): ListAllInterfacesResponse {
   return {
-    interfaceNames: []
+    interface_names: []
   };
 }
 export const ListAllInterfacesResponse = {
   typeUrl: "/cosmos.base.reflection.v1beta1.ListAllInterfacesResponse",
   aminoType: "cosmos-sdk/ListAllInterfacesResponse",
   is(o: any): o is ListAllInterfacesResponse {
-    return o && (o.$typeUrl === ListAllInterfacesResponse.typeUrl || Array.isArray(o.interfaceNames) && (!o.interfaceNames.length || typeof o.interfaceNames[0] === "string"));
+    return o && (o.$typeUrl === ListAllInterfacesResponse.typeUrl || Array.isArray(o.interface_names) && (!o.interface_names.length || typeof o.interface_names[0] === "string"));
   },
   isAmino(o: any): o is ListAllInterfacesResponseAmino {
     return o && (o.$typeUrl === ListAllInterfacesResponse.typeUrl || Array.isArray(o.interface_names) && (!o.interface_names.length || typeof o.interface_names[0] === "string"));
   },
   encode(message: ListAllInterfacesResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.interfaceNames) {
+    for (const v of message.interface_names) {
       writer.uint32(10).string(v!);
     }
     return writer;
@@ -168,7 +168,7 @@ export const ListAllInterfacesResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.interfaceNames.push(reader.string());
+          message.interface_names.push(reader.string());
           break;
         default:
           reader.skipType(tag & 7);
@@ -179,20 +179,20 @@ export const ListAllInterfacesResponse = {
   },
   fromPartial(object: DeepPartial<ListAllInterfacesResponse>): ListAllInterfacesResponse {
     const message = createBaseListAllInterfacesResponse();
-    message.interfaceNames = object.interfaceNames?.map(e => e) || [];
+    message.interface_names = object.interface_names?.map(e => e) || [];
     return message;
   },
   fromAmino(object: ListAllInterfacesResponseAmino): ListAllInterfacesResponse {
     const message = createBaseListAllInterfacesResponse();
-    message.interfaceNames = object.interface_names?.map(e => e) || [];
+    message.interface_names = object.interface_names?.map(e => e) || [];
     return message;
   },
   toAmino(message: ListAllInterfacesResponse): ListAllInterfacesResponseAmino {
     const obj: any = {};
-    if (message.interfaceNames) {
-      obj.interface_names = message.interfaceNames.map(e => e);
+    if (message.interface_names) {
+      obj.interface_names = message.interface_names.map(e => e);
     } else {
-      obj.interface_names = message.interfaceNames;
+      obj.interface_names = message.interface_names;
     }
     return obj;
   },
@@ -221,21 +221,21 @@ export const ListAllInterfacesResponse = {
 };
 function createBaseListImplementationsRequest(): ListImplementationsRequest {
   return {
-    interfaceName: ""
+    interface_name: ""
   };
 }
 export const ListImplementationsRequest = {
   typeUrl: "/cosmos.base.reflection.v1beta1.ListImplementationsRequest",
   aminoType: "cosmos-sdk/ListImplementationsRequest",
   is(o: any): o is ListImplementationsRequest {
-    return o && (o.$typeUrl === ListImplementationsRequest.typeUrl || typeof o.interfaceName === "string");
+    return o && (o.$typeUrl === ListImplementationsRequest.typeUrl || typeof o.interface_name === "string");
   },
   isAmino(o: any): o is ListImplementationsRequestAmino {
     return o && (o.$typeUrl === ListImplementationsRequest.typeUrl || typeof o.interface_name === "string");
   },
   encode(message: ListImplementationsRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.interfaceName !== "") {
-      writer.uint32(10).string(message.interfaceName);
+    if (message.interface_name !== "") {
+      writer.uint32(10).string(message.interface_name);
     }
     return writer;
   },
@@ -247,7 +247,7 @@ export const ListImplementationsRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.interfaceName = reader.string();
+          message.interface_name = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -258,19 +258,19 @@ export const ListImplementationsRequest = {
   },
   fromPartial(object: DeepPartial<ListImplementationsRequest>): ListImplementationsRequest {
     const message = createBaseListImplementationsRequest();
-    message.interfaceName = object.interfaceName ?? "";
+    message.interface_name = object.interface_name ?? "";
     return message;
   },
   fromAmino(object: ListImplementationsRequestAmino): ListImplementationsRequest {
     const message = createBaseListImplementationsRequest();
     if (object.interface_name !== undefined && object.interface_name !== null) {
-      message.interfaceName = object.interface_name;
+      message.interface_name = object.interface_name;
     }
     return message;
   },
   toAmino(message: ListImplementationsRequest): ListImplementationsRequestAmino {
     const obj: any = {};
-    obj.interface_name = message.interfaceName === "" ? undefined : message.interfaceName;
+    obj.interface_name = message.interface_name === "" ? undefined : message.interface_name;
     return obj;
   },
   fromAminoMsg(object: ListImplementationsRequestAminoMsg): ListImplementationsRequest {
@@ -298,20 +298,20 @@ export const ListImplementationsRequest = {
 };
 function createBaseListImplementationsResponse(): ListImplementationsResponse {
   return {
-    implementationMessageNames: []
+    implementation_message_names: []
   };
 }
 export const ListImplementationsResponse = {
   typeUrl: "/cosmos.base.reflection.v1beta1.ListImplementationsResponse",
   aminoType: "cosmos-sdk/ListImplementationsResponse",
   is(o: any): o is ListImplementationsResponse {
-    return o && (o.$typeUrl === ListImplementationsResponse.typeUrl || Array.isArray(o.implementationMessageNames) && (!o.implementationMessageNames.length || typeof o.implementationMessageNames[0] === "string"));
+    return o && (o.$typeUrl === ListImplementationsResponse.typeUrl || Array.isArray(o.implementation_message_names) && (!o.implementation_message_names.length || typeof o.implementation_message_names[0] === "string"));
   },
   isAmino(o: any): o is ListImplementationsResponseAmino {
     return o && (o.$typeUrl === ListImplementationsResponse.typeUrl || Array.isArray(o.implementation_message_names) && (!o.implementation_message_names.length || typeof o.implementation_message_names[0] === "string"));
   },
   encode(message: ListImplementationsResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.implementationMessageNames) {
+    for (const v of message.implementation_message_names) {
       writer.uint32(10).string(v!);
     }
     return writer;
@@ -324,7 +324,7 @@ export const ListImplementationsResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.implementationMessageNames.push(reader.string());
+          message.implementation_message_names.push(reader.string());
           break;
         default:
           reader.skipType(tag & 7);
@@ -335,20 +335,20 @@ export const ListImplementationsResponse = {
   },
   fromPartial(object: DeepPartial<ListImplementationsResponse>): ListImplementationsResponse {
     const message = createBaseListImplementationsResponse();
-    message.implementationMessageNames = object.implementationMessageNames?.map(e => e) || [];
+    message.implementation_message_names = object.implementation_message_names?.map(e => e) || [];
     return message;
   },
   fromAmino(object: ListImplementationsResponseAmino): ListImplementationsResponse {
     const message = createBaseListImplementationsResponse();
-    message.implementationMessageNames = object.implementation_message_names?.map(e => e) || [];
+    message.implementation_message_names = object.implementation_message_names?.map(e => e) || [];
     return message;
   },
   toAmino(message: ListImplementationsResponse): ListImplementationsResponseAmino {
     const obj: any = {};
-    if (message.implementationMessageNames) {
-      obj.implementation_message_names = message.implementationMessageNames.map(e => e);
+    if (message.implementation_message_names) {
+      obj.implementation_message_names = message.implementation_message_names.map(e => e);
     } else {
-      obj.implementation_message_names = message.implementationMessageNames;
+      obj.implementation_message_names = message.implementation_message_names;
     }
     return obj;
   },

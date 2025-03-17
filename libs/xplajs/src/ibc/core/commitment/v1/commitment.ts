@@ -9,7 +9,7 @@ export interface MerkleRoot {
   hash: Uint8Array;
 }
 export interface MerkleRootProtoMsg {
-  typeUrl: "/ibc.core.commitment.v1.MerkleRoot";
+  type_url: "/ibc.core.commitment.v1.MerkleRoot";
   value: Uint8Array;
 }
 /**
@@ -29,10 +29,10 @@ export interface MerkleRootAminoMsg {
  * append(Path.KeyPrefix, key...))
  */
 export interface MerklePrefix {
-  keyPrefix: Uint8Array;
+  key_prefix: Uint8Array;
 }
 export interface MerklePrefixProtoMsg {
-  typeUrl: "/ibc.core.commitment.v1.MerklePrefix";
+  type_url: "/ibc.core.commitment.v1.MerklePrefix";
   value: Uint8Array;
 }
 /**
@@ -53,10 +53,10 @@ export interface MerklePrefixAminoMsg {
  * MerklePath is represented from root-to-leaf
  */
 export interface MerklePath {
-  keyPath: string[];
+  key_path: string[];
 }
 export interface MerklePathProtoMsg {
-  typeUrl: "/ibc.core.commitment.v1.MerklePath";
+  type_url: "/ibc.core.commitment.v1.MerklePath";
   value: Uint8Array;
 }
 /**
@@ -82,7 +82,7 @@ export interface MerkleProof {
   proofs: CommitmentProof[];
 }
 export interface MerkleProofProtoMsg {
-  typeUrl: "/ibc.core.commitment.v1.MerkleProof";
+  type_url: "/ibc.core.commitment.v1.MerkleProof";
   value: Uint8Array;
 }
 /**
@@ -178,21 +178,21 @@ export const MerkleRoot = {
 };
 function createBaseMerklePrefix(): MerklePrefix {
   return {
-    keyPrefix: new Uint8Array()
+    key_prefix: new Uint8Array()
   };
 }
 export const MerklePrefix = {
   typeUrl: "/ibc.core.commitment.v1.MerklePrefix",
   aminoType: "cosmos-sdk/MerklePrefix",
   is(o: any): o is MerklePrefix {
-    return o && (o.$typeUrl === MerklePrefix.typeUrl || o.keyPrefix instanceof Uint8Array || typeof o.keyPrefix === "string");
+    return o && (o.$typeUrl === MerklePrefix.typeUrl || o.key_prefix instanceof Uint8Array || typeof o.key_prefix === "string");
   },
   isAmino(o: any): o is MerklePrefixAmino {
     return o && (o.$typeUrl === MerklePrefix.typeUrl || o.key_prefix instanceof Uint8Array || typeof o.key_prefix === "string");
   },
   encode(message: MerklePrefix, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.keyPrefix.length !== 0) {
-      writer.uint32(10).bytes(message.keyPrefix);
+    if (message.key_prefix.length !== 0) {
+      writer.uint32(10).bytes(message.key_prefix);
     }
     return writer;
   },
@@ -204,7 +204,7 @@ export const MerklePrefix = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.keyPrefix = reader.bytes();
+          message.key_prefix = reader.bytes();
           break;
         default:
           reader.skipType(tag & 7);
@@ -215,19 +215,19 @@ export const MerklePrefix = {
   },
   fromPartial(object: DeepPartial<MerklePrefix>): MerklePrefix {
     const message = createBaseMerklePrefix();
-    message.keyPrefix = object.keyPrefix ?? new Uint8Array();
+    message.key_prefix = object.key_prefix ?? new Uint8Array();
     return message;
   },
   fromAmino(object: MerklePrefixAmino): MerklePrefix {
     const message = createBaseMerklePrefix();
     if (object.key_prefix !== undefined && object.key_prefix !== null) {
-      message.keyPrefix = bytesFromBase64(object.key_prefix);
+      message.key_prefix = bytesFromBase64(object.key_prefix);
     }
     return message;
   },
   toAmino(message: MerklePrefix): MerklePrefixAmino {
     const obj: any = {};
-    obj.key_prefix = message.keyPrefix ? base64FromBytes(message.keyPrefix) : undefined;
+    obj.key_prefix = message.key_prefix ? base64FromBytes(message.key_prefix) : undefined;
     return obj;
   },
   fromAminoMsg(object: MerklePrefixAminoMsg): MerklePrefix {
@@ -255,20 +255,20 @@ export const MerklePrefix = {
 };
 function createBaseMerklePath(): MerklePath {
   return {
-    keyPath: []
+    key_path: []
   };
 }
 export const MerklePath = {
   typeUrl: "/ibc.core.commitment.v1.MerklePath",
   aminoType: "cosmos-sdk/MerklePath",
   is(o: any): o is MerklePath {
-    return o && (o.$typeUrl === MerklePath.typeUrl || Array.isArray(o.keyPath) && (!o.keyPath.length || typeof o.keyPath[0] === "string"));
+    return o && (o.$typeUrl === MerklePath.typeUrl || Array.isArray(o.key_path) && (!o.key_path.length || typeof o.key_path[0] === "string"));
   },
   isAmino(o: any): o is MerklePathAmino {
     return o && (o.$typeUrl === MerklePath.typeUrl || Array.isArray(o.key_path) && (!o.key_path.length || typeof o.key_path[0] === "string"));
   },
   encode(message: MerklePath, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.keyPath) {
+    for (const v of message.key_path) {
       writer.uint32(10).string(v!);
     }
     return writer;
@@ -281,7 +281,7 @@ export const MerklePath = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.keyPath.push(reader.string());
+          message.key_path.push(reader.string());
           break;
         default:
           reader.skipType(tag & 7);
@@ -292,20 +292,20 @@ export const MerklePath = {
   },
   fromPartial(object: DeepPartial<MerklePath>): MerklePath {
     const message = createBaseMerklePath();
-    message.keyPath = object.keyPath?.map(e => e) || [];
+    message.key_path = object.key_path?.map(e => e) || [];
     return message;
   },
   fromAmino(object: MerklePathAmino): MerklePath {
     const message = createBaseMerklePath();
-    message.keyPath = object.key_path?.map(e => e) || [];
+    message.key_path = object.key_path?.map(e => e) || [];
     return message;
   },
   toAmino(message: MerklePath): MerklePathAmino {
     const obj: any = {};
-    if (message.keyPath) {
-      obj.key_path = message.keyPath.map(e => e);
+    if (message.key_path) {
+      obj.key_path = message.key_path.map(e => e);
     } else {
-      obj.key_path = message.keyPath;
+      obj.key_path = message.key_path;
     }
     return obj;
   },

@@ -17,7 +17,7 @@ export interface MsgUpdateParams {
   params: Params;
 }
 export interface MsgUpdateParamsProtoMsg {
-  typeUrl: "/cosmos.mint.v1beta1.MsgUpdateParams";
+  type_url: "/cosmos.mint.v1beta1.MsgUpdateParams";
   value: Uint8Array;
 }
 /**
@@ -47,7 +47,7 @@ export interface MsgUpdateParamsAminoMsg {
  */
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
-  typeUrl: "/cosmos.mint.v1beta1.MsgUpdateParamsResponse";
+  type_url: "/cosmos.mint.v1beta1.MsgUpdateParamsResponse";
   value: Uint8Array;
 }
 /**

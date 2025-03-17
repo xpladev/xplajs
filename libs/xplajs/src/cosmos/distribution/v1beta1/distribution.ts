@@ -5,23 +5,23 @@ import { DeepPartial } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
 /** Params defines the set of params for the distribution module. */
 export interface Params {
-  communityTax: string;
+  community_tax: string;
   /**
    * Deprecated: The base_proposer_reward field is deprecated and is no longer used
    * in the x/distribution module's reward mechanism.
    */
   /** @deprecated */
-  baseProposerReward: string;
+  base_proposer_reward: string;
   /**
    * Deprecated: The bonus_proposer_reward field is deprecated and is no longer used
    * in the x/distribution module's reward mechanism.
    */
   /** @deprecated */
-  bonusProposerReward: string;
-  withdrawAddrEnabled: boolean;
+  bonus_proposer_reward: string;
+  withdraw_addr_enabled: boolean;
 }
 export interface ParamsProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.Params";
+  type_url: "/cosmos.distribution.v1beta1.Params";
   value: Uint8Array;
 }
 /** Params defines the set of params for the distribution module. */
@@ -60,11 +60,11 @@ export interface ParamsAminoMsg {
  *  + one per validator for the zeroeth period, set on initialization
  */
 export interface ValidatorHistoricalRewards {
-  cumulativeRewardRatio: DecCoin[];
-  referenceCount: number;
+  cumulative_reward_ratio: DecCoin[];
+  reference_count: number;
 }
 export interface ValidatorHistoricalRewardsProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.ValidatorHistoricalRewards";
+  type_url: "/cosmos.distribution.v1beta1.ValidatorHistoricalRewards";
   value: Uint8Array;
 }
 /**
@@ -99,7 +99,7 @@ export interface ValidatorCurrentRewards {
   period: bigint;
 }
 export interface ValidatorCurrentRewardsProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.ValidatorCurrentRewards";
+  type_url: "/cosmos.distribution.v1beta1.ValidatorCurrentRewards";
   value: Uint8Array;
 }
 /**
@@ -123,7 +123,7 @@ export interface ValidatorAccumulatedCommission {
   commission: DecCoin[];
 }
 export interface ValidatorAccumulatedCommissionProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.ValidatorAccumulatedCommission";
+  type_url: "/cosmos.distribution.v1beta1.ValidatorAccumulatedCommission";
   value: Uint8Array;
 }
 /**
@@ -145,7 +145,7 @@ export interface ValidatorOutstandingRewards {
   rewards: DecCoin[];
 }
 export interface ValidatorOutstandingRewardsProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.ValidatorOutstandingRewards";
+  type_url: "/cosmos.distribution.v1beta1.ValidatorOutstandingRewards";
   value: Uint8Array;
 }
 /**
@@ -166,11 +166,11 @@ export interface ValidatorOutstandingRewardsAminoMsg {
  * for delegations which are withdrawn after a slash has occurred.
  */
 export interface ValidatorSlashEvent {
-  validatorPeriod: bigint;
+  validator_period: bigint;
   fraction: string;
 }
 export interface ValidatorSlashEventProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEvent";
+  type_url: "/cosmos.distribution.v1beta1.ValidatorSlashEvent";
   value: Uint8Array;
 }
 /**
@@ -189,10 +189,10 @@ export interface ValidatorSlashEventAminoMsg {
 }
 /** ValidatorSlashEvents is a collection of ValidatorSlashEvent messages. */
 export interface ValidatorSlashEvents {
-  validatorSlashEvents: ValidatorSlashEvent[];
+  validator_slash_events: ValidatorSlashEvent[];
 }
 export interface ValidatorSlashEventsProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEvents";
+  type_url: "/cosmos.distribution.v1beta1.ValidatorSlashEvents";
   value: Uint8Array;
 }
 /** ValidatorSlashEvents is a collection of ValidatorSlashEvent messages. */
@@ -205,10 +205,10 @@ export interface ValidatorSlashEventsAminoMsg {
 }
 /** FeePool is the global fee pool for distribution. */
 export interface FeePool {
-  communityPool: DecCoin[];
+  community_pool: DecCoin[];
 }
 export interface FeePoolProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.FeePool";
+  type_url: "/cosmos.distribution.v1beta1.FeePool";
   value: Uint8Array;
 }
 /** FeePool is the global fee pool for distribution. */
@@ -237,7 +237,7 @@ export interface CommunityPoolSpendProposal {
   amount: Coin[];
 }
 export interface CommunityPoolSpendProposalProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal";
+  type_url: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal";
   value: Uint8Array;
 }
 /**
@@ -270,12 +270,12 @@ export interface CommunityPoolSpendProposalAminoMsg {
  * thus sdk.Dec is used.
  */
 export interface DelegatorStartingInfo {
-  previousPeriod: bigint;
+  previous_period: bigint;
   stake: string;
   height: bigint;
 }
 export interface DelegatorStartingInfoProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.DelegatorStartingInfo";
+  type_url: "/cosmos.distribution.v1beta1.DelegatorStartingInfo";
   value: Uint8Array;
 }
 /**
@@ -300,11 +300,11 @@ export interface DelegatorStartingInfoAminoMsg {
  * of a delegator's delegation reward.
  */
 export interface DelegationDelegatorReward {
-  validatorAddress: string;
+  validator_address: string;
   reward: DecCoin[];
 }
 export interface DelegationDelegatorRewardProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.DelegationDelegatorReward";
+  type_url: "/cosmos.distribution.v1beta1.DelegationDelegatorReward";
   value: Uint8Array;
 }
 /**
@@ -331,7 +331,7 @@ export interface CommunityPoolSpendProposalWithDeposit {
   deposit: string;
 }
 export interface CommunityPoolSpendProposalWithDepositProtoMsg {
-  typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit";
+  type_url: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit";
   value: Uint8Array;
 }
 /**
@@ -351,33 +351,33 @@ export interface CommunityPoolSpendProposalWithDepositAminoMsg {
 }
 function createBaseParams(): Params {
   return {
-    communityTax: "",
-    baseProposerReward: "",
-    bonusProposerReward: "",
-    withdrawAddrEnabled: false
+    community_tax: "",
+    base_proposer_reward: "",
+    bonus_proposer_reward: "",
+    withdraw_addr_enabled: false
   };
 }
 export const Params = {
   typeUrl: "/cosmos.distribution.v1beta1.Params",
   aminoType: "cosmos-sdk/x/distribution/Params",
   is(o: any): o is Params {
-    return o && (o.$typeUrl === Params.typeUrl || typeof o.communityTax === "string" && typeof o.baseProposerReward === "string" && typeof o.bonusProposerReward === "string" && typeof o.withdrawAddrEnabled === "boolean");
+    return o && (o.$typeUrl === Params.typeUrl || typeof o.community_tax === "string" && typeof o.base_proposer_reward === "string" && typeof o.bonus_proposer_reward === "string" && typeof o.withdraw_addr_enabled === "boolean");
   },
   isAmino(o: any): o is ParamsAmino {
     return o && (o.$typeUrl === Params.typeUrl || typeof o.community_tax === "string" && typeof o.base_proposer_reward === "string" && typeof o.bonus_proposer_reward === "string" && typeof o.withdraw_addr_enabled === "boolean");
   },
   encode(message: Params, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.communityTax !== "") {
-      writer.uint32(10).string(Decimal.fromUserInput(message.communityTax, 18).atomics);
+    if (message.community_tax !== "") {
+      writer.uint32(10).string(Decimal.fromUserInput(message.community_tax, 18).atomics);
     }
-    if (message.baseProposerReward !== "") {
-      writer.uint32(18).string(Decimal.fromUserInput(message.baseProposerReward, 18).atomics);
+    if (message.base_proposer_reward !== "") {
+      writer.uint32(18).string(Decimal.fromUserInput(message.base_proposer_reward, 18).atomics);
     }
-    if (message.bonusProposerReward !== "") {
-      writer.uint32(26).string(Decimal.fromUserInput(message.bonusProposerReward, 18).atomics);
+    if (message.bonus_proposer_reward !== "") {
+      writer.uint32(26).string(Decimal.fromUserInput(message.bonus_proposer_reward, 18).atomics);
     }
-    if (message.withdrawAddrEnabled === true) {
-      writer.uint32(32).bool(message.withdrawAddrEnabled);
+    if (message.withdraw_addr_enabled === true) {
+      writer.uint32(32).bool(message.withdraw_addr_enabled);
     }
     return writer;
   },
@@ -389,16 +389,16 @@ export const Params = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.communityTax = Decimal.fromAtomics(reader.string(), 18).toString();
+          message.community_tax = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 2:
-          message.baseProposerReward = Decimal.fromAtomics(reader.string(), 18).toString();
+          message.base_proposer_reward = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 3:
-          message.bonusProposerReward = Decimal.fromAtomics(reader.string(), 18).toString();
+          message.bonus_proposer_reward = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 4:
-          message.withdrawAddrEnabled = reader.bool();
+          message.withdraw_addr_enabled = reader.bool();
           break;
         default:
           reader.skipType(tag & 7);
@@ -409,34 +409,34 @@ export const Params = {
   },
   fromPartial(object: DeepPartial<Params>): Params {
     const message = createBaseParams();
-    message.communityTax = object.communityTax ?? "";
-    message.baseProposerReward = object.baseProposerReward ?? "";
-    message.bonusProposerReward = object.bonusProposerReward ?? "";
-    message.withdrawAddrEnabled = object.withdrawAddrEnabled ?? false;
+    message.community_tax = object.community_tax ?? "";
+    message.base_proposer_reward = object.base_proposer_reward ?? "";
+    message.bonus_proposer_reward = object.bonus_proposer_reward ?? "";
+    message.withdraw_addr_enabled = object.withdraw_addr_enabled ?? false;
     return message;
   },
   fromAmino(object: ParamsAmino): Params {
     const message = createBaseParams();
     if (object.community_tax !== undefined && object.community_tax !== null) {
-      message.communityTax = object.community_tax;
+      message.community_tax = object.community_tax;
     }
     if (object.base_proposer_reward !== undefined && object.base_proposer_reward !== null) {
-      message.baseProposerReward = object.base_proposer_reward;
+      message.base_proposer_reward = object.base_proposer_reward;
     }
     if (object.bonus_proposer_reward !== undefined && object.bonus_proposer_reward !== null) {
-      message.bonusProposerReward = object.bonus_proposer_reward;
+      message.bonus_proposer_reward = object.bonus_proposer_reward;
     }
     if (object.withdraw_addr_enabled !== undefined && object.withdraw_addr_enabled !== null) {
-      message.withdrawAddrEnabled = object.withdraw_addr_enabled;
+      message.withdraw_addr_enabled = object.withdraw_addr_enabled;
     }
     return message;
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    obj.community_tax = Decimal.fromUserInput(message.communityTax, 18).atomics ?? "";
-    obj.base_proposer_reward = Decimal.fromUserInput(message.baseProposerReward, 18).atomics ?? "";
-    obj.bonus_proposer_reward = Decimal.fromUserInput(message.bonusProposerReward, 18).atomics ?? "";
-    obj.withdraw_addr_enabled = message.withdrawAddrEnabled === false ? undefined : message.withdrawAddrEnabled;
+    obj.community_tax = Decimal.fromUserInput(message.community_tax, 18).atomics ?? "";
+    obj.base_proposer_reward = Decimal.fromUserInput(message.base_proposer_reward, 18).atomics ?? "";
+    obj.bonus_proposer_reward = Decimal.fromUserInput(message.bonus_proposer_reward, 18).atomics ?? "";
+    obj.withdraw_addr_enabled = message.withdraw_addr_enabled === false ? undefined : message.withdraw_addr_enabled;
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {
@@ -464,25 +464,25 @@ export const Params = {
 };
 function createBaseValidatorHistoricalRewards(): ValidatorHistoricalRewards {
   return {
-    cumulativeRewardRatio: [],
-    referenceCount: 0
+    cumulative_reward_ratio: [],
+    reference_count: 0
   };
 }
 export const ValidatorHistoricalRewards = {
   typeUrl: "/cosmos.distribution.v1beta1.ValidatorHistoricalRewards",
   aminoType: "cosmos-sdk/ValidatorHistoricalRewards",
   is(o: any): o is ValidatorHistoricalRewards {
-    return o && (o.$typeUrl === ValidatorHistoricalRewards.typeUrl || Array.isArray(o.cumulativeRewardRatio) && (!o.cumulativeRewardRatio.length || DecCoin.is(o.cumulativeRewardRatio[0])) && typeof o.referenceCount === "number");
+    return o && (o.$typeUrl === ValidatorHistoricalRewards.typeUrl || Array.isArray(o.cumulative_reward_ratio) && (!o.cumulative_reward_ratio.length || DecCoin.is(o.cumulative_reward_ratio[0])) && typeof o.reference_count === "number");
   },
   isAmino(o: any): o is ValidatorHistoricalRewardsAmino {
     return o && (o.$typeUrl === ValidatorHistoricalRewards.typeUrl || Array.isArray(o.cumulative_reward_ratio) && (!o.cumulative_reward_ratio.length || DecCoin.isAmino(o.cumulative_reward_ratio[0])) && typeof o.reference_count === "number");
   },
   encode(message: ValidatorHistoricalRewards, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.cumulativeRewardRatio) {
+    for (const v of message.cumulative_reward_ratio) {
       DecCoin.encode(v!, writer.uint32(10).fork()).ldelim();
     }
-    if (message.referenceCount !== 0) {
-      writer.uint32(16).uint32(message.referenceCount);
+    if (message.reference_count !== 0) {
+      writer.uint32(16).uint32(message.reference_count);
     }
     return writer;
   },
@@ -494,10 +494,10 @@ export const ValidatorHistoricalRewards = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.cumulativeRewardRatio.push(DecCoin.decode(reader, reader.uint32()));
+          message.cumulative_reward_ratio.push(DecCoin.decode(reader, reader.uint32()));
           break;
         case 2:
-          message.referenceCount = reader.uint32();
+          message.reference_count = reader.uint32();
           break;
         default:
           reader.skipType(tag & 7);
@@ -508,26 +508,26 @@ export const ValidatorHistoricalRewards = {
   },
   fromPartial(object: DeepPartial<ValidatorHistoricalRewards>): ValidatorHistoricalRewards {
     const message = createBaseValidatorHistoricalRewards();
-    message.cumulativeRewardRatio = object.cumulativeRewardRatio?.map(e => DecCoin.fromPartial(e)) || [];
-    message.referenceCount = object.referenceCount ?? 0;
+    message.cumulative_reward_ratio = object.cumulative_reward_ratio?.map(e => DecCoin.fromPartial(e)) || [];
+    message.reference_count = object.reference_count ?? 0;
     return message;
   },
   fromAmino(object: ValidatorHistoricalRewardsAmino): ValidatorHistoricalRewards {
     const message = createBaseValidatorHistoricalRewards();
-    message.cumulativeRewardRatio = object.cumulative_reward_ratio?.map(e => DecCoin.fromAmino(e)) || [];
+    message.cumulative_reward_ratio = object.cumulative_reward_ratio?.map(e => DecCoin.fromAmino(e)) || [];
     if (object.reference_count !== undefined && object.reference_count !== null) {
-      message.referenceCount = object.reference_count;
+      message.reference_count = object.reference_count;
     }
     return message;
   },
   toAmino(message: ValidatorHistoricalRewards): ValidatorHistoricalRewardsAmino {
     const obj: any = {};
-    if (message.cumulativeRewardRatio) {
-      obj.cumulative_reward_ratio = message.cumulativeRewardRatio.map(e => e ? DecCoin.toAmino(e) : undefined);
+    if (message.cumulative_reward_ratio) {
+      obj.cumulative_reward_ratio = message.cumulative_reward_ratio.map(e => e ? DecCoin.toAmino(e) : undefined);
     } else {
-      obj.cumulative_reward_ratio = message.cumulativeRewardRatio;
+      obj.cumulative_reward_ratio = message.cumulative_reward_ratio;
     }
-    obj.reference_count = message.referenceCount === 0 ? undefined : message.referenceCount;
+    obj.reference_count = message.reference_count === 0 ? undefined : message.reference_count;
     return obj;
   },
   fromAminoMsg(object: ValidatorHistoricalRewardsAminoMsg): ValidatorHistoricalRewards {
@@ -812,7 +812,7 @@ export const ValidatorOutstandingRewards = {
 };
 function createBaseValidatorSlashEvent(): ValidatorSlashEvent {
   return {
-    validatorPeriod: BigInt(0),
+    validator_period: BigInt(0),
     fraction: ""
   };
 }
@@ -820,14 +820,14 @@ export const ValidatorSlashEvent = {
   typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEvent",
   aminoType: "cosmos-sdk/ValidatorSlashEvent",
   is(o: any): o is ValidatorSlashEvent {
-    return o && (o.$typeUrl === ValidatorSlashEvent.typeUrl || typeof o.validatorPeriod === "bigint" && typeof o.fraction === "string");
+    return o && (o.$typeUrl === ValidatorSlashEvent.typeUrl || typeof o.validator_period === "bigint" && typeof o.fraction === "string");
   },
   isAmino(o: any): o is ValidatorSlashEventAmino {
     return o && (o.$typeUrl === ValidatorSlashEvent.typeUrl || typeof o.validator_period === "bigint" && typeof o.fraction === "string");
   },
   encode(message: ValidatorSlashEvent, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.validatorPeriod !== BigInt(0)) {
-      writer.uint32(8).uint64(message.validatorPeriod);
+    if (message.validator_period !== BigInt(0)) {
+      writer.uint32(8).uint64(message.validator_period);
     }
     if (message.fraction !== "") {
       writer.uint32(18).string(Decimal.fromUserInput(message.fraction, 18).atomics);
@@ -842,7 +842,7 @@ export const ValidatorSlashEvent = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.validatorPeriod = reader.uint64();
+          message.validator_period = reader.uint64();
           break;
         case 2:
           message.fraction = Decimal.fromAtomics(reader.string(), 18).toString();
@@ -856,14 +856,14 @@ export const ValidatorSlashEvent = {
   },
   fromPartial(object: DeepPartial<ValidatorSlashEvent>): ValidatorSlashEvent {
     const message = createBaseValidatorSlashEvent();
-    message.validatorPeriod = object.validatorPeriod !== undefined && object.validatorPeriod !== null ? BigInt(object.validatorPeriod.toString()) : BigInt(0);
+    message.validator_period = object.validator_period !== undefined && object.validator_period !== null ? BigInt(object.validator_period.toString()) : BigInt(0);
     message.fraction = object.fraction ?? "";
     return message;
   },
   fromAmino(object: ValidatorSlashEventAmino): ValidatorSlashEvent {
     const message = createBaseValidatorSlashEvent();
     if (object.validator_period !== undefined && object.validator_period !== null) {
-      message.validatorPeriod = BigInt(object.validator_period);
+      message.validator_period = BigInt(object.validator_period);
     }
     if (object.fraction !== undefined && object.fraction !== null) {
       message.fraction = object.fraction;
@@ -872,7 +872,7 @@ export const ValidatorSlashEvent = {
   },
   toAmino(message: ValidatorSlashEvent): ValidatorSlashEventAmino {
     const obj: any = {};
-    obj.validator_period = message.validatorPeriod !== BigInt(0) ? message.validatorPeriod?.toString() : undefined;
+    obj.validator_period = message.validator_period !== BigInt(0) ? message.validator_period?.toString() : undefined;
     obj.fraction = message.fraction === "" ? undefined : Decimal.fromUserInput(message.fraction, 18).atomics;
     return obj;
   },
@@ -901,20 +901,20 @@ export const ValidatorSlashEvent = {
 };
 function createBaseValidatorSlashEvents(): ValidatorSlashEvents {
   return {
-    validatorSlashEvents: []
+    validator_slash_events: []
   };
 }
 export const ValidatorSlashEvents = {
   typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEvents",
   aminoType: "cosmos-sdk/ValidatorSlashEvents",
   is(o: any): o is ValidatorSlashEvents {
-    return o && (o.$typeUrl === ValidatorSlashEvents.typeUrl || Array.isArray(o.validatorSlashEvents) && (!o.validatorSlashEvents.length || ValidatorSlashEvent.is(o.validatorSlashEvents[0])));
+    return o && (o.$typeUrl === ValidatorSlashEvents.typeUrl || Array.isArray(o.validator_slash_events) && (!o.validator_slash_events.length || ValidatorSlashEvent.is(o.validator_slash_events[0])));
   },
   isAmino(o: any): o is ValidatorSlashEventsAmino {
     return o && (o.$typeUrl === ValidatorSlashEvents.typeUrl || Array.isArray(o.validator_slash_events) && (!o.validator_slash_events.length || ValidatorSlashEvent.isAmino(o.validator_slash_events[0])));
   },
   encode(message: ValidatorSlashEvents, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.validatorSlashEvents) {
+    for (const v of message.validator_slash_events) {
       ValidatorSlashEvent.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
@@ -927,7 +927,7 @@ export const ValidatorSlashEvents = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.validatorSlashEvents.push(ValidatorSlashEvent.decode(reader, reader.uint32()));
+          message.validator_slash_events.push(ValidatorSlashEvent.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -938,20 +938,20 @@ export const ValidatorSlashEvents = {
   },
   fromPartial(object: DeepPartial<ValidatorSlashEvents>): ValidatorSlashEvents {
     const message = createBaseValidatorSlashEvents();
-    message.validatorSlashEvents = object.validatorSlashEvents?.map(e => ValidatorSlashEvent.fromPartial(e)) || [];
+    message.validator_slash_events = object.validator_slash_events?.map(e => ValidatorSlashEvent.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: ValidatorSlashEventsAmino): ValidatorSlashEvents {
     const message = createBaseValidatorSlashEvents();
-    message.validatorSlashEvents = object.validator_slash_events?.map(e => ValidatorSlashEvent.fromAmino(e)) || [];
+    message.validator_slash_events = object.validator_slash_events?.map(e => ValidatorSlashEvent.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: ValidatorSlashEvents): ValidatorSlashEventsAmino {
     const obj: any = {};
-    if (message.validatorSlashEvents) {
-      obj.validator_slash_events = message.validatorSlashEvents.map(e => e ? ValidatorSlashEvent.toAmino(e) : undefined);
+    if (message.validator_slash_events) {
+      obj.validator_slash_events = message.validator_slash_events.map(e => e ? ValidatorSlashEvent.toAmino(e) : undefined);
     } else {
-      obj.validator_slash_events = message.validatorSlashEvents;
+      obj.validator_slash_events = message.validator_slash_events;
     }
     return obj;
   },
@@ -982,20 +982,20 @@ export const ValidatorSlashEvents = {
 };
 function createBaseFeePool(): FeePool {
   return {
-    communityPool: []
+    community_pool: []
   };
 }
 export const FeePool = {
   typeUrl: "/cosmos.distribution.v1beta1.FeePool",
   aminoType: "cosmos-sdk/FeePool",
   is(o: any): o is FeePool {
-    return o && (o.$typeUrl === FeePool.typeUrl || Array.isArray(o.communityPool) && (!o.communityPool.length || DecCoin.is(o.communityPool[0])));
+    return o && (o.$typeUrl === FeePool.typeUrl || Array.isArray(o.community_pool) && (!o.community_pool.length || DecCoin.is(o.community_pool[0])));
   },
   isAmino(o: any): o is FeePoolAmino {
     return o && (o.$typeUrl === FeePool.typeUrl || Array.isArray(o.community_pool) && (!o.community_pool.length || DecCoin.isAmino(o.community_pool[0])));
   },
   encode(message: FeePool, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.communityPool) {
+    for (const v of message.community_pool) {
       DecCoin.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
@@ -1008,7 +1008,7 @@ export const FeePool = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.communityPool.push(DecCoin.decode(reader, reader.uint32()));
+          message.community_pool.push(DecCoin.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -1019,20 +1019,20 @@ export const FeePool = {
   },
   fromPartial(object: DeepPartial<FeePool>): FeePool {
     const message = createBaseFeePool();
-    message.communityPool = object.communityPool?.map(e => DecCoin.fromPartial(e)) || [];
+    message.community_pool = object.community_pool?.map(e => DecCoin.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: FeePoolAmino): FeePool {
     const message = createBaseFeePool();
-    message.communityPool = object.community_pool?.map(e => DecCoin.fromAmino(e)) || [];
+    message.community_pool = object.community_pool?.map(e => DecCoin.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: FeePool): FeePoolAmino {
     const obj: any = {};
-    if (message.communityPool) {
-      obj.community_pool = message.communityPool.map(e => e ? DecCoin.toAmino(e) : undefined);
+    if (message.community_pool) {
+      obj.community_pool = message.community_pool.map(e => e ? DecCoin.toAmino(e) : undefined);
     } else {
-      obj.community_pool = message.communityPool;
+      obj.community_pool = message.community_pool;
     }
     return obj;
   },
@@ -1182,7 +1182,7 @@ export const CommunityPoolSpendProposal = {
 };
 function createBaseDelegatorStartingInfo(): DelegatorStartingInfo {
   return {
-    previousPeriod: BigInt(0),
+    previous_period: BigInt(0),
     stake: "",
     height: BigInt(0)
   };
@@ -1191,14 +1191,14 @@ export const DelegatorStartingInfo = {
   typeUrl: "/cosmos.distribution.v1beta1.DelegatorStartingInfo",
   aminoType: "cosmos-sdk/DelegatorStartingInfo",
   is(o: any): o is DelegatorStartingInfo {
-    return o && (o.$typeUrl === DelegatorStartingInfo.typeUrl || typeof o.previousPeriod === "bigint" && typeof o.stake === "string" && typeof o.height === "bigint");
+    return o && (o.$typeUrl === DelegatorStartingInfo.typeUrl || typeof o.previous_period === "bigint" && typeof o.stake === "string" && typeof o.height === "bigint");
   },
   isAmino(o: any): o is DelegatorStartingInfoAmino {
     return o && (o.$typeUrl === DelegatorStartingInfo.typeUrl || typeof o.previous_period === "bigint" && typeof o.stake === "string" && typeof o.height === "bigint");
   },
   encode(message: DelegatorStartingInfo, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.previousPeriod !== BigInt(0)) {
-      writer.uint32(8).uint64(message.previousPeriod);
+    if (message.previous_period !== BigInt(0)) {
+      writer.uint32(8).uint64(message.previous_period);
     }
     if (message.stake !== "") {
       writer.uint32(18).string(Decimal.fromUserInput(message.stake, 18).atomics);
@@ -1216,7 +1216,7 @@ export const DelegatorStartingInfo = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.previousPeriod = reader.uint64();
+          message.previous_period = reader.uint64();
           break;
         case 2:
           message.stake = Decimal.fromAtomics(reader.string(), 18).toString();
@@ -1233,7 +1233,7 @@ export const DelegatorStartingInfo = {
   },
   fromPartial(object: DeepPartial<DelegatorStartingInfo>): DelegatorStartingInfo {
     const message = createBaseDelegatorStartingInfo();
-    message.previousPeriod = object.previousPeriod !== undefined && object.previousPeriod !== null ? BigInt(object.previousPeriod.toString()) : BigInt(0);
+    message.previous_period = object.previous_period !== undefined && object.previous_period !== null ? BigInt(object.previous_period.toString()) : BigInt(0);
     message.stake = object.stake ?? "";
     message.height = object.height !== undefined && object.height !== null ? BigInt(object.height.toString()) : BigInt(0);
     return message;
@@ -1241,7 +1241,7 @@ export const DelegatorStartingInfo = {
   fromAmino(object: DelegatorStartingInfoAmino): DelegatorStartingInfo {
     const message = createBaseDelegatorStartingInfo();
     if (object.previous_period !== undefined && object.previous_period !== null) {
-      message.previousPeriod = BigInt(object.previous_period);
+      message.previous_period = BigInt(object.previous_period);
     }
     if (object.stake !== undefined && object.stake !== null) {
       message.stake = object.stake;
@@ -1253,7 +1253,7 @@ export const DelegatorStartingInfo = {
   },
   toAmino(message: DelegatorStartingInfo): DelegatorStartingInfoAmino {
     const obj: any = {};
-    obj.previous_period = message.previousPeriod !== BigInt(0) ? message.previousPeriod?.toString() : undefined;
+    obj.previous_period = message.previous_period !== BigInt(0) ? message.previous_period?.toString() : undefined;
     obj.stake = Decimal.fromUserInput(message.stake, 18).atomics ?? "";
     obj.height = message.height ? message.height?.toString() : "0";
     return obj;
@@ -1283,7 +1283,7 @@ export const DelegatorStartingInfo = {
 };
 function createBaseDelegationDelegatorReward(): DelegationDelegatorReward {
   return {
-    validatorAddress: "",
+    validator_address: "",
     reward: []
   };
 }
@@ -1291,14 +1291,14 @@ export const DelegationDelegatorReward = {
   typeUrl: "/cosmos.distribution.v1beta1.DelegationDelegatorReward",
   aminoType: "cosmos-sdk/DelegationDelegatorReward",
   is(o: any): o is DelegationDelegatorReward {
-    return o && (o.$typeUrl === DelegationDelegatorReward.typeUrl || typeof o.validatorAddress === "string" && Array.isArray(o.reward) && (!o.reward.length || DecCoin.is(o.reward[0])));
+    return o && (o.$typeUrl === DelegationDelegatorReward.typeUrl || typeof o.validator_address === "string" && Array.isArray(o.reward) && (!o.reward.length || DecCoin.is(o.reward[0])));
   },
   isAmino(o: any): o is DelegationDelegatorRewardAmino {
     return o && (o.$typeUrl === DelegationDelegatorReward.typeUrl || typeof o.validator_address === "string" && Array.isArray(o.reward) && (!o.reward.length || DecCoin.isAmino(o.reward[0])));
   },
   encode(message: DelegationDelegatorReward, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.validatorAddress !== "") {
-      writer.uint32(10).string(message.validatorAddress);
+    if (message.validator_address !== "") {
+      writer.uint32(10).string(message.validator_address);
     }
     for (const v of message.reward) {
       DecCoin.encode(v!, writer.uint32(18).fork()).ldelim();
@@ -1313,7 +1313,7 @@ export const DelegationDelegatorReward = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.validatorAddress = reader.string();
+          message.validator_address = reader.string();
           break;
         case 2:
           message.reward.push(DecCoin.decode(reader, reader.uint32()));
@@ -1327,21 +1327,21 @@ export const DelegationDelegatorReward = {
   },
   fromPartial(object: DeepPartial<DelegationDelegatorReward>): DelegationDelegatorReward {
     const message = createBaseDelegationDelegatorReward();
-    message.validatorAddress = object.validatorAddress ?? "";
+    message.validator_address = object.validator_address ?? "";
     message.reward = object.reward?.map(e => DecCoin.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: DelegationDelegatorRewardAmino): DelegationDelegatorReward {
     const message = createBaseDelegationDelegatorReward();
     if (object.validator_address !== undefined && object.validator_address !== null) {
-      message.validatorAddress = object.validator_address;
+      message.validator_address = object.validator_address;
     }
     message.reward = object.reward?.map(e => DecCoin.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: DelegationDelegatorReward): DelegationDelegatorRewardAmino {
     const obj: any = {};
-    obj.validator_address = message.validatorAddress === "" ? undefined : message.validatorAddress;
+    obj.validator_address = message.validator_address === "" ? undefined : message.validator_address;
     if (message.reward) {
       obj.reward = message.reward.map(e => e ? DecCoin.toAmino(e) : undefined);
     } else {

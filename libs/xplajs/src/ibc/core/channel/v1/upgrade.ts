@@ -11,10 +11,10 @@ import { DeepPartial, isSet } from "../../../../helpers";
 export interface Upgrade {
   fields: UpgradeFields;
   timeout: Timeout;
-  nextSequenceSend: bigint;
+  next_sequence_send: bigint;
 }
 export interface UpgradeProtoMsg {
-  typeUrl: "/ibc.core.channel.v1.Upgrade";
+  type_url: "/ibc.core.channel.v1.Upgrade";
   value: Uint8Array;
 }
 /**
@@ -39,11 +39,11 @@ export interface UpgradeAminoMsg {
  */
 export interface UpgradeFields {
   ordering: Order;
-  connectionHops: string[];
+  connection_hops: string[];
   version: string;
 }
 export interface UpgradeFieldsProtoMsg {
-  typeUrl: "/ibc.core.channel.v1.UpgradeFields";
+  type_url: "/ibc.core.channel.v1.UpgradeFields";
   value: Uint8Array;
 }
 /**
@@ -71,7 +71,7 @@ export interface ErrorReceipt {
   message: string;
 }
 export interface ErrorReceiptProtoMsg {
-  typeUrl: "/ibc.core.channel.v1.ErrorReceipt";
+  type_url: "/ibc.core.channel.v1.ErrorReceipt";
   value: Uint8Array;
 }
 /**
@@ -93,14 +93,14 @@ function createBaseUpgrade(): Upgrade {
   return {
     fields: UpgradeFields.fromPartial({}),
     timeout: Timeout.fromPartial({}),
-    nextSequenceSend: BigInt(0)
+    next_sequence_send: BigInt(0)
   };
 }
 export const Upgrade = {
   typeUrl: "/ibc.core.channel.v1.Upgrade",
   aminoType: "cosmos-sdk/Upgrade",
   is(o: any): o is Upgrade {
-    return o && (o.$typeUrl === Upgrade.typeUrl || UpgradeFields.is(o.fields) && Timeout.is(o.timeout) && typeof o.nextSequenceSend === "bigint");
+    return o && (o.$typeUrl === Upgrade.typeUrl || UpgradeFields.is(o.fields) && Timeout.is(o.timeout) && typeof o.next_sequence_send === "bigint");
   },
   isAmino(o: any): o is UpgradeAmino {
     return o && (o.$typeUrl === Upgrade.typeUrl || UpgradeFields.isAmino(o.fields) && Timeout.isAmino(o.timeout) && typeof o.next_sequence_send === "bigint");
@@ -112,8 +112,8 @@ export const Upgrade = {
     if (message.timeout !== undefined) {
       Timeout.encode(message.timeout, writer.uint32(18).fork()).ldelim();
     }
-    if (message.nextSequenceSend !== BigInt(0)) {
-      writer.uint32(24).uint64(message.nextSequenceSend);
+    if (message.next_sequence_send !== BigInt(0)) {
+      writer.uint32(24).uint64(message.next_sequence_send);
     }
     return writer;
   },
@@ -131,7 +131,7 @@ export const Upgrade = {
           message.timeout = Timeout.decode(reader, reader.uint32());
           break;
         case 3:
-          message.nextSequenceSend = reader.uint64();
+          message.next_sequence_send = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -144,7 +144,7 @@ export const Upgrade = {
     const message = createBaseUpgrade();
     message.fields = object.fields !== undefined && object.fields !== null ? UpgradeFields.fromPartial(object.fields) : undefined;
     message.timeout = object.timeout !== undefined && object.timeout !== null ? Timeout.fromPartial(object.timeout) : undefined;
-    message.nextSequenceSend = object.nextSequenceSend !== undefined && object.nextSequenceSend !== null ? BigInt(object.nextSequenceSend.toString()) : BigInt(0);
+    message.next_sequence_send = object.next_sequence_send !== undefined && object.next_sequence_send !== null ? BigInt(object.next_sequence_send.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: UpgradeAmino): Upgrade {
@@ -156,7 +156,7 @@ export const Upgrade = {
       message.timeout = Timeout.fromAmino(object.timeout);
     }
     if (object.next_sequence_send !== undefined && object.next_sequence_send !== null) {
-      message.nextSequenceSend = BigInt(object.next_sequence_send);
+      message.next_sequence_send = BigInt(object.next_sequence_send);
     }
     return message;
   },
@@ -164,7 +164,7 @@ export const Upgrade = {
     const obj: any = {};
     obj.fields = message.fields ? UpgradeFields.toAmino(message.fields) : undefined;
     obj.timeout = message.timeout ? Timeout.toAmino(message.timeout) : undefined;
-    obj.next_sequence_send = message.nextSequenceSend !== BigInt(0) ? message.nextSequenceSend?.toString() : undefined;
+    obj.next_sequence_send = message.next_sequence_send !== BigInt(0) ? message.next_sequence_send?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: UpgradeAminoMsg): Upgrade {
@@ -196,7 +196,7 @@ export const Upgrade = {
 function createBaseUpgradeFields(): UpgradeFields {
   return {
     ordering: 0,
-    connectionHops: [],
+    connection_hops: [],
     version: ""
   };
 }
@@ -204,7 +204,7 @@ export const UpgradeFields = {
   typeUrl: "/ibc.core.channel.v1.UpgradeFields",
   aminoType: "cosmos-sdk/UpgradeFields",
   is(o: any): o is UpgradeFields {
-    return o && (o.$typeUrl === UpgradeFields.typeUrl || isSet(o.ordering) && Array.isArray(o.connectionHops) && (!o.connectionHops.length || typeof o.connectionHops[0] === "string") && typeof o.version === "string");
+    return o && (o.$typeUrl === UpgradeFields.typeUrl || isSet(o.ordering) && Array.isArray(o.connection_hops) && (!o.connection_hops.length || typeof o.connection_hops[0] === "string") && typeof o.version === "string");
   },
   isAmino(o: any): o is UpgradeFieldsAmino {
     return o && (o.$typeUrl === UpgradeFields.typeUrl || isSet(o.ordering) && Array.isArray(o.connection_hops) && (!o.connection_hops.length || typeof o.connection_hops[0] === "string") && typeof o.version === "string");
@@ -213,7 +213,7 @@ export const UpgradeFields = {
     if (message.ordering !== 0) {
       writer.uint32(8).int32(message.ordering);
     }
-    for (const v of message.connectionHops) {
+    for (const v of message.connection_hops) {
       writer.uint32(18).string(v!);
     }
     if (message.version !== "") {
@@ -232,7 +232,7 @@ export const UpgradeFields = {
           message.ordering = reader.int32() as any;
           break;
         case 2:
-          message.connectionHops.push(reader.string());
+          message.connection_hops.push(reader.string());
           break;
         case 3:
           message.version = reader.string();
@@ -247,7 +247,7 @@ export const UpgradeFields = {
   fromPartial(object: DeepPartial<UpgradeFields>): UpgradeFields {
     const message = createBaseUpgradeFields();
     message.ordering = object.ordering ?? 0;
-    message.connectionHops = object.connectionHops?.map(e => e) || [];
+    message.connection_hops = object.connection_hops?.map(e => e) || [];
     message.version = object.version ?? "";
     return message;
   },
@@ -256,7 +256,7 @@ export const UpgradeFields = {
     if (object.ordering !== undefined && object.ordering !== null) {
       message.ordering = object.ordering;
     }
-    message.connectionHops = object.connection_hops?.map(e => e) || [];
+    message.connection_hops = object.connection_hops?.map(e => e) || [];
     if (object.version !== undefined && object.version !== null) {
       message.version = object.version;
     }
@@ -265,10 +265,10 @@ export const UpgradeFields = {
   toAmino(message: UpgradeFields): UpgradeFieldsAmino {
     const obj: any = {};
     obj.ordering = message.ordering === 0 ? undefined : message.ordering;
-    if (message.connectionHops) {
-      obj.connection_hops = message.connectionHops.map(e => e);
+    if (message.connection_hops) {
+      obj.connection_hops = message.connection_hops.map(e => e);
     } else {
-      obj.connection_hops = message.connectionHops;
+      obj.connection_hops = message.connection_hops;
     }
     obj.version = message.version === "" ? undefined : message.version;
     return obj;

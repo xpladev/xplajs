@@ -7,14 +7,14 @@ export interface ModuleDescriptor {
    * module in the runtime module registry. It is required to make debugging
    * of configuration errors easier for users.
    */
-  goImport: string;
+  go_import: string;
   /**
    * use_package refers to a protobuf package that this module
    * uses and exposes to the world. In an app, only one module should "use"
    * or own a single protobuf package. It is assumed that the module uses
    * all of the .proto files in a single package.
    */
-  usePackage: PackageReference[];
+  use_package: PackageReference[];
   /**
    * can_migrate_from defines which module versions this module can migrate
    * state from. The framework will check that one module version is able to
@@ -24,10 +24,10 @@ export interface ModuleDescriptor {
    * declares it can migrate from v1, the framework knows how to migrate
    * from v1 to v3, assuming all 3 module versions are registered at runtime.
    */
-  canMigrateFrom: MigrateFromInfo[];
+  can_migrate_from: MigrateFromInfo[];
 }
 export interface ModuleDescriptorProtoMsg {
-  typeUrl: "/cosmos.app.v1alpha1.ModuleDescriptor";
+  type_url: "/cosmos.app.v1alpha1.ModuleDescriptor";
   value: Uint8Array;
 }
 /** ModuleDescriptor describes an app module. */
@@ -104,7 +104,7 @@ export interface PackageReference {
   revision: number;
 }
 export interface PackageReferenceProtoMsg {
-  typeUrl: "/cosmos.app.v1alpha1.PackageReference";
+  type_url: "/cosmos.app.v1alpha1.PackageReference";
   value: Uint8Array;
 }
 /** PackageReference is a reference to a protobuf package used by a module. */
@@ -166,7 +166,7 @@ export interface MigrateFromInfo {
   module: string;
 }
 export interface MigrateFromInfoProtoMsg {
-  typeUrl: "/cosmos.app.v1alpha1.MigrateFromInfo";
+  type_url: "/cosmos.app.v1alpha1.MigrateFromInfo";
   value: Uint8Array;
 }
 /**
@@ -186,28 +186,28 @@ export interface MigrateFromInfoAminoMsg {
 }
 function createBaseModuleDescriptor(): ModuleDescriptor {
   return {
-    goImport: "",
-    usePackage: [],
-    canMigrateFrom: []
+    go_import: "",
+    use_package: [],
+    can_migrate_from: []
   };
 }
 export const ModuleDescriptor = {
   typeUrl: "/cosmos.app.v1alpha1.ModuleDescriptor",
   aminoType: "cosmos-sdk/ModuleDescriptor",
   is(o: any): o is ModuleDescriptor {
-    return o && (o.$typeUrl === ModuleDescriptor.typeUrl || typeof o.goImport === "string" && Array.isArray(o.usePackage) && (!o.usePackage.length || PackageReference.is(o.usePackage[0])) && Array.isArray(o.canMigrateFrom) && (!o.canMigrateFrom.length || MigrateFromInfo.is(o.canMigrateFrom[0])));
+    return o && (o.$typeUrl === ModuleDescriptor.typeUrl || typeof o.go_import === "string" && Array.isArray(o.use_package) && (!o.use_package.length || PackageReference.is(o.use_package[0])) && Array.isArray(o.can_migrate_from) && (!o.can_migrate_from.length || MigrateFromInfo.is(o.can_migrate_from[0])));
   },
   isAmino(o: any): o is ModuleDescriptorAmino {
     return o && (o.$typeUrl === ModuleDescriptor.typeUrl || typeof o.go_import === "string" && Array.isArray(o.use_package) && (!o.use_package.length || PackageReference.isAmino(o.use_package[0])) && Array.isArray(o.can_migrate_from) && (!o.can_migrate_from.length || MigrateFromInfo.isAmino(o.can_migrate_from[0])));
   },
   encode(message: ModuleDescriptor, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.goImport !== "") {
-      writer.uint32(10).string(message.goImport);
+    if (message.go_import !== "") {
+      writer.uint32(10).string(message.go_import);
     }
-    for (const v of message.usePackage) {
+    for (const v of message.use_package) {
       PackageReference.encode(v!, writer.uint32(18).fork()).ldelim();
     }
-    for (const v of message.canMigrateFrom) {
+    for (const v of message.can_migrate_from) {
       MigrateFromInfo.encode(v!, writer.uint32(26).fork()).ldelim();
     }
     return writer;
@@ -220,13 +220,13 @@ export const ModuleDescriptor = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.goImport = reader.string();
+          message.go_import = reader.string();
           break;
         case 2:
-          message.usePackage.push(PackageReference.decode(reader, reader.uint32()));
+          message.use_package.push(PackageReference.decode(reader, reader.uint32()));
           break;
         case 3:
-          message.canMigrateFrom.push(MigrateFromInfo.decode(reader, reader.uint32()));
+          message.can_migrate_from.push(MigrateFromInfo.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -237,32 +237,32 @@ export const ModuleDescriptor = {
   },
   fromPartial(object: DeepPartial<ModuleDescriptor>): ModuleDescriptor {
     const message = createBaseModuleDescriptor();
-    message.goImport = object.goImport ?? "";
-    message.usePackage = object.usePackage?.map(e => PackageReference.fromPartial(e)) || [];
-    message.canMigrateFrom = object.canMigrateFrom?.map(e => MigrateFromInfo.fromPartial(e)) || [];
+    message.go_import = object.go_import ?? "";
+    message.use_package = object.use_package?.map(e => PackageReference.fromPartial(e)) || [];
+    message.can_migrate_from = object.can_migrate_from?.map(e => MigrateFromInfo.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: ModuleDescriptorAmino): ModuleDescriptor {
     const message = createBaseModuleDescriptor();
     if (object.go_import !== undefined && object.go_import !== null) {
-      message.goImport = object.go_import;
+      message.go_import = object.go_import;
     }
-    message.usePackage = object.use_package?.map(e => PackageReference.fromAmino(e)) || [];
-    message.canMigrateFrom = object.can_migrate_from?.map(e => MigrateFromInfo.fromAmino(e)) || [];
+    message.use_package = object.use_package?.map(e => PackageReference.fromAmino(e)) || [];
+    message.can_migrate_from = object.can_migrate_from?.map(e => MigrateFromInfo.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: ModuleDescriptor): ModuleDescriptorAmino {
     const obj: any = {};
-    obj.go_import = message.goImport === "" ? undefined : message.goImport;
-    if (message.usePackage) {
-      obj.use_package = message.usePackage.map(e => e ? PackageReference.toAmino(e) : undefined);
+    obj.go_import = message.go_import === "" ? undefined : message.go_import;
+    if (message.use_package) {
+      obj.use_package = message.use_package.map(e => e ? PackageReference.toAmino(e) : undefined);
     } else {
-      obj.use_package = message.usePackage;
+      obj.use_package = message.use_package;
     }
-    if (message.canMigrateFrom) {
-      obj.can_migrate_from = message.canMigrateFrom.map(e => e ? MigrateFromInfo.toAmino(e) : undefined);
+    if (message.can_migrate_from) {
+      obj.can_migrate_from = message.can_migrate_from.map(e => e ? MigrateFromInfo.toAmino(e) : undefined);
     } else {
-      obj.can_migrate_from = message.canMigrateFrom;
+      obj.can_migrate_from = message.can_migrate_from;
     }
     return obj;
   },

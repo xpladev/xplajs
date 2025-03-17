@@ -6,12 +6,12 @@ import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../../../he
  */
 export interface Params {
   /** host_enabled enables or disables the host submodule. */
-  hostEnabled: boolean;
+  host_enabled: boolean;
   /** allow_messages defines a list of sdk message typeURLs allowed to be executed on a host chain. */
-  allowMessages: string[];
+  allow_messages: string[];
 }
 export interface ParamsProtoMsg {
-  typeUrl: "/ibc.applications.interchain_accounts.host.v1.Params";
+  type_url: "/ibc.applications.interchain_accounts.host.v1.Params";
   value: Uint8Array;
 }
 /**
@@ -45,7 +45,7 @@ export interface QueryRequest {
   data: Uint8Array;
 }
 export interface QueryRequestProtoMsg {
-  typeUrl: "/ibc.applications.interchain_accounts.host.v1.QueryRequest";
+  type_url: "/ibc.applications.interchain_accounts.host.v1.QueryRequest";
   value: Uint8Array;
 }
 /**
@@ -70,24 +70,24 @@ export interface QueryRequestAminoMsg {
 }
 function createBaseParams(): Params {
   return {
-    hostEnabled: false,
-    allowMessages: []
+    host_enabled: false,
+    allow_messages: []
   };
 }
 export const Params = {
   typeUrl: "/ibc.applications.interchain_accounts.host.v1.Params",
   aminoType: "cosmos-sdk/Params",
   is(o: any): o is Params {
-    return o && (o.$typeUrl === Params.typeUrl || typeof o.hostEnabled === "boolean" && Array.isArray(o.allowMessages) && (!o.allowMessages.length || typeof o.allowMessages[0] === "string"));
+    return o && (o.$typeUrl === Params.typeUrl || typeof o.host_enabled === "boolean" && Array.isArray(o.allow_messages) && (!o.allow_messages.length || typeof o.allow_messages[0] === "string"));
   },
   isAmino(o: any): o is ParamsAmino {
     return o && (o.$typeUrl === Params.typeUrl || typeof o.host_enabled === "boolean" && Array.isArray(o.allow_messages) && (!o.allow_messages.length || typeof o.allow_messages[0] === "string"));
   },
   encode(message: Params, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.hostEnabled === true) {
-      writer.uint32(8).bool(message.hostEnabled);
+    if (message.host_enabled === true) {
+      writer.uint32(8).bool(message.host_enabled);
     }
-    for (const v of message.allowMessages) {
+    for (const v of message.allow_messages) {
       writer.uint32(18).string(v!);
     }
     return writer;
@@ -100,10 +100,10 @@ export const Params = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.hostEnabled = reader.bool();
+          message.host_enabled = reader.bool();
           break;
         case 2:
-          message.allowMessages.push(reader.string());
+          message.allow_messages.push(reader.string());
           break;
         default:
           reader.skipType(tag & 7);
@@ -114,25 +114,25 @@ export const Params = {
   },
   fromPartial(object: DeepPartial<Params>): Params {
     const message = createBaseParams();
-    message.hostEnabled = object.hostEnabled ?? false;
-    message.allowMessages = object.allowMessages?.map(e => e) || [];
+    message.host_enabled = object.host_enabled ?? false;
+    message.allow_messages = object.allow_messages?.map(e => e) || [];
     return message;
   },
   fromAmino(object: ParamsAmino): Params {
     const message = createBaseParams();
     if (object.host_enabled !== undefined && object.host_enabled !== null) {
-      message.hostEnabled = object.host_enabled;
+      message.host_enabled = object.host_enabled;
     }
-    message.allowMessages = object.allow_messages?.map(e => e) || [];
+    message.allow_messages = object.allow_messages?.map(e => e) || [];
     return message;
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    obj.host_enabled = message.hostEnabled === false ? undefined : message.hostEnabled;
-    if (message.allowMessages) {
-      obj.allow_messages = message.allowMessages.map(e => e);
+    obj.host_enabled = message.host_enabled === false ? undefined : message.host_enabled;
+    if (message.allow_messages) {
+      obj.allow_messages = message.allow_messages.map(e => e);
     } else {
-      obj.allow_messages = message.allowMessages;
+      obj.allow_messages = message.allow_messages;
     }
     return obj;
   },

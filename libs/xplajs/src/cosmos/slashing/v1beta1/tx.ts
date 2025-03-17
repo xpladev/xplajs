@@ -3,10 +3,10 @@ import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial } from "../../../helpers";
 /** MsgUnjail defines the Msg/Unjail request type */
 export interface MsgUnjail {
-  validatorAddr: string;
+  validator_addr: string;
 }
 export interface MsgUnjailProtoMsg {
-  typeUrl: "/cosmos.slashing.v1beta1.MsgUnjail";
+  type_url: "/cosmos.slashing.v1beta1.MsgUnjail";
   value: Uint8Array;
 }
 /** MsgUnjail defines the Msg/Unjail request type */
@@ -20,7 +20,7 @@ export interface MsgUnjailAminoMsg {
 /** MsgUnjailResponse defines the Msg/Unjail response type */
 export interface MsgUnjailResponse {}
 export interface MsgUnjailResponseProtoMsg {
-  typeUrl: "/cosmos.slashing.v1beta1.MsgUnjailResponse";
+  type_url: "/cosmos.slashing.v1beta1.MsgUnjailResponse";
   value: Uint8Array;
 }
 /** MsgUnjailResponse defines the Msg/Unjail response type */
@@ -45,7 +45,7 @@ export interface MsgUpdateParams {
   params: Params;
 }
 export interface MsgUpdateParamsProtoMsg {
-  typeUrl: "/cosmos.slashing.v1beta1.MsgUpdateParams";
+  type_url: "/cosmos.slashing.v1beta1.MsgUpdateParams";
   value: Uint8Array;
 }
 /**
@@ -75,7 +75,7 @@ export interface MsgUpdateParamsAminoMsg {
  */
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
-  typeUrl: "/cosmos.slashing.v1beta1.MsgUpdateParamsResponse";
+  type_url: "/cosmos.slashing.v1beta1.MsgUpdateParamsResponse";
   value: Uint8Array;
 }
 /**
@@ -91,21 +91,21 @@ export interface MsgUpdateParamsResponseAminoMsg {
 }
 function createBaseMsgUnjail(): MsgUnjail {
   return {
-    validatorAddr: ""
+    validator_addr: ""
   };
 }
 export const MsgUnjail = {
   typeUrl: "/cosmos.slashing.v1beta1.MsgUnjail",
   aminoType: "cosmos-sdk/MsgUnjail",
   is(o: any): o is MsgUnjail {
-    return o && (o.$typeUrl === MsgUnjail.typeUrl || typeof o.validatorAddr === "string");
+    return o && (o.$typeUrl === MsgUnjail.typeUrl || typeof o.validator_addr === "string");
   },
   isAmino(o: any): o is MsgUnjailAmino {
     return o && (o.$typeUrl === MsgUnjail.typeUrl || typeof o.validator_addr === "string");
   },
   encode(message: MsgUnjail, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.validatorAddr !== "") {
-      writer.uint32(10).string(message.validatorAddr);
+    if (message.validator_addr !== "") {
+      writer.uint32(10).string(message.validator_addr);
     }
     return writer;
   },
@@ -117,7 +117,7 @@ export const MsgUnjail = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.validatorAddr = reader.string();
+          message.validator_addr = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -128,19 +128,19 @@ export const MsgUnjail = {
   },
   fromPartial(object: DeepPartial<MsgUnjail>): MsgUnjail {
     const message = createBaseMsgUnjail();
-    message.validatorAddr = object.validatorAddr ?? "";
+    message.validator_addr = object.validator_addr ?? "";
     return message;
   },
   fromAmino(object: MsgUnjailAmino): MsgUnjail {
     const message = createBaseMsgUnjail();
     if (object.validator_addr !== undefined && object.validator_addr !== null) {
-      message.validatorAddr = object.validator_addr;
+      message.validator_addr = object.validator_addr;
     }
     return message;
   },
   toAmino(message: MsgUnjail): MsgUnjailAmino {
     const obj: any = {};
-    obj.validator_addr = message.validatorAddr ?? "";
+    obj.validator_addr = message.validator_addr ?? "";
     return obj;
   },
   fromAminoMsg(object: MsgUnjailAminoMsg): MsgUnjail {

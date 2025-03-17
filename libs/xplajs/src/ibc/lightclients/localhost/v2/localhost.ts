@@ -4,10 +4,10 @@ import { DeepPartial } from "../../../../helpers";
 /** ClientState defines the 09-localhost client state */
 export interface ClientState {
   /** the latest block height */
-  latestHeight: Height;
+  latest_height: Height;
 }
 export interface ClientStateProtoMsg {
-  typeUrl: "/ibc.lightclients.localhost.v2.ClientState";
+  type_url: "/ibc.lightclients.localhost.v2.ClientState";
   value: Uint8Array;
 }
 /** ClientState defines the 09-localhost client state */
@@ -21,21 +21,21 @@ export interface ClientStateAminoMsg {
 }
 function createBaseClientState(): ClientState {
   return {
-    latestHeight: Height.fromPartial({})
+    latest_height: Height.fromPartial({})
   };
 }
 export const ClientState = {
   typeUrl: "/ibc.lightclients.localhost.v2.ClientState",
   aminoType: "cosmos-sdk/ClientState",
   is(o: any): o is ClientState {
-    return o && (o.$typeUrl === ClientState.typeUrl || Height.is(o.latestHeight));
+    return o && (o.$typeUrl === ClientState.typeUrl || Height.is(o.latest_height));
   },
   isAmino(o: any): o is ClientStateAmino {
     return o && (o.$typeUrl === ClientState.typeUrl || Height.isAmino(o.latest_height));
   },
   encode(message: ClientState, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.latestHeight !== undefined) {
-      Height.encode(message.latestHeight, writer.uint32(10).fork()).ldelim();
+    if (message.latest_height !== undefined) {
+      Height.encode(message.latest_height, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -47,7 +47,7 @@ export const ClientState = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.latestHeight = Height.decode(reader, reader.uint32());
+          message.latest_height = Height.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -58,19 +58,19 @@ export const ClientState = {
   },
   fromPartial(object: DeepPartial<ClientState>): ClientState {
     const message = createBaseClientState();
-    message.latestHeight = object.latestHeight !== undefined && object.latestHeight !== null ? Height.fromPartial(object.latestHeight) : undefined;
+    message.latest_height = object.latest_height !== undefined && object.latest_height !== null ? Height.fromPartial(object.latest_height) : undefined;
     return message;
   },
   fromAmino(object: ClientStateAmino): ClientState {
     const message = createBaseClientState();
     if (object.latest_height !== undefined && object.latest_height !== null) {
-      message.latestHeight = Height.fromAmino(object.latest_height);
+      message.latest_height = Height.fromAmino(object.latest_height);
     }
     return message;
   },
   toAmino(message: ClientState): ClientStateAmino {
     const obj: any = {};
-    obj.latest_height = message.latestHeight ? Height.toAmino(message.latestHeight) : {};
+    obj.latest_height = message.latest_height ? Height.toAmino(message.latest_height) : {};
     return obj;
   },
   fromAminoMsg(object: ClientStateAminoMsg): ClientState {

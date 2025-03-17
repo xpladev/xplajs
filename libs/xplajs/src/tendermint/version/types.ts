@@ -10,7 +10,7 @@ export interface App {
   software: string;
 }
 export interface AppProtoMsg {
-  typeUrl: "/tendermint.version.App";
+  type_url: "/tendermint.version.App";
   value: Uint8Array;
 }
 /**
@@ -36,7 +36,7 @@ export interface Consensus {
   app: bigint;
 }
 export interface ConsensusProtoMsg {
-  typeUrl: "/tendermint.version.Consensus";
+  type_url: "/tendermint.version.Consensus";
   value: Uint8Array;
 }
 /**

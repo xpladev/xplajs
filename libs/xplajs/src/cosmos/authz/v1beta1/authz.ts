@@ -16,7 +16,7 @@ export interface GenericAuthorization {
   msg: string;
 }
 export interface GenericAuthorizationProtoMsg {
-  typeUrl: "/cosmos.authz.v1beta1.GenericAuthorization";
+  type_url: "/cosmos.authz.v1beta1.GenericAuthorization";
   value: Uint8Array;
 }
 /**
@@ -45,7 +45,7 @@ export interface Grant {
   expiration?: Date;
 }
 export interface GrantProtoMsg {
-  typeUrl: "/cosmos.authz.v1beta1.Grant";
+  type_url: "/cosmos.authz.v1beta1.Grant";
   value: Uint8Array;
 }
 export type GrantEncoded = Omit<Grant, "authorization"> & {
@@ -79,7 +79,7 @@ export interface GrantAuthorization {
   expiration?: Date;
 }
 export interface GrantAuthorizationProtoMsg {
-  typeUrl: "/cosmos.authz.v1beta1.GrantAuthorization";
+  type_url: "/cosmos.authz.v1beta1.GrantAuthorization";
   value: Uint8Array;
 }
 export type GrantAuthorizationEncoded = Omit<GrantAuthorization, "authorization"> & {
@@ -102,10 +102,10 @@ export interface GrantAuthorizationAminoMsg {
 /** GrantQueueItem contains the list of TypeURL of a sdk.Msg. */
 export interface GrantQueueItem {
   /** msg_type_urls contains the list of TypeURL of a sdk.Msg. */
-  msgTypeUrls: string[];
+  msg_type_urls: string[];
 }
 export interface GrantQueueItemProtoMsg {
-  typeUrl: "/cosmos.authz.v1beta1.GrantQueueItem";
+  type_url: "/cosmos.authz.v1beta1.GrantQueueItem";
   value: Uint8Array;
 }
 /** GrantQueueItem contains the list of TypeURL of a sdk.Msg. */
@@ -417,20 +417,20 @@ export const GrantAuthorization = {
 };
 function createBaseGrantQueueItem(): GrantQueueItem {
   return {
-    msgTypeUrls: []
+    msg_type_urls: []
   };
 }
 export const GrantQueueItem = {
   typeUrl: "/cosmos.authz.v1beta1.GrantQueueItem",
   aminoType: "cosmos-sdk/GrantQueueItem",
   is(o: any): o is GrantQueueItem {
-    return o && (o.$typeUrl === GrantQueueItem.typeUrl || Array.isArray(o.msgTypeUrls) && (!o.msgTypeUrls.length || typeof o.msgTypeUrls[0] === "string"));
+    return o && (o.$typeUrl === GrantQueueItem.typeUrl || Array.isArray(o.msg_type_urls) && (!o.msg_type_urls.length || typeof o.msg_type_urls[0] === "string"));
   },
   isAmino(o: any): o is GrantQueueItemAmino {
     return o && (o.$typeUrl === GrantQueueItem.typeUrl || Array.isArray(o.msg_type_urls) && (!o.msg_type_urls.length || typeof o.msg_type_urls[0] === "string"));
   },
   encode(message: GrantQueueItem, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.msgTypeUrls) {
+    for (const v of message.msg_type_urls) {
       writer.uint32(10).string(v!);
     }
     return writer;
@@ -443,7 +443,7 @@ export const GrantQueueItem = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.msgTypeUrls.push(reader.string());
+          message.msg_type_urls.push(reader.string());
           break;
         default:
           reader.skipType(tag & 7);
@@ -454,20 +454,20 @@ export const GrantQueueItem = {
   },
   fromPartial(object: DeepPartial<GrantQueueItem>): GrantQueueItem {
     const message = createBaseGrantQueueItem();
-    message.msgTypeUrls = object.msgTypeUrls?.map(e => e) || [];
+    message.msg_type_urls = object.msg_type_urls?.map(e => e) || [];
     return message;
   },
   fromAmino(object: GrantQueueItemAmino): GrantQueueItem {
     const message = createBaseGrantQueueItem();
-    message.msgTypeUrls = object.msg_type_urls?.map(e => e) || [];
+    message.msg_type_urls = object.msg_type_urls?.map(e => e) || [];
     return message;
   },
   toAmino(message: GrantQueueItem): GrantQueueItemAmino {
     const obj: any = {};
-    if (message.msgTypeUrls) {
-      obj.msg_type_urls = message.msgTypeUrls.map(e => e);
+    if (message.msg_type_urls) {
+      obj.msg_type_urls = message.msg_type_urls.map(e => e);
     } else {
-      obj.msg_type_urls = message.msgTypeUrls;
+      obj.msg_type_urls = message.msg_type_urls;
     }
     return obj;
   },

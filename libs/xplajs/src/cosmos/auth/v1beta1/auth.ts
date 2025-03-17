@@ -9,12 +9,12 @@ import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../helpers"
  */
 export interface BaseAccount {
   address: string;
-  pubKey?: Any;
-  accountNumber: bigint;
+  pub_key?: Any;
+  account_number: bigint;
   sequence: bigint;
 }
 export interface BaseAccountProtoMsg {
-  typeUrl: "/cosmos.auth.v1beta1.BaseAccount";
+  type_url: "/cosmos.auth.v1beta1.BaseAccount";
   value: Uint8Array;
 }
 /**
@@ -34,12 +34,12 @@ export interface BaseAccountAminoMsg {
 }
 /** ModuleAccount defines an account for modules that holds coins on a pool. */
 export interface ModuleAccount {
-  baseAccount?: BaseAccount;
+  base_account?: BaseAccount;
   name: string;
   permissions: string[];
 }
 export interface ModuleAccountProtoMsg {
-  typeUrl: "/cosmos.auth.v1beta1.ModuleAccount";
+  type_url: "/cosmos.auth.v1beta1.ModuleAccount";
   value: Uint8Array;
 }
 /** ModuleAccount defines an account for modules that holds coins on a pool. */
@@ -59,15 +59,15 @@ export interface ModuleAccountAminoMsg {
  */
 export interface ModuleCredential {
   /** module_name is the name of the module used for address derivation (passed into address.Module). */
-  moduleName: string;
+  module_name: string;
   /**
    * derivation_keys is for deriving a module account address (passed into address.Module)
    * adding more keys creates sub-account addresses (passed into address.Derive)
    */
-  derivationKeys: Uint8Array[];
+  derivation_keys: Uint8Array[];
 }
 export interface ModuleCredentialProtoMsg {
-  typeUrl: "/cosmos.auth.v1beta1.ModuleCredential";
+  type_url: "/cosmos.auth.v1beta1.ModuleCredential";
   value: Uint8Array;
 }
 /**
@@ -90,14 +90,14 @@ export interface ModuleCredentialAminoMsg {
 }
 /** Params defines the parameters for the auth module. */
 export interface Params {
-  maxMemoCharacters: bigint;
-  txSigLimit: bigint;
-  txSizeCostPerByte: bigint;
-  sigVerifyCostEd25519: bigint;
-  sigVerifyCostSecp256k1: bigint;
+  max_memo_characters: bigint;
+  tx_sig_limit: bigint;
+  tx_size_cost_per_byte: bigint;
+  sig_verify_cost_ed25519: bigint;
+  sig_verify_cost_secp256k1: bigint;
 }
 export interface ParamsProtoMsg {
-  typeUrl: "/cosmos.auth.v1beta1.Params";
+  type_url: "/cosmos.auth.v1beta1.Params";
   value: Uint8Array;
 }
 /** Params defines the parameters for the auth module. */
@@ -115,8 +115,8 @@ export interface ParamsAminoMsg {
 function createBaseBaseAccount(): BaseAccount {
   return {
     address: "",
-    pubKey: undefined,
-    accountNumber: BigInt(0),
+    pub_key: undefined,
+    account_number: BigInt(0),
     sequence: BigInt(0)
   };
 }
@@ -124,7 +124,7 @@ export const BaseAccount = {
   typeUrl: "/cosmos.auth.v1beta1.BaseAccount",
   aminoType: "cosmos-sdk/BaseAccount",
   is(o: any): o is BaseAccount {
-    return o && (o.$typeUrl === BaseAccount.typeUrl || typeof o.address === "string" && typeof o.accountNumber === "bigint" && typeof o.sequence === "bigint");
+    return o && (o.$typeUrl === BaseAccount.typeUrl || typeof o.address === "string" && typeof o.account_number === "bigint" && typeof o.sequence === "bigint");
   },
   isAmino(o: any): o is BaseAccountAmino {
     return o && (o.$typeUrl === BaseAccount.typeUrl || typeof o.address === "string" && typeof o.account_number === "bigint" && typeof o.sequence === "bigint");
@@ -133,11 +133,11 @@ export const BaseAccount = {
     if (message.address !== "") {
       writer.uint32(10).string(message.address);
     }
-    if (message.pubKey !== undefined) {
-      Any.encode(message.pubKey, writer.uint32(18).fork()).ldelim();
+    if (message.pub_key !== undefined) {
+      Any.encode(message.pub_key, writer.uint32(18).fork()).ldelim();
     }
-    if (message.accountNumber !== BigInt(0)) {
-      writer.uint32(24).uint64(message.accountNumber);
+    if (message.account_number !== BigInt(0)) {
+      writer.uint32(24).uint64(message.account_number);
     }
     if (message.sequence !== BigInt(0)) {
       writer.uint32(32).uint64(message.sequence);
@@ -155,10 +155,10 @@ export const BaseAccount = {
           message.address = reader.string();
           break;
         case 2:
-          message.pubKey = Any.decode(reader, reader.uint32());
+          message.pub_key = Any.decode(reader, reader.uint32());
           break;
         case 3:
-          message.accountNumber = reader.uint64();
+          message.account_number = reader.uint64();
           break;
         case 4:
           message.sequence = reader.uint64();
@@ -173,8 +173,8 @@ export const BaseAccount = {
   fromPartial(object: DeepPartial<BaseAccount>): BaseAccount {
     const message = createBaseBaseAccount();
     message.address = object.address ?? "";
-    message.pubKey = object.pubKey !== undefined && object.pubKey !== null ? Any.fromPartial(object.pubKey) : undefined;
-    message.accountNumber = object.accountNumber !== undefined && object.accountNumber !== null ? BigInt(object.accountNumber.toString()) : BigInt(0);
+    message.pub_key = object.pub_key !== undefined && object.pub_key !== null ? Any.fromPartial(object.pub_key) : undefined;
+    message.account_number = object.account_number !== undefined && object.account_number !== null ? BigInt(object.account_number.toString()) : BigInt(0);
     message.sequence = object.sequence !== undefined && object.sequence !== null ? BigInt(object.sequence.toString()) : BigInt(0);
     return message;
   },
@@ -184,10 +184,10 @@ export const BaseAccount = {
       message.address = object.address;
     }
     if (object.pub_key !== undefined && object.pub_key !== null) {
-      message.pubKey = Any.fromAmino(object.pub_key);
+      message.pub_key = Any.fromAmino(object.pub_key);
     }
     if (object.account_number !== undefined && object.account_number !== null) {
-      message.accountNumber = BigInt(object.account_number);
+      message.account_number = BigInt(object.account_number);
     }
     if (object.sequence !== undefined && object.sequence !== null) {
       message.sequence = BigInt(object.sequence);
@@ -197,8 +197,8 @@ export const BaseAccount = {
   toAmino(message: BaseAccount): BaseAccountAmino {
     const obj: any = {};
     obj.address = message.address === "" ? undefined : message.address;
-    obj.pub_key = message.pubKey ? Any.toAmino(message.pubKey) : undefined;
-    obj.account_number = message.accountNumber !== BigInt(0) ? message.accountNumber?.toString() : undefined;
+    obj.pub_key = message.pub_key ? Any.toAmino(message.pub_key) : undefined;
+    obj.account_number = message.account_number !== BigInt(0) ? message.account_number?.toString() : undefined;
     obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : undefined;
     return obj;
   },
@@ -230,7 +230,7 @@ export const BaseAccount = {
 };
 function createBaseModuleAccount(): ModuleAccount {
   return {
-    baseAccount: undefined,
+    base_account: undefined,
     name: "",
     permissions: []
   };
@@ -245,8 +245,8 @@ export const ModuleAccount = {
     return o && (o.$typeUrl === ModuleAccount.typeUrl || typeof o.name === "string" && Array.isArray(o.permissions) && (!o.permissions.length || typeof o.permissions[0] === "string"));
   },
   encode(message: ModuleAccount, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.baseAccount !== undefined) {
-      BaseAccount.encode(message.baseAccount, writer.uint32(10).fork()).ldelim();
+    if (message.base_account !== undefined) {
+      BaseAccount.encode(message.base_account, writer.uint32(10).fork()).ldelim();
     }
     if (message.name !== "") {
       writer.uint32(18).string(message.name);
@@ -264,7 +264,7 @@ export const ModuleAccount = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.baseAccount = BaseAccount.decode(reader, reader.uint32());
+          message.base_account = BaseAccount.decode(reader, reader.uint32());
           break;
         case 2:
           message.name = reader.string();
@@ -281,7 +281,7 @@ export const ModuleAccount = {
   },
   fromPartial(object: DeepPartial<ModuleAccount>): ModuleAccount {
     const message = createBaseModuleAccount();
-    message.baseAccount = object.baseAccount !== undefined && object.baseAccount !== null ? BaseAccount.fromPartial(object.baseAccount) : undefined;
+    message.base_account = object.base_account !== undefined && object.base_account !== null ? BaseAccount.fromPartial(object.base_account) : undefined;
     message.name = object.name ?? "";
     message.permissions = object.permissions?.map(e => e) || [];
     return message;
@@ -289,7 +289,7 @@ export const ModuleAccount = {
   fromAmino(object: ModuleAccountAmino): ModuleAccount {
     const message = createBaseModuleAccount();
     if (object.base_account !== undefined && object.base_account !== null) {
-      message.baseAccount = BaseAccount.fromAmino(object.base_account);
+      message.base_account = BaseAccount.fromAmino(object.base_account);
     }
     if (object.name !== undefined && object.name !== null) {
       message.name = object.name;
@@ -299,7 +299,7 @@ export const ModuleAccount = {
   },
   toAmino(message: ModuleAccount): ModuleAccountAmino {
     const obj: any = {};
-    obj.base_account = message.baseAccount ? BaseAccount.toAmino(message.baseAccount) : undefined;
+    obj.base_account = message.base_account ? BaseAccount.toAmino(message.base_account) : undefined;
     obj.name = message.name === "" ? undefined : message.name;
     if (message.permissions) {
       obj.permissions = message.permissions.map(e => e);
@@ -337,24 +337,24 @@ export const ModuleAccount = {
 };
 function createBaseModuleCredential(): ModuleCredential {
   return {
-    moduleName: "",
-    derivationKeys: []
+    module_name: "",
+    derivation_keys: []
   };
 }
 export const ModuleCredential = {
   typeUrl: "/cosmos.auth.v1beta1.ModuleCredential",
   aminoType: "cosmos-sdk/GroupAccountCredential",
   is(o: any): o is ModuleCredential {
-    return o && (o.$typeUrl === ModuleCredential.typeUrl || typeof o.moduleName === "string" && Array.isArray(o.derivationKeys) && (!o.derivationKeys.length || o.derivationKeys[0] instanceof Uint8Array || typeof o.derivationKeys[0] === "string"));
+    return o && (o.$typeUrl === ModuleCredential.typeUrl || typeof o.module_name === "string" && Array.isArray(o.derivation_keys) && (!o.derivation_keys.length || o.derivation_keys[0] instanceof Uint8Array || typeof o.derivation_keys[0] === "string"));
   },
   isAmino(o: any): o is ModuleCredentialAmino {
     return o && (o.$typeUrl === ModuleCredential.typeUrl || typeof o.module_name === "string" && Array.isArray(o.derivation_keys) && (!o.derivation_keys.length || o.derivation_keys[0] instanceof Uint8Array || typeof o.derivation_keys[0] === "string"));
   },
   encode(message: ModuleCredential, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.moduleName !== "") {
-      writer.uint32(10).string(message.moduleName);
+    if (message.module_name !== "") {
+      writer.uint32(10).string(message.module_name);
     }
-    for (const v of message.derivationKeys) {
+    for (const v of message.derivation_keys) {
       writer.uint32(18).bytes(v!);
     }
     return writer;
@@ -367,10 +367,10 @@ export const ModuleCredential = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.moduleName = reader.string();
+          message.module_name = reader.string();
           break;
         case 2:
-          message.derivationKeys.push(reader.bytes());
+          message.derivation_keys.push(reader.bytes());
           break;
         default:
           reader.skipType(tag & 7);
@@ -381,25 +381,25 @@ export const ModuleCredential = {
   },
   fromPartial(object: DeepPartial<ModuleCredential>): ModuleCredential {
     const message = createBaseModuleCredential();
-    message.moduleName = object.moduleName ?? "";
-    message.derivationKeys = object.derivationKeys?.map(e => e) || [];
+    message.module_name = object.module_name ?? "";
+    message.derivation_keys = object.derivation_keys?.map(e => e) || [];
     return message;
   },
   fromAmino(object: ModuleCredentialAmino): ModuleCredential {
     const message = createBaseModuleCredential();
     if (object.module_name !== undefined && object.module_name !== null) {
-      message.moduleName = object.module_name;
+      message.module_name = object.module_name;
     }
-    message.derivationKeys = object.derivation_keys?.map(e => bytesFromBase64(e)) || [];
+    message.derivation_keys = object.derivation_keys?.map(e => bytesFromBase64(e)) || [];
     return message;
   },
   toAmino(message: ModuleCredential): ModuleCredentialAmino {
     const obj: any = {};
-    obj.module_name = message.moduleName === "" ? undefined : message.moduleName;
-    if (message.derivationKeys) {
-      obj.derivation_keys = message.derivationKeys.map(e => base64FromBytes(e));
+    obj.module_name = message.module_name === "" ? undefined : message.module_name;
+    if (message.derivation_keys) {
+      obj.derivation_keys = message.derivation_keys.map(e => base64FromBytes(e));
     } else {
-      obj.derivation_keys = message.derivationKeys;
+      obj.derivation_keys = message.derivation_keys;
     }
     return obj;
   },
@@ -428,37 +428,37 @@ export const ModuleCredential = {
 };
 function createBaseParams(): Params {
   return {
-    maxMemoCharacters: BigInt(0),
-    txSigLimit: BigInt(0),
-    txSizeCostPerByte: BigInt(0),
-    sigVerifyCostEd25519: BigInt(0),
-    sigVerifyCostSecp256k1: BigInt(0)
+    max_memo_characters: BigInt(0),
+    tx_sig_limit: BigInt(0),
+    tx_size_cost_per_byte: BigInt(0),
+    sig_verify_cost_ed25519: BigInt(0),
+    sig_verify_cost_secp256k1: BigInt(0)
   };
 }
 export const Params = {
   typeUrl: "/cosmos.auth.v1beta1.Params",
   aminoType: "cosmos-sdk/x/auth/Params",
   is(o: any): o is Params {
-    return o && (o.$typeUrl === Params.typeUrl || typeof o.maxMemoCharacters === "bigint" && typeof o.txSigLimit === "bigint" && typeof o.txSizeCostPerByte === "bigint" && typeof o.sigVerifyCostEd25519 === "bigint" && typeof o.sigVerifyCostSecp256k1 === "bigint");
+    return o && (o.$typeUrl === Params.typeUrl || typeof o.max_memo_characters === "bigint" && typeof o.tx_sig_limit === "bigint" && typeof o.tx_size_cost_per_byte === "bigint" && typeof o.sig_verify_cost_ed25519 === "bigint" && typeof o.sig_verify_cost_secp256k1 === "bigint");
   },
   isAmino(o: any): o is ParamsAmino {
     return o && (o.$typeUrl === Params.typeUrl || typeof o.max_memo_characters === "bigint" && typeof o.tx_sig_limit === "bigint" && typeof o.tx_size_cost_per_byte === "bigint" && typeof o.sig_verify_cost_ed25519 === "bigint" && typeof o.sig_verify_cost_secp256k1 === "bigint");
   },
   encode(message: Params, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.maxMemoCharacters !== BigInt(0)) {
-      writer.uint32(8).uint64(message.maxMemoCharacters);
+    if (message.max_memo_characters !== BigInt(0)) {
+      writer.uint32(8).uint64(message.max_memo_characters);
     }
-    if (message.txSigLimit !== BigInt(0)) {
-      writer.uint32(16).uint64(message.txSigLimit);
+    if (message.tx_sig_limit !== BigInt(0)) {
+      writer.uint32(16).uint64(message.tx_sig_limit);
     }
-    if (message.txSizeCostPerByte !== BigInt(0)) {
-      writer.uint32(24).uint64(message.txSizeCostPerByte);
+    if (message.tx_size_cost_per_byte !== BigInt(0)) {
+      writer.uint32(24).uint64(message.tx_size_cost_per_byte);
     }
-    if (message.sigVerifyCostEd25519 !== BigInt(0)) {
-      writer.uint32(32).uint64(message.sigVerifyCostEd25519);
+    if (message.sig_verify_cost_ed25519 !== BigInt(0)) {
+      writer.uint32(32).uint64(message.sig_verify_cost_ed25519);
     }
-    if (message.sigVerifyCostSecp256k1 !== BigInt(0)) {
-      writer.uint32(40).uint64(message.sigVerifyCostSecp256k1);
+    if (message.sig_verify_cost_secp256k1 !== BigInt(0)) {
+      writer.uint32(40).uint64(message.sig_verify_cost_secp256k1);
     }
     return writer;
   },
@@ -470,19 +470,19 @@ export const Params = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.maxMemoCharacters = reader.uint64();
+          message.max_memo_characters = reader.uint64();
           break;
         case 2:
-          message.txSigLimit = reader.uint64();
+          message.tx_sig_limit = reader.uint64();
           break;
         case 3:
-          message.txSizeCostPerByte = reader.uint64();
+          message.tx_size_cost_per_byte = reader.uint64();
           break;
         case 4:
-          message.sigVerifyCostEd25519 = reader.uint64();
+          message.sig_verify_cost_ed25519 = reader.uint64();
           break;
         case 5:
-          message.sigVerifyCostSecp256k1 = reader.uint64();
+          message.sig_verify_cost_secp256k1 = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -493,39 +493,39 @@ export const Params = {
   },
   fromPartial(object: DeepPartial<Params>): Params {
     const message = createBaseParams();
-    message.maxMemoCharacters = object.maxMemoCharacters !== undefined && object.maxMemoCharacters !== null ? BigInt(object.maxMemoCharacters.toString()) : BigInt(0);
-    message.txSigLimit = object.txSigLimit !== undefined && object.txSigLimit !== null ? BigInt(object.txSigLimit.toString()) : BigInt(0);
-    message.txSizeCostPerByte = object.txSizeCostPerByte !== undefined && object.txSizeCostPerByte !== null ? BigInt(object.txSizeCostPerByte.toString()) : BigInt(0);
-    message.sigVerifyCostEd25519 = object.sigVerifyCostEd25519 !== undefined && object.sigVerifyCostEd25519 !== null ? BigInt(object.sigVerifyCostEd25519.toString()) : BigInt(0);
-    message.sigVerifyCostSecp256k1 = object.sigVerifyCostSecp256k1 !== undefined && object.sigVerifyCostSecp256k1 !== null ? BigInt(object.sigVerifyCostSecp256k1.toString()) : BigInt(0);
+    message.max_memo_characters = object.max_memo_characters !== undefined && object.max_memo_characters !== null ? BigInt(object.max_memo_characters.toString()) : BigInt(0);
+    message.tx_sig_limit = object.tx_sig_limit !== undefined && object.tx_sig_limit !== null ? BigInt(object.tx_sig_limit.toString()) : BigInt(0);
+    message.tx_size_cost_per_byte = object.tx_size_cost_per_byte !== undefined && object.tx_size_cost_per_byte !== null ? BigInt(object.tx_size_cost_per_byte.toString()) : BigInt(0);
+    message.sig_verify_cost_ed25519 = object.sig_verify_cost_ed25519 !== undefined && object.sig_verify_cost_ed25519 !== null ? BigInt(object.sig_verify_cost_ed25519.toString()) : BigInt(0);
+    message.sig_verify_cost_secp256k1 = object.sig_verify_cost_secp256k1 !== undefined && object.sig_verify_cost_secp256k1 !== null ? BigInt(object.sig_verify_cost_secp256k1.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: ParamsAmino): Params {
     const message = createBaseParams();
     if (object.max_memo_characters !== undefined && object.max_memo_characters !== null) {
-      message.maxMemoCharacters = BigInt(object.max_memo_characters);
+      message.max_memo_characters = BigInt(object.max_memo_characters);
     }
     if (object.tx_sig_limit !== undefined && object.tx_sig_limit !== null) {
-      message.txSigLimit = BigInt(object.tx_sig_limit);
+      message.tx_sig_limit = BigInt(object.tx_sig_limit);
     }
     if (object.tx_size_cost_per_byte !== undefined && object.tx_size_cost_per_byte !== null) {
-      message.txSizeCostPerByte = BigInt(object.tx_size_cost_per_byte);
+      message.tx_size_cost_per_byte = BigInt(object.tx_size_cost_per_byte);
     }
     if (object.sig_verify_cost_ed25519 !== undefined && object.sig_verify_cost_ed25519 !== null) {
-      message.sigVerifyCostEd25519 = BigInt(object.sig_verify_cost_ed25519);
+      message.sig_verify_cost_ed25519 = BigInt(object.sig_verify_cost_ed25519);
     }
     if (object.sig_verify_cost_secp256k1 !== undefined && object.sig_verify_cost_secp256k1 !== null) {
-      message.sigVerifyCostSecp256k1 = BigInt(object.sig_verify_cost_secp256k1);
+      message.sig_verify_cost_secp256k1 = BigInt(object.sig_verify_cost_secp256k1);
     }
     return message;
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    obj.max_memo_characters = message.maxMemoCharacters !== BigInt(0) ? message.maxMemoCharacters?.toString() : undefined;
-    obj.tx_sig_limit = message.txSigLimit !== BigInt(0) ? message.txSigLimit?.toString() : undefined;
-    obj.tx_size_cost_per_byte = message.txSizeCostPerByte !== BigInt(0) ? message.txSizeCostPerByte?.toString() : undefined;
-    obj.sig_verify_cost_ed25519 = message.sigVerifyCostEd25519 !== BigInt(0) ? message.sigVerifyCostEd25519?.toString() : undefined;
-    obj.sig_verify_cost_secp256k1 = message.sigVerifyCostSecp256k1 !== BigInt(0) ? message.sigVerifyCostSecp256k1?.toString() : undefined;
+    obj.max_memo_characters = message.max_memo_characters !== BigInt(0) ? message.max_memo_characters?.toString() : undefined;
+    obj.tx_sig_limit = message.tx_sig_limit !== BigInt(0) ? message.tx_sig_limit?.toString() : undefined;
+    obj.tx_size_cost_per_byte = message.tx_size_cost_per_byte !== BigInt(0) ? message.tx_size_cost_per_byte?.toString() : undefined;
+    obj.sig_verify_cost_ed25519 = message.sig_verify_cost_ed25519 !== BigInt(0) ? message.sig_verify_cost_ed25519?.toString() : undefined;
+    obj.sig_verify_cost_secp256k1 = message.sig_verify_cost_secp256k1 !== BigInt(0) ? message.sig_verify_cost_secp256k1?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {

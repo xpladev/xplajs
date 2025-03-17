@@ -9,7 +9,7 @@ export interface GenesisState {
   params: Params;
 }
 export interface GenesisStateProtoMsg {
-  typeUrl: "/ethermint.evm.v1.GenesisState";
+  type_url: "/ethermint.evm.v1.GenesisState";
   value: Uint8Array;
 }
 /** GenesisState defines the evm module's genesis state. */
@@ -37,7 +37,7 @@ export interface GenesisAccount {
   storage: State[];
 }
 export interface GenesisAccountProtoMsg {
-  typeUrl: "/ethermint.evm.v1.GenesisAccount";
+  type_url: "/ethermint.evm.v1.GenesisAccount";
   value: Uint8Array;
 }
 /**

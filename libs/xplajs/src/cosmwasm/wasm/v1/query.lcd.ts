@@ -34,7 +34,7 @@ export class LCDQueryClient {
     if (typeof params?.pagination !== "undefined") {
       setPaginationParams(options, params.pagination);
     }
-    const endpoint = `cosmwasm/wasm/v1/code/${params.codeId}/contracts`;
+    const endpoint = `cosmwasm/wasm/v1/code/${params.code_id}/contracts`;
     return await this.req.get<QueryContractsByCodeResponse>(endpoint, options);
   };
   /* AllContractState gets all raw store data for a single contract */
@@ -50,17 +50,17 @@ export class LCDQueryClient {
   };
   /* RawContractState gets single key from the raw store data of a contract */
   rawContractState = async (params: QueryRawContractStateRequest): Promise<QueryRawContractStateResponse> => {
-    const endpoint = `cosmwasm/wasm/v1/contract/${params.address}/raw/${params.queryData}`;
+    const endpoint = `cosmwasm/wasm/v1/contract/${params.address}/raw/${params.query_data}`;
     return await this.req.get<QueryRawContractStateResponse>(endpoint);
   };
   /* SmartContractState get smart query result from the contract */
   smartContractState = async (params: QuerySmartContractStateRequest): Promise<QuerySmartContractStateResponse> => {
-    const endpoint = `cosmwasm/wasm/v1/contract/${params.address}/smart/${params.queryData}`;
+    const endpoint = `cosmwasm/wasm/v1/contract/${params.address}/smart/${params.query_data}`;
     return await this.req.get<QuerySmartContractStateResponse>(endpoint);
   };
   /* Code gets the binary code and metadata for a singe wasm code */
   code = async (params: QueryCodeRequest): Promise<QueryCodeResponse> => {
-    const endpoint = `cosmwasm/wasm/v1/code/${params.codeId}`;
+    const endpoint = `cosmwasm/wasm/v1/code/${params.code_id}`;
     return await this.req.get<QueryCodeResponse>(endpoint);
   };
   /* Codes gets the metadata for all stored wasm codes */
@@ -102,7 +102,7 @@ export class LCDQueryClient {
     if (typeof params?.pagination !== "undefined") {
       setPaginationParams(options, params.pagination);
     }
-    const endpoint = `cosmwasm/wasm/v1/contracts/creator/${params.creatorAddress}`;
+    const endpoint = `cosmwasm/wasm/v1/contracts/creator/${params.creator_address}`;
     return await this.req.get<QueryContractsByCreatorResponse>(endpoint, options);
   };
   /* BuildAddress builds a contract address */
@@ -110,17 +110,17 @@ export class LCDQueryClient {
     const options: any = {
       params: {}
     };
-    if (typeof params?.codeHash !== "undefined") {
-      options.params.code_hash = params.codeHash;
+    if (typeof params?.code_hash !== "undefined") {
+      options.params.code_hash = params.code_hash;
     }
-    if (typeof params?.creatorAddress !== "undefined") {
-      options.params.creator_address = params.creatorAddress;
+    if (typeof params?.creator_address !== "undefined") {
+      options.params.creator_address = params.creator_address;
     }
     if (typeof params?.salt !== "undefined") {
       options.params.salt = params.salt;
     }
-    if (typeof params?.initArgs !== "undefined") {
-      options.params.init_args = params.initArgs;
+    if (typeof params?.init_args !== "undefined") {
+      options.params.init_args = params.init_args;
     }
     const endpoint = `cosmwasm/wasm/v1/contract/build_address`;
     return await this.req.get<QueryBuildAddressResponse>(endpoint, options);

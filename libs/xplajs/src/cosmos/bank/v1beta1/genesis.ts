@@ -14,16 +14,16 @@ export interface GenesisState {
    */
   supply: Coin[];
   /** denom_metadata defines the metadata of the different coins. */
-  denomMetadata: Metadata[];
+  denom_metadata: Metadata[];
   /**
    * send_enabled defines the denoms where send is enabled or disabled.
    * 
    * Since: cosmos-sdk 0.47
    */
-  sendEnabled: SendEnabled[];
+  send_enabled: SendEnabled[];
 }
 export interface GenesisStateProtoMsg {
-  typeUrl: "/cosmos.bank.v1beta1.GenesisState";
+  type_url: "/cosmos.bank.v1beta1.GenesisState";
   value: Uint8Array;
 }
 /** GenesisState defines the bank module's genesis state. */
@@ -61,7 +61,7 @@ export interface Balance {
   coins: Coin[];
 }
 export interface BalanceProtoMsg {
-  typeUrl: "/cosmos.bank.v1beta1.Balance";
+  type_url: "/cosmos.bank.v1beta1.Balance";
   value: Uint8Array;
 }
 /**
@@ -83,15 +83,15 @@ function createBaseGenesisState(): GenesisState {
     params: Params.fromPartial({}),
     balances: [],
     supply: [],
-    denomMetadata: [],
-    sendEnabled: []
+    denom_metadata: [],
+    send_enabled: []
   };
 }
 export const GenesisState = {
   typeUrl: "/cosmos.bank.v1beta1.GenesisState",
   aminoType: "cosmos-sdk/GenesisState",
   is(o: any): o is GenesisState {
-    return o && (o.$typeUrl === GenesisState.typeUrl || Params.is(o.params) && Array.isArray(o.balances) && (!o.balances.length || Balance.is(o.balances[0])) && Array.isArray(o.supply) && (!o.supply.length || Coin.is(o.supply[0])) && Array.isArray(o.denomMetadata) && (!o.denomMetadata.length || Metadata.is(o.denomMetadata[0])) && Array.isArray(o.sendEnabled) && (!o.sendEnabled.length || SendEnabled.is(o.sendEnabled[0])));
+    return o && (o.$typeUrl === GenesisState.typeUrl || Params.is(o.params) && Array.isArray(o.balances) && (!o.balances.length || Balance.is(o.balances[0])) && Array.isArray(o.supply) && (!o.supply.length || Coin.is(o.supply[0])) && Array.isArray(o.denom_metadata) && (!o.denom_metadata.length || Metadata.is(o.denom_metadata[0])) && Array.isArray(o.send_enabled) && (!o.send_enabled.length || SendEnabled.is(o.send_enabled[0])));
   },
   isAmino(o: any): o is GenesisStateAmino {
     return o && (o.$typeUrl === GenesisState.typeUrl || Params.isAmino(o.params) && Array.isArray(o.balances) && (!o.balances.length || Balance.isAmino(o.balances[0])) && Array.isArray(o.supply) && (!o.supply.length || Coin.isAmino(o.supply[0])) && Array.isArray(o.denom_metadata) && (!o.denom_metadata.length || Metadata.isAmino(o.denom_metadata[0])) && Array.isArray(o.send_enabled) && (!o.send_enabled.length || SendEnabled.isAmino(o.send_enabled[0])));
@@ -106,10 +106,10 @@ export const GenesisState = {
     for (const v of message.supply) {
       Coin.encode(v!, writer.uint32(26).fork()).ldelim();
     }
-    for (const v of message.denomMetadata) {
+    for (const v of message.denom_metadata) {
       Metadata.encode(v!, writer.uint32(34).fork()).ldelim();
     }
-    for (const v of message.sendEnabled) {
+    for (const v of message.send_enabled) {
       SendEnabled.encode(v!, writer.uint32(42).fork()).ldelim();
     }
     return writer;
@@ -131,10 +131,10 @@ export const GenesisState = {
           message.supply.push(Coin.decode(reader, reader.uint32()));
           break;
         case 4:
-          message.denomMetadata.push(Metadata.decode(reader, reader.uint32()));
+          message.denom_metadata.push(Metadata.decode(reader, reader.uint32()));
           break;
         case 5:
-          message.sendEnabled.push(SendEnabled.decode(reader, reader.uint32()));
+          message.send_enabled.push(SendEnabled.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -148,8 +148,8 @@ export const GenesisState = {
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     message.balances = object.balances?.map(e => Balance.fromPartial(e)) || [];
     message.supply = object.supply?.map(e => Coin.fromPartial(e)) || [];
-    message.denomMetadata = object.denomMetadata?.map(e => Metadata.fromPartial(e)) || [];
-    message.sendEnabled = object.sendEnabled?.map(e => SendEnabled.fromPartial(e)) || [];
+    message.denom_metadata = object.denom_metadata?.map(e => Metadata.fromPartial(e)) || [];
+    message.send_enabled = object.send_enabled?.map(e => SendEnabled.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
@@ -159,8 +159,8 @@ export const GenesisState = {
     }
     message.balances = object.balances?.map(e => Balance.fromAmino(e)) || [];
     message.supply = object.supply?.map(e => Coin.fromAmino(e)) || [];
-    message.denomMetadata = object.denom_metadata?.map(e => Metadata.fromAmino(e)) || [];
-    message.sendEnabled = object.send_enabled?.map(e => SendEnabled.fromAmino(e)) || [];
+    message.denom_metadata = object.denom_metadata?.map(e => Metadata.fromAmino(e)) || [];
+    message.send_enabled = object.send_enabled?.map(e => SendEnabled.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: GenesisState): GenesisStateAmino {
@@ -176,15 +176,15 @@ export const GenesisState = {
     } else {
       obj.supply = message.supply;
     }
-    if (message.denomMetadata) {
-      obj.denom_metadata = message.denomMetadata.map(e => e ? Metadata.toAmino(e) : undefined);
+    if (message.denom_metadata) {
+      obj.denom_metadata = message.denom_metadata.map(e => e ? Metadata.toAmino(e) : undefined);
     } else {
-      obj.denom_metadata = message.denomMetadata;
+      obj.denom_metadata = message.denom_metadata;
     }
-    if (message.sendEnabled) {
-      obj.send_enabled = message.sendEnabled.map(e => e ? SendEnabled.toAmino(e) : undefined);
+    if (message.send_enabled) {
+      obj.send_enabled = message.send_enabled.map(e => e ? SendEnabled.toAmino(e) : undefined);
     } else {
-      obj.send_enabled = message.sendEnabled;
+      obj.send_enabled = message.send_enabled;
     }
     return obj;
   },

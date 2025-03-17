@@ -32,8 +32,8 @@ export class LCDQueryClient {
     if (typeof params?.pagination !== "undefined") {
       setPaginationParams(options, params.pagination);
     }
-    if (typeof params?.resolveDenom !== "undefined") {
-      options.params.resolve_denom = params.resolveDenom;
+    if (typeof params?.resolve_denom !== "undefined") {
+      options.params.resolve_denom = params.resolve_denom;
     }
     const endpoint = `cosmos/bank/v1beta1/balances/${params.address}`;
     return await this.req.get<QueryAllBalancesResponse>(endpoint, options);

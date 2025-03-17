@@ -7,7 +7,7 @@ export interface Module {
    * funds. If left empty it defaults to the list of account names supplied in the auth module configuration as
    * module_account_permissions
    */
-  blockedModuleAccountsOverride: string[];
+  blocked_module_accounts_override: string[];
   /** authority defines the custom module authority. If not set, defaults to the governance module. */
   authority: string;
   /**
@@ -16,10 +16,10 @@ export interface Module {
    * order is provided, then restrictions will be applied in alphabetical order
    * of module names.
    */
-  restrictionsOrder: string[];
+  restrictions_order: string[];
 }
 export interface ModuleProtoMsg {
-  typeUrl: "/cosmos.bank.module.v1.Module";
+  type_url: "/cosmos.bank.module.v1.Module";
   value: Uint8Array;
 }
 /** Module is the config object of the bank module. */
@@ -46,28 +46,28 @@ export interface ModuleAminoMsg {
 }
 function createBaseModule(): Module {
   return {
-    blockedModuleAccountsOverride: [],
+    blocked_module_accounts_override: [],
     authority: "",
-    restrictionsOrder: []
+    restrictions_order: []
   };
 }
 export const Module = {
   typeUrl: "/cosmos.bank.module.v1.Module",
   aminoType: "cosmos-sdk/Module",
   is(o: any): o is Module {
-    return o && (o.$typeUrl === Module.typeUrl || Array.isArray(o.blockedModuleAccountsOverride) && (!o.blockedModuleAccountsOverride.length || typeof o.blockedModuleAccountsOverride[0] === "string") && typeof o.authority === "string" && Array.isArray(o.restrictionsOrder) && (!o.restrictionsOrder.length || typeof o.restrictionsOrder[0] === "string"));
+    return o && (o.$typeUrl === Module.typeUrl || Array.isArray(o.blocked_module_accounts_override) && (!o.blocked_module_accounts_override.length || typeof o.blocked_module_accounts_override[0] === "string") && typeof o.authority === "string" && Array.isArray(o.restrictions_order) && (!o.restrictions_order.length || typeof o.restrictions_order[0] === "string"));
   },
   isAmino(o: any): o is ModuleAmino {
     return o && (o.$typeUrl === Module.typeUrl || Array.isArray(o.blocked_module_accounts_override) && (!o.blocked_module_accounts_override.length || typeof o.blocked_module_accounts_override[0] === "string") && typeof o.authority === "string" && Array.isArray(o.restrictions_order) && (!o.restrictions_order.length || typeof o.restrictions_order[0] === "string"));
   },
   encode(message: Module, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.blockedModuleAccountsOverride) {
+    for (const v of message.blocked_module_accounts_override) {
       writer.uint32(10).string(v!);
     }
     if (message.authority !== "") {
       writer.uint32(18).string(message.authority);
     }
-    for (const v of message.restrictionsOrder) {
+    for (const v of message.restrictions_order) {
       writer.uint32(26).string(v!);
     }
     return writer;
@@ -80,13 +80,13 @@ export const Module = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.blockedModuleAccountsOverride.push(reader.string());
+          message.blocked_module_accounts_override.push(reader.string());
           break;
         case 2:
           message.authority = reader.string();
           break;
         case 3:
-          message.restrictionsOrder.push(reader.string());
+          message.restrictions_order.push(reader.string());
           break;
         default:
           reader.skipType(tag & 7);
@@ -97,32 +97,32 @@ export const Module = {
   },
   fromPartial(object: DeepPartial<Module>): Module {
     const message = createBaseModule();
-    message.blockedModuleAccountsOverride = object.blockedModuleAccountsOverride?.map(e => e) || [];
+    message.blocked_module_accounts_override = object.blocked_module_accounts_override?.map(e => e) || [];
     message.authority = object.authority ?? "";
-    message.restrictionsOrder = object.restrictionsOrder?.map(e => e) || [];
+    message.restrictions_order = object.restrictions_order?.map(e => e) || [];
     return message;
   },
   fromAmino(object: ModuleAmino): Module {
     const message = createBaseModule();
-    message.blockedModuleAccountsOverride = object.blocked_module_accounts_override?.map(e => e) || [];
+    message.blocked_module_accounts_override = object.blocked_module_accounts_override?.map(e => e) || [];
     if (object.authority !== undefined && object.authority !== null) {
       message.authority = object.authority;
     }
-    message.restrictionsOrder = object.restrictions_order?.map(e => e) || [];
+    message.restrictions_order = object.restrictions_order?.map(e => e) || [];
     return message;
   },
   toAmino(message: Module): ModuleAmino {
     const obj: any = {};
-    if (message.blockedModuleAccountsOverride) {
-      obj.blocked_module_accounts_override = message.blockedModuleAccountsOverride.map(e => e);
+    if (message.blocked_module_accounts_override) {
+      obj.blocked_module_accounts_override = message.blocked_module_accounts_override.map(e => e);
     } else {
-      obj.blocked_module_accounts_override = message.blockedModuleAccountsOverride;
+      obj.blocked_module_accounts_override = message.blocked_module_accounts_override;
     }
     obj.authority = message.authority === "" ? undefined : message.authority;
-    if (message.restrictionsOrder) {
-      obj.restrictions_order = message.restrictionsOrder.map(e => e);
+    if (message.restrictions_order) {
+      obj.restrictions_order = message.restrictions_order.map(e => e);
     } else {
-      obj.restrictions_order = message.restrictionsOrder;
+      obj.restrictions_order = message.restrictions_order;
     }
     return obj;
   },

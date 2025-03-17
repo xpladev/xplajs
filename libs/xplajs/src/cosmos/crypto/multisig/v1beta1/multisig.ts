@@ -9,7 +9,7 @@ export interface MultiSignature {
   signatures: Uint8Array[];
 }
 export interface MultiSignatureProtoMsg {
-  typeUrl: "/cosmos.crypto.multisig.v1beta1.MultiSignature";
+  type_url: "/cosmos.crypto.multisig.v1beta1.MultiSignature";
   value: Uint8Array;
 }
 /**
@@ -31,11 +31,11 @@ export interface MultiSignatureAminoMsg {
  * This is not thread safe, and is not intended for concurrent usage.
  */
 export interface CompactBitArray {
-  extraBitsStored: number;
+  extra_bits_stored: number;
   elems: Uint8Array;
 }
 export interface CompactBitArrayProtoMsg {
-  typeUrl: "/cosmos.crypto.multisig.v1beta1.CompactBitArray";
+  type_url: "/cosmos.crypto.multisig.v1beta1.CompactBitArray";
   value: Uint8Array;
 }
 /**
@@ -133,7 +133,7 @@ export const MultiSignature = {
 };
 function createBaseCompactBitArray(): CompactBitArray {
   return {
-    extraBitsStored: 0,
+    extra_bits_stored: 0,
     elems: new Uint8Array()
   };
 }
@@ -141,14 +141,14 @@ export const CompactBitArray = {
   typeUrl: "/cosmos.crypto.multisig.v1beta1.CompactBitArray",
   aminoType: "cosmos-sdk/CompactBitArray",
   is(o: any): o is CompactBitArray {
-    return o && (o.$typeUrl === CompactBitArray.typeUrl || typeof o.extraBitsStored === "number" && (o.elems instanceof Uint8Array || typeof o.elems === "string"));
+    return o && (o.$typeUrl === CompactBitArray.typeUrl || typeof o.extra_bits_stored === "number" && (o.elems instanceof Uint8Array || typeof o.elems === "string"));
   },
   isAmino(o: any): o is CompactBitArrayAmino {
     return o && (o.$typeUrl === CompactBitArray.typeUrl || typeof o.extra_bits_stored === "number" && (o.elems instanceof Uint8Array || typeof o.elems === "string"));
   },
   encode(message: CompactBitArray, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.extraBitsStored !== 0) {
-      writer.uint32(8).uint32(message.extraBitsStored);
+    if (message.extra_bits_stored !== 0) {
+      writer.uint32(8).uint32(message.extra_bits_stored);
     }
     if (message.elems.length !== 0) {
       writer.uint32(18).bytes(message.elems);
@@ -163,7 +163,7 @@ export const CompactBitArray = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.extraBitsStored = reader.uint32();
+          message.extra_bits_stored = reader.uint32();
           break;
         case 2:
           message.elems = reader.bytes();
@@ -177,14 +177,14 @@ export const CompactBitArray = {
   },
   fromPartial(object: DeepPartial<CompactBitArray>): CompactBitArray {
     const message = createBaseCompactBitArray();
-    message.extraBitsStored = object.extraBitsStored ?? 0;
+    message.extra_bits_stored = object.extra_bits_stored ?? 0;
     message.elems = object.elems ?? new Uint8Array();
     return message;
   },
   fromAmino(object: CompactBitArrayAmino): CompactBitArray {
     const message = createBaseCompactBitArray();
     if (object.extra_bits_stored !== undefined && object.extra_bits_stored !== null) {
-      message.extraBitsStored = object.extra_bits_stored;
+      message.extra_bits_stored = object.extra_bits_stored;
     }
     if (object.elems !== undefined && object.elems !== null) {
       message.elems = bytesFromBase64(object.elems);
@@ -193,7 +193,7 @@ export const CompactBitArray = {
   },
   toAmino(message: CompactBitArray): CompactBitArrayAmino {
     const obj: any = {};
-    obj.extra_bits_stored = message.extraBitsStored === 0 ? undefined : message.extraBitsStored;
+    obj.extra_bits_stored = message.extra_bits_stored === 0 ? undefined : message.extra_bits_stored;
     obj.elems = message.elems ? base64FromBytes(message.elems) : undefined;
     return obj;
   },

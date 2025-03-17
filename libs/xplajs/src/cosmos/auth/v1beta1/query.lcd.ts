@@ -40,8 +40,8 @@ export class LCDQueryClient {
     const options: any = {
       params: {}
     };
-    if (typeof params?.accountId !== "undefined") {
-      options.params.account_id = params.accountId;
+    if (typeof params?.account_id !== "undefined") {
+      options.params.account_id = params.account_id;
     }
     const endpoint = `cosmos/auth/v1beta1/address_by_id/${params.id}`;
     return await this.req.get<QueryAccountAddressByIDResponse>(endpoint, options);
@@ -74,14 +74,14 @@ export class LCDQueryClient {
   
    Since: cosmos-sdk 0.46 */
   addressBytesToString = async (params: AddressBytesToStringRequest): Promise<AddressBytesToStringResponse> => {
-    const endpoint = `cosmos/auth/v1beta1/bech32/${params.addressBytes}`;
+    const endpoint = `cosmos/auth/v1beta1/bech32/${params.address_bytes}`;
     return await this.req.get<AddressBytesToStringResponse>(endpoint);
   };
   /* AddressStringToBytes converts Address string to bytes
   
    Since: cosmos-sdk 0.46 */
   addressStringToBytes = async (params: AddressStringToBytesRequest): Promise<AddressStringToBytesResponse> => {
-    const endpoint = `cosmos/auth/v1beta1/bech32/${params.addressString}`;
+    const endpoint = `cosmos/auth/v1beta1/bech32/${params.address_string}`;
     return await this.req.get<AddressStringToBytesResponse>(endpoint);
   };
   /* AccountInfo queries account info which is common to all account types.

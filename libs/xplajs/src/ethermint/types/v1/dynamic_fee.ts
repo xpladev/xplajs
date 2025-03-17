@@ -3,10 +3,10 @@ import { DeepPartial } from "../../../helpers";
 /** ExtensionOptionDynamicFeeTx is an extension option that specifies the maxPrioPrice for cosmos tx */
 export interface ExtensionOptionDynamicFeeTx {
   /** max_priority_price is the same as `max_priority_fee_per_gas` in eip-1559 spec */
-  maxPriorityPrice: string;
+  max_priority_price: string;
 }
 export interface ExtensionOptionDynamicFeeTxProtoMsg {
-  typeUrl: "/ethermint.types.v1.ExtensionOptionDynamicFeeTx";
+  type_url: "/ethermint.types.v1.ExtensionOptionDynamicFeeTx";
   value: Uint8Array;
 }
 /** ExtensionOptionDynamicFeeTx is an extension option that specifies the maxPrioPrice for cosmos tx */
@@ -20,20 +20,20 @@ export interface ExtensionOptionDynamicFeeTxAminoMsg {
 }
 function createBaseExtensionOptionDynamicFeeTx(): ExtensionOptionDynamicFeeTx {
   return {
-    maxPriorityPrice: ""
+    max_priority_price: ""
   };
 }
 export const ExtensionOptionDynamicFeeTx = {
   typeUrl: "/ethermint.types.v1.ExtensionOptionDynamicFeeTx",
   is(o: any): o is ExtensionOptionDynamicFeeTx {
-    return o && (o.$typeUrl === ExtensionOptionDynamicFeeTx.typeUrl || typeof o.maxPriorityPrice === "string");
+    return o && (o.$typeUrl === ExtensionOptionDynamicFeeTx.typeUrl || typeof o.max_priority_price === "string");
   },
   isAmino(o: any): o is ExtensionOptionDynamicFeeTxAmino {
     return o && (o.$typeUrl === ExtensionOptionDynamicFeeTx.typeUrl || typeof o.max_priority_price === "string");
   },
   encode(message: ExtensionOptionDynamicFeeTx, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.maxPriorityPrice !== "") {
-      writer.uint32(10).string(message.maxPriorityPrice);
+    if (message.max_priority_price !== "") {
+      writer.uint32(10).string(message.max_priority_price);
     }
     return writer;
   },
@@ -45,7 +45,7 @@ export const ExtensionOptionDynamicFeeTx = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.maxPriorityPrice = reader.string();
+          message.max_priority_price = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -56,19 +56,19 @@ export const ExtensionOptionDynamicFeeTx = {
   },
   fromPartial(object: DeepPartial<ExtensionOptionDynamicFeeTx>): ExtensionOptionDynamicFeeTx {
     const message = createBaseExtensionOptionDynamicFeeTx();
-    message.maxPriorityPrice = object.maxPriorityPrice ?? "";
+    message.max_priority_price = object.max_priority_price ?? "";
     return message;
   },
   fromAmino(object: ExtensionOptionDynamicFeeTxAmino): ExtensionOptionDynamicFeeTx {
     const message = createBaseExtensionOptionDynamicFeeTx();
     if (object.max_priority_price !== undefined && object.max_priority_price !== null) {
-      message.maxPriorityPrice = object.max_priority_price;
+      message.max_priority_price = object.max_priority_price;
     }
     return message;
   },
   toAmino(message: ExtensionOptionDynamicFeeTx): ExtensionOptionDynamicFeeTxAmino {
     const obj: any = {};
-    obj.max_priority_price = message.maxPriorityPrice === "" ? undefined : message.maxPriorityPrice;
+    obj.max_priority_price = message.max_priority_price === "" ? undefined : message.max_priority_price;
     return obj;
   },
   fromAminoMsg(object: ExtensionOptionDynamicFeeTxAminoMsg): ExtensionOptionDynamicFeeTx {

@@ -4,7 +4,7 @@ import { DeepPartial, isSet } from "../../../helpers";
 /** AppOptionsRequest is the RemoteInfoService/AppOptions request type. */
 export interface AppOptionsRequest {}
 export interface AppOptionsRequestProtoMsg {
-  typeUrl: "/cosmos.autocli.v1.AppOptionsRequest";
+  type_url: "/cosmos.autocli.v1.AppOptionsRequest";
   value: Uint8Array;
 }
 /** AppOptionsRequest is the RemoteInfoService/AppOptions request type. */
@@ -18,7 +18,7 @@ export interface AppOptionsResponse_ModuleOptionsEntry {
   value?: ModuleOptions;
 }
 export interface AppOptionsResponse_ModuleOptionsEntryProtoMsg {
-  typeUrl: string;
+  type_url: string;
   value: Uint8Array;
 }
 export interface AppOptionsResponse_ModuleOptionsEntryAmino {
@@ -32,12 +32,12 @@ export interface AppOptionsResponse_ModuleOptionsEntryAminoMsg {
 /** AppOptionsResponse is the RemoteInfoService/AppOptions response type. */
 export interface AppOptionsResponse {
   /** module_options is a map of module name to autocli module options. */
-  moduleOptions: {
+  module_options: {
     [key: string]: ModuleOptions;
   };
 }
 export interface AppOptionsResponseProtoMsg {
-  typeUrl: "/cosmos.autocli.v1.AppOptionsResponse";
+  type_url: "/cosmos.autocli.v1.AppOptionsResponse";
   value: Uint8Array;
 }
 /** AppOptionsResponse is the RemoteInfoService/AppOptions response type. */
@@ -188,20 +188,20 @@ export const AppOptionsResponse_ModuleOptionsEntry = {
 };
 function createBaseAppOptionsResponse(): AppOptionsResponse {
   return {
-    moduleOptions: {}
+    module_options: {}
   };
 }
 export const AppOptionsResponse = {
   typeUrl: "/cosmos.autocli.v1.AppOptionsResponse",
   aminoType: "cosmos-sdk/AppOptionsResponse",
   is(o: any): o is AppOptionsResponse {
-    return o && (o.$typeUrl === AppOptionsResponse.typeUrl || isSet(o.moduleOptions));
+    return o && (o.$typeUrl === AppOptionsResponse.typeUrl || isSet(o.module_options));
   },
   isAmino(o: any): o is AppOptionsResponseAmino {
     return o && (o.$typeUrl === AppOptionsResponse.typeUrl || isSet(o.module_options));
   },
   encode(message: AppOptionsResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    Object.entries(message.moduleOptions).forEach(([key, value]) => {
+    Object.entries(message.module_options).forEach(([key, value]) => {
       AppOptionsResponse_ModuleOptionsEntry.encode({
         key: key as any,
         value
@@ -219,7 +219,7 @@ export const AppOptionsResponse = {
         case 1:
           const entry1 = AppOptionsResponse_ModuleOptionsEntry.decode(reader, reader.uint32());
           if (entry1.value !== undefined) {
-            message.moduleOptions[entry1.key] = entry1.value;
+            message.module_options[entry1.key] = entry1.value;
           }
           break;
         default:
@@ -231,7 +231,7 @@ export const AppOptionsResponse = {
   },
   fromPartial(object: DeepPartial<AppOptionsResponse>): AppOptionsResponse {
     const message = createBaseAppOptionsResponse();
-    message.moduleOptions = Object.entries(object.moduleOptions ?? {}).reduce<{
+    message.module_options = Object.entries(object.module_options ?? {}).reduce<{
       [key: string]: ModuleOptions;
     }>((acc, [key, value]) => {
       if (value !== undefined) {
@@ -243,7 +243,7 @@ export const AppOptionsResponse = {
   },
   fromAmino(object: AppOptionsResponseAmino): AppOptionsResponse {
     const message = createBaseAppOptionsResponse();
-    message.moduleOptions = Object.entries(object.module_options ?? {}).reduce<{
+    message.module_options = Object.entries(object.module_options ?? {}).reduce<{
       [key: string]: ModuleOptions;
     }>((acc, [key, value]) => {
       if (value !== undefined) {
@@ -256,8 +256,8 @@ export const AppOptionsResponse = {
   toAmino(message: AppOptionsResponse): AppOptionsResponseAmino {
     const obj: any = {};
     obj.module_options = {};
-    if (message.moduleOptions) {
-      Object.entries(message.moduleOptions).forEach(([k, v]) => {
+    if (message.module_options) {
+      Object.entries(message.module_options).forEach(([k, v]) => {
         obj.module_options[k] = ModuleOptions.toAmino(v);
       });
     }

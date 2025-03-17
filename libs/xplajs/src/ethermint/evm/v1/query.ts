@@ -10,7 +10,7 @@ export interface QueryAccountRequest {
   address: string;
 }
 export interface QueryAccountRequestProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryAccountRequest";
+  type_url: "/ethermint.evm.v1.QueryAccountRequest";
   value: Uint8Array;
 }
 /** QueryAccountRequest is the request type for the Query/Account RPC method. */
@@ -27,12 +27,12 @@ export interface QueryAccountResponse {
   /** balance is the balance of the EVM denomination. */
   balance: string;
   /** code_hash is the hex-formatted code bytes from the EOA. */
-  codeHash: string;
+  code_hash: string;
   /** nonce is the account's sequence number. */
   nonce: bigint;
 }
 export interface QueryAccountResponseProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryAccountResponse";
+  type_url: "/ethermint.evm.v1.QueryAccountResponse";
   value: Uint8Array;
 }
 /** QueryAccountResponse is the response type for the Query/Account RPC method. */
@@ -57,7 +57,7 @@ export interface QueryCosmosAccountRequest {
   address: string;
 }
 export interface QueryCosmosAccountRequestProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryCosmosAccountRequest";
+  type_url: "/ethermint.evm.v1.QueryCosmosAccountRequest";
   value: Uint8Array;
 }
 /**
@@ -78,14 +78,14 @@ export interface QueryCosmosAccountRequestAminoMsg {
  */
 export interface QueryCosmosAccountResponse {
   /** cosmos_address is the cosmos address of the account. */
-  cosmosAddress: string;
+  cosmos_address: string;
   /** sequence is the account's sequence number. */
   sequence: bigint;
   /** account_number is the account number */
-  accountNumber: bigint;
+  account_number: bigint;
 }
 export interface QueryCosmosAccountResponseProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryCosmosAccountResponse";
+  type_url: "/ethermint.evm.v1.QueryCosmosAccountResponse";
   value: Uint8Array;
 }
 /**
@@ -110,10 +110,10 @@ export interface QueryCosmosAccountResponseAminoMsg {
  */
 export interface QueryValidatorAccountRequest {
   /** cons_address is the validator cons address to query the account for. */
-  consAddress: string;
+  cons_address: string;
 }
 export interface QueryValidatorAccountRequestProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryValidatorAccountRequest";
+  type_url: "/ethermint.evm.v1.QueryValidatorAccountRequest";
   value: Uint8Array;
 }
 /**
@@ -134,14 +134,14 @@ export interface QueryValidatorAccountRequestAminoMsg {
  */
 export interface QueryValidatorAccountResponse {
   /** account_address is the cosmos address of the account in bech32 format. */
-  accountAddress: string;
+  account_address: string;
   /** sequence is the account's sequence number. */
   sequence: bigint;
   /** account_number is the account number */
-  accountNumber: bigint;
+  account_number: bigint;
 }
 export interface QueryValidatorAccountResponseProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryValidatorAccountResponse";
+  type_url: "/ethermint.evm.v1.QueryValidatorAccountResponse";
   value: Uint8Array;
 }
 /**
@@ -166,7 +166,7 @@ export interface QueryBalanceRequest {
   address: string;
 }
 export interface QueryBalanceRequestProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryBalanceRequest";
+  type_url: "/ethermint.evm.v1.QueryBalanceRequest";
   value: Uint8Array;
 }
 /** QueryBalanceRequest is the request type for the Query/Balance RPC method. */
@@ -184,7 +184,7 @@ export interface QueryBalanceResponse {
   balance: string;
 }
 export interface QueryBalanceResponseProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryBalanceResponse";
+  type_url: "/ethermint.evm.v1.QueryBalanceResponse";
   value: Uint8Array;
 }
 /** QueryBalanceResponse is the response type for the Query/Balance RPC method. */
@@ -204,7 +204,7 @@ export interface QueryStorageRequest {
   key: string;
 }
 export interface QueryStorageRequestProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryStorageRequest";
+  type_url: "/ethermint.evm.v1.QueryStorageRequest";
   value: Uint8Array;
 }
 /** QueryStorageRequest is the request type for the Query/Storage RPC method. */
@@ -227,7 +227,7 @@ export interface QueryStorageResponse {
   value: string;
 }
 export interface QueryStorageResponseProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryStorageResponse";
+  type_url: "/ethermint.evm.v1.QueryStorageResponse";
   value: Uint8Array;
 }
 /**
@@ -248,7 +248,7 @@ export interface QueryCodeRequest {
   address: string;
 }
 export interface QueryCodeRequestProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryCodeRequest";
+  type_url: "/ethermint.evm.v1.QueryCodeRequest";
   value: Uint8Array;
 }
 /** QueryCodeRequest is the request type for the Query/Code RPC method. */
@@ -269,7 +269,7 @@ export interface QueryCodeResponse {
   code: Uint8Array;
 }
 export interface QueryCodeResponseProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryCodeResponse";
+  type_url: "/ethermint.evm.v1.QueryCodeResponse";
   value: Uint8Array;
 }
 /**
@@ -292,7 +292,7 @@ export interface QueryTxLogsRequest {
   pagination?: PageRequest;
 }
 export interface QueryTxLogsRequestProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryTxLogsRequest";
+  type_url: "/ethermint.evm.v1.QueryTxLogsRequest";
   value: Uint8Array;
 }
 /** QueryTxLogsRequest is the request type for the Query/TxLogs RPC method. */
@@ -314,7 +314,7 @@ export interface QueryTxLogsResponse {
   pagination?: PageResponse;
 }
 export interface QueryTxLogsResponseProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryTxLogsResponse";
+  type_url: "/ethermint.evm.v1.QueryTxLogsResponse";
   value: Uint8Array;
 }
 /** QueryTxLogsResponse is the response type for the Query/TxLogs RPC method. */
@@ -331,7 +331,7 @@ export interface QueryTxLogsResponseAminoMsg {
 /** QueryParamsRequest defines the request type for querying x/evm parameters. */
 export interface QueryParamsRequest {}
 export interface QueryParamsRequestProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryParamsRequest";
+  type_url: "/ethermint.evm.v1.QueryParamsRequest";
   value: Uint8Array;
 }
 /** QueryParamsRequest defines the request type for querying x/evm parameters. */
@@ -346,7 +346,7 @@ export interface QueryParamsResponse {
   params: Params;
 }
 export interface QueryParamsResponseProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryParamsResponse";
+  type_url: "/ethermint.evm.v1.QueryParamsResponse";
   value: Uint8Array;
 }
 /** QueryParamsResponse defines the response type for querying x/evm parameters. */
@@ -363,14 +363,14 @@ export interface EthCallRequest {
   /** args uses the same json format as the json rpc api. */
   args: Uint8Array;
   /** gas_cap defines the default gas cap to be used */
-  gasCap: bigint;
+  gas_cap: bigint;
   /** proposer_address of the requested block in hex format */
-  proposerAddress: Uint8Array;
+  proposer_address: Uint8Array;
   /** chain_id is the eip155 chain id parsed from the requested block header */
-  chainId: bigint;
+  chain_id: bigint;
 }
 export interface EthCallRequestProtoMsg {
-  typeUrl: "/ethermint.evm.v1.EthCallRequest";
+  type_url: "/ethermint.evm.v1.EthCallRequest";
   value: Uint8Array;
 }
 /** EthCallRequest defines EthCall request */
@@ -394,7 +394,7 @@ export interface EstimateGasResponse {
   gas: bigint;
 }
 export interface EstimateGasResponseProtoMsg {
-  typeUrl: "/ethermint.evm.v1.EstimateGasResponse";
+  type_url: "/ethermint.evm.v1.EstimateGasResponse";
   value: Uint8Array;
 }
 /** EstimateGasResponse defines EstimateGas response */
@@ -411,25 +411,25 @@ export interface QueryTraceTxRequest {
   /** msg is the MsgEthereumTx for the requested transaction */
   msg?: MsgEthereumTx;
   /** trace_config holds extra parameters to trace functions. */
-  traceConfig?: TraceConfig;
+  trace_config?: TraceConfig;
   /**
    * predecessors is an array of transactions included in the same block
    * need to be replayed first to get correct context for tracing.
    */
   predecessors: MsgEthereumTx[];
   /** block_number of requested transaction */
-  blockNumber: bigint;
+  block_number: bigint;
   /** block_hash of requested transaction */
-  blockHash: string;
+  block_hash: string;
   /** block_time of requested transaction */
-  blockTime: Date;
+  block_time: Date;
   /** proposer_address is the proposer of the requested block */
-  proposerAddress: Uint8Array;
+  proposer_address: Uint8Array;
   /** chain_id is the the eip155 chain id parsed from the requested block header */
-  chainId: bigint;
+  chain_id: bigint;
 }
 export interface QueryTraceTxRequestProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryTraceTxRequest";
+  type_url: "/ethermint.evm.v1.QueryTraceTxRequest";
   value: Uint8Array;
 }
 /** QueryTraceTxRequest defines TraceTx request */
@@ -464,7 +464,7 @@ export interface QueryTraceTxResponse {
   data: Uint8Array;
 }
 export interface QueryTraceTxResponseProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryTraceTxResponse";
+  type_url: "/ethermint.evm.v1.QueryTraceTxResponse";
   value: Uint8Array;
 }
 /** QueryTraceTxResponse defines TraceTx response */
@@ -481,20 +481,20 @@ export interface QueryTraceBlockRequest {
   /** txs is an array of messages in the block */
   txs: MsgEthereumTx[];
   /** trace_config holds extra parameters to trace functions. */
-  traceConfig?: TraceConfig;
+  trace_config?: TraceConfig;
   /** block_number of the traced block */
-  blockNumber: bigint;
+  block_number: bigint;
   /** block_hash (hex) of the traced block */
-  blockHash: string;
+  block_hash: string;
   /** block_time of the traced block */
-  blockTime: Date;
+  block_time: Date;
   /** proposer_address is the address of the requested block */
-  proposerAddress: Uint8Array;
+  proposer_address: Uint8Array;
   /** chain_id is the eip155 chain id parsed from the requested block header */
-  chainId: bigint;
+  chain_id: bigint;
 }
 export interface QueryTraceBlockRequestProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryTraceBlockRequest";
+  type_url: "/ethermint.evm.v1.QueryTraceBlockRequest";
   value: Uint8Array;
 }
 /** QueryTraceBlockRequest defines TraceTx request */
@@ -524,7 +524,7 @@ export interface QueryTraceBlockResponse {
   data: Uint8Array;
 }
 export interface QueryTraceBlockResponseProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryTraceBlockResponse";
+  type_url: "/ethermint.evm.v1.QueryTraceBlockResponse";
   value: Uint8Array;
 }
 /** QueryTraceBlockResponse defines TraceBlock response */
@@ -542,7 +542,7 @@ export interface QueryTraceBlockResponseAminoMsg {
  */
 export interface QueryBaseFeeRequest {}
 export interface QueryBaseFeeRequestProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryBaseFeeRequest";
+  type_url: "/ethermint.evm.v1.QueryBaseFeeRequest";
   value: Uint8Array;
 }
 /**
@@ -557,10 +557,10 @@ export interface QueryBaseFeeRequestAminoMsg {
 /** QueryBaseFeeResponse returns the EIP1559 base fee. */
 export interface QueryBaseFeeResponse {
   /** base_fee is the EIP1559 base fee */
-  baseFee: string;
+  base_fee: string;
 }
 export interface QueryBaseFeeResponseProtoMsg {
-  typeUrl: "/ethermint.evm.v1.QueryBaseFeeResponse";
+  type_url: "/ethermint.evm.v1.QueryBaseFeeResponse";
   value: Uint8Array;
 }
 /** QueryBaseFeeResponse returns the EIP1559 base fee. */
@@ -645,14 +645,14 @@ export const QueryAccountRequest = {
 function createBaseQueryAccountResponse(): QueryAccountResponse {
   return {
     balance: "",
-    codeHash: "",
+    code_hash: "",
     nonce: BigInt(0)
   };
 }
 export const QueryAccountResponse = {
   typeUrl: "/ethermint.evm.v1.QueryAccountResponse",
   is(o: any): o is QueryAccountResponse {
-    return o && (o.$typeUrl === QueryAccountResponse.typeUrl || typeof o.balance === "string" && typeof o.codeHash === "string" && typeof o.nonce === "bigint");
+    return o && (o.$typeUrl === QueryAccountResponse.typeUrl || typeof o.balance === "string" && typeof o.code_hash === "string" && typeof o.nonce === "bigint");
   },
   isAmino(o: any): o is QueryAccountResponseAmino {
     return o && (o.$typeUrl === QueryAccountResponse.typeUrl || typeof o.balance === "string" && typeof o.code_hash === "string" && typeof o.nonce === "bigint");
@@ -661,8 +661,8 @@ export const QueryAccountResponse = {
     if (message.balance !== "") {
       writer.uint32(10).string(message.balance);
     }
-    if (message.codeHash !== "") {
-      writer.uint32(18).string(message.codeHash);
+    if (message.code_hash !== "") {
+      writer.uint32(18).string(message.code_hash);
     }
     if (message.nonce !== BigInt(0)) {
       writer.uint32(24).uint64(message.nonce);
@@ -680,7 +680,7 @@ export const QueryAccountResponse = {
           message.balance = reader.string();
           break;
         case 2:
-          message.codeHash = reader.string();
+          message.code_hash = reader.string();
           break;
         case 3:
           message.nonce = reader.uint64();
@@ -695,7 +695,7 @@ export const QueryAccountResponse = {
   fromPartial(object: DeepPartial<QueryAccountResponse>): QueryAccountResponse {
     const message = createBaseQueryAccountResponse();
     message.balance = object.balance ?? "";
-    message.codeHash = object.codeHash ?? "";
+    message.code_hash = object.code_hash ?? "";
     message.nonce = object.nonce !== undefined && object.nonce !== null ? BigInt(object.nonce.toString()) : BigInt(0);
     return message;
   },
@@ -705,7 +705,7 @@ export const QueryAccountResponse = {
       message.balance = object.balance;
     }
     if (object.code_hash !== undefined && object.code_hash !== null) {
-      message.codeHash = object.code_hash;
+      message.code_hash = object.code_hash;
     }
     if (object.nonce !== undefined && object.nonce !== null) {
       message.nonce = BigInt(object.nonce);
@@ -715,7 +715,7 @@ export const QueryAccountResponse = {
   toAmino(message: QueryAccountResponse): QueryAccountResponseAmino {
     const obj: any = {};
     obj.balance = message.balance === "" ? undefined : message.balance;
-    obj.code_hash = message.codeHash === "" ? undefined : message.codeHash;
+    obj.code_hash = message.code_hash === "" ? undefined : message.code_hash;
     obj.nonce = message.nonce !== BigInt(0) ? message.nonce?.toString() : undefined;
     return obj;
   },
@@ -808,28 +808,28 @@ export const QueryCosmosAccountRequest = {
 };
 function createBaseQueryCosmosAccountResponse(): QueryCosmosAccountResponse {
   return {
-    cosmosAddress: "",
+    cosmos_address: "",
     sequence: BigInt(0),
-    accountNumber: BigInt(0)
+    account_number: BigInt(0)
   };
 }
 export const QueryCosmosAccountResponse = {
   typeUrl: "/ethermint.evm.v1.QueryCosmosAccountResponse",
   is(o: any): o is QueryCosmosAccountResponse {
-    return o && (o.$typeUrl === QueryCosmosAccountResponse.typeUrl || typeof o.cosmosAddress === "string" && typeof o.sequence === "bigint" && typeof o.accountNumber === "bigint");
+    return o && (o.$typeUrl === QueryCosmosAccountResponse.typeUrl || typeof o.cosmos_address === "string" && typeof o.sequence === "bigint" && typeof o.account_number === "bigint");
   },
   isAmino(o: any): o is QueryCosmosAccountResponseAmino {
     return o && (o.$typeUrl === QueryCosmosAccountResponse.typeUrl || typeof o.cosmos_address === "string" && typeof o.sequence === "bigint" && typeof o.account_number === "bigint");
   },
   encode(message: QueryCosmosAccountResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.cosmosAddress !== "") {
-      writer.uint32(10).string(message.cosmosAddress);
+    if (message.cosmos_address !== "") {
+      writer.uint32(10).string(message.cosmos_address);
     }
     if (message.sequence !== BigInt(0)) {
       writer.uint32(16).uint64(message.sequence);
     }
-    if (message.accountNumber !== BigInt(0)) {
-      writer.uint32(24).uint64(message.accountNumber);
+    if (message.account_number !== BigInt(0)) {
+      writer.uint32(24).uint64(message.account_number);
     }
     return writer;
   },
@@ -841,13 +841,13 @@ export const QueryCosmosAccountResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.cosmosAddress = reader.string();
+          message.cosmos_address = reader.string();
           break;
         case 2:
           message.sequence = reader.uint64();
           break;
         case 3:
-          message.accountNumber = reader.uint64();
+          message.account_number = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -858,29 +858,29 @@ export const QueryCosmosAccountResponse = {
   },
   fromPartial(object: DeepPartial<QueryCosmosAccountResponse>): QueryCosmosAccountResponse {
     const message = createBaseQueryCosmosAccountResponse();
-    message.cosmosAddress = object.cosmosAddress ?? "";
+    message.cosmos_address = object.cosmos_address ?? "";
     message.sequence = object.sequence !== undefined && object.sequence !== null ? BigInt(object.sequence.toString()) : BigInt(0);
-    message.accountNumber = object.accountNumber !== undefined && object.accountNumber !== null ? BigInt(object.accountNumber.toString()) : BigInt(0);
+    message.account_number = object.account_number !== undefined && object.account_number !== null ? BigInt(object.account_number.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: QueryCosmosAccountResponseAmino): QueryCosmosAccountResponse {
     const message = createBaseQueryCosmosAccountResponse();
     if (object.cosmos_address !== undefined && object.cosmos_address !== null) {
-      message.cosmosAddress = object.cosmos_address;
+      message.cosmos_address = object.cosmos_address;
     }
     if (object.sequence !== undefined && object.sequence !== null) {
       message.sequence = BigInt(object.sequence);
     }
     if (object.account_number !== undefined && object.account_number !== null) {
-      message.accountNumber = BigInt(object.account_number);
+      message.account_number = BigInt(object.account_number);
     }
     return message;
   },
   toAmino(message: QueryCosmosAccountResponse): QueryCosmosAccountResponseAmino {
     const obj: any = {};
-    obj.cosmos_address = message.cosmosAddress === "" ? undefined : message.cosmosAddress;
+    obj.cosmos_address = message.cosmos_address === "" ? undefined : message.cosmos_address;
     obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : undefined;
-    obj.account_number = message.accountNumber !== BigInt(0) ? message.accountNumber?.toString() : undefined;
+    obj.account_number = message.account_number !== BigInt(0) ? message.account_number?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryCosmosAccountResponseAminoMsg): QueryCosmosAccountResponse {
@@ -902,20 +902,20 @@ export const QueryCosmosAccountResponse = {
 };
 function createBaseQueryValidatorAccountRequest(): QueryValidatorAccountRequest {
   return {
-    consAddress: ""
+    cons_address: ""
   };
 }
 export const QueryValidatorAccountRequest = {
   typeUrl: "/ethermint.evm.v1.QueryValidatorAccountRequest",
   is(o: any): o is QueryValidatorAccountRequest {
-    return o && (o.$typeUrl === QueryValidatorAccountRequest.typeUrl || typeof o.consAddress === "string");
+    return o && (o.$typeUrl === QueryValidatorAccountRequest.typeUrl || typeof o.cons_address === "string");
   },
   isAmino(o: any): o is QueryValidatorAccountRequestAmino {
     return o && (o.$typeUrl === QueryValidatorAccountRequest.typeUrl || typeof o.cons_address === "string");
   },
   encode(message: QueryValidatorAccountRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.consAddress !== "") {
-      writer.uint32(10).string(message.consAddress);
+    if (message.cons_address !== "") {
+      writer.uint32(10).string(message.cons_address);
     }
     return writer;
   },
@@ -927,7 +927,7 @@ export const QueryValidatorAccountRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.consAddress = reader.string();
+          message.cons_address = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -938,19 +938,19 @@ export const QueryValidatorAccountRequest = {
   },
   fromPartial(object: DeepPartial<QueryValidatorAccountRequest>): QueryValidatorAccountRequest {
     const message = createBaseQueryValidatorAccountRequest();
-    message.consAddress = object.consAddress ?? "";
+    message.cons_address = object.cons_address ?? "";
     return message;
   },
   fromAmino(object: QueryValidatorAccountRequestAmino): QueryValidatorAccountRequest {
     const message = createBaseQueryValidatorAccountRequest();
     if (object.cons_address !== undefined && object.cons_address !== null) {
-      message.consAddress = object.cons_address;
+      message.cons_address = object.cons_address;
     }
     return message;
   },
   toAmino(message: QueryValidatorAccountRequest): QueryValidatorAccountRequestAmino {
     const obj: any = {};
-    obj.cons_address = message.consAddress === "" ? undefined : message.consAddress;
+    obj.cons_address = message.cons_address === "" ? undefined : message.cons_address;
     return obj;
   },
   fromAminoMsg(object: QueryValidatorAccountRequestAminoMsg): QueryValidatorAccountRequest {
@@ -972,28 +972,28 @@ export const QueryValidatorAccountRequest = {
 };
 function createBaseQueryValidatorAccountResponse(): QueryValidatorAccountResponse {
   return {
-    accountAddress: "",
+    account_address: "",
     sequence: BigInt(0),
-    accountNumber: BigInt(0)
+    account_number: BigInt(0)
   };
 }
 export const QueryValidatorAccountResponse = {
   typeUrl: "/ethermint.evm.v1.QueryValidatorAccountResponse",
   is(o: any): o is QueryValidatorAccountResponse {
-    return o && (o.$typeUrl === QueryValidatorAccountResponse.typeUrl || typeof o.accountAddress === "string" && typeof o.sequence === "bigint" && typeof o.accountNumber === "bigint");
+    return o && (o.$typeUrl === QueryValidatorAccountResponse.typeUrl || typeof o.account_address === "string" && typeof o.sequence === "bigint" && typeof o.account_number === "bigint");
   },
   isAmino(o: any): o is QueryValidatorAccountResponseAmino {
     return o && (o.$typeUrl === QueryValidatorAccountResponse.typeUrl || typeof o.account_address === "string" && typeof o.sequence === "bigint" && typeof o.account_number === "bigint");
   },
   encode(message: QueryValidatorAccountResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.accountAddress !== "") {
-      writer.uint32(10).string(message.accountAddress);
+    if (message.account_address !== "") {
+      writer.uint32(10).string(message.account_address);
     }
     if (message.sequence !== BigInt(0)) {
       writer.uint32(16).uint64(message.sequence);
     }
-    if (message.accountNumber !== BigInt(0)) {
-      writer.uint32(24).uint64(message.accountNumber);
+    if (message.account_number !== BigInt(0)) {
+      writer.uint32(24).uint64(message.account_number);
     }
     return writer;
   },
@@ -1005,13 +1005,13 @@ export const QueryValidatorAccountResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.accountAddress = reader.string();
+          message.account_address = reader.string();
           break;
         case 2:
           message.sequence = reader.uint64();
           break;
         case 3:
-          message.accountNumber = reader.uint64();
+          message.account_number = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1022,29 +1022,29 @@ export const QueryValidatorAccountResponse = {
   },
   fromPartial(object: DeepPartial<QueryValidatorAccountResponse>): QueryValidatorAccountResponse {
     const message = createBaseQueryValidatorAccountResponse();
-    message.accountAddress = object.accountAddress ?? "";
+    message.account_address = object.account_address ?? "";
     message.sequence = object.sequence !== undefined && object.sequence !== null ? BigInt(object.sequence.toString()) : BigInt(0);
-    message.accountNumber = object.accountNumber !== undefined && object.accountNumber !== null ? BigInt(object.accountNumber.toString()) : BigInt(0);
+    message.account_number = object.account_number !== undefined && object.account_number !== null ? BigInt(object.account_number.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: QueryValidatorAccountResponseAmino): QueryValidatorAccountResponse {
     const message = createBaseQueryValidatorAccountResponse();
     if (object.account_address !== undefined && object.account_address !== null) {
-      message.accountAddress = object.account_address;
+      message.account_address = object.account_address;
     }
     if (object.sequence !== undefined && object.sequence !== null) {
       message.sequence = BigInt(object.sequence);
     }
     if (object.account_number !== undefined && object.account_number !== null) {
-      message.accountNumber = BigInt(object.account_number);
+      message.account_number = BigInt(object.account_number);
     }
     return message;
   },
   toAmino(message: QueryValidatorAccountResponse): QueryValidatorAccountResponseAmino {
     const obj: any = {};
-    obj.account_address = message.accountAddress === "" ? undefined : message.accountAddress;
+    obj.account_address = message.account_address === "" ? undefined : message.account_address;
     obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : undefined;
-    obj.account_number = message.accountNumber !== BigInt(0) ? message.accountNumber?.toString() : undefined;
+    obj.account_number = message.account_number !== BigInt(0) ? message.account_number?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryValidatorAccountResponseAminoMsg): QueryValidatorAccountResponse {
@@ -1799,15 +1799,15 @@ export const QueryParamsResponse = {
 function createBaseEthCallRequest(): EthCallRequest {
   return {
     args: new Uint8Array(),
-    gasCap: BigInt(0),
-    proposerAddress: new Uint8Array(),
-    chainId: BigInt(0)
+    gas_cap: BigInt(0),
+    proposer_address: new Uint8Array(),
+    chain_id: BigInt(0)
   };
 }
 export const EthCallRequest = {
   typeUrl: "/ethermint.evm.v1.EthCallRequest",
   is(o: any): o is EthCallRequest {
-    return o && (o.$typeUrl === EthCallRequest.typeUrl || (o.args instanceof Uint8Array || typeof o.args === "string") && typeof o.gasCap === "bigint" && (o.proposerAddress instanceof Uint8Array || typeof o.proposerAddress === "string") && typeof o.chainId === "bigint");
+    return o && (o.$typeUrl === EthCallRequest.typeUrl || (o.args instanceof Uint8Array || typeof o.args === "string") && typeof o.gas_cap === "bigint" && (o.proposer_address instanceof Uint8Array || typeof o.proposer_address === "string") && typeof o.chain_id === "bigint");
   },
   isAmino(o: any): o is EthCallRequestAmino {
     return o && (o.$typeUrl === EthCallRequest.typeUrl || (o.args instanceof Uint8Array || typeof o.args === "string") && typeof o.gas_cap === "bigint" && (o.proposer_address instanceof Uint8Array || typeof o.proposer_address === "string") && typeof o.chain_id === "bigint");
@@ -1816,14 +1816,14 @@ export const EthCallRequest = {
     if (message.args.length !== 0) {
       writer.uint32(10).bytes(message.args);
     }
-    if (message.gasCap !== BigInt(0)) {
-      writer.uint32(16).uint64(message.gasCap);
+    if (message.gas_cap !== BigInt(0)) {
+      writer.uint32(16).uint64(message.gas_cap);
     }
-    if (message.proposerAddress.length !== 0) {
-      writer.uint32(26).bytes(message.proposerAddress);
+    if (message.proposer_address.length !== 0) {
+      writer.uint32(26).bytes(message.proposer_address);
     }
-    if (message.chainId !== BigInt(0)) {
-      writer.uint32(32).int64(message.chainId);
+    if (message.chain_id !== BigInt(0)) {
+      writer.uint32(32).int64(message.chain_id);
     }
     return writer;
   },
@@ -1838,13 +1838,13 @@ export const EthCallRequest = {
           message.args = reader.bytes();
           break;
         case 2:
-          message.gasCap = reader.uint64();
+          message.gas_cap = reader.uint64();
           break;
         case 3:
-          message.proposerAddress = reader.bytes();
+          message.proposer_address = reader.bytes();
           break;
         case 4:
-          message.chainId = reader.int64();
+          message.chain_id = reader.int64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1856,9 +1856,9 @@ export const EthCallRequest = {
   fromPartial(object: DeepPartial<EthCallRequest>): EthCallRequest {
     const message = createBaseEthCallRequest();
     message.args = object.args ?? new Uint8Array();
-    message.gasCap = object.gasCap !== undefined && object.gasCap !== null ? BigInt(object.gasCap.toString()) : BigInt(0);
-    message.proposerAddress = object.proposerAddress ?? new Uint8Array();
-    message.chainId = object.chainId !== undefined && object.chainId !== null ? BigInt(object.chainId.toString()) : BigInt(0);
+    message.gas_cap = object.gas_cap !== undefined && object.gas_cap !== null ? BigInt(object.gas_cap.toString()) : BigInt(0);
+    message.proposer_address = object.proposer_address ?? new Uint8Array();
+    message.chain_id = object.chain_id !== undefined && object.chain_id !== null ? BigInt(object.chain_id.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: EthCallRequestAmino): EthCallRequest {
@@ -1867,22 +1867,22 @@ export const EthCallRequest = {
       message.args = bytesFromBase64(object.args);
     }
     if (object.gas_cap !== undefined && object.gas_cap !== null) {
-      message.gasCap = BigInt(object.gas_cap);
+      message.gas_cap = BigInt(object.gas_cap);
     }
     if (object.proposer_address !== undefined && object.proposer_address !== null) {
-      message.proposerAddress = bytesFromBase64(object.proposer_address);
+      message.proposer_address = bytesFromBase64(object.proposer_address);
     }
     if (object.chain_id !== undefined && object.chain_id !== null) {
-      message.chainId = BigInt(object.chain_id);
+      message.chain_id = BigInt(object.chain_id);
     }
     return message;
   },
   toAmino(message: EthCallRequest): EthCallRequestAmino {
     const obj: any = {};
     obj.args = message.args ? base64FromBytes(message.args) : undefined;
-    obj.gas_cap = message.gasCap !== BigInt(0) ? message.gasCap?.toString() : undefined;
-    obj.proposer_address = message.proposerAddress ? base64FromBytes(message.proposerAddress) : undefined;
-    obj.chain_id = message.chainId !== BigInt(0) ? message.chainId?.toString() : undefined;
+    obj.gas_cap = message.gas_cap !== BigInt(0) ? message.gas_cap?.toString() : undefined;
+    obj.proposer_address = message.proposer_address ? base64FromBytes(message.proposer_address) : undefined;
+    obj.chain_id = message.chain_id !== BigInt(0) ? message.chain_id?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: EthCallRequestAminoMsg): EthCallRequest {
@@ -1975,19 +1975,19 @@ export const EstimateGasResponse = {
 function createBaseQueryTraceTxRequest(): QueryTraceTxRequest {
   return {
     msg: undefined,
-    traceConfig: undefined,
+    trace_config: undefined,
     predecessors: [],
-    blockNumber: BigInt(0),
-    blockHash: "",
-    blockTime: new Date(),
-    proposerAddress: new Uint8Array(),
-    chainId: BigInt(0)
+    block_number: BigInt(0),
+    block_hash: "",
+    block_time: new Date(),
+    proposer_address: new Uint8Array(),
+    chain_id: BigInt(0)
   };
 }
 export const QueryTraceTxRequest = {
   typeUrl: "/ethermint.evm.v1.QueryTraceTxRequest",
   is(o: any): o is QueryTraceTxRequest {
-    return o && (o.$typeUrl === QueryTraceTxRequest.typeUrl || Array.isArray(o.predecessors) && (!o.predecessors.length || MsgEthereumTx.is(o.predecessors[0])) && typeof o.blockNumber === "bigint" && typeof o.blockHash === "string" && Timestamp.is(o.blockTime) && (o.proposerAddress instanceof Uint8Array || typeof o.proposerAddress === "string") && typeof o.chainId === "bigint");
+    return o && (o.$typeUrl === QueryTraceTxRequest.typeUrl || Array.isArray(o.predecessors) && (!o.predecessors.length || MsgEthereumTx.is(o.predecessors[0])) && typeof o.block_number === "bigint" && typeof o.block_hash === "string" && Timestamp.is(o.block_time) && (o.proposer_address instanceof Uint8Array || typeof o.proposer_address === "string") && typeof o.chain_id === "bigint");
   },
   isAmino(o: any): o is QueryTraceTxRequestAmino {
     return o && (o.$typeUrl === QueryTraceTxRequest.typeUrl || Array.isArray(o.predecessors) && (!o.predecessors.length || MsgEthereumTx.isAmino(o.predecessors[0])) && typeof o.block_number === "bigint" && typeof o.block_hash === "string" && Timestamp.isAmino(o.block_time) && (o.proposer_address instanceof Uint8Array || typeof o.proposer_address === "string") && typeof o.chain_id === "bigint");
@@ -1996,26 +1996,26 @@ export const QueryTraceTxRequest = {
     if (message.msg !== undefined) {
       MsgEthereumTx.encode(message.msg, writer.uint32(10).fork()).ldelim();
     }
-    if (message.traceConfig !== undefined) {
-      TraceConfig.encode(message.traceConfig, writer.uint32(26).fork()).ldelim();
+    if (message.trace_config !== undefined) {
+      TraceConfig.encode(message.trace_config, writer.uint32(26).fork()).ldelim();
     }
     for (const v of message.predecessors) {
       MsgEthereumTx.encode(v!, writer.uint32(34).fork()).ldelim();
     }
-    if (message.blockNumber !== BigInt(0)) {
-      writer.uint32(40).int64(message.blockNumber);
+    if (message.block_number !== BigInt(0)) {
+      writer.uint32(40).int64(message.block_number);
     }
-    if (message.blockHash !== "") {
-      writer.uint32(50).string(message.blockHash);
+    if (message.block_hash !== "") {
+      writer.uint32(50).string(message.block_hash);
     }
-    if (message.blockTime !== undefined) {
-      Timestamp.encode(toTimestamp(message.blockTime), writer.uint32(58).fork()).ldelim();
+    if (message.block_time !== undefined) {
+      Timestamp.encode(toTimestamp(message.block_time), writer.uint32(58).fork()).ldelim();
     }
-    if (message.proposerAddress.length !== 0) {
-      writer.uint32(66).bytes(message.proposerAddress);
+    if (message.proposer_address.length !== 0) {
+      writer.uint32(66).bytes(message.proposer_address);
     }
-    if (message.chainId !== BigInt(0)) {
-      writer.uint32(72).int64(message.chainId);
+    if (message.chain_id !== BigInt(0)) {
+      writer.uint32(72).int64(message.chain_id);
     }
     return writer;
   },
@@ -2030,25 +2030,25 @@ export const QueryTraceTxRequest = {
           message.msg = MsgEthereumTx.decode(reader, reader.uint32());
           break;
         case 3:
-          message.traceConfig = TraceConfig.decode(reader, reader.uint32());
+          message.trace_config = TraceConfig.decode(reader, reader.uint32());
           break;
         case 4:
           message.predecessors.push(MsgEthereumTx.decode(reader, reader.uint32()));
           break;
         case 5:
-          message.blockNumber = reader.int64();
+          message.block_number = reader.int64();
           break;
         case 6:
-          message.blockHash = reader.string();
+          message.block_hash = reader.string();
           break;
         case 7:
-          message.blockTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.block_time = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
         case 8:
-          message.proposerAddress = reader.bytes();
+          message.proposer_address = reader.bytes();
           break;
         case 9:
-          message.chainId = reader.int64();
+          message.chain_id = reader.int64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -2060,13 +2060,13 @@ export const QueryTraceTxRequest = {
   fromPartial(object: DeepPartial<QueryTraceTxRequest>): QueryTraceTxRequest {
     const message = createBaseQueryTraceTxRequest();
     message.msg = object.msg !== undefined && object.msg !== null ? MsgEthereumTx.fromPartial(object.msg) : undefined;
-    message.traceConfig = object.traceConfig !== undefined && object.traceConfig !== null ? TraceConfig.fromPartial(object.traceConfig) : undefined;
+    message.trace_config = object.trace_config !== undefined && object.trace_config !== null ? TraceConfig.fromPartial(object.trace_config) : undefined;
     message.predecessors = object.predecessors?.map(e => MsgEthereumTx.fromPartial(e)) || [];
-    message.blockNumber = object.blockNumber !== undefined && object.blockNumber !== null ? BigInt(object.blockNumber.toString()) : BigInt(0);
-    message.blockHash = object.blockHash ?? "";
-    message.blockTime = object.blockTime ?? undefined;
-    message.proposerAddress = object.proposerAddress ?? new Uint8Array();
-    message.chainId = object.chainId !== undefined && object.chainId !== null ? BigInt(object.chainId.toString()) : BigInt(0);
+    message.block_number = object.block_number !== undefined && object.block_number !== null ? BigInt(object.block_number.toString()) : BigInt(0);
+    message.block_hash = object.block_hash ?? "";
+    message.block_time = object.block_time ?? undefined;
+    message.proposer_address = object.proposer_address ?? new Uint8Array();
+    message.chain_id = object.chain_id !== undefined && object.chain_id !== null ? BigInt(object.chain_id.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: QueryTraceTxRequestAmino): QueryTraceTxRequest {
@@ -2075,40 +2075,40 @@ export const QueryTraceTxRequest = {
       message.msg = MsgEthereumTx.fromAmino(object.msg);
     }
     if (object.trace_config !== undefined && object.trace_config !== null) {
-      message.traceConfig = TraceConfig.fromAmino(object.trace_config);
+      message.trace_config = TraceConfig.fromAmino(object.trace_config);
     }
     message.predecessors = object.predecessors?.map(e => MsgEthereumTx.fromAmino(e)) || [];
     if (object.block_number !== undefined && object.block_number !== null) {
-      message.blockNumber = BigInt(object.block_number);
+      message.block_number = BigInt(object.block_number);
     }
     if (object.block_hash !== undefined && object.block_hash !== null) {
-      message.blockHash = object.block_hash;
+      message.block_hash = object.block_hash;
     }
     if (object.block_time !== undefined && object.block_time !== null) {
-      message.blockTime = fromTimestamp(Timestamp.fromAmino(object.block_time));
+      message.block_time = fromTimestamp(Timestamp.fromAmino(object.block_time));
     }
     if (object.proposer_address !== undefined && object.proposer_address !== null) {
-      message.proposerAddress = bytesFromBase64(object.proposer_address);
+      message.proposer_address = bytesFromBase64(object.proposer_address);
     }
     if (object.chain_id !== undefined && object.chain_id !== null) {
-      message.chainId = BigInt(object.chain_id);
+      message.chain_id = BigInt(object.chain_id);
     }
     return message;
   },
   toAmino(message: QueryTraceTxRequest): QueryTraceTxRequestAmino {
     const obj: any = {};
     obj.msg = message.msg ? MsgEthereumTx.toAmino(message.msg) : undefined;
-    obj.trace_config = message.traceConfig ? TraceConfig.toAmino(message.traceConfig) : undefined;
+    obj.trace_config = message.trace_config ? TraceConfig.toAmino(message.trace_config) : undefined;
     if (message.predecessors) {
       obj.predecessors = message.predecessors.map(e => e ? MsgEthereumTx.toAmino(e) : undefined);
     } else {
       obj.predecessors = message.predecessors;
     }
-    obj.block_number = message.blockNumber !== BigInt(0) ? message.blockNumber?.toString() : undefined;
-    obj.block_hash = message.blockHash === "" ? undefined : message.blockHash;
-    obj.block_time = message.blockTime ? Timestamp.toAmino(toTimestamp(message.blockTime)) : new Date();
-    obj.proposer_address = message.proposerAddress ? base64FromBytes(message.proposerAddress) : undefined;
-    obj.chain_id = message.chainId !== BigInt(0) ? message.chainId?.toString() : undefined;
+    obj.block_number = message.block_number !== BigInt(0) ? message.block_number?.toString() : undefined;
+    obj.block_hash = message.block_hash === "" ? undefined : message.block_hash;
+    obj.block_time = message.block_time ? Timestamp.toAmino(toTimestamp(message.block_time)) : new Date();
+    obj.proposer_address = message.proposer_address ? base64FromBytes(message.proposer_address) : undefined;
+    obj.chain_id = message.chain_id !== BigInt(0) ? message.chain_id?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryTraceTxRequestAminoMsg): QueryTraceTxRequest {
@@ -2204,18 +2204,18 @@ export const QueryTraceTxResponse = {
 function createBaseQueryTraceBlockRequest(): QueryTraceBlockRequest {
   return {
     txs: [],
-    traceConfig: undefined,
-    blockNumber: BigInt(0),
-    blockHash: "",
-    blockTime: new Date(),
-    proposerAddress: new Uint8Array(),
-    chainId: BigInt(0)
+    trace_config: undefined,
+    block_number: BigInt(0),
+    block_hash: "",
+    block_time: new Date(),
+    proposer_address: new Uint8Array(),
+    chain_id: BigInt(0)
   };
 }
 export const QueryTraceBlockRequest = {
   typeUrl: "/ethermint.evm.v1.QueryTraceBlockRequest",
   is(o: any): o is QueryTraceBlockRequest {
-    return o && (o.$typeUrl === QueryTraceBlockRequest.typeUrl || Array.isArray(o.txs) && (!o.txs.length || MsgEthereumTx.is(o.txs[0])) && typeof o.blockNumber === "bigint" && typeof o.blockHash === "string" && Timestamp.is(o.blockTime) && (o.proposerAddress instanceof Uint8Array || typeof o.proposerAddress === "string") && typeof o.chainId === "bigint");
+    return o && (o.$typeUrl === QueryTraceBlockRequest.typeUrl || Array.isArray(o.txs) && (!o.txs.length || MsgEthereumTx.is(o.txs[0])) && typeof o.block_number === "bigint" && typeof o.block_hash === "string" && Timestamp.is(o.block_time) && (o.proposer_address instanceof Uint8Array || typeof o.proposer_address === "string") && typeof o.chain_id === "bigint");
   },
   isAmino(o: any): o is QueryTraceBlockRequestAmino {
     return o && (o.$typeUrl === QueryTraceBlockRequest.typeUrl || Array.isArray(o.txs) && (!o.txs.length || MsgEthereumTx.isAmino(o.txs[0])) && typeof o.block_number === "bigint" && typeof o.block_hash === "string" && Timestamp.isAmino(o.block_time) && (o.proposer_address instanceof Uint8Array || typeof o.proposer_address === "string") && typeof o.chain_id === "bigint");
@@ -2224,23 +2224,23 @@ export const QueryTraceBlockRequest = {
     for (const v of message.txs) {
       MsgEthereumTx.encode(v!, writer.uint32(10).fork()).ldelim();
     }
-    if (message.traceConfig !== undefined) {
-      TraceConfig.encode(message.traceConfig, writer.uint32(26).fork()).ldelim();
+    if (message.trace_config !== undefined) {
+      TraceConfig.encode(message.trace_config, writer.uint32(26).fork()).ldelim();
     }
-    if (message.blockNumber !== BigInt(0)) {
-      writer.uint32(40).int64(message.blockNumber);
+    if (message.block_number !== BigInt(0)) {
+      writer.uint32(40).int64(message.block_number);
     }
-    if (message.blockHash !== "") {
-      writer.uint32(50).string(message.blockHash);
+    if (message.block_hash !== "") {
+      writer.uint32(50).string(message.block_hash);
     }
-    if (message.blockTime !== undefined) {
-      Timestamp.encode(toTimestamp(message.blockTime), writer.uint32(58).fork()).ldelim();
+    if (message.block_time !== undefined) {
+      Timestamp.encode(toTimestamp(message.block_time), writer.uint32(58).fork()).ldelim();
     }
-    if (message.proposerAddress.length !== 0) {
-      writer.uint32(66).bytes(message.proposerAddress);
+    if (message.proposer_address.length !== 0) {
+      writer.uint32(66).bytes(message.proposer_address);
     }
-    if (message.chainId !== BigInt(0)) {
-      writer.uint32(72).int64(message.chainId);
+    if (message.chain_id !== BigInt(0)) {
+      writer.uint32(72).int64(message.chain_id);
     }
     return writer;
   },
@@ -2255,22 +2255,22 @@ export const QueryTraceBlockRequest = {
           message.txs.push(MsgEthereumTx.decode(reader, reader.uint32()));
           break;
         case 3:
-          message.traceConfig = TraceConfig.decode(reader, reader.uint32());
+          message.trace_config = TraceConfig.decode(reader, reader.uint32());
           break;
         case 5:
-          message.blockNumber = reader.int64();
+          message.block_number = reader.int64();
           break;
         case 6:
-          message.blockHash = reader.string();
+          message.block_hash = reader.string();
           break;
         case 7:
-          message.blockTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.block_time = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
         case 8:
-          message.proposerAddress = reader.bytes();
+          message.proposer_address = reader.bytes();
           break;
         case 9:
-          message.chainId = reader.int64();
+          message.chain_id = reader.int64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -2282,34 +2282,34 @@ export const QueryTraceBlockRequest = {
   fromPartial(object: DeepPartial<QueryTraceBlockRequest>): QueryTraceBlockRequest {
     const message = createBaseQueryTraceBlockRequest();
     message.txs = object.txs?.map(e => MsgEthereumTx.fromPartial(e)) || [];
-    message.traceConfig = object.traceConfig !== undefined && object.traceConfig !== null ? TraceConfig.fromPartial(object.traceConfig) : undefined;
-    message.blockNumber = object.blockNumber !== undefined && object.blockNumber !== null ? BigInt(object.blockNumber.toString()) : BigInt(0);
-    message.blockHash = object.blockHash ?? "";
-    message.blockTime = object.blockTime ?? undefined;
-    message.proposerAddress = object.proposerAddress ?? new Uint8Array();
-    message.chainId = object.chainId !== undefined && object.chainId !== null ? BigInt(object.chainId.toString()) : BigInt(0);
+    message.trace_config = object.trace_config !== undefined && object.trace_config !== null ? TraceConfig.fromPartial(object.trace_config) : undefined;
+    message.block_number = object.block_number !== undefined && object.block_number !== null ? BigInt(object.block_number.toString()) : BigInt(0);
+    message.block_hash = object.block_hash ?? "";
+    message.block_time = object.block_time ?? undefined;
+    message.proposer_address = object.proposer_address ?? new Uint8Array();
+    message.chain_id = object.chain_id !== undefined && object.chain_id !== null ? BigInt(object.chain_id.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: QueryTraceBlockRequestAmino): QueryTraceBlockRequest {
     const message = createBaseQueryTraceBlockRequest();
     message.txs = object.txs?.map(e => MsgEthereumTx.fromAmino(e)) || [];
     if (object.trace_config !== undefined && object.trace_config !== null) {
-      message.traceConfig = TraceConfig.fromAmino(object.trace_config);
+      message.trace_config = TraceConfig.fromAmino(object.trace_config);
     }
     if (object.block_number !== undefined && object.block_number !== null) {
-      message.blockNumber = BigInt(object.block_number);
+      message.block_number = BigInt(object.block_number);
     }
     if (object.block_hash !== undefined && object.block_hash !== null) {
-      message.blockHash = object.block_hash;
+      message.block_hash = object.block_hash;
     }
     if (object.block_time !== undefined && object.block_time !== null) {
-      message.blockTime = fromTimestamp(Timestamp.fromAmino(object.block_time));
+      message.block_time = fromTimestamp(Timestamp.fromAmino(object.block_time));
     }
     if (object.proposer_address !== undefined && object.proposer_address !== null) {
-      message.proposerAddress = bytesFromBase64(object.proposer_address);
+      message.proposer_address = bytesFromBase64(object.proposer_address);
     }
     if (object.chain_id !== undefined && object.chain_id !== null) {
-      message.chainId = BigInt(object.chain_id);
+      message.chain_id = BigInt(object.chain_id);
     }
     return message;
   },
@@ -2320,12 +2320,12 @@ export const QueryTraceBlockRequest = {
     } else {
       obj.txs = message.txs;
     }
-    obj.trace_config = message.traceConfig ? TraceConfig.toAmino(message.traceConfig) : undefined;
-    obj.block_number = message.blockNumber !== BigInt(0) ? message.blockNumber?.toString() : undefined;
-    obj.block_hash = message.blockHash === "" ? undefined : message.blockHash;
-    obj.block_time = message.blockTime ? Timestamp.toAmino(toTimestamp(message.blockTime)) : new Date();
-    obj.proposer_address = message.proposerAddress ? base64FromBytes(message.proposerAddress) : undefined;
-    obj.chain_id = message.chainId !== BigInt(0) ? message.chainId?.toString() : undefined;
+    obj.trace_config = message.trace_config ? TraceConfig.toAmino(message.trace_config) : undefined;
+    obj.block_number = message.block_number !== BigInt(0) ? message.block_number?.toString() : undefined;
+    obj.block_hash = message.block_hash === "" ? undefined : message.block_hash;
+    obj.block_time = message.block_time ? Timestamp.toAmino(toTimestamp(message.block_time)) : new Date();
+    obj.proposer_address = message.proposer_address ? base64FromBytes(message.proposer_address) : undefined;
+    obj.chain_id = message.chain_id !== BigInt(0) ? message.chain_id?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryTraceBlockRequestAminoMsg): QueryTraceBlockRequest {
@@ -2477,20 +2477,20 @@ export const QueryBaseFeeRequest = {
 };
 function createBaseQueryBaseFeeResponse(): QueryBaseFeeResponse {
   return {
-    baseFee: ""
+    base_fee: ""
   };
 }
 export const QueryBaseFeeResponse = {
   typeUrl: "/ethermint.evm.v1.QueryBaseFeeResponse",
   is(o: any): o is QueryBaseFeeResponse {
-    return o && (o.$typeUrl === QueryBaseFeeResponse.typeUrl || typeof o.baseFee === "string");
+    return o && (o.$typeUrl === QueryBaseFeeResponse.typeUrl || typeof o.base_fee === "string");
   },
   isAmino(o: any): o is QueryBaseFeeResponseAmino {
     return o && (o.$typeUrl === QueryBaseFeeResponse.typeUrl || typeof o.base_fee === "string");
   },
   encode(message: QueryBaseFeeResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.baseFee !== "") {
-      writer.uint32(10).string(message.baseFee);
+    if (message.base_fee !== "") {
+      writer.uint32(10).string(message.base_fee);
     }
     return writer;
   },
@@ -2502,7 +2502,7 @@ export const QueryBaseFeeResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.baseFee = reader.string();
+          message.base_fee = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -2513,19 +2513,19 @@ export const QueryBaseFeeResponse = {
   },
   fromPartial(object: DeepPartial<QueryBaseFeeResponse>): QueryBaseFeeResponse {
     const message = createBaseQueryBaseFeeResponse();
-    message.baseFee = object.baseFee ?? "";
+    message.base_fee = object.base_fee ?? "";
     return message;
   },
   fromAmino(object: QueryBaseFeeResponseAmino): QueryBaseFeeResponse {
     const message = createBaseQueryBaseFeeResponse();
     if (object.base_fee !== undefined && object.base_fee !== null) {
-      message.baseFee = object.base_fee;
+      message.base_fee = object.base_fee;
     }
     return message;
   },
   toAmino(message: QueryBaseFeeResponse): QueryBaseFeeResponseAmino {
     const obj: any = {};
-    obj.base_fee = message.baseFee === "" ? undefined : message.baseFee;
+    obj.base_fee = message.base_fee === "" ? undefined : message.base_fee;
     return obj;
   },
   fromAminoMsg(object: QueryBaseFeeResponseAminoMsg): QueryBaseFeeResponse {

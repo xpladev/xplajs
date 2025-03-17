@@ -107,7 +107,7 @@ export interface Timestamp {
   nanos: number;
 }
 export interface TimestampProtoMsg {
-  typeUrl: "/google.protobuf.Timestamp";
+  type_url: "/google.protobuf.Timestamp";
   value: Uint8Array;
 }
 /**

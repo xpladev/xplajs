@@ -6,7 +6,7 @@ export interface Module {
   authority: string;
 }
 export interface ModuleProtoMsg {
-  typeUrl: "/cosmos.consensus.module.v1.Module";
+  type_url: "/cosmos.consensus.module.v1.Module";
   value: Uint8Array;
 }
 /** Module is the config object of the consensus module. */

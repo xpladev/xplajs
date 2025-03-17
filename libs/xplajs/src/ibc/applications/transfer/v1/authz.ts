@@ -5,21 +5,21 @@ import { GlobalDecoderRegistry } from "../../../../registry";
 /** Allocation defines the spend limit for a particular port and channel */
 export interface Allocation {
   /** the port on which the packet will be sent */
-  sourcePort: string;
+  source_port: string;
   /** the channel by which the packet will be sent */
-  sourceChannel: string;
+  source_channel: string;
   /** spend limitation on the channel */
-  spendLimit: Coin[];
+  spend_limit: Coin[];
   /** allow list of receivers, an empty allow list permits any receiver address */
-  allowList: string[];
+  allow_list: string[];
   /**
    * allow list of memo strings, an empty list prohibits all memo strings;
    * a list only with "*" permits any memo string
    */
-  allowedPacketData: string[];
+  allowed_packet_data: string[];
 }
 export interface AllocationProtoMsg {
-  typeUrl: "/ibc.applications.transfer.v1.Allocation";
+  type_url: "/ibc.applications.transfer.v1.Allocation";
   value: Uint8Array;
 }
 /** Allocation defines the spend limit for a particular port and channel */
@@ -51,7 +51,7 @@ export interface TransferAuthorization {
   allocations: Allocation[];
 }
 export interface TransferAuthorizationProtoMsg {
-  typeUrl: "/ibc.applications.transfer.v1.TransferAuthorization";
+  type_url: "/ibc.applications.transfer.v1.TransferAuthorization";
   value: Uint8Array;
 }
 /**
@@ -68,36 +68,36 @@ export interface TransferAuthorizationAminoMsg {
 }
 function createBaseAllocation(): Allocation {
   return {
-    sourcePort: "",
-    sourceChannel: "",
-    spendLimit: [],
-    allowList: [],
-    allowedPacketData: []
+    source_port: "",
+    source_channel: "",
+    spend_limit: [],
+    allow_list: [],
+    allowed_packet_data: []
   };
 }
 export const Allocation = {
   typeUrl: "/ibc.applications.transfer.v1.Allocation",
   aminoType: "cosmos-sdk/Allocation",
   is(o: any): o is Allocation {
-    return o && (o.$typeUrl === Allocation.typeUrl || typeof o.sourcePort === "string" && typeof o.sourceChannel === "string" && Array.isArray(o.spendLimit) && (!o.spendLimit.length || Coin.is(o.spendLimit[0])) && Array.isArray(o.allowList) && (!o.allowList.length || typeof o.allowList[0] === "string") && Array.isArray(o.allowedPacketData) && (!o.allowedPacketData.length || typeof o.allowedPacketData[0] === "string"));
+    return o && (o.$typeUrl === Allocation.typeUrl || typeof o.source_port === "string" && typeof o.source_channel === "string" && Array.isArray(o.spend_limit) && (!o.spend_limit.length || Coin.is(o.spend_limit[0])) && Array.isArray(o.allow_list) && (!o.allow_list.length || typeof o.allow_list[0] === "string") && Array.isArray(o.allowed_packet_data) && (!o.allowed_packet_data.length || typeof o.allowed_packet_data[0] === "string"));
   },
   isAmino(o: any): o is AllocationAmino {
     return o && (o.$typeUrl === Allocation.typeUrl || typeof o.source_port === "string" && typeof o.source_channel === "string" && Array.isArray(o.spend_limit) && (!o.spend_limit.length || Coin.isAmino(o.spend_limit[0])) && Array.isArray(o.allow_list) && (!o.allow_list.length || typeof o.allow_list[0] === "string") && Array.isArray(o.allowed_packet_data) && (!o.allowed_packet_data.length || typeof o.allowed_packet_data[0] === "string"));
   },
   encode(message: Allocation, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.sourcePort !== "") {
-      writer.uint32(10).string(message.sourcePort);
+    if (message.source_port !== "") {
+      writer.uint32(10).string(message.source_port);
     }
-    if (message.sourceChannel !== "") {
-      writer.uint32(18).string(message.sourceChannel);
+    if (message.source_channel !== "") {
+      writer.uint32(18).string(message.source_channel);
     }
-    for (const v of message.spendLimit) {
+    for (const v of message.spend_limit) {
       Coin.encode(v!, writer.uint32(26).fork()).ldelim();
     }
-    for (const v of message.allowList) {
+    for (const v of message.allow_list) {
       writer.uint32(34).string(v!);
     }
-    for (const v of message.allowedPacketData) {
+    for (const v of message.allowed_packet_data) {
       writer.uint32(42).string(v!);
     }
     return writer;
@@ -110,19 +110,19 @@ export const Allocation = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.sourcePort = reader.string();
+          message.source_port = reader.string();
           break;
         case 2:
-          message.sourceChannel = reader.string();
+          message.source_channel = reader.string();
           break;
         case 3:
-          message.spendLimit.push(Coin.decode(reader, reader.uint32()));
+          message.spend_limit.push(Coin.decode(reader, reader.uint32()));
           break;
         case 4:
-          message.allowList.push(reader.string());
+          message.allow_list.push(reader.string());
           break;
         case 5:
-          message.allowedPacketData.push(reader.string());
+          message.allowed_packet_data.push(reader.string());
           break;
         default:
           reader.skipType(tag & 7);
@@ -133,44 +133,44 @@ export const Allocation = {
   },
   fromPartial(object: DeepPartial<Allocation>): Allocation {
     const message = createBaseAllocation();
-    message.sourcePort = object.sourcePort ?? "";
-    message.sourceChannel = object.sourceChannel ?? "";
-    message.spendLimit = object.spendLimit?.map(e => Coin.fromPartial(e)) || [];
-    message.allowList = object.allowList?.map(e => e) || [];
-    message.allowedPacketData = object.allowedPacketData?.map(e => e) || [];
+    message.source_port = object.source_port ?? "";
+    message.source_channel = object.source_channel ?? "";
+    message.spend_limit = object.spend_limit?.map(e => Coin.fromPartial(e)) || [];
+    message.allow_list = object.allow_list?.map(e => e) || [];
+    message.allowed_packet_data = object.allowed_packet_data?.map(e => e) || [];
     return message;
   },
   fromAmino(object: AllocationAmino): Allocation {
     const message = createBaseAllocation();
     if (object.source_port !== undefined && object.source_port !== null) {
-      message.sourcePort = object.source_port;
+      message.source_port = object.source_port;
     }
     if (object.source_channel !== undefined && object.source_channel !== null) {
-      message.sourceChannel = object.source_channel;
+      message.source_channel = object.source_channel;
     }
-    message.spendLimit = object.spend_limit?.map(e => Coin.fromAmino(e)) || [];
-    message.allowList = object.allow_list?.map(e => e) || [];
-    message.allowedPacketData = object.allowed_packet_data?.map(e => e) || [];
+    message.spend_limit = object.spend_limit?.map(e => Coin.fromAmino(e)) || [];
+    message.allow_list = object.allow_list?.map(e => e) || [];
+    message.allowed_packet_data = object.allowed_packet_data?.map(e => e) || [];
     return message;
   },
   toAmino(message: Allocation): AllocationAmino {
     const obj: any = {};
-    obj.source_port = message.sourcePort === "" ? undefined : message.sourcePort;
-    obj.source_channel = message.sourceChannel === "" ? undefined : message.sourceChannel;
-    if (message.spendLimit) {
-      obj.spend_limit = message.spendLimit.map(e => e ? Coin.toAmino(e) : undefined);
+    obj.source_port = message.source_port === "" ? undefined : message.source_port;
+    obj.source_channel = message.source_channel === "" ? undefined : message.source_channel;
+    if (message.spend_limit) {
+      obj.spend_limit = message.spend_limit.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
-      obj.spend_limit = message.spendLimit;
+      obj.spend_limit = message.spend_limit;
     }
-    if (message.allowList) {
-      obj.allow_list = message.allowList.map(e => e);
+    if (message.allow_list) {
+      obj.allow_list = message.allow_list.map(e => e);
     } else {
-      obj.allow_list = message.allowList;
+      obj.allow_list = message.allow_list;
     }
-    if (message.allowedPacketData) {
-      obj.allowed_packet_data = message.allowedPacketData.map(e => e);
+    if (message.allowed_packet_data) {
+      obj.allowed_packet_data = message.allowed_packet_data.map(e => e);
     } else {
-      obj.allowed_packet_data = message.allowedPacketData;
+      obj.allowed_packet_data = message.allowed_packet_data;
     }
     return obj;
   },

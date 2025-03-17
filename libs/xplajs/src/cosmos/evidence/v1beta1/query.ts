@@ -9,7 +9,7 @@ export interface QueryEvidenceRequest {
    * Deprecated: Use hash, a HEX encoded string, instead.
    */
   /** @deprecated */
-  evidenceHash: Uint8Array;
+  evidence_hash: Uint8Array;
   /**
    * hash defines the evidence hash of the requested evidence.
    * 
@@ -18,7 +18,7 @@ export interface QueryEvidenceRequest {
   hash: string;
 }
 export interface QueryEvidenceRequestProtoMsg {
-  typeUrl: "/cosmos.evidence.v1beta1.QueryEvidenceRequest";
+  type_url: "/cosmos.evidence.v1beta1.QueryEvidenceRequest";
   value: Uint8Array;
 }
 /** QueryEvidenceRequest is the request type for the Query/Evidence RPC method. */
@@ -46,7 +46,7 @@ export interface QueryEvidenceResponse {
   evidence?: Any;
 }
 export interface QueryEvidenceResponseProtoMsg {
-  typeUrl: "/cosmos.evidence.v1beta1.QueryEvidenceResponse";
+  type_url: "/cosmos.evidence.v1beta1.QueryEvidenceResponse";
   value: Uint8Array;
 }
 /** QueryEvidenceResponse is the response type for the Query/Evidence RPC method. */
@@ -67,7 +67,7 @@ export interface QueryAllEvidenceRequest {
   pagination?: PageRequest;
 }
 export interface QueryAllEvidenceRequestProtoMsg {
-  typeUrl: "/cosmos.evidence.v1beta1.QueryAllEvidenceRequest";
+  type_url: "/cosmos.evidence.v1beta1.QueryAllEvidenceRequest";
   value: Uint8Array;
 }
 /**
@@ -93,7 +93,7 @@ export interface QueryAllEvidenceResponse {
   pagination?: PageResponse;
 }
 export interface QueryAllEvidenceResponseProtoMsg {
-  typeUrl: "/cosmos.evidence.v1beta1.QueryAllEvidenceResponse";
+  type_url: "/cosmos.evidence.v1beta1.QueryAllEvidenceResponse";
   value: Uint8Array;
 }
 /**
@@ -112,7 +112,7 @@ export interface QueryAllEvidenceResponseAminoMsg {
 }
 function createBaseQueryEvidenceRequest(): QueryEvidenceRequest {
   return {
-    evidenceHash: new Uint8Array(),
+    evidence_hash: new Uint8Array(),
     hash: ""
   };
 }
@@ -120,14 +120,14 @@ export const QueryEvidenceRequest = {
   typeUrl: "/cosmos.evidence.v1beta1.QueryEvidenceRequest",
   aminoType: "cosmos-sdk/QueryEvidenceRequest",
   is(o: any): o is QueryEvidenceRequest {
-    return o && (o.$typeUrl === QueryEvidenceRequest.typeUrl || (o.evidenceHash instanceof Uint8Array || typeof o.evidenceHash === "string") && typeof o.hash === "string");
+    return o && (o.$typeUrl === QueryEvidenceRequest.typeUrl || (o.evidence_hash instanceof Uint8Array || typeof o.evidence_hash === "string") && typeof o.hash === "string");
   },
   isAmino(o: any): o is QueryEvidenceRequestAmino {
     return o && (o.$typeUrl === QueryEvidenceRequest.typeUrl || (o.evidence_hash instanceof Uint8Array || typeof o.evidence_hash === "string") && typeof o.hash === "string");
   },
   encode(message: QueryEvidenceRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.evidenceHash.length !== 0) {
-      writer.uint32(10).bytes(message.evidenceHash);
+    if (message.evidence_hash.length !== 0) {
+      writer.uint32(10).bytes(message.evidence_hash);
     }
     if (message.hash !== "") {
       writer.uint32(18).string(message.hash);
@@ -142,7 +142,7 @@ export const QueryEvidenceRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.evidenceHash = reader.bytes();
+          message.evidence_hash = reader.bytes();
           break;
         case 2:
           message.hash = reader.string();
@@ -156,14 +156,14 @@ export const QueryEvidenceRequest = {
   },
   fromPartial(object: DeepPartial<QueryEvidenceRequest>): QueryEvidenceRequest {
     const message = createBaseQueryEvidenceRequest();
-    message.evidenceHash = object.evidenceHash ?? new Uint8Array();
+    message.evidence_hash = object.evidence_hash ?? new Uint8Array();
     message.hash = object.hash ?? "";
     return message;
   },
   fromAmino(object: QueryEvidenceRequestAmino): QueryEvidenceRequest {
     const message = createBaseQueryEvidenceRequest();
     if (object.evidence_hash !== undefined && object.evidence_hash !== null) {
-      message.evidenceHash = bytesFromBase64(object.evidence_hash);
+      message.evidence_hash = bytesFromBase64(object.evidence_hash);
     }
     if (object.hash !== undefined && object.hash !== null) {
       message.hash = object.hash;
@@ -172,7 +172,7 @@ export const QueryEvidenceRequest = {
   },
   toAmino(message: QueryEvidenceRequest): QueryEvidenceRequestAmino {
     const obj: any = {};
-    obj.evidence_hash = message.evidenceHash ? base64FromBytes(message.evidenceHash) : undefined;
+    obj.evidence_hash = message.evidence_hash ? base64FromBytes(message.evidence_hash) : undefined;
     obj.hash = message.hash === "" ? undefined : message.hash;
     return obj;
   },

@@ -13,7 +13,7 @@ export interface MsgSubmitEvidence {
   evidence?: Any | undefined;
 }
 export interface MsgSubmitEvidenceProtoMsg {
-  typeUrl: "/cosmos.evidence.v1beta1.MsgSubmitEvidence";
+  type_url: "/cosmos.evidence.v1beta1.MsgSubmitEvidence";
   value: Uint8Array;
 }
 export type MsgSubmitEvidenceEncoded = Omit<MsgSubmitEvidence, "evidence"> & {
@@ -39,7 +39,7 @@ export interface MsgSubmitEvidenceResponse {
   hash: Uint8Array;
 }
 export interface MsgSubmitEvidenceResponseProtoMsg {
-  typeUrl: "/cosmos.evidence.v1beta1.MsgSubmitEvidenceResponse";
+  type_url: "/cosmos.evidence.v1beta1.MsgSubmitEvidenceResponse";
   value: Uint8Array;
 }
 /** MsgSubmitEvidenceResponse defines the Msg/SubmitEvidence response type. */

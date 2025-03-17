@@ -6,23 +6,23 @@ export interface Params {
    * evm_denom represents the token denomination used to run the EVM state
    * transitions.
    */
-  evmDenom: string;
+  evm_denom: string;
   /** enable_create toggles state transitions that use the vm.Create function */
-  enableCreate: boolean;
+  enable_create: boolean;
   /** enable_call toggles state transitions that use the vm.Call function */
-  enableCall: boolean;
+  enable_call: boolean;
   /** extra_eips defines the additional EIPs for the vm.Config */
-  extraEips: bigint[];
+  extra_eips: bigint[];
   /** chain_config defines the EVM chain configuration parameters */
-  chainConfig: ChainConfig;
+  chain_config: ChainConfig;
   /**
    * allow_unprotected_txs defines if replay-protected (i.e non EIP155
    * signed) transactions can be executed on the state machine.
    */
-  allowUnprotectedTxs: boolean;
+  allow_unprotected_txs: boolean;
 }
 export interface ParamsProtoMsg {
-  typeUrl: "/ethermint.evm.v1.Params";
+  type_url: "/ethermint.evm.v1.Params";
   value: Uint8Array;
 }
 /** Params defines the EVM module parameters */
@@ -56,49 +56,49 @@ export interface ParamsAminoMsg {
  */
 export interface ChainConfig {
   /** homestead_block switch (nil no fork, 0 = already homestead) */
-  homesteadBlock: string;
+  homestead_block: string;
   /** dao_fork_block corresponds to TheDAO hard-fork switch block (nil no fork) */
-  daoForkBlock: string;
+  dao_fork_block: string;
   /** dao_fork_support defines whether the nodes supports or opposes the DAO hard-fork */
-  daoForkSupport: boolean;
+  dao_fork_support: boolean;
   /**
    * eip150_block: EIP150 implements the Gas price changes
    * (https://github.com/ethereum/EIPs/issues/150) EIP150 HF block (nil no fork)
    */
-  eip150Block: string;
+  eip150_block: string;
   /** eip150_hash: EIP150 HF hash (needed for header only clients as only gas pricing changed) */
-  eip150Hash: string;
+  eip150_hash: string;
   /** eip155_block: EIP155Block HF block */
-  eip155Block: string;
+  eip155_block: string;
   /** eip158_block: EIP158 HF block */
-  eip158Block: string;
+  eip158_block: string;
   /** byzantium_block: Byzantium switch block (nil no fork, 0 = already on byzantium) */
-  byzantiumBlock: string;
+  byzantium_block: string;
   /** constantinople_block: Constantinople switch block (nil no fork, 0 = already activated) */
-  constantinopleBlock: string;
+  constantinople_block: string;
   /** petersburg_block: Petersburg switch block (nil same as Constantinople) */
-  petersburgBlock: string;
+  petersburg_block: string;
   /** istanbul_block: Istanbul switch block (nil no fork, 0 = already on istanbul) */
-  istanbulBlock: string;
+  istanbul_block: string;
   /** muir_glacier_block: Eip-2384 (bomb delay) switch block (nil no fork, 0 = already activated) */
-  muirGlacierBlock: string;
+  muir_glacier_block: string;
   /** berlin_block: Berlin switch block (nil = no fork, 0 = already on berlin) */
-  berlinBlock: string;
+  berlin_block: string;
   /** london_block: London switch block (nil = no fork, 0 = already on london) */
-  londonBlock: string;
+  london_block: string;
   /** arrow_glacier_block: Eip-4345 (bomb delay) switch block (nil = no fork, 0 = already activated) */
-  arrowGlacierBlock: string;
+  arrow_glacier_block: string;
   /** gray_glacier_block: EIP-5133 (bomb delay) switch block (nil = no fork, 0 = already activated) */
-  grayGlacierBlock: string;
+  gray_glacier_block: string;
   /** merge_netsplit_block: Virtual fork after The Merge to use as a network splitter */
-  mergeNetsplitBlock: string;
+  merge_netsplit_block: string;
   /** shanghai_block switch block (nil = no fork, 0 = already on shanghai) */
-  shanghaiBlock: string;
+  shanghai_block: string;
   /** cancun_block switch block (nil = no fork, 0 = already on cancun) */
-  cancunBlock: string;
+  cancun_block: string;
 }
 export interface ChainConfigProtoMsg {
-  typeUrl: "/ethermint.evm.v1.ChainConfig";
+  type_url: "/ethermint.evm.v1.ChainConfig";
   value: Uint8Array;
 }
 /**
@@ -160,7 +160,7 @@ export interface State {
   value: string;
 }
 export interface StateProtoMsg {
-  typeUrl: "/ethermint.evm.v1.State";
+  type_url: "/ethermint.evm.v1.State";
   value: Uint8Array;
 }
 /** State represents a single Storage key value pair item. */
@@ -186,7 +186,7 @@ export interface TransactionLogs {
   logs: Log[];
 }
 export interface TransactionLogsProtoMsg {
-  typeUrl: "/ethermint.evm.v1.TransactionLogs";
+  type_url: "/ethermint.evm.v1.TransactionLogs";
   value: Uint8Array;
 }
 /**
@@ -220,13 +220,13 @@ export interface Log {
   /** data which is supplied by the contract, usually ABI-encoded */
   data: Uint8Array;
   /** block_number of the block in which the transaction was included */
-  blockNumber: bigint;
+  block_number: bigint;
   /** tx_hash is the transaction hash */
-  txHash: string;
+  tx_hash: string;
   /** tx_index of the transaction in the block */
-  txIndex: bigint;
+  tx_index: bigint;
   /** block_hash of the block in which the transaction was included */
-  blockHash: string;
+  block_hash: string;
   /** index of the log in the block */
   index: bigint;
   /**
@@ -237,7 +237,7 @@ export interface Log {
   removed: boolean;
 }
 export interface LogProtoMsg {
-  typeUrl: "/ethermint.evm.v1.Log";
+  type_url: "/ethermint.evm.v1.Log";
   value: Uint8Array;
 }
 /**
@@ -283,23 +283,23 @@ export interface TxResult {
    * any). If the state transition is an evm.Call, the contract address will be
    * empty.
    */
-  contractAddress: string;
+  contract_address: string;
   /** bloom represents the bloom filter bytes */
   bloom: Uint8Array;
   /**
    * tx_logs contains the transaction hash and the proto-compatible ethereum
    * logs.
    */
-  txLogs: TransactionLogs;
+  tx_logs: TransactionLogs;
   /** ret defines the bytes from the execution. */
   ret: Uint8Array;
   /** reverted flag is set to true when the call has been reverted */
   reverted: boolean;
   /** gas_used notes the amount of gas consumed while execution */
-  gasUsed: bigint;
+  gas_used: bigint;
 }
 export interface TxResultProtoMsg {
-  typeUrl: "/ethermint.evm.v1.TxResult";
+  type_url: "/ethermint.evm.v1.TxResult";
   value: Uint8Array;
 }
 /** TxResult stores results of Tx execution. */
@@ -333,10 +333,10 @@ export interface AccessTuple {
   /** address is a hex formatted ethereum address */
   address: string;
   /** storage_keys are hex formatted hashes of the storage keys */
-  storageKeys: string[];
+  storage_keys: string[];
 }
 export interface AccessTupleProtoMsg {
-  typeUrl: "/ethermint.evm.v1.AccessTuple";
+  type_url: "/ethermint.evm.v1.AccessTuple";
   value: Uint8Array;
 }
 /** AccessTuple is the element type of an access list. */
@@ -362,9 +362,9 @@ export interface TraceConfig {
   /** reexec defines the number of blocks the tracer is willing to go back */
   reexec: bigint;
   /** disable_stack switches stack capture */
-  disableStack: boolean;
+  disable_stack: boolean;
   /** disable_storage switches storage capture */
-  disableStorage: boolean;
+  disable_storage: boolean;
   /** debug can be used to print output during capture end */
   debug: boolean;
   /** limit defines the maximum length of output, but zero means unlimited */
@@ -372,14 +372,14 @@ export interface TraceConfig {
   /** overrides can be used to execute a trace using future fork rules */
   overrides?: ChainConfig;
   /** enable_memory switches memory capture */
-  enableMemory: boolean;
+  enable_memory: boolean;
   /** enable_return_data switches the capture of return data */
-  enableReturnData: boolean;
+  enable_return_data: boolean;
   /** tracer_json_config configures the tracer using a JSON string */
-  tracerJsonConfig: string;
+  tracer_json_config: string;
 }
 export interface TraceConfigProtoMsg {
-  typeUrl: "/ethermint.evm.v1.TraceConfig";
+  type_url: "/ethermint.evm.v1.TraceConfig";
   value: Uint8Array;
 }
 /** TraceConfig holds extra parameters to trace functions. */
@@ -416,43 +416,43 @@ export interface TraceConfigAminoMsg {
 }
 function createBaseParams(): Params {
   return {
-    evmDenom: "",
-    enableCreate: false,
-    enableCall: false,
-    extraEips: [],
-    chainConfig: ChainConfig.fromPartial({}),
-    allowUnprotectedTxs: false
+    evm_denom: "",
+    enable_create: false,
+    enable_call: false,
+    extra_eips: [],
+    chain_config: ChainConfig.fromPartial({}),
+    allow_unprotected_txs: false
   };
 }
 export const Params = {
   typeUrl: "/ethermint.evm.v1.Params",
   aminoType: "ethermint/x/evm/Params",
   is(o: any): o is Params {
-    return o && (o.$typeUrl === Params.typeUrl || typeof o.evmDenom === "string" && typeof o.enableCreate === "boolean" && typeof o.enableCall === "boolean" && Array.isArray(o.extraEips) && (!o.extraEips.length || typeof o.extraEips[0] === "bigint") && ChainConfig.is(o.chainConfig) && typeof o.allowUnprotectedTxs === "boolean");
+    return o && (o.$typeUrl === Params.typeUrl || typeof o.evm_denom === "string" && typeof o.enable_create === "boolean" && typeof o.enable_call === "boolean" && Array.isArray(o.extra_eips) && (!o.extra_eips.length || typeof o.extra_eips[0] === "bigint") && ChainConfig.is(o.chain_config) && typeof o.allow_unprotected_txs === "boolean");
   },
   isAmino(o: any): o is ParamsAmino {
     return o && (o.$typeUrl === Params.typeUrl || typeof o.evm_denom === "string" && typeof o.enable_create === "boolean" && typeof o.enable_call === "boolean" && Array.isArray(o.extra_eips) && (!o.extra_eips.length || typeof o.extra_eips[0] === "bigint") && ChainConfig.isAmino(o.chain_config) && typeof o.allow_unprotected_txs === "boolean");
   },
   encode(message: Params, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.evmDenom !== "") {
-      writer.uint32(10).string(message.evmDenom);
+    if (message.evm_denom !== "") {
+      writer.uint32(10).string(message.evm_denom);
     }
-    if (message.enableCreate === true) {
-      writer.uint32(16).bool(message.enableCreate);
+    if (message.enable_create === true) {
+      writer.uint32(16).bool(message.enable_create);
     }
-    if (message.enableCall === true) {
-      writer.uint32(24).bool(message.enableCall);
+    if (message.enable_call === true) {
+      writer.uint32(24).bool(message.enable_call);
     }
     writer.uint32(34).fork();
-    for (const v of message.extraEips) {
+    for (const v of message.extra_eips) {
       writer.int64(v);
     }
     writer.ldelim();
-    if (message.chainConfig !== undefined) {
-      ChainConfig.encode(message.chainConfig, writer.uint32(42).fork()).ldelim();
+    if (message.chain_config !== undefined) {
+      ChainConfig.encode(message.chain_config, writer.uint32(42).fork()).ldelim();
     }
-    if (message.allowUnprotectedTxs === true) {
-      writer.uint32(48).bool(message.allowUnprotectedTxs);
+    if (message.allow_unprotected_txs === true) {
+      writer.uint32(48).bool(message.allow_unprotected_txs);
     }
     return writer;
   },
@@ -464,29 +464,29 @@ export const Params = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.evmDenom = reader.string();
+          message.evm_denom = reader.string();
           break;
         case 2:
-          message.enableCreate = reader.bool();
+          message.enable_create = reader.bool();
           break;
         case 3:
-          message.enableCall = reader.bool();
+          message.enable_call = reader.bool();
           break;
         case 4:
           if ((tag & 7) === 2) {
             const end2 = reader.uint32() + reader.pos;
             while (reader.pos < end2) {
-              message.extraEips.push(reader.int64());
+              message.extra_eips.push(reader.int64());
             }
           } else {
-            message.extraEips.push(reader.int64());
+            message.extra_eips.push(reader.int64());
           }
           break;
         case 5:
-          message.chainConfig = ChainConfig.decode(reader, reader.uint32());
+          message.chain_config = ChainConfig.decode(reader, reader.uint32());
           break;
         case 6:
-          message.allowUnprotectedTxs = reader.bool();
+          message.allow_unprotected_txs = reader.bool();
           break;
         default:
           reader.skipType(tag & 7);
@@ -497,46 +497,46 @@ export const Params = {
   },
   fromPartial(object: DeepPartial<Params>): Params {
     const message = createBaseParams();
-    message.evmDenom = object.evmDenom ?? "";
-    message.enableCreate = object.enableCreate ?? false;
-    message.enableCall = object.enableCall ?? false;
-    message.extraEips = object.extraEips?.map(e => BigInt(e.toString())) || [];
-    message.chainConfig = object.chainConfig !== undefined && object.chainConfig !== null ? ChainConfig.fromPartial(object.chainConfig) : undefined;
-    message.allowUnprotectedTxs = object.allowUnprotectedTxs ?? false;
+    message.evm_denom = object.evm_denom ?? "";
+    message.enable_create = object.enable_create ?? false;
+    message.enable_call = object.enable_call ?? false;
+    message.extra_eips = object.extra_eips?.map(e => BigInt(e.toString())) || [];
+    message.chain_config = object.chain_config !== undefined && object.chain_config !== null ? ChainConfig.fromPartial(object.chain_config) : undefined;
+    message.allow_unprotected_txs = object.allow_unprotected_txs ?? false;
     return message;
   },
   fromAmino(object: ParamsAmino): Params {
     const message = createBaseParams();
     if (object.evm_denom !== undefined && object.evm_denom !== null) {
-      message.evmDenom = object.evm_denom;
+      message.evm_denom = object.evm_denom;
     }
     if (object.enable_create !== undefined && object.enable_create !== null) {
-      message.enableCreate = object.enable_create;
+      message.enable_create = object.enable_create;
     }
     if (object.enable_call !== undefined && object.enable_call !== null) {
-      message.enableCall = object.enable_call;
+      message.enable_call = object.enable_call;
     }
-    message.extraEips = object.extra_eips?.map(e => BigInt(e)) || [];
+    message.extra_eips = object.extra_eips?.map(e => BigInt(e)) || [];
     if (object.chain_config !== undefined && object.chain_config !== null) {
-      message.chainConfig = ChainConfig.fromAmino(object.chain_config);
+      message.chain_config = ChainConfig.fromAmino(object.chain_config);
     }
     if (object.allow_unprotected_txs !== undefined && object.allow_unprotected_txs !== null) {
-      message.allowUnprotectedTxs = object.allow_unprotected_txs;
+      message.allow_unprotected_txs = object.allow_unprotected_txs;
     }
     return message;
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    obj.evm_denom = message.evmDenom === "" ? undefined : message.evmDenom;
-    obj.enable_create = message.enableCreate === false ? undefined : message.enableCreate;
-    obj.enable_call = message.enableCall === false ? undefined : message.enableCall;
-    if (message.extraEips) {
-      obj.extra_eips = message.extraEips.map(e => e.toString());
+    obj.evm_denom = message.evm_denom === "" ? undefined : message.evm_denom;
+    obj.enable_create = message.enable_create === false ? undefined : message.enable_create;
+    obj.enable_call = message.enable_call === false ? undefined : message.enable_call;
+    if (message.extra_eips) {
+      obj.extra_eips = message.extra_eips.map(e => e.toString());
     } else {
-      obj.extra_eips = message.extraEips;
+      obj.extra_eips = message.extra_eips;
     }
-    obj.chain_config = message.chainConfig ? ChainConfig.toAmino(message.chainConfig) : ChainConfig.toAmino(ChainConfig.fromPartial({}));
-    obj.allow_unprotected_txs = message.allowUnprotectedTxs === false ? undefined : message.allowUnprotectedTxs;
+    obj.chain_config = message.chain_config ? ChainConfig.toAmino(message.chain_config) : ChainConfig.toAmino(ChainConfig.fromPartial({}));
+    obj.allow_unprotected_txs = message.allow_unprotected_txs === false ? undefined : message.allow_unprotected_txs;
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {
@@ -566,92 +566,92 @@ export const Params = {
 };
 function createBaseChainConfig(): ChainConfig {
   return {
-    homesteadBlock: "",
-    daoForkBlock: "",
-    daoForkSupport: false,
-    eip150Block: "",
-    eip150Hash: "",
-    eip155Block: "",
-    eip158Block: "",
-    byzantiumBlock: "",
-    constantinopleBlock: "",
-    petersburgBlock: "",
-    istanbulBlock: "",
-    muirGlacierBlock: "",
-    berlinBlock: "",
-    londonBlock: "",
-    arrowGlacierBlock: "",
-    grayGlacierBlock: "",
-    mergeNetsplitBlock: "",
-    shanghaiBlock: "",
-    cancunBlock: ""
+    homestead_block: "",
+    dao_fork_block: "",
+    dao_fork_support: false,
+    eip150_block: "",
+    eip150_hash: "",
+    eip155_block: "",
+    eip158_block: "",
+    byzantium_block: "",
+    constantinople_block: "",
+    petersburg_block: "",
+    istanbul_block: "",
+    muir_glacier_block: "",
+    berlin_block: "",
+    london_block: "",
+    arrow_glacier_block: "",
+    gray_glacier_block: "",
+    merge_netsplit_block: "",
+    shanghai_block: "",
+    cancun_block: ""
   };
 }
 export const ChainConfig = {
   typeUrl: "/ethermint.evm.v1.ChainConfig",
   is(o: any): o is ChainConfig {
-    return o && (o.$typeUrl === ChainConfig.typeUrl || typeof o.homesteadBlock === "string" && typeof o.daoForkBlock === "string" && typeof o.daoForkSupport === "boolean" && typeof o.eip150Block === "string" && typeof o.eip150Hash === "string" && typeof o.eip155Block === "string" && typeof o.eip158Block === "string" && typeof o.byzantiumBlock === "string" && typeof o.constantinopleBlock === "string" && typeof o.petersburgBlock === "string" && typeof o.istanbulBlock === "string" && typeof o.muirGlacierBlock === "string" && typeof o.berlinBlock === "string" && typeof o.londonBlock === "string" && typeof o.arrowGlacierBlock === "string" && typeof o.grayGlacierBlock === "string" && typeof o.mergeNetsplitBlock === "string" && typeof o.shanghaiBlock === "string" && typeof o.cancunBlock === "string");
+    return o && (o.$typeUrl === ChainConfig.typeUrl || typeof o.homestead_block === "string" && typeof o.dao_fork_block === "string" && typeof o.dao_fork_support === "boolean" && typeof o.eip150_block === "string" && typeof o.eip150_hash === "string" && typeof o.eip155_block === "string" && typeof o.eip158_block === "string" && typeof o.byzantium_block === "string" && typeof o.constantinople_block === "string" && typeof o.petersburg_block === "string" && typeof o.istanbul_block === "string" && typeof o.muir_glacier_block === "string" && typeof o.berlin_block === "string" && typeof o.london_block === "string" && typeof o.arrow_glacier_block === "string" && typeof o.gray_glacier_block === "string" && typeof o.merge_netsplit_block === "string" && typeof o.shanghai_block === "string" && typeof o.cancun_block === "string");
   },
   isAmino(o: any): o is ChainConfigAmino {
     return o && (o.$typeUrl === ChainConfig.typeUrl || typeof o.homestead_block === "string" && typeof o.dao_fork_block === "string" && typeof o.dao_fork_support === "boolean" && typeof o.eip150_block === "string" && typeof o.eip150_hash === "string" && typeof o.eip155_block === "string" && typeof o.eip158_block === "string" && typeof o.byzantium_block === "string" && typeof o.constantinople_block === "string" && typeof o.petersburg_block === "string" && typeof o.istanbul_block === "string" && typeof o.muir_glacier_block === "string" && typeof o.berlin_block === "string" && typeof o.london_block === "string" && typeof o.arrow_glacier_block === "string" && typeof o.gray_glacier_block === "string" && typeof o.merge_netsplit_block === "string" && typeof o.shanghai_block === "string" && typeof o.cancun_block === "string");
   },
   encode(message: ChainConfig, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.homesteadBlock !== "") {
-      writer.uint32(10).string(message.homesteadBlock);
+    if (message.homestead_block !== "") {
+      writer.uint32(10).string(message.homestead_block);
     }
-    if (message.daoForkBlock !== "") {
-      writer.uint32(18).string(message.daoForkBlock);
+    if (message.dao_fork_block !== "") {
+      writer.uint32(18).string(message.dao_fork_block);
     }
-    if (message.daoForkSupport === true) {
-      writer.uint32(24).bool(message.daoForkSupport);
+    if (message.dao_fork_support === true) {
+      writer.uint32(24).bool(message.dao_fork_support);
     }
-    if (message.eip150Block !== "") {
-      writer.uint32(34).string(message.eip150Block);
+    if (message.eip150_block !== "") {
+      writer.uint32(34).string(message.eip150_block);
     }
-    if (message.eip150Hash !== "") {
-      writer.uint32(42).string(message.eip150Hash);
+    if (message.eip150_hash !== "") {
+      writer.uint32(42).string(message.eip150_hash);
     }
-    if (message.eip155Block !== "") {
-      writer.uint32(50).string(message.eip155Block);
+    if (message.eip155_block !== "") {
+      writer.uint32(50).string(message.eip155_block);
     }
-    if (message.eip158Block !== "") {
-      writer.uint32(58).string(message.eip158Block);
+    if (message.eip158_block !== "") {
+      writer.uint32(58).string(message.eip158_block);
     }
-    if (message.byzantiumBlock !== "") {
-      writer.uint32(66).string(message.byzantiumBlock);
+    if (message.byzantium_block !== "") {
+      writer.uint32(66).string(message.byzantium_block);
     }
-    if (message.constantinopleBlock !== "") {
-      writer.uint32(74).string(message.constantinopleBlock);
+    if (message.constantinople_block !== "") {
+      writer.uint32(74).string(message.constantinople_block);
     }
-    if (message.petersburgBlock !== "") {
-      writer.uint32(82).string(message.petersburgBlock);
+    if (message.petersburg_block !== "") {
+      writer.uint32(82).string(message.petersburg_block);
     }
-    if (message.istanbulBlock !== "") {
-      writer.uint32(90).string(message.istanbulBlock);
+    if (message.istanbul_block !== "") {
+      writer.uint32(90).string(message.istanbul_block);
     }
-    if (message.muirGlacierBlock !== "") {
-      writer.uint32(98).string(message.muirGlacierBlock);
+    if (message.muir_glacier_block !== "") {
+      writer.uint32(98).string(message.muir_glacier_block);
     }
-    if (message.berlinBlock !== "") {
-      writer.uint32(106).string(message.berlinBlock);
+    if (message.berlin_block !== "") {
+      writer.uint32(106).string(message.berlin_block);
     }
-    if (message.londonBlock !== "") {
-      writer.uint32(138).string(message.londonBlock);
+    if (message.london_block !== "") {
+      writer.uint32(138).string(message.london_block);
     }
-    if (message.arrowGlacierBlock !== "") {
-      writer.uint32(146).string(message.arrowGlacierBlock);
+    if (message.arrow_glacier_block !== "") {
+      writer.uint32(146).string(message.arrow_glacier_block);
     }
-    if (message.grayGlacierBlock !== "") {
-      writer.uint32(162).string(message.grayGlacierBlock);
+    if (message.gray_glacier_block !== "") {
+      writer.uint32(162).string(message.gray_glacier_block);
     }
-    if (message.mergeNetsplitBlock !== "") {
-      writer.uint32(170).string(message.mergeNetsplitBlock);
+    if (message.merge_netsplit_block !== "") {
+      writer.uint32(170).string(message.merge_netsplit_block);
     }
-    if (message.shanghaiBlock !== "") {
-      writer.uint32(178).string(message.shanghaiBlock);
+    if (message.shanghai_block !== "") {
+      writer.uint32(178).string(message.shanghai_block);
     }
-    if (message.cancunBlock !== "") {
-      writer.uint32(186).string(message.cancunBlock);
+    if (message.cancun_block !== "") {
+      writer.uint32(186).string(message.cancun_block);
     }
     return writer;
   },
@@ -663,61 +663,61 @@ export const ChainConfig = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.homesteadBlock = reader.string();
+          message.homestead_block = reader.string();
           break;
         case 2:
-          message.daoForkBlock = reader.string();
+          message.dao_fork_block = reader.string();
           break;
         case 3:
-          message.daoForkSupport = reader.bool();
+          message.dao_fork_support = reader.bool();
           break;
         case 4:
-          message.eip150Block = reader.string();
+          message.eip150_block = reader.string();
           break;
         case 5:
-          message.eip150Hash = reader.string();
+          message.eip150_hash = reader.string();
           break;
         case 6:
-          message.eip155Block = reader.string();
+          message.eip155_block = reader.string();
           break;
         case 7:
-          message.eip158Block = reader.string();
+          message.eip158_block = reader.string();
           break;
         case 8:
-          message.byzantiumBlock = reader.string();
+          message.byzantium_block = reader.string();
           break;
         case 9:
-          message.constantinopleBlock = reader.string();
+          message.constantinople_block = reader.string();
           break;
         case 10:
-          message.petersburgBlock = reader.string();
+          message.petersburg_block = reader.string();
           break;
         case 11:
-          message.istanbulBlock = reader.string();
+          message.istanbul_block = reader.string();
           break;
         case 12:
-          message.muirGlacierBlock = reader.string();
+          message.muir_glacier_block = reader.string();
           break;
         case 13:
-          message.berlinBlock = reader.string();
+          message.berlin_block = reader.string();
           break;
         case 17:
-          message.londonBlock = reader.string();
+          message.london_block = reader.string();
           break;
         case 18:
-          message.arrowGlacierBlock = reader.string();
+          message.arrow_glacier_block = reader.string();
           break;
         case 20:
-          message.grayGlacierBlock = reader.string();
+          message.gray_glacier_block = reader.string();
           break;
         case 21:
-          message.mergeNetsplitBlock = reader.string();
+          message.merge_netsplit_block = reader.string();
           break;
         case 22:
-          message.shanghaiBlock = reader.string();
+          message.shanghai_block = reader.string();
           break;
         case 23:
-          message.cancunBlock = reader.string();
+          message.cancun_block = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -728,109 +728,109 @@ export const ChainConfig = {
   },
   fromPartial(object: DeepPartial<ChainConfig>): ChainConfig {
     const message = createBaseChainConfig();
-    message.homesteadBlock = object.homesteadBlock ?? "";
-    message.daoForkBlock = object.daoForkBlock ?? "";
-    message.daoForkSupport = object.daoForkSupport ?? false;
-    message.eip150Block = object.eip150Block ?? "";
-    message.eip150Hash = object.eip150Hash ?? "";
-    message.eip155Block = object.eip155Block ?? "";
-    message.eip158Block = object.eip158Block ?? "";
-    message.byzantiumBlock = object.byzantiumBlock ?? "";
-    message.constantinopleBlock = object.constantinopleBlock ?? "";
-    message.petersburgBlock = object.petersburgBlock ?? "";
-    message.istanbulBlock = object.istanbulBlock ?? "";
-    message.muirGlacierBlock = object.muirGlacierBlock ?? "";
-    message.berlinBlock = object.berlinBlock ?? "";
-    message.londonBlock = object.londonBlock ?? "";
-    message.arrowGlacierBlock = object.arrowGlacierBlock ?? "";
-    message.grayGlacierBlock = object.grayGlacierBlock ?? "";
-    message.mergeNetsplitBlock = object.mergeNetsplitBlock ?? "";
-    message.shanghaiBlock = object.shanghaiBlock ?? "";
-    message.cancunBlock = object.cancunBlock ?? "";
+    message.homestead_block = object.homestead_block ?? "";
+    message.dao_fork_block = object.dao_fork_block ?? "";
+    message.dao_fork_support = object.dao_fork_support ?? false;
+    message.eip150_block = object.eip150_block ?? "";
+    message.eip150_hash = object.eip150_hash ?? "";
+    message.eip155_block = object.eip155_block ?? "";
+    message.eip158_block = object.eip158_block ?? "";
+    message.byzantium_block = object.byzantium_block ?? "";
+    message.constantinople_block = object.constantinople_block ?? "";
+    message.petersburg_block = object.petersburg_block ?? "";
+    message.istanbul_block = object.istanbul_block ?? "";
+    message.muir_glacier_block = object.muir_glacier_block ?? "";
+    message.berlin_block = object.berlin_block ?? "";
+    message.london_block = object.london_block ?? "";
+    message.arrow_glacier_block = object.arrow_glacier_block ?? "";
+    message.gray_glacier_block = object.gray_glacier_block ?? "";
+    message.merge_netsplit_block = object.merge_netsplit_block ?? "";
+    message.shanghai_block = object.shanghai_block ?? "";
+    message.cancun_block = object.cancun_block ?? "";
     return message;
   },
   fromAmino(object: ChainConfigAmino): ChainConfig {
     const message = createBaseChainConfig();
     if (object.homestead_block !== undefined && object.homestead_block !== null) {
-      message.homesteadBlock = object.homestead_block;
+      message.homestead_block = object.homestead_block;
     }
     if (object.dao_fork_block !== undefined && object.dao_fork_block !== null) {
-      message.daoForkBlock = object.dao_fork_block;
+      message.dao_fork_block = object.dao_fork_block;
     }
     if (object.dao_fork_support !== undefined && object.dao_fork_support !== null) {
-      message.daoForkSupport = object.dao_fork_support;
+      message.dao_fork_support = object.dao_fork_support;
     }
     if (object.eip150_block !== undefined && object.eip150_block !== null) {
-      message.eip150Block = object.eip150_block;
+      message.eip150_block = object.eip150_block;
     }
     if (object.eip150_hash !== undefined && object.eip150_hash !== null) {
-      message.eip150Hash = object.eip150_hash;
+      message.eip150_hash = object.eip150_hash;
     }
     if (object.eip155_block !== undefined && object.eip155_block !== null) {
-      message.eip155Block = object.eip155_block;
+      message.eip155_block = object.eip155_block;
     }
     if (object.eip158_block !== undefined && object.eip158_block !== null) {
-      message.eip158Block = object.eip158_block;
+      message.eip158_block = object.eip158_block;
     }
     if (object.byzantium_block !== undefined && object.byzantium_block !== null) {
-      message.byzantiumBlock = object.byzantium_block;
+      message.byzantium_block = object.byzantium_block;
     }
     if (object.constantinople_block !== undefined && object.constantinople_block !== null) {
-      message.constantinopleBlock = object.constantinople_block;
+      message.constantinople_block = object.constantinople_block;
     }
     if (object.petersburg_block !== undefined && object.petersburg_block !== null) {
-      message.petersburgBlock = object.petersburg_block;
+      message.petersburg_block = object.petersburg_block;
     }
     if (object.istanbul_block !== undefined && object.istanbul_block !== null) {
-      message.istanbulBlock = object.istanbul_block;
+      message.istanbul_block = object.istanbul_block;
     }
     if (object.muir_glacier_block !== undefined && object.muir_glacier_block !== null) {
-      message.muirGlacierBlock = object.muir_glacier_block;
+      message.muir_glacier_block = object.muir_glacier_block;
     }
     if (object.berlin_block !== undefined && object.berlin_block !== null) {
-      message.berlinBlock = object.berlin_block;
+      message.berlin_block = object.berlin_block;
     }
     if (object.london_block !== undefined && object.london_block !== null) {
-      message.londonBlock = object.london_block;
+      message.london_block = object.london_block;
     }
     if (object.arrow_glacier_block !== undefined && object.arrow_glacier_block !== null) {
-      message.arrowGlacierBlock = object.arrow_glacier_block;
+      message.arrow_glacier_block = object.arrow_glacier_block;
     }
     if (object.gray_glacier_block !== undefined && object.gray_glacier_block !== null) {
-      message.grayGlacierBlock = object.gray_glacier_block;
+      message.gray_glacier_block = object.gray_glacier_block;
     }
     if (object.merge_netsplit_block !== undefined && object.merge_netsplit_block !== null) {
-      message.mergeNetsplitBlock = object.merge_netsplit_block;
+      message.merge_netsplit_block = object.merge_netsplit_block;
     }
     if (object.shanghai_block !== undefined && object.shanghai_block !== null) {
-      message.shanghaiBlock = object.shanghai_block;
+      message.shanghai_block = object.shanghai_block;
     }
     if (object.cancun_block !== undefined && object.cancun_block !== null) {
-      message.cancunBlock = object.cancun_block;
+      message.cancun_block = object.cancun_block;
     }
     return message;
   },
   toAmino(message: ChainConfig): ChainConfigAmino {
     const obj: any = {};
-    obj.homestead_block = message.homesteadBlock === "" ? undefined : message.homesteadBlock;
-    obj.dao_fork_block = message.daoForkBlock === "" ? undefined : message.daoForkBlock;
-    obj.dao_fork_support = message.daoForkSupport === false ? undefined : message.daoForkSupport;
-    obj.eip150_block = message.eip150Block === "" ? undefined : message.eip150Block;
-    obj.eip150_hash = message.eip150Hash === "" ? undefined : message.eip150Hash;
-    obj.eip155_block = message.eip155Block === "" ? undefined : message.eip155Block;
-    obj.eip158_block = message.eip158Block === "" ? undefined : message.eip158Block;
-    obj.byzantium_block = message.byzantiumBlock === "" ? undefined : message.byzantiumBlock;
-    obj.constantinople_block = message.constantinopleBlock === "" ? undefined : message.constantinopleBlock;
-    obj.petersburg_block = message.petersburgBlock === "" ? undefined : message.petersburgBlock;
-    obj.istanbul_block = message.istanbulBlock === "" ? undefined : message.istanbulBlock;
-    obj.muir_glacier_block = message.muirGlacierBlock === "" ? undefined : message.muirGlacierBlock;
-    obj.berlin_block = message.berlinBlock === "" ? undefined : message.berlinBlock;
-    obj.london_block = message.londonBlock === "" ? undefined : message.londonBlock;
-    obj.arrow_glacier_block = message.arrowGlacierBlock === "" ? undefined : message.arrowGlacierBlock;
-    obj.gray_glacier_block = message.grayGlacierBlock === "" ? undefined : message.grayGlacierBlock;
-    obj.merge_netsplit_block = message.mergeNetsplitBlock === "" ? undefined : message.mergeNetsplitBlock;
-    obj.shanghai_block = message.shanghaiBlock === "" ? undefined : message.shanghaiBlock;
-    obj.cancun_block = message.cancunBlock === "" ? undefined : message.cancunBlock;
+    obj.homestead_block = message.homestead_block === "" ? undefined : message.homestead_block;
+    obj.dao_fork_block = message.dao_fork_block === "" ? undefined : message.dao_fork_block;
+    obj.dao_fork_support = message.dao_fork_support === false ? undefined : message.dao_fork_support;
+    obj.eip150_block = message.eip150_block === "" ? undefined : message.eip150_block;
+    obj.eip150_hash = message.eip150_hash === "" ? undefined : message.eip150_hash;
+    obj.eip155_block = message.eip155_block === "" ? undefined : message.eip155_block;
+    obj.eip158_block = message.eip158_block === "" ? undefined : message.eip158_block;
+    obj.byzantium_block = message.byzantium_block === "" ? undefined : message.byzantium_block;
+    obj.constantinople_block = message.constantinople_block === "" ? undefined : message.constantinople_block;
+    obj.petersburg_block = message.petersburg_block === "" ? undefined : message.petersburg_block;
+    obj.istanbul_block = message.istanbul_block === "" ? undefined : message.istanbul_block;
+    obj.muir_glacier_block = message.muir_glacier_block === "" ? undefined : message.muir_glacier_block;
+    obj.berlin_block = message.berlin_block === "" ? undefined : message.berlin_block;
+    obj.london_block = message.london_block === "" ? undefined : message.london_block;
+    obj.arrow_glacier_block = message.arrow_glacier_block === "" ? undefined : message.arrow_glacier_block;
+    obj.gray_glacier_block = message.gray_glacier_block === "" ? undefined : message.gray_glacier_block;
+    obj.merge_netsplit_block = message.merge_netsplit_block === "" ? undefined : message.merge_netsplit_block;
+    obj.shanghai_block = message.shanghai_block === "" ? undefined : message.shanghai_block;
+    obj.cancun_block = message.cancun_block === "" ? undefined : message.cancun_block;
     return obj;
   },
   fromAminoMsg(object: ChainConfigAminoMsg): ChainConfig {
@@ -1023,10 +1023,10 @@ function createBaseLog(): Log {
     address: "",
     topics: [],
     data: new Uint8Array(),
-    blockNumber: BigInt(0),
-    txHash: "",
-    txIndex: BigInt(0),
-    blockHash: "",
+    block_number: BigInt(0),
+    tx_hash: "",
+    tx_index: BigInt(0),
+    block_hash: "",
     index: BigInt(0),
     removed: false
   };
@@ -1034,7 +1034,7 @@ function createBaseLog(): Log {
 export const Log = {
   typeUrl: "/ethermint.evm.v1.Log",
   is(o: any): o is Log {
-    return o && (o.$typeUrl === Log.typeUrl || typeof o.address === "string" && Array.isArray(o.topics) && (!o.topics.length || typeof o.topics[0] === "string") && (o.data instanceof Uint8Array || typeof o.data === "string") && typeof o.blockNumber === "bigint" && typeof o.txHash === "string" && typeof o.txIndex === "bigint" && typeof o.blockHash === "string" && typeof o.index === "bigint" && typeof o.removed === "boolean");
+    return o && (o.$typeUrl === Log.typeUrl || typeof o.address === "string" && Array.isArray(o.topics) && (!o.topics.length || typeof o.topics[0] === "string") && (o.data instanceof Uint8Array || typeof o.data === "string") && typeof o.block_number === "bigint" && typeof o.tx_hash === "string" && typeof o.tx_index === "bigint" && typeof o.block_hash === "string" && typeof o.index === "bigint" && typeof o.removed === "boolean");
   },
   isAmino(o: any): o is LogAmino {
     return o && (o.$typeUrl === Log.typeUrl || typeof o.address === "string" && Array.isArray(o.topics) && (!o.topics.length || typeof o.topics[0] === "string") && (o.data instanceof Uint8Array || typeof o.data === "string") && typeof o.block_number === "bigint" && typeof o.tx_hash === "string" && typeof o.tx_index === "bigint" && typeof o.block_hash === "string" && typeof o.index === "bigint" && typeof o.removed === "boolean");
@@ -1049,17 +1049,17 @@ export const Log = {
     if (message.data.length !== 0) {
       writer.uint32(26).bytes(message.data);
     }
-    if (message.blockNumber !== BigInt(0)) {
-      writer.uint32(32).uint64(message.blockNumber);
+    if (message.block_number !== BigInt(0)) {
+      writer.uint32(32).uint64(message.block_number);
     }
-    if (message.txHash !== "") {
-      writer.uint32(42).string(message.txHash);
+    if (message.tx_hash !== "") {
+      writer.uint32(42).string(message.tx_hash);
     }
-    if (message.txIndex !== BigInt(0)) {
-      writer.uint32(48).uint64(message.txIndex);
+    if (message.tx_index !== BigInt(0)) {
+      writer.uint32(48).uint64(message.tx_index);
     }
-    if (message.blockHash !== "") {
-      writer.uint32(58).string(message.blockHash);
+    if (message.block_hash !== "") {
+      writer.uint32(58).string(message.block_hash);
     }
     if (message.index !== BigInt(0)) {
       writer.uint32(64).uint64(message.index);
@@ -1086,16 +1086,16 @@ export const Log = {
           message.data = reader.bytes();
           break;
         case 4:
-          message.blockNumber = reader.uint64();
+          message.block_number = reader.uint64();
           break;
         case 5:
-          message.txHash = reader.string();
+          message.tx_hash = reader.string();
           break;
         case 6:
-          message.txIndex = reader.uint64();
+          message.tx_index = reader.uint64();
           break;
         case 7:
-          message.blockHash = reader.string();
+          message.block_hash = reader.string();
           break;
         case 8:
           message.index = reader.uint64();
@@ -1115,10 +1115,10 @@ export const Log = {
     message.address = object.address ?? "";
     message.topics = object.topics?.map(e => e) || [];
     message.data = object.data ?? new Uint8Array();
-    message.blockNumber = object.blockNumber !== undefined && object.blockNumber !== null ? BigInt(object.blockNumber.toString()) : BigInt(0);
-    message.txHash = object.txHash ?? "";
-    message.txIndex = object.txIndex !== undefined && object.txIndex !== null ? BigInt(object.txIndex.toString()) : BigInt(0);
-    message.blockHash = object.blockHash ?? "";
+    message.block_number = object.block_number !== undefined && object.block_number !== null ? BigInt(object.block_number.toString()) : BigInt(0);
+    message.tx_hash = object.tx_hash ?? "";
+    message.tx_index = object.tx_index !== undefined && object.tx_index !== null ? BigInt(object.tx_index.toString()) : BigInt(0);
+    message.block_hash = object.block_hash ?? "";
     message.index = object.index !== undefined && object.index !== null ? BigInt(object.index.toString()) : BigInt(0);
     message.removed = object.removed ?? false;
     return message;
@@ -1133,16 +1133,16 @@ export const Log = {
       message.data = bytesFromBase64(object.data);
     }
     if (object.block_number !== undefined && object.block_number !== null) {
-      message.blockNumber = BigInt(object.block_number);
+      message.block_number = BigInt(object.block_number);
     }
     if (object.tx_hash !== undefined && object.tx_hash !== null) {
-      message.txHash = object.tx_hash;
+      message.tx_hash = object.tx_hash;
     }
     if (object.tx_index !== undefined && object.tx_index !== null) {
-      message.txIndex = BigInt(object.tx_index);
+      message.tx_index = BigInt(object.tx_index);
     }
     if (object.block_hash !== undefined && object.block_hash !== null) {
-      message.blockHash = object.block_hash;
+      message.block_hash = object.block_hash;
     }
     if (object.index !== undefined && object.index !== null) {
       message.index = BigInt(object.index);
@@ -1161,10 +1161,10 @@ export const Log = {
       obj.topics = message.topics;
     }
     obj.data = message.data ? base64FromBytes(message.data) : undefined;
-    obj.block_number = message.blockNumber ? message.blockNumber?.toString() : "0";
-    obj.tx_hash = message.txHash ?? "";
-    obj.tx_index = message.txIndex ? message.txIndex?.toString() : "0";
-    obj.block_hash = message.blockHash ?? "";
+    obj.block_number = message.block_number ? message.block_number?.toString() : "0";
+    obj.tx_hash = message.tx_hash ?? "";
+    obj.tx_index = message.tx_index ? message.tx_index?.toString() : "0";
+    obj.block_hash = message.block_hash ?? "";
     obj.index = message.index ? message.index?.toString() : "0";
     obj.removed = message.removed === false ? undefined : message.removed;
     return obj;
@@ -1188,31 +1188,31 @@ export const Log = {
 };
 function createBaseTxResult(): TxResult {
   return {
-    contractAddress: "",
+    contract_address: "",
     bloom: new Uint8Array(),
-    txLogs: TransactionLogs.fromPartial({}),
+    tx_logs: TransactionLogs.fromPartial({}),
     ret: new Uint8Array(),
     reverted: false,
-    gasUsed: BigInt(0)
+    gas_used: BigInt(0)
   };
 }
 export const TxResult = {
   typeUrl: "/ethermint.evm.v1.TxResult",
   is(o: any): o is TxResult {
-    return o && (o.$typeUrl === TxResult.typeUrl || typeof o.contractAddress === "string" && (o.bloom instanceof Uint8Array || typeof o.bloom === "string") && TransactionLogs.is(o.txLogs) && (o.ret instanceof Uint8Array || typeof o.ret === "string") && typeof o.reverted === "boolean" && typeof o.gasUsed === "bigint");
+    return o && (o.$typeUrl === TxResult.typeUrl || typeof o.contract_address === "string" && (o.bloom instanceof Uint8Array || typeof o.bloom === "string") && TransactionLogs.is(o.tx_logs) && (o.ret instanceof Uint8Array || typeof o.ret === "string") && typeof o.reverted === "boolean" && typeof o.gas_used === "bigint");
   },
   isAmino(o: any): o is TxResultAmino {
     return o && (o.$typeUrl === TxResult.typeUrl || typeof o.contract_address === "string" && (o.bloom instanceof Uint8Array || typeof o.bloom === "string") && TransactionLogs.isAmino(o.tx_logs) && (o.ret instanceof Uint8Array || typeof o.ret === "string") && typeof o.reverted === "boolean" && typeof o.gas_used === "bigint");
   },
   encode(message: TxResult, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.contractAddress !== "") {
-      writer.uint32(10).string(message.contractAddress);
+    if (message.contract_address !== "") {
+      writer.uint32(10).string(message.contract_address);
     }
     if (message.bloom.length !== 0) {
       writer.uint32(18).bytes(message.bloom);
     }
-    if (message.txLogs !== undefined) {
-      TransactionLogs.encode(message.txLogs, writer.uint32(26).fork()).ldelim();
+    if (message.tx_logs !== undefined) {
+      TransactionLogs.encode(message.tx_logs, writer.uint32(26).fork()).ldelim();
     }
     if (message.ret.length !== 0) {
       writer.uint32(34).bytes(message.ret);
@@ -1220,8 +1220,8 @@ export const TxResult = {
     if (message.reverted === true) {
       writer.uint32(40).bool(message.reverted);
     }
-    if (message.gasUsed !== BigInt(0)) {
-      writer.uint32(48).uint64(message.gasUsed);
+    if (message.gas_used !== BigInt(0)) {
+      writer.uint32(48).uint64(message.gas_used);
     }
     return writer;
   },
@@ -1233,13 +1233,13 @@ export const TxResult = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.contractAddress = reader.string();
+          message.contract_address = reader.string();
           break;
         case 2:
           message.bloom = reader.bytes();
           break;
         case 3:
-          message.txLogs = TransactionLogs.decode(reader, reader.uint32());
+          message.tx_logs = TransactionLogs.decode(reader, reader.uint32());
           break;
         case 4:
           message.ret = reader.bytes();
@@ -1248,7 +1248,7 @@ export const TxResult = {
           message.reverted = reader.bool();
           break;
         case 6:
-          message.gasUsed = reader.uint64();
+          message.gas_used = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1259,24 +1259,24 @@ export const TxResult = {
   },
   fromPartial(object: DeepPartial<TxResult>): TxResult {
     const message = createBaseTxResult();
-    message.contractAddress = object.contractAddress ?? "";
+    message.contract_address = object.contract_address ?? "";
     message.bloom = object.bloom ?? new Uint8Array();
-    message.txLogs = object.txLogs !== undefined && object.txLogs !== null ? TransactionLogs.fromPartial(object.txLogs) : undefined;
+    message.tx_logs = object.tx_logs !== undefined && object.tx_logs !== null ? TransactionLogs.fromPartial(object.tx_logs) : undefined;
     message.ret = object.ret ?? new Uint8Array();
     message.reverted = object.reverted ?? false;
-    message.gasUsed = object.gasUsed !== undefined && object.gasUsed !== null ? BigInt(object.gasUsed.toString()) : BigInt(0);
+    message.gas_used = object.gas_used !== undefined && object.gas_used !== null ? BigInt(object.gas_used.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: TxResultAmino): TxResult {
     const message = createBaseTxResult();
     if (object.contract_address !== undefined && object.contract_address !== null) {
-      message.contractAddress = object.contract_address;
+      message.contract_address = object.contract_address;
     }
     if (object.bloom !== undefined && object.bloom !== null) {
       message.bloom = bytesFromBase64(object.bloom);
     }
     if (object.tx_logs !== undefined && object.tx_logs !== null) {
-      message.txLogs = TransactionLogs.fromAmino(object.tx_logs);
+      message.tx_logs = TransactionLogs.fromAmino(object.tx_logs);
     }
     if (object.ret !== undefined && object.ret !== null) {
       message.ret = bytesFromBase64(object.ret);
@@ -1285,18 +1285,18 @@ export const TxResult = {
       message.reverted = object.reverted;
     }
     if (object.gas_used !== undefined && object.gas_used !== null) {
-      message.gasUsed = BigInt(object.gas_used);
+      message.gas_used = BigInt(object.gas_used);
     }
     return message;
   },
   toAmino(message: TxResult): TxResultAmino {
     const obj: any = {};
-    obj.contract_address = message.contractAddress === "" ? undefined : message.contractAddress;
+    obj.contract_address = message.contract_address === "" ? undefined : message.contract_address;
     obj.bloom = message.bloom ? base64FromBytes(message.bloom) : undefined;
-    obj.tx_logs = message.txLogs ? TransactionLogs.toAmino(message.txLogs) : TransactionLogs.toAmino(TransactionLogs.fromPartial({}));
+    obj.tx_logs = message.tx_logs ? TransactionLogs.toAmino(message.tx_logs) : TransactionLogs.toAmino(TransactionLogs.fromPartial({}));
     obj.ret = message.ret ? base64FromBytes(message.ret) : undefined;
     obj.reverted = message.reverted === false ? undefined : message.reverted;
-    obj.gas_used = message.gasUsed !== BigInt(0) ? message.gasUsed?.toString() : undefined;
+    obj.gas_used = message.gas_used !== BigInt(0) ? message.gas_used?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: TxResultAminoMsg): TxResult {
@@ -1321,13 +1321,13 @@ export const TxResult = {
 function createBaseAccessTuple(): AccessTuple {
   return {
     address: "",
-    storageKeys: []
+    storage_keys: []
   };
 }
 export const AccessTuple = {
   typeUrl: "/ethermint.evm.v1.AccessTuple",
   is(o: any): o is AccessTuple {
-    return o && (o.$typeUrl === AccessTuple.typeUrl || typeof o.address === "string" && Array.isArray(o.storageKeys) && (!o.storageKeys.length || typeof o.storageKeys[0] === "string"));
+    return o && (o.$typeUrl === AccessTuple.typeUrl || typeof o.address === "string" && Array.isArray(o.storage_keys) && (!o.storage_keys.length || typeof o.storage_keys[0] === "string"));
   },
   isAmino(o: any): o is AccessTupleAmino {
     return o && (o.$typeUrl === AccessTuple.typeUrl || typeof o.address === "string" && Array.isArray(o.storage_keys) && (!o.storage_keys.length || typeof o.storage_keys[0] === "string"));
@@ -1336,7 +1336,7 @@ export const AccessTuple = {
     if (message.address !== "") {
       writer.uint32(10).string(message.address);
     }
-    for (const v of message.storageKeys) {
+    for (const v of message.storage_keys) {
       writer.uint32(18).string(v!);
     }
     return writer;
@@ -1352,7 +1352,7 @@ export const AccessTuple = {
           message.address = reader.string();
           break;
         case 2:
-          message.storageKeys.push(reader.string());
+          message.storage_keys.push(reader.string());
           break;
         default:
           reader.skipType(tag & 7);
@@ -1364,7 +1364,7 @@ export const AccessTuple = {
   fromPartial(object: DeepPartial<AccessTuple>): AccessTuple {
     const message = createBaseAccessTuple();
     message.address = object.address ?? "";
-    message.storageKeys = object.storageKeys?.map(e => e) || [];
+    message.storage_keys = object.storage_keys?.map(e => e) || [];
     return message;
   },
   fromAmino(object: AccessTupleAmino): AccessTuple {
@@ -1372,16 +1372,16 @@ export const AccessTuple = {
     if (object.address !== undefined && object.address !== null) {
       message.address = object.address;
     }
-    message.storageKeys = object.storage_keys?.map(e => e) || [];
+    message.storage_keys = object.storage_keys?.map(e => e) || [];
     return message;
   },
   toAmino(message: AccessTuple): AccessTupleAmino {
     const obj: any = {};
     obj.address = message.address === "" ? undefined : message.address;
-    if (message.storageKeys) {
-      obj.storage_keys = message.storageKeys.map(e => e);
+    if (message.storage_keys) {
+      obj.storage_keys = message.storage_keys.map(e => e);
     } else {
-      obj.storage_keys = message.storageKeys;
+      obj.storage_keys = message.storage_keys;
     }
     return obj;
   },
@@ -1407,20 +1407,20 @@ function createBaseTraceConfig(): TraceConfig {
     tracer: "",
     timeout: "",
     reexec: BigInt(0),
-    disableStack: false,
-    disableStorage: false,
+    disable_stack: false,
+    disable_storage: false,
     debug: false,
     limit: 0,
     overrides: undefined,
-    enableMemory: false,
-    enableReturnData: false,
-    tracerJsonConfig: ""
+    enable_memory: false,
+    enable_return_data: false,
+    tracer_json_config: ""
   };
 }
 export const TraceConfig = {
   typeUrl: "/ethermint.evm.v1.TraceConfig",
   is(o: any): o is TraceConfig {
-    return o && (o.$typeUrl === TraceConfig.typeUrl || typeof o.tracer === "string" && typeof o.timeout === "string" && typeof o.reexec === "bigint" && typeof o.disableStack === "boolean" && typeof o.disableStorage === "boolean" && typeof o.debug === "boolean" && typeof o.limit === "number" && typeof o.enableMemory === "boolean" && typeof o.enableReturnData === "boolean" && typeof o.tracerJsonConfig === "string");
+    return o && (o.$typeUrl === TraceConfig.typeUrl || typeof o.tracer === "string" && typeof o.timeout === "string" && typeof o.reexec === "bigint" && typeof o.disable_stack === "boolean" && typeof o.disable_storage === "boolean" && typeof o.debug === "boolean" && typeof o.limit === "number" && typeof o.enable_memory === "boolean" && typeof o.enable_return_data === "boolean" && typeof o.tracer_json_config === "string");
   },
   isAmino(o: any): o is TraceConfigAmino {
     return o && (o.$typeUrl === TraceConfig.typeUrl || typeof o.tracer === "string" && typeof o.timeout === "string" && typeof o.reexec === "bigint" && typeof o.disable_stack === "boolean" && typeof o.disable_storage === "boolean" && typeof o.debug === "boolean" && typeof o.limit === "number" && typeof o.enable_memory === "boolean" && typeof o.enable_return_data === "boolean" && typeof o.tracer_json_config === "string");
@@ -1435,11 +1435,11 @@ export const TraceConfig = {
     if (message.reexec !== BigInt(0)) {
       writer.uint32(24).uint64(message.reexec);
     }
-    if (message.disableStack === true) {
-      writer.uint32(40).bool(message.disableStack);
+    if (message.disable_stack === true) {
+      writer.uint32(40).bool(message.disable_stack);
     }
-    if (message.disableStorage === true) {
-      writer.uint32(48).bool(message.disableStorage);
+    if (message.disable_storage === true) {
+      writer.uint32(48).bool(message.disable_storage);
     }
     if (message.debug === true) {
       writer.uint32(64).bool(message.debug);
@@ -1450,14 +1450,14 @@ export const TraceConfig = {
     if (message.overrides !== undefined) {
       ChainConfig.encode(message.overrides, writer.uint32(82).fork()).ldelim();
     }
-    if (message.enableMemory === true) {
-      writer.uint32(88).bool(message.enableMemory);
+    if (message.enable_memory === true) {
+      writer.uint32(88).bool(message.enable_memory);
     }
-    if (message.enableReturnData === true) {
-      writer.uint32(96).bool(message.enableReturnData);
+    if (message.enable_return_data === true) {
+      writer.uint32(96).bool(message.enable_return_data);
     }
-    if (message.tracerJsonConfig !== "") {
-      writer.uint32(106).string(message.tracerJsonConfig);
+    if (message.tracer_json_config !== "") {
+      writer.uint32(106).string(message.tracer_json_config);
     }
     return writer;
   },
@@ -1478,10 +1478,10 @@ export const TraceConfig = {
           message.reexec = reader.uint64();
           break;
         case 5:
-          message.disableStack = reader.bool();
+          message.disable_stack = reader.bool();
           break;
         case 6:
-          message.disableStorage = reader.bool();
+          message.disable_storage = reader.bool();
           break;
         case 8:
           message.debug = reader.bool();
@@ -1493,13 +1493,13 @@ export const TraceConfig = {
           message.overrides = ChainConfig.decode(reader, reader.uint32());
           break;
         case 11:
-          message.enableMemory = reader.bool();
+          message.enable_memory = reader.bool();
           break;
         case 12:
-          message.enableReturnData = reader.bool();
+          message.enable_return_data = reader.bool();
           break;
         case 13:
-          message.tracerJsonConfig = reader.string();
+          message.tracer_json_config = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1513,14 +1513,14 @@ export const TraceConfig = {
     message.tracer = object.tracer ?? "";
     message.timeout = object.timeout ?? "";
     message.reexec = object.reexec !== undefined && object.reexec !== null ? BigInt(object.reexec.toString()) : BigInt(0);
-    message.disableStack = object.disableStack ?? false;
-    message.disableStorage = object.disableStorage ?? false;
+    message.disable_stack = object.disable_stack ?? false;
+    message.disable_storage = object.disable_storage ?? false;
     message.debug = object.debug ?? false;
     message.limit = object.limit ?? 0;
     message.overrides = object.overrides !== undefined && object.overrides !== null ? ChainConfig.fromPartial(object.overrides) : undefined;
-    message.enableMemory = object.enableMemory ?? false;
-    message.enableReturnData = object.enableReturnData ?? false;
-    message.tracerJsonConfig = object.tracerJsonConfig ?? "";
+    message.enable_memory = object.enable_memory ?? false;
+    message.enable_return_data = object.enable_return_data ?? false;
+    message.tracer_json_config = object.tracer_json_config ?? "";
     return message;
   },
   fromAmino(object: TraceConfigAmino): TraceConfig {
@@ -1535,10 +1535,10 @@ export const TraceConfig = {
       message.reexec = BigInt(object.reexec);
     }
     if (object.disable_stack !== undefined && object.disable_stack !== null) {
-      message.disableStack = object.disable_stack;
+      message.disable_stack = object.disable_stack;
     }
     if (object.disable_storage !== undefined && object.disable_storage !== null) {
-      message.disableStorage = object.disable_storage;
+      message.disable_storage = object.disable_storage;
     }
     if (object.debug !== undefined && object.debug !== null) {
       message.debug = object.debug;
@@ -1550,13 +1550,13 @@ export const TraceConfig = {
       message.overrides = ChainConfig.fromAmino(object.overrides);
     }
     if (object.enable_memory !== undefined && object.enable_memory !== null) {
-      message.enableMemory = object.enable_memory;
+      message.enable_memory = object.enable_memory;
     }
     if (object.enable_return_data !== undefined && object.enable_return_data !== null) {
-      message.enableReturnData = object.enable_return_data;
+      message.enable_return_data = object.enable_return_data;
     }
     if (object.tracer_json_config !== undefined && object.tracer_json_config !== null) {
-      message.tracerJsonConfig = object.tracer_json_config;
+      message.tracer_json_config = object.tracer_json_config;
     }
     return message;
   },
@@ -1565,14 +1565,14 @@ export const TraceConfig = {
     obj.tracer = message.tracer === "" ? undefined : message.tracer;
     obj.timeout = message.timeout === "" ? undefined : message.timeout;
     obj.reexec = message.reexec !== BigInt(0) ? message.reexec?.toString() : undefined;
-    obj.disable_stack = message.disableStack ?? false;
-    obj.disable_storage = message.disableStorage ?? false;
+    obj.disable_stack = message.disable_stack ?? false;
+    obj.disable_storage = message.disable_storage ?? false;
     obj.debug = message.debug === false ? undefined : message.debug;
     obj.limit = message.limit === 0 ? undefined : message.limit;
     obj.overrides = message.overrides ? ChainConfig.toAmino(message.overrides) : undefined;
-    obj.enable_memory = message.enableMemory ?? false;
-    obj.enable_return_data = message.enableReturnData ?? false;
-    obj.tracer_json_config = message.tracerJsonConfig ?? "";
+    obj.enable_memory = message.enable_memory ?? false;
+    obj.enable_return_data = message.enable_return_data ?? false;
+    obj.tracer_json_config = message.tracer_json_config ?? "";
     return obj;
   },
   fromAminoMsg(object: TraceConfigAminoMsg): TraceConfig {

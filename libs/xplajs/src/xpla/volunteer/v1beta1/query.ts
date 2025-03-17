@@ -3,7 +3,7 @@ import { DeepPartial } from "../../../helpers";
 /** QueryVolunteerValidatorsRequest */
 export interface QueryVolunteerValidatorsRequest {}
 export interface QueryVolunteerValidatorsRequestProtoMsg {
-  typeUrl: "/xpla.volunteer.v1beta1.QueryVolunteerValidatorsRequest";
+  type_url: "/xpla.volunteer.v1beta1.QueryVolunteerValidatorsRequest";
   value: Uint8Array;
 }
 /** QueryVolunteerValidatorsRequest */
@@ -14,10 +14,10 @@ export interface QueryVolunteerValidatorsRequestAminoMsg {
 }
 /** QueryVolunteerValidatorsResponse */
 export interface QueryVolunteerValidatorsResponse {
-  volunteerValidators: string[];
+  volunteer_validators: string[];
 }
 export interface QueryVolunteerValidatorsResponseProtoMsg {
-  typeUrl: "/xpla.volunteer.v1beta1.QueryVolunteerValidatorsResponse";
+  type_url: "/xpla.volunteer.v1beta1.QueryVolunteerValidatorsResponse";
   value: Uint8Array;
 }
 /** QueryVolunteerValidatorsResponse */
@@ -87,19 +87,19 @@ export const QueryVolunteerValidatorsRequest = {
 };
 function createBaseQueryVolunteerValidatorsResponse(): QueryVolunteerValidatorsResponse {
   return {
-    volunteerValidators: []
+    volunteer_validators: []
   };
 }
 export const QueryVolunteerValidatorsResponse = {
   typeUrl: "/xpla.volunteer.v1beta1.QueryVolunteerValidatorsResponse",
   is(o: any): o is QueryVolunteerValidatorsResponse {
-    return o && (o.$typeUrl === QueryVolunteerValidatorsResponse.typeUrl || Array.isArray(o.volunteerValidators) && (!o.volunteerValidators.length || typeof o.volunteerValidators[0] === "string"));
+    return o && (o.$typeUrl === QueryVolunteerValidatorsResponse.typeUrl || Array.isArray(o.volunteer_validators) && (!o.volunteer_validators.length || typeof o.volunteer_validators[0] === "string"));
   },
   isAmino(o: any): o is QueryVolunteerValidatorsResponseAmino {
     return o && (o.$typeUrl === QueryVolunteerValidatorsResponse.typeUrl || Array.isArray(o.volunteer_validators) && (!o.volunteer_validators.length || typeof o.volunteer_validators[0] === "string"));
   },
   encode(message: QueryVolunteerValidatorsResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.volunteerValidators) {
+    for (const v of message.volunteer_validators) {
       writer.uint32(10).string(v!);
     }
     return writer;
@@ -112,7 +112,7 @@ export const QueryVolunteerValidatorsResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.volunteerValidators.push(reader.string());
+          message.volunteer_validators.push(reader.string());
           break;
         default:
           reader.skipType(tag & 7);
@@ -123,20 +123,20 @@ export const QueryVolunteerValidatorsResponse = {
   },
   fromPartial(object: DeepPartial<QueryVolunteerValidatorsResponse>): QueryVolunteerValidatorsResponse {
     const message = createBaseQueryVolunteerValidatorsResponse();
-    message.volunteerValidators = object.volunteerValidators?.map(e => e) || [];
+    message.volunteer_validators = object.volunteer_validators?.map(e => e) || [];
     return message;
   },
   fromAmino(object: QueryVolunteerValidatorsResponseAmino): QueryVolunteerValidatorsResponse {
     const message = createBaseQueryVolunteerValidatorsResponse();
-    message.volunteerValidators = object.volunteer_validators?.map(e => e) || [];
+    message.volunteer_validators = object.volunteer_validators?.map(e => e) || [];
     return message;
   },
   toAmino(message: QueryVolunteerValidatorsResponse): QueryVolunteerValidatorsResponseAmino {
     const obj: any = {};
-    if (message.volunteerValidators) {
-      obj.volunteer_validators = message.volunteerValidators.map(e => e);
+    if (message.volunteer_validators) {
+      obj.volunteer_validators = message.volunteer_validators.map(e => e);
     } else {
-      obj.volunteer_validators = message.volunteerValidators;
+      obj.volunteer_validators = message.volunteer_validators;
     }
     return obj;
   },

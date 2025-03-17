@@ -23,7 +23,7 @@ export class LCDQueryClient {
   /* ValidatorAccount queries an Ethereum account's from a validator consensus
    Address. */
   validatorAccount = async (params: QueryValidatorAccountRequest): Promise<QueryValidatorAccountResponse> => {
-    const endpoint = `ethermint/evm/v1/validator_account/${params.consAddress}`;
+    const endpoint = `ethermint/evm/v1/validator_account/${params.cons_address}`;
     return await this.req.get<QueryValidatorAccountResponse>(endpoint);
   };
   /* Balance queries the balance of a the EVM denomination for a single
@@ -55,14 +55,14 @@ export class LCDQueryClient {
     if (typeof params?.args !== "undefined") {
       options.params.args = params.args;
     }
-    if (typeof params?.gasCap !== "undefined") {
-      options.params.gas_cap = params.gasCap;
+    if (typeof params?.gas_cap !== "undefined") {
+      options.params.gas_cap = params.gas_cap;
     }
-    if (typeof params?.proposerAddress !== "undefined") {
-      options.params.proposer_address = params.proposerAddress;
+    if (typeof params?.proposer_address !== "undefined") {
+      options.params.proposer_address = params.proposer_address;
     }
-    if (typeof params?.chainId !== "undefined") {
-      options.params.chain_id = params.chainId;
+    if (typeof params?.chain_id !== "undefined") {
+      options.params.chain_id = params.chain_id;
     }
     const endpoint = `ethermint/evm/v1/eth_call`;
     return await this.req.get<MsgEthereumTxResponse>(endpoint, options);
@@ -75,14 +75,14 @@ export class LCDQueryClient {
     if (typeof params?.args !== "undefined") {
       options.params.args = params.args;
     }
-    if (typeof params?.gasCap !== "undefined") {
-      options.params.gas_cap = params.gasCap;
+    if (typeof params?.gas_cap !== "undefined") {
+      options.params.gas_cap = params.gas_cap;
     }
-    if (typeof params?.proposerAddress !== "undefined") {
-      options.params.proposer_address = params.proposerAddress;
+    if (typeof params?.proposer_address !== "undefined") {
+      options.params.proposer_address = params.proposer_address;
     }
-    if (typeof params?.chainId !== "undefined") {
-      options.params.chain_id = params.chainId;
+    if (typeof params?.chain_id !== "undefined") {
+      options.params.chain_id = params.chain_id;
     }
     const endpoint = `ethermint/evm/v1/estimate_gas`;
     return await this.req.get<EstimateGasResponse>(endpoint, options);
@@ -95,26 +95,26 @@ export class LCDQueryClient {
     if (typeof params?.msg !== "undefined") {
       options.params.msg = params.msg;
     }
-    if (typeof params?.traceConfig !== "undefined") {
-      options.params.trace_config = params.traceConfig;
+    if (typeof params?.trace_config !== "undefined") {
+      options.params.trace_config = params.trace_config;
     }
     if (typeof params?.predecessors !== "undefined") {
       options.params.predecessors = params.predecessors;
     }
-    if (typeof params?.blockNumber !== "undefined") {
-      options.params.block_number = params.blockNumber;
+    if (typeof params?.block_number !== "undefined") {
+      options.params.block_number = params.block_number;
     }
-    if (typeof params?.blockHash !== "undefined") {
-      options.params.block_hash = params.blockHash;
+    if (typeof params?.block_hash !== "undefined") {
+      options.params.block_hash = params.block_hash;
     }
-    if (typeof params?.blockTime !== "undefined") {
-      options.params.block_time = params.blockTime;
+    if (typeof params?.block_time !== "undefined") {
+      options.params.block_time = params.block_time;
     }
-    if (typeof params?.proposerAddress !== "undefined") {
-      options.params.proposer_address = params.proposerAddress;
+    if (typeof params?.proposer_address !== "undefined") {
+      options.params.proposer_address = params.proposer_address;
     }
-    if (typeof params?.chainId !== "undefined") {
-      options.params.chain_id = params.chainId;
+    if (typeof params?.chain_id !== "undefined") {
+      options.params.chain_id = params.chain_id;
     }
     const endpoint = `ethermint/evm/v1/trace_tx`;
     return await this.req.get<QueryTraceTxResponse>(endpoint, options);
@@ -127,23 +127,23 @@ export class LCDQueryClient {
     if (typeof params?.txs !== "undefined") {
       options.params.txs = params.txs;
     }
-    if (typeof params?.traceConfig !== "undefined") {
-      options.params.trace_config = params.traceConfig;
+    if (typeof params?.trace_config !== "undefined") {
+      options.params.trace_config = params.trace_config;
     }
-    if (typeof params?.blockNumber !== "undefined") {
-      options.params.block_number = params.blockNumber;
+    if (typeof params?.block_number !== "undefined") {
+      options.params.block_number = params.block_number;
     }
-    if (typeof params?.blockHash !== "undefined") {
-      options.params.block_hash = params.blockHash;
+    if (typeof params?.block_hash !== "undefined") {
+      options.params.block_hash = params.block_hash;
     }
-    if (typeof params?.blockTime !== "undefined") {
-      options.params.block_time = params.blockTime;
+    if (typeof params?.block_time !== "undefined") {
+      options.params.block_time = params.block_time;
     }
-    if (typeof params?.proposerAddress !== "undefined") {
-      options.params.proposer_address = params.proposerAddress;
+    if (typeof params?.proposer_address !== "undefined") {
+      options.params.proposer_address = params.proposer_address;
     }
-    if (typeof params?.chainId !== "undefined") {
-      options.params.chain_id = params.chainId;
+    if (typeof params?.chain_id !== "undefined") {
+      options.params.chain_id = params.chain_id;
     }
     const endpoint = `ethermint/evm/v1/trace_block`;
     return await this.req.get<QueryTraceBlockResponse>(endpoint, options);

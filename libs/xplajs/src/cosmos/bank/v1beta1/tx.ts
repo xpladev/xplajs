@@ -4,12 +4,12 @@ import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial } from "../../../helpers";
 /** MsgSend represents a message to send coins from one account to another. */
 export interface MsgSend {
-  fromAddress: string;
-  toAddress: string;
+  from_address: string;
+  to_address: string;
   amount: Coin[];
 }
 export interface MsgSendProtoMsg {
-  typeUrl: "/cosmos.bank.v1beta1.MsgSend";
+  type_url: "/cosmos.bank.v1beta1.MsgSend";
   value: Uint8Array;
 }
 /** MsgSend represents a message to send coins from one account to another. */
@@ -25,7 +25,7 @@ export interface MsgSendAminoMsg {
 /** MsgSendResponse defines the Msg/Send response type. */
 export interface MsgSendResponse {}
 export interface MsgSendResponseProtoMsg {
-  typeUrl: "/cosmos.bank.v1beta1.MsgSendResponse";
+  type_url: "/cosmos.bank.v1beta1.MsgSendResponse";
   value: Uint8Array;
 }
 /** MsgSendResponse defines the Msg/Send response type. */
@@ -44,7 +44,7 @@ export interface MsgMultiSend {
   outputs: Output[];
 }
 export interface MsgMultiSendProtoMsg {
-  typeUrl: "/cosmos.bank.v1beta1.MsgMultiSend";
+  type_url: "/cosmos.bank.v1beta1.MsgMultiSend";
   value: Uint8Array;
 }
 /** MsgMultiSend represents an arbitrary multi-in, multi-out send message. */
@@ -63,7 +63,7 @@ export interface MsgMultiSendAminoMsg {
 /** MsgMultiSendResponse defines the Msg/MultiSend response type. */
 export interface MsgMultiSendResponse {}
 export interface MsgMultiSendResponseProtoMsg {
-  typeUrl: "/cosmos.bank.v1beta1.MsgMultiSendResponse";
+  type_url: "/cosmos.bank.v1beta1.MsgMultiSendResponse";
   value: Uint8Array;
 }
 /** MsgMultiSendResponse defines the Msg/MultiSend response type. */
@@ -88,7 +88,7 @@ export interface MsgUpdateParams {
   params: Params;
 }
 export interface MsgUpdateParamsProtoMsg {
-  typeUrl: "/cosmos.bank.v1beta1.MsgUpdateParams";
+  type_url: "/cosmos.bank.v1beta1.MsgUpdateParams";
   value: Uint8Array;
 }
 /**
@@ -118,7 +118,7 @@ export interface MsgUpdateParamsAminoMsg {
  */
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
-  typeUrl: "/cosmos.bank.v1beta1.MsgUpdateParamsResponse";
+  type_url: "/cosmos.bank.v1beta1.MsgUpdateParamsResponse";
   value: Uint8Array;
 }
 /**
@@ -145,17 +145,17 @@ export interface MsgSetSendEnabled {
   /** authority is the address that controls the module. */
   authority: string;
   /** send_enabled is the list of entries to add or update. */
-  sendEnabled: SendEnabled[];
+  send_enabled: SendEnabled[];
   /**
    * use_default_for is a list of denoms that should use the params.default_send_enabled value.
    * Denoms listed here will have their SendEnabled entries deleted.
    * If a denom is included that doesn't have a SendEnabled entry,
    * it will be ignored.
    */
-  useDefaultFor: string[];
+  use_default_for: string[];
 }
 export interface MsgSetSendEnabledProtoMsg {
-  typeUrl: "/cosmos.bank.v1beta1.MsgSetSendEnabled";
+  type_url: "/cosmos.bank.v1beta1.MsgSetSendEnabled";
   value: Uint8Array;
 }
 /**
@@ -191,7 +191,7 @@ export interface MsgSetSendEnabledAminoMsg {
  */
 export interface MsgSetSendEnabledResponse {}
 export interface MsgSetSendEnabledResponseProtoMsg {
-  typeUrl: "/cosmos.bank.v1beta1.MsgSetSendEnabledResponse";
+  type_url: "/cosmos.bank.v1beta1.MsgSetSendEnabledResponse";
   value: Uint8Array;
 }
 /**
@@ -206,8 +206,8 @@ export interface MsgSetSendEnabledResponseAminoMsg {
 }
 function createBaseMsgSend(): MsgSend {
   return {
-    fromAddress: "",
-    toAddress: "",
+    from_address: "",
+    to_address: "",
     amount: []
   };
 }
@@ -215,17 +215,17 @@ export const MsgSend = {
   typeUrl: "/cosmos.bank.v1beta1.MsgSend",
   aminoType: "cosmos-sdk/MsgSend",
   is(o: any): o is MsgSend {
-    return o && (o.$typeUrl === MsgSend.typeUrl || typeof o.fromAddress === "string" && typeof o.toAddress === "string" && Array.isArray(o.amount) && (!o.amount.length || Coin.is(o.amount[0])));
+    return o && (o.$typeUrl === MsgSend.typeUrl || typeof o.from_address === "string" && typeof o.to_address === "string" && Array.isArray(o.amount) && (!o.amount.length || Coin.is(o.amount[0])));
   },
   isAmino(o: any): o is MsgSendAmino {
     return o && (o.$typeUrl === MsgSend.typeUrl || typeof o.from_address === "string" && typeof o.to_address === "string" && Array.isArray(o.amount) && (!o.amount.length || Coin.isAmino(o.amount[0])));
   },
   encode(message: MsgSend, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.fromAddress !== "") {
-      writer.uint32(10).string(message.fromAddress);
+    if (message.from_address !== "") {
+      writer.uint32(10).string(message.from_address);
     }
-    if (message.toAddress !== "") {
-      writer.uint32(18).string(message.toAddress);
+    if (message.to_address !== "") {
+      writer.uint32(18).string(message.to_address);
     }
     for (const v of message.amount) {
       Coin.encode(v!, writer.uint32(26).fork()).ldelim();
@@ -240,10 +240,10 @@ export const MsgSend = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.fromAddress = reader.string();
+          message.from_address = reader.string();
           break;
         case 2:
-          message.toAddress = reader.string();
+          message.to_address = reader.string();
           break;
         case 3:
           message.amount.push(Coin.decode(reader, reader.uint32()));
@@ -257,26 +257,26 @@ export const MsgSend = {
   },
   fromPartial(object: DeepPartial<MsgSend>): MsgSend {
     const message = createBaseMsgSend();
-    message.fromAddress = object.fromAddress ?? "";
-    message.toAddress = object.toAddress ?? "";
+    message.from_address = object.from_address ?? "";
+    message.to_address = object.to_address ?? "";
     message.amount = object.amount?.map(e => Coin.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: MsgSendAmino): MsgSend {
     const message = createBaseMsgSend();
     if (object.from_address !== undefined && object.from_address !== null) {
-      message.fromAddress = object.from_address;
+      message.from_address = object.from_address;
     }
     if (object.to_address !== undefined && object.to_address !== null) {
-      message.toAddress = object.to_address;
+      message.to_address = object.to_address;
     }
     message.amount = object.amount?.map(e => Coin.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: MsgSend): MsgSendAmino {
     const obj: any = {};
-    obj.from_address = message.fromAddress === "" ? undefined : message.fromAddress;
-    obj.to_address = message.toAddress === "" ? undefined : message.toAddress;
+    obj.from_address = message.from_address === "" ? undefined : message.from_address;
+    obj.to_address = message.to_address === "" ? undefined : message.to_address;
     if (message.amount) {
       obj.amount = message.amount.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
@@ -691,15 +691,15 @@ export const MsgUpdateParamsResponse = {
 function createBaseMsgSetSendEnabled(): MsgSetSendEnabled {
   return {
     authority: "",
-    sendEnabled: [],
-    useDefaultFor: []
+    send_enabled: [],
+    use_default_for: []
   };
 }
 export const MsgSetSendEnabled = {
   typeUrl: "/cosmos.bank.v1beta1.MsgSetSendEnabled",
   aminoType: "cosmos-sdk/MsgSetSendEnabled",
   is(o: any): o is MsgSetSendEnabled {
-    return o && (o.$typeUrl === MsgSetSendEnabled.typeUrl || typeof o.authority === "string" && Array.isArray(o.sendEnabled) && (!o.sendEnabled.length || SendEnabled.is(o.sendEnabled[0])) && Array.isArray(o.useDefaultFor) && (!o.useDefaultFor.length || typeof o.useDefaultFor[0] === "string"));
+    return o && (o.$typeUrl === MsgSetSendEnabled.typeUrl || typeof o.authority === "string" && Array.isArray(o.send_enabled) && (!o.send_enabled.length || SendEnabled.is(o.send_enabled[0])) && Array.isArray(o.use_default_for) && (!o.use_default_for.length || typeof o.use_default_for[0] === "string"));
   },
   isAmino(o: any): o is MsgSetSendEnabledAmino {
     return o && (o.$typeUrl === MsgSetSendEnabled.typeUrl || typeof o.authority === "string" && Array.isArray(o.send_enabled) && (!o.send_enabled.length || SendEnabled.isAmino(o.send_enabled[0])) && Array.isArray(o.use_default_for) && (!o.use_default_for.length || typeof o.use_default_for[0] === "string"));
@@ -708,10 +708,10 @@ export const MsgSetSendEnabled = {
     if (message.authority !== "") {
       writer.uint32(10).string(message.authority);
     }
-    for (const v of message.sendEnabled) {
+    for (const v of message.send_enabled) {
       SendEnabled.encode(v!, writer.uint32(18).fork()).ldelim();
     }
-    for (const v of message.useDefaultFor) {
+    for (const v of message.use_default_for) {
       writer.uint32(26).string(v!);
     }
     return writer;
@@ -727,10 +727,10 @@ export const MsgSetSendEnabled = {
           message.authority = reader.string();
           break;
         case 2:
-          message.sendEnabled.push(SendEnabled.decode(reader, reader.uint32()));
+          message.send_enabled.push(SendEnabled.decode(reader, reader.uint32()));
           break;
         case 3:
-          message.useDefaultFor.push(reader.string());
+          message.use_default_for.push(reader.string());
           break;
         default:
           reader.skipType(tag & 7);
@@ -742,8 +742,8 @@ export const MsgSetSendEnabled = {
   fromPartial(object: DeepPartial<MsgSetSendEnabled>): MsgSetSendEnabled {
     const message = createBaseMsgSetSendEnabled();
     message.authority = object.authority ?? "";
-    message.sendEnabled = object.sendEnabled?.map(e => SendEnabled.fromPartial(e)) || [];
-    message.useDefaultFor = object.useDefaultFor?.map(e => e) || [];
+    message.send_enabled = object.send_enabled?.map(e => SendEnabled.fromPartial(e)) || [];
+    message.use_default_for = object.use_default_for?.map(e => e) || [];
     return message;
   },
   fromAmino(object: MsgSetSendEnabledAmino): MsgSetSendEnabled {
@@ -751,22 +751,22 @@ export const MsgSetSendEnabled = {
     if (object.authority !== undefined && object.authority !== null) {
       message.authority = object.authority;
     }
-    message.sendEnabled = object.send_enabled?.map(e => SendEnabled.fromAmino(e)) || [];
-    message.useDefaultFor = object.use_default_for?.map(e => e) || [];
+    message.send_enabled = object.send_enabled?.map(e => SendEnabled.fromAmino(e)) || [];
+    message.use_default_for = object.use_default_for?.map(e => e) || [];
     return message;
   },
   toAmino(message: MsgSetSendEnabled): MsgSetSendEnabledAmino {
     const obj: any = {};
     obj.authority = message.authority === "" ? undefined : message.authority;
-    if (message.sendEnabled) {
-      obj.send_enabled = message.sendEnabled.map(e => e ? SendEnabled.toAmino(e) : undefined);
+    if (message.send_enabled) {
+      obj.send_enabled = message.send_enabled.map(e => e ? SendEnabled.toAmino(e) : undefined);
     } else {
-      obj.send_enabled = message.sendEnabled;
+      obj.send_enabled = message.send_enabled;
     }
-    if (message.useDefaultFor) {
-      obj.use_default_for = message.useDefaultFor.map(e => e);
+    if (message.use_default_for) {
+      obj.use_default_for = message.use_default_for.map(e => e);
     } else {
-      obj.use_default_for = message.useDefaultFor;
+      obj.use_default_for = message.use_default_for;
     }
     return obj;
   },

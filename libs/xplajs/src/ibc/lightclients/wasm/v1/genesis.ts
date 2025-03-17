@@ -6,7 +6,7 @@ export interface GenesisState {
   contracts: Contract[];
 }
 export interface GenesisStateProtoMsg {
-  typeUrl: "/ibc.lightclients.wasm.v1.GenesisState";
+  type_url: "/ibc.lightclients.wasm.v1.GenesisState";
   value: Uint8Array;
 }
 /** GenesisState defines 08-wasm's keeper genesis state */
@@ -21,10 +21,10 @@ export interface GenesisStateAminoMsg {
 /** Contract stores contract code */
 export interface Contract {
   /** contract byte code */
-  codeBytes: Uint8Array;
+  code_bytes: Uint8Array;
 }
 export interface ContractProtoMsg {
-  typeUrl: "/ibc.lightclients.wasm.v1.Contract";
+  type_url: "/ibc.lightclients.wasm.v1.Contract";
   value: Uint8Array;
 }
 /** Contract stores contract code */
@@ -119,21 +119,21 @@ export const GenesisState = {
 };
 function createBaseContract(): Contract {
   return {
-    codeBytes: new Uint8Array()
+    code_bytes: new Uint8Array()
   };
 }
 export const Contract = {
   typeUrl: "/ibc.lightclients.wasm.v1.Contract",
   aminoType: "cosmos-sdk/Contract",
   is(o: any): o is Contract {
-    return o && (o.$typeUrl === Contract.typeUrl || o.codeBytes instanceof Uint8Array || typeof o.codeBytes === "string");
+    return o && (o.$typeUrl === Contract.typeUrl || o.code_bytes instanceof Uint8Array || typeof o.code_bytes === "string");
   },
   isAmino(o: any): o is ContractAmino {
     return o && (o.$typeUrl === Contract.typeUrl || o.code_bytes instanceof Uint8Array || typeof o.code_bytes === "string");
   },
   encode(message: Contract, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.codeBytes.length !== 0) {
-      writer.uint32(10).bytes(message.codeBytes);
+    if (message.code_bytes.length !== 0) {
+      writer.uint32(10).bytes(message.code_bytes);
     }
     return writer;
   },
@@ -145,7 +145,7 @@ export const Contract = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.codeBytes = reader.bytes();
+          message.code_bytes = reader.bytes();
           break;
         default:
           reader.skipType(tag & 7);
@@ -156,19 +156,19 @@ export const Contract = {
   },
   fromPartial(object: DeepPartial<Contract>): Contract {
     const message = createBaseContract();
-    message.codeBytes = object.codeBytes ?? new Uint8Array();
+    message.code_bytes = object.code_bytes ?? new Uint8Array();
     return message;
   },
   fromAmino(object: ContractAmino): Contract {
     const message = createBaseContract();
     if (object.code_bytes !== undefined && object.code_bytes !== null) {
-      message.codeBytes = bytesFromBase64(object.code_bytes);
+      message.code_bytes = bytesFromBase64(object.code_bytes);
     }
     return message;
   },
   toAmino(message: Contract): ContractAmino {
     const obj: any = {};
-    obj.code_bytes = message.codeBytes ? base64FromBytes(message.codeBytes) : undefined;
+    obj.code_bytes = message.code_bytes ? base64FromBytes(message.code_bytes) : undefined;
     return obj;
   },
   fromAminoMsg(object: ContractAminoMsg): Contract {

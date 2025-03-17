@@ -78,7 +78,7 @@ export interface Duration {
   nanos: number;
 }
 export interface DurationProtoMsg {
-  typeUrl: "/google.protobuf.Duration";
+  type_url: "/google.protobuf.Duration";
   value: Uint8Array;
 }
 /**

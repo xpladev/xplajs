@@ -4,7 +4,7 @@ import { DeepPartial } from "../../../helpers";
 /** QueryParamsRequest defines the request type for querying x/consensus parameters. */
 export interface QueryParamsRequest {}
 export interface QueryParamsRequestProtoMsg {
-  typeUrl: "/cosmos.consensus.v1.QueryParamsRequest";
+  type_url: "/cosmos.consensus.v1.QueryParamsRequest";
   value: Uint8Array;
 }
 /** QueryParamsRequest defines the request type for querying x/consensus parameters. */
@@ -23,7 +23,7 @@ export interface QueryParamsResponse {
   params?: ConsensusParams;
 }
 export interface QueryParamsResponseProtoMsg {
-  typeUrl: "/cosmos.consensus.v1.QueryParamsResponse";
+  type_url: "/cosmos.consensus.v1.QueryParamsResponse";
   value: Uint8Array;
 }
 /** QueryParamsResponse defines the response type for querying x/consensus parameters. */

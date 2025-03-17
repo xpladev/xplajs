@@ -56,7 +56,7 @@ export interface InterfaceDescriptor {
   description: string;
 }
 export interface InterfaceDescriptorProtoMsg {
-  typeUrl: "/cosmos_proto.InterfaceDescriptor";
+  type_url: "/cosmos_proto.InterfaceDescriptor";
   value: Uint8Array;
 }
 /**
@@ -110,10 +110,10 @@ export interface ScalarDescriptor {
    * encoding standards and simple and clear. Currently only string and
    * bytes fields are supported for scalars.
    */
-  fieldType: ScalarType[];
+  field_type: ScalarType[];
 }
 export interface ScalarDescriptorProtoMsg {
-  typeUrl: "/cosmos_proto.ScalarDescriptor";
+  type_url: "/cosmos_proto.ScalarDescriptor";
   value: Uint8Array;
 }
 /**
@@ -237,13 +237,13 @@ function createBaseScalarDescriptor(): ScalarDescriptor {
   return {
     name: "",
     description: "",
-    fieldType: []
+    field_type: []
   };
 }
 export const ScalarDescriptor = {
   typeUrl: "/cosmos_proto.ScalarDescriptor",
   is(o: any): o is ScalarDescriptor {
-    return o && (o.$typeUrl === ScalarDescriptor.typeUrl || typeof o.name === "string" && typeof o.description === "string" && Array.isArray(o.fieldType));
+    return o && (o.$typeUrl === ScalarDescriptor.typeUrl || typeof o.name === "string" && typeof o.description === "string" && Array.isArray(o.field_type));
   },
   isAmino(o: any): o is ScalarDescriptorAmino {
     return o && (o.$typeUrl === ScalarDescriptor.typeUrl || typeof o.name === "string" && typeof o.description === "string" && Array.isArray(o.field_type));
@@ -256,7 +256,7 @@ export const ScalarDescriptor = {
       writer.uint32(18).string(message.description);
     }
     writer.uint32(26).fork();
-    for (const v of message.fieldType) {
+    for (const v of message.field_type) {
       writer.int32(v);
     }
     writer.ldelim();
@@ -279,10 +279,10 @@ export const ScalarDescriptor = {
           if ((tag & 7) === 2) {
             const end2 = reader.uint32() + reader.pos;
             while (reader.pos < end2) {
-              message.fieldType.push(reader.int32() as any);
+              message.field_type.push(reader.int32() as any);
             }
           } else {
-            message.fieldType.push(reader.int32() as any);
+            message.field_type.push(reader.int32() as any);
           }
           break;
         default:
@@ -296,7 +296,7 @@ export const ScalarDescriptor = {
     const message = createBaseScalarDescriptor();
     message.name = object.name ?? "";
     message.description = object.description ?? "";
-    message.fieldType = object.fieldType?.map(e => e) || [];
+    message.field_type = object.field_type?.map(e => e) || [];
     return message;
   },
   fromAmino(object: ScalarDescriptorAmino): ScalarDescriptor {
@@ -307,17 +307,17 @@ export const ScalarDescriptor = {
     if (object.description !== undefined && object.description !== null) {
       message.description = object.description;
     }
-    message.fieldType = object.field_type?.map(e => e) || [];
+    message.field_type = object.field_type?.map(e => e) || [];
     return message;
   },
   toAmino(message: ScalarDescriptor): ScalarDescriptorAmino {
     const obj: any = {};
     obj.name = message.name === "" ? undefined : message.name;
     obj.description = message.description === "" ? undefined : message.description;
-    if (message.fieldType) {
-      obj.field_type = message.fieldType.map(e => e);
+    if (message.field_type) {
+      obj.field_type = message.field_type.map(e => e);
     } else {
-      obj.field_type = message.fieldType;
+      obj.field_type = message.field_type;
     }
     return obj;
   },

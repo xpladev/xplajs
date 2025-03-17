@@ -10,14 +10,14 @@ import { encodePubkey, decodePubkey } from "@interchainjs/pubkey";
 export interface RegisterVolunteerValidatorProposal {
   title: string;
   description: string;
-  validatorDescription: Description;
-  delegatorAddress: string;
-  validatorAddress: string;
+  validator_description: Description;
+  delegator_address: string;
+  validator_address: string;
   pubkey?: Any | undefined;
   amount: Coin;
 }
 export interface RegisterVolunteerValidatorProposalProtoMsg {
-  typeUrl: "/xpla.volunteer.v1beta1.RegisterVolunteerValidatorProposal";
+  type_url: "/xpla.volunteer.v1beta1.RegisterVolunteerValidatorProposal";
   value: Uint8Array;
 }
 export type RegisterVolunteerValidatorProposalEncoded = Omit<RegisterVolunteerValidatorProposal, "pubkey"> & {
@@ -43,15 +43,15 @@ export interface RegisterVolunteerValidatorProposalAminoMsg {
 export interface RegisterVolunteerValidatorProposalWithDeposit {
   title: string;
   description: string;
-  validatorDescription: Description;
-  delegatorAddress: string;
-  validatorAddress: string;
+  validator_description: Description;
+  delegator_address: string;
+  validator_address: string;
   pubkey?: Any | undefined;
   amount: Coin;
   deposit: string;
 }
 export interface RegisterVolunteerValidatorProposalWithDepositProtoMsg {
-  typeUrl: "/xpla.volunteer.v1beta1.RegisterVolunteerValidatorProposalWithDeposit";
+  type_url: "/xpla.volunteer.v1beta1.RegisterVolunteerValidatorProposalWithDeposit";
   value: Uint8Array;
 }
 export type RegisterVolunteerValidatorProposalWithDepositEncoded = Omit<RegisterVolunteerValidatorProposalWithDeposit, "pubkey"> & {
@@ -78,10 +78,10 @@ export interface RegisterVolunteerValidatorProposalWithDepositAminoMsg {
 export interface UnregisterVolunteerValidatorProposal {
   title: string;
   description: string;
-  validatorAddress: string;
+  validator_address: string;
 }
 export interface UnregisterVolunteerValidatorProposalProtoMsg {
-  typeUrl: "/xpla.volunteer.v1beta1.UnregisterVolunteerValidatorProposal";
+  type_url: "/xpla.volunteer.v1beta1.UnregisterVolunteerValidatorProposal";
   value: Uint8Array;
 }
 /** UnregisterVolunteerValidatorProposal */
@@ -100,11 +100,11 @@ export interface UnregisterVolunteerValidatorProposalAminoMsg {
 export interface UnregisterVolunteerValidatorProposalWithDeposit {
   title: string;
   description: string;
-  validatorAddress: string;
+  validator_address: string;
   deposit: string;
 }
 export interface UnregisterVolunteerValidatorProposalWithDepositProtoMsg {
-  typeUrl: "/xpla.volunteer.v1beta1.UnregisterVolunteerValidatorProposalWithDeposit";
+  type_url: "/xpla.volunteer.v1beta1.UnregisterVolunteerValidatorProposalWithDeposit";
   value: Uint8Array;
 }
 /** UnregisterVolunteerValidatorProposalWithDeposit */
@@ -123,9 +123,9 @@ function createBaseRegisterVolunteerValidatorProposal(): RegisterVolunteerValida
   return {
     title: "",
     description: "",
-    validatorDescription: Description.fromPartial({}),
-    delegatorAddress: "",
-    validatorAddress: "",
+    validator_description: Description.fromPartial({}),
+    delegator_address: "",
+    validator_address: "",
     pubkey: undefined,
     amount: Coin.fromPartial({})
   };
@@ -134,7 +134,7 @@ export const RegisterVolunteerValidatorProposal = {
   typeUrl: "/xpla.volunteer.v1beta1.RegisterVolunteerValidatorProposal",
   aminoType: "xpladev/RegisterVolunteerValidatorProposal",
   is(o: any): o is RegisterVolunteerValidatorProposal {
-    return o && (o.$typeUrl === RegisterVolunteerValidatorProposal.typeUrl || typeof o.title === "string" && typeof o.description === "string" && Description.is(o.validatorDescription) && typeof o.delegatorAddress === "string" && typeof o.validatorAddress === "string" && Coin.is(o.amount));
+    return o && (o.$typeUrl === RegisterVolunteerValidatorProposal.typeUrl || typeof o.title === "string" && typeof o.description === "string" && Description.is(o.validator_description) && typeof o.delegator_address === "string" && typeof o.validator_address === "string" && Coin.is(o.amount));
   },
   isAmino(o: any): o is RegisterVolunteerValidatorProposalAmino {
     return o && (o.$typeUrl === RegisterVolunteerValidatorProposal.typeUrl || typeof o.title === "string" && typeof o.description === "string" && Description.isAmino(o.validator_description) && typeof o.delegator_address === "string" && typeof o.validator_address === "string" && Coin.isAmino(o.amount));
@@ -146,14 +146,14 @@ export const RegisterVolunteerValidatorProposal = {
     if (message.description !== "") {
       writer.uint32(18).string(message.description);
     }
-    if (message.validatorDescription !== undefined) {
-      Description.encode(message.validatorDescription, writer.uint32(26).fork()).ldelim();
+    if (message.validator_description !== undefined) {
+      Description.encode(message.validator_description, writer.uint32(26).fork()).ldelim();
     }
-    if (message.delegatorAddress !== "") {
-      writer.uint32(34).string(message.delegatorAddress);
+    if (message.delegator_address !== "") {
+      writer.uint32(34).string(message.delegator_address);
     }
-    if (message.validatorAddress !== "") {
-      writer.uint32(42).string(message.validatorAddress);
+    if (message.validator_address !== "") {
+      writer.uint32(42).string(message.validator_address);
     }
     if (message.pubkey !== undefined) {
       Any.encode(GlobalDecoderRegistry.wrapAny(message.pubkey), writer.uint32(50).fork()).ldelim();
@@ -177,13 +177,13 @@ export const RegisterVolunteerValidatorProposal = {
           message.description = reader.string();
           break;
         case 3:
-          message.validatorDescription = Description.decode(reader, reader.uint32());
+          message.validator_description = Description.decode(reader, reader.uint32());
           break;
         case 4:
-          message.delegatorAddress = reader.string();
+          message.delegator_address = reader.string();
           break;
         case 5:
-          message.validatorAddress = reader.string();
+          message.validator_address = reader.string();
           break;
         case 6:
           message.pubkey = GlobalDecoderRegistry.unwrapAny(reader);
@@ -202,9 +202,9 @@ export const RegisterVolunteerValidatorProposal = {
     const message = createBaseRegisterVolunteerValidatorProposal();
     message.title = object.title ?? "";
     message.description = object.description ?? "";
-    message.validatorDescription = object.validatorDescription !== undefined && object.validatorDescription !== null ? Description.fromPartial(object.validatorDescription) : undefined;
-    message.delegatorAddress = object.delegatorAddress ?? "";
-    message.validatorAddress = object.validatorAddress ?? "";
+    message.validator_description = object.validator_description !== undefined && object.validator_description !== null ? Description.fromPartial(object.validator_description) : undefined;
+    message.delegator_address = object.delegator_address ?? "";
+    message.validator_address = object.validator_address ?? "";
     message.pubkey = object.pubkey !== undefined && object.pubkey !== null ? GlobalDecoderRegistry.fromPartial(object.pubkey) : undefined;
     message.amount = object.amount !== undefined && object.amount !== null ? Coin.fromPartial(object.amount) : undefined;
     return message;
@@ -218,13 +218,13 @@ export const RegisterVolunteerValidatorProposal = {
       message.description = object.description;
     }
     if (object.validator_description !== undefined && object.validator_description !== null) {
-      message.validatorDescription = Description.fromAmino(object.validator_description);
+      message.validator_description = Description.fromAmino(object.validator_description);
     }
     if (object.delegator_address !== undefined && object.delegator_address !== null) {
-      message.delegatorAddress = object.delegator_address;
+      message.delegator_address = object.delegator_address;
     }
     if (object.validator_address !== undefined && object.validator_address !== null) {
-      message.validatorAddress = object.validator_address;
+      message.validator_address = object.validator_address;
     }
     if (object.pubkey !== undefined && object.pubkey !== null) {
       message.pubkey = encodePubkey(object.pubkey);
@@ -238,9 +238,9 @@ export const RegisterVolunteerValidatorProposal = {
     const obj: any = {};
     obj.title = message.title === "" ? undefined : message.title;
     obj.description = message.description === "" ? undefined : message.description;
-    obj.validator_description = message.validatorDescription ? Description.toAmino(message.validatorDescription) : Description.toAmino(Description.fromPartial({}));
-    obj.delegator_address = message.delegatorAddress === "" ? undefined : message.delegatorAddress;
-    obj.validator_address = message.validatorAddress === "" ? undefined : message.validatorAddress;
+    obj.validator_description = message.validator_description ? Description.toAmino(message.validator_description) : Description.toAmino(Description.fromPartial({}));
+    obj.delegator_address = message.delegator_address === "" ? undefined : message.delegator_address;
+    obj.validator_address = message.validator_address === "" ? undefined : message.validator_address;
     obj.pubkey = message.pubkey ? decodePubkey(message.pubkey) : undefined;
     obj.amount = message.amount ? Coin.toAmino(message.amount) : Coin.toAmino(Coin.fromPartial({}));
     return obj;
@@ -274,9 +274,9 @@ function createBaseRegisterVolunteerValidatorProposalWithDeposit(): RegisterVolu
   return {
     title: "",
     description: "",
-    validatorDescription: Description.fromPartial({}),
-    delegatorAddress: "",
-    validatorAddress: "",
+    validator_description: Description.fromPartial({}),
+    delegator_address: "",
+    validator_address: "",
     pubkey: undefined,
     amount: Coin.fromPartial({}),
     deposit: ""
@@ -286,7 +286,7 @@ export const RegisterVolunteerValidatorProposalWithDeposit = {
   typeUrl: "/xpla.volunteer.v1beta1.RegisterVolunteerValidatorProposalWithDeposit",
   aminoType: "xpladev/RegisterVolunteerValidatorProposalWithDeposit",
   is(o: any): o is RegisterVolunteerValidatorProposalWithDeposit {
-    return o && (o.$typeUrl === RegisterVolunteerValidatorProposalWithDeposit.typeUrl || typeof o.title === "string" && typeof o.description === "string" && Description.is(o.validatorDescription) && typeof o.delegatorAddress === "string" && typeof o.validatorAddress === "string" && Coin.is(o.amount) && typeof o.deposit === "string");
+    return o && (o.$typeUrl === RegisterVolunteerValidatorProposalWithDeposit.typeUrl || typeof o.title === "string" && typeof o.description === "string" && Description.is(o.validator_description) && typeof o.delegator_address === "string" && typeof o.validator_address === "string" && Coin.is(o.amount) && typeof o.deposit === "string");
   },
   isAmino(o: any): o is RegisterVolunteerValidatorProposalWithDepositAmino {
     return o && (o.$typeUrl === RegisterVolunteerValidatorProposalWithDeposit.typeUrl || typeof o.title === "string" && typeof o.description === "string" && Description.isAmino(o.validator_description) && typeof o.delegator_address === "string" && typeof o.validator_address === "string" && Coin.isAmino(o.amount) && typeof o.deposit === "string");
@@ -298,14 +298,14 @@ export const RegisterVolunteerValidatorProposalWithDeposit = {
     if (message.description !== "") {
       writer.uint32(18).string(message.description);
     }
-    if (message.validatorDescription !== undefined) {
-      Description.encode(message.validatorDescription, writer.uint32(26).fork()).ldelim();
+    if (message.validator_description !== undefined) {
+      Description.encode(message.validator_description, writer.uint32(26).fork()).ldelim();
     }
-    if (message.delegatorAddress !== "") {
-      writer.uint32(34).string(message.delegatorAddress);
+    if (message.delegator_address !== "") {
+      writer.uint32(34).string(message.delegator_address);
     }
-    if (message.validatorAddress !== "") {
-      writer.uint32(42).string(message.validatorAddress);
+    if (message.validator_address !== "") {
+      writer.uint32(42).string(message.validator_address);
     }
     if (message.pubkey !== undefined) {
       Any.encode(GlobalDecoderRegistry.wrapAny(message.pubkey), writer.uint32(50).fork()).ldelim();
@@ -332,13 +332,13 @@ export const RegisterVolunteerValidatorProposalWithDeposit = {
           message.description = reader.string();
           break;
         case 3:
-          message.validatorDescription = Description.decode(reader, reader.uint32());
+          message.validator_description = Description.decode(reader, reader.uint32());
           break;
         case 4:
-          message.delegatorAddress = reader.string();
+          message.delegator_address = reader.string();
           break;
         case 5:
-          message.validatorAddress = reader.string();
+          message.validator_address = reader.string();
           break;
         case 6:
           message.pubkey = GlobalDecoderRegistry.unwrapAny(reader);
@@ -360,9 +360,9 @@ export const RegisterVolunteerValidatorProposalWithDeposit = {
     const message = createBaseRegisterVolunteerValidatorProposalWithDeposit();
     message.title = object.title ?? "";
     message.description = object.description ?? "";
-    message.validatorDescription = object.validatorDescription !== undefined && object.validatorDescription !== null ? Description.fromPartial(object.validatorDescription) : undefined;
-    message.delegatorAddress = object.delegatorAddress ?? "";
-    message.validatorAddress = object.validatorAddress ?? "";
+    message.validator_description = object.validator_description !== undefined && object.validator_description !== null ? Description.fromPartial(object.validator_description) : undefined;
+    message.delegator_address = object.delegator_address ?? "";
+    message.validator_address = object.validator_address ?? "";
     message.pubkey = object.pubkey !== undefined && object.pubkey !== null ? GlobalDecoderRegistry.fromPartial(object.pubkey) : undefined;
     message.amount = object.amount !== undefined && object.amount !== null ? Coin.fromPartial(object.amount) : undefined;
     message.deposit = object.deposit ?? "";
@@ -377,13 +377,13 @@ export const RegisterVolunteerValidatorProposalWithDeposit = {
       message.description = object.description;
     }
     if (object.validator_description !== undefined && object.validator_description !== null) {
-      message.validatorDescription = Description.fromAmino(object.validator_description);
+      message.validator_description = Description.fromAmino(object.validator_description);
     }
     if (object.delegator_address !== undefined && object.delegator_address !== null) {
-      message.delegatorAddress = object.delegator_address;
+      message.delegator_address = object.delegator_address;
     }
     if (object.validator_address !== undefined && object.validator_address !== null) {
-      message.validatorAddress = object.validator_address;
+      message.validator_address = object.validator_address;
     }
     if (object.pubkey !== undefined && object.pubkey !== null) {
       message.pubkey = encodePubkey(object.pubkey);
@@ -400,9 +400,9 @@ export const RegisterVolunteerValidatorProposalWithDeposit = {
     const obj: any = {};
     obj.title = message.title === "" ? undefined : message.title;
     obj.description = message.description === "" ? undefined : message.description;
-    obj.validator_description = message.validatorDescription ? Description.toAmino(message.validatorDescription) : Description.toAmino(Description.fromPartial({}));
-    obj.delegator_address = message.delegatorAddress === "" ? undefined : message.delegatorAddress;
-    obj.validator_address = message.validatorAddress === "" ? undefined : message.validatorAddress;
+    obj.validator_description = message.validator_description ? Description.toAmino(message.validator_description) : Description.toAmino(Description.fromPartial({}));
+    obj.delegator_address = message.delegator_address === "" ? undefined : message.delegator_address;
+    obj.validator_address = message.validator_address === "" ? undefined : message.validator_address;
     obj.pubkey = message.pubkey ? decodePubkey(message.pubkey) : undefined;
     obj.amount = message.amount ? Coin.toAmino(message.amount) : Coin.toAmino(Coin.fromPartial({}));
     obj.deposit = message.deposit === "" ? undefined : message.deposit;
@@ -437,14 +437,14 @@ function createBaseUnregisterVolunteerValidatorProposal(): UnregisterVolunteerVa
   return {
     title: "",
     description: "",
-    validatorAddress: ""
+    validator_address: ""
   };
 }
 export const UnregisterVolunteerValidatorProposal = {
   typeUrl: "/xpla.volunteer.v1beta1.UnregisterVolunteerValidatorProposal",
   aminoType: "xpladev/UnregisterVolunteerValidatorProposal",
   is(o: any): o is UnregisterVolunteerValidatorProposal {
-    return o && (o.$typeUrl === UnregisterVolunteerValidatorProposal.typeUrl || typeof o.title === "string" && typeof o.description === "string" && typeof o.validatorAddress === "string");
+    return o && (o.$typeUrl === UnregisterVolunteerValidatorProposal.typeUrl || typeof o.title === "string" && typeof o.description === "string" && typeof o.validator_address === "string");
   },
   isAmino(o: any): o is UnregisterVolunteerValidatorProposalAmino {
     return o && (o.$typeUrl === UnregisterVolunteerValidatorProposal.typeUrl || typeof o.title === "string" && typeof o.description === "string" && typeof o.validator_address === "string");
@@ -456,8 +456,8 @@ export const UnregisterVolunteerValidatorProposal = {
     if (message.description !== "") {
       writer.uint32(18).string(message.description);
     }
-    if (message.validatorAddress !== "") {
-      writer.uint32(26).string(message.validatorAddress);
+    if (message.validator_address !== "") {
+      writer.uint32(26).string(message.validator_address);
     }
     return writer;
   },
@@ -475,7 +475,7 @@ export const UnregisterVolunteerValidatorProposal = {
           message.description = reader.string();
           break;
         case 3:
-          message.validatorAddress = reader.string();
+          message.validator_address = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -488,7 +488,7 @@ export const UnregisterVolunteerValidatorProposal = {
     const message = createBaseUnregisterVolunteerValidatorProposal();
     message.title = object.title ?? "";
     message.description = object.description ?? "";
-    message.validatorAddress = object.validatorAddress ?? "";
+    message.validator_address = object.validator_address ?? "";
     return message;
   },
   fromAmino(object: UnregisterVolunteerValidatorProposalAmino): UnregisterVolunteerValidatorProposal {
@@ -500,7 +500,7 @@ export const UnregisterVolunteerValidatorProposal = {
       message.description = object.description;
     }
     if (object.validator_address !== undefined && object.validator_address !== null) {
-      message.validatorAddress = object.validator_address;
+      message.validator_address = object.validator_address;
     }
     return message;
   },
@@ -508,7 +508,7 @@ export const UnregisterVolunteerValidatorProposal = {
     const obj: any = {};
     obj.title = message.title === "" ? undefined : message.title;
     obj.description = message.description === "" ? undefined : message.description;
-    obj.validator_address = message.validatorAddress === "" ? undefined : message.validatorAddress;
+    obj.validator_address = message.validator_address === "" ? undefined : message.validator_address;
     return obj;
   },
   fromAminoMsg(object: UnregisterVolunteerValidatorProposalAminoMsg): UnregisterVolunteerValidatorProposal {
@@ -538,7 +538,7 @@ function createBaseUnregisterVolunteerValidatorProposalWithDeposit(): Unregister
   return {
     title: "",
     description: "",
-    validatorAddress: "",
+    validator_address: "",
     deposit: ""
   };
 }
@@ -546,7 +546,7 @@ export const UnregisterVolunteerValidatorProposalWithDeposit = {
   typeUrl: "/xpla.volunteer.v1beta1.UnregisterVolunteerValidatorProposalWithDeposit",
   aminoType: "xpladev/UnregisterVolunteerValidatorProposalWithDeposit",
   is(o: any): o is UnregisterVolunteerValidatorProposalWithDeposit {
-    return o && (o.$typeUrl === UnregisterVolunteerValidatorProposalWithDeposit.typeUrl || typeof o.title === "string" && typeof o.description === "string" && typeof o.validatorAddress === "string" && typeof o.deposit === "string");
+    return o && (o.$typeUrl === UnregisterVolunteerValidatorProposalWithDeposit.typeUrl || typeof o.title === "string" && typeof o.description === "string" && typeof o.validator_address === "string" && typeof o.deposit === "string");
   },
   isAmino(o: any): o is UnregisterVolunteerValidatorProposalWithDepositAmino {
     return o && (o.$typeUrl === UnregisterVolunteerValidatorProposalWithDeposit.typeUrl || typeof o.title === "string" && typeof o.description === "string" && typeof o.validator_address === "string" && typeof o.deposit === "string");
@@ -558,8 +558,8 @@ export const UnregisterVolunteerValidatorProposalWithDeposit = {
     if (message.description !== "") {
       writer.uint32(18).string(message.description);
     }
-    if (message.validatorAddress !== "") {
-      writer.uint32(26).string(message.validatorAddress);
+    if (message.validator_address !== "") {
+      writer.uint32(26).string(message.validator_address);
     }
     if (message.deposit !== "") {
       writer.uint32(34).string(message.deposit);
@@ -580,7 +580,7 @@ export const UnregisterVolunteerValidatorProposalWithDeposit = {
           message.description = reader.string();
           break;
         case 3:
-          message.validatorAddress = reader.string();
+          message.validator_address = reader.string();
           break;
         case 4:
           message.deposit = reader.string();
@@ -596,7 +596,7 @@ export const UnregisterVolunteerValidatorProposalWithDeposit = {
     const message = createBaseUnregisterVolunteerValidatorProposalWithDeposit();
     message.title = object.title ?? "";
     message.description = object.description ?? "";
-    message.validatorAddress = object.validatorAddress ?? "";
+    message.validator_address = object.validator_address ?? "";
     message.deposit = object.deposit ?? "";
     return message;
   },
@@ -609,7 +609,7 @@ export const UnregisterVolunteerValidatorProposalWithDeposit = {
       message.description = object.description;
     }
     if (object.validator_address !== undefined && object.validator_address !== null) {
-      message.validatorAddress = object.validator_address;
+      message.validator_address = object.validator_address;
     }
     if (object.deposit !== undefined && object.deposit !== null) {
       message.deposit = object.deposit;
@@ -620,7 +620,7 @@ export const UnregisterVolunteerValidatorProposalWithDeposit = {
     const obj: any = {};
     obj.title = message.title === "" ? undefined : message.title;
     obj.description = message.description === "" ? undefined : message.description;
-    obj.validator_address = message.validatorAddress === "" ? undefined : message.validatorAddress;
+    obj.validator_address = message.validator_address === "" ? undefined : message.validator_address;
     obj.deposit = message.deposit === "" ? undefined : message.deposit;
     return obj;
   },

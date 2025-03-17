@@ -9,15 +9,15 @@ export interface GenesisState {
    * signing_infos represents a map between validator addresses and their
    * signing infos.
    */
-  signingInfos: SigningInfo[];
+  signing_infos: SigningInfo[];
   /**
    * missed_blocks represents a map between validator addresses and their
    * missed blocks.
    */
-  missedBlocks: ValidatorMissedBlocks[];
+  missed_blocks: ValidatorMissedBlocks[];
 }
 export interface GenesisStateProtoMsg {
-  typeUrl: "/cosmos.slashing.v1beta1.GenesisState";
+  type_url: "/cosmos.slashing.v1beta1.GenesisState";
   value: Uint8Array;
 }
 /** GenesisState defines the slashing module's genesis state. */
@@ -44,10 +44,10 @@ export interface SigningInfo {
   /** address is the validator address. */
   address: string;
   /** validator_signing_info represents the signing info of this validator. */
-  validatorSigningInfo: ValidatorSigningInfo;
+  validator_signing_info: ValidatorSigningInfo;
 }
 export interface SigningInfoProtoMsg {
-  typeUrl: "/cosmos.slashing.v1beta1.SigningInfo";
+  type_url: "/cosmos.slashing.v1beta1.SigningInfo";
   value: Uint8Array;
 }
 /** SigningInfo stores validator signing info of corresponding address. */
@@ -69,10 +69,10 @@ export interface ValidatorMissedBlocks {
   /** address is the validator address. */
   address: string;
   /** missed_blocks is an array of missed blocks by the validator. */
-  missedBlocks: MissedBlock[];
+  missed_blocks: MissedBlock[];
 }
 export interface ValidatorMissedBlocksProtoMsg {
-  typeUrl: "/cosmos.slashing.v1beta1.ValidatorMissedBlocks";
+  type_url: "/cosmos.slashing.v1beta1.ValidatorMissedBlocks";
   value: Uint8Array;
 }
 /**
@@ -97,7 +97,7 @@ export interface MissedBlock {
   missed: boolean;
 }
 export interface MissedBlockProtoMsg {
-  typeUrl: "/cosmos.slashing.v1beta1.MissedBlock";
+  type_url: "/cosmos.slashing.v1beta1.MissedBlock";
   value: Uint8Array;
 }
 /** MissedBlock contains height and missed status as boolean. */
@@ -114,15 +114,15 @@ export interface MissedBlockAminoMsg {
 function createBaseGenesisState(): GenesisState {
   return {
     params: Params.fromPartial({}),
-    signingInfos: [],
-    missedBlocks: []
+    signing_infos: [],
+    missed_blocks: []
   };
 }
 export const GenesisState = {
   typeUrl: "/cosmos.slashing.v1beta1.GenesisState",
   aminoType: "cosmos-sdk/GenesisState",
   is(o: any): o is GenesisState {
-    return o && (o.$typeUrl === GenesisState.typeUrl || Params.is(o.params) && Array.isArray(o.signingInfos) && (!o.signingInfos.length || SigningInfo.is(o.signingInfos[0])) && Array.isArray(o.missedBlocks) && (!o.missedBlocks.length || ValidatorMissedBlocks.is(o.missedBlocks[0])));
+    return o && (o.$typeUrl === GenesisState.typeUrl || Params.is(o.params) && Array.isArray(o.signing_infos) && (!o.signing_infos.length || SigningInfo.is(o.signing_infos[0])) && Array.isArray(o.missed_blocks) && (!o.missed_blocks.length || ValidatorMissedBlocks.is(o.missed_blocks[0])));
   },
   isAmino(o: any): o is GenesisStateAmino {
     return o && (o.$typeUrl === GenesisState.typeUrl || Params.isAmino(o.params) && Array.isArray(o.signing_infos) && (!o.signing_infos.length || SigningInfo.isAmino(o.signing_infos[0])) && Array.isArray(o.missed_blocks) && (!o.missed_blocks.length || ValidatorMissedBlocks.isAmino(o.missed_blocks[0])));
@@ -131,10 +131,10 @@ export const GenesisState = {
     if (message.params !== undefined) {
       Params.encode(message.params, writer.uint32(10).fork()).ldelim();
     }
-    for (const v of message.signingInfos) {
+    for (const v of message.signing_infos) {
       SigningInfo.encode(v!, writer.uint32(18).fork()).ldelim();
     }
-    for (const v of message.missedBlocks) {
+    for (const v of message.missed_blocks) {
       ValidatorMissedBlocks.encode(v!, writer.uint32(26).fork()).ldelim();
     }
     return writer;
@@ -150,10 +150,10 @@ export const GenesisState = {
           message.params = Params.decode(reader, reader.uint32());
           break;
         case 2:
-          message.signingInfos.push(SigningInfo.decode(reader, reader.uint32()));
+          message.signing_infos.push(SigningInfo.decode(reader, reader.uint32()));
           break;
         case 3:
-          message.missedBlocks.push(ValidatorMissedBlocks.decode(reader, reader.uint32()));
+          message.missed_blocks.push(ValidatorMissedBlocks.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -165,8 +165,8 @@ export const GenesisState = {
   fromPartial(object: DeepPartial<GenesisState>): GenesisState {
     const message = createBaseGenesisState();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
-    message.signingInfos = object.signingInfos?.map(e => SigningInfo.fromPartial(e)) || [];
-    message.missedBlocks = object.missedBlocks?.map(e => ValidatorMissedBlocks.fromPartial(e)) || [];
+    message.signing_infos = object.signing_infos?.map(e => SigningInfo.fromPartial(e)) || [];
+    message.missed_blocks = object.missed_blocks?.map(e => ValidatorMissedBlocks.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
@@ -174,22 +174,22 @@ export const GenesisState = {
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromAmino(object.params);
     }
-    message.signingInfos = object.signing_infos?.map(e => SigningInfo.fromAmino(e)) || [];
-    message.missedBlocks = object.missed_blocks?.map(e => ValidatorMissedBlocks.fromAmino(e)) || [];
+    message.signing_infos = object.signing_infos?.map(e => SigningInfo.fromAmino(e)) || [];
+    message.missed_blocks = object.missed_blocks?.map(e => ValidatorMissedBlocks.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
     obj.params = message.params ? Params.toAmino(message.params) : Params.toAmino(Params.fromPartial({}));
-    if (message.signingInfos) {
-      obj.signing_infos = message.signingInfos.map(e => e ? SigningInfo.toAmino(e) : undefined);
+    if (message.signing_infos) {
+      obj.signing_infos = message.signing_infos.map(e => e ? SigningInfo.toAmino(e) : undefined);
     } else {
-      obj.signing_infos = message.signingInfos;
+      obj.signing_infos = message.signing_infos;
     }
-    if (message.missedBlocks) {
-      obj.missed_blocks = message.missedBlocks.map(e => e ? ValidatorMissedBlocks.toAmino(e) : undefined);
+    if (message.missed_blocks) {
+      obj.missed_blocks = message.missed_blocks.map(e => e ? ValidatorMissedBlocks.toAmino(e) : undefined);
     } else {
-      obj.missed_blocks = message.missedBlocks;
+      obj.missed_blocks = message.missed_blocks;
     }
     return obj;
   },
@@ -223,14 +223,14 @@ export const GenesisState = {
 function createBaseSigningInfo(): SigningInfo {
   return {
     address: "",
-    validatorSigningInfo: ValidatorSigningInfo.fromPartial({})
+    validator_signing_info: ValidatorSigningInfo.fromPartial({})
   };
 }
 export const SigningInfo = {
   typeUrl: "/cosmos.slashing.v1beta1.SigningInfo",
   aminoType: "cosmos-sdk/SigningInfo",
   is(o: any): o is SigningInfo {
-    return o && (o.$typeUrl === SigningInfo.typeUrl || typeof o.address === "string" && ValidatorSigningInfo.is(o.validatorSigningInfo));
+    return o && (o.$typeUrl === SigningInfo.typeUrl || typeof o.address === "string" && ValidatorSigningInfo.is(o.validator_signing_info));
   },
   isAmino(o: any): o is SigningInfoAmino {
     return o && (o.$typeUrl === SigningInfo.typeUrl || typeof o.address === "string" && ValidatorSigningInfo.isAmino(o.validator_signing_info));
@@ -239,8 +239,8 @@ export const SigningInfo = {
     if (message.address !== "") {
       writer.uint32(10).string(message.address);
     }
-    if (message.validatorSigningInfo !== undefined) {
-      ValidatorSigningInfo.encode(message.validatorSigningInfo, writer.uint32(18).fork()).ldelim();
+    if (message.validator_signing_info !== undefined) {
+      ValidatorSigningInfo.encode(message.validator_signing_info, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
@@ -255,7 +255,7 @@ export const SigningInfo = {
           message.address = reader.string();
           break;
         case 2:
-          message.validatorSigningInfo = ValidatorSigningInfo.decode(reader, reader.uint32());
+          message.validator_signing_info = ValidatorSigningInfo.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -267,7 +267,7 @@ export const SigningInfo = {
   fromPartial(object: DeepPartial<SigningInfo>): SigningInfo {
     const message = createBaseSigningInfo();
     message.address = object.address ?? "";
-    message.validatorSigningInfo = object.validatorSigningInfo !== undefined && object.validatorSigningInfo !== null ? ValidatorSigningInfo.fromPartial(object.validatorSigningInfo) : undefined;
+    message.validator_signing_info = object.validator_signing_info !== undefined && object.validator_signing_info !== null ? ValidatorSigningInfo.fromPartial(object.validator_signing_info) : undefined;
     return message;
   },
   fromAmino(object: SigningInfoAmino): SigningInfo {
@@ -276,14 +276,14 @@ export const SigningInfo = {
       message.address = object.address;
     }
     if (object.validator_signing_info !== undefined && object.validator_signing_info !== null) {
-      message.validatorSigningInfo = ValidatorSigningInfo.fromAmino(object.validator_signing_info);
+      message.validator_signing_info = ValidatorSigningInfo.fromAmino(object.validator_signing_info);
     }
     return message;
   },
   toAmino(message: SigningInfo): SigningInfoAmino {
     const obj: any = {};
     obj.address = message.address === "" ? undefined : message.address;
-    obj.validator_signing_info = message.validatorSigningInfo ? ValidatorSigningInfo.toAmino(message.validatorSigningInfo) : ValidatorSigningInfo.toAmino(ValidatorSigningInfo.fromPartial({}));
+    obj.validator_signing_info = message.validator_signing_info ? ValidatorSigningInfo.toAmino(message.validator_signing_info) : ValidatorSigningInfo.toAmino(ValidatorSigningInfo.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object: SigningInfoAminoMsg): SigningInfo {
@@ -314,14 +314,14 @@ export const SigningInfo = {
 function createBaseValidatorMissedBlocks(): ValidatorMissedBlocks {
   return {
     address: "",
-    missedBlocks: []
+    missed_blocks: []
   };
 }
 export const ValidatorMissedBlocks = {
   typeUrl: "/cosmos.slashing.v1beta1.ValidatorMissedBlocks",
   aminoType: "cosmos-sdk/ValidatorMissedBlocks",
   is(o: any): o is ValidatorMissedBlocks {
-    return o && (o.$typeUrl === ValidatorMissedBlocks.typeUrl || typeof o.address === "string" && Array.isArray(o.missedBlocks) && (!o.missedBlocks.length || MissedBlock.is(o.missedBlocks[0])));
+    return o && (o.$typeUrl === ValidatorMissedBlocks.typeUrl || typeof o.address === "string" && Array.isArray(o.missed_blocks) && (!o.missed_blocks.length || MissedBlock.is(o.missed_blocks[0])));
   },
   isAmino(o: any): o is ValidatorMissedBlocksAmino {
     return o && (o.$typeUrl === ValidatorMissedBlocks.typeUrl || typeof o.address === "string" && Array.isArray(o.missed_blocks) && (!o.missed_blocks.length || MissedBlock.isAmino(o.missed_blocks[0])));
@@ -330,7 +330,7 @@ export const ValidatorMissedBlocks = {
     if (message.address !== "") {
       writer.uint32(10).string(message.address);
     }
-    for (const v of message.missedBlocks) {
+    for (const v of message.missed_blocks) {
       MissedBlock.encode(v!, writer.uint32(18).fork()).ldelim();
     }
     return writer;
@@ -346,7 +346,7 @@ export const ValidatorMissedBlocks = {
           message.address = reader.string();
           break;
         case 2:
-          message.missedBlocks.push(MissedBlock.decode(reader, reader.uint32()));
+          message.missed_blocks.push(MissedBlock.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -358,7 +358,7 @@ export const ValidatorMissedBlocks = {
   fromPartial(object: DeepPartial<ValidatorMissedBlocks>): ValidatorMissedBlocks {
     const message = createBaseValidatorMissedBlocks();
     message.address = object.address ?? "";
-    message.missedBlocks = object.missedBlocks?.map(e => MissedBlock.fromPartial(e)) || [];
+    message.missed_blocks = object.missed_blocks?.map(e => MissedBlock.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: ValidatorMissedBlocksAmino): ValidatorMissedBlocks {
@@ -366,16 +366,16 @@ export const ValidatorMissedBlocks = {
     if (object.address !== undefined && object.address !== null) {
       message.address = object.address;
     }
-    message.missedBlocks = object.missed_blocks?.map(e => MissedBlock.fromAmino(e)) || [];
+    message.missed_blocks = object.missed_blocks?.map(e => MissedBlock.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: ValidatorMissedBlocks): ValidatorMissedBlocksAmino {
     const obj: any = {};
     obj.address = message.address === "" ? undefined : message.address;
-    if (message.missedBlocks) {
-      obj.missed_blocks = message.missedBlocks.map(e => e ? MissedBlock.toAmino(e) : undefined);
+    if (message.missed_blocks) {
+      obj.missed_blocks = message.missed_blocks.map(e => e ? MissedBlock.toAmino(e) : undefined);
     } else {
-      obj.missed_blocks = message.missedBlocks;
+      obj.missed_blocks = message.missed_blocks;
     }
     return obj;
   },

@@ -11,7 +11,7 @@ export class LCDQueryClient {
   }
   /* InterchainAccount returns the interchain account address for a given owner address on a given connection */
   interchainAccount = async (params: QueryInterchainAccountRequest): Promise<QueryInterchainAccountResponse> => {
-    const endpoint = `ibc/apps/interchain_accounts/controller/v1/owners/${params.owner}/connections/${params.connectionId}`;
+    const endpoint = `ibc/apps/interchain_accounts/controller/v1/owners/${params.owner}/connections/${params.connection_id}`;
     return await this.req.get<QueryInterchainAccountResponse>(endpoint);
   };
   /* Params queries all parameters of the ICA controller submodule. */

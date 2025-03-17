@@ -6,7 +6,7 @@ export interface NetAddress {
   port: number;
 }
 export interface NetAddressProtoMsg {
-  typeUrl: "/tendermint.p2p.NetAddress";
+  type_url: "/tendermint.p2p.NetAddress";
   value: Uint8Array;
 }
 export interface NetAddressAmino {
@@ -24,7 +24,7 @@ export interface ProtocolVersion {
   app: bigint;
 }
 export interface ProtocolVersionProtoMsg {
-  typeUrl: "/tendermint.p2p.ProtocolVersion";
+  type_url: "/tendermint.p2p.ProtocolVersion";
   value: Uint8Array;
 }
 export interface ProtocolVersionAmino {
@@ -37,9 +37,9 @@ export interface ProtocolVersionAminoMsg {
   value: ProtocolVersionAmino;
 }
 export interface DefaultNodeInfo {
-  protocolVersion: ProtocolVersion;
-  defaultNodeId: string;
-  listenAddr: string;
+  protocol_version: ProtocolVersion;
+  default_node_id: string;
+  listen_addr: string;
   network: string;
   version: string;
   channels: Uint8Array;
@@ -47,7 +47,7 @@ export interface DefaultNodeInfo {
   other: DefaultNodeInfoOther;
 }
 export interface DefaultNodeInfoProtoMsg {
-  typeUrl: "/tendermint.p2p.DefaultNodeInfo";
+  type_url: "/tendermint.p2p.DefaultNodeInfo";
   value: Uint8Array;
 }
 export interface DefaultNodeInfoAmino {
@@ -65,11 +65,11 @@ export interface DefaultNodeInfoAminoMsg {
   value: DefaultNodeInfoAmino;
 }
 export interface DefaultNodeInfoOther {
-  txIndex: string;
-  rpcAddress: string;
+  tx_index: string;
+  rpc_address: string;
 }
 export interface DefaultNodeInfoOtherProtoMsg {
-  typeUrl: "/tendermint.p2p.DefaultNodeInfoOther";
+  type_url: "/tendermint.p2p.DefaultNodeInfoOther";
   value: Uint8Array;
 }
 export interface DefaultNodeInfoOtherAmino {
@@ -270,9 +270,9 @@ export const ProtocolVersion = {
 };
 function createBaseDefaultNodeInfo(): DefaultNodeInfo {
   return {
-    protocolVersion: ProtocolVersion.fromPartial({}),
-    defaultNodeId: "",
-    listenAddr: "",
+    protocol_version: ProtocolVersion.fromPartial({}),
+    default_node_id: "",
+    listen_addr: "",
     network: "",
     version: "",
     channels: new Uint8Array(),
@@ -283,20 +283,20 @@ function createBaseDefaultNodeInfo(): DefaultNodeInfo {
 export const DefaultNodeInfo = {
   typeUrl: "/tendermint.p2p.DefaultNodeInfo",
   is(o: any): o is DefaultNodeInfo {
-    return o && (o.$typeUrl === DefaultNodeInfo.typeUrl || ProtocolVersion.is(o.protocolVersion) && typeof o.defaultNodeId === "string" && typeof o.listenAddr === "string" && typeof o.network === "string" && typeof o.version === "string" && (o.channels instanceof Uint8Array || typeof o.channels === "string") && typeof o.moniker === "string" && DefaultNodeInfoOther.is(o.other));
+    return o && (o.$typeUrl === DefaultNodeInfo.typeUrl || ProtocolVersion.is(o.protocol_version) && typeof o.default_node_id === "string" && typeof o.listen_addr === "string" && typeof o.network === "string" && typeof o.version === "string" && (o.channels instanceof Uint8Array || typeof o.channels === "string") && typeof o.moniker === "string" && DefaultNodeInfoOther.is(o.other));
   },
   isAmino(o: any): o is DefaultNodeInfoAmino {
     return o && (o.$typeUrl === DefaultNodeInfo.typeUrl || ProtocolVersion.isAmino(o.protocol_version) && typeof o.default_node_id === "string" && typeof o.listen_addr === "string" && typeof o.network === "string" && typeof o.version === "string" && (o.channels instanceof Uint8Array || typeof o.channels === "string") && typeof o.moniker === "string" && DefaultNodeInfoOther.isAmino(o.other));
   },
   encode(message: DefaultNodeInfo, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.protocolVersion !== undefined) {
-      ProtocolVersion.encode(message.protocolVersion, writer.uint32(10).fork()).ldelim();
+    if (message.protocol_version !== undefined) {
+      ProtocolVersion.encode(message.protocol_version, writer.uint32(10).fork()).ldelim();
     }
-    if (message.defaultNodeId !== "") {
-      writer.uint32(18).string(message.defaultNodeId);
+    if (message.default_node_id !== "") {
+      writer.uint32(18).string(message.default_node_id);
     }
-    if (message.listenAddr !== "") {
-      writer.uint32(26).string(message.listenAddr);
+    if (message.listen_addr !== "") {
+      writer.uint32(26).string(message.listen_addr);
     }
     if (message.network !== "") {
       writer.uint32(34).string(message.network);
@@ -323,13 +323,13 @@ export const DefaultNodeInfo = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.protocolVersion = ProtocolVersion.decode(reader, reader.uint32());
+          message.protocol_version = ProtocolVersion.decode(reader, reader.uint32());
           break;
         case 2:
-          message.defaultNodeId = reader.string();
+          message.default_node_id = reader.string();
           break;
         case 3:
-          message.listenAddr = reader.string();
+          message.listen_addr = reader.string();
           break;
         case 4:
           message.network = reader.string();
@@ -355,9 +355,9 @@ export const DefaultNodeInfo = {
   },
   fromPartial(object: DeepPartial<DefaultNodeInfo>): DefaultNodeInfo {
     const message = createBaseDefaultNodeInfo();
-    message.protocolVersion = object.protocolVersion !== undefined && object.protocolVersion !== null ? ProtocolVersion.fromPartial(object.protocolVersion) : undefined;
-    message.defaultNodeId = object.defaultNodeId ?? "";
-    message.listenAddr = object.listenAddr ?? "";
+    message.protocol_version = object.protocol_version !== undefined && object.protocol_version !== null ? ProtocolVersion.fromPartial(object.protocol_version) : undefined;
+    message.default_node_id = object.default_node_id ?? "";
+    message.listen_addr = object.listen_addr ?? "";
     message.network = object.network ?? "";
     message.version = object.version ?? "";
     message.channels = object.channels ?? new Uint8Array();
@@ -368,13 +368,13 @@ export const DefaultNodeInfo = {
   fromAmino(object: DefaultNodeInfoAmino): DefaultNodeInfo {
     const message = createBaseDefaultNodeInfo();
     if (object.protocol_version !== undefined && object.protocol_version !== null) {
-      message.protocolVersion = ProtocolVersion.fromAmino(object.protocol_version);
+      message.protocol_version = ProtocolVersion.fromAmino(object.protocol_version);
     }
     if (object.default_node_id !== undefined && object.default_node_id !== null) {
-      message.defaultNodeId = object.default_node_id;
+      message.default_node_id = object.default_node_id;
     }
     if (object.listen_addr !== undefined && object.listen_addr !== null) {
-      message.listenAddr = object.listen_addr;
+      message.listen_addr = object.listen_addr;
     }
     if (object.network !== undefined && object.network !== null) {
       message.network = object.network;
@@ -395,9 +395,9 @@ export const DefaultNodeInfo = {
   },
   toAmino(message: DefaultNodeInfo): DefaultNodeInfoAmino {
     const obj: any = {};
-    obj.protocol_version = message.protocolVersion ? ProtocolVersion.toAmino(message.protocolVersion) : undefined;
-    obj.default_node_id = message.defaultNodeId === "" ? undefined : message.defaultNodeId;
-    obj.listen_addr = message.listenAddr === "" ? undefined : message.listenAddr;
+    obj.protocol_version = message.protocol_version ? ProtocolVersion.toAmino(message.protocol_version) : undefined;
+    obj.default_node_id = message.default_node_id === "" ? undefined : message.default_node_id;
+    obj.listen_addr = message.listen_addr === "" ? undefined : message.listen_addr;
     obj.network = message.network === "" ? undefined : message.network;
     obj.version = message.version === "" ? undefined : message.version;
     obj.channels = message.channels ? base64FromBytes(message.channels) : undefined;
@@ -427,24 +427,24 @@ export const DefaultNodeInfo = {
 };
 function createBaseDefaultNodeInfoOther(): DefaultNodeInfoOther {
   return {
-    txIndex: "",
-    rpcAddress: ""
+    tx_index: "",
+    rpc_address: ""
   };
 }
 export const DefaultNodeInfoOther = {
   typeUrl: "/tendermint.p2p.DefaultNodeInfoOther",
   is(o: any): o is DefaultNodeInfoOther {
-    return o && (o.$typeUrl === DefaultNodeInfoOther.typeUrl || typeof o.txIndex === "string" && typeof o.rpcAddress === "string");
+    return o && (o.$typeUrl === DefaultNodeInfoOther.typeUrl || typeof o.tx_index === "string" && typeof o.rpc_address === "string");
   },
   isAmino(o: any): o is DefaultNodeInfoOtherAmino {
     return o && (o.$typeUrl === DefaultNodeInfoOther.typeUrl || typeof o.tx_index === "string" && typeof o.rpc_address === "string");
   },
   encode(message: DefaultNodeInfoOther, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.txIndex !== "") {
-      writer.uint32(10).string(message.txIndex);
+    if (message.tx_index !== "") {
+      writer.uint32(10).string(message.tx_index);
     }
-    if (message.rpcAddress !== "") {
-      writer.uint32(18).string(message.rpcAddress);
+    if (message.rpc_address !== "") {
+      writer.uint32(18).string(message.rpc_address);
     }
     return writer;
   },
@@ -456,10 +456,10 @@ export const DefaultNodeInfoOther = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.txIndex = reader.string();
+          message.tx_index = reader.string();
           break;
         case 2:
-          message.rpcAddress = reader.string();
+          message.rpc_address = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -470,24 +470,24 @@ export const DefaultNodeInfoOther = {
   },
   fromPartial(object: DeepPartial<DefaultNodeInfoOther>): DefaultNodeInfoOther {
     const message = createBaseDefaultNodeInfoOther();
-    message.txIndex = object.txIndex ?? "";
-    message.rpcAddress = object.rpcAddress ?? "";
+    message.tx_index = object.tx_index ?? "";
+    message.rpc_address = object.rpc_address ?? "";
     return message;
   },
   fromAmino(object: DefaultNodeInfoOtherAmino): DefaultNodeInfoOther {
     const message = createBaseDefaultNodeInfoOther();
     if (object.tx_index !== undefined && object.tx_index !== null) {
-      message.txIndex = object.tx_index;
+      message.tx_index = object.tx_index;
     }
     if (object.rpc_address !== undefined && object.rpc_address !== null) {
-      message.rpcAddress = object.rpc_address;
+      message.rpc_address = object.rpc_address;
     }
     return message;
   },
   toAmino(message: DefaultNodeInfoOther): DefaultNodeInfoOtherAmino {
     const obj: any = {};
-    obj.tx_index = message.txIndex === "" ? undefined : message.txIndex;
-    obj.rpc_address = message.rpcAddress === "" ? undefined : message.rpcAddress;
+    obj.tx_index = message.tx_index === "" ? undefined : message.tx_index;
+    obj.rpc_address = message.rpc_address === "" ? undefined : message.rpc_address;
     return obj;
   },
   fromAminoMsg(object: DefaultNodeInfoOtherAminoMsg): DefaultNodeInfoOther {

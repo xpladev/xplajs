@@ -10,10 +10,10 @@ export interface QueryIncentivizedPacketsRequest {
   /** pagination defines an optional pagination for the request. */
   pagination?: PageRequest;
   /** block height at which to query */
-  queryHeight: bigint;
+  query_height: bigint;
 }
 export interface QueryIncentivizedPacketsRequestProtoMsg {
-  typeUrl: "/ibc.applications.fee.v1.QueryIncentivizedPacketsRequest";
+  type_url: "/ibc.applications.fee.v1.QueryIncentivizedPacketsRequest";
   value: Uint8Array;
 }
 /** QueryIncentivizedPacketsRequest defines the request type for the IncentivizedPackets rpc */
@@ -30,12 +30,12 @@ export interface QueryIncentivizedPacketsRequestAminoMsg {
 /** QueryIncentivizedPacketsResponse defines the response type for the IncentivizedPackets rpc */
 export interface QueryIncentivizedPacketsResponse {
   /** list of identified fees for incentivized packets */
-  incentivizedPackets: IdentifiedPacketFees[];
+  incentivized_packets: IdentifiedPacketFees[];
   /** pagination defines the pagination in the response. */
   pagination?: PageResponse;
 }
 export interface QueryIncentivizedPacketsResponseProtoMsg {
-  typeUrl: "/ibc.applications.fee.v1.QueryIncentivizedPacketsResponse";
+  type_url: "/ibc.applications.fee.v1.QueryIncentivizedPacketsResponse";
   value: Uint8Array;
 }
 /** QueryIncentivizedPacketsResponse defines the response type for the IncentivizedPackets rpc */
@@ -52,12 +52,12 @@ export interface QueryIncentivizedPacketsResponseAminoMsg {
 /** QueryIncentivizedPacketRequest defines the request type for the IncentivizedPacket rpc */
 export interface QueryIncentivizedPacketRequest {
   /** unique packet identifier comprised of channel ID, port ID and sequence */
-  packetId: PacketId;
+  packet_id: PacketId;
   /** block height at which to query */
-  queryHeight: bigint;
+  query_height: bigint;
 }
 export interface QueryIncentivizedPacketRequestProtoMsg {
-  typeUrl: "/ibc.applications.fee.v1.QueryIncentivizedPacketRequest";
+  type_url: "/ibc.applications.fee.v1.QueryIncentivizedPacketRequest";
   value: Uint8Array;
 }
 /** QueryIncentivizedPacketRequest defines the request type for the IncentivizedPacket rpc */
@@ -74,10 +74,10 @@ export interface QueryIncentivizedPacketRequestAminoMsg {
 /** QueryIncentivizedPacketsResponse defines the response type for the IncentivizedPacket rpc */
 export interface QueryIncentivizedPacketResponse {
   /** the identified fees for the incentivized packet */
-  incentivizedPacket: IdentifiedPacketFees;
+  incentivized_packet: IdentifiedPacketFees;
 }
 export interface QueryIncentivizedPacketResponseProtoMsg {
-  typeUrl: "/ibc.applications.fee.v1.QueryIncentivizedPacketResponse";
+  type_url: "/ibc.applications.fee.v1.QueryIncentivizedPacketResponse";
   value: Uint8Array;
 }
 /** QueryIncentivizedPacketsResponse defines the response type for the IncentivizedPacket rpc */
@@ -96,13 +96,13 @@ export interface QueryIncentivizedPacketResponseAminoMsg {
 export interface QueryIncentivizedPacketsForChannelRequest {
   /** pagination defines an optional pagination for the request. */
   pagination?: PageRequest;
-  portId: string;
-  channelId: string;
+  port_id: string;
+  channel_id: string;
   /** Height to query at */
-  queryHeight: bigint;
+  query_height: bigint;
 }
 export interface QueryIncentivizedPacketsForChannelRequestProtoMsg {
-  typeUrl: "/ibc.applications.fee.v1.QueryIncentivizedPacketsForChannelRequest";
+  type_url: "/ibc.applications.fee.v1.QueryIncentivizedPacketsForChannelRequest";
   value: Uint8Array;
 }
 /**
@@ -124,12 +124,12 @@ export interface QueryIncentivizedPacketsForChannelRequestAminoMsg {
 /** QueryIncentivizedPacketsResponse defines the response type for the incentivized packets RPC */
 export interface QueryIncentivizedPacketsForChannelResponse {
   /** Map of all incentivized_packets */
-  incentivizedPackets: IdentifiedPacketFees[];
+  incentivized_packets: IdentifiedPacketFees[];
   /** pagination defines the pagination in the response. */
   pagination?: PageResponse;
 }
 export interface QueryIncentivizedPacketsForChannelResponseProtoMsg {
-  typeUrl: "/ibc.applications.fee.v1.QueryIncentivizedPacketsForChannelResponse";
+  type_url: "/ibc.applications.fee.v1.QueryIncentivizedPacketsForChannelResponse";
   value: Uint8Array;
 }
 /** QueryIncentivizedPacketsResponse defines the response type for the incentivized packets RPC */
@@ -146,10 +146,10 @@ export interface QueryIncentivizedPacketsForChannelResponseAminoMsg {
 /** QueryTotalRecvFeesRequest defines the request type for the TotalRecvFees rpc */
 export interface QueryTotalRecvFeesRequest {
   /** the packet identifier for the associated fees */
-  packetId: PacketId;
+  packet_id: PacketId;
 }
 export interface QueryTotalRecvFeesRequestProtoMsg {
-  typeUrl: "/ibc.applications.fee.v1.QueryTotalRecvFeesRequest";
+  type_url: "/ibc.applications.fee.v1.QueryTotalRecvFeesRequest";
   value: Uint8Array;
 }
 /** QueryTotalRecvFeesRequest defines the request type for the TotalRecvFees rpc */
@@ -164,10 +164,10 @@ export interface QueryTotalRecvFeesRequestAminoMsg {
 /** QueryTotalRecvFeesResponse defines the response type for the TotalRecvFees rpc */
 export interface QueryTotalRecvFeesResponse {
   /** the total packet receive fees */
-  recvFees: Coin[];
+  recv_fees: Coin[];
 }
 export interface QueryTotalRecvFeesResponseProtoMsg {
-  typeUrl: "/ibc.applications.fee.v1.QueryTotalRecvFeesResponse";
+  type_url: "/ibc.applications.fee.v1.QueryTotalRecvFeesResponse";
   value: Uint8Array;
 }
 /** QueryTotalRecvFeesResponse defines the response type for the TotalRecvFees rpc */
@@ -182,10 +182,10 @@ export interface QueryTotalRecvFeesResponseAminoMsg {
 /** QueryTotalAckFeesRequest defines the request type for the TotalAckFees rpc */
 export interface QueryTotalAckFeesRequest {
   /** the packet identifier for the associated fees */
-  packetId: PacketId;
+  packet_id: PacketId;
 }
 export interface QueryTotalAckFeesRequestProtoMsg {
-  typeUrl: "/ibc.applications.fee.v1.QueryTotalAckFeesRequest";
+  type_url: "/ibc.applications.fee.v1.QueryTotalAckFeesRequest";
   value: Uint8Array;
 }
 /** QueryTotalAckFeesRequest defines the request type for the TotalAckFees rpc */
@@ -200,10 +200,10 @@ export interface QueryTotalAckFeesRequestAminoMsg {
 /** QueryTotalAckFeesResponse defines the response type for the TotalAckFees rpc */
 export interface QueryTotalAckFeesResponse {
   /** the total packet acknowledgement fees */
-  ackFees: Coin[];
+  ack_fees: Coin[];
 }
 export interface QueryTotalAckFeesResponseProtoMsg {
-  typeUrl: "/ibc.applications.fee.v1.QueryTotalAckFeesResponse";
+  type_url: "/ibc.applications.fee.v1.QueryTotalAckFeesResponse";
   value: Uint8Array;
 }
 /** QueryTotalAckFeesResponse defines the response type for the TotalAckFees rpc */
@@ -218,10 +218,10 @@ export interface QueryTotalAckFeesResponseAminoMsg {
 /** QueryTotalTimeoutFeesRequest defines the request type for the TotalTimeoutFees rpc */
 export interface QueryTotalTimeoutFeesRequest {
   /** the packet identifier for the associated fees */
-  packetId: PacketId;
+  packet_id: PacketId;
 }
 export interface QueryTotalTimeoutFeesRequestProtoMsg {
-  typeUrl: "/ibc.applications.fee.v1.QueryTotalTimeoutFeesRequest";
+  type_url: "/ibc.applications.fee.v1.QueryTotalTimeoutFeesRequest";
   value: Uint8Array;
 }
 /** QueryTotalTimeoutFeesRequest defines the request type for the TotalTimeoutFees rpc */
@@ -236,10 +236,10 @@ export interface QueryTotalTimeoutFeesRequestAminoMsg {
 /** QueryTotalTimeoutFeesResponse defines the response type for the TotalTimeoutFees rpc */
 export interface QueryTotalTimeoutFeesResponse {
   /** the total packet timeout fees */
-  timeoutFees: Coin[];
+  timeout_fees: Coin[];
 }
 export interface QueryTotalTimeoutFeesResponseProtoMsg {
-  typeUrl: "/ibc.applications.fee.v1.QueryTotalTimeoutFeesResponse";
+  type_url: "/ibc.applications.fee.v1.QueryTotalTimeoutFeesResponse";
   value: Uint8Array;
 }
 /** QueryTotalTimeoutFeesResponse defines the response type for the TotalTimeoutFees rpc */
@@ -254,12 +254,12 @@ export interface QueryTotalTimeoutFeesResponseAminoMsg {
 /** QueryPayeeRequest defines the request type for the Payee rpc */
 export interface QueryPayeeRequest {
   /** unique channel identifier */
-  channelId: string;
+  channel_id: string;
   /** the relayer address to which the distribution address is registered */
   relayer: string;
 }
 export interface QueryPayeeRequestProtoMsg {
-  typeUrl: "/ibc.applications.fee.v1.QueryPayeeRequest";
+  type_url: "/ibc.applications.fee.v1.QueryPayeeRequest";
   value: Uint8Array;
 }
 /** QueryPayeeRequest defines the request type for the Payee rpc */
@@ -276,10 +276,10 @@ export interface QueryPayeeRequestAminoMsg {
 /** QueryPayeeResponse defines the response type for the Payee rpc */
 export interface QueryPayeeResponse {
   /** the payee address to which packet fees are paid out */
-  payeeAddress: string;
+  payee_address: string;
 }
 export interface QueryPayeeResponseProtoMsg {
-  typeUrl: "/ibc.applications.fee.v1.QueryPayeeResponse";
+  type_url: "/ibc.applications.fee.v1.QueryPayeeResponse";
   value: Uint8Array;
 }
 /** QueryPayeeResponse defines the response type for the Payee rpc */
@@ -294,12 +294,12 @@ export interface QueryPayeeResponseAminoMsg {
 /** QueryCounterpartyPayeeRequest defines the request type for the CounterpartyPayee rpc */
 export interface QueryCounterpartyPayeeRequest {
   /** unique channel identifier */
-  channelId: string;
+  channel_id: string;
   /** the relayer address to which the counterparty is registered */
   relayer: string;
 }
 export interface QueryCounterpartyPayeeRequestProtoMsg {
-  typeUrl: "/ibc.applications.fee.v1.QueryCounterpartyPayeeRequest";
+  type_url: "/ibc.applications.fee.v1.QueryCounterpartyPayeeRequest";
   value: Uint8Array;
 }
 /** QueryCounterpartyPayeeRequest defines the request type for the CounterpartyPayee rpc */
@@ -316,10 +316,10 @@ export interface QueryCounterpartyPayeeRequestAminoMsg {
 /** QueryCounterpartyPayeeResponse defines the response type for the CounterpartyPayee rpc */
 export interface QueryCounterpartyPayeeResponse {
   /** the counterparty payee address used to compensate forward relaying */
-  counterpartyPayee: string;
+  counterparty_payee: string;
 }
 export interface QueryCounterpartyPayeeResponseProtoMsg {
-  typeUrl: "/ibc.applications.fee.v1.QueryCounterpartyPayeeResponse";
+  type_url: "/ibc.applications.fee.v1.QueryCounterpartyPayeeResponse";
   value: Uint8Array;
 }
 /** QueryCounterpartyPayeeResponse defines the response type for the CounterpartyPayee rpc */
@@ -336,10 +336,10 @@ export interface QueryFeeEnabledChannelsRequest {
   /** pagination defines an optional pagination for the request. */
   pagination?: PageRequest;
   /** block height at which to query */
-  queryHeight: bigint;
+  query_height: bigint;
 }
 export interface QueryFeeEnabledChannelsRequestProtoMsg {
-  typeUrl: "/ibc.applications.fee.v1.QueryFeeEnabledChannelsRequest";
+  type_url: "/ibc.applications.fee.v1.QueryFeeEnabledChannelsRequest";
   value: Uint8Array;
 }
 /** QueryFeeEnabledChannelsRequest defines the request type for the FeeEnabledChannels rpc */
@@ -356,12 +356,12 @@ export interface QueryFeeEnabledChannelsRequestAminoMsg {
 /** QueryFeeEnabledChannelsResponse defines the response type for the FeeEnabledChannels rpc */
 export interface QueryFeeEnabledChannelsResponse {
   /** list of fee enabled channels */
-  feeEnabledChannels: FeeEnabledChannel[];
+  fee_enabled_channels: FeeEnabledChannel[];
   /** pagination defines the pagination in the response. */
   pagination?: PageResponse;
 }
 export interface QueryFeeEnabledChannelsResponseProtoMsg {
-  typeUrl: "/ibc.applications.fee.v1.QueryFeeEnabledChannelsResponse";
+  type_url: "/ibc.applications.fee.v1.QueryFeeEnabledChannelsResponse";
   value: Uint8Array;
 }
 /** QueryFeeEnabledChannelsResponse defines the response type for the FeeEnabledChannels rpc */
@@ -378,12 +378,12 @@ export interface QueryFeeEnabledChannelsResponseAminoMsg {
 /** QueryFeeEnabledChannelRequest defines the request type for the FeeEnabledChannel rpc */
 export interface QueryFeeEnabledChannelRequest {
   /** unique port identifier */
-  portId: string;
+  port_id: string;
   /** unique channel identifier */
-  channelId: string;
+  channel_id: string;
 }
 export interface QueryFeeEnabledChannelRequestProtoMsg {
-  typeUrl: "/ibc.applications.fee.v1.QueryFeeEnabledChannelRequest";
+  type_url: "/ibc.applications.fee.v1.QueryFeeEnabledChannelRequest";
   value: Uint8Array;
 }
 /** QueryFeeEnabledChannelRequest defines the request type for the FeeEnabledChannel rpc */
@@ -400,10 +400,10 @@ export interface QueryFeeEnabledChannelRequestAminoMsg {
 /** QueryFeeEnabledChannelResponse defines the response type for the FeeEnabledChannel rpc */
 export interface QueryFeeEnabledChannelResponse {
   /** boolean flag representing the fee enabled channel status */
-  feeEnabled: boolean;
+  fee_enabled: boolean;
 }
 export interface QueryFeeEnabledChannelResponseProtoMsg {
-  typeUrl: "/ibc.applications.fee.v1.QueryFeeEnabledChannelResponse";
+  type_url: "/ibc.applications.fee.v1.QueryFeeEnabledChannelResponse";
   value: Uint8Array;
 }
 /** QueryFeeEnabledChannelResponse defines the response type for the FeeEnabledChannel rpc */
@@ -418,14 +418,14 @@ export interface QueryFeeEnabledChannelResponseAminoMsg {
 function createBaseQueryIncentivizedPacketsRequest(): QueryIncentivizedPacketsRequest {
   return {
     pagination: undefined,
-    queryHeight: BigInt(0)
+    query_height: BigInt(0)
   };
 }
 export const QueryIncentivizedPacketsRequest = {
   typeUrl: "/ibc.applications.fee.v1.QueryIncentivizedPacketsRequest",
   aminoType: "cosmos-sdk/QueryIncentivizedPacketsRequest",
   is(o: any): o is QueryIncentivizedPacketsRequest {
-    return o && (o.$typeUrl === QueryIncentivizedPacketsRequest.typeUrl || typeof o.queryHeight === "bigint");
+    return o && (o.$typeUrl === QueryIncentivizedPacketsRequest.typeUrl || typeof o.query_height === "bigint");
   },
   isAmino(o: any): o is QueryIncentivizedPacketsRequestAmino {
     return o && (o.$typeUrl === QueryIncentivizedPacketsRequest.typeUrl || typeof o.query_height === "bigint");
@@ -434,8 +434,8 @@ export const QueryIncentivizedPacketsRequest = {
     if (message.pagination !== undefined) {
       PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
     }
-    if (message.queryHeight !== BigInt(0)) {
-      writer.uint32(16).uint64(message.queryHeight);
+    if (message.query_height !== BigInt(0)) {
+      writer.uint32(16).uint64(message.query_height);
     }
     return writer;
   },
@@ -450,7 +450,7 @@ export const QueryIncentivizedPacketsRequest = {
           message.pagination = PageRequest.decode(reader, reader.uint32());
           break;
         case 2:
-          message.queryHeight = reader.uint64();
+          message.query_height = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -462,7 +462,7 @@ export const QueryIncentivizedPacketsRequest = {
   fromPartial(object: DeepPartial<QueryIncentivizedPacketsRequest>): QueryIncentivizedPacketsRequest {
     const message = createBaseQueryIncentivizedPacketsRequest();
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
-    message.queryHeight = object.queryHeight !== undefined && object.queryHeight !== null ? BigInt(object.queryHeight.toString()) : BigInt(0);
+    message.query_height = object.query_height !== undefined && object.query_height !== null ? BigInt(object.query_height.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: QueryIncentivizedPacketsRequestAmino): QueryIncentivizedPacketsRequest {
@@ -471,14 +471,14 @@ export const QueryIncentivizedPacketsRequest = {
       message.pagination = PageRequest.fromAmino(object.pagination);
     }
     if (object.query_height !== undefined && object.query_height !== null) {
-      message.queryHeight = BigInt(object.query_height);
+      message.query_height = BigInt(object.query_height);
     }
     return message;
   },
   toAmino(message: QueryIncentivizedPacketsRequest): QueryIncentivizedPacketsRequestAmino {
     const obj: any = {};
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
-    obj.query_height = message.queryHeight !== BigInt(0) ? message.queryHeight?.toString() : undefined;
+    obj.query_height = message.query_height !== BigInt(0) ? message.query_height?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryIncentivizedPacketsRequestAminoMsg): QueryIncentivizedPacketsRequest {
@@ -508,7 +508,7 @@ export const QueryIncentivizedPacketsRequest = {
 };
 function createBaseQueryIncentivizedPacketsResponse(): QueryIncentivizedPacketsResponse {
   return {
-    incentivizedPackets: [],
+    incentivized_packets: [],
     pagination: undefined
   };
 }
@@ -516,13 +516,13 @@ export const QueryIncentivizedPacketsResponse = {
   typeUrl: "/ibc.applications.fee.v1.QueryIncentivizedPacketsResponse",
   aminoType: "cosmos-sdk/QueryIncentivizedPacketsResponse",
   is(o: any): o is QueryIncentivizedPacketsResponse {
-    return o && (o.$typeUrl === QueryIncentivizedPacketsResponse.typeUrl || Array.isArray(o.incentivizedPackets) && (!o.incentivizedPackets.length || IdentifiedPacketFees.is(o.incentivizedPackets[0])));
+    return o && (o.$typeUrl === QueryIncentivizedPacketsResponse.typeUrl || Array.isArray(o.incentivized_packets) && (!o.incentivized_packets.length || IdentifiedPacketFees.is(o.incentivized_packets[0])));
   },
   isAmino(o: any): o is QueryIncentivizedPacketsResponseAmino {
     return o && (o.$typeUrl === QueryIncentivizedPacketsResponse.typeUrl || Array.isArray(o.incentivized_packets) && (!o.incentivized_packets.length || IdentifiedPacketFees.isAmino(o.incentivized_packets[0])));
   },
   encode(message: QueryIncentivizedPacketsResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.incentivizedPackets) {
+    for (const v of message.incentivized_packets) {
       IdentifiedPacketFees.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     if (message.pagination !== undefined) {
@@ -538,7 +538,7 @@ export const QueryIncentivizedPacketsResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.incentivizedPackets.push(IdentifiedPacketFees.decode(reader, reader.uint32()));
+          message.incentivized_packets.push(IdentifiedPacketFees.decode(reader, reader.uint32()));
           break;
         case 2:
           message.pagination = PageResponse.decode(reader, reader.uint32());
@@ -552,13 +552,13 @@ export const QueryIncentivizedPacketsResponse = {
   },
   fromPartial(object: DeepPartial<QueryIncentivizedPacketsResponse>): QueryIncentivizedPacketsResponse {
     const message = createBaseQueryIncentivizedPacketsResponse();
-    message.incentivizedPackets = object.incentivizedPackets?.map(e => IdentifiedPacketFees.fromPartial(e)) || [];
+    message.incentivized_packets = object.incentivized_packets?.map(e => IdentifiedPacketFees.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
   },
   fromAmino(object: QueryIncentivizedPacketsResponseAmino): QueryIncentivizedPacketsResponse {
     const message = createBaseQueryIncentivizedPacketsResponse();
-    message.incentivizedPackets = object.incentivized_packets?.map(e => IdentifiedPacketFees.fromAmino(e)) || [];
+    message.incentivized_packets = object.incentivized_packets?.map(e => IdentifiedPacketFees.fromAmino(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromAmino(object.pagination);
     }
@@ -566,10 +566,10 @@ export const QueryIncentivizedPacketsResponse = {
   },
   toAmino(message: QueryIncentivizedPacketsResponse): QueryIncentivizedPacketsResponseAmino {
     const obj: any = {};
-    if (message.incentivizedPackets) {
-      obj.incentivized_packets = message.incentivizedPackets.map(e => e ? IdentifiedPacketFees.toAmino(e) : undefined);
+    if (message.incentivized_packets) {
+      obj.incentivized_packets = message.incentivized_packets.map(e => e ? IdentifiedPacketFees.toAmino(e) : undefined);
     } else {
-      obj.incentivized_packets = message.incentivizedPackets;
+      obj.incentivized_packets = message.incentivized_packets;
     }
     obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
     return obj;
@@ -602,25 +602,25 @@ export const QueryIncentivizedPacketsResponse = {
 };
 function createBaseQueryIncentivizedPacketRequest(): QueryIncentivizedPacketRequest {
   return {
-    packetId: PacketId.fromPartial({}),
-    queryHeight: BigInt(0)
+    packet_id: PacketId.fromPartial({}),
+    query_height: BigInt(0)
   };
 }
 export const QueryIncentivizedPacketRequest = {
   typeUrl: "/ibc.applications.fee.v1.QueryIncentivizedPacketRequest",
   aminoType: "cosmos-sdk/QueryIncentivizedPacketRequest",
   is(o: any): o is QueryIncentivizedPacketRequest {
-    return o && (o.$typeUrl === QueryIncentivizedPacketRequest.typeUrl || PacketId.is(o.packetId) && typeof o.queryHeight === "bigint");
+    return o && (o.$typeUrl === QueryIncentivizedPacketRequest.typeUrl || PacketId.is(o.packet_id) && typeof o.query_height === "bigint");
   },
   isAmino(o: any): o is QueryIncentivizedPacketRequestAmino {
     return o && (o.$typeUrl === QueryIncentivizedPacketRequest.typeUrl || PacketId.isAmino(o.packet_id) && typeof o.query_height === "bigint");
   },
   encode(message: QueryIncentivizedPacketRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.packetId !== undefined) {
-      PacketId.encode(message.packetId, writer.uint32(10).fork()).ldelim();
+    if (message.packet_id !== undefined) {
+      PacketId.encode(message.packet_id, writer.uint32(10).fork()).ldelim();
     }
-    if (message.queryHeight !== BigInt(0)) {
-      writer.uint32(16).uint64(message.queryHeight);
+    if (message.query_height !== BigInt(0)) {
+      writer.uint32(16).uint64(message.query_height);
     }
     return writer;
   },
@@ -632,10 +632,10 @@ export const QueryIncentivizedPacketRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.packetId = PacketId.decode(reader, reader.uint32());
+          message.packet_id = PacketId.decode(reader, reader.uint32());
           break;
         case 2:
-          message.queryHeight = reader.uint64();
+          message.query_height = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -646,24 +646,24 @@ export const QueryIncentivizedPacketRequest = {
   },
   fromPartial(object: DeepPartial<QueryIncentivizedPacketRequest>): QueryIncentivizedPacketRequest {
     const message = createBaseQueryIncentivizedPacketRequest();
-    message.packetId = object.packetId !== undefined && object.packetId !== null ? PacketId.fromPartial(object.packetId) : undefined;
-    message.queryHeight = object.queryHeight !== undefined && object.queryHeight !== null ? BigInt(object.queryHeight.toString()) : BigInt(0);
+    message.packet_id = object.packet_id !== undefined && object.packet_id !== null ? PacketId.fromPartial(object.packet_id) : undefined;
+    message.query_height = object.query_height !== undefined && object.query_height !== null ? BigInt(object.query_height.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: QueryIncentivizedPacketRequestAmino): QueryIncentivizedPacketRequest {
     const message = createBaseQueryIncentivizedPacketRequest();
     if (object.packet_id !== undefined && object.packet_id !== null) {
-      message.packetId = PacketId.fromAmino(object.packet_id);
+      message.packet_id = PacketId.fromAmino(object.packet_id);
     }
     if (object.query_height !== undefined && object.query_height !== null) {
-      message.queryHeight = BigInt(object.query_height);
+      message.query_height = BigInt(object.query_height);
     }
     return message;
   },
   toAmino(message: QueryIncentivizedPacketRequest): QueryIncentivizedPacketRequestAmino {
     const obj: any = {};
-    obj.packet_id = message.packetId ? PacketId.toAmino(message.packetId) : undefined;
-    obj.query_height = message.queryHeight !== BigInt(0) ? message.queryHeight?.toString() : undefined;
+    obj.packet_id = message.packet_id ? PacketId.toAmino(message.packet_id) : undefined;
+    obj.query_height = message.query_height !== BigInt(0) ? message.query_height?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryIncentivizedPacketRequestAminoMsg): QueryIncentivizedPacketRequest {
@@ -693,21 +693,21 @@ export const QueryIncentivizedPacketRequest = {
 };
 function createBaseQueryIncentivizedPacketResponse(): QueryIncentivizedPacketResponse {
   return {
-    incentivizedPacket: IdentifiedPacketFees.fromPartial({})
+    incentivized_packet: IdentifiedPacketFees.fromPartial({})
   };
 }
 export const QueryIncentivizedPacketResponse = {
   typeUrl: "/ibc.applications.fee.v1.QueryIncentivizedPacketResponse",
   aminoType: "cosmos-sdk/QueryIncentivizedPacketResponse",
   is(o: any): o is QueryIncentivizedPacketResponse {
-    return o && (o.$typeUrl === QueryIncentivizedPacketResponse.typeUrl || IdentifiedPacketFees.is(o.incentivizedPacket));
+    return o && (o.$typeUrl === QueryIncentivizedPacketResponse.typeUrl || IdentifiedPacketFees.is(o.incentivized_packet));
   },
   isAmino(o: any): o is QueryIncentivizedPacketResponseAmino {
     return o && (o.$typeUrl === QueryIncentivizedPacketResponse.typeUrl || IdentifiedPacketFees.isAmino(o.incentivized_packet));
   },
   encode(message: QueryIncentivizedPacketResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.incentivizedPacket !== undefined) {
-      IdentifiedPacketFees.encode(message.incentivizedPacket, writer.uint32(10).fork()).ldelim();
+    if (message.incentivized_packet !== undefined) {
+      IdentifiedPacketFees.encode(message.incentivized_packet, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -719,7 +719,7 @@ export const QueryIncentivizedPacketResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.incentivizedPacket = IdentifiedPacketFees.decode(reader, reader.uint32());
+          message.incentivized_packet = IdentifiedPacketFees.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -730,19 +730,19 @@ export const QueryIncentivizedPacketResponse = {
   },
   fromPartial(object: DeepPartial<QueryIncentivizedPacketResponse>): QueryIncentivizedPacketResponse {
     const message = createBaseQueryIncentivizedPacketResponse();
-    message.incentivizedPacket = object.incentivizedPacket !== undefined && object.incentivizedPacket !== null ? IdentifiedPacketFees.fromPartial(object.incentivizedPacket) : undefined;
+    message.incentivized_packet = object.incentivized_packet !== undefined && object.incentivized_packet !== null ? IdentifiedPacketFees.fromPartial(object.incentivized_packet) : undefined;
     return message;
   },
   fromAmino(object: QueryIncentivizedPacketResponseAmino): QueryIncentivizedPacketResponse {
     const message = createBaseQueryIncentivizedPacketResponse();
     if (object.incentivized_packet !== undefined && object.incentivized_packet !== null) {
-      message.incentivizedPacket = IdentifiedPacketFees.fromAmino(object.incentivized_packet);
+      message.incentivized_packet = IdentifiedPacketFees.fromAmino(object.incentivized_packet);
     }
     return message;
   },
   toAmino(message: QueryIncentivizedPacketResponse): QueryIncentivizedPacketResponseAmino {
     const obj: any = {};
-    obj.incentivized_packet = message.incentivizedPacket ? IdentifiedPacketFees.toAmino(message.incentivizedPacket) : undefined;
+    obj.incentivized_packet = message.incentivized_packet ? IdentifiedPacketFees.toAmino(message.incentivized_packet) : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryIncentivizedPacketResponseAminoMsg): QueryIncentivizedPacketResponse {
@@ -773,16 +773,16 @@ export const QueryIncentivizedPacketResponse = {
 function createBaseQueryIncentivizedPacketsForChannelRequest(): QueryIncentivizedPacketsForChannelRequest {
   return {
     pagination: undefined,
-    portId: "",
-    channelId: "",
-    queryHeight: BigInt(0)
+    port_id: "",
+    channel_id: "",
+    query_height: BigInt(0)
   };
 }
 export const QueryIncentivizedPacketsForChannelRequest = {
   typeUrl: "/ibc.applications.fee.v1.QueryIncentivizedPacketsForChannelRequest",
   aminoType: "cosmos-sdk/QueryIncentivizedPacketsForChannelRequest",
   is(o: any): o is QueryIncentivizedPacketsForChannelRequest {
-    return o && (o.$typeUrl === QueryIncentivizedPacketsForChannelRequest.typeUrl || typeof o.portId === "string" && typeof o.channelId === "string" && typeof o.queryHeight === "bigint");
+    return o && (o.$typeUrl === QueryIncentivizedPacketsForChannelRequest.typeUrl || typeof o.port_id === "string" && typeof o.channel_id === "string" && typeof o.query_height === "bigint");
   },
   isAmino(o: any): o is QueryIncentivizedPacketsForChannelRequestAmino {
     return o && (o.$typeUrl === QueryIncentivizedPacketsForChannelRequest.typeUrl || typeof o.port_id === "string" && typeof o.channel_id === "string" && typeof o.query_height === "bigint");
@@ -791,14 +791,14 @@ export const QueryIncentivizedPacketsForChannelRequest = {
     if (message.pagination !== undefined) {
       PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
     }
-    if (message.portId !== "") {
-      writer.uint32(18).string(message.portId);
+    if (message.port_id !== "") {
+      writer.uint32(18).string(message.port_id);
     }
-    if (message.channelId !== "") {
-      writer.uint32(26).string(message.channelId);
+    if (message.channel_id !== "") {
+      writer.uint32(26).string(message.channel_id);
     }
-    if (message.queryHeight !== BigInt(0)) {
-      writer.uint32(32).uint64(message.queryHeight);
+    if (message.query_height !== BigInt(0)) {
+      writer.uint32(32).uint64(message.query_height);
     }
     return writer;
   },
@@ -813,13 +813,13 @@ export const QueryIncentivizedPacketsForChannelRequest = {
           message.pagination = PageRequest.decode(reader, reader.uint32());
           break;
         case 2:
-          message.portId = reader.string();
+          message.port_id = reader.string();
           break;
         case 3:
-          message.channelId = reader.string();
+          message.channel_id = reader.string();
           break;
         case 4:
-          message.queryHeight = reader.uint64();
+          message.query_height = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -831,9 +831,9 @@ export const QueryIncentivizedPacketsForChannelRequest = {
   fromPartial(object: DeepPartial<QueryIncentivizedPacketsForChannelRequest>): QueryIncentivizedPacketsForChannelRequest {
     const message = createBaseQueryIncentivizedPacketsForChannelRequest();
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
-    message.portId = object.portId ?? "";
-    message.channelId = object.channelId ?? "";
-    message.queryHeight = object.queryHeight !== undefined && object.queryHeight !== null ? BigInt(object.queryHeight.toString()) : BigInt(0);
+    message.port_id = object.port_id ?? "";
+    message.channel_id = object.channel_id ?? "";
+    message.query_height = object.query_height !== undefined && object.query_height !== null ? BigInt(object.query_height.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: QueryIncentivizedPacketsForChannelRequestAmino): QueryIncentivizedPacketsForChannelRequest {
@@ -842,22 +842,22 @@ export const QueryIncentivizedPacketsForChannelRequest = {
       message.pagination = PageRequest.fromAmino(object.pagination);
     }
     if (object.port_id !== undefined && object.port_id !== null) {
-      message.portId = object.port_id;
+      message.port_id = object.port_id;
     }
     if (object.channel_id !== undefined && object.channel_id !== null) {
-      message.channelId = object.channel_id;
+      message.channel_id = object.channel_id;
     }
     if (object.query_height !== undefined && object.query_height !== null) {
-      message.queryHeight = BigInt(object.query_height);
+      message.query_height = BigInt(object.query_height);
     }
     return message;
   },
   toAmino(message: QueryIncentivizedPacketsForChannelRequest): QueryIncentivizedPacketsForChannelRequestAmino {
     const obj: any = {};
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
-    obj.port_id = message.portId === "" ? undefined : message.portId;
-    obj.channel_id = message.channelId === "" ? undefined : message.channelId;
-    obj.query_height = message.queryHeight !== BigInt(0) ? message.queryHeight?.toString() : undefined;
+    obj.port_id = message.port_id === "" ? undefined : message.port_id;
+    obj.channel_id = message.channel_id === "" ? undefined : message.channel_id;
+    obj.query_height = message.query_height !== BigInt(0) ? message.query_height?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryIncentivizedPacketsForChannelRequestAminoMsg): QueryIncentivizedPacketsForChannelRequest {
@@ -887,7 +887,7 @@ export const QueryIncentivizedPacketsForChannelRequest = {
 };
 function createBaseQueryIncentivizedPacketsForChannelResponse(): QueryIncentivizedPacketsForChannelResponse {
   return {
-    incentivizedPackets: [],
+    incentivized_packets: [],
     pagination: undefined
   };
 }
@@ -895,13 +895,13 @@ export const QueryIncentivizedPacketsForChannelResponse = {
   typeUrl: "/ibc.applications.fee.v1.QueryIncentivizedPacketsForChannelResponse",
   aminoType: "cosmos-sdk/QueryIncentivizedPacketsForChannelResponse",
   is(o: any): o is QueryIncentivizedPacketsForChannelResponse {
-    return o && (o.$typeUrl === QueryIncentivizedPacketsForChannelResponse.typeUrl || Array.isArray(o.incentivizedPackets) && (!o.incentivizedPackets.length || IdentifiedPacketFees.is(o.incentivizedPackets[0])));
+    return o && (o.$typeUrl === QueryIncentivizedPacketsForChannelResponse.typeUrl || Array.isArray(o.incentivized_packets) && (!o.incentivized_packets.length || IdentifiedPacketFees.is(o.incentivized_packets[0])));
   },
   isAmino(o: any): o is QueryIncentivizedPacketsForChannelResponseAmino {
     return o && (o.$typeUrl === QueryIncentivizedPacketsForChannelResponse.typeUrl || Array.isArray(o.incentivized_packets) && (!o.incentivized_packets.length || IdentifiedPacketFees.isAmino(o.incentivized_packets[0])));
   },
   encode(message: QueryIncentivizedPacketsForChannelResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.incentivizedPackets) {
+    for (const v of message.incentivized_packets) {
       IdentifiedPacketFees.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     if (message.pagination !== undefined) {
@@ -917,7 +917,7 @@ export const QueryIncentivizedPacketsForChannelResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.incentivizedPackets.push(IdentifiedPacketFees.decode(reader, reader.uint32()));
+          message.incentivized_packets.push(IdentifiedPacketFees.decode(reader, reader.uint32()));
           break;
         case 2:
           message.pagination = PageResponse.decode(reader, reader.uint32());
@@ -931,13 +931,13 @@ export const QueryIncentivizedPacketsForChannelResponse = {
   },
   fromPartial(object: DeepPartial<QueryIncentivizedPacketsForChannelResponse>): QueryIncentivizedPacketsForChannelResponse {
     const message = createBaseQueryIncentivizedPacketsForChannelResponse();
-    message.incentivizedPackets = object.incentivizedPackets?.map(e => IdentifiedPacketFees.fromPartial(e)) || [];
+    message.incentivized_packets = object.incentivized_packets?.map(e => IdentifiedPacketFees.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
   },
   fromAmino(object: QueryIncentivizedPacketsForChannelResponseAmino): QueryIncentivizedPacketsForChannelResponse {
     const message = createBaseQueryIncentivizedPacketsForChannelResponse();
-    message.incentivizedPackets = object.incentivized_packets?.map(e => IdentifiedPacketFees.fromAmino(e)) || [];
+    message.incentivized_packets = object.incentivized_packets?.map(e => IdentifiedPacketFees.fromAmino(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromAmino(object.pagination);
     }
@@ -945,10 +945,10 @@ export const QueryIncentivizedPacketsForChannelResponse = {
   },
   toAmino(message: QueryIncentivizedPacketsForChannelResponse): QueryIncentivizedPacketsForChannelResponseAmino {
     const obj: any = {};
-    if (message.incentivizedPackets) {
-      obj.incentivized_packets = message.incentivizedPackets.map(e => e ? IdentifiedPacketFees.toAmino(e) : undefined);
+    if (message.incentivized_packets) {
+      obj.incentivized_packets = message.incentivized_packets.map(e => e ? IdentifiedPacketFees.toAmino(e) : undefined);
     } else {
-      obj.incentivized_packets = message.incentivizedPackets;
+      obj.incentivized_packets = message.incentivized_packets;
     }
     obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
     return obj;
@@ -981,21 +981,21 @@ export const QueryIncentivizedPacketsForChannelResponse = {
 };
 function createBaseQueryTotalRecvFeesRequest(): QueryTotalRecvFeesRequest {
   return {
-    packetId: PacketId.fromPartial({})
+    packet_id: PacketId.fromPartial({})
   };
 }
 export const QueryTotalRecvFeesRequest = {
   typeUrl: "/ibc.applications.fee.v1.QueryTotalRecvFeesRequest",
   aminoType: "cosmos-sdk/QueryTotalRecvFeesRequest",
   is(o: any): o is QueryTotalRecvFeesRequest {
-    return o && (o.$typeUrl === QueryTotalRecvFeesRequest.typeUrl || PacketId.is(o.packetId));
+    return o && (o.$typeUrl === QueryTotalRecvFeesRequest.typeUrl || PacketId.is(o.packet_id));
   },
   isAmino(o: any): o is QueryTotalRecvFeesRequestAmino {
     return o && (o.$typeUrl === QueryTotalRecvFeesRequest.typeUrl || PacketId.isAmino(o.packet_id));
   },
   encode(message: QueryTotalRecvFeesRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.packetId !== undefined) {
-      PacketId.encode(message.packetId, writer.uint32(10).fork()).ldelim();
+    if (message.packet_id !== undefined) {
+      PacketId.encode(message.packet_id, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -1007,7 +1007,7 @@ export const QueryTotalRecvFeesRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.packetId = PacketId.decode(reader, reader.uint32());
+          message.packet_id = PacketId.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -1018,19 +1018,19 @@ export const QueryTotalRecvFeesRequest = {
   },
   fromPartial(object: DeepPartial<QueryTotalRecvFeesRequest>): QueryTotalRecvFeesRequest {
     const message = createBaseQueryTotalRecvFeesRequest();
-    message.packetId = object.packetId !== undefined && object.packetId !== null ? PacketId.fromPartial(object.packetId) : undefined;
+    message.packet_id = object.packet_id !== undefined && object.packet_id !== null ? PacketId.fromPartial(object.packet_id) : undefined;
     return message;
   },
   fromAmino(object: QueryTotalRecvFeesRequestAmino): QueryTotalRecvFeesRequest {
     const message = createBaseQueryTotalRecvFeesRequest();
     if (object.packet_id !== undefined && object.packet_id !== null) {
-      message.packetId = PacketId.fromAmino(object.packet_id);
+      message.packet_id = PacketId.fromAmino(object.packet_id);
     }
     return message;
   },
   toAmino(message: QueryTotalRecvFeesRequest): QueryTotalRecvFeesRequestAmino {
     const obj: any = {};
-    obj.packet_id = message.packetId ? PacketId.toAmino(message.packetId) : undefined;
+    obj.packet_id = message.packet_id ? PacketId.toAmino(message.packet_id) : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryTotalRecvFeesRequestAminoMsg): QueryTotalRecvFeesRequest {
@@ -1060,20 +1060,20 @@ export const QueryTotalRecvFeesRequest = {
 };
 function createBaseQueryTotalRecvFeesResponse(): QueryTotalRecvFeesResponse {
   return {
-    recvFees: []
+    recv_fees: []
   };
 }
 export const QueryTotalRecvFeesResponse = {
   typeUrl: "/ibc.applications.fee.v1.QueryTotalRecvFeesResponse",
   aminoType: "cosmos-sdk/QueryTotalRecvFeesResponse",
   is(o: any): o is QueryTotalRecvFeesResponse {
-    return o && (o.$typeUrl === QueryTotalRecvFeesResponse.typeUrl || Array.isArray(o.recvFees) && (!o.recvFees.length || Coin.is(o.recvFees[0])));
+    return o && (o.$typeUrl === QueryTotalRecvFeesResponse.typeUrl || Array.isArray(o.recv_fees) && (!o.recv_fees.length || Coin.is(o.recv_fees[0])));
   },
   isAmino(o: any): o is QueryTotalRecvFeesResponseAmino {
     return o && (o.$typeUrl === QueryTotalRecvFeesResponse.typeUrl || Array.isArray(o.recv_fees) && (!o.recv_fees.length || Coin.isAmino(o.recv_fees[0])));
   },
   encode(message: QueryTotalRecvFeesResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.recvFees) {
+    for (const v of message.recv_fees) {
       Coin.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
@@ -1086,7 +1086,7 @@ export const QueryTotalRecvFeesResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.recvFees.push(Coin.decode(reader, reader.uint32()));
+          message.recv_fees.push(Coin.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -1097,20 +1097,20 @@ export const QueryTotalRecvFeesResponse = {
   },
   fromPartial(object: DeepPartial<QueryTotalRecvFeesResponse>): QueryTotalRecvFeesResponse {
     const message = createBaseQueryTotalRecvFeesResponse();
-    message.recvFees = object.recvFees?.map(e => Coin.fromPartial(e)) || [];
+    message.recv_fees = object.recv_fees?.map(e => Coin.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: QueryTotalRecvFeesResponseAmino): QueryTotalRecvFeesResponse {
     const message = createBaseQueryTotalRecvFeesResponse();
-    message.recvFees = object.recv_fees?.map(e => Coin.fromAmino(e)) || [];
+    message.recv_fees = object.recv_fees?.map(e => Coin.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: QueryTotalRecvFeesResponse): QueryTotalRecvFeesResponseAmino {
     const obj: any = {};
-    if (message.recvFees) {
-      obj.recv_fees = message.recvFees.map(e => e ? Coin.toAmino(e) : undefined);
+    if (message.recv_fees) {
+      obj.recv_fees = message.recv_fees.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
-      obj.recv_fees = message.recvFees;
+      obj.recv_fees = message.recv_fees;
     }
     return obj;
   },
@@ -1141,21 +1141,21 @@ export const QueryTotalRecvFeesResponse = {
 };
 function createBaseQueryTotalAckFeesRequest(): QueryTotalAckFeesRequest {
   return {
-    packetId: PacketId.fromPartial({})
+    packet_id: PacketId.fromPartial({})
   };
 }
 export const QueryTotalAckFeesRequest = {
   typeUrl: "/ibc.applications.fee.v1.QueryTotalAckFeesRequest",
   aminoType: "cosmos-sdk/QueryTotalAckFeesRequest",
   is(o: any): o is QueryTotalAckFeesRequest {
-    return o && (o.$typeUrl === QueryTotalAckFeesRequest.typeUrl || PacketId.is(o.packetId));
+    return o && (o.$typeUrl === QueryTotalAckFeesRequest.typeUrl || PacketId.is(o.packet_id));
   },
   isAmino(o: any): o is QueryTotalAckFeesRequestAmino {
     return o && (o.$typeUrl === QueryTotalAckFeesRequest.typeUrl || PacketId.isAmino(o.packet_id));
   },
   encode(message: QueryTotalAckFeesRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.packetId !== undefined) {
-      PacketId.encode(message.packetId, writer.uint32(10).fork()).ldelim();
+    if (message.packet_id !== undefined) {
+      PacketId.encode(message.packet_id, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -1167,7 +1167,7 @@ export const QueryTotalAckFeesRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.packetId = PacketId.decode(reader, reader.uint32());
+          message.packet_id = PacketId.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -1178,19 +1178,19 @@ export const QueryTotalAckFeesRequest = {
   },
   fromPartial(object: DeepPartial<QueryTotalAckFeesRequest>): QueryTotalAckFeesRequest {
     const message = createBaseQueryTotalAckFeesRequest();
-    message.packetId = object.packetId !== undefined && object.packetId !== null ? PacketId.fromPartial(object.packetId) : undefined;
+    message.packet_id = object.packet_id !== undefined && object.packet_id !== null ? PacketId.fromPartial(object.packet_id) : undefined;
     return message;
   },
   fromAmino(object: QueryTotalAckFeesRequestAmino): QueryTotalAckFeesRequest {
     const message = createBaseQueryTotalAckFeesRequest();
     if (object.packet_id !== undefined && object.packet_id !== null) {
-      message.packetId = PacketId.fromAmino(object.packet_id);
+      message.packet_id = PacketId.fromAmino(object.packet_id);
     }
     return message;
   },
   toAmino(message: QueryTotalAckFeesRequest): QueryTotalAckFeesRequestAmino {
     const obj: any = {};
-    obj.packet_id = message.packetId ? PacketId.toAmino(message.packetId) : undefined;
+    obj.packet_id = message.packet_id ? PacketId.toAmino(message.packet_id) : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryTotalAckFeesRequestAminoMsg): QueryTotalAckFeesRequest {
@@ -1220,20 +1220,20 @@ export const QueryTotalAckFeesRequest = {
 };
 function createBaseQueryTotalAckFeesResponse(): QueryTotalAckFeesResponse {
   return {
-    ackFees: []
+    ack_fees: []
   };
 }
 export const QueryTotalAckFeesResponse = {
   typeUrl: "/ibc.applications.fee.v1.QueryTotalAckFeesResponse",
   aminoType: "cosmos-sdk/QueryTotalAckFeesResponse",
   is(o: any): o is QueryTotalAckFeesResponse {
-    return o && (o.$typeUrl === QueryTotalAckFeesResponse.typeUrl || Array.isArray(o.ackFees) && (!o.ackFees.length || Coin.is(o.ackFees[0])));
+    return o && (o.$typeUrl === QueryTotalAckFeesResponse.typeUrl || Array.isArray(o.ack_fees) && (!o.ack_fees.length || Coin.is(o.ack_fees[0])));
   },
   isAmino(o: any): o is QueryTotalAckFeesResponseAmino {
     return o && (o.$typeUrl === QueryTotalAckFeesResponse.typeUrl || Array.isArray(o.ack_fees) && (!o.ack_fees.length || Coin.isAmino(o.ack_fees[0])));
   },
   encode(message: QueryTotalAckFeesResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.ackFees) {
+    for (const v of message.ack_fees) {
       Coin.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
@@ -1246,7 +1246,7 @@ export const QueryTotalAckFeesResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.ackFees.push(Coin.decode(reader, reader.uint32()));
+          message.ack_fees.push(Coin.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -1257,20 +1257,20 @@ export const QueryTotalAckFeesResponse = {
   },
   fromPartial(object: DeepPartial<QueryTotalAckFeesResponse>): QueryTotalAckFeesResponse {
     const message = createBaseQueryTotalAckFeesResponse();
-    message.ackFees = object.ackFees?.map(e => Coin.fromPartial(e)) || [];
+    message.ack_fees = object.ack_fees?.map(e => Coin.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: QueryTotalAckFeesResponseAmino): QueryTotalAckFeesResponse {
     const message = createBaseQueryTotalAckFeesResponse();
-    message.ackFees = object.ack_fees?.map(e => Coin.fromAmino(e)) || [];
+    message.ack_fees = object.ack_fees?.map(e => Coin.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: QueryTotalAckFeesResponse): QueryTotalAckFeesResponseAmino {
     const obj: any = {};
-    if (message.ackFees) {
-      obj.ack_fees = message.ackFees.map(e => e ? Coin.toAmino(e) : undefined);
+    if (message.ack_fees) {
+      obj.ack_fees = message.ack_fees.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
-      obj.ack_fees = message.ackFees;
+      obj.ack_fees = message.ack_fees;
     }
     return obj;
   },
@@ -1301,21 +1301,21 @@ export const QueryTotalAckFeesResponse = {
 };
 function createBaseQueryTotalTimeoutFeesRequest(): QueryTotalTimeoutFeesRequest {
   return {
-    packetId: PacketId.fromPartial({})
+    packet_id: PacketId.fromPartial({})
   };
 }
 export const QueryTotalTimeoutFeesRequest = {
   typeUrl: "/ibc.applications.fee.v1.QueryTotalTimeoutFeesRequest",
   aminoType: "cosmos-sdk/QueryTotalTimeoutFeesRequest",
   is(o: any): o is QueryTotalTimeoutFeesRequest {
-    return o && (o.$typeUrl === QueryTotalTimeoutFeesRequest.typeUrl || PacketId.is(o.packetId));
+    return o && (o.$typeUrl === QueryTotalTimeoutFeesRequest.typeUrl || PacketId.is(o.packet_id));
   },
   isAmino(o: any): o is QueryTotalTimeoutFeesRequestAmino {
     return o && (o.$typeUrl === QueryTotalTimeoutFeesRequest.typeUrl || PacketId.isAmino(o.packet_id));
   },
   encode(message: QueryTotalTimeoutFeesRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.packetId !== undefined) {
-      PacketId.encode(message.packetId, writer.uint32(10).fork()).ldelim();
+    if (message.packet_id !== undefined) {
+      PacketId.encode(message.packet_id, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -1327,7 +1327,7 @@ export const QueryTotalTimeoutFeesRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.packetId = PacketId.decode(reader, reader.uint32());
+          message.packet_id = PacketId.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -1338,19 +1338,19 @@ export const QueryTotalTimeoutFeesRequest = {
   },
   fromPartial(object: DeepPartial<QueryTotalTimeoutFeesRequest>): QueryTotalTimeoutFeesRequest {
     const message = createBaseQueryTotalTimeoutFeesRequest();
-    message.packetId = object.packetId !== undefined && object.packetId !== null ? PacketId.fromPartial(object.packetId) : undefined;
+    message.packet_id = object.packet_id !== undefined && object.packet_id !== null ? PacketId.fromPartial(object.packet_id) : undefined;
     return message;
   },
   fromAmino(object: QueryTotalTimeoutFeesRequestAmino): QueryTotalTimeoutFeesRequest {
     const message = createBaseQueryTotalTimeoutFeesRequest();
     if (object.packet_id !== undefined && object.packet_id !== null) {
-      message.packetId = PacketId.fromAmino(object.packet_id);
+      message.packet_id = PacketId.fromAmino(object.packet_id);
     }
     return message;
   },
   toAmino(message: QueryTotalTimeoutFeesRequest): QueryTotalTimeoutFeesRequestAmino {
     const obj: any = {};
-    obj.packet_id = message.packetId ? PacketId.toAmino(message.packetId) : undefined;
+    obj.packet_id = message.packet_id ? PacketId.toAmino(message.packet_id) : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryTotalTimeoutFeesRequestAminoMsg): QueryTotalTimeoutFeesRequest {
@@ -1380,20 +1380,20 @@ export const QueryTotalTimeoutFeesRequest = {
 };
 function createBaseQueryTotalTimeoutFeesResponse(): QueryTotalTimeoutFeesResponse {
   return {
-    timeoutFees: []
+    timeout_fees: []
   };
 }
 export const QueryTotalTimeoutFeesResponse = {
   typeUrl: "/ibc.applications.fee.v1.QueryTotalTimeoutFeesResponse",
   aminoType: "cosmos-sdk/QueryTotalTimeoutFeesResponse",
   is(o: any): o is QueryTotalTimeoutFeesResponse {
-    return o && (o.$typeUrl === QueryTotalTimeoutFeesResponse.typeUrl || Array.isArray(o.timeoutFees) && (!o.timeoutFees.length || Coin.is(o.timeoutFees[0])));
+    return o && (o.$typeUrl === QueryTotalTimeoutFeesResponse.typeUrl || Array.isArray(o.timeout_fees) && (!o.timeout_fees.length || Coin.is(o.timeout_fees[0])));
   },
   isAmino(o: any): o is QueryTotalTimeoutFeesResponseAmino {
     return o && (o.$typeUrl === QueryTotalTimeoutFeesResponse.typeUrl || Array.isArray(o.timeout_fees) && (!o.timeout_fees.length || Coin.isAmino(o.timeout_fees[0])));
   },
   encode(message: QueryTotalTimeoutFeesResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.timeoutFees) {
+    for (const v of message.timeout_fees) {
       Coin.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
@@ -1406,7 +1406,7 @@ export const QueryTotalTimeoutFeesResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.timeoutFees.push(Coin.decode(reader, reader.uint32()));
+          message.timeout_fees.push(Coin.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -1417,20 +1417,20 @@ export const QueryTotalTimeoutFeesResponse = {
   },
   fromPartial(object: DeepPartial<QueryTotalTimeoutFeesResponse>): QueryTotalTimeoutFeesResponse {
     const message = createBaseQueryTotalTimeoutFeesResponse();
-    message.timeoutFees = object.timeoutFees?.map(e => Coin.fromPartial(e)) || [];
+    message.timeout_fees = object.timeout_fees?.map(e => Coin.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: QueryTotalTimeoutFeesResponseAmino): QueryTotalTimeoutFeesResponse {
     const message = createBaseQueryTotalTimeoutFeesResponse();
-    message.timeoutFees = object.timeout_fees?.map(e => Coin.fromAmino(e)) || [];
+    message.timeout_fees = object.timeout_fees?.map(e => Coin.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: QueryTotalTimeoutFeesResponse): QueryTotalTimeoutFeesResponseAmino {
     const obj: any = {};
-    if (message.timeoutFees) {
-      obj.timeout_fees = message.timeoutFees.map(e => e ? Coin.toAmino(e) : undefined);
+    if (message.timeout_fees) {
+      obj.timeout_fees = message.timeout_fees.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
-      obj.timeout_fees = message.timeoutFees;
+      obj.timeout_fees = message.timeout_fees;
     }
     return obj;
   },
@@ -1461,7 +1461,7 @@ export const QueryTotalTimeoutFeesResponse = {
 };
 function createBaseQueryPayeeRequest(): QueryPayeeRequest {
   return {
-    channelId: "",
+    channel_id: "",
     relayer: ""
   };
 }
@@ -1469,14 +1469,14 @@ export const QueryPayeeRequest = {
   typeUrl: "/ibc.applications.fee.v1.QueryPayeeRequest",
   aminoType: "cosmos-sdk/QueryPayeeRequest",
   is(o: any): o is QueryPayeeRequest {
-    return o && (o.$typeUrl === QueryPayeeRequest.typeUrl || typeof o.channelId === "string" && typeof o.relayer === "string");
+    return o && (o.$typeUrl === QueryPayeeRequest.typeUrl || typeof o.channel_id === "string" && typeof o.relayer === "string");
   },
   isAmino(o: any): o is QueryPayeeRequestAmino {
     return o && (o.$typeUrl === QueryPayeeRequest.typeUrl || typeof o.channel_id === "string" && typeof o.relayer === "string");
   },
   encode(message: QueryPayeeRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.channelId !== "") {
-      writer.uint32(10).string(message.channelId);
+    if (message.channel_id !== "") {
+      writer.uint32(10).string(message.channel_id);
     }
     if (message.relayer !== "") {
       writer.uint32(18).string(message.relayer);
@@ -1491,7 +1491,7 @@ export const QueryPayeeRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.channelId = reader.string();
+          message.channel_id = reader.string();
           break;
         case 2:
           message.relayer = reader.string();
@@ -1505,14 +1505,14 @@ export const QueryPayeeRequest = {
   },
   fromPartial(object: DeepPartial<QueryPayeeRequest>): QueryPayeeRequest {
     const message = createBaseQueryPayeeRequest();
-    message.channelId = object.channelId ?? "";
+    message.channel_id = object.channel_id ?? "";
     message.relayer = object.relayer ?? "";
     return message;
   },
   fromAmino(object: QueryPayeeRequestAmino): QueryPayeeRequest {
     const message = createBaseQueryPayeeRequest();
     if (object.channel_id !== undefined && object.channel_id !== null) {
-      message.channelId = object.channel_id;
+      message.channel_id = object.channel_id;
     }
     if (object.relayer !== undefined && object.relayer !== null) {
       message.relayer = object.relayer;
@@ -1521,7 +1521,7 @@ export const QueryPayeeRequest = {
   },
   toAmino(message: QueryPayeeRequest): QueryPayeeRequestAmino {
     const obj: any = {};
-    obj.channel_id = message.channelId === "" ? undefined : message.channelId;
+    obj.channel_id = message.channel_id === "" ? undefined : message.channel_id;
     obj.relayer = message.relayer === "" ? undefined : message.relayer;
     return obj;
   },
@@ -1550,21 +1550,21 @@ export const QueryPayeeRequest = {
 };
 function createBaseQueryPayeeResponse(): QueryPayeeResponse {
   return {
-    payeeAddress: ""
+    payee_address: ""
   };
 }
 export const QueryPayeeResponse = {
   typeUrl: "/ibc.applications.fee.v1.QueryPayeeResponse",
   aminoType: "cosmos-sdk/QueryPayeeResponse",
   is(o: any): o is QueryPayeeResponse {
-    return o && (o.$typeUrl === QueryPayeeResponse.typeUrl || typeof o.payeeAddress === "string");
+    return o && (o.$typeUrl === QueryPayeeResponse.typeUrl || typeof o.payee_address === "string");
   },
   isAmino(o: any): o is QueryPayeeResponseAmino {
     return o && (o.$typeUrl === QueryPayeeResponse.typeUrl || typeof o.payee_address === "string");
   },
   encode(message: QueryPayeeResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.payeeAddress !== "") {
-      writer.uint32(10).string(message.payeeAddress);
+    if (message.payee_address !== "") {
+      writer.uint32(10).string(message.payee_address);
     }
     return writer;
   },
@@ -1576,7 +1576,7 @@ export const QueryPayeeResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.payeeAddress = reader.string();
+          message.payee_address = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1587,19 +1587,19 @@ export const QueryPayeeResponse = {
   },
   fromPartial(object: DeepPartial<QueryPayeeResponse>): QueryPayeeResponse {
     const message = createBaseQueryPayeeResponse();
-    message.payeeAddress = object.payeeAddress ?? "";
+    message.payee_address = object.payee_address ?? "";
     return message;
   },
   fromAmino(object: QueryPayeeResponseAmino): QueryPayeeResponse {
     const message = createBaseQueryPayeeResponse();
     if (object.payee_address !== undefined && object.payee_address !== null) {
-      message.payeeAddress = object.payee_address;
+      message.payee_address = object.payee_address;
     }
     return message;
   },
   toAmino(message: QueryPayeeResponse): QueryPayeeResponseAmino {
     const obj: any = {};
-    obj.payee_address = message.payeeAddress === "" ? undefined : message.payeeAddress;
+    obj.payee_address = message.payee_address === "" ? undefined : message.payee_address;
     return obj;
   },
   fromAminoMsg(object: QueryPayeeResponseAminoMsg): QueryPayeeResponse {
@@ -1627,7 +1627,7 @@ export const QueryPayeeResponse = {
 };
 function createBaseQueryCounterpartyPayeeRequest(): QueryCounterpartyPayeeRequest {
   return {
-    channelId: "",
+    channel_id: "",
     relayer: ""
   };
 }
@@ -1635,14 +1635,14 @@ export const QueryCounterpartyPayeeRequest = {
   typeUrl: "/ibc.applications.fee.v1.QueryCounterpartyPayeeRequest",
   aminoType: "cosmos-sdk/QueryCounterpartyPayeeRequest",
   is(o: any): o is QueryCounterpartyPayeeRequest {
-    return o && (o.$typeUrl === QueryCounterpartyPayeeRequest.typeUrl || typeof o.channelId === "string" && typeof o.relayer === "string");
+    return o && (o.$typeUrl === QueryCounterpartyPayeeRequest.typeUrl || typeof o.channel_id === "string" && typeof o.relayer === "string");
   },
   isAmino(o: any): o is QueryCounterpartyPayeeRequestAmino {
     return o && (o.$typeUrl === QueryCounterpartyPayeeRequest.typeUrl || typeof o.channel_id === "string" && typeof o.relayer === "string");
   },
   encode(message: QueryCounterpartyPayeeRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.channelId !== "") {
-      writer.uint32(10).string(message.channelId);
+    if (message.channel_id !== "") {
+      writer.uint32(10).string(message.channel_id);
     }
     if (message.relayer !== "") {
       writer.uint32(18).string(message.relayer);
@@ -1657,7 +1657,7 @@ export const QueryCounterpartyPayeeRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.channelId = reader.string();
+          message.channel_id = reader.string();
           break;
         case 2:
           message.relayer = reader.string();
@@ -1671,14 +1671,14 @@ export const QueryCounterpartyPayeeRequest = {
   },
   fromPartial(object: DeepPartial<QueryCounterpartyPayeeRequest>): QueryCounterpartyPayeeRequest {
     const message = createBaseQueryCounterpartyPayeeRequest();
-    message.channelId = object.channelId ?? "";
+    message.channel_id = object.channel_id ?? "";
     message.relayer = object.relayer ?? "";
     return message;
   },
   fromAmino(object: QueryCounterpartyPayeeRequestAmino): QueryCounterpartyPayeeRequest {
     const message = createBaseQueryCounterpartyPayeeRequest();
     if (object.channel_id !== undefined && object.channel_id !== null) {
-      message.channelId = object.channel_id;
+      message.channel_id = object.channel_id;
     }
     if (object.relayer !== undefined && object.relayer !== null) {
       message.relayer = object.relayer;
@@ -1687,7 +1687,7 @@ export const QueryCounterpartyPayeeRequest = {
   },
   toAmino(message: QueryCounterpartyPayeeRequest): QueryCounterpartyPayeeRequestAmino {
     const obj: any = {};
-    obj.channel_id = message.channelId === "" ? undefined : message.channelId;
+    obj.channel_id = message.channel_id === "" ? undefined : message.channel_id;
     obj.relayer = message.relayer === "" ? undefined : message.relayer;
     return obj;
   },
@@ -1716,21 +1716,21 @@ export const QueryCounterpartyPayeeRequest = {
 };
 function createBaseQueryCounterpartyPayeeResponse(): QueryCounterpartyPayeeResponse {
   return {
-    counterpartyPayee: ""
+    counterparty_payee: ""
   };
 }
 export const QueryCounterpartyPayeeResponse = {
   typeUrl: "/ibc.applications.fee.v1.QueryCounterpartyPayeeResponse",
   aminoType: "cosmos-sdk/QueryCounterpartyPayeeResponse",
   is(o: any): o is QueryCounterpartyPayeeResponse {
-    return o && (o.$typeUrl === QueryCounterpartyPayeeResponse.typeUrl || typeof o.counterpartyPayee === "string");
+    return o && (o.$typeUrl === QueryCounterpartyPayeeResponse.typeUrl || typeof o.counterparty_payee === "string");
   },
   isAmino(o: any): o is QueryCounterpartyPayeeResponseAmino {
     return o && (o.$typeUrl === QueryCounterpartyPayeeResponse.typeUrl || typeof o.counterparty_payee === "string");
   },
   encode(message: QueryCounterpartyPayeeResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.counterpartyPayee !== "") {
-      writer.uint32(10).string(message.counterpartyPayee);
+    if (message.counterparty_payee !== "") {
+      writer.uint32(10).string(message.counterparty_payee);
     }
     return writer;
   },
@@ -1742,7 +1742,7 @@ export const QueryCounterpartyPayeeResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.counterpartyPayee = reader.string();
+          message.counterparty_payee = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1753,19 +1753,19 @@ export const QueryCounterpartyPayeeResponse = {
   },
   fromPartial(object: DeepPartial<QueryCounterpartyPayeeResponse>): QueryCounterpartyPayeeResponse {
     const message = createBaseQueryCounterpartyPayeeResponse();
-    message.counterpartyPayee = object.counterpartyPayee ?? "";
+    message.counterparty_payee = object.counterparty_payee ?? "";
     return message;
   },
   fromAmino(object: QueryCounterpartyPayeeResponseAmino): QueryCounterpartyPayeeResponse {
     const message = createBaseQueryCounterpartyPayeeResponse();
     if (object.counterparty_payee !== undefined && object.counterparty_payee !== null) {
-      message.counterpartyPayee = object.counterparty_payee;
+      message.counterparty_payee = object.counterparty_payee;
     }
     return message;
   },
   toAmino(message: QueryCounterpartyPayeeResponse): QueryCounterpartyPayeeResponseAmino {
     const obj: any = {};
-    obj.counterparty_payee = message.counterpartyPayee === "" ? undefined : message.counterpartyPayee;
+    obj.counterparty_payee = message.counterparty_payee === "" ? undefined : message.counterparty_payee;
     return obj;
   },
   fromAminoMsg(object: QueryCounterpartyPayeeResponseAminoMsg): QueryCounterpartyPayeeResponse {
@@ -1794,14 +1794,14 @@ export const QueryCounterpartyPayeeResponse = {
 function createBaseQueryFeeEnabledChannelsRequest(): QueryFeeEnabledChannelsRequest {
   return {
     pagination: undefined,
-    queryHeight: BigInt(0)
+    query_height: BigInt(0)
   };
 }
 export const QueryFeeEnabledChannelsRequest = {
   typeUrl: "/ibc.applications.fee.v1.QueryFeeEnabledChannelsRequest",
   aminoType: "cosmos-sdk/QueryFeeEnabledChannelsRequest",
   is(o: any): o is QueryFeeEnabledChannelsRequest {
-    return o && (o.$typeUrl === QueryFeeEnabledChannelsRequest.typeUrl || typeof o.queryHeight === "bigint");
+    return o && (o.$typeUrl === QueryFeeEnabledChannelsRequest.typeUrl || typeof o.query_height === "bigint");
   },
   isAmino(o: any): o is QueryFeeEnabledChannelsRequestAmino {
     return o && (o.$typeUrl === QueryFeeEnabledChannelsRequest.typeUrl || typeof o.query_height === "bigint");
@@ -1810,8 +1810,8 @@ export const QueryFeeEnabledChannelsRequest = {
     if (message.pagination !== undefined) {
       PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
     }
-    if (message.queryHeight !== BigInt(0)) {
-      writer.uint32(16).uint64(message.queryHeight);
+    if (message.query_height !== BigInt(0)) {
+      writer.uint32(16).uint64(message.query_height);
     }
     return writer;
   },
@@ -1826,7 +1826,7 @@ export const QueryFeeEnabledChannelsRequest = {
           message.pagination = PageRequest.decode(reader, reader.uint32());
           break;
         case 2:
-          message.queryHeight = reader.uint64();
+          message.query_height = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1838,7 +1838,7 @@ export const QueryFeeEnabledChannelsRequest = {
   fromPartial(object: DeepPartial<QueryFeeEnabledChannelsRequest>): QueryFeeEnabledChannelsRequest {
     const message = createBaseQueryFeeEnabledChannelsRequest();
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
-    message.queryHeight = object.queryHeight !== undefined && object.queryHeight !== null ? BigInt(object.queryHeight.toString()) : BigInt(0);
+    message.query_height = object.query_height !== undefined && object.query_height !== null ? BigInt(object.query_height.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: QueryFeeEnabledChannelsRequestAmino): QueryFeeEnabledChannelsRequest {
@@ -1847,14 +1847,14 @@ export const QueryFeeEnabledChannelsRequest = {
       message.pagination = PageRequest.fromAmino(object.pagination);
     }
     if (object.query_height !== undefined && object.query_height !== null) {
-      message.queryHeight = BigInt(object.query_height);
+      message.query_height = BigInt(object.query_height);
     }
     return message;
   },
   toAmino(message: QueryFeeEnabledChannelsRequest): QueryFeeEnabledChannelsRequestAmino {
     const obj: any = {};
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
-    obj.query_height = message.queryHeight !== BigInt(0) ? message.queryHeight?.toString() : undefined;
+    obj.query_height = message.query_height !== BigInt(0) ? message.query_height?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryFeeEnabledChannelsRequestAminoMsg): QueryFeeEnabledChannelsRequest {
@@ -1884,7 +1884,7 @@ export const QueryFeeEnabledChannelsRequest = {
 };
 function createBaseQueryFeeEnabledChannelsResponse(): QueryFeeEnabledChannelsResponse {
   return {
-    feeEnabledChannels: [],
+    fee_enabled_channels: [],
     pagination: undefined
   };
 }
@@ -1892,13 +1892,13 @@ export const QueryFeeEnabledChannelsResponse = {
   typeUrl: "/ibc.applications.fee.v1.QueryFeeEnabledChannelsResponse",
   aminoType: "cosmos-sdk/QueryFeeEnabledChannelsResponse",
   is(o: any): o is QueryFeeEnabledChannelsResponse {
-    return o && (o.$typeUrl === QueryFeeEnabledChannelsResponse.typeUrl || Array.isArray(o.feeEnabledChannels) && (!o.feeEnabledChannels.length || FeeEnabledChannel.is(o.feeEnabledChannels[0])));
+    return o && (o.$typeUrl === QueryFeeEnabledChannelsResponse.typeUrl || Array.isArray(o.fee_enabled_channels) && (!o.fee_enabled_channels.length || FeeEnabledChannel.is(o.fee_enabled_channels[0])));
   },
   isAmino(o: any): o is QueryFeeEnabledChannelsResponseAmino {
     return o && (o.$typeUrl === QueryFeeEnabledChannelsResponse.typeUrl || Array.isArray(o.fee_enabled_channels) && (!o.fee_enabled_channels.length || FeeEnabledChannel.isAmino(o.fee_enabled_channels[0])));
   },
   encode(message: QueryFeeEnabledChannelsResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.feeEnabledChannels) {
+    for (const v of message.fee_enabled_channels) {
       FeeEnabledChannel.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     if (message.pagination !== undefined) {
@@ -1914,7 +1914,7 @@ export const QueryFeeEnabledChannelsResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.feeEnabledChannels.push(FeeEnabledChannel.decode(reader, reader.uint32()));
+          message.fee_enabled_channels.push(FeeEnabledChannel.decode(reader, reader.uint32()));
           break;
         case 2:
           message.pagination = PageResponse.decode(reader, reader.uint32());
@@ -1928,13 +1928,13 @@ export const QueryFeeEnabledChannelsResponse = {
   },
   fromPartial(object: DeepPartial<QueryFeeEnabledChannelsResponse>): QueryFeeEnabledChannelsResponse {
     const message = createBaseQueryFeeEnabledChannelsResponse();
-    message.feeEnabledChannels = object.feeEnabledChannels?.map(e => FeeEnabledChannel.fromPartial(e)) || [];
+    message.fee_enabled_channels = object.fee_enabled_channels?.map(e => FeeEnabledChannel.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
   },
   fromAmino(object: QueryFeeEnabledChannelsResponseAmino): QueryFeeEnabledChannelsResponse {
     const message = createBaseQueryFeeEnabledChannelsResponse();
-    message.feeEnabledChannels = object.fee_enabled_channels?.map(e => FeeEnabledChannel.fromAmino(e)) || [];
+    message.fee_enabled_channels = object.fee_enabled_channels?.map(e => FeeEnabledChannel.fromAmino(e)) || [];
     if (object.pagination !== undefined && object.pagination !== null) {
       message.pagination = PageResponse.fromAmino(object.pagination);
     }
@@ -1942,10 +1942,10 @@ export const QueryFeeEnabledChannelsResponse = {
   },
   toAmino(message: QueryFeeEnabledChannelsResponse): QueryFeeEnabledChannelsResponseAmino {
     const obj: any = {};
-    if (message.feeEnabledChannels) {
-      obj.fee_enabled_channels = message.feeEnabledChannels.map(e => e ? FeeEnabledChannel.toAmino(e) : undefined);
+    if (message.fee_enabled_channels) {
+      obj.fee_enabled_channels = message.fee_enabled_channels.map(e => e ? FeeEnabledChannel.toAmino(e) : undefined);
     } else {
-      obj.fee_enabled_channels = message.feeEnabledChannels;
+      obj.fee_enabled_channels = message.fee_enabled_channels;
     }
     obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
     return obj;
@@ -1978,25 +1978,25 @@ export const QueryFeeEnabledChannelsResponse = {
 };
 function createBaseQueryFeeEnabledChannelRequest(): QueryFeeEnabledChannelRequest {
   return {
-    portId: "",
-    channelId: ""
+    port_id: "",
+    channel_id: ""
   };
 }
 export const QueryFeeEnabledChannelRequest = {
   typeUrl: "/ibc.applications.fee.v1.QueryFeeEnabledChannelRequest",
   aminoType: "cosmos-sdk/QueryFeeEnabledChannelRequest",
   is(o: any): o is QueryFeeEnabledChannelRequest {
-    return o && (o.$typeUrl === QueryFeeEnabledChannelRequest.typeUrl || typeof o.portId === "string" && typeof o.channelId === "string");
+    return o && (o.$typeUrl === QueryFeeEnabledChannelRequest.typeUrl || typeof o.port_id === "string" && typeof o.channel_id === "string");
   },
   isAmino(o: any): o is QueryFeeEnabledChannelRequestAmino {
     return o && (o.$typeUrl === QueryFeeEnabledChannelRequest.typeUrl || typeof o.port_id === "string" && typeof o.channel_id === "string");
   },
   encode(message: QueryFeeEnabledChannelRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.portId !== "") {
-      writer.uint32(10).string(message.portId);
+    if (message.port_id !== "") {
+      writer.uint32(10).string(message.port_id);
     }
-    if (message.channelId !== "") {
-      writer.uint32(18).string(message.channelId);
+    if (message.channel_id !== "") {
+      writer.uint32(18).string(message.channel_id);
     }
     return writer;
   },
@@ -2008,10 +2008,10 @@ export const QueryFeeEnabledChannelRequest = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.portId = reader.string();
+          message.port_id = reader.string();
           break;
         case 2:
-          message.channelId = reader.string();
+          message.channel_id = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -2022,24 +2022,24 @@ export const QueryFeeEnabledChannelRequest = {
   },
   fromPartial(object: DeepPartial<QueryFeeEnabledChannelRequest>): QueryFeeEnabledChannelRequest {
     const message = createBaseQueryFeeEnabledChannelRequest();
-    message.portId = object.portId ?? "";
-    message.channelId = object.channelId ?? "";
+    message.port_id = object.port_id ?? "";
+    message.channel_id = object.channel_id ?? "";
     return message;
   },
   fromAmino(object: QueryFeeEnabledChannelRequestAmino): QueryFeeEnabledChannelRequest {
     const message = createBaseQueryFeeEnabledChannelRequest();
     if (object.port_id !== undefined && object.port_id !== null) {
-      message.portId = object.port_id;
+      message.port_id = object.port_id;
     }
     if (object.channel_id !== undefined && object.channel_id !== null) {
-      message.channelId = object.channel_id;
+      message.channel_id = object.channel_id;
     }
     return message;
   },
   toAmino(message: QueryFeeEnabledChannelRequest): QueryFeeEnabledChannelRequestAmino {
     const obj: any = {};
-    obj.port_id = message.portId === "" ? undefined : message.portId;
-    obj.channel_id = message.channelId === "" ? undefined : message.channelId;
+    obj.port_id = message.port_id === "" ? undefined : message.port_id;
+    obj.channel_id = message.channel_id === "" ? undefined : message.channel_id;
     return obj;
   },
   fromAminoMsg(object: QueryFeeEnabledChannelRequestAminoMsg): QueryFeeEnabledChannelRequest {
@@ -2067,21 +2067,21 @@ export const QueryFeeEnabledChannelRequest = {
 };
 function createBaseQueryFeeEnabledChannelResponse(): QueryFeeEnabledChannelResponse {
   return {
-    feeEnabled: false
+    fee_enabled: false
   };
 }
 export const QueryFeeEnabledChannelResponse = {
   typeUrl: "/ibc.applications.fee.v1.QueryFeeEnabledChannelResponse",
   aminoType: "cosmos-sdk/QueryFeeEnabledChannelResponse",
   is(o: any): o is QueryFeeEnabledChannelResponse {
-    return o && (o.$typeUrl === QueryFeeEnabledChannelResponse.typeUrl || typeof o.feeEnabled === "boolean");
+    return o && (o.$typeUrl === QueryFeeEnabledChannelResponse.typeUrl || typeof o.fee_enabled === "boolean");
   },
   isAmino(o: any): o is QueryFeeEnabledChannelResponseAmino {
     return o && (o.$typeUrl === QueryFeeEnabledChannelResponse.typeUrl || typeof o.fee_enabled === "boolean");
   },
   encode(message: QueryFeeEnabledChannelResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.feeEnabled === true) {
-      writer.uint32(8).bool(message.feeEnabled);
+    if (message.fee_enabled === true) {
+      writer.uint32(8).bool(message.fee_enabled);
     }
     return writer;
   },
@@ -2093,7 +2093,7 @@ export const QueryFeeEnabledChannelResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.feeEnabled = reader.bool();
+          message.fee_enabled = reader.bool();
           break;
         default:
           reader.skipType(tag & 7);
@@ -2104,19 +2104,19 @@ export const QueryFeeEnabledChannelResponse = {
   },
   fromPartial(object: DeepPartial<QueryFeeEnabledChannelResponse>): QueryFeeEnabledChannelResponse {
     const message = createBaseQueryFeeEnabledChannelResponse();
-    message.feeEnabled = object.feeEnabled ?? false;
+    message.fee_enabled = object.fee_enabled ?? false;
     return message;
   },
   fromAmino(object: QueryFeeEnabledChannelResponseAmino): QueryFeeEnabledChannelResponse {
     const message = createBaseQueryFeeEnabledChannelResponse();
     if (object.fee_enabled !== undefined && object.fee_enabled !== null) {
-      message.feeEnabled = object.fee_enabled;
+      message.fee_enabled = object.fee_enabled;
     }
     return message;
   },
   toAmino(message: QueryFeeEnabledChannelResponse): QueryFeeEnabledChannelResponseAmino {
     const obj: any = {};
-    obj.fee_enabled = message.feeEnabled === false ? undefined : message.feeEnabled;
+    obj.fee_enabled = message.fee_enabled === false ? undefined : message.fee_enabled;
     return obj;
   },
   fromAminoMsg(object: QueryFeeEnabledChannelResponseAminoMsg): QueryFeeEnabledChannelResponse {

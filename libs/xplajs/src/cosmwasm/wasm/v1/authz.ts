@@ -14,7 +14,7 @@ export interface StoreCodeAuthorization {
   grants: CodeGrant[];
 }
 export interface StoreCodeAuthorizationProtoMsg {
-  typeUrl: "/cosmwasm.wasm.v1.StoreCodeAuthorization";
+  type_url: "/cosmwasm.wasm.v1.StoreCodeAuthorization";
   value: Uint8Array;
 }
 /**
@@ -38,7 +38,7 @@ export interface ContractExecutionAuthorization {
   grants: ContractGrant[];
 }
 export interface ContractExecutionAuthorizationProtoMsg {
-  typeUrl: "/cosmwasm.wasm.v1.ContractExecutionAuthorization";
+  type_url: "/cosmwasm.wasm.v1.ContractExecutionAuthorization";
   value: Uint8Array;
 }
 /**
@@ -62,7 +62,7 @@ export interface ContractMigrationAuthorization {
   grants: ContractGrant[];
 }
 export interface ContractMigrationAuthorizationProtoMsg {
-  typeUrl: "/cosmwasm.wasm.v1.ContractMigrationAuthorization";
+  type_url: "/cosmwasm.wasm.v1.ContractMigrationAuthorization";
   value: Uint8Array;
 }
 /**
@@ -83,16 +83,16 @@ export interface CodeGrant {
    * CodeHash is the unique identifier created by wasmvm
    * Wildcard "*" is used to specify any kind of grant.
    */
-  codeHash: Uint8Array;
+  code_hash: Uint8Array;
   /**
    * InstantiatePermission is the superset access control to apply
    * on contract creation.
    * Optional
    */
-  instantiatePermission?: AccessConfig;
+  instantiate_permission?: AccessConfig;
 }
 export interface CodeGrantProtoMsg {
-  typeUrl: "/cosmwasm.wasm.v1.CodeGrant";
+  type_url: "/cosmwasm.wasm.v1.CodeGrant";
   value: Uint8Array;
 }
 /** CodeGrant a granted permission for a single code */
@@ -133,7 +133,7 @@ export interface ContractGrant {
   filter?: AllowAllMessagesFilter | AcceptedMessageKeysFilter | AcceptedMessagesFilter | Any | undefined;
 }
 export interface ContractGrantProtoMsg {
-  typeUrl: "/cosmwasm.wasm.v1.ContractGrant";
+  type_url: "/cosmwasm.wasm.v1.ContractGrant";
   value: Uint8Array;
 }
 export type ContractGrantEncoded = Omit<ContractGrant, "limit" | "filter"> & {
@@ -181,7 +181,7 @@ export interface MaxCallsLimit {
   remaining: bigint;
 }
 export interface MaxCallsLimitProtoMsg {
-  typeUrl: "/cosmwasm.wasm.v1.MaxCallsLimit";
+  type_url: "/cosmwasm.wasm.v1.MaxCallsLimit";
   value: Uint8Array;
 }
 /**
@@ -205,7 +205,7 @@ export interface MaxFundsLimit {
   amounts: Coin[];
 }
 export interface MaxFundsLimitProtoMsg {
-  typeUrl: "/cosmwasm.wasm.v1.MaxFundsLimit";
+  type_url: "/cosmwasm.wasm.v1.MaxFundsLimit";
   value: Uint8Array;
 }
 /**
@@ -227,12 +227,12 @@ export interface MaxFundsLimitAminoMsg {
  */
 export interface CombinedLimit {
   /** Remaining number that is decremented on each execution */
-  callsRemaining: bigint;
+  calls_remaining: bigint;
   /** Amounts is the maximal amount of tokens transferable to the contract. */
   amounts: Coin[];
 }
 export interface CombinedLimitProtoMsg {
-  typeUrl: "/cosmwasm.wasm.v1.CombinedLimit";
+  type_url: "/cosmwasm.wasm.v1.CombinedLimit";
   value: Uint8Array;
 }
 /**
@@ -257,7 +257,7 @@ export interface CombinedLimitAminoMsg {
  */
 export interface AllowAllMessagesFilter {}
 export interface AllowAllMessagesFilterProtoMsg {
-  typeUrl: "/cosmwasm.wasm.v1.AllowAllMessagesFilter";
+  type_url: "/cosmwasm.wasm.v1.AllowAllMessagesFilter";
   value: Uint8Array;
 }
 /**
@@ -280,7 +280,7 @@ export interface AcceptedMessageKeysFilter {
   keys: string[];
 }
 export interface AcceptedMessageKeysFilterProtoMsg {
-  typeUrl: "/cosmwasm.wasm.v1.AcceptedMessageKeysFilter";
+  type_url: "/cosmwasm.wasm.v1.AcceptedMessageKeysFilter";
   value: Uint8Array;
 }
 /**
@@ -306,7 +306,7 @@ export interface AcceptedMessagesFilter {
   messages: Uint8Array[];
 }
 export interface AcceptedMessagesFilterProtoMsg {
-  typeUrl: "/cosmwasm.wasm.v1.AcceptedMessagesFilter";
+  type_url: "/cosmwasm.wasm.v1.AcceptedMessagesFilter";
   value: Uint8Array;
 }
 /**
@@ -573,25 +573,25 @@ export const ContractMigrationAuthorization = {
 };
 function createBaseCodeGrant(): CodeGrant {
   return {
-    codeHash: new Uint8Array(),
-    instantiatePermission: undefined
+    code_hash: new Uint8Array(),
+    instantiate_permission: undefined
   };
 }
 export const CodeGrant = {
   typeUrl: "/cosmwasm.wasm.v1.CodeGrant",
   aminoType: "wasm/CodeGrant",
   is(o: any): o is CodeGrant {
-    return o && (o.$typeUrl === CodeGrant.typeUrl || o.codeHash instanceof Uint8Array || typeof o.codeHash === "string");
+    return o && (o.$typeUrl === CodeGrant.typeUrl || o.code_hash instanceof Uint8Array || typeof o.code_hash === "string");
   },
   isAmino(o: any): o is CodeGrantAmino {
     return o && (o.$typeUrl === CodeGrant.typeUrl || o.code_hash instanceof Uint8Array || typeof o.code_hash === "string");
   },
   encode(message: CodeGrant, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.codeHash.length !== 0) {
-      writer.uint32(10).bytes(message.codeHash);
+    if (message.code_hash.length !== 0) {
+      writer.uint32(10).bytes(message.code_hash);
     }
-    if (message.instantiatePermission !== undefined) {
-      AccessConfig.encode(message.instantiatePermission, writer.uint32(18).fork()).ldelim();
+    if (message.instantiate_permission !== undefined) {
+      AccessConfig.encode(message.instantiate_permission, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
@@ -603,10 +603,10 @@ export const CodeGrant = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.codeHash = reader.bytes();
+          message.code_hash = reader.bytes();
           break;
         case 2:
-          message.instantiatePermission = AccessConfig.decode(reader, reader.uint32());
+          message.instantiate_permission = AccessConfig.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -617,24 +617,24 @@ export const CodeGrant = {
   },
   fromPartial(object: DeepPartial<CodeGrant>): CodeGrant {
     const message = createBaseCodeGrant();
-    message.codeHash = object.codeHash ?? new Uint8Array();
-    message.instantiatePermission = object.instantiatePermission !== undefined && object.instantiatePermission !== null ? AccessConfig.fromPartial(object.instantiatePermission) : undefined;
+    message.code_hash = object.code_hash ?? new Uint8Array();
+    message.instantiate_permission = object.instantiate_permission !== undefined && object.instantiate_permission !== null ? AccessConfig.fromPartial(object.instantiate_permission) : undefined;
     return message;
   },
   fromAmino(object: CodeGrantAmino): CodeGrant {
     const message = createBaseCodeGrant();
     if (object.code_hash !== undefined && object.code_hash !== null) {
-      message.codeHash = bytesFromBase64(object.code_hash);
+      message.code_hash = bytesFromBase64(object.code_hash);
     }
     if (object.instantiate_permission !== undefined && object.instantiate_permission !== null) {
-      message.instantiatePermission = AccessConfig.fromAmino(object.instantiate_permission);
+      message.instantiate_permission = AccessConfig.fromAmino(object.instantiate_permission);
     }
     return message;
   },
   toAmino(message: CodeGrant): CodeGrantAmino {
     const obj: any = {};
-    obj.code_hash = message.codeHash ? base64FromBytes(message.codeHash) : undefined;
-    obj.instantiate_permission = message.instantiatePermission ? AccessConfig.toAmino(message.instantiatePermission) : undefined;
+    obj.code_hash = message.code_hash ? base64FromBytes(message.code_hash) : undefined;
+    obj.instantiate_permission = message.instantiate_permission ? AccessConfig.toAmino(message.instantiate_permission) : undefined;
     return obj;
   },
   fromAminoMsg(object: CodeGrantAminoMsg): CodeGrant {
@@ -932,7 +932,7 @@ export const MaxFundsLimit = {
 };
 function createBaseCombinedLimit(): CombinedLimit {
   return {
-    callsRemaining: BigInt(0),
+    calls_remaining: BigInt(0),
     amounts: []
   };
 }
@@ -940,14 +940,14 @@ export const CombinedLimit = {
   typeUrl: "/cosmwasm.wasm.v1.CombinedLimit",
   aminoType: "wasm/CombinedLimit",
   is(o: any): o is CombinedLimit {
-    return o && (o.$typeUrl === CombinedLimit.typeUrl || typeof o.callsRemaining === "bigint" && Array.isArray(o.amounts) && (!o.amounts.length || Coin.is(o.amounts[0])));
+    return o && (o.$typeUrl === CombinedLimit.typeUrl || typeof o.calls_remaining === "bigint" && Array.isArray(o.amounts) && (!o.amounts.length || Coin.is(o.amounts[0])));
   },
   isAmino(o: any): o is CombinedLimitAmino {
     return o && (o.$typeUrl === CombinedLimit.typeUrl || typeof o.calls_remaining === "bigint" && Array.isArray(o.amounts) && (!o.amounts.length || Coin.isAmino(o.amounts[0])));
   },
   encode(message: CombinedLimit, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.callsRemaining !== BigInt(0)) {
-      writer.uint32(8).uint64(message.callsRemaining);
+    if (message.calls_remaining !== BigInt(0)) {
+      writer.uint32(8).uint64(message.calls_remaining);
     }
     for (const v of message.amounts) {
       Coin.encode(v!, writer.uint32(18).fork()).ldelim();
@@ -962,7 +962,7 @@ export const CombinedLimit = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.callsRemaining = reader.uint64();
+          message.calls_remaining = reader.uint64();
           break;
         case 2:
           message.amounts.push(Coin.decode(reader, reader.uint32()));
@@ -976,21 +976,21 @@ export const CombinedLimit = {
   },
   fromPartial(object: DeepPartial<CombinedLimit>): CombinedLimit {
     const message = createBaseCombinedLimit();
-    message.callsRemaining = object.callsRemaining !== undefined && object.callsRemaining !== null ? BigInt(object.callsRemaining.toString()) : BigInt(0);
+    message.calls_remaining = object.calls_remaining !== undefined && object.calls_remaining !== null ? BigInt(object.calls_remaining.toString()) : BigInt(0);
     message.amounts = object.amounts?.map(e => Coin.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: CombinedLimitAmino): CombinedLimit {
     const message = createBaseCombinedLimit();
     if (object.calls_remaining !== undefined && object.calls_remaining !== null) {
-      message.callsRemaining = BigInt(object.calls_remaining);
+      message.calls_remaining = BigInt(object.calls_remaining);
     }
     message.amounts = object.amounts?.map(e => Coin.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: CombinedLimit): CombinedLimitAmino {
     const obj: any = {};
-    obj.calls_remaining = message.callsRemaining !== BigInt(0) ? message.callsRemaining?.toString() : undefined;
+    obj.calls_remaining = message.calls_remaining !== BigInt(0) ? message.calls_remaining?.toString() : undefined;
     if (message.amounts) {
       obj.amounts = message.amounts.map(e => e ? Coin.toAmino(e) : undefined);
     } else {

@@ -9,7 +9,7 @@ export interface GenesisState {
   params: Params;
 }
 export interface GenesisStateProtoMsg {
-  typeUrl: "/cosmos.mint.v1beta1.GenesisState";
+  type_url: "/cosmos.mint.v1beta1.GenesisState";
   value: Uint8Array;
 }
 /** GenesisState defines the mint module's genesis state. */

@@ -6,7 +6,7 @@ export interface GenesisState {
   allowances: Grant[];
 }
 export interface GenesisStateProtoMsg {
-  typeUrl: "/cosmos.feegrant.v1beta1.GenesisState";
+  type_url: "/cosmos.feegrant.v1beta1.GenesisState";
   value: Uint8Array;
 }
 /** GenesisState contains a set of fee allowances, persisted from the store */

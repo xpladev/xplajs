@@ -6,12 +6,12 @@ import { DeepPartial } from "../../../../helpers";
  */
 export interface Metadata {
   /** fee_version defines the ICS29 fee version */
-  feeVersion: string;
+  fee_version: string;
   /** app_version defines the underlying application version, which may or may not be a JSON encoded bytestring */
-  appVersion: string;
+  app_version: string;
 }
 export interface MetadataProtoMsg {
-  typeUrl: "/ibc.applications.fee.v1.Metadata";
+  type_url: "/ibc.applications.fee.v1.Metadata";
   value: Uint8Array;
 }
 /**
@@ -30,25 +30,25 @@ export interface MetadataAminoMsg {
 }
 function createBaseMetadata(): Metadata {
   return {
-    feeVersion: "",
-    appVersion: ""
+    fee_version: "",
+    app_version: ""
   };
 }
 export const Metadata = {
   typeUrl: "/ibc.applications.fee.v1.Metadata",
   aminoType: "cosmos-sdk/Metadata",
   is(o: any): o is Metadata {
-    return o && (o.$typeUrl === Metadata.typeUrl || typeof o.feeVersion === "string" && typeof o.appVersion === "string");
+    return o && (o.$typeUrl === Metadata.typeUrl || typeof o.fee_version === "string" && typeof o.app_version === "string");
   },
   isAmino(o: any): o is MetadataAmino {
     return o && (o.$typeUrl === Metadata.typeUrl || typeof o.fee_version === "string" && typeof o.app_version === "string");
   },
   encode(message: Metadata, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.feeVersion !== "") {
-      writer.uint32(10).string(message.feeVersion);
+    if (message.fee_version !== "") {
+      writer.uint32(10).string(message.fee_version);
     }
-    if (message.appVersion !== "") {
-      writer.uint32(18).string(message.appVersion);
+    if (message.app_version !== "") {
+      writer.uint32(18).string(message.app_version);
     }
     return writer;
   },
@@ -60,10 +60,10 @@ export const Metadata = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.feeVersion = reader.string();
+          message.fee_version = reader.string();
           break;
         case 2:
-          message.appVersion = reader.string();
+          message.app_version = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -74,24 +74,24 @@ export const Metadata = {
   },
   fromPartial(object: DeepPartial<Metadata>): Metadata {
     const message = createBaseMetadata();
-    message.feeVersion = object.feeVersion ?? "";
-    message.appVersion = object.appVersion ?? "";
+    message.fee_version = object.fee_version ?? "";
+    message.app_version = object.app_version ?? "";
     return message;
   },
   fromAmino(object: MetadataAmino): Metadata {
     const message = createBaseMetadata();
     if (object.fee_version !== undefined && object.fee_version !== null) {
-      message.feeVersion = object.fee_version;
+      message.fee_version = object.fee_version;
     }
     if (object.app_version !== undefined && object.app_version !== null) {
-      message.appVersion = object.app_version;
+      message.app_version = object.app_version;
     }
     return message;
   },
   toAmino(message: Metadata): MetadataAmino {
     const obj: any = {};
-    obj.fee_version = message.feeVersion === "" ? undefined : message.feeVersion;
-    obj.app_version = message.appVersion === "" ? undefined : message.appVersion;
+    obj.fee_version = message.fee_version === "" ? undefined : message.fee_version;
+    obj.app_version = message.app_version === "" ? undefined : message.app_version;
     return obj;
   },
   fromAminoMsg(object: MetadataAminoMsg): Metadata {

@@ -10,7 +10,7 @@ export interface GenesisState {
   accounts: Any[];
 }
 export interface GenesisStateProtoMsg {
-  typeUrl: "/cosmos.auth.v1beta1.GenesisState";
+  type_url: "/cosmos.auth.v1beta1.GenesisState";
   value: Uint8Array;
 }
 /** GenesisState defines the auth module's genesis state. */

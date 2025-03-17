@@ -7,7 +7,7 @@ export interface QueryChecksumsRequest {
   pagination?: PageRequest;
 }
 export interface QueryChecksumsRequestProtoMsg {
-  typeUrl: "/ibc.lightclients.wasm.v1.QueryChecksumsRequest";
+  type_url: "/ibc.lightclients.wasm.v1.QueryChecksumsRequest";
   value: Uint8Array;
 }
 /** QueryChecksumsRequest is the request type for the Query/Checksums RPC method. */
@@ -27,7 +27,7 @@ export interface QueryChecksumsResponse {
   pagination?: PageResponse;
 }
 export interface QueryChecksumsResponseProtoMsg {
-  typeUrl: "/ibc.lightclients.wasm.v1.QueryChecksumsResponse";
+  type_url: "/ibc.lightclients.wasm.v1.QueryChecksumsResponse";
   value: Uint8Array;
 }
 /** QueryChecksumsResponse is the response type for the Query/Checksums RPC method. */
@@ -47,7 +47,7 @@ export interface QueryCodeRequest {
   checksum: string;
 }
 export interface QueryCodeRequestProtoMsg {
-  typeUrl: "/ibc.lightclients.wasm.v1.QueryCodeRequest";
+  type_url: "/ibc.lightclients.wasm.v1.QueryCodeRequest";
   value: Uint8Array;
 }
 /** QueryCodeRequest is the request type for the Query/Code RPC method. */
@@ -64,7 +64,7 @@ export interface QueryCodeResponse {
   data: Uint8Array;
 }
 export interface QueryCodeResponseProtoMsg {
-  typeUrl: "/ibc.lightclients.wasm.v1.QueryCodeResponse";
+  type_url: "/ibc.lightclients.wasm.v1.QueryCodeResponse";
   value: Uint8Array;
 }
 /** QueryCodeResponse is the response type for the Query/Code RPC method. */

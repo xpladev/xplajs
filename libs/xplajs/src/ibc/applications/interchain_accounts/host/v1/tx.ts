@@ -13,7 +13,7 @@ export interface MsgUpdateParams {
   params: Params;
 }
 export interface MsgUpdateParamsProtoMsg {
-  typeUrl: "/ibc.applications.interchain_accounts.host.v1.MsgUpdateParams";
+  type_url: "/ibc.applications.interchain_accounts.host.v1.MsgUpdateParams";
   value: Uint8Array;
 }
 /** MsgUpdateParams defines the payload for Msg/UpdateParams */
@@ -34,7 +34,7 @@ export interface MsgUpdateParamsAminoMsg {
 /** MsgUpdateParamsResponse defines the response for Msg/UpdateParams */
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
-  typeUrl: "/ibc.applications.interchain_accounts.host.v1.MsgUpdateParamsResponse";
+  type_url: "/ibc.applications.interchain_accounts.host.v1.MsgUpdateParamsResponse";
   value: Uint8Array;
 }
 /** MsgUpdateParamsResponse defines the response for Msg/UpdateParams */
@@ -51,7 +51,7 @@ export interface MsgModuleQuerySafe {
   requests: QueryRequest[];
 }
 export interface MsgModuleQuerySafeProtoMsg {
-  typeUrl: "/ibc.applications.interchain_accounts.host.v1.MsgModuleQuerySafe";
+  type_url: "/ibc.applications.interchain_accounts.host.v1.MsgModuleQuerySafe";
   value: Uint8Array;
 }
 /** MsgModuleQuerySafe defines the payload for Msg/ModuleQuerySafe */
@@ -73,7 +73,7 @@ export interface MsgModuleQuerySafeResponse {
   responses: Uint8Array[];
 }
 export interface MsgModuleQuerySafeResponseProtoMsg {
-  typeUrl: "/ibc.applications.interchain_accounts.host.v1.MsgModuleQuerySafeResponse";
+  type_url: "/ibc.applications.interchain_accounts.host.v1.MsgModuleQuerySafeResponse";
   value: Uint8Array;
 }
 /** MsgModuleQuerySafeResponse defines the response for Msg/ModuleQuerySafe */

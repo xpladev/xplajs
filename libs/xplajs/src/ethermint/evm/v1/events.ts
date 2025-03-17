@@ -5,20 +5,20 @@ export interface EventEthereumTx {
   /** amount */
   amount: string;
   /** eth_hash is the Ethereum hash of the transaction */
-  ethHash: string;
+  eth_hash: string;
   /** index of the transaction in the block */
   index: string;
   /** gas_used is the amount of gas used by the transaction */
-  gasUsed: string;
+  gas_used: string;
   /** hash is the Tendermint hash of the transaction */
   hash: string;
   /** recipient of the transaction */
   recipient: string;
   /** eth_tx_failed contains a VM error should it occur */
-  ethTxFailed: string;
+  eth_tx_failed: string;
 }
 export interface EventEthereumTxProtoMsg {
-  typeUrl: "/ethermint.evm.v1.EventEthereumTx";
+  type_url: "/ethermint.evm.v1.EventEthereumTx";
   value: Uint8Array;
 }
 /** EventEthereumTx defines the event for an Ethereum transaction */
@@ -45,10 +45,10 @@ export interface EventEthereumTxAminoMsg {
 /** EventTxLog defines the event for an Ethereum transaction log */
 export interface EventTxLog {
   /** tx_logs is an array of transaction logs */
-  txLogs: string[];
+  tx_logs: string[];
 }
 export interface EventTxLogProtoMsg {
-  typeUrl: "/ethermint.evm.v1.EventTxLog";
+  type_url: "/ethermint.evm.v1.EventTxLog";
   value: Uint8Array;
 }
 /** EventTxLog defines the event for an Ethereum transaction log */
@@ -67,10 +67,10 @@ export interface EventMessage {
   /** sender of the message */
   sender: string;
   /** tx_type is the type of the message */
-  txType: string;
+  tx_type: string;
 }
 export interface EventMessageProtoMsg {
-  typeUrl: "/ethermint.evm.v1.EventMessage";
+  type_url: "/ethermint.evm.v1.EventMessage";
   value: Uint8Array;
 }
 /** EventMessage */
@@ -92,7 +92,7 @@ export interface EventBlockBloom {
   bloom: string;
 }
 export interface EventBlockBloomProtoMsg {
-  typeUrl: "/ethermint.evm.v1.EventBlockBloom";
+  type_url: "/ethermint.evm.v1.EventBlockBloom";
   value: Uint8Array;
 }
 /** EventBlockBloom defines an Ethereum block bloom filter event */
@@ -107,18 +107,18 @@ export interface EventBlockBloomAminoMsg {
 function createBaseEventEthereumTx(): EventEthereumTx {
   return {
     amount: "",
-    ethHash: "",
+    eth_hash: "",
     index: "",
-    gasUsed: "",
+    gas_used: "",
     hash: "",
     recipient: "",
-    ethTxFailed: ""
+    eth_tx_failed: ""
   };
 }
 export const EventEthereumTx = {
   typeUrl: "/ethermint.evm.v1.EventEthereumTx",
   is(o: any): o is EventEthereumTx {
-    return o && (o.$typeUrl === EventEthereumTx.typeUrl || typeof o.amount === "string" && typeof o.ethHash === "string" && typeof o.index === "string" && typeof o.gasUsed === "string" && typeof o.hash === "string" && typeof o.recipient === "string" && typeof o.ethTxFailed === "string");
+    return o && (o.$typeUrl === EventEthereumTx.typeUrl || typeof o.amount === "string" && typeof o.eth_hash === "string" && typeof o.index === "string" && typeof o.gas_used === "string" && typeof o.hash === "string" && typeof o.recipient === "string" && typeof o.eth_tx_failed === "string");
   },
   isAmino(o: any): o is EventEthereumTxAmino {
     return o && (o.$typeUrl === EventEthereumTx.typeUrl || typeof o.amount === "string" && typeof o.eth_hash === "string" && typeof o.index === "string" && typeof o.gas_used === "string" && typeof o.hash === "string" && typeof o.recipient === "string" && typeof o.eth_tx_failed === "string");
@@ -127,14 +127,14 @@ export const EventEthereumTx = {
     if (message.amount !== "") {
       writer.uint32(10).string(message.amount);
     }
-    if (message.ethHash !== "") {
-      writer.uint32(18).string(message.ethHash);
+    if (message.eth_hash !== "") {
+      writer.uint32(18).string(message.eth_hash);
     }
     if (message.index !== "") {
       writer.uint32(26).string(message.index);
     }
-    if (message.gasUsed !== "") {
-      writer.uint32(34).string(message.gasUsed);
+    if (message.gas_used !== "") {
+      writer.uint32(34).string(message.gas_used);
     }
     if (message.hash !== "") {
       writer.uint32(42).string(message.hash);
@@ -142,8 +142,8 @@ export const EventEthereumTx = {
     if (message.recipient !== "") {
       writer.uint32(50).string(message.recipient);
     }
-    if (message.ethTxFailed !== "") {
-      writer.uint32(58).string(message.ethTxFailed);
+    if (message.eth_tx_failed !== "") {
+      writer.uint32(58).string(message.eth_tx_failed);
     }
     return writer;
   },
@@ -158,13 +158,13 @@ export const EventEthereumTx = {
           message.amount = reader.string();
           break;
         case 2:
-          message.ethHash = reader.string();
+          message.eth_hash = reader.string();
           break;
         case 3:
           message.index = reader.string();
           break;
         case 4:
-          message.gasUsed = reader.string();
+          message.gas_used = reader.string();
           break;
         case 5:
           message.hash = reader.string();
@@ -173,7 +173,7 @@ export const EventEthereumTx = {
           message.recipient = reader.string();
           break;
         case 7:
-          message.ethTxFailed = reader.string();
+          message.eth_tx_failed = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -185,12 +185,12 @@ export const EventEthereumTx = {
   fromPartial(object: DeepPartial<EventEthereumTx>): EventEthereumTx {
     const message = createBaseEventEthereumTx();
     message.amount = object.amount ?? "";
-    message.ethHash = object.ethHash ?? "";
+    message.eth_hash = object.eth_hash ?? "";
     message.index = object.index ?? "";
-    message.gasUsed = object.gasUsed ?? "";
+    message.gas_used = object.gas_used ?? "";
     message.hash = object.hash ?? "";
     message.recipient = object.recipient ?? "";
-    message.ethTxFailed = object.ethTxFailed ?? "";
+    message.eth_tx_failed = object.eth_tx_failed ?? "";
     return message;
   },
   fromAmino(object: EventEthereumTxAmino): EventEthereumTx {
@@ -199,13 +199,13 @@ export const EventEthereumTx = {
       message.amount = object.amount;
     }
     if (object.eth_hash !== undefined && object.eth_hash !== null) {
-      message.ethHash = object.eth_hash;
+      message.eth_hash = object.eth_hash;
     }
     if (object.index !== undefined && object.index !== null) {
       message.index = object.index;
     }
     if (object.gas_used !== undefined && object.gas_used !== null) {
-      message.gasUsed = object.gas_used;
+      message.gas_used = object.gas_used;
     }
     if (object.hash !== undefined && object.hash !== null) {
       message.hash = object.hash;
@@ -214,19 +214,19 @@ export const EventEthereumTx = {
       message.recipient = object.recipient;
     }
     if (object.eth_tx_failed !== undefined && object.eth_tx_failed !== null) {
-      message.ethTxFailed = object.eth_tx_failed;
+      message.eth_tx_failed = object.eth_tx_failed;
     }
     return message;
   },
   toAmino(message: EventEthereumTx): EventEthereumTxAmino {
     const obj: any = {};
     obj.amount = message.amount === "" ? undefined : message.amount;
-    obj.eth_hash = message.ethHash === "" ? undefined : message.ethHash;
+    obj.eth_hash = message.eth_hash === "" ? undefined : message.eth_hash;
     obj.index = message.index === "" ? undefined : message.index;
-    obj.gas_used = message.gasUsed === "" ? undefined : message.gasUsed;
+    obj.gas_used = message.gas_used === "" ? undefined : message.gas_used;
     obj.hash = message.hash === "" ? undefined : message.hash;
     obj.recipient = message.recipient === "" ? undefined : message.recipient;
-    obj.eth_tx_failed = message.ethTxFailed === "" ? undefined : message.ethTxFailed;
+    obj.eth_tx_failed = message.eth_tx_failed === "" ? undefined : message.eth_tx_failed;
     return obj;
   },
   fromAminoMsg(object: EventEthereumTxAminoMsg): EventEthereumTx {
@@ -248,19 +248,19 @@ export const EventEthereumTx = {
 };
 function createBaseEventTxLog(): EventTxLog {
   return {
-    txLogs: []
+    tx_logs: []
   };
 }
 export const EventTxLog = {
   typeUrl: "/ethermint.evm.v1.EventTxLog",
   is(o: any): o is EventTxLog {
-    return o && (o.$typeUrl === EventTxLog.typeUrl || Array.isArray(o.txLogs) && (!o.txLogs.length || typeof o.txLogs[0] === "string"));
+    return o && (o.$typeUrl === EventTxLog.typeUrl || Array.isArray(o.tx_logs) && (!o.tx_logs.length || typeof o.tx_logs[0] === "string"));
   },
   isAmino(o: any): o is EventTxLogAmino {
     return o && (o.$typeUrl === EventTxLog.typeUrl || Array.isArray(o.tx_logs) && (!o.tx_logs.length || typeof o.tx_logs[0] === "string"));
   },
   encode(message: EventTxLog, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    for (const v of message.txLogs) {
+    for (const v of message.tx_logs) {
       writer.uint32(10).string(v!);
     }
     return writer;
@@ -273,7 +273,7 @@ export const EventTxLog = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.txLogs.push(reader.string());
+          message.tx_logs.push(reader.string());
           break;
         default:
           reader.skipType(tag & 7);
@@ -284,20 +284,20 @@ export const EventTxLog = {
   },
   fromPartial(object: DeepPartial<EventTxLog>): EventTxLog {
     const message = createBaseEventTxLog();
-    message.txLogs = object.txLogs?.map(e => e) || [];
+    message.tx_logs = object.tx_logs?.map(e => e) || [];
     return message;
   },
   fromAmino(object: EventTxLogAmino): EventTxLog {
     const message = createBaseEventTxLog();
-    message.txLogs = object.tx_logs?.map(e => e) || [];
+    message.tx_logs = object.tx_logs?.map(e => e) || [];
     return message;
   },
   toAmino(message: EventTxLog): EventTxLogAmino {
     const obj: any = {};
-    if (message.txLogs) {
-      obj.tx_logs = message.txLogs.map(e => e);
+    if (message.tx_logs) {
+      obj.tx_logs = message.tx_logs.map(e => e);
     } else {
-      obj.tx_logs = message.txLogs;
+      obj.tx_logs = message.tx_logs;
     }
     return obj;
   },
@@ -322,13 +322,13 @@ function createBaseEventMessage(): EventMessage {
   return {
     module: "",
     sender: "",
-    txType: ""
+    tx_type: ""
   };
 }
 export const EventMessage = {
   typeUrl: "/ethermint.evm.v1.EventMessage",
   is(o: any): o is EventMessage {
-    return o && (o.$typeUrl === EventMessage.typeUrl || typeof o.module === "string" && typeof o.sender === "string" && typeof o.txType === "string");
+    return o && (o.$typeUrl === EventMessage.typeUrl || typeof o.module === "string" && typeof o.sender === "string" && typeof o.tx_type === "string");
   },
   isAmino(o: any): o is EventMessageAmino {
     return o && (o.$typeUrl === EventMessage.typeUrl || typeof o.module === "string" && typeof o.sender === "string" && typeof o.tx_type === "string");
@@ -340,8 +340,8 @@ export const EventMessage = {
     if (message.sender !== "") {
       writer.uint32(18).string(message.sender);
     }
-    if (message.txType !== "") {
-      writer.uint32(26).string(message.txType);
+    if (message.tx_type !== "") {
+      writer.uint32(26).string(message.tx_type);
     }
     return writer;
   },
@@ -359,7 +359,7 @@ export const EventMessage = {
           message.sender = reader.string();
           break;
         case 3:
-          message.txType = reader.string();
+          message.tx_type = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -372,7 +372,7 @@ export const EventMessage = {
     const message = createBaseEventMessage();
     message.module = object.module ?? "";
     message.sender = object.sender ?? "";
-    message.txType = object.txType ?? "";
+    message.tx_type = object.tx_type ?? "";
     return message;
   },
   fromAmino(object: EventMessageAmino): EventMessage {
@@ -384,7 +384,7 @@ export const EventMessage = {
       message.sender = object.sender;
     }
     if (object.tx_type !== undefined && object.tx_type !== null) {
-      message.txType = object.tx_type;
+      message.tx_type = object.tx_type;
     }
     return message;
   },
@@ -392,7 +392,7 @@ export const EventMessage = {
     const obj: any = {};
     obj.module = message.module === "" ? undefined : message.module;
     obj.sender = message.sender === "" ? undefined : message.sender;
-    obj.tx_type = message.txType === "" ? undefined : message.txType;
+    obj.tx_type = message.tx_type === "" ? undefined : message.tx_type;
     return obj;
   },
   fromAminoMsg(object: EventMessageAminoMsg): EventMessage {

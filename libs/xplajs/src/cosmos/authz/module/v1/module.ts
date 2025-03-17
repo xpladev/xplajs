@@ -3,7 +3,7 @@ import { DeepPartial } from "../../../../helpers";
 /** Module is the config object of the authz module. */
 export interface Module {}
 export interface ModuleProtoMsg {
-  typeUrl: "/cosmos.authz.module.v1.Module";
+  type_url: "/cosmos.authz.module.v1.Module";
   value: Uint8Array;
 }
 /** Module is the config object of the authz module. */

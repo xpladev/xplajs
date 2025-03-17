@@ -12,14 +12,14 @@ import { encodePubkey, decodePubkey } from "@interchainjs/pubkey";
 export interface MsgRegisterVolunteerValidator {
   /** authority is the address of the governance account. */
   authority: string;
-  validatorDescription: Description;
-  delegatorAddress: string;
-  validatorAddress: string;
+  validator_description: Description;
+  delegator_address: string;
+  validator_address: string;
   pubkey?: Any | undefined;
   amount: Coin;
 }
 export interface MsgRegisterVolunteerValidatorProtoMsg {
-  typeUrl: "/xpla.volunteer.v1beta1.MsgRegisterVolunteerValidator";
+  type_url: "/xpla.volunteer.v1beta1.MsgRegisterVolunteerValidator";
   value: Uint8Array;
 }
 export type MsgRegisterVolunteerValidatorEncoded = Omit<MsgRegisterVolunteerValidator, "pubkey"> & {
@@ -48,7 +48,7 @@ export interface MsgRegisterVolunteerValidatorAminoMsg {
  */
 export interface MsgRegisterVolunteerValidatorResponse {}
 export interface MsgRegisterVolunteerValidatorResponseProtoMsg {
-  typeUrl: "/xpla.volunteer.v1beta1.MsgRegisterVolunteerValidatorResponse";
+  type_url: "/xpla.volunteer.v1beta1.MsgRegisterVolunteerValidatorResponse";
   value: Uint8Array;
 }
 /**
@@ -67,10 +67,10 @@ export interface MsgRegisterVolunteerValidatorResponseAminoMsg {
 export interface MsgUnregisterVolunteerValidator {
   /** authority is the address of the governance account. */
   authority: string;
-  validatorAddress: string;
+  validator_address: string;
 }
 export interface MsgUnregisterVolunteerValidatorProtoMsg {
-  typeUrl: "/xpla.volunteer.v1beta1.MsgUnregisterVolunteerValidator";
+  type_url: "/xpla.volunteer.v1beta1.MsgUnregisterVolunteerValidator";
   value: Uint8Array;
 }
 /**
@@ -92,7 +92,7 @@ export interface MsgUnregisterVolunteerValidatorAminoMsg {
  */
 export interface MsgUnregisterVolunteerValidatorResponse {}
 export interface MsgUnregisterVolunteerValidatorResponseProtoMsg {
-  typeUrl: "/xpla.volunteer.v1beta1.MsgUnregisterVolunteerValidatorResponse";
+  type_url: "/xpla.volunteer.v1beta1.MsgUnregisterVolunteerValidatorResponse";
   value: Uint8Array;
 }
 /**
@@ -107,9 +107,9 @@ export interface MsgUnregisterVolunteerValidatorResponseAminoMsg {
 function createBaseMsgRegisterVolunteerValidator(): MsgRegisterVolunteerValidator {
   return {
     authority: "",
-    validatorDescription: Description.fromPartial({}),
-    delegatorAddress: "",
-    validatorAddress: "",
+    validator_description: Description.fromPartial({}),
+    delegator_address: "",
+    validator_address: "",
     pubkey: undefined,
     amount: Coin.fromPartial({})
   };
@@ -118,7 +118,7 @@ export const MsgRegisterVolunteerValidator = {
   typeUrl: "/xpla.volunteer.v1beta1.MsgRegisterVolunteerValidator",
   aminoType: "xpladev/MsgRegisterVolunteerValidator",
   is(o: any): o is MsgRegisterVolunteerValidator {
-    return o && (o.$typeUrl === MsgRegisterVolunteerValidator.typeUrl || typeof o.authority === "string" && Description.is(o.validatorDescription) && typeof o.delegatorAddress === "string" && typeof o.validatorAddress === "string" && Coin.is(o.amount));
+    return o && (o.$typeUrl === MsgRegisterVolunteerValidator.typeUrl || typeof o.authority === "string" && Description.is(o.validator_description) && typeof o.delegator_address === "string" && typeof o.validator_address === "string" && Coin.is(o.amount));
   },
   isAmino(o: any): o is MsgRegisterVolunteerValidatorAmino {
     return o && (o.$typeUrl === MsgRegisterVolunteerValidator.typeUrl || typeof o.authority === "string" && Description.isAmino(o.validator_description) && typeof o.delegator_address === "string" && typeof o.validator_address === "string" && Coin.isAmino(o.amount));
@@ -127,14 +127,14 @@ export const MsgRegisterVolunteerValidator = {
     if (message.authority !== "") {
       writer.uint32(10).string(message.authority);
     }
-    if (message.validatorDescription !== undefined) {
-      Description.encode(message.validatorDescription, writer.uint32(18).fork()).ldelim();
+    if (message.validator_description !== undefined) {
+      Description.encode(message.validator_description, writer.uint32(18).fork()).ldelim();
     }
-    if (message.delegatorAddress !== "") {
-      writer.uint32(26).string(message.delegatorAddress);
+    if (message.delegator_address !== "") {
+      writer.uint32(26).string(message.delegator_address);
     }
-    if (message.validatorAddress !== "") {
-      writer.uint32(34).string(message.validatorAddress);
+    if (message.validator_address !== "") {
+      writer.uint32(34).string(message.validator_address);
     }
     if (message.pubkey !== undefined) {
       Any.encode(GlobalDecoderRegistry.wrapAny(message.pubkey), writer.uint32(42).fork()).ldelim();
@@ -155,13 +155,13 @@ export const MsgRegisterVolunteerValidator = {
           message.authority = reader.string();
           break;
         case 2:
-          message.validatorDescription = Description.decode(reader, reader.uint32());
+          message.validator_description = Description.decode(reader, reader.uint32());
           break;
         case 3:
-          message.delegatorAddress = reader.string();
+          message.delegator_address = reader.string();
           break;
         case 4:
-          message.validatorAddress = reader.string();
+          message.validator_address = reader.string();
           break;
         case 5:
           message.pubkey = GlobalDecoderRegistry.unwrapAny(reader);
@@ -179,9 +179,9 @@ export const MsgRegisterVolunteerValidator = {
   fromPartial(object: DeepPartial<MsgRegisterVolunteerValidator>): MsgRegisterVolunteerValidator {
     const message = createBaseMsgRegisterVolunteerValidator();
     message.authority = object.authority ?? "";
-    message.validatorDescription = object.validatorDescription !== undefined && object.validatorDescription !== null ? Description.fromPartial(object.validatorDescription) : undefined;
-    message.delegatorAddress = object.delegatorAddress ?? "";
-    message.validatorAddress = object.validatorAddress ?? "";
+    message.validator_description = object.validator_description !== undefined && object.validator_description !== null ? Description.fromPartial(object.validator_description) : undefined;
+    message.delegator_address = object.delegator_address ?? "";
+    message.validator_address = object.validator_address ?? "";
     message.pubkey = object.pubkey !== undefined && object.pubkey !== null ? GlobalDecoderRegistry.fromPartial(object.pubkey) : undefined;
     message.amount = object.amount !== undefined && object.amount !== null ? Coin.fromPartial(object.amount) : undefined;
     return message;
@@ -192,13 +192,13 @@ export const MsgRegisterVolunteerValidator = {
       message.authority = object.authority;
     }
     if (object.validator_description !== undefined && object.validator_description !== null) {
-      message.validatorDescription = Description.fromAmino(object.validator_description);
+      message.validator_description = Description.fromAmino(object.validator_description);
     }
     if (object.delegator_address !== undefined && object.delegator_address !== null) {
-      message.delegatorAddress = object.delegator_address;
+      message.delegator_address = object.delegator_address;
     }
     if (object.validator_address !== undefined && object.validator_address !== null) {
-      message.validatorAddress = object.validator_address;
+      message.validator_address = object.validator_address;
     }
     if (object.pubkey !== undefined && object.pubkey !== null) {
       message.pubkey = encodePubkey(object.pubkey);
@@ -211,9 +211,9 @@ export const MsgRegisterVolunteerValidator = {
   toAmino(message: MsgRegisterVolunteerValidator): MsgRegisterVolunteerValidatorAmino {
     const obj: any = {};
     obj.authority = message.authority === "" ? undefined : message.authority;
-    obj.validator_description = message.validatorDescription ? Description.toAmino(message.validatorDescription) : Description.toAmino(Description.fromPartial({}));
-    obj.delegator_address = message.delegatorAddress === "" ? undefined : message.delegatorAddress;
-    obj.validator_address = message.validatorAddress === "" ? undefined : message.validatorAddress;
+    obj.validator_description = message.validator_description ? Description.toAmino(message.validator_description) : Description.toAmino(Description.fromPartial({}));
+    obj.delegator_address = message.delegator_address === "" ? undefined : message.delegator_address;
+    obj.validator_address = message.validator_address === "" ? undefined : message.validator_address;
     obj.pubkey = message.pubkey ? decodePubkey(message.pubkey) : undefined;
     obj.amount = message.amount ? Coin.toAmino(message.amount) : Coin.toAmino(Coin.fromPartial({}));
     return obj;
@@ -303,14 +303,14 @@ export const MsgRegisterVolunteerValidatorResponse = {
 function createBaseMsgUnregisterVolunteerValidator(): MsgUnregisterVolunteerValidator {
   return {
     authority: "",
-    validatorAddress: ""
+    validator_address: ""
   };
 }
 export const MsgUnregisterVolunteerValidator = {
   typeUrl: "/xpla.volunteer.v1beta1.MsgUnregisterVolunteerValidator",
   aminoType: "xpladev/MsgUnregisterVolunteerValidator",
   is(o: any): o is MsgUnregisterVolunteerValidator {
-    return o && (o.$typeUrl === MsgUnregisterVolunteerValidator.typeUrl || typeof o.authority === "string" && typeof o.validatorAddress === "string");
+    return o && (o.$typeUrl === MsgUnregisterVolunteerValidator.typeUrl || typeof o.authority === "string" && typeof o.validator_address === "string");
   },
   isAmino(o: any): o is MsgUnregisterVolunteerValidatorAmino {
     return o && (o.$typeUrl === MsgUnregisterVolunteerValidator.typeUrl || typeof o.authority === "string" && typeof o.validator_address === "string");
@@ -319,8 +319,8 @@ export const MsgUnregisterVolunteerValidator = {
     if (message.authority !== "") {
       writer.uint32(10).string(message.authority);
     }
-    if (message.validatorAddress !== "") {
-      writer.uint32(18).string(message.validatorAddress);
+    if (message.validator_address !== "") {
+      writer.uint32(18).string(message.validator_address);
     }
     return writer;
   },
@@ -335,7 +335,7 @@ export const MsgUnregisterVolunteerValidator = {
           message.authority = reader.string();
           break;
         case 2:
-          message.validatorAddress = reader.string();
+          message.validator_address = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -347,7 +347,7 @@ export const MsgUnregisterVolunteerValidator = {
   fromPartial(object: DeepPartial<MsgUnregisterVolunteerValidator>): MsgUnregisterVolunteerValidator {
     const message = createBaseMsgUnregisterVolunteerValidator();
     message.authority = object.authority ?? "";
-    message.validatorAddress = object.validatorAddress ?? "";
+    message.validator_address = object.validator_address ?? "";
     return message;
   },
   fromAmino(object: MsgUnregisterVolunteerValidatorAmino): MsgUnregisterVolunteerValidator {
@@ -356,14 +356,14 @@ export const MsgUnregisterVolunteerValidator = {
       message.authority = object.authority;
     }
     if (object.validator_address !== undefined && object.validator_address !== null) {
-      message.validatorAddress = object.validator_address;
+      message.validator_address = object.validator_address;
     }
     return message;
   },
   toAmino(message: MsgUnregisterVolunteerValidator): MsgUnregisterVolunteerValidatorAmino {
     const obj: any = {};
     obj.authority = message.authority === "" ? undefined : message.authority;
-    obj.validator_address = message.validatorAddress === "" ? undefined : message.validatorAddress;
+    obj.validator_address = message.validator_address === "" ? undefined : message.validator_address;
     return obj;
   },
   fromAminoMsg(object: MsgUnregisterVolunteerValidatorAminoMsg): MsgUnregisterVolunteerValidator {

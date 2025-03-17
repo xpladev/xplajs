@@ -9,7 +9,7 @@ export interface QueryParamsRequest {
   key: string;
 }
 export interface QueryParamsRequestProtoMsg {
-  typeUrl: "/cosmos.params.v1beta1.QueryParamsRequest";
+  type_url: "/cosmos.params.v1beta1.QueryParamsRequest";
   value: Uint8Array;
 }
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
@@ -29,7 +29,7 @@ export interface QueryParamsResponse {
   param: ParamChange;
 }
 export interface QueryParamsResponseProtoMsg {
-  typeUrl: "/cosmos.params.v1beta1.QueryParamsResponse";
+  type_url: "/cosmos.params.v1beta1.QueryParamsResponse";
   value: Uint8Array;
 }
 /** QueryParamsResponse is response type for the Query/Params RPC method. */
@@ -49,7 +49,7 @@ export interface QueryParamsResponseAminoMsg {
  */
 export interface QuerySubspacesRequest {}
 export interface QuerySubspacesRequestProtoMsg {
-  typeUrl: "/cosmos.params.v1beta1.QuerySubspacesRequest";
+  type_url: "/cosmos.params.v1beta1.QuerySubspacesRequest";
   value: Uint8Array;
 }
 /**
@@ -73,7 +73,7 @@ export interface QuerySubspacesResponse {
   subspaces: Subspace[];
 }
 export interface QuerySubspacesResponseProtoMsg {
-  typeUrl: "/cosmos.params.v1beta1.QuerySubspacesResponse";
+  type_url: "/cosmos.params.v1beta1.QuerySubspacesResponse";
   value: Uint8Array;
 }
 /**
@@ -100,7 +100,7 @@ export interface Subspace {
   keys: string[];
 }
 export interface SubspaceProtoMsg {
-  typeUrl: "/cosmos.params.v1beta1.Subspace";
+  type_url: "/cosmos.params.v1beta1.Subspace";
   value: Uint8Array;
 }
 /**

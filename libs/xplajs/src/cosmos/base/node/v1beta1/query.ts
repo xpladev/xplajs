@@ -4,7 +4,7 @@ import { DeepPartial, toTimestamp, fromTimestamp, bytesFromBase64, base64FromByt
 /** ConfigRequest defines the request structure for the Config gRPC query. */
 export interface ConfigRequest {}
 export interface ConfigRequestProtoMsg {
-  typeUrl: "/cosmos.base.node.v1beta1.ConfigRequest";
+  type_url: "/cosmos.base.node.v1beta1.ConfigRequest";
   value: Uint8Array;
 }
 /** ConfigRequest defines the request structure for the Config gRPC query. */
@@ -15,13 +15,13 @@ export interface ConfigRequestAminoMsg {
 }
 /** ConfigResponse defines the response structure for the Config gRPC query. */
 export interface ConfigResponse {
-  minimumGasPrice: string;
-  pruningKeepRecent: string;
-  pruningInterval: string;
-  haltHeight: bigint;
+  minimum_gas_price: string;
+  pruning_keep_recent: string;
+  pruning_interval: string;
+  halt_height: bigint;
 }
 export interface ConfigResponseProtoMsg {
-  typeUrl: "/cosmos.base.node.v1beta1.ConfigResponse";
+  type_url: "/cosmos.base.node.v1beta1.ConfigResponse";
   value: Uint8Array;
 }
 /** ConfigResponse defines the response structure for the Config gRPC query. */
@@ -38,7 +38,7 @@ export interface ConfigResponseAminoMsg {
 /** StateRequest defines the request structure for the status of a node. */
 export interface StatusRequest {}
 export interface StatusRequestProtoMsg {
-  typeUrl: "/cosmos.base.node.v1beta1.StatusRequest";
+  type_url: "/cosmos.base.node.v1beta1.StatusRequest";
   value: Uint8Array;
 }
 /** StateRequest defines the request structure for the status of a node. */
@@ -50,18 +50,18 @@ export interface StatusRequestAminoMsg {
 /** StateResponse defines the response structure for the status of a node. */
 export interface StatusResponse {
   /** earliest block height available in the store */
-  earliestStoreHeight: bigint;
+  earliest_store_height: bigint;
   /** current block height */
   height: bigint;
   /** block height timestamp */
   timestamp?: Date;
   /** app hash of the current block */
-  appHash: Uint8Array;
+  app_hash: Uint8Array;
   /** validator hash provided by the consensus header */
-  validatorHash: Uint8Array;
+  validator_hash: Uint8Array;
 }
 export interface StatusResponseProtoMsg {
-  typeUrl: "/cosmos.base.node.v1beta1.StatusResponse";
+  type_url: "/cosmos.base.node.v1beta1.StatusResponse";
   value: Uint8Array;
 }
 /** StateResponse defines the response structure for the status of a node. */
@@ -147,33 +147,33 @@ export const ConfigRequest = {
 };
 function createBaseConfigResponse(): ConfigResponse {
   return {
-    minimumGasPrice: "",
-    pruningKeepRecent: "",
-    pruningInterval: "",
-    haltHeight: BigInt(0)
+    minimum_gas_price: "",
+    pruning_keep_recent: "",
+    pruning_interval: "",
+    halt_height: BigInt(0)
   };
 }
 export const ConfigResponse = {
   typeUrl: "/cosmos.base.node.v1beta1.ConfigResponse",
   aminoType: "cosmos-sdk/ConfigResponse",
   is(o: any): o is ConfigResponse {
-    return o && (o.$typeUrl === ConfigResponse.typeUrl || typeof o.minimumGasPrice === "string" && typeof o.pruningKeepRecent === "string" && typeof o.pruningInterval === "string" && typeof o.haltHeight === "bigint");
+    return o && (o.$typeUrl === ConfigResponse.typeUrl || typeof o.minimum_gas_price === "string" && typeof o.pruning_keep_recent === "string" && typeof o.pruning_interval === "string" && typeof o.halt_height === "bigint");
   },
   isAmino(o: any): o is ConfigResponseAmino {
     return o && (o.$typeUrl === ConfigResponse.typeUrl || typeof o.minimum_gas_price === "string" && typeof o.pruning_keep_recent === "string" && typeof o.pruning_interval === "string" && typeof o.halt_height === "bigint");
   },
   encode(message: ConfigResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.minimumGasPrice !== "") {
-      writer.uint32(10).string(message.minimumGasPrice);
+    if (message.minimum_gas_price !== "") {
+      writer.uint32(10).string(message.minimum_gas_price);
     }
-    if (message.pruningKeepRecent !== "") {
-      writer.uint32(18).string(message.pruningKeepRecent);
+    if (message.pruning_keep_recent !== "") {
+      writer.uint32(18).string(message.pruning_keep_recent);
     }
-    if (message.pruningInterval !== "") {
-      writer.uint32(26).string(message.pruningInterval);
+    if (message.pruning_interval !== "") {
+      writer.uint32(26).string(message.pruning_interval);
     }
-    if (message.haltHeight !== BigInt(0)) {
-      writer.uint32(32).uint64(message.haltHeight);
+    if (message.halt_height !== BigInt(0)) {
+      writer.uint32(32).uint64(message.halt_height);
     }
     return writer;
   },
@@ -185,16 +185,16 @@ export const ConfigResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.minimumGasPrice = reader.string();
+          message.minimum_gas_price = reader.string();
           break;
         case 2:
-          message.pruningKeepRecent = reader.string();
+          message.pruning_keep_recent = reader.string();
           break;
         case 3:
-          message.pruningInterval = reader.string();
+          message.pruning_interval = reader.string();
           break;
         case 4:
-          message.haltHeight = reader.uint64();
+          message.halt_height = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -205,34 +205,34 @@ export const ConfigResponse = {
   },
   fromPartial(object: DeepPartial<ConfigResponse>): ConfigResponse {
     const message = createBaseConfigResponse();
-    message.minimumGasPrice = object.minimumGasPrice ?? "";
-    message.pruningKeepRecent = object.pruningKeepRecent ?? "";
-    message.pruningInterval = object.pruningInterval ?? "";
-    message.haltHeight = object.haltHeight !== undefined && object.haltHeight !== null ? BigInt(object.haltHeight.toString()) : BigInt(0);
+    message.minimum_gas_price = object.minimum_gas_price ?? "";
+    message.pruning_keep_recent = object.pruning_keep_recent ?? "";
+    message.pruning_interval = object.pruning_interval ?? "";
+    message.halt_height = object.halt_height !== undefined && object.halt_height !== null ? BigInt(object.halt_height.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: ConfigResponseAmino): ConfigResponse {
     const message = createBaseConfigResponse();
     if (object.minimum_gas_price !== undefined && object.minimum_gas_price !== null) {
-      message.minimumGasPrice = object.minimum_gas_price;
+      message.minimum_gas_price = object.minimum_gas_price;
     }
     if (object.pruning_keep_recent !== undefined && object.pruning_keep_recent !== null) {
-      message.pruningKeepRecent = object.pruning_keep_recent;
+      message.pruning_keep_recent = object.pruning_keep_recent;
     }
     if (object.pruning_interval !== undefined && object.pruning_interval !== null) {
-      message.pruningInterval = object.pruning_interval;
+      message.pruning_interval = object.pruning_interval;
     }
     if (object.halt_height !== undefined && object.halt_height !== null) {
-      message.haltHeight = BigInt(object.halt_height);
+      message.halt_height = BigInt(object.halt_height);
     }
     return message;
   },
   toAmino(message: ConfigResponse): ConfigResponseAmino {
     const obj: any = {};
-    obj.minimum_gas_price = message.minimumGasPrice === "" ? undefined : message.minimumGasPrice;
-    obj.pruning_keep_recent = message.pruningKeepRecent === "" ? undefined : message.pruningKeepRecent;
-    obj.pruning_interval = message.pruningInterval === "" ? undefined : message.pruningInterval;
-    obj.halt_height = message.haltHeight !== BigInt(0) ? message.haltHeight?.toString() : undefined;
+    obj.minimum_gas_price = message.minimum_gas_price === "" ? undefined : message.minimum_gas_price;
+    obj.pruning_keep_recent = message.pruning_keep_recent === "" ? undefined : message.pruning_keep_recent;
+    obj.pruning_interval = message.pruning_interval === "" ? undefined : message.pruning_interval;
+    obj.halt_height = message.halt_height !== BigInt(0) ? message.halt_height?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: ConfigResponseAminoMsg): ConfigResponse {
@@ -324,25 +324,25 @@ export const StatusRequest = {
 };
 function createBaseStatusResponse(): StatusResponse {
   return {
-    earliestStoreHeight: BigInt(0),
+    earliest_store_height: BigInt(0),
     height: BigInt(0),
     timestamp: undefined,
-    appHash: new Uint8Array(),
-    validatorHash: new Uint8Array()
+    app_hash: new Uint8Array(),
+    validator_hash: new Uint8Array()
   };
 }
 export const StatusResponse = {
   typeUrl: "/cosmos.base.node.v1beta1.StatusResponse",
   aminoType: "cosmos-sdk/StatusResponse",
   is(o: any): o is StatusResponse {
-    return o && (o.$typeUrl === StatusResponse.typeUrl || typeof o.earliestStoreHeight === "bigint" && typeof o.height === "bigint" && (o.appHash instanceof Uint8Array || typeof o.appHash === "string") && (o.validatorHash instanceof Uint8Array || typeof o.validatorHash === "string"));
+    return o && (o.$typeUrl === StatusResponse.typeUrl || typeof o.earliest_store_height === "bigint" && typeof o.height === "bigint" && (o.app_hash instanceof Uint8Array || typeof o.app_hash === "string") && (o.validator_hash instanceof Uint8Array || typeof o.validator_hash === "string"));
   },
   isAmino(o: any): o is StatusResponseAmino {
     return o && (o.$typeUrl === StatusResponse.typeUrl || typeof o.earliest_store_height === "bigint" && typeof o.height === "bigint" && (o.app_hash instanceof Uint8Array || typeof o.app_hash === "string") && (o.validator_hash instanceof Uint8Array || typeof o.validator_hash === "string"));
   },
   encode(message: StatusResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.earliestStoreHeight !== BigInt(0)) {
-      writer.uint32(8).uint64(message.earliestStoreHeight);
+    if (message.earliest_store_height !== BigInt(0)) {
+      writer.uint32(8).uint64(message.earliest_store_height);
     }
     if (message.height !== BigInt(0)) {
       writer.uint32(16).uint64(message.height);
@@ -350,11 +350,11 @@ export const StatusResponse = {
     if (message.timestamp !== undefined) {
       Timestamp.encode(toTimestamp(message.timestamp), writer.uint32(26).fork()).ldelim();
     }
-    if (message.appHash.length !== 0) {
-      writer.uint32(34).bytes(message.appHash);
+    if (message.app_hash.length !== 0) {
+      writer.uint32(34).bytes(message.app_hash);
     }
-    if (message.validatorHash.length !== 0) {
-      writer.uint32(42).bytes(message.validatorHash);
+    if (message.validator_hash.length !== 0) {
+      writer.uint32(42).bytes(message.validator_hash);
     }
     return writer;
   },
@@ -366,7 +366,7 @@ export const StatusResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.earliestStoreHeight = reader.uint64();
+          message.earliest_store_height = reader.uint64();
           break;
         case 2:
           message.height = reader.uint64();
@@ -375,10 +375,10 @@ export const StatusResponse = {
           message.timestamp = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
         case 4:
-          message.appHash = reader.bytes();
+          message.app_hash = reader.bytes();
           break;
         case 5:
-          message.validatorHash = reader.bytes();
+          message.validator_hash = reader.bytes();
           break;
         default:
           reader.skipType(tag & 7);
@@ -389,17 +389,17 @@ export const StatusResponse = {
   },
   fromPartial(object: DeepPartial<StatusResponse>): StatusResponse {
     const message = createBaseStatusResponse();
-    message.earliestStoreHeight = object.earliestStoreHeight !== undefined && object.earliestStoreHeight !== null ? BigInt(object.earliestStoreHeight.toString()) : BigInt(0);
+    message.earliest_store_height = object.earliest_store_height !== undefined && object.earliest_store_height !== null ? BigInt(object.earliest_store_height.toString()) : BigInt(0);
     message.height = object.height !== undefined && object.height !== null ? BigInt(object.height.toString()) : BigInt(0);
     message.timestamp = object.timestamp ?? undefined;
-    message.appHash = object.appHash ?? new Uint8Array();
-    message.validatorHash = object.validatorHash ?? new Uint8Array();
+    message.app_hash = object.app_hash ?? new Uint8Array();
+    message.validator_hash = object.validator_hash ?? new Uint8Array();
     return message;
   },
   fromAmino(object: StatusResponseAmino): StatusResponse {
     const message = createBaseStatusResponse();
     if (object.earliest_store_height !== undefined && object.earliest_store_height !== null) {
-      message.earliestStoreHeight = BigInt(object.earliest_store_height);
+      message.earliest_store_height = BigInt(object.earliest_store_height);
     }
     if (object.height !== undefined && object.height !== null) {
       message.height = BigInt(object.height);
@@ -408,20 +408,20 @@ export const StatusResponse = {
       message.timestamp = fromTimestamp(Timestamp.fromAmino(object.timestamp));
     }
     if (object.app_hash !== undefined && object.app_hash !== null) {
-      message.appHash = bytesFromBase64(object.app_hash);
+      message.app_hash = bytesFromBase64(object.app_hash);
     }
     if (object.validator_hash !== undefined && object.validator_hash !== null) {
-      message.validatorHash = bytesFromBase64(object.validator_hash);
+      message.validator_hash = bytesFromBase64(object.validator_hash);
     }
     return message;
   },
   toAmino(message: StatusResponse): StatusResponseAmino {
     const obj: any = {};
-    obj.earliest_store_height = message.earliestStoreHeight !== BigInt(0) ? message.earliestStoreHeight?.toString() : undefined;
+    obj.earliest_store_height = message.earliest_store_height !== BigInt(0) ? message.earliest_store_height?.toString() : undefined;
     obj.height = message.height !== BigInt(0) ? message.height?.toString() : undefined;
     obj.timestamp = message.timestamp ? Timestamp.toAmino(toTimestamp(message.timestamp)) : undefined;
-    obj.app_hash = message.appHash ? base64FromBytes(message.appHash) : undefined;
-    obj.validator_hash = message.validatorHash ? base64FromBytes(message.validatorHash) : undefined;
+    obj.app_hash = message.app_hash ? base64FromBytes(message.app_hash) : undefined;
+    obj.validator_hash = message.validator_hash ? base64FromBytes(message.validator_hash) : undefined;
     return obj;
   },
   fromAminoMsg(object: StatusResponseAminoMsg): StatusResponse {

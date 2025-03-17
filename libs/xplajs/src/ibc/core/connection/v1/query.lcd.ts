@@ -12,7 +12,7 @@ export class LCDQueryClient {
   }
   /* Connection queries an IBC connection end. */
   connection = async (params: QueryConnectionRequest): Promise<QueryConnectionResponse> => {
-    const endpoint = `ibc/core/connection/v1/connections/${params.connectionId}`;
+    const endpoint = `ibc/core/connection/v1/connections/${params.connection_id}`;
     return await this.req.get<QueryConnectionResponse>(endpoint);
   };
   /* Connections queries all the IBC connections of a chain. */
@@ -31,19 +31,19 @@ export class LCDQueryClient {
   /* ClientConnections queries the connection paths associated with a client
    state. */
   clientConnections = async (params: QueryClientConnectionsRequest): Promise<QueryClientConnectionsResponse> => {
-    const endpoint = `ibc/core/connection/v1/client_connections/${params.clientId}`;
+    const endpoint = `ibc/core/connection/v1/client_connections/${params.client_id}`;
     return await this.req.get<QueryClientConnectionsResponse>(endpoint);
   };
   /* ConnectionClientState queries the client state associated with the
    connection. */
   connectionClientState = async (params: QueryConnectionClientStateRequest): Promise<QueryConnectionClientStateResponse> => {
-    const endpoint = `ibc/core/connection/v1/connections/${params.connectionId}/client_state`;
+    const endpoint = `ibc/core/connection/v1/connections/${params.connection_id}/client_state`;
     return await this.req.get<QueryConnectionClientStateResponse>(endpoint);
   };
   /* ConnectionConsensusState queries the consensus state associated with the
    connection. */
   connectionConsensusState = async (params: QueryConnectionConsensusStateRequest): Promise<QueryConnectionConsensusStateResponse> => {
-    const endpoint = `ibc/core/connection/v1/connections/${params.connectionId}/consensus_state/revision/${params.revisionNumber}/height/${params.revisionHeight}`;
+    const endpoint = `ibc/core/connection/v1/connections/${params.connection_id}/consensus_state/revision/${params.revision_number}/height/${params.revision_height}`;
     return await this.req.get<QueryConnectionConsensusStateResponse>(endpoint);
   };
   /* ConnectionParams queries all parameters of the ibc connection submodule. */

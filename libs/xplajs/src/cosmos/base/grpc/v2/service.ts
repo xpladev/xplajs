@@ -6,7 +6,7 @@ export interface QueryRequest {
   request?: Any;
 }
 export interface QueryRequestProtoMsg {
-  typeUrl: "/cosmos.base.grpc.v2.QueryRequest";
+  type_url: "/cosmos.base.grpc.v2.QueryRequest";
   value: Uint8Array;
 }
 /** QueryRequest is the request for the Query method */
@@ -22,7 +22,7 @@ export interface QueryResponse {
   response?: Any;
 }
 export interface QueryResponseProtoMsg {
-  typeUrl: "/cosmos.base.grpc.v2.QueryResponse";
+  type_url: "/cosmos.base.grpc.v2.QueryResponse";
   value: Uint8Array;
 }
 /** QueryResponse is the response for the Query method */
@@ -36,7 +36,7 @@ export interface QueryResponseAminoMsg {
 /** ListQueryHandlersRequest is the request for the ListQueryHandlers method */
 export interface ListQueryHandlersRequest {}
 export interface ListQueryHandlersRequestProtoMsg {
-  typeUrl: "/cosmos.base.grpc.v2.ListQueryHandlersRequest";
+  type_url: "/cosmos.base.grpc.v2.ListQueryHandlersRequest";
   value: Uint8Array;
 }
 /** ListQueryHandlersRequest is the request for the ListQueryHandlers method */
@@ -50,7 +50,7 @@ export interface ListQueryHandlersResponse {
   handlers: Handler[];
 }
 export interface ListQueryHandlersResponseProtoMsg {
-  typeUrl: "/cosmos.base.grpc.v2.ListQueryHandlersResponse";
+  type_url: "/cosmos.base.grpc.v2.ListQueryHandlersResponse";
   value: Uint8Array;
 }
 /** ListQueryHandlersResponse is the response for the ListQueryHandlers method */
@@ -63,11 +63,11 @@ export interface ListQueryHandlersResponseAminoMsg {
 }
 /** Handler defines a query handler */
 export interface Handler {
-  requestName: string;
-  responseName: string;
+  request_name: string;
+  response_name: string;
 }
 export interface HandlerProtoMsg {
-  typeUrl: "/cosmos.base.grpc.v2.Handler";
+  type_url: "/cosmos.base.grpc.v2.Handler";
   value: Uint8Array;
 }
 /** Handler defines a query handler */
@@ -380,25 +380,25 @@ export const ListQueryHandlersResponse = {
 };
 function createBaseHandler(): Handler {
   return {
-    requestName: "",
-    responseName: ""
+    request_name: "",
+    response_name: ""
   };
 }
 export const Handler = {
   typeUrl: "/cosmos.base.grpc.v2.Handler",
   aminoType: "cosmos-sdk/Handler",
   is(o: any): o is Handler {
-    return o && (o.$typeUrl === Handler.typeUrl || typeof o.requestName === "string" && typeof o.responseName === "string");
+    return o && (o.$typeUrl === Handler.typeUrl || typeof o.request_name === "string" && typeof o.response_name === "string");
   },
   isAmino(o: any): o is HandlerAmino {
     return o && (o.$typeUrl === Handler.typeUrl || typeof o.request_name === "string" && typeof o.response_name === "string");
   },
   encode(message: Handler, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.requestName !== "") {
-      writer.uint32(10).string(message.requestName);
+    if (message.request_name !== "") {
+      writer.uint32(10).string(message.request_name);
     }
-    if (message.responseName !== "") {
-      writer.uint32(18).string(message.responseName);
+    if (message.response_name !== "") {
+      writer.uint32(18).string(message.response_name);
     }
     return writer;
   },
@@ -410,10 +410,10 @@ export const Handler = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.requestName = reader.string();
+          message.request_name = reader.string();
           break;
         case 2:
-          message.responseName = reader.string();
+          message.response_name = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -424,24 +424,24 @@ export const Handler = {
   },
   fromPartial(object: DeepPartial<Handler>): Handler {
     const message = createBaseHandler();
-    message.requestName = object.requestName ?? "";
-    message.responseName = object.responseName ?? "";
+    message.request_name = object.request_name ?? "";
+    message.response_name = object.response_name ?? "";
     return message;
   },
   fromAmino(object: HandlerAmino): Handler {
     const message = createBaseHandler();
     if (object.request_name !== undefined && object.request_name !== null) {
-      message.requestName = object.request_name;
+      message.request_name = object.request_name;
     }
     if (object.response_name !== undefined && object.response_name !== null) {
-      message.responseName = object.response_name;
+      message.response_name = object.response_name;
     }
     return message;
   },
   toAmino(message: Handler): HandlerAmino {
     const obj: any = {};
-    obj.request_name = message.requestName === "" ? undefined : message.requestName;
-    obj.response_name = message.responseName === "" ? undefined : message.responseName;
+    obj.request_name = message.request_name === "" ? undefined : message.request_name;
+    obj.response_name = message.response_name === "" ? undefined : message.response_name;
     return obj;
   },
   fromAminoMsg(object: HandlerAminoMsg): Handler {

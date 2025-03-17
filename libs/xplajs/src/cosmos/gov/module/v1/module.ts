@@ -6,12 +6,12 @@ export interface Module {
    * max_metadata_len defines the maximum proposal metadata length.
    * Defaults to 255 if not explicitly set.
    */
-  maxMetadataLen: bigint;
+  max_metadata_len: bigint;
   /** authority defines the custom module authority. If not set, defaults to the governance module. */
   authority: string;
 }
 export interface ModuleProtoMsg {
-  typeUrl: "/cosmos.gov.module.v1.Module";
+  type_url: "/cosmos.gov.module.v1.Module";
   value: Uint8Array;
 }
 /** Module is the config object of the gov module. */
@@ -30,7 +30,7 @@ export interface ModuleAminoMsg {
 }
 function createBaseModule(): Module {
   return {
-    maxMetadataLen: BigInt(0),
+    max_metadata_len: BigInt(0),
     authority: ""
   };
 }
@@ -38,14 +38,14 @@ export const Module = {
   typeUrl: "/cosmos.gov.module.v1.Module",
   aminoType: "cosmos-sdk/Module",
   is(o: any): o is Module {
-    return o && (o.$typeUrl === Module.typeUrl || typeof o.maxMetadataLen === "bigint" && typeof o.authority === "string");
+    return o && (o.$typeUrl === Module.typeUrl || typeof o.max_metadata_len === "bigint" && typeof o.authority === "string");
   },
   isAmino(o: any): o is ModuleAmino {
     return o && (o.$typeUrl === Module.typeUrl || typeof o.max_metadata_len === "bigint" && typeof o.authority === "string");
   },
   encode(message: Module, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.maxMetadataLen !== BigInt(0)) {
-      writer.uint32(8).uint64(message.maxMetadataLen);
+    if (message.max_metadata_len !== BigInt(0)) {
+      writer.uint32(8).uint64(message.max_metadata_len);
     }
     if (message.authority !== "") {
       writer.uint32(18).string(message.authority);
@@ -60,7 +60,7 @@ export const Module = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.maxMetadataLen = reader.uint64();
+          message.max_metadata_len = reader.uint64();
           break;
         case 2:
           message.authority = reader.string();
@@ -74,14 +74,14 @@ export const Module = {
   },
   fromPartial(object: DeepPartial<Module>): Module {
     const message = createBaseModule();
-    message.maxMetadataLen = object.maxMetadataLen !== undefined && object.maxMetadataLen !== null ? BigInt(object.maxMetadataLen.toString()) : BigInt(0);
+    message.max_metadata_len = object.max_metadata_len !== undefined && object.max_metadata_len !== null ? BigInt(object.max_metadata_len.toString()) : BigInt(0);
     message.authority = object.authority ?? "";
     return message;
   },
   fromAmino(object: ModuleAmino): Module {
     const message = createBaseModule();
     if (object.max_metadata_len !== undefined && object.max_metadata_len !== null) {
-      message.maxMetadataLen = BigInt(object.max_metadata_len);
+      message.max_metadata_len = BigInt(object.max_metadata_len);
     }
     if (object.authority !== undefined && object.authority !== null) {
       message.authority = object.authority;
@@ -90,7 +90,7 @@ export const Module = {
   },
   toAmino(message: Module): ModuleAmino {
     const obj: any = {};
-    obj.max_metadata_len = message.maxMetadataLen !== BigInt(0) ? message.maxMetadataLen?.toString() : undefined;
+    obj.max_metadata_len = message.max_metadata_len !== BigInt(0) ? message.max_metadata_len?.toString() : undefined;
     obj.authority = message.authority === "" ? undefined : message.authority;
     return obj;
   },

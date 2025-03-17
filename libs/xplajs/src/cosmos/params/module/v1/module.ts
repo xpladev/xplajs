@@ -3,7 +3,7 @@ import { DeepPartial } from "../../../../helpers";
 /** Module is the config object of the params module. */
 export interface Module {}
 export interface ModuleProtoMsg {
-  typeUrl: "/cosmos.params.module.v1.Module";
+  type_url: "/cosmos.params.module.v1.Module";
   value: Uint8Array;
 }
 /** Module is the config object of the params module. */
