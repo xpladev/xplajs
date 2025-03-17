@@ -13,7 +13,7 @@
             "enableMessageComposer": true,
             "enabled": true,
             "parser": {
-                "keepCase": false
+                "keepCase": true
             },
             "methods": {
                 "fromJSON": false,
@@ -54,7 +54,14 @@
             "enabled": false
         },
         "lcdClients": {
-            "enabled": false
+            "enabled": true,
+            "scoped": [
+                {
+                    "dir": "xpla",
+                    "addToBundle": true,
+                    "packages": []
+                }
+            ]
         },
         "rpcClients": {
             "enabled": true,
