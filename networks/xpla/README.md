@@ -90,6 +90,19 @@ const res = await signer.signAndBroadcast({messages: [msgs], fee})
 console.log(res.hash) // the hash of TxRaw
 ```
 
+Taking `PrecompileContract` bank as example
+```ts
+import { JsonRpcProvider } from "ethers";
+import { PrecompileBank } from "@xpla/xpla/evm";
+
+const provider = new JsonRpcProvider(Network.Testnet.evm);
+const bank = PrecompileBank.connect(provider);
+
+const totalSupply = await bank.totalSupply();
+console.log(totalSupply)
+
+```
+
 ## Implementations
 
 - **direct signer** from `@xpla/xpla/signers/direct`
