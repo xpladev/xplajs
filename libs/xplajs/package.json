@@ -1,6 +1,6 @@
 {
   "name": "@xpla/xplajs",
-  "version": "1.7.0-beta.12",
+  "version": "1.7.0",
   "main": "index.js",
   "module": "esm/index.js",
   "author": "Joowon Yun <joowon@delightlabs.io>",
@@ -17,12 +17,12 @@
   "dependencies": {
     "@cosmjs/stargate": "^0.33.0",
     "@cosmology/lcd": "^0.14.0",
-    "@interchainjs/cosmos": "1.9.14",
-    "@interchainjs/cosmos-types": "1.9.14",
-    "@interchainjs/encoding": "1.9.14",
-    "@interchainjs/pubkey": "1.9.14",
-    "@interchainjs/types": "1.9.14",
-    "@interchainjs/utils": "1.9.14",
+    "@interchainjs/cosmos": "^1.9.14",
+    "@interchainjs/cosmos-types": "^1.9.14",
+    "@interchainjs/encoding": "^1.9.14",
+    "@interchainjs/pubkey": "^1.9.14",
+    "@interchainjs/types": "^1.9.14",
+    "@interchainjs/utils": "^1.9.14",
     "@noble/hashes": "^1.3.1",
     "decimal.js": "^10.4.3"
   },
