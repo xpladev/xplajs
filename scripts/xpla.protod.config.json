@@ -4,7 +4,8 @@
       { "owner": "cosmos", "repo": "ibc-go", "branch": "release/v8.4.x" },
       { "owner": "cosmwasm", "repo": "wasmd", "branch": "releases/v0.53.x" },
       { "owner": "xpladev", "repo": "xpla", "branch": "release/v1.7.x" },
-      { "owner": "xpladev", "repo": "ethermint", "branch": "release/v0.24.x-xpla" }
+      { "owner": "xpladev", "repo": "ethermint", "branch": "release/v0.24.x-xpla" },
+      { "owner": "cosmos", "repo": "evm", "branch": "release/0.1.x" }
     ],
     "protoDirMapping": {
       "gogo/protobuf/master": ".",
