@@ -24,10 +24,12 @@ export const Network = {
   Mainnet: {
     lcd: "https://dimension-lcd.xpla.io",
     rpc: "https://dimension-rpc.xpla.io",
+    evm: "https://dimension-evm-rpc.xpla.io"
   },
   Testnet: {
     lcd: "https://cube-lcd.xpla.io",
     rpc: "https://cube-rpc.xpla.io",
+    evm: "https://cube-evm-rpc.xpla.io"
   }
 }
 
