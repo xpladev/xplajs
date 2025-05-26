@@ -23,13 +23,13 @@ jobs:
           node-version: "20.x"
           cache: "yarn"
 
-      - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+      - name: Install Root Dependencies
+        run: yarn
 
       - name: Symlink Workspace
         run: yarn symlink
 
-      - name: Build Project
+      - name: Build Packages
         run: yarn build
 
       - name: Set Up Starship Infrastructure
@@ -39,4 +39,6 @@ jobs:
           config: networks/xpla/starship/configs/config.workflow.yaml
 
       - name: Run E2E Tests
-        run: cd ./networks/xpla && yarn starship:test
+        run: |
+          cd networks/xpla
+          yarn starship:test

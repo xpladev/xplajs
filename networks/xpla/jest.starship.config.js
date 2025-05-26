@@ -16,5 +16,8 @@ module.exports = {
     transformIgnorePatterns: [`/node_modules/*`],
     testRegex: '(/starship/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+    moduleNameMapper: {
+      '^@xpla/xpla$': '<rootDir>/dist/package.json'
+    }
   };
     
