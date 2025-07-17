@@ -14,7 +14,7 @@ import { EthAccount as protoEthAccount } from '@xpla/xplajs/ethermint/types/v1/a
 import { WalletOptions } from '@interchainjs/cosmos/types/wallet';
 import { IKey, SignerConfig } from '@interchainjs/types';
 
-import { bytes as assertBytes } from '@noble/hashes/_assert';
+import { abytes } from '@noble/hashes/_assert';
 import { keccak_256 } from '@noble/hashes/sha3';
 import { computeAddress } from '@ethersproject/transactions';
 import { Key } from '@interchainjs/utils';
@@ -66,7 +66,7 @@ export const defaultSignerOptions: Record<string, Required<SignerOptions>> = {
       ...CosmosSignerConfig.message,
       hash: (message: Uint8Array) => {
         const hashed = keccak_256(message);
-        assertBytes(hashed);
+        abytes(hashed);
         return hashed;
       },
     },
