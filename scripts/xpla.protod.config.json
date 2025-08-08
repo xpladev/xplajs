@@ -1,9 +1,10 @@
 {
     "repos": [
       { "owner": "cosmos", "repo": "cosmos-sdk", "branch": "release/v0.50.x" },
-      { "owner": "cosmos", "repo": "ibc-go", "branch": "release/v8.4.x" },
-      { "owner": "cosmwasm", "repo": "wasmd", "branch": "releases/v0.53.x" },
-      { "owner": "xpladev", "repo": "xpla", "branch": "release/v1.7.x" },
+      { "owner": "cosmos", "repo": "ibc-go", "branch": "release/v10.3.x" },
+      { "owner": "cosmos", "repo": "evm", "branch": "release/v0.3.x" },
+      { "owner": "cosmwasm", "repo": "wasmd", "branch": "releases/v0.54.x" },
+      { "owner": "xpladev", "repo": "xpla", "branch": "release/v1.8.x" },
       { "owner": "xpladev", "repo": "ethermint", "branch": "release/v0.24.x-xpla" }
     ],
     "protoDirMapping": {
@@ -32,9 +33,11 @@
       "cosmos/authz/**/*.proto",
       "cosmos/auth/**/*.proto",
       "cosmos/app/**/*.proto",
-      "cosmwasm/**/*.proto",
+      "cosmwasm/wasm/**/*.proto",
       "ibc/**/*.proto",
       "xpla/**/*.proto",
+      "cosmos/evm/vm/**/*.proto",
+      "cosmos/evm/feemarket/**/*.proto",
       "ethermint/**/*.proto"
     ]
   }
