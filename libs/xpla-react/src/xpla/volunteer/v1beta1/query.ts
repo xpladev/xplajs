@@ -1,18 +1,33 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial } from "../../../helpers";
-/** QueryVolunteerValidatorsRequest */
+/**
+ * QueryVolunteerValidatorsRequest
+ * @name QueryVolunteerValidatorsRequest
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.QueryVolunteerValidatorsRequest
+ */
 export interface QueryVolunteerValidatorsRequest {}
 export interface QueryVolunteerValidatorsRequestProtoMsg {
   typeUrl: "/xpla.volunteer.v1beta1.QueryVolunteerValidatorsRequest";
   value: Uint8Array;
 }
-/** QueryVolunteerValidatorsRequest */
+/**
+ * QueryVolunteerValidatorsRequest
+ * @name QueryVolunteerValidatorsRequestAmino
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.QueryVolunteerValidatorsRequest
+ */
 export interface QueryVolunteerValidatorsRequestAmino {}
 export interface QueryVolunteerValidatorsRequestAminoMsg {
   type: "/xpla.volunteer.v1beta1.QueryVolunteerValidatorsRequest";
   value: QueryVolunteerValidatorsRequestAmino;
 }
-/** QueryVolunteerValidatorsResponse */
+/**
+ * QueryVolunteerValidatorsResponse
+ * @name QueryVolunteerValidatorsResponse
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.QueryVolunteerValidatorsResponse
+ */
 export interface QueryVolunteerValidatorsResponse {
   volunteerValidators: string[];
 }
@@ -20,7 +35,12 @@ export interface QueryVolunteerValidatorsResponseProtoMsg {
   typeUrl: "/xpla.volunteer.v1beta1.QueryVolunteerValidatorsResponse";
   value: Uint8Array;
 }
-/** QueryVolunteerValidatorsResponse */
+/**
+ * QueryVolunteerValidatorsResponse
+ * @name QueryVolunteerValidatorsResponseAmino
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.QueryVolunteerValidatorsResponse
+ */
 export interface QueryVolunteerValidatorsResponseAmino {
   volunteer_validators: string[];
 }
@@ -31,6 +51,12 @@ export interface QueryVolunteerValidatorsResponseAminoMsg {
 function createBaseQueryVolunteerValidatorsRequest(): QueryVolunteerValidatorsRequest {
   return {};
 }
+/**
+ * QueryVolunteerValidatorsRequest
+ * @name QueryVolunteerValidatorsRequest
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.QueryVolunteerValidatorsRequest
+ */
 export const QueryVolunteerValidatorsRequest = {
   typeUrl: "/xpla.volunteer.v1beta1.QueryVolunteerValidatorsRequest",
   is(o: any): o is QueryVolunteerValidatorsRequest {
@@ -90,6 +116,12 @@ function createBaseQueryVolunteerValidatorsResponse(): QueryVolunteerValidatorsR
     volunteerValidators: []
   };
 }
+/**
+ * QueryVolunteerValidatorsResponse
+ * @name QueryVolunteerValidatorsResponse
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.QueryVolunteerValidatorsResponse
+ */
 export const QueryVolunteerValidatorsResponse = {
   typeUrl: "/xpla.volunteer.v1beta1.QueryVolunteerValidatorsResponse",
   is(o: any): o is QueryVolunteerValidatorsResponse {

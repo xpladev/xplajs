@@ -3,6 +3,9 @@ import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../helpers"
 /**
  * ExtensionOptionsWeb3Tx is an extension option that specifies the typed chain id,
  * the fee payer as well as its signature data.
+ * @name ExtensionOptionsWeb3Tx
+ * @package ethermint.types.v1
+ * @see proto type: ethermint.types.v1.ExtensionOptionsWeb3Tx
  */
 export interface ExtensionOptionsWeb3Tx {
   /**
@@ -28,6 +31,9 @@ export interface ExtensionOptionsWeb3TxProtoMsg {
 /**
  * ExtensionOptionsWeb3Tx is an extension option that specifies the typed chain id,
  * the fee payer as well as its signature data.
+ * @name ExtensionOptionsWeb3TxAmino
+ * @package ethermint.types.v1
+ * @see proto type: ethermint.types.v1.ExtensionOptionsWeb3Tx
  */
 export interface ExtensionOptionsWeb3TxAmino {
   /**
@@ -57,6 +63,13 @@ function createBaseExtensionOptionsWeb3Tx(): ExtensionOptionsWeb3Tx {
     feePayerSig: new Uint8Array()
   };
 }
+/**
+ * ExtensionOptionsWeb3Tx is an extension option that specifies the typed chain id,
+ * the fee payer as well as its signature data.
+ * @name ExtensionOptionsWeb3Tx
+ * @package ethermint.types.v1
+ * @see proto type: ethermint.types.v1.ExtensionOptionsWeb3Tx
+ */
 export const ExtensionOptionsWeb3Tx = {
   typeUrl: "/ethermint.types.v1.ExtensionOptionsWeb3Tx",
   is(o: any): o is ExtensionOptionsWeb3Tx {

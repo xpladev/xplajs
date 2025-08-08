@@ -1,21 +1,39 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial } from "../../../helpers";
-/** VolunteerValidator required for validator set update logic. */
+/**
+ * VolunteerValidator required for validator set update logic.
+ * @name VolunteerValidator
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.VolunteerValidator
+ */
 export interface VolunteerValidator {
-  /** address is the address of the validator. */
+  /**
+   * address is the address of the validator.
+   */
   address: string;
-  /** power defines the power of the validator. */
+  /**
+   * power defines the power of the validator.
+   */
   power: bigint;
 }
 export interface VolunteerValidatorProtoMsg {
   typeUrl: "/xpla.volunteer.v1beta1.VolunteerValidator";
   value: Uint8Array;
 }
-/** VolunteerValidator required for validator set update logic. */
+/**
+ * VolunteerValidator required for validator set update logic.
+ * @name VolunteerValidatorAmino
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.VolunteerValidator
+ */
 export interface VolunteerValidatorAmino {
-  /** address is the address of the validator. */
+  /**
+   * address is the address of the validator.
+   */
   address: string;
-  /** power defines the power of the validator. */
+  /**
+   * power defines the power of the validator.
+   */
   power: string;
 }
 export interface VolunteerValidatorAminoMsg {
@@ -28,6 +46,12 @@ function createBaseVolunteerValidator(): VolunteerValidator {
     power: BigInt(0)
   };
 }
+/**
+ * VolunteerValidator required for validator set update logic.
+ * @name VolunteerValidator
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.VolunteerValidator
+ */
 export const VolunteerValidator = {
   typeUrl: "/xpla.volunteer.v1beta1.VolunteerValidator",
   is(o: any): o is VolunteerValidator {

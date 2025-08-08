@@ -1,10 +1,14 @@
-import { buildTx, SigningClientResolver } from "../../../helper-func-types";
-import { toEncoders, toConverters } from "@interchainjs/cosmos/utils";
+import { buildTx } from "../../../helper-func-types";
 import { MsgUpdateParams } from "./tx";
-export const createUpdateParams = (clientResolver?: SigningClientResolver) => buildTx<MsgUpdateParams>({
-  clientResolver,
-  typeUrl: MsgUpdateParams.typeUrl,
-  encoders: toEncoders(MsgUpdateParams),
-  converters: toConverters(MsgUpdateParams),
-  deps: [MsgUpdateParams]
+/**
+ * UpdateParams defines a governance operation for updating the x/consensus module parameters.
+ * The authority is defined in the keeper.
+ * 
+ * Since: cosmos-sdk 0.47
+ * @name updateParams
+ * @package cosmos.consensus.v1
+ * @see proto service: cosmos.consensus.v1.UpdateParams
+ */
+export const updateParams = buildTx<MsgUpdateParams>({
+  msg: MsgUpdateParams
 });

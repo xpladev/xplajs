@@ -1,31 +1,40 @@
-import { buildTx, SigningClientResolver } from "../../../helper-func-types";
-import { toEncoders, toConverters } from "@interchainjs/cosmos/utils";
+import { buildTx } from "../../../helper-func-types";
 import { MsgSubmitProposal, MsgVote, MsgVoteWeighted, MsgDeposit } from "./tx";
-export const createSubmitProposal = (clientResolver?: SigningClientResolver) => buildTx<MsgSubmitProposal>({
-  clientResolver,
-  typeUrl: MsgSubmitProposal.typeUrl,
-  encoders: toEncoders(MsgSubmitProposal),
-  converters: toConverters(MsgSubmitProposal),
-  deps: [MsgSubmitProposal]
+/**
+ * SubmitProposal defines a method to create new proposal given a content.
+ * @name submitProposal
+ * @package cosmos.gov.v1beta1
+ * @see proto service: cosmos.gov.v1beta1.SubmitProposal
+ */
+export const submitProposal = buildTx<MsgSubmitProposal>({
+  msg: MsgSubmitProposal
 });
-export const createVote = (clientResolver?: SigningClientResolver) => buildTx<MsgVote>({
-  clientResolver,
-  typeUrl: MsgVote.typeUrl,
-  encoders: toEncoders(MsgVote),
-  converters: toConverters(MsgVote),
-  deps: [MsgVote]
+/**
+ * Vote defines a method to add a vote on a specific proposal.
+ * @name vote
+ * @package cosmos.gov.v1beta1
+ * @see proto service: cosmos.gov.v1beta1.Vote
+ */
+export const vote = buildTx<MsgVote>({
+  msg: MsgVote
 });
-export const createVoteWeighted = (clientResolver?: SigningClientResolver) => buildTx<MsgVoteWeighted>({
-  clientResolver,
-  typeUrl: MsgVoteWeighted.typeUrl,
-  encoders: toEncoders(MsgVoteWeighted),
-  converters: toConverters(MsgVoteWeighted),
-  deps: [MsgVoteWeighted]
+/**
+ * VoteWeighted defines a method to add a weighted vote on a specific proposal.
+ * 
+ * Since: cosmos-sdk 0.43
+ * @name voteWeighted
+ * @package cosmos.gov.v1beta1
+ * @see proto service: cosmos.gov.v1beta1.VoteWeighted
+ */
+export const voteWeighted = buildTx<MsgVoteWeighted>({
+  msg: MsgVoteWeighted
 });
-export const createDeposit = (clientResolver?: SigningClientResolver) => buildTx<MsgDeposit>({
-  clientResolver,
-  typeUrl: MsgDeposit.typeUrl,
-  encoders: toEncoders(MsgDeposit),
-  converters: toConverters(MsgDeposit),
-  deps: [MsgDeposit]
+/**
+ * Deposit defines a method to add deposit on a specific proposal.
+ * @name deposit
+ * @package cosmos.gov.v1beta1
+ * @see proto service: cosmos.gov.v1beta1.Deposit
+ */
+export const deposit = buildTx<MsgDeposit>({
+  msg: MsgDeposit
 });

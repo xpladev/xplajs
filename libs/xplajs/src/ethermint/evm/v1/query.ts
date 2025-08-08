@@ -4,44 +4,81 @@ import { Timestamp } from "../../../google/protobuf/timestamp";
 import { PageRequest, PageRequestAmino, PageResponse, PageResponseAmino } from "../../../cosmos/base/query/v1beta1/pagination";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial, bytesFromBase64, base64FromBytes, toTimestamp, fromTimestamp } from "../../../helpers";
-/** QueryAccountRequest is the request type for the Query/Account RPC method. */
+import { GlobalDecoderRegistry } from "../../../registry";
+/**
+ * QueryAccountRequest is the request type for the Query/Account RPC method.
+ * @name QueryAccountRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryAccountRequest
+ */
 export interface QueryAccountRequest {
-  /** address is the ethereum hex address to query the account for. */
+  /**
+   * address is the ethereum hex address to query the account for.
+   */
   address: string;
 }
 export interface QueryAccountRequestProtoMsg {
   typeUrl: "/ethermint.evm.v1.QueryAccountRequest";
   value: Uint8Array;
 }
-/** QueryAccountRequest is the request type for the Query/Account RPC method. */
+/**
+ * QueryAccountRequest is the request type for the Query/Account RPC method.
+ * @name QueryAccountRequestAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryAccountRequest
+ */
 export interface QueryAccountRequestAmino {
-  /** address is the ethereum hex address to query the account for. */
+  /**
+   * address is the ethereum hex address to query the account for.
+   */
   address: string;
 }
 export interface QueryAccountRequestAminoMsg {
   type: "/ethermint.evm.v1.QueryAccountRequest";
   value: QueryAccountRequestAmino;
 }
-/** QueryAccountResponse is the response type for the Query/Account RPC method. */
+/**
+ * QueryAccountResponse is the response type for the Query/Account RPC method.
+ * @name QueryAccountResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryAccountResponse
+ */
 export interface QueryAccountResponse {
-  /** balance is the balance of the EVM denomination. */
+  /**
+   * balance is the balance of the EVM denomination.
+   */
   balance: string;
-  /** code_hash is the hex-formatted code bytes from the EOA. */
+  /**
+   * code_hash is the hex-formatted code bytes from the EOA.
+   */
   codeHash: string;
-  /** nonce is the account's sequence number. */
+  /**
+   * nonce is the account's sequence number.
+   */
   nonce: bigint;
 }
 export interface QueryAccountResponseProtoMsg {
   typeUrl: "/ethermint.evm.v1.QueryAccountResponse";
   value: Uint8Array;
 }
-/** QueryAccountResponse is the response type for the Query/Account RPC method. */
+/**
+ * QueryAccountResponse is the response type for the Query/Account RPC method.
+ * @name QueryAccountResponseAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryAccountResponse
+ */
 export interface QueryAccountResponseAmino {
-  /** balance is the balance of the EVM denomination. */
+  /**
+   * balance is the balance of the EVM denomination.
+   */
   balance: string;
-  /** code_hash is the hex-formatted code bytes from the EOA. */
+  /**
+   * code_hash is the hex-formatted code bytes from the EOA.
+   */
   code_hash: string;
-  /** nonce is the account's sequence number. */
+  /**
+   * nonce is the account's sequence number.
+   */
   nonce: string;
 }
 export interface QueryAccountResponseAminoMsg {
@@ -51,9 +88,14 @@ export interface QueryAccountResponseAminoMsg {
 /**
  * QueryCosmosAccountRequest is the request type for the Query/CosmosAccount RPC
  * method.
+ * @name QueryCosmosAccountRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryCosmosAccountRequest
  */
 export interface QueryCosmosAccountRequest {
-  /** address is the ethereum hex address to query the account for. */
+  /**
+   * address is the ethereum hex address to query the account for.
+   */
   address: string;
 }
 export interface QueryCosmosAccountRequestProtoMsg {
@@ -63,9 +105,14 @@ export interface QueryCosmosAccountRequestProtoMsg {
 /**
  * QueryCosmosAccountRequest is the request type for the Query/CosmosAccount RPC
  * method.
+ * @name QueryCosmosAccountRequestAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryCosmosAccountRequest
  */
 export interface QueryCosmosAccountRequestAmino {
-  /** address is the ethereum hex address to query the account for. */
+  /**
+   * address is the ethereum hex address to query the account for.
+   */
   address: string;
 }
 export interface QueryCosmosAccountRequestAminoMsg {
@@ -75,13 +122,22 @@ export interface QueryCosmosAccountRequestAminoMsg {
 /**
  * QueryCosmosAccountResponse is the response type for the Query/CosmosAccount
  * RPC method.
+ * @name QueryCosmosAccountResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryCosmosAccountResponse
  */
 export interface QueryCosmosAccountResponse {
-  /** cosmos_address is the cosmos address of the account. */
+  /**
+   * cosmos_address is the cosmos address of the account.
+   */
   cosmosAddress: string;
-  /** sequence is the account's sequence number. */
+  /**
+   * sequence is the account's sequence number.
+   */
   sequence: bigint;
-  /** account_number is the account number */
+  /**
+   * account_number is the account number
+   */
   accountNumber: bigint;
 }
 export interface QueryCosmosAccountResponseProtoMsg {
@@ -91,13 +147,22 @@ export interface QueryCosmosAccountResponseProtoMsg {
 /**
  * QueryCosmosAccountResponse is the response type for the Query/CosmosAccount
  * RPC method.
+ * @name QueryCosmosAccountResponseAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryCosmosAccountResponse
  */
 export interface QueryCosmosAccountResponseAmino {
-  /** cosmos_address is the cosmos address of the account. */
+  /**
+   * cosmos_address is the cosmos address of the account.
+   */
   cosmos_address: string;
-  /** sequence is the account's sequence number. */
+  /**
+   * sequence is the account's sequence number.
+   */
   sequence: string;
-  /** account_number is the account number */
+  /**
+   * account_number is the account number
+   */
   account_number: string;
 }
 export interface QueryCosmosAccountResponseAminoMsg {
@@ -107,9 +172,14 @@ export interface QueryCosmosAccountResponseAminoMsg {
 /**
  * QueryValidatorAccountRequest is the request type for the
  * Query/ValidatorAccount RPC method.
+ * @name QueryValidatorAccountRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryValidatorAccountRequest
  */
 export interface QueryValidatorAccountRequest {
-  /** cons_address is the validator cons address to query the account for. */
+  /**
+   * cons_address is the validator cons address to query the account for.
+   */
   consAddress: string;
 }
 export interface QueryValidatorAccountRequestProtoMsg {
@@ -119,9 +189,14 @@ export interface QueryValidatorAccountRequestProtoMsg {
 /**
  * QueryValidatorAccountRequest is the request type for the
  * Query/ValidatorAccount RPC method.
+ * @name QueryValidatorAccountRequestAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryValidatorAccountRequest
  */
 export interface QueryValidatorAccountRequestAmino {
-  /** cons_address is the validator cons address to query the account for. */
+  /**
+   * cons_address is the validator cons address to query the account for.
+   */
   cons_address: string;
 }
 export interface QueryValidatorAccountRequestAminoMsg {
@@ -131,13 +206,22 @@ export interface QueryValidatorAccountRequestAminoMsg {
 /**
  * QueryValidatorAccountResponse is the response type for the
  * Query/ValidatorAccount RPC method.
+ * @name QueryValidatorAccountResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryValidatorAccountResponse
  */
 export interface QueryValidatorAccountResponse {
-  /** account_address is the cosmos address of the account in bech32 format. */
+  /**
+   * account_address is the cosmos address of the account in bech32 format.
+   */
   accountAddress: string;
-  /** sequence is the account's sequence number. */
+  /**
+   * sequence is the account's sequence number.
+   */
   sequence: bigint;
-  /** account_number is the account number */
+  /**
+   * account_number is the account number
+   */
   accountNumber: bigint;
 }
 export interface QueryValidatorAccountResponseProtoMsg {
@@ -147,71 +231,126 @@ export interface QueryValidatorAccountResponseProtoMsg {
 /**
  * QueryValidatorAccountResponse is the response type for the
  * Query/ValidatorAccount RPC method.
+ * @name QueryValidatorAccountResponseAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryValidatorAccountResponse
  */
 export interface QueryValidatorAccountResponseAmino {
-  /** account_address is the cosmos address of the account in bech32 format. */
+  /**
+   * account_address is the cosmos address of the account in bech32 format.
+   */
   account_address: string;
-  /** sequence is the account's sequence number. */
+  /**
+   * sequence is the account's sequence number.
+   */
   sequence: string;
-  /** account_number is the account number */
+  /**
+   * account_number is the account number
+   */
   account_number: string;
 }
 export interface QueryValidatorAccountResponseAminoMsg {
   type: "/ethermint.evm.v1.QueryValidatorAccountResponse";
   value: QueryValidatorAccountResponseAmino;
 }
-/** QueryBalanceRequest is the request type for the Query/Balance RPC method. */
+/**
+ * QueryBalanceRequest is the request type for the Query/Balance RPC method.
+ * @name QueryBalanceRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryBalanceRequest
+ */
 export interface QueryBalanceRequest {
-  /** address is the ethereum hex address to query the balance for. */
+  /**
+   * address is the ethereum hex address to query the balance for.
+   */
   address: string;
 }
 export interface QueryBalanceRequestProtoMsg {
   typeUrl: "/ethermint.evm.v1.QueryBalanceRequest";
   value: Uint8Array;
 }
-/** QueryBalanceRequest is the request type for the Query/Balance RPC method. */
+/**
+ * QueryBalanceRequest is the request type for the Query/Balance RPC method.
+ * @name QueryBalanceRequestAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryBalanceRequest
+ */
 export interface QueryBalanceRequestAmino {
-  /** address is the ethereum hex address to query the balance for. */
+  /**
+   * address is the ethereum hex address to query the balance for.
+   */
   address: string;
 }
 export interface QueryBalanceRequestAminoMsg {
   type: "/ethermint.evm.v1.QueryBalanceRequest";
   value: QueryBalanceRequestAmino;
 }
-/** QueryBalanceResponse is the response type for the Query/Balance RPC method. */
+/**
+ * QueryBalanceResponse is the response type for the Query/Balance RPC method.
+ * @name QueryBalanceResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryBalanceResponse
+ */
 export interface QueryBalanceResponse {
-  /** balance is the balance of the EVM denomination. */
+  /**
+   * balance is the balance of the EVM denomination.
+   */
   balance: string;
 }
 export interface QueryBalanceResponseProtoMsg {
   typeUrl: "/ethermint.evm.v1.QueryBalanceResponse";
   value: Uint8Array;
 }
-/** QueryBalanceResponse is the response type for the Query/Balance RPC method. */
+/**
+ * QueryBalanceResponse is the response type for the Query/Balance RPC method.
+ * @name QueryBalanceResponseAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryBalanceResponse
+ */
 export interface QueryBalanceResponseAmino {
-  /** balance is the balance of the EVM denomination. */
+  /**
+   * balance is the balance of the EVM denomination.
+   */
   balance: string;
 }
 export interface QueryBalanceResponseAminoMsg {
   type: "/ethermint.evm.v1.QueryBalanceResponse";
   value: QueryBalanceResponseAmino;
 }
-/** QueryStorageRequest is the request type for the Query/Storage RPC method. */
+/**
+ * QueryStorageRequest is the request type for the Query/Storage RPC method.
+ * @name QueryStorageRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryStorageRequest
+ */
 export interface QueryStorageRequest {
-  /** address is the ethereum hex address to query the storage state for. */
+  /**
+   * address is the ethereum hex address to query the storage state for.
+   */
   address: string;
-  /** key defines the key of the storage state */
+  /**
+   * key defines the key of the storage state
+   */
   key: string;
 }
 export interface QueryStorageRequestProtoMsg {
   typeUrl: "/ethermint.evm.v1.QueryStorageRequest";
   value: Uint8Array;
 }
-/** QueryStorageRequest is the request type for the Query/Storage RPC method. */
+/**
+ * QueryStorageRequest is the request type for the Query/Storage RPC method.
+ * @name QueryStorageRequestAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryStorageRequest
+ */
 export interface QueryStorageRequestAmino {
-  /** address is the ethereum hex address to query the storage state for. */
+  /**
+   * address is the ethereum hex address to query the storage state for.
+   */
   address: string;
-  /** key defines the key of the storage state */
+  /**
+   * key defines the key of the storage state
+   */
   key: string;
 }
 export interface QueryStorageRequestAminoMsg {
@@ -221,9 +360,14 @@ export interface QueryStorageRequestAminoMsg {
 /**
  * QueryStorageResponse is the response type for the Query/Storage RPC
  * method.
+ * @name QueryStorageResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryStorageResponse
  */
 export interface QueryStorageResponse {
-  /** value defines the storage state value hash associated with the given key. */
+  /**
+   * value defines the storage state value hash associated with the given key.
+   */
   value: string;
 }
 export interface QueryStorageResponseProtoMsg {
@@ -233,27 +377,46 @@ export interface QueryStorageResponseProtoMsg {
 /**
  * QueryStorageResponse is the response type for the Query/Storage RPC
  * method.
+ * @name QueryStorageResponseAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryStorageResponse
  */
 export interface QueryStorageResponseAmino {
-  /** value defines the storage state value hash associated with the given key. */
+  /**
+   * value defines the storage state value hash associated with the given key.
+   */
   value: string;
 }
 export interface QueryStorageResponseAminoMsg {
   type: "/ethermint.evm.v1.QueryStorageResponse";
   value: QueryStorageResponseAmino;
 }
-/** QueryCodeRequest is the request type for the Query/Code RPC method. */
+/**
+ * QueryCodeRequest is the request type for the Query/Code RPC method.
+ * @name QueryCodeRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryCodeRequest
+ */
 export interface QueryCodeRequest {
-  /** address is the ethereum hex address to query the code for. */
+  /**
+   * address is the ethereum hex address to query the code for.
+   */
   address: string;
 }
 export interface QueryCodeRequestProtoMsg {
   typeUrl: "/ethermint.evm.v1.QueryCodeRequest";
   value: Uint8Array;
 }
-/** QueryCodeRequest is the request type for the Query/Code RPC method. */
+/**
+ * QueryCodeRequest is the request type for the Query/Code RPC method.
+ * @name QueryCodeRequestAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryCodeRequest
+ */
 export interface QueryCodeRequestAmino {
-  /** address is the ethereum hex address to query the code for. */
+  /**
+   * address is the ethereum hex address to query the code for.
+   */
   address: string;
 }
 export interface QueryCodeRequestAminoMsg {
@@ -263,9 +426,14 @@ export interface QueryCodeRequestAminoMsg {
 /**
  * QueryCodeResponse is the response type for the Query/Code RPC
  * method.
+ * @name QueryCodeResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryCodeResponse
  */
 export interface QueryCodeResponse {
-  /** code represents the code bytes from an ethereum address. */
+  /**
+   * code represents the code bytes from an ethereum address.
+   */
   code: Uint8Array;
 }
 export interface QueryCodeResponseProtoMsg {
@@ -275,261 +443,470 @@ export interface QueryCodeResponseProtoMsg {
 /**
  * QueryCodeResponse is the response type for the Query/Code RPC
  * method.
+ * @name QueryCodeResponseAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryCodeResponse
  */
 export interface QueryCodeResponseAmino {
-  /** code represents the code bytes from an ethereum address. */
+  /**
+   * code represents the code bytes from an ethereum address.
+   */
   code: string;
 }
 export interface QueryCodeResponseAminoMsg {
   type: "/ethermint.evm.v1.QueryCodeResponse";
   value: QueryCodeResponseAmino;
 }
-/** QueryTxLogsRequest is the request type for the Query/TxLogs RPC method. */
+/**
+ * QueryTxLogsRequest is the request type for the Query/TxLogs RPC method.
+ * @name QueryTxLogsRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryTxLogsRequest
+ */
 export interface QueryTxLogsRequest {
-  /** hash is the ethereum transaction hex hash to query the logs for. */
+  /**
+   * hash is the ethereum transaction hex hash to query the logs for.
+   */
   hash: string;
-  /** pagination defines an optional pagination for the request. */
+  /**
+   * pagination defines an optional pagination for the request.
+   */
   pagination?: PageRequest;
 }
 export interface QueryTxLogsRequestProtoMsg {
   typeUrl: "/ethermint.evm.v1.QueryTxLogsRequest";
   value: Uint8Array;
 }
-/** QueryTxLogsRequest is the request type for the Query/TxLogs RPC method. */
+/**
+ * QueryTxLogsRequest is the request type for the Query/TxLogs RPC method.
+ * @name QueryTxLogsRequestAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryTxLogsRequest
+ */
 export interface QueryTxLogsRequestAmino {
-  /** hash is the ethereum transaction hex hash to query the logs for. */
+  /**
+   * hash is the ethereum transaction hex hash to query the logs for.
+   */
   hash: string;
-  /** pagination defines an optional pagination for the request. */
+  /**
+   * pagination defines an optional pagination for the request.
+   */
   pagination?: PageRequestAmino;
 }
 export interface QueryTxLogsRequestAminoMsg {
   type: "/ethermint.evm.v1.QueryTxLogsRequest";
   value: QueryTxLogsRequestAmino;
 }
-/** QueryTxLogsResponse is the response type for the Query/TxLogs RPC method. */
+/**
+ * QueryTxLogsResponse is the response type for the Query/TxLogs RPC method.
+ * @name QueryTxLogsResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryTxLogsResponse
+ */
 export interface QueryTxLogsResponse {
-  /** logs represents the ethereum logs generated from the given transaction. */
+  /**
+   * logs represents the ethereum logs generated from the given transaction.
+   */
   logs: Log[];
-  /** pagination defines the pagination in the response. */
+  /**
+   * pagination defines the pagination in the response.
+   */
   pagination?: PageResponse;
 }
 export interface QueryTxLogsResponseProtoMsg {
   typeUrl: "/ethermint.evm.v1.QueryTxLogsResponse";
   value: Uint8Array;
 }
-/** QueryTxLogsResponse is the response type for the Query/TxLogs RPC method. */
+/**
+ * QueryTxLogsResponse is the response type for the Query/TxLogs RPC method.
+ * @name QueryTxLogsResponseAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryTxLogsResponse
+ */
 export interface QueryTxLogsResponseAmino {
-  /** logs represents the ethereum logs generated from the given transaction. */
+  /**
+   * logs represents the ethereum logs generated from the given transaction.
+   */
   logs: LogAmino[];
-  /** pagination defines the pagination in the response. */
+  /**
+   * pagination defines the pagination in the response.
+   */
   pagination?: PageResponseAmino;
 }
 export interface QueryTxLogsResponseAminoMsg {
   type: "/ethermint.evm.v1.QueryTxLogsResponse";
   value: QueryTxLogsResponseAmino;
 }
-/** QueryParamsRequest defines the request type for querying x/evm parameters. */
+/**
+ * QueryParamsRequest defines the request type for querying x/evm parameters.
+ * @name QueryParamsRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryParamsRequest
+ */
 export interface QueryParamsRequest {}
 export interface QueryParamsRequestProtoMsg {
   typeUrl: "/ethermint.evm.v1.QueryParamsRequest";
   value: Uint8Array;
 }
-/** QueryParamsRequest defines the request type for querying x/evm parameters. */
+/**
+ * QueryParamsRequest defines the request type for querying x/evm parameters.
+ * @name QueryParamsRequestAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryParamsRequest
+ */
 export interface QueryParamsRequestAmino {}
 export interface QueryParamsRequestAminoMsg {
   type: "/ethermint.evm.v1.QueryParamsRequest";
   value: QueryParamsRequestAmino;
 }
-/** QueryParamsResponse defines the response type for querying x/evm parameters. */
+/**
+ * QueryParamsResponse defines the response type for querying x/evm parameters.
+ * @name QueryParamsResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryParamsResponse
+ */
 export interface QueryParamsResponse {
-  /** params define the evm module parameters. */
+  /**
+   * params define the evm module parameters.
+   */
   params: Params;
 }
 export interface QueryParamsResponseProtoMsg {
   typeUrl: "/ethermint.evm.v1.QueryParamsResponse";
   value: Uint8Array;
 }
-/** QueryParamsResponse defines the response type for querying x/evm parameters. */
+/**
+ * QueryParamsResponse defines the response type for querying x/evm parameters.
+ * @name QueryParamsResponseAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryParamsResponse
+ */
 export interface QueryParamsResponseAmino {
-  /** params define the evm module parameters. */
+  /**
+   * params define the evm module parameters.
+   */
   params: ParamsAmino;
 }
 export interface QueryParamsResponseAminoMsg {
   type: "/ethermint.evm.v1.QueryParamsResponse";
   value: QueryParamsResponseAmino;
 }
-/** EthCallRequest defines EthCall request */
+/**
+ * EthCallRequest defines EthCall request
+ * @name EthCallRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.EthCallRequest
+ */
 export interface EthCallRequest {
-  /** args uses the same json format as the json rpc api. */
+  /**
+   * args uses the same json format as the json rpc api.
+   */
   args: Uint8Array;
-  /** gas_cap defines the default gas cap to be used */
+  /**
+   * gas_cap defines the default gas cap to be used
+   */
   gasCap: bigint;
-  /** proposer_address of the requested block in hex format */
+  /**
+   * proposer_address of the requested block in hex format
+   */
   proposerAddress: Uint8Array;
-  /** chain_id is the eip155 chain id parsed from the requested block header */
+  /**
+   * chain_id is the eip155 chain id parsed from the requested block header
+   */
   chainId: bigint;
 }
 export interface EthCallRequestProtoMsg {
   typeUrl: "/ethermint.evm.v1.EthCallRequest";
   value: Uint8Array;
 }
-/** EthCallRequest defines EthCall request */
+/**
+ * EthCallRequest defines EthCall request
+ * @name EthCallRequestAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.EthCallRequest
+ */
 export interface EthCallRequestAmino {
-  /** args uses the same json format as the json rpc api. */
+  /**
+   * args uses the same json format as the json rpc api.
+   */
   args: string;
-  /** gas_cap defines the default gas cap to be used */
+  /**
+   * gas_cap defines the default gas cap to be used
+   */
   gas_cap: string;
-  /** proposer_address of the requested block in hex format */
+  /**
+   * proposer_address of the requested block in hex format
+   */
   proposer_address: string;
-  /** chain_id is the eip155 chain id parsed from the requested block header */
+  /**
+   * chain_id is the eip155 chain id parsed from the requested block header
+   */
   chain_id: string;
 }
 export interface EthCallRequestAminoMsg {
   type: "/ethermint.evm.v1.EthCallRequest";
   value: EthCallRequestAmino;
 }
-/** EstimateGasResponse defines EstimateGas response */
+/**
+ * EstimateGasResponse defines EstimateGas response
+ * @name EstimateGasResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.EstimateGasResponse
+ */
 export interface EstimateGasResponse {
-  /** gas returns the estimated gas */
+  /**
+   * gas returns the estimated gas
+   */
   gas: bigint;
 }
 export interface EstimateGasResponseProtoMsg {
   typeUrl: "/ethermint.evm.v1.EstimateGasResponse";
   value: Uint8Array;
 }
-/** EstimateGasResponse defines EstimateGas response */
+/**
+ * EstimateGasResponse defines EstimateGas response
+ * @name EstimateGasResponseAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.EstimateGasResponse
+ */
 export interface EstimateGasResponseAmino {
-  /** gas returns the estimated gas */
+  /**
+   * gas returns the estimated gas
+   */
   gas: string;
 }
 export interface EstimateGasResponseAminoMsg {
   type: "/ethermint.evm.v1.EstimateGasResponse";
   value: EstimateGasResponseAmino;
 }
-/** QueryTraceTxRequest defines TraceTx request */
+/**
+ * QueryTraceTxRequest defines TraceTx request
+ * @name QueryTraceTxRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryTraceTxRequest
+ */
 export interface QueryTraceTxRequest {
-  /** msg is the MsgEthereumTx for the requested transaction */
+  /**
+   * msg is the MsgEthereumTx for the requested transaction
+   */
   msg?: MsgEthereumTx;
-  /** trace_config holds extra parameters to trace functions. */
+  /**
+   * trace_config holds extra parameters to trace functions.
+   */
   traceConfig?: TraceConfig;
   /**
    * predecessors is an array of transactions included in the same block
    * need to be replayed first to get correct context for tracing.
    */
   predecessors: MsgEthereumTx[];
-  /** block_number of requested transaction */
+  /**
+   * block_number of requested transaction
+   */
   blockNumber: bigint;
-  /** block_hash of requested transaction */
+  /**
+   * block_hash of requested transaction
+   */
   blockHash: string;
-  /** block_time of requested transaction */
+  /**
+   * block_time of requested transaction
+   */
   blockTime: Date;
-  /** proposer_address is the proposer of the requested block */
+  /**
+   * proposer_address is the proposer of the requested block
+   */
   proposerAddress: Uint8Array;
-  /** chain_id is the the eip155 chain id parsed from the requested block header */
+  /**
+   * chain_id is the the eip155 chain id parsed from the requested block header
+   */
   chainId: bigint;
 }
 export interface QueryTraceTxRequestProtoMsg {
   typeUrl: "/ethermint.evm.v1.QueryTraceTxRequest";
   value: Uint8Array;
 }
-/** QueryTraceTxRequest defines TraceTx request */
+/**
+ * QueryTraceTxRequest defines TraceTx request
+ * @name QueryTraceTxRequestAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryTraceTxRequest
+ */
 export interface QueryTraceTxRequestAmino {
-  /** msg is the MsgEthereumTx for the requested transaction */
+  /**
+   * msg is the MsgEthereumTx for the requested transaction
+   */
   msg?: MsgEthereumTxAmino;
-  /** trace_config holds extra parameters to trace functions. */
+  /**
+   * trace_config holds extra parameters to trace functions.
+   */
   trace_config?: TraceConfigAmino;
   /**
    * predecessors is an array of transactions included in the same block
    * need to be replayed first to get correct context for tracing.
    */
   predecessors: MsgEthereumTxAmino[];
-  /** block_number of requested transaction */
+  /**
+   * block_number of requested transaction
+   */
   block_number: string;
-  /** block_hash of requested transaction */
+  /**
+   * block_hash of requested transaction
+   */
   block_hash: string;
-  /** block_time of requested transaction */
+  /**
+   * block_time of requested transaction
+   */
   block_time: string;
-  /** proposer_address is the proposer of the requested block */
+  /**
+   * proposer_address is the proposer of the requested block
+   */
   proposer_address: string;
-  /** chain_id is the the eip155 chain id parsed from the requested block header */
+  /**
+   * chain_id is the the eip155 chain id parsed from the requested block header
+   */
   chain_id: string;
 }
 export interface QueryTraceTxRequestAminoMsg {
   type: "/ethermint.evm.v1.QueryTraceTxRequest";
   value: QueryTraceTxRequestAmino;
 }
-/** QueryTraceTxResponse defines TraceTx response */
+/**
+ * QueryTraceTxResponse defines TraceTx response
+ * @name QueryTraceTxResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryTraceTxResponse
+ */
 export interface QueryTraceTxResponse {
-  /** data is the response serialized in bytes */
+  /**
+   * data is the response serialized in bytes
+   */
   data: Uint8Array;
 }
 export interface QueryTraceTxResponseProtoMsg {
   typeUrl: "/ethermint.evm.v1.QueryTraceTxResponse";
   value: Uint8Array;
 }
-/** QueryTraceTxResponse defines TraceTx response */
+/**
+ * QueryTraceTxResponse defines TraceTx response
+ * @name QueryTraceTxResponseAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryTraceTxResponse
+ */
 export interface QueryTraceTxResponseAmino {
-  /** data is the response serialized in bytes */
+  /**
+   * data is the response serialized in bytes
+   */
   data: string;
 }
 export interface QueryTraceTxResponseAminoMsg {
   type: "/ethermint.evm.v1.QueryTraceTxResponse";
   value: QueryTraceTxResponseAmino;
 }
-/** QueryTraceBlockRequest defines TraceTx request */
+/**
+ * QueryTraceBlockRequest defines TraceTx request
+ * @name QueryTraceBlockRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryTraceBlockRequest
+ */
 export interface QueryTraceBlockRequest {
-  /** txs is an array of messages in the block */
+  /**
+   * txs is an array of messages in the block
+   */
   txs: MsgEthereumTx[];
-  /** trace_config holds extra parameters to trace functions. */
+  /**
+   * trace_config holds extra parameters to trace functions.
+   */
   traceConfig?: TraceConfig;
-  /** block_number of the traced block */
+  /**
+   * block_number of the traced block
+   */
   blockNumber: bigint;
-  /** block_hash (hex) of the traced block */
+  /**
+   * block_hash (hex) of the traced block
+   */
   blockHash: string;
-  /** block_time of the traced block */
+  /**
+   * block_time of the traced block
+   */
   blockTime: Date;
-  /** proposer_address is the address of the requested block */
+  /**
+   * proposer_address is the address of the requested block
+   */
   proposerAddress: Uint8Array;
-  /** chain_id is the eip155 chain id parsed from the requested block header */
+  /**
+   * chain_id is the eip155 chain id parsed from the requested block header
+   */
   chainId: bigint;
 }
 export interface QueryTraceBlockRequestProtoMsg {
   typeUrl: "/ethermint.evm.v1.QueryTraceBlockRequest";
   value: Uint8Array;
 }
-/** QueryTraceBlockRequest defines TraceTx request */
+/**
+ * QueryTraceBlockRequest defines TraceTx request
+ * @name QueryTraceBlockRequestAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryTraceBlockRequest
+ */
 export interface QueryTraceBlockRequestAmino {
-  /** txs is an array of messages in the block */
+  /**
+   * txs is an array of messages in the block
+   */
   txs: MsgEthereumTxAmino[];
-  /** trace_config holds extra parameters to trace functions. */
+  /**
+   * trace_config holds extra parameters to trace functions.
+   */
   trace_config?: TraceConfigAmino;
-  /** block_number of the traced block */
+  /**
+   * block_number of the traced block
+   */
   block_number: string;
-  /** block_hash (hex) of the traced block */
+  /**
+   * block_hash (hex) of the traced block
+   */
   block_hash: string;
-  /** block_time of the traced block */
+  /**
+   * block_time of the traced block
+   */
   block_time: string;
-  /** proposer_address is the address of the requested block */
+  /**
+   * proposer_address is the address of the requested block
+   */
   proposer_address: string;
-  /** chain_id is the eip155 chain id parsed from the requested block header */
+  /**
+   * chain_id is the eip155 chain id parsed from the requested block header
+   */
   chain_id: string;
 }
 export interface QueryTraceBlockRequestAminoMsg {
   type: "/ethermint.evm.v1.QueryTraceBlockRequest";
   value: QueryTraceBlockRequestAmino;
 }
-/** QueryTraceBlockResponse defines TraceBlock response */
+/**
+ * QueryTraceBlockResponse defines TraceBlock response
+ * @name QueryTraceBlockResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryTraceBlockResponse
+ */
 export interface QueryTraceBlockResponse {
-  /** data is the response serialized in bytes */
+  /**
+   * data is the response serialized in bytes
+   */
   data: Uint8Array;
 }
 export interface QueryTraceBlockResponseProtoMsg {
   typeUrl: "/ethermint.evm.v1.QueryTraceBlockResponse";
   value: Uint8Array;
 }
-/** QueryTraceBlockResponse defines TraceBlock response */
+/**
+ * QueryTraceBlockResponse defines TraceBlock response
+ * @name QueryTraceBlockResponseAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryTraceBlockResponse
+ */
 export interface QueryTraceBlockResponseAmino {
-  /** data is the response serialized in bytes */
+  /**
+   * data is the response serialized in bytes
+   */
   data: string;
 }
 export interface QueryTraceBlockResponseAminoMsg {
@@ -539,6 +916,9 @@ export interface QueryTraceBlockResponseAminoMsg {
 /**
  * QueryBaseFeeRequest defines the request type for querying the EIP1559 base
  * fee.
+ * @name QueryBaseFeeRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryBaseFeeRequest
  */
 export interface QueryBaseFeeRequest {}
 export interface QueryBaseFeeRequestProtoMsg {
@@ -548,24 +928,41 @@ export interface QueryBaseFeeRequestProtoMsg {
 /**
  * QueryBaseFeeRequest defines the request type for querying the EIP1559 base
  * fee.
+ * @name QueryBaseFeeRequestAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryBaseFeeRequest
  */
 export interface QueryBaseFeeRequestAmino {}
 export interface QueryBaseFeeRequestAminoMsg {
   type: "/ethermint.evm.v1.QueryBaseFeeRequest";
   value: QueryBaseFeeRequestAmino;
 }
-/** QueryBaseFeeResponse returns the EIP1559 base fee. */
+/**
+ * QueryBaseFeeResponse returns the EIP1559 base fee.
+ * @name QueryBaseFeeResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryBaseFeeResponse
+ */
 export interface QueryBaseFeeResponse {
-  /** base_fee is the EIP1559 base fee */
+  /**
+   * base_fee is the EIP1559 base fee
+   */
   baseFee: string;
 }
 export interface QueryBaseFeeResponseProtoMsg {
   typeUrl: "/ethermint.evm.v1.QueryBaseFeeResponse";
   value: Uint8Array;
 }
-/** QueryBaseFeeResponse returns the EIP1559 base fee. */
+/**
+ * QueryBaseFeeResponse returns the EIP1559 base fee.
+ * @name QueryBaseFeeResponseAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryBaseFeeResponse
+ */
 export interface QueryBaseFeeResponseAmino {
-  /** base_fee is the EIP1559 base fee */
+  /**
+   * base_fee is the EIP1559 base fee
+   */
   base_fee: string;
 }
 export interface QueryBaseFeeResponseAminoMsg {
@@ -577,6 +974,12 @@ function createBaseQueryAccountRequest(): QueryAccountRequest {
     address: ""
   };
 }
+/**
+ * QueryAccountRequest is the request type for the Query/Account RPC method.
+ * @name QueryAccountRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryAccountRequest
+ */
 export const QueryAccountRequest = {
   typeUrl: "/ethermint.evm.v1.QueryAccountRequest",
   is(o: any): o is QueryAccountRequest {
@@ -649,6 +1052,12 @@ function createBaseQueryAccountResponse(): QueryAccountResponse {
     nonce: BigInt(0)
   };
 }
+/**
+ * QueryAccountResponse is the response type for the Query/Account RPC method.
+ * @name QueryAccountResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryAccountResponse
+ */
 export const QueryAccountResponse = {
   typeUrl: "/ethermint.evm.v1.QueryAccountResponse",
   is(o: any): o is QueryAccountResponse {
@@ -741,6 +1150,13 @@ function createBaseQueryCosmosAccountRequest(): QueryCosmosAccountRequest {
     address: ""
   };
 }
+/**
+ * QueryCosmosAccountRequest is the request type for the Query/CosmosAccount RPC
+ * method.
+ * @name QueryCosmosAccountRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryCosmosAccountRequest
+ */
 export const QueryCosmosAccountRequest = {
   typeUrl: "/ethermint.evm.v1.QueryCosmosAccountRequest",
   is(o: any): o is QueryCosmosAccountRequest {
@@ -813,6 +1229,13 @@ function createBaseQueryCosmosAccountResponse(): QueryCosmosAccountResponse {
     accountNumber: BigInt(0)
   };
 }
+/**
+ * QueryCosmosAccountResponse is the response type for the Query/CosmosAccount
+ * RPC method.
+ * @name QueryCosmosAccountResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryCosmosAccountResponse
+ */
 export const QueryCosmosAccountResponse = {
   typeUrl: "/ethermint.evm.v1.QueryCosmosAccountResponse",
   is(o: any): o is QueryCosmosAccountResponse {
@@ -905,6 +1328,13 @@ function createBaseQueryValidatorAccountRequest(): QueryValidatorAccountRequest 
     consAddress: ""
   };
 }
+/**
+ * QueryValidatorAccountRequest is the request type for the
+ * Query/ValidatorAccount RPC method.
+ * @name QueryValidatorAccountRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryValidatorAccountRequest
+ */
 export const QueryValidatorAccountRequest = {
   typeUrl: "/ethermint.evm.v1.QueryValidatorAccountRequest",
   is(o: any): o is QueryValidatorAccountRequest {
@@ -977,6 +1407,13 @@ function createBaseQueryValidatorAccountResponse(): QueryValidatorAccountRespons
     accountNumber: BigInt(0)
   };
 }
+/**
+ * QueryValidatorAccountResponse is the response type for the
+ * Query/ValidatorAccount RPC method.
+ * @name QueryValidatorAccountResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryValidatorAccountResponse
+ */
 export const QueryValidatorAccountResponse = {
   typeUrl: "/ethermint.evm.v1.QueryValidatorAccountResponse",
   is(o: any): o is QueryValidatorAccountResponse {
@@ -1069,6 +1506,12 @@ function createBaseQueryBalanceRequest(): QueryBalanceRequest {
     address: ""
   };
 }
+/**
+ * QueryBalanceRequest is the request type for the Query/Balance RPC method.
+ * @name QueryBalanceRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryBalanceRequest
+ */
 export const QueryBalanceRequest = {
   typeUrl: "/ethermint.evm.v1.QueryBalanceRequest",
   is(o: any): o is QueryBalanceRequest {
@@ -1139,6 +1582,12 @@ function createBaseQueryBalanceResponse(): QueryBalanceResponse {
     balance: ""
   };
 }
+/**
+ * QueryBalanceResponse is the response type for the Query/Balance RPC method.
+ * @name QueryBalanceResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryBalanceResponse
+ */
 export const QueryBalanceResponse = {
   typeUrl: "/ethermint.evm.v1.QueryBalanceResponse",
   is(o: any): o is QueryBalanceResponse {
@@ -1210,6 +1659,12 @@ function createBaseQueryStorageRequest(): QueryStorageRequest {
     key: ""
   };
 }
+/**
+ * QueryStorageRequest is the request type for the Query/Storage RPC method.
+ * @name QueryStorageRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryStorageRequest
+ */
 export const QueryStorageRequest = {
   typeUrl: "/ethermint.evm.v1.QueryStorageRequest",
   is(o: any): o is QueryStorageRequest {
@@ -1291,6 +1746,13 @@ function createBaseQueryStorageResponse(): QueryStorageResponse {
     value: ""
   };
 }
+/**
+ * QueryStorageResponse is the response type for the Query/Storage RPC
+ * method.
+ * @name QueryStorageResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryStorageResponse
+ */
 export const QueryStorageResponse = {
   typeUrl: "/ethermint.evm.v1.QueryStorageResponse",
   is(o: any): o is QueryStorageResponse {
@@ -1361,6 +1823,12 @@ function createBaseQueryCodeRequest(): QueryCodeRequest {
     address: ""
   };
 }
+/**
+ * QueryCodeRequest is the request type for the Query/Code RPC method.
+ * @name QueryCodeRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryCodeRequest
+ */
 export const QueryCodeRequest = {
   typeUrl: "/ethermint.evm.v1.QueryCodeRequest",
   is(o: any): o is QueryCodeRequest {
@@ -1431,6 +1899,13 @@ function createBaseQueryCodeResponse(): QueryCodeResponse {
     code: new Uint8Array()
   };
 }
+/**
+ * QueryCodeResponse is the response type for the Query/Code RPC
+ * method.
+ * @name QueryCodeResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryCodeResponse
+ */
 export const QueryCodeResponse = {
   typeUrl: "/ethermint.evm.v1.QueryCodeResponse",
   is(o: any): o is QueryCodeResponse {
@@ -1502,6 +1977,12 @@ function createBaseQueryTxLogsRequest(): QueryTxLogsRequest {
     pagination: undefined
   };
 }
+/**
+ * QueryTxLogsRequest is the request type for the Query/TxLogs RPC method.
+ * @name QueryTxLogsRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryTxLogsRequest
+ */
 export const QueryTxLogsRequest = {
   typeUrl: "/ethermint.evm.v1.QueryTxLogsRequest",
   is(o: any): o is QueryTxLogsRequest {
@@ -1577,6 +2058,9 @@ export const QueryTxLogsRequest = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(QueryTxLogsRequest.typeUrl)) {
+      return;
+    }
     PageRequest.registerTypeUrl();
   }
 };
@@ -1586,6 +2070,12 @@ function createBaseQueryTxLogsResponse(): QueryTxLogsResponse {
     pagination: undefined
   };
 }
+/**
+ * QueryTxLogsResponse is the response type for the Query/TxLogs RPC method.
+ * @name QueryTxLogsResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryTxLogsResponse
+ */
 export const QueryTxLogsResponse = {
   typeUrl: "/ethermint.evm.v1.QueryTxLogsResponse",
   is(o: any): o is QueryTxLogsResponse {
@@ -1663,6 +2153,9 @@ export const QueryTxLogsResponse = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(QueryTxLogsResponse.typeUrl)) {
+      return;
+    }
     Log.registerTypeUrl();
     PageResponse.registerTypeUrl();
   }
@@ -1670,6 +2163,12 @@ export const QueryTxLogsResponse = {
 function createBaseQueryParamsRequest(): QueryParamsRequest {
   return {};
 }
+/**
+ * QueryParamsRequest defines the request type for querying x/evm parameters.
+ * @name QueryParamsRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryParamsRequest
+ */
 export const QueryParamsRequest = {
   typeUrl: "/ethermint.evm.v1.QueryParamsRequest",
   is(o: any): o is QueryParamsRequest {
@@ -1729,6 +2228,12 @@ function createBaseQueryParamsResponse(): QueryParamsResponse {
     params: Params.fromPartial({})
   };
 }
+/**
+ * QueryParamsResponse defines the response type for querying x/evm parameters.
+ * @name QueryParamsResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryParamsResponse
+ */
 export const QueryParamsResponse = {
   typeUrl: "/ethermint.evm.v1.QueryParamsResponse",
   is(o: any): o is QueryParamsResponse {
@@ -1793,6 +2298,9 @@ export const QueryParamsResponse = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(QueryParamsResponse.typeUrl)) {
+      return;
+    }
     Params.registerTypeUrl();
   }
 };
@@ -1804,6 +2312,12 @@ function createBaseEthCallRequest(): EthCallRequest {
     chainId: BigInt(0)
   };
 }
+/**
+ * EthCallRequest defines EthCall request
+ * @name EthCallRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.EthCallRequest
+ */
 export const EthCallRequest = {
   typeUrl: "/ethermint.evm.v1.EthCallRequest",
   is(o: any): o is EthCallRequest {
@@ -1907,6 +2421,12 @@ function createBaseEstimateGasResponse(): EstimateGasResponse {
     gas: BigInt(0)
   };
 }
+/**
+ * EstimateGasResponse defines EstimateGas response
+ * @name EstimateGasResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.EstimateGasResponse
+ */
 export const EstimateGasResponse = {
   typeUrl: "/ethermint.evm.v1.EstimateGasResponse",
   is(o: any): o is EstimateGasResponse {
@@ -1984,6 +2504,12 @@ function createBaseQueryTraceTxRequest(): QueryTraceTxRequest {
     chainId: BigInt(0)
   };
 }
+/**
+ * QueryTraceTxRequest defines TraceTx request
+ * @name QueryTraceTxRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryTraceTxRequest
+ */
 export const QueryTraceTxRequest = {
   typeUrl: "/ethermint.evm.v1.QueryTraceTxRequest",
   is(o: any): o is QueryTraceTxRequest {
@@ -2127,6 +2653,9 @@ export const QueryTraceTxRequest = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(QueryTraceTxRequest.typeUrl)) {
+      return;
+    }
     MsgEthereumTx.registerTypeUrl();
     TraceConfig.registerTypeUrl();
   }
@@ -2136,6 +2665,12 @@ function createBaseQueryTraceTxResponse(): QueryTraceTxResponse {
     data: new Uint8Array()
   };
 }
+/**
+ * QueryTraceTxResponse defines TraceTx response
+ * @name QueryTraceTxResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryTraceTxResponse
+ */
 export const QueryTraceTxResponse = {
   typeUrl: "/ethermint.evm.v1.QueryTraceTxResponse",
   is(o: any): o is QueryTraceTxResponse {
@@ -2212,6 +2747,12 @@ function createBaseQueryTraceBlockRequest(): QueryTraceBlockRequest {
     chainId: BigInt(0)
   };
 }
+/**
+ * QueryTraceBlockRequest defines TraceTx request
+ * @name QueryTraceBlockRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryTraceBlockRequest
+ */
 export const QueryTraceBlockRequest = {
   typeUrl: "/ethermint.evm.v1.QueryTraceBlockRequest",
   is(o: any): o is QueryTraceBlockRequest {
@@ -2344,6 +2885,9 @@ export const QueryTraceBlockRequest = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(QueryTraceBlockRequest.typeUrl)) {
+      return;
+    }
     MsgEthereumTx.registerTypeUrl();
     TraceConfig.registerTypeUrl();
   }
@@ -2353,6 +2897,12 @@ function createBaseQueryTraceBlockResponse(): QueryTraceBlockResponse {
     data: new Uint8Array()
   };
 }
+/**
+ * QueryTraceBlockResponse defines TraceBlock response
+ * @name QueryTraceBlockResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryTraceBlockResponse
+ */
 export const QueryTraceBlockResponse = {
   typeUrl: "/ethermint.evm.v1.QueryTraceBlockResponse",
   is(o: any): o is QueryTraceBlockResponse {
@@ -2421,6 +2971,13 @@ export const QueryTraceBlockResponse = {
 function createBaseQueryBaseFeeRequest(): QueryBaseFeeRequest {
   return {};
 }
+/**
+ * QueryBaseFeeRequest defines the request type for querying the EIP1559 base
+ * fee.
+ * @name QueryBaseFeeRequest
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryBaseFeeRequest
+ */
 export const QueryBaseFeeRequest = {
   typeUrl: "/ethermint.evm.v1.QueryBaseFeeRequest",
   is(o: any): o is QueryBaseFeeRequest {
@@ -2480,6 +3037,12 @@ function createBaseQueryBaseFeeResponse(): QueryBaseFeeResponse {
     baseFee: ""
   };
 }
+/**
+ * QueryBaseFeeResponse returns the EIP1559 base fee.
+ * @name QueryBaseFeeResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.QueryBaseFeeResponse
+ */
 export const QueryBaseFeeResponse = {
   typeUrl: "/ethermint.evm.v1.QueryBaseFeeResponse",
   is(o: any): o is QueryBaseFeeResponse {

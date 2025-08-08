@@ -1,31 +1,46 @@
-import { buildTx, SigningClientResolver } from "../../../helper-func-types";
-import { toEncoders, toConverters } from "@interchainjs/cosmos/utils";
+import { buildTx } from "../../../helper-func-types";
 import { MsgSend, MsgMultiSend, MsgUpdateParams, MsgSetSendEnabled } from "./tx";
-export const createSend = (clientResolver?: SigningClientResolver) => buildTx<MsgSend>({
-  clientResolver,
-  typeUrl: MsgSend.typeUrl,
-  encoders: toEncoders(MsgSend),
-  converters: toConverters(MsgSend),
-  deps: [MsgSend]
+/**
+ * Send defines a method for sending coins from one account to another account.
+ * @name send
+ * @package cosmos.bank.v1beta1
+ * @see proto service: cosmos.bank.v1beta1.Send
+ */
+export const send = buildTx<MsgSend>({
+  msg: MsgSend
 });
-export const createMultiSend = (clientResolver?: SigningClientResolver) => buildTx<MsgMultiSend>({
-  clientResolver,
-  typeUrl: MsgMultiSend.typeUrl,
-  encoders: toEncoders(MsgMultiSend),
-  converters: toConverters(MsgMultiSend),
-  deps: [MsgMultiSend]
+/**
+ * MultiSend defines a method for sending coins from some accounts to other accounts.
+ * @name multiSend
+ * @package cosmos.bank.v1beta1
+ * @see proto service: cosmos.bank.v1beta1.MultiSend
+ */
+export const multiSend = buildTx<MsgMultiSend>({
+  msg: MsgMultiSend
 });
-export const createUpdateParams = (clientResolver?: SigningClientResolver) => buildTx<MsgUpdateParams>({
-  clientResolver,
-  typeUrl: MsgUpdateParams.typeUrl,
-  encoders: toEncoders(MsgUpdateParams),
-  converters: toConverters(MsgUpdateParams),
-  deps: [MsgUpdateParams]
+/**
+ * UpdateParams defines a governance operation for updating the x/bank module parameters.
+ * The authority is defined in the keeper.
+ * 
+ * Since: cosmos-sdk 0.47
+ * @name updateParams
+ * @package cosmos.bank.v1beta1
+ * @see proto service: cosmos.bank.v1beta1.UpdateParams
+ */
+export const updateParams = buildTx<MsgUpdateParams>({
+  msg: MsgUpdateParams
 });
-export const createSetSendEnabled = (clientResolver?: SigningClientResolver) => buildTx<MsgSetSendEnabled>({
-  clientResolver,
-  typeUrl: MsgSetSendEnabled.typeUrl,
-  encoders: toEncoders(MsgSetSendEnabled),
-  converters: toConverters(MsgSetSendEnabled),
-  deps: [MsgSetSendEnabled]
+/**
+ * SetSendEnabled is a governance operation for setting the SendEnabled flag
+ * on any number of Denoms. Only the entries to add or update should be
+ * included. Entries that already exist in the store, but that aren't
+ * included in this message, will be left unchanged.
+ * 
+ * Since: cosmos-sdk 0.47
+ * @name setSendEnabled
+ * @package cosmos.bank.v1beta1
+ * @see proto service: cosmos.bank.v1beta1.SetSendEnabled
+ */
+export const setSendEnabled = buildTx<MsgSetSendEnabled>({
+  msg: MsgSetSendEnabled
 });

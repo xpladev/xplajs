@@ -1,9 +1,17 @@
 import { Params, ParamsAmino } from "./feemarket";
 import { BinaryReader, BinaryWriter } from "../../../binary";
+import { GlobalDecoderRegistry } from "../../../registry";
 import { DeepPartial } from "../../../helpers";
-/** MsgUpdateParams defines a Msg for updating the x/feemarket module parameters. */
+/**
+ * MsgUpdateParams defines a Msg for updating the x/feemarket module parameters.
+ * @name MsgUpdateParams
+ * @package ethermint.feemarket.v1
+ * @see proto type: ethermint.feemarket.v1.MsgUpdateParams
+ */
 export interface MsgUpdateParams {
-  /** authority is the address of the governance account. */
+  /**
+   * authority is the address of the governance account.
+   */
   authority: string;
   /**
    * params defines the x/feemarket parameters to update.
@@ -15,9 +23,16 @@ export interface MsgUpdateParamsProtoMsg {
   typeUrl: "/ethermint.feemarket.v1.MsgUpdateParams";
   value: Uint8Array;
 }
-/** MsgUpdateParams defines a Msg for updating the x/feemarket module parameters. */
+/**
+ * MsgUpdateParams defines a Msg for updating the x/feemarket module parameters.
+ * @name MsgUpdateParamsAmino
+ * @package ethermint.feemarket.v1
+ * @see proto type: ethermint.feemarket.v1.MsgUpdateParams
+ */
 export interface MsgUpdateParamsAmino {
-  /** authority is the address of the governance account. */
+  /**
+   * authority is the address of the governance account.
+   */
   authority: string;
   /**
    * params defines the x/feemarket parameters to update.
@@ -32,6 +47,9 @@ export interface MsgUpdateParamsAminoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
+ * @name MsgUpdateParamsResponse
+ * @package ethermint.feemarket.v1
+ * @see proto type: ethermint.feemarket.v1.MsgUpdateParamsResponse
  */
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
@@ -41,6 +59,9 @@ export interface MsgUpdateParamsResponseProtoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
+ * @name MsgUpdateParamsResponseAmino
+ * @package ethermint.feemarket.v1
+ * @see proto type: ethermint.feemarket.v1.MsgUpdateParamsResponse
  */
 export interface MsgUpdateParamsResponseAmino {}
 export interface MsgUpdateParamsResponseAminoMsg {
@@ -53,6 +74,12 @@ function createBaseMsgUpdateParams(): MsgUpdateParams {
     params: Params.fromPartial({})
   };
 }
+/**
+ * MsgUpdateParams defines a Msg for updating the x/feemarket module parameters.
+ * @name MsgUpdateParams
+ * @package ethermint.feemarket.v1
+ * @see proto type: ethermint.feemarket.v1.MsgUpdateParams
+ */
 export const MsgUpdateParams = {
   typeUrl: "/ethermint.feemarket.v1.MsgUpdateParams",
   aminoType: "ethermint/x/feemarket/MsgUpdateParams",
@@ -135,12 +162,22 @@ export const MsgUpdateParams = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(MsgUpdateParams.typeUrl)) {
+      return;
+    }
     Params.registerTypeUrl();
   }
 };
 function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
   return {};
 }
+/**
+ * MsgUpdateParamsResponse defines the response structure for executing a
+ * MsgUpdateParams message.
+ * @name MsgUpdateParamsResponse
+ * @package ethermint.feemarket.v1
+ * @see proto type: ethermint.feemarket.v1.MsgUpdateParamsResponse
+ */
 export const MsgUpdateParamsResponse = {
   typeUrl: "/ethermint.feemarket.v1.MsgUpdateParamsResponse",
   is(o: any): o is MsgUpdateParamsResponse {

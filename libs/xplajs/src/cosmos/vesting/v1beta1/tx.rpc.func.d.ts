@@ -1,5 +1,0 @@
-import { SigningClientResolver } from "../../../helper-func-types";
-import { MsgCreateVestingAccount, MsgCreatePermanentLockedAccount, MsgCreatePeriodicVestingAccount } from "./tx";
-export declare const createCreateVestingAccount: (clientResolver?: SigningClientResolver) => (signerAddress: string, message: MsgCreateVestingAccount, fee: import("../../../helper-func-types").StdFee | "auto", memo: string) => Promise<import("../../../helper-func-types").DeliverTxResponse>;
-export declare const createCreatePermanentLockedAccount: (clientResolver?: SigningClientResolver) => (signerAddress: string, message: MsgCreatePermanentLockedAccount, fee: import("../../../helper-func-types").StdFee | "auto", memo: string) => Promise<import("../../../helper-func-types").DeliverTxResponse>;
-export declare const createCreatePeriodicVestingAccount: (clientResolver?: SigningClientResolver) => (signerAddress: string, message: MsgCreatePeriodicVestingAccount, fee: import("../../../helper-func-types").StdFee | "auto", memo: string) => Promise<import("../../../helper-func-types").DeliverTxResponse>;

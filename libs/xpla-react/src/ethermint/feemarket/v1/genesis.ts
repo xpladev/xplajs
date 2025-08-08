@@ -1,9 +1,17 @@
 import { Params, ParamsAmino } from "./feemarket";
 import { BinaryReader, BinaryWriter } from "../../../binary";
+import { GlobalDecoderRegistry } from "../../../registry";
 import { DeepPartial } from "../../../helpers";
-/** GenesisState defines the feemarket module's genesis state. */
+/**
+ * GenesisState defines the feemarket module's genesis state.
+ * @name GenesisState
+ * @package ethermint.feemarket.v1
+ * @see proto type: ethermint.feemarket.v1.GenesisState
+ */
 export interface GenesisState {
-  /** params defines all the parameters of the feemarket module. */
+  /**
+   * params defines all the parameters of the feemarket module.
+   */
   params: Params;
   /**
    * block_gas is the amount of gas wanted on the last block before the upgrade.
@@ -15,9 +23,16 @@ export interface GenesisStateProtoMsg {
   typeUrl: "/ethermint.feemarket.v1.GenesisState";
   value: Uint8Array;
 }
-/** GenesisState defines the feemarket module's genesis state. */
+/**
+ * GenesisState defines the feemarket module's genesis state.
+ * @name GenesisStateAmino
+ * @package ethermint.feemarket.v1
+ * @see proto type: ethermint.feemarket.v1.GenesisState
+ */
 export interface GenesisStateAmino {
-  /** params defines all the parameters of the feemarket module. */
+  /**
+   * params defines all the parameters of the feemarket module.
+   */
   params: ParamsAmino;
   /**
    * block_gas is the amount of gas wanted on the last block before the upgrade.
@@ -35,6 +50,12 @@ function createBaseGenesisState(): GenesisState {
     blockGas: BigInt(0)
   };
 }
+/**
+ * GenesisState defines the feemarket module's genesis state.
+ * @name GenesisState
+ * @package ethermint.feemarket.v1
+ * @see proto type: ethermint.feemarket.v1.GenesisState
+ */
 export const GenesisState = {
   typeUrl: "/ethermint.feemarket.v1.GenesisState",
   is(o: any): o is GenesisState {
@@ -110,6 +131,9 @@ export const GenesisState = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(GenesisState.typeUrl)) {
+      return;
+    }
     Params.registerTypeUrl();
   }
 };

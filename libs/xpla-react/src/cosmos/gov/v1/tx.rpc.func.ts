@@ -1,52 +1,71 @@
-import { buildTx, SigningClientResolver } from "../../../helper-func-types";
-import { toEncoders, toConverters } from "@interchainjs/cosmos/utils";
+import { buildTx } from "../../../helper-func-types";
 import { MsgSubmitProposal, MsgExecLegacyContent, MsgVote, MsgVoteWeighted, MsgDeposit, MsgUpdateParams, MsgCancelProposal } from "./tx";
-export const createSubmitProposal = (clientResolver?: SigningClientResolver) => buildTx<MsgSubmitProposal>({
-  clientResolver,
-  typeUrl: MsgSubmitProposal.typeUrl,
-  encoders: toEncoders(MsgSubmitProposal),
-  converters: toConverters(MsgSubmitProposal),
-  deps: [MsgSubmitProposal]
+/**
+ * SubmitProposal defines a method to create new proposal given the messages.
+ * @name submitProposal
+ * @package cosmos.gov.v1
+ * @see proto service: cosmos.gov.v1.SubmitProposal
+ */
+export const submitProposal = buildTx<MsgSubmitProposal>({
+  msg: MsgSubmitProposal
 });
-export const createExecLegacyContent = (clientResolver?: SigningClientResolver) => buildTx<MsgExecLegacyContent>({
-  clientResolver,
-  typeUrl: MsgExecLegacyContent.typeUrl,
-  encoders: toEncoders(MsgExecLegacyContent),
-  converters: toConverters(MsgExecLegacyContent),
-  deps: [MsgExecLegacyContent]
+/**
+ * ExecLegacyContent defines a Msg to be in included in a MsgSubmitProposal
+ * to execute a legacy content-based proposal.
+ * @name execLegacyContent
+ * @package cosmos.gov.v1
+ * @see proto service: cosmos.gov.v1.ExecLegacyContent
+ */
+export const execLegacyContent = buildTx<MsgExecLegacyContent>({
+  msg: MsgExecLegacyContent
 });
-export const createVote = (clientResolver?: SigningClientResolver) => buildTx<MsgVote>({
-  clientResolver,
-  typeUrl: MsgVote.typeUrl,
-  encoders: toEncoders(MsgVote),
-  converters: toConverters(MsgVote),
-  deps: [MsgVote]
+/**
+ * Vote defines a method to add a vote on a specific proposal.
+ * @name vote
+ * @package cosmos.gov.v1
+ * @see proto service: cosmos.gov.v1.Vote
+ */
+export const vote = buildTx<MsgVote>({
+  msg: MsgVote
 });
-export const createVoteWeighted = (clientResolver?: SigningClientResolver) => buildTx<MsgVoteWeighted>({
-  clientResolver,
-  typeUrl: MsgVoteWeighted.typeUrl,
-  encoders: toEncoders(MsgVoteWeighted),
-  converters: toConverters(MsgVoteWeighted),
-  deps: [MsgVoteWeighted]
+/**
+ * VoteWeighted defines a method to add a weighted vote on a specific proposal.
+ * @name voteWeighted
+ * @package cosmos.gov.v1
+ * @see proto service: cosmos.gov.v1.VoteWeighted
+ */
+export const voteWeighted = buildTx<MsgVoteWeighted>({
+  msg: MsgVoteWeighted
 });
-export const createDeposit = (clientResolver?: SigningClientResolver) => buildTx<MsgDeposit>({
-  clientResolver,
-  typeUrl: MsgDeposit.typeUrl,
-  encoders: toEncoders(MsgDeposit),
-  converters: toConverters(MsgDeposit),
-  deps: [MsgDeposit]
+/**
+ * Deposit defines a method to add deposit on a specific proposal.
+ * @name deposit
+ * @package cosmos.gov.v1
+ * @see proto service: cosmos.gov.v1.Deposit
+ */
+export const deposit = buildTx<MsgDeposit>({
+  msg: MsgDeposit
 });
-export const createUpdateParams = (clientResolver?: SigningClientResolver) => buildTx<MsgUpdateParams>({
-  clientResolver,
-  typeUrl: MsgUpdateParams.typeUrl,
-  encoders: toEncoders(MsgUpdateParams),
-  converters: toConverters(MsgUpdateParams),
-  deps: [MsgUpdateParams]
+/**
+ * UpdateParams defines a governance operation for updating the x/gov module
+ * parameters. The authority is defined in the keeper.
+ * 
+ * Since: cosmos-sdk 0.47
+ * @name updateParams
+ * @package cosmos.gov.v1
+ * @see proto service: cosmos.gov.v1.UpdateParams
+ */
+export const updateParams = buildTx<MsgUpdateParams>({
+  msg: MsgUpdateParams
 });
-export const createCancelProposal = (clientResolver?: SigningClientResolver) => buildTx<MsgCancelProposal>({
-  clientResolver,
-  typeUrl: MsgCancelProposal.typeUrl,
-  encoders: toEncoders(MsgCancelProposal),
-  converters: toConverters(MsgCancelProposal),
-  deps: [MsgCancelProposal]
+/**
+ * CancelProposal defines a method to cancel governance proposal
+ * 
+ * Since: cosmos-sdk 0.50
+ * @name cancelProposal
+ * @package cosmos.gov.v1
+ * @see proto service: cosmos.gov.v1.CancelProposal
+ */
+export const cancelProposal = buildTx<MsgCancelProposal>({
+  msg: MsgCancelProposal
 });

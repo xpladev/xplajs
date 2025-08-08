@@ -1,10 +1,12 @@
-import { buildTx, SigningClientResolver } from "../../../helper-func-types";
-import { toEncoders, toConverters } from "@interchainjs/cosmos/utils";
+import { buildTx } from "../../../helper-func-types";
 import { MsgSubmitEvidence } from "./tx";
-export const createSubmitEvidence = (clientResolver?: SigningClientResolver) => buildTx<MsgSubmitEvidence>({
-  clientResolver,
-  typeUrl: MsgSubmitEvidence.typeUrl,
-  encoders: toEncoders(MsgSubmitEvidence),
-  converters: toConverters(MsgSubmitEvidence),
-  deps: [MsgSubmitEvidence]
+/**
+ * SubmitEvidence submits an arbitrary Evidence of misbehavior such as equivocation or
+ * counterfactual signing.
+ * @name submitEvidence
+ * @package cosmos.evidence.v1beta1
+ * @see proto service: cosmos.evidence.v1beta1.SubmitEvidence
+ */
+export const submitEvidence = buildTx<MsgSubmitEvidence>({
+  msg: MsgSubmitEvidence
 });

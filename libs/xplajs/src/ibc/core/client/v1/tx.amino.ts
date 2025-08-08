@@ -1,4 +1,4 @@
-import { MsgCreateClient, MsgUpdateClient, MsgUpgradeClient, MsgSubmitMisbehaviour, MsgRecoverClient, MsgIBCSoftwareUpgrade, MsgUpdateParams } from "./tx";
+import { MsgCreateClient, MsgUpdateClient, MsgUpgradeClient, MsgSubmitMisbehaviour, MsgRecoverClient, MsgIBCSoftwareUpgrade, MsgUpdateParams, MsgDeleteClientCreator } from "./tx";
 export const AminoConverter = {
   "/ibc.core.client.v1.MsgCreateClient": {
     aminoType: "cosmos-sdk/MsgCreateClient",
@@ -34,5 +34,10 @@ export const AminoConverter = {
     aminoType: "cosmos-sdk/MsgUpdateParams",
     toAmino: MsgUpdateParams.toAmino,
     fromAmino: MsgUpdateParams.fromAmino
+  },
+  "/ibc.core.client.v1.MsgDeleteClientCreator": {
+    aminoType: "cosmos-sdk/MsgDeleteClientCreator",
+    toAmino: MsgDeleteClientCreator.toAmino,
+    fromAmino: MsgDeleteClientCreator.fromAmino
   }
 };

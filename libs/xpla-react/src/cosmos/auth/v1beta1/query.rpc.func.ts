@@ -1,82 +1,149 @@
-import { RpcResolver, buildQuery } from "../../../helper-func-types";
+import { buildQuery } from "../../../helper-func-types";
 import { QueryAccountsRequest, QueryAccountsResponse, QueryAccountRequest, QueryAccountResponse, QueryAccountAddressByIDRequest, QueryAccountAddressByIDResponse, QueryParamsRequest, QueryParamsResponse, QueryModuleAccountsRequest, QueryModuleAccountsResponse, QueryModuleAccountByNameRequest, QueryModuleAccountByNameResponse, Bech32PrefixRequest, Bech32PrefixResponse, AddressBytesToStringRequest, AddressBytesToStringResponse, AddressStringToBytesRequest, AddressStringToBytesResponse, QueryAccountInfoRequest, QueryAccountInfoResponse } from "./query";
-export const createGetAccounts = (clientResolver?: RpcResolver) => buildQuery<QueryAccountsRequest, QueryAccountsResponse>({
+/**
+ * Accounts returns all the existing accounts.
+ * 
+ * When called from another module, this query might consume a high amount of
+ * gas if the pagination field is incorrectly set.
+ * 
+ * Since: cosmos-sdk 0.43
+ * @name getAccounts
+ * @package cosmos.auth.v1beta1
+ * @see proto service: cosmos.auth.v1beta1.Accounts
+ */
+export const getAccounts = buildQuery<QueryAccountsRequest, QueryAccountsResponse>({
   encode: QueryAccountsRequest.encode,
   decode: QueryAccountsResponse.decode,
   service: "cosmos.auth.v1beta1.Query",
   method: "Accounts",
-  clientResolver,
   deps: [QueryAccountsRequest, QueryAccountsResponse]
 });
-export const createGetAccount = (clientResolver?: RpcResolver) => buildQuery<QueryAccountRequest, QueryAccountResponse>({
+/**
+ * Account returns account details based on address.
+ * @name getAccount
+ * @package cosmos.auth.v1beta1
+ * @see proto service: cosmos.auth.v1beta1.Account
+ */
+export const getAccount = buildQuery<QueryAccountRequest, QueryAccountResponse>({
   encode: QueryAccountRequest.encode,
   decode: QueryAccountResponse.decode,
   service: "cosmos.auth.v1beta1.Query",
   method: "Account",
-  clientResolver,
   deps: [QueryAccountRequest, QueryAccountResponse]
 });
-export const createGetAccountAddressByID = (clientResolver?: RpcResolver) => buildQuery<QueryAccountAddressByIDRequest, QueryAccountAddressByIDResponse>({
+/**
+ * AccountAddressByID returns account address based on account number.
+ * 
+ * Since: cosmos-sdk 0.46.2
+ * @name getAccountAddressByID
+ * @package cosmos.auth.v1beta1
+ * @see proto service: cosmos.auth.v1beta1.AccountAddressByID
+ */
+export const getAccountAddressByID = buildQuery<QueryAccountAddressByIDRequest, QueryAccountAddressByIDResponse>({
   encode: QueryAccountAddressByIDRequest.encode,
   decode: QueryAccountAddressByIDResponse.decode,
   service: "cosmos.auth.v1beta1.Query",
   method: "AccountAddressByID",
-  clientResolver,
   deps: [QueryAccountAddressByIDRequest, QueryAccountAddressByIDResponse]
 });
-export const createGetParams = (clientResolver?: RpcResolver) => buildQuery<QueryParamsRequest, QueryParamsResponse>({
+/**
+ * Params queries all parameters.
+ * @name getParams
+ * @package cosmos.auth.v1beta1
+ * @see proto service: cosmos.auth.v1beta1.Params
+ */
+export const getParams = buildQuery<QueryParamsRequest, QueryParamsResponse>({
   encode: QueryParamsRequest.encode,
   decode: QueryParamsResponse.decode,
   service: "cosmos.auth.v1beta1.Query",
   method: "Params",
-  clientResolver,
   deps: [QueryParamsRequest, QueryParamsResponse]
 });
-export const createGetModuleAccounts = (clientResolver?: RpcResolver) => buildQuery<QueryModuleAccountsRequest, QueryModuleAccountsResponse>({
+/**
+ * ModuleAccounts returns all the existing module accounts.
+ * 
+ * Since: cosmos-sdk 0.46
+ * @name getModuleAccounts
+ * @package cosmos.auth.v1beta1
+ * @see proto service: cosmos.auth.v1beta1.ModuleAccounts
+ */
+export const getModuleAccounts = buildQuery<QueryModuleAccountsRequest, QueryModuleAccountsResponse>({
   encode: QueryModuleAccountsRequest.encode,
   decode: QueryModuleAccountsResponse.decode,
   service: "cosmos.auth.v1beta1.Query",
   method: "ModuleAccounts",
-  clientResolver,
   deps: [QueryModuleAccountsRequest, QueryModuleAccountsResponse]
 });
-export const createGetModuleAccountByName = (clientResolver?: RpcResolver) => buildQuery<QueryModuleAccountByNameRequest, QueryModuleAccountByNameResponse>({
+/**
+ * ModuleAccountByName returns the module account info by module name
+ * @name getModuleAccountByName
+ * @package cosmos.auth.v1beta1
+ * @see proto service: cosmos.auth.v1beta1.ModuleAccountByName
+ */
+export const getModuleAccountByName = buildQuery<QueryModuleAccountByNameRequest, QueryModuleAccountByNameResponse>({
   encode: QueryModuleAccountByNameRequest.encode,
   decode: QueryModuleAccountByNameResponse.decode,
   service: "cosmos.auth.v1beta1.Query",
   method: "ModuleAccountByName",
-  clientResolver,
   deps: [QueryModuleAccountByNameRequest, QueryModuleAccountByNameResponse]
 });
-export const createGetBech32Prefix = (clientResolver?: RpcResolver) => buildQuery<Bech32PrefixRequest, Bech32PrefixResponse>({
+/**
+ * Bech32Prefix queries bech32Prefix
+ * 
+ * Since: cosmos-sdk 0.46
+ * @name getBech32Prefix
+ * @package cosmos.auth.v1beta1
+ * @see proto service: cosmos.auth.v1beta1.Bech32Prefix
+ */
+export const getBech32Prefix = buildQuery<Bech32PrefixRequest, Bech32PrefixResponse>({
   encode: Bech32PrefixRequest.encode,
   decode: Bech32PrefixResponse.decode,
   service: "cosmos.auth.v1beta1.Query",
   method: "Bech32Prefix",
-  clientResolver,
   deps: [Bech32PrefixRequest, Bech32PrefixResponse]
 });
-export const createGetAddressBytesToString = (clientResolver?: RpcResolver) => buildQuery<AddressBytesToStringRequest, AddressBytesToStringResponse>({
+/**
+ * AddressBytesToString converts Account Address bytes to string
+ * 
+ * Since: cosmos-sdk 0.46
+ * @name getAddressBytesToString
+ * @package cosmos.auth.v1beta1
+ * @see proto service: cosmos.auth.v1beta1.AddressBytesToString
+ */
+export const getAddressBytesToString = buildQuery<AddressBytesToStringRequest, AddressBytesToStringResponse>({
   encode: AddressBytesToStringRequest.encode,
   decode: AddressBytesToStringResponse.decode,
   service: "cosmos.auth.v1beta1.Query",
   method: "AddressBytesToString",
-  clientResolver,
   deps: [AddressBytesToStringRequest, AddressBytesToStringResponse]
 });
-export const createGetAddressStringToBytes = (clientResolver?: RpcResolver) => buildQuery<AddressStringToBytesRequest, AddressStringToBytesResponse>({
+/**
+ * AddressStringToBytes converts Address string to bytes
+ * 
+ * Since: cosmos-sdk 0.46
+ * @name getAddressStringToBytes
+ * @package cosmos.auth.v1beta1
+ * @see proto service: cosmos.auth.v1beta1.AddressStringToBytes
+ */
+export const getAddressStringToBytes = buildQuery<AddressStringToBytesRequest, AddressStringToBytesResponse>({
   encode: AddressStringToBytesRequest.encode,
   decode: AddressStringToBytesResponse.decode,
   service: "cosmos.auth.v1beta1.Query",
   method: "AddressStringToBytes",
-  clientResolver,
   deps: [AddressStringToBytesRequest, AddressStringToBytesResponse]
 });
-export const createGetAccountInfo = (clientResolver?: RpcResolver) => buildQuery<QueryAccountInfoRequest, QueryAccountInfoResponse>({
+/**
+ * AccountInfo queries account info which is common to all account types.
+ * 
+ * Since: cosmos-sdk 0.47
+ * @name getAccountInfo
+ * @package cosmos.auth.v1beta1
+ * @see proto service: cosmos.auth.v1beta1.AccountInfo
+ */
+export const getAccountInfo = buildQuery<QueryAccountInfoRequest, QueryAccountInfoResponse>({
   encode: QueryAccountInfoRequest.encode,
   decode: QueryAccountInfoResponse.decode,
   service: "cosmos.auth.v1beta1.Query",
   method: "AccountInfo",
-  clientResolver,
   deps: [QueryAccountInfoRequest, QueryAccountInfoResponse]
 });

@@ -1,66 +1,106 @@
-import { RpcResolver, buildQuery } from "../../../helper-func-types";
+import { buildQuery } from "../../../helper-func-types";
 import { QueryProposalRequest, QueryProposalResponse, QueryProposalsRequest, QueryProposalsResponse, QueryVoteRequest, QueryVoteResponse, QueryVotesRequest, QueryVotesResponse, QueryParamsRequest, QueryParamsResponse, QueryDepositRequest, QueryDepositResponse, QueryDepositsRequest, QueryDepositsResponse, QueryTallyResultRequest, QueryTallyResultResponse } from "./query";
-export const createGetProposal = (clientResolver?: RpcResolver) => buildQuery<QueryProposalRequest, QueryProposalResponse>({
+/**
+ * Proposal queries proposal details based on ProposalID.
+ * @name getProposal
+ * @package cosmos.gov.v1beta1
+ * @see proto service: cosmos.gov.v1beta1.Proposal
+ */
+export const getProposal = buildQuery<QueryProposalRequest, QueryProposalResponse>({
   encode: QueryProposalRequest.encode,
   decode: QueryProposalResponse.decode,
   service: "cosmos.gov.v1beta1.Query",
   method: "Proposal",
-  clientResolver,
   deps: [QueryProposalRequest, QueryProposalResponse]
 });
-export const createGetProposals = (clientResolver?: RpcResolver) => buildQuery<QueryProposalsRequest, QueryProposalsResponse>({
+/**
+ * Proposals queries all proposals based on given status.
+ * @name getProposals
+ * @package cosmos.gov.v1beta1
+ * @see proto service: cosmos.gov.v1beta1.Proposals
+ */
+export const getProposals = buildQuery<QueryProposalsRequest, QueryProposalsResponse>({
   encode: QueryProposalsRequest.encode,
   decode: QueryProposalsResponse.decode,
   service: "cosmos.gov.v1beta1.Query",
   method: "Proposals",
-  clientResolver,
   deps: [QueryProposalsRequest, QueryProposalsResponse]
 });
-export const createGetVote = (clientResolver?: RpcResolver) => buildQuery<QueryVoteRequest, QueryVoteResponse>({
+/**
+ * Vote queries voted information based on proposalID, voterAddr.
+ * @name getVote
+ * @package cosmos.gov.v1beta1
+ * @see proto service: cosmos.gov.v1beta1.Vote
+ */
+export const getVote = buildQuery<QueryVoteRequest, QueryVoteResponse>({
   encode: QueryVoteRequest.encode,
   decode: QueryVoteResponse.decode,
   service: "cosmos.gov.v1beta1.Query",
   method: "Vote",
-  clientResolver,
   deps: [QueryVoteRequest, QueryVoteResponse]
 });
-export const createGetVotes = (clientResolver?: RpcResolver) => buildQuery<QueryVotesRequest, QueryVotesResponse>({
+/**
+ * Votes queries votes of a given proposal.
+ * @name getVotes
+ * @package cosmos.gov.v1beta1
+ * @see proto service: cosmos.gov.v1beta1.Votes
+ */
+export const getVotes = buildQuery<QueryVotesRequest, QueryVotesResponse>({
   encode: QueryVotesRequest.encode,
   decode: QueryVotesResponse.decode,
   service: "cosmos.gov.v1beta1.Query",
   method: "Votes",
-  clientResolver,
   deps: [QueryVotesRequest, QueryVotesResponse]
 });
-export const createGetParams = (clientResolver?: RpcResolver) => buildQuery<QueryParamsRequest, QueryParamsResponse>({
+/**
+ * Params queries all parameters of the gov module.
+ * @name getParams
+ * @package cosmos.gov.v1beta1
+ * @see proto service: cosmos.gov.v1beta1.Params
+ */
+export const getParams = buildQuery<QueryParamsRequest, QueryParamsResponse>({
   encode: QueryParamsRequest.encode,
   decode: QueryParamsResponse.decode,
   service: "cosmos.gov.v1beta1.Query",
   method: "Params",
-  clientResolver,
   deps: [QueryParamsRequest, QueryParamsResponse]
 });
-export const createGetDeposit = (clientResolver?: RpcResolver) => buildQuery<QueryDepositRequest, QueryDepositResponse>({
+/**
+ * Deposit queries single deposit information based on proposalID, depositor address.
+ * @name getDeposit
+ * @package cosmos.gov.v1beta1
+ * @see proto service: cosmos.gov.v1beta1.Deposit
+ */
+export const getDeposit = buildQuery<QueryDepositRequest, QueryDepositResponse>({
   encode: QueryDepositRequest.encode,
   decode: QueryDepositResponse.decode,
   service: "cosmos.gov.v1beta1.Query",
   method: "Deposit",
-  clientResolver,
   deps: [QueryDepositRequest, QueryDepositResponse]
 });
-export const createGetDeposits = (clientResolver?: RpcResolver) => buildQuery<QueryDepositsRequest, QueryDepositsResponse>({
+/**
+ * Deposits queries all deposits of a single proposal.
+ * @name getDeposits
+ * @package cosmos.gov.v1beta1
+ * @see proto service: cosmos.gov.v1beta1.Deposits
+ */
+export const getDeposits = buildQuery<QueryDepositsRequest, QueryDepositsResponse>({
   encode: QueryDepositsRequest.encode,
   decode: QueryDepositsResponse.decode,
   service: "cosmos.gov.v1beta1.Query",
   method: "Deposits",
-  clientResolver,
   deps: [QueryDepositsRequest, QueryDepositsResponse]
 });
-export const createGetTallyResult = (clientResolver?: RpcResolver) => buildQuery<QueryTallyResultRequest, QueryTallyResultResponse>({
+/**
+ * TallyResult queries the tally of a proposal vote.
+ * @name getTallyResult
+ * @package cosmos.gov.v1beta1
+ * @see proto service: cosmos.gov.v1beta1.TallyResult
+ */
+export const getTallyResult = buildQuery<QueryTallyResultRequest, QueryTallyResultResponse>({
   encode: QueryTallyResultRequest.encode,
   decode: QueryTallyResultResponse.decode,
   service: "cosmos.gov.v1beta1.Query",
   method: "TallyResult",
-  clientResolver,
   deps: [QueryTallyResultRequest, QueryTallyResultResponse]
 });

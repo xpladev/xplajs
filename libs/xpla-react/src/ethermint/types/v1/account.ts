@@ -5,11 +5,18 @@ import { DeepPartial } from "../../../helpers";
 /**
  * EthAccount implements the sdk.AccountI interface and embeds an
  * authtypes.BaseAccount type. It is compatible with the auth AccountKeeper.
+ * @name EthAccount
+ * @package ethermint.types.v1
+ * @see proto type: ethermint.types.v1.EthAccount
  */
 export interface EthAccount {
-  /** base_account is an authtypes.BaseAccount */
+  /**
+   * base_account is an authtypes.BaseAccount
+   */
   baseAccount?: BaseAccount;
-  /** code_hash is the hash calculated from the code contents */
+  /**
+   * code_hash is the hash calculated from the code contents
+   */
   codeHash: string;
 }
 export interface EthAccountProtoMsg {
@@ -19,11 +26,18 @@ export interface EthAccountProtoMsg {
 /**
  * EthAccount implements the sdk.AccountI interface and embeds an
  * authtypes.BaseAccount type. It is compatible with the auth AccountKeeper.
+ * @name EthAccountAmino
+ * @package ethermint.types.v1
+ * @see proto type: ethermint.types.v1.EthAccount
  */
 export interface EthAccountAmino {
-  /** base_account is an authtypes.BaseAccount */
+  /**
+   * base_account is an authtypes.BaseAccount
+   */
   base_account?: BaseAccountAmino;
-  /** code_hash is the hash calculated from the code contents */
+  /**
+   * code_hash is the hash calculated from the code contents
+   */
   code_hash: string;
 }
 export interface EthAccountAminoMsg {
@@ -36,6 +50,13 @@ function createBaseEthAccount(): EthAccount {
     codeHash: ""
   };
 }
+/**
+ * EthAccount implements the sdk.AccountI interface and embeds an
+ * authtypes.BaseAccount type. It is compatible with the auth AccountKeeper.
+ * @name EthAccount
+ * @package ethermint.types.v1
+ * @see proto type: ethermint.types.v1.EthAccount
+ */
 export const EthAccount = {
   typeUrl: "/ethermint.types.v1.EthAccount",
   is(o: any): o is EthAccount {
@@ -111,6 +132,9 @@ export const EthAccount = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(EthAccount.typeUrl)) {
+      return;
+    }
     GlobalDecoderRegistry.register(EthAccount.typeUrl, EthAccount);
     BaseAccount.registerTypeUrl();
   }

@@ -1,15 +1,23 @@
 import { Plan, PlanAmino } from "./upgrade";
 import { BinaryReader, BinaryWriter } from "../../../binary";
+import { GlobalDecoderRegistry } from "../../../registry";
 import { DeepPartial } from "../../../helpers";
 /**
  * MsgSoftwareUpgrade is the Msg/SoftwareUpgrade request type.
  * 
  * Since: cosmos-sdk 0.46
+ * @name MsgSoftwareUpgrade
+ * @package cosmos.upgrade.v1beta1
+ * @see proto type: cosmos.upgrade.v1beta1.MsgSoftwareUpgrade
  */
 export interface MsgSoftwareUpgrade {
-  /** authority is the address that controls the module (defaults to x/gov unless overwritten). */
+  /**
+   * authority is the address that controls the module (defaults to x/gov unless overwritten).
+   */
   authority: string;
-  /** plan is the upgrade plan. */
+  /**
+   * plan is the upgrade plan.
+   */
   plan: Plan;
 }
 export interface MsgSoftwareUpgradeProtoMsg {
@@ -20,11 +28,18 @@ export interface MsgSoftwareUpgradeProtoMsg {
  * MsgSoftwareUpgrade is the Msg/SoftwareUpgrade request type.
  * 
  * Since: cosmos-sdk 0.46
+ * @name MsgSoftwareUpgradeAmino
+ * @package cosmos.upgrade.v1beta1
+ * @see proto type: cosmos.upgrade.v1beta1.MsgSoftwareUpgrade
  */
 export interface MsgSoftwareUpgradeAmino {
-  /** authority is the address that controls the module (defaults to x/gov unless overwritten). */
+  /**
+   * authority is the address that controls the module (defaults to x/gov unless overwritten).
+   */
   authority: string;
-  /** plan is the upgrade plan. */
+  /**
+   * plan is the upgrade plan.
+   */
   plan: PlanAmino;
 }
 export interface MsgSoftwareUpgradeAminoMsg {
@@ -35,6 +50,9 @@ export interface MsgSoftwareUpgradeAminoMsg {
  * MsgSoftwareUpgradeResponse is the Msg/SoftwareUpgrade response type.
  * 
  * Since: cosmos-sdk 0.46
+ * @name MsgSoftwareUpgradeResponse
+ * @package cosmos.upgrade.v1beta1
+ * @see proto type: cosmos.upgrade.v1beta1.MsgSoftwareUpgradeResponse
  */
 export interface MsgSoftwareUpgradeResponse {}
 export interface MsgSoftwareUpgradeResponseProtoMsg {
@@ -45,6 +63,9 @@ export interface MsgSoftwareUpgradeResponseProtoMsg {
  * MsgSoftwareUpgradeResponse is the Msg/SoftwareUpgrade response type.
  * 
  * Since: cosmos-sdk 0.46
+ * @name MsgSoftwareUpgradeResponseAmino
+ * @package cosmos.upgrade.v1beta1
+ * @see proto type: cosmos.upgrade.v1beta1.MsgSoftwareUpgradeResponse
  */
 export interface MsgSoftwareUpgradeResponseAmino {}
 export interface MsgSoftwareUpgradeResponseAminoMsg {
@@ -55,9 +76,14 @@ export interface MsgSoftwareUpgradeResponseAminoMsg {
  * MsgCancelUpgrade is the Msg/CancelUpgrade request type.
  * 
  * Since: cosmos-sdk 0.46
+ * @name MsgCancelUpgrade
+ * @package cosmos.upgrade.v1beta1
+ * @see proto type: cosmos.upgrade.v1beta1.MsgCancelUpgrade
  */
 export interface MsgCancelUpgrade {
-  /** authority is the address that controls the module (defaults to x/gov unless overwritten). */
+  /**
+   * authority is the address that controls the module (defaults to x/gov unless overwritten).
+   */
   authority: string;
 }
 export interface MsgCancelUpgradeProtoMsg {
@@ -68,9 +94,14 @@ export interface MsgCancelUpgradeProtoMsg {
  * MsgCancelUpgrade is the Msg/CancelUpgrade request type.
  * 
  * Since: cosmos-sdk 0.46
+ * @name MsgCancelUpgradeAmino
+ * @package cosmos.upgrade.v1beta1
+ * @see proto type: cosmos.upgrade.v1beta1.MsgCancelUpgrade
  */
 export interface MsgCancelUpgradeAmino {
-  /** authority is the address that controls the module (defaults to x/gov unless overwritten). */
+  /**
+   * authority is the address that controls the module (defaults to x/gov unless overwritten).
+   */
   authority: string;
 }
 export interface MsgCancelUpgradeAminoMsg {
@@ -81,6 +112,9 @@ export interface MsgCancelUpgradeAminoMsg {
  * MsgCancelUpgradeResponse is the Msg/CancelUpgrade response type.
  * 
  * Since: cosmos-sdk 0.46
+ * @name MsgCancelUpgradeResponse
+ * @package cosmos.upgrade.v1beta1
+ * @see proto type: cosmos.upgrade.v1beta1.MsgCancelUpgradeResponse
  */
 export interface MsgCancelUpgradeResponse {}
 export interface MsgCancelUpgradeResponseProtoMsg {
@@ -91,6 +125,9 @@ export interface MsgCancelUpgradeResponseProtoMsg {
  * MsgCancelUpgradeResponse is the Msg/CancelUpgrade response type.
  * 
  * Since: cosmos-sdk 0.46
+ * @name MsgCancelUpgradeResponseAmino
+ * @package cosmos.upgrade.v1beta1
+ * @see proto type: cosmos.upgrade.v1beta1.MsgCancelUpgradeResponse
  */
 export interface MsgCancelUpgradeResponseAmino {}
 export interface MsgCancelUpgradeResponseAminoMsg {
@@ -103,6 +140,14 @@ function createBaseMsgSoftwareUpgrade(): MsgSoftwareUpgrade {
     plan: Plan.fromPartial({})
   };
 }
+/**
+ * MsgSoftwareUpgrade is the Msg/SoftwareUpgrade request type.
+ * 
+ * Since: cosmos-sdk 0.46
+ * @name MsgSoftwareUpgrade
+ * @package cosmos.upgrade.v1beta1
+ * @see proto type: cosmos.upgrade.v1beta1.MsgSoftwareUpgrade
+ */
 export const MsgSoftwareUpgrade = {
   typeUrl: "/cosmos.upgrade.v1beta1.MsgSoftwareUpgrade",
   aminoType: "cosmos-sdk/MsgSoftwareUpgrade",
@@ -185,12 +230,23 @@ export const MsgSoftwareUpgrade = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(MsgSoftwareUpgrade.typeUrl)) {
+      return;
+    }
     Plan.registerTypeUrl();
   }
 };
 function createBaseMsgSoftwareUpgradeResponse(): MsgSoftwareUpgradeResponse {
   return {};
 }
+/**
+ * MsgSoftwareUpgradeResponse is the Msg/SoftwareUpgrade response type.
+ * 
+ * Since: cosmos-sdk 0.46
+ * @name MsgSoftwareUpgradeResponse
+ * @package cosmos.upgrade.v1beta1
+ * @see proto type: cosmos.upgrade.v1beta1.MsgSoftwareUpgradeResponse
+ */
 export const MsgSoftwareUpgradeResponse = {
   typeUrl: "/cosmos.upgrade.v1beta1.MsgSoftwareUpgradeResponse",
   aminoType: "cosmos-sdk/MsgSoftwareUpgradeResponse",
@@ -257,6 +313,14 @@ function createBaseMsgCancelUpgrade(): MsgCancelUpgrade {
     authority: ""
   };
 }
+/**
+ * MsgCancelUpgrade is the Msg/CancelUpgrade request type.
+ * 
+ * Since: cosmos-sdk 0.46
+ * @name MsgCancelUpgrade
+ * @package cosmos.upgrade.v1beta1
+ * @see proto type: cosmos.upgrade.v1beta1.MsgCancelUpgrade
+ */
 export const MsgCancelUpgrade = {
   typeUrl: "/cosmos.upgrade.v1beta1.MsgCancelUpgrade",
   aminoType: "cosmos-sdk/MsgCancelUpgrade",
@@ -332,6 +396,14 @@ export const MsgCancelUpgrade = {
 function createBaseMsgCancelUpgradeResponse(): MsgCancelUpgradeResponse {
   return {};
 }
+/**
+ * MsgCancelUpgradeResponse is the Msg/CancelUpgrade response type.
+ * 
+ * Since: cosmos-sdk 0.46
+ * @name MsgCancelUpgradeResponse
+ * @package cosmos.upgrade.v1beta1
+ * @see proto type: cosmos.upgrade.v1beta1.MsgCancelUpgradeResponse
+ */
 export const MsgCancelUpgradeResponse = {
   typeUrl: "/cosmos.upgrade.v1beta1.MsgCancelUpgradeResponse",
   aminoType: "cosmos-sdk/MsgCancelUpgradeResponse",

@@ -25,9 +25,6 @@ export const createRPCQueryClient = async ({
         v1beta1: (await import("../cosmos/bank/v1beta1/query.rpc.Query")).createRpcQueryExtension(client)
       },
       base: {
-        grpc: {
-          v2: (await import("../cosmos/base/grpc/v2/service.rpc.Service")).createRpcQueryExtension(client)
-        },
         node: {
           v1beta1: (await import("../cosmos/base/node/v1beta1/query.rpc.Service")).createRpcQueryExtension(client)
         },
@@ -43,6 +40,14 @@ export const createRPCQueryClient = async ({
       },
       evidence: {
         v1beta1: (await import("../cosmos/evidence/v1beta1/query.rpc.Query")).createRpcQueryExtension(client)
+      },
+      evm: {
+        feemarket: {
+          v1: (await import("../cosmos/evm/feemarket/v1/query.rpc.Query")).createRpcQueryExtension(client)
+        },
+        vm: {
+          v1: (await import("../cosmos/evm/vm/v1/query.rpc.Query")).createRpcQueryExtension(client)
+        }
       },
       feegrant: {
         v1beta1: (await import("../cosmos/feegrant/v1beta1/query.rpc.Query")).createRpcQueryExtension(client)
@@ -70,54 +75,10 @@ export const createRPCQueryClient = async ({
         v1beta1: (await import("../cosmos/upgrade/v1beta1/query.rpc.Query")).createRpcQueryExtension(client)
       }
     },
-    cosmwasm: {
-      wasm: {
-        v1: (await import("../cosmwasm/wasm/v1/query.rpc.Query")).createRpcQueryExtension(client)
-      }
-    },
-    ethermint: {
-      evm: {
-        v1: (await import("../ethermint/evm/v1/query.rpc.Query")).createRpcQueryExtension(client)
-      },
-      feemarket: {
-        v1: (await import("../ethermint/feemarket/v1/query.rpc.Query")).createRpcQueryExtension(client)
-      }
-    },
-    ibc: {
-      applications: {
-        fee: {
-          v1: (await import("../ibc/applications/fee/v1/query.rpc.Query")).createRpcQueryExtension(client)
-        },
-        interchain_accounts: {
-          controller: {
-            v1: (await import("../ibc/applications/interchain_accounts/controller/v1/query.rpc.Query")).createRpcQueryExtension(client)
-          },
-          host: {
-            v1: (await import("../ibc/applications/interchain_accounts/host/v1/query.rpc.Query")).createRpcQueryExtension(client)
-          }
-        },
-        transfer: {
-          v1: (await import("../ibc/applications/transfer/v1/query.rpc.Query")).createRpcQueryExtension(client)
-        }
-      },
-      core: {
-        channel: {
-          v1: (await import("../ibc/core/channel/v1/query.rpc.Query")).createRpcQueryExtension(client)
-        },
-        client: {
-          v1: (await import("../ibc/core/client/v1/query.rpc.Query")).createRpcQueryExtension(client)
-        },
-        connection: {
-          v1: (await import("../ibc/core/connection/v1/query.rpc.Query")).createRpcQueryExtension(client)
-        }
-      },
-      lightclients: {
-        wasm: {
-          v1: (await import("../ibc/lightclients/wasm/v1/query.rpc.Query")).createRpcQueryExtension(client)
-        }
-      }
-    },
     xpla: {
+      burn: {
+        v1beta1: (await import("./burn/v1beta1/query.rpc.Query")).createRpcQueryExtension(client)
+      },
       reward: {
         v1beta1: (await import("./reward/v1beta1/query.rpc.Query")).createRpcQueryExtension(client)
       },

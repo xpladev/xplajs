@@ -1,19 +1,33 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
+import { GlobalDecoderRegistry } from "../../../registry";
 import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../helpers";
-/** Params defines the EVM module parameters */
+/**
+ * Params defines the EVM module parameters
+ * @name Params
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.Params
+ */
 export interface Params {
   /**
    * evm_denom represents the token denomination used to run the EVM state
    * transitions.
    */
   evmDenom: string;
-  /** enable_create toggles state transitions that use the vm.Create function */
+  /**
+   * enable_create toggles state transitions that use the vm.Create function
+   */
   enableCreate: boolean;
-  /** enable_call toggles state transitions that use the vm.Call function */
+  /**
+   * enable_call toggles state transitions that use the vm.Call function
+   */
   enableCall: boolean;
-  /** extra_eips defines the additional EIPs for the vm.Config */
+  /**
+   * extra_eips defines the additional EIPs for the vm.Config
+   */
   extraEips: bigint[];
-  /** chain_config defines the EVM chain configuration parameters */
+  /**
+   * chain_config defines the EVM chain configuration parameters
+   */
   chainConfig: ChainConfig;
   /**
    * allow_unprotected_txs defines if replay-protected (i.e non EIP155
@@ -25,20 +39,33 @@ export interface ParamsProtoMsg {
   typeUrl: "/ethermint.evm.v1.Params";
   value: Uint8Array;
 }
-/** Params defines the EVM module parameters */
+/**
+ * Params defines the EVM module parameters
+ * @name ParamsAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.Params
+ */
 export interface ParamsAmino {
   /**
    * evm_denom represents the token denomination used to run the EVM state
    * transitions.
    */
   evm_denom: string;
-  /** enable_create toggles state transitions that use the vm.Create function */
+  /**
+   * enable_create toggles state transitions that use the vm.Create function
+   */
   enable_create: boolean;
-  /** enable_call toggles state transitions that use the vm.Call function */
+  /**
+   * enable_call toggles state transitions that use the vm.Call function
+   */
   enable_call: boolean;
-  /** extra_eips defines the additional EIPs for the vm.Config */
+  /**
+   * extra_eips defines the additional EIPs for the vm.Config
+   */
   extra_eips: string[];
-  /** chain_config defines the EVM chain configuration parameters */
+  /**
+   * chain_config defines the EVM chain configuration parameters
+   */
   chain_config: ChainConfigAmino;
   /**
    * allow_unprotected_txs defines if replay-protected (i.e non EIP155
@@ -53,48 +80,87 @@ export interface ParamsAminoMsg {
 /**
  * ChainConfig defines the Ethereum ChainConfig parameters using *sdk.Int values
  * instead of *big.Int.
+ * @name ChainConfig
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.ChainConfig
  */
 export interface ChainConfig {
-  /** homestead_block switch (nil no fork, 0 = already homestead) */
+  /**
+   * homestead_block switch (nil no fork, 0 = already homestead)
+   */
   homesteadBlock: string;
-  /** dao_fork_block corresponds to TheDAO hard-fork switch block (nil no fork) */
+  /**
+   * dao_fork_block corresponds to TheDAO hard-fork switch block (nil no fork)
+   */
   daoForkBlock: string;
-  /** dao_fork_support defines whether the nodes supports or opposes the DAO hard-fork */
+  /**
+   * dao_fork_support defines whether the nodes supports or opposes the DAO hard-fork
+   */
   daoForkSupport: boolean;
   /**
    * eip150_block: EIP150 implements the Gas price changes
    * (https://github.com/ethereum/EIPs/issues/150) EIP150 HF block (nil no fork)
    */
   eip150Block: string;
-  /** eip150_hash: EIP150 HF hash (needed for header only clients as only gas pricing changed) */
+  /**
+   * eip150_hash: EIP150 HF hash (needed for header only clients as only gas pricing changed)
+   */
   eip150Hash: string;
-  /** eip155_block: EIP155Block HF block */
+  /**
+   * eip155_block: EIP155Block HF block
+   */
   eip155Block: string;
-  /** eip158_block: EIP158 HF block */
+  /**
+   * eip158_block: EIP158 HF block
+   */
   eip158Block: string;
-  /** byzantium_block: Byzantium switch block (nil no fork, 0 = already on byzantium) */
+  /**
+   * byzantium_block: Byzantium switch block (nil no fork, 0 = already on byzantium)
+   */
   byzantiumBlock: string;
-  /** constantinople_block: Constantinople switch block (nil no fork, 0 = already activated) */
+  /**
+   * constantinople_block: Constantinople switch block (nil no fork, 0 = already activated)
+   */
   constantinopleBlock: string;
-  /** petersburg_block: Petersburg switch block (nil same as Constantinople) */
+  /**
+   * petersburg_block: Petersburg switch block (nil same as Constantinople)
+   */
   petersburgBlock: string;
-  /** istanbul_block: Istanbul switch block (nil no fork, 0 = already on istanbul) */
+  /**
+   * istanbul_block: Istanbul switch block (nil no fork, 0 = already on istanbul)
+   */
   istanbulBlock: string;
-  /** muir_glacier_block: Eip-2384 (bomb delay) switch block (nil no fork, 0 = already activated) */
+  /**
+   * muir_glacier_block: Eip-2384 (bomb delay) switch block (nil no fork, 0 = already activated)
+   */
   muirGlacierBlock: string;
-  /** berlin_block: Berlin switch block (nil = no fork, 0 = already on berlin) */
+  /**
+   * berlin_block: Berlin switch block (nil = no fork, 0 = already on berlin)
+   */
   berlinBlock: string;
-  /** london_block: London switch block (nil = no fork, 0 = already on london) */
+  /**
+   * london_block: London switch block (nil = no fork, 0 = already on london)
+   */
   londonBlock: string;
-  /** arrow_glacier_block: Eip-4345 (bomb delay) switch block (nil = no fork, 0 = already activated) */
+  /**
+   * arrow_glacier_block: Eip-4345 (bomb delay) switch block (nil = no fork, 0 = already activated)
+   */
   arrowGlacierBlock: string;
-  /** gray_glacier_block: EIP-5133 (bomb delay) switch block (nil = no fork, 0 = already activated) */
+  /**
+   * gray_glacier_block: EIP-5133 (bomb delay) switch block (nil = no fork, 0 = already activated)
+   */
   grayGlacierBlock: string;
-  /** merge_netsplit_block: Virtual fork after The Merge to use as a network splitter */
+  /**
+   * merge_netsplit_block: Virtual fork after The Merge to use as a network splitter
+   */
   mergeNetsplitBlock: string;
-  /** shanghai_block switch block (nil = no fork, 0 = already on shanghai) */
+  /**
+   * shanghai_block switch block (nil = no fork, 0 = already on shanghai)
+   */
   shanghaiBlock: string;
-  /** cancun_block switch block (nil = no fork, 0 = already on cancun) */
+  /**
+   * cancun_block switch block (nil = no fork, 0 = already on cancun)
+   */
   cancunBlock: string;
 }
 export interface ChainConfigProtoMsg {
@@ -104,70 +170,127 @@ export interface ChainConfigProtoMsg {
 /**
  * ChainConfig defines the Ethereum ChainConfig parameters using *sdk.Int values
  * instead of *big.Int.
+ * @name ChainConfigAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.ChainConfig
  */
 export interface ChainConfigAmino {
-  /** homestead_block switch (nil no fork, 0 = already homestead) */
+  /**
+   * homestead_block switch (nil no fork, 0 = already homestead)
+   */
   homestead_block: string;
-  /** dao_fork_block corresponds to TheDAO hard-fork switch block (nil no fork) */
+  /**
+   * dao_fork_block corresponds to TheDAO hard-fork switch block (nil no fork)
+   */
   dao_fork_block: string;
-  /** dao_fork_support defines whether the nodes supports or opposes the DAO hard-fork */
+  /**
+   * dao_fork_support defines whether the nodes supports or opposes the DAO hard-fork
+   */
   dao_fork_support: boolean;
   /**
    * eip150_block: EIP150 implements the Gas price changes
    * (https://github.com/ethereum/EIPs/issues/150) EIP150 HF block (nil no fork)
    */
   eip150_block: string;
-  /** eip150_hash: EIP150 HF hash (needed for header only clients as only gas pricing changed) */
+  /**
+   * eip150_hash: EIP150 HF hash (needed for header only clients as only gas pricing changed)
+   */
   eip150_hash: string;
-  /** eip155_block: EIP155Block HF block */
+  /**
+   * eip155_block: EIP155Block HF block
+   */
   eip155_block: string;
-  /** eip158_block: EIP158 HF block */
+  /**
+   * eip158_block: EIP158 HF block
+   */
   eip158_block: string;
-  /** byzantium_block: Byzantium switch block (nil no fork, 0 = already on byzantium) */
+  /**
+   * byzantium_block: Byzantium switch block (nil no fork, 0 = already on byzantium)
+   */
   byzantium_block: string;
-  /** constantinople_block: Constantinople switch block (nil no fork, 0 = already activated) */
+  /**
+   * constantinople_block: Constantinople switch block (nil no fork, 0 = already activated)
+   */
   constantinople_block: string;
-  /** petersburg_block: Petersburg switch block (nil same as Constantinople) */
+  /**
+   * petersburg_block: Petersburg switch block (nil same as Constantinople)
+   */
   petersburg_block: string;
-  /** istanbul_block: Istanbul switch block (nil no fork, 0 = already on istanbul) */
+  /**
+   * istanbul_block: Istanbul switch block (nil no fork, 0 = already on istanbul)
+   */
   istanbul_block: string;
-  /** muir_glacier_block: Eip-2384 (bomb delay) switch block (nil no fork, 0 = already activated) */
+  /**
+   * muir_glacier_block: Eip-2384 (bomb delay) switch block (nil no fork, 0 = already activated)
+   */
   muir_glacier_block: string;
-  /** berlin_block: Berlin switch block (nil = no fork, 0 = already on berlin) */
+  /**
+   * berlin_block: Berlin switch block (nil = no fork, 0 = already on berlin)
+   */
   berlin_block: string;
-  /** london_block: London switch block (nil = no fork, 0 = already on london) */
+  /**
+   * london_block: London switch block (nil = no fork, 0 = already on london)
+   */
   london_block: string;
-  /** arrow_glacier_block: Eip-4345 (bomb delay) switch block (nil = no fork, 0 = already activated) */
+  /**
+   * arrow_glacier_block: Eip-4345 (bomb delay) switch block (nil = no fork, 0 = already activated)
+   */
   arrow_glacier_block: string;
-  /** gray_glacier_block: EIP-5133 (bomb delay) switch block (nil = no fork, 0 = already activated) */
+  /**
+   * gray_glacier_block: EIP-5133 (bomb delay) switch block (nil = no fork, 0 = already activated)
+   */
   gray_glacier_block: string;
-  /** merge_netsplit_block: Virtual fork after The Merge to use as a network splitter */
+  /**
+   * merge_netsplit_block: Virtual fork after The Merge to use as a network splitter
+   */
   merge_netsplit_block: string;
-  /** shanghai_block switch block (nil = no fork, 0 = already on shanghai) */
+  /**
+   * shanghai_block switch block (nil = no fork, 0 = already on shanghai)
+   */
   shanghai_block: string;
-  /** cancun_block switch block (nil = no fork, 0 = already on cancun) */
+  /**
+   * cancun_block switch block (nil = no fork, 0 = already on cancun)
+   */
   cancun_block: string;
 }
 export interface ChainConfigAminoMsg {
   type: "/ethermint.evm.v1.ChainConfig";
   value: ChainConfigAmino;
 }
-/** State represents a single Storage key value pair item. */
+/**
+ * State represents a single Storage key value pair item.
+ * @name State
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.State
+ */
 export interface State {
-  /** key is the stored key */
+  /**
+   * key is the stored key
+   */
   key: string;
-  /** value is the stored value for the given key */
+  /**
+   * value is the stored value for the given key
+   */
   value: string;
 }
 export interface StateProtoMsg {
   typeUrl: "/ethermint.evm.v1.State";
   value: Uint8Array;
 }
-/** State represents a single Storage key value pair item. */
+/**
+ * State represents a single Storage key value pair item.
+ * @name StateAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.State
+ */
 export interface StateAmino {
-  /** key is the stored key */
+  /**
+   * key is the stored key
+   */
   key: string;
-  /** value is the stored value for the given key */
+  /**
+   * value is the stored value for the given key
+   */
   value: string;
 }
 export interface StateAminoMsg {
@@ -178,11 +301,18 @@ export interface StateAminoMsg {
  * TransactionLogs define the logs generated from a transaction execution
  * with a given hash. It it used for import/export data as transactions are not
  * persisted on blockchain state after an upgrade.
+ * @name TransactionLogs
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.TransactionLogs
  */
 export interface TransactionLogs {
-  /** hash of the transaction */
+  /**
+   * hash of the transaction
+   */
   hash: string;
-  /** logs is an array of Logs for the given transaction hash */
+  /**
+   * logs is an array of Logs for the given transaction hash
+   */
   logs: Log[];
 }
 export interface TransactionLogsProtoMsg {
@@ -193,11 +323,18 @@ export interface TransactionLogsProtoMsg {
  * TransactionLogs define the logs generated from a transaction execution
  * with a given hash. It it used for import/export data as transactions are not
  * persisted on blockchain state after an upgrade.
+ * @name TransactionLogsAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.TransactionLogs
  */
 export interface TransactionLogsAmino {
-  /** hash of the transaction */
+  /**
+   * hash of the transaction
+   */
   hash: string;
-  /** logs is an array of Logs for the given transaction hash */
+  /**
+   * logs is an array of Logs for the given transaction hash
+   */
   logs: LogAmino[];
 }
 export interface TransactionLogsAminoMsg {
@@ -211,23 +348,42 @@ export interface TransactionLogsAminoMsg {
  * 
  * NOTE: address, topics and data are consensus fields. The rest of the fields
  * are derived, i.e. filled in by the nodes, but not secured by consensus.
+ * @name Log
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.Log
  */
 export interface Log {
-  /** address of the contract that generated the event */
+  /**
+   * address of the contract that generated the event
+   */
   address: string;
-  /** topics is a list of topics provided by the contract. */
+  /**
+   * topics is a list of topics provided by the contract.
+   */
   topics: string[];
-  /** data which is supplied by the contract, usually ABI-encoded */
+  /**
+   * data which is supplied by the contract, usually ABI-encoded
+   */
   data: Uint8Array;
-  /** block_number of the block in which the transaction was included */
+  /**
+   * block_number of the block in which the transaction was included
+   */
   blockNumber: bigint;
-  /** tx_hash is the transaction hash */
+  /**
+   * tx_hash is the transaction hash
+   */
   txHash: string;
-  /** tx_index of the transaction in the block */
+  /**
+   * tx_index of the transaction in the block
+   */
   txIndex: bigint;
-  /** block_hash of the block in which the transaction was included */
+  /**
+   * block_hash of the block in which the transaction was included
+   */
   blockHash: string;
-  /** index of the log in the block */
+  /**
+   * index of the log in the block
+   */
   index: bigint;
   /**
    * removed is true if this log was reverted due to a chain
@@ -247,23 +403,42 @@ export interface LogProtoMsg {
  * 
  * NOTE: address, topics and data are consensus fields. The rest of the fields
  * are derived, i.e. filled in by the nodes, but not secured by consensus.
+ * @name LogAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.Log
  */
 export interface LogAmino {
-  /** address of the contract that generated the event */
+  /**
+   * address of the contract that generated the event
+   */
   address: string;
-  /** topics is a list of topics provided by the contract. */
+  /**
+   * topics is a list of topics provided by the contract.
+   */
   topics: string[];
-  /** data which is supplied by the contract, usually ABI-encoded */
+  /**
+   * data which is supplied by the contract, usually ABI-encoded
+   */
   data: string;
-  /** block_number of the block in which the transaction was included */
+  /**
+   * block_number of the block in which the transaction was included
+   */
   block_number: string;
-  /** tx_hash is the transaction hash */
+  /**
+   * tx_hash is the transaction hash
+   */
   tx_hash: string;
-  /** tx_index of the transaction in the block */
+  /**
+   * tx_index of the transaction in the block
+   */
   tx_index: string;
-  /** block_hash of the block in which the transaction was included */
+  /**
+   * block_hash of the block in which the transaction was included
+   */
   block_hash: string;
-  /** index of the log in the block */
+  /**
+   * index of the log in the block
+   */
   index: string;
   /**
    * removed is true if this log was reverted due to a chain
@@ -276,7 +451,12 @@ export interface LogAminoMsg {
   type: "/ethermint.evm.v1.Log";
   value: LogAmino;
 }
-/** TxResult stores results of Tx execution. */
+/**
+ * TxResult stores results of Tx execution.
+ * @name TxResult
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.TxResult
+ */
 export interface TxResult {
   /**
    * contract_address contains the ethereum address of the created contract (if
@@ -284,25 +464,38 @@ export interface TxResult {
    * empty.
    */
   contractAddress: string;
-  /** bloom represents the bloom filter bytes */
+  /**
+   * bloom represents the bloom filter bytes
+   */
   bloom: Uint8Array;
   /**
    * tx_logs contains the transaction hash and the proto-compatible ethereum
    * logs.
    */
   txLogs: TransactionLogs;
-  /** ret defines the bytes from the execution. */
+  /**
+   * ret defines the bytes from the execution.
+   */
   ret: Uint8Array;
-  /** reverted flag is set to true when the call has been reverted */
+  /**
+   * reverted flag is set to true when the call has been reverted
+   */
   reverted: boolean;
-  /** gas_used notes the amount of gas consumed while execution */
+  /**
+   * gas_used notes the amount of gas consumed while execution
+   */
   gasUsed: bigint;
 }
 export interface TxResultProtoMsg {
   typeUrl: "/ethermint.evm.v1.TxResult";
   value: Uint8Array;
 }
-/** TxResult stores results of Tx execution. */
+/**
+ * TxResult stores results of Tx execution.
+ * @name TxResultAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.TxResult
+ */
 export interface TxResultAmino {
   /**
    * contract_address contains the ethereum address of the created contract (if
@@ -310,104 +503,180 @@ export interface TxResultAmino {
    * empty.
    */
   contract_address: string;
-  /** bloom represents the bloom filter bytes */
+  /**
+   * bloom represents the bloom filter bytes
+   */
   bloom: string;
   /**
    * tx_logs contains the transaction hash and the proto-compatible ethereum
    * logs.
    */
   tx_logs: TransactionLogsAmino;
-  /** ret defines the bytes from the execution. */
+  /**
+   * ret defines the bytes from the execution.
+   */
   ret: string;
-  /** reverted flag is set to true when the call has been reverted */
+  /**
+   * reverted flag is set to true when the call has been reverted
+   */
   reverted: boolean;
-  /** gas_used notes the amount of gas consumed while execution */
+  /**
+   * gas_used notes the amount of gas consumed while execution
+   */
   gas_used: string;
 }
 export interface TxResultAminoMsg {
   type: "/ethermint.evm.v1.TxResult";
   value: TxResultAmino;
 }
-/** AccessTuple is the element type of an access list. */
+/**
+ * AccessTuple is the element type of an access list.
+ * @name AccessTuple
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.AccessTuple
+ */
 export interface AccessTuple {
-  /** address is a hex formatted ethereum address */
+  /**
+   * address is a hex formatted ethereum address
+   */
   address: string;
-  /** storage_keys are hex formatted hashes of the storage keys */
+  /**
+   * storage_keys are hex formatted hashes of the storage keys
+   */
   storageKeys: string[];
 }
 export interface AccessTupleProtoMsg {
   typeUrl: "/ethermint.evm.v1.AccessTuple";
   value: Uint8Array;
 }
-/** AccessTuple is the element type of an access list. */
+/**
+ * AccessTuple is the element type of an access list.
+ * @name AccessTupleAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.AccessTuple
+ */
 export interface AccessTupleAmino {
-  /** address is a hex formatted ethereum address */
+  /**
+   * address is a hex formatted ethereum address
+   */
   address: string;
-  /** storage_keys are hex formatted hashes of the storage keys */
+  /**
+   * storage_keys are hex formatted hashes of the storage keys
+   */
   storage_keys: string[];
 }
 export interface AccessTupleAminoMsg {
   type: "/ethermint.evm.v1.AccessTuple";
   value: AccessTupleAmino;
 }
-/** TraceConfig holds extra parameters to trace functions. */
+/**
+ * TraceConfig holds extra parameters to trace functions.
+ * @name TraceConfig
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.TraceConfig
+ */
 export interface TraceConfig {
-  /** tracer is a custom javascript tracer */
+  /**
+   * tracer is a custom javascript tracer
+   */
   tracer: string;
   /**
    * timeout overrides the default timeout of 5 seconds for JavaScript-based tracing
    * calls
    */
   timeout: string;
-  /** reexec defines the number of blocks the tracer is willing to go back */
+  /**
+   * reexec defines the number of blocks the tracer is willing to go back
+   */
   reexec: bigint;
-  /** disable_stack switches stack capture */
+  /**
+   * disable_stack switches stack capture
+   */
   disableStack: boolean;
-  /** disable_storage switches storage capture */
+  /**
+   * disable_storage switches storage capture
+   */
   disableStorage: boolean;
-  /** debug can be used to print output during capture end */
+  /**
+   * debug can be used to print output during capture end
+   */
   debug: boolean;
-  /** limit defines the maximum length of output, but zero means unlimited */
+  /**
+   * limit defines the maximum length of output, but zero means unlimited
+   */
   limit: number;
-  /** overrides can be used to execute a trace using future fork rules */
+  /**
+   * overrides can be used to execute a trace using future fork rules
+   */
   overrides?: ChainConfig;
-  /** enable_memory switches memory capture */
+  /**
+   * enable_memory switches memory capture
+   */
   enableMemory: boolean;
-  /** enable_return_data switches the capture of return data */
+  /**
+   * enable_return_data switches the capture of return data
+   */
   enableReturnData: boolean;
-  /** tracer_json_config configures the tracer using a JSON string */
+  /**
+   * tracer_json_config configures the tracer using a JSON string
+   */
   tracerJsonConfig: string;
 }
 export interface TraceConfigProtoMsg {
   typeUrl: "/ethermint.evm.v1.TraceConfig";
   value: Uint8Array;
 }
-/** TraceConfig holds extra parameters to trace functions. */
+/**
+ * TraceConfig holds extra parameters to trace functions.
+ * @name TraceConfigAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.TraceConfig
+ */
 export interface TraceConfigAmino {
-  /** tracer is a custom javascript tracer */
+  /**
+   * tracer is a custom javascript tracer
+   */
   tracer: string;
   /**
    * timeout overrides the default timeout of 5 seconds for JavaScript-based tracing
    * calls
    */
   timeout: string;
-  /** reexec defines the number of blocks the tracer is willing to go back */
+  /**
+   * reexec defines the number of blocks the tracer is willing to go back
+   */
   reexec: string;
-  /** disable_stack switches stack capture */
+  /**
+   * disable_stack switches stack capture
+   */
   disable_stack: boolean;
-  /** disable_storage switches storage capture */
+  /**
+   * disable_storage switches storage capture
+   */
   disable_storage: boolean;
-  /** debug can be used to print output during capture end */
+  /**
+   * debug can be used to print output during capture end
+   */
   debug: boolean;
-  /** limit defines the maximum length of output, but zero means unlimited */
+  /**
+   * limit defines the maximum length of output, but zero means unlimited
+   */
   limit: number;
-  /** overrides can be used to execute a trace using future fork rules */
+  /**
+   * overrides can be used to execute a trace using future fork rules
+   */
   overrides?: ChainConfigAmino;
-  /** enable_memory switches memory capture */
+  /**
+   * enable_memory switches memory capture
+   */
   enable_memory: boolean;
-  /** enable_return_data switches the capture of return data */
+  /**
+   * enable_return_data switches the capture of return data
+   */
   enable_return_data: boolean;
-  /** tracer_json_config configures the tracer using a JSON string */
+  /**
+   * tracer_json_config configures the tracer using a JSON string
+   */
   tracer_json_config: string;
 }
 export interface TraceConfigAminoMsg {
@@ -424,6 +693,12 @@ function createBaseParams(): Params {
     allowUnprotectedTxs: false
   };
 }
+/**
+ * Params defines the EVM module parameters
+ * @name Params
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.Params
+ */
 export const Params = {
   typeUrl: "/ethermint.evm.v1.Params",
   aminoType: "ethermint/x/evm/Params",
@@ -561,6 +836,9 @@ export const Params = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(Params.typeUrl)) {
+      return;
+    }
     ChainConfig.registerTypeUrl();
   }
 };
@@ -587,6 +865,13 @@ function createBaseChainConfig(): ChainConfig {
     cancunBlock: ""
   };
 }
+/**
+ * ChainConfig defines the Ethereum ChainConfig parameters using *sdk.Int values
+ * instead of *big.Int.
+ * @name ChainConfig
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.ChainConfig
+ */
 export const ChainConfig = {
   typeUrl: "/ethermint.evm.v1.ChainConfig",
   is(o: any): o is ChainConfig {
@@ -856,6 +1141,12 @@ function createBaseState(): State {
     value: ""
   };
 }
+/**
+ * State represents a single Storage key value pair item.
+ * @name State
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.State
+ */
 export const State = {
   typeUrl: "/ethermint.evm.v1.State",
   is(o: any): o is State {
@@ -938,6 +1229,14 @@ function createBaseTransactionLogs(): TransactionLogs {
     logs: []
   };
 }
+/**
+ * TransactionLogs define the logs generated from a transaction execution
+ * with a given hash. It it used for import/export data as transactions are not
+ * persisted on blockchain state after an upgrade.
+ * @name TransactionLogs
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.TransactionLogs
+ */
 export const TransactionLogs = {
   typeUrl: "/ethermint.evm.v1.TransactionLogs",
   is(o: any): o is TransactionLogs {
@@ -1015,6 +1314,9 @@ export const TransactionLogs = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(TransactionLogs.typeUrl)) {
+      return;
+    }
     Log.registerTypeUrl();
   }
 };
@@ -1031,6 +1333,17 @@ function createBaseLog(): Log {
     removed: false
   };
 }
+/**
+ * Log represents an protobuf compatible Ethereum Log that defines a contract
+ * log event. These events are generated by the LOG opcode and stored/indexed by
+ * the node.
+ * 
+ * NOTE: address, topics and data are consensus fields. The rest of the fields
+ * are derived, i.e. filled in by the nodes, but not secured by consensus.
+ * @name Log
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.Log
+ */
 export const Log = {
   typeUrl: "/ethermint.evm.v1.Log",
   is(o: any): o is Log {
@@ -1196,6 +1509,12 @@ function createBaseTxResult(): TxResult {
     gasUsed: BigInt(0)
   };
 }
+/**
+ * TxResult stores results of Tx execution.
+ * @name TxResult
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.TxResult
+ */
 export const TxResult = {
   typeUrl: "/ethermint.evm.v1.TxResult",
   is(o: any): o is TxResult {
@@ -1315,6 +1634,9 @@ export const TxResult = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(TxResult.typeUrl)) {
+      return;
+    }
     TransactionLogs.registerTypeUrl();
   }
 };
@@ -1324,6 +1646,12 @@ function createBaseAccessTuple(): AccessTuple {
     storageKeys: []
   };
 }
+/**
+ * AccessTuple is the element type of an access list.
+ * @name AccessTuple
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.AccessTuple
+ */
 export const AccessTuple = {
   typeUrl: "/ethermint.evm.v1.AccessTuple",
   is(o: any): o is AccessTuple {
@@ -1417,6 +1745,12 @@ function createBaseTraceConfig(): TraceConfig {
     tracerJsonConfig: ""
   };
 }
+/**
+ * TraceConfig holds extra parameters to trace functions.
+ * @name TraceConfig
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.TraceConfig
+ */
 export const TraceConfig = {
   typeUrl: "/ethermint.evm.v1.TraceConfig",
   is(o: any): o is TraceConfig {
@@ -1591,6 +1925,9 @@ export const TraceConfig = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(TraceConfig.typeUrl)) {
+      return;
+    }
     ChainConfig.registerTypeUrl();
   }
 };

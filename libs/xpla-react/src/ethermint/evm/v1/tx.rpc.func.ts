@@ -1,17 +1,21 @@
-import { buildTx, SigningClientResolver } from "../../../helper-func-types";
-import { toEncoders, toConverters } from "@interchainjs/cosmos/utils";
+import { buildTx } from "../../../helper-func-types";
 import { MsgEthereumTx, MsgUpdateParams } from "./tx";
-export const createEthereumTx = (clientResolver?: SigningClientResolver) => buildTx<MsgEthereumTx>({
-  clientResolver,
-  typeUrl: MsgEthereumTx.typeUrl,
-  encoders: toEncoders(MsgEthereumTx),
-  converters: toConverters(MsgEthereumTx),
-  deps: [MsgEthereumTx]
+/**
+ * EthereumTx defines a method submitting Ethereum transactions.
+ * @name ethereumTx
+ * @package ethermint.evm.v1
+ * @see proto service: ethermint.evm.v1.EthereumTx
+ */
+export const ethereumTx = buildTx<MsgEthereumTx>({
+  msg: MsgEthereumTx
 });
-export const createUpdateParams = (clientResolver?: SigningClientResolver) => buildTx<MsgUpdateParams>({
-  clientResolver,
-  typeUrl: MsgUpdateParams.typeUrl,
-  encoders: toEncoders(MsgUpdateParams),
-  converters: toConverters(MsgUpdateParams),
-  deps: [MsgUpdateParams]
+/**
+ * UpdateParams defined a governance operation for updating the x/evm module parameters.
+ * The authority is hard-coded to the Cosmos SDK x/gov module account
+ * @name updateParams
+ * @package ethermint.evm.v1
+ * @see proto service: ethermint.evm.v1.UpdateParams
+ */
+export const updateParams = buildTx<MsgUpdateParams>({
+  msg: MsgUpdateParams
 });

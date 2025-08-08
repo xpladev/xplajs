@@ -1,9 +1,17 @@
 import { BlockParams, BlockParamsAmino, EvidenceParams, EvidenceParamsAmino, ValidatorParams, ValidatorParamsAmino, ABCIParams, ABCIParamsAmino } from "../../../tendermint/types/params";
 import { BinaryReader, BinaryWriter } from "../../../binary";
+import { GlobalDecoderRegistry } from "../../../registry";
 import { DeepPartial } from "../../../helpers";
-/** MsgUpdateParams is the Msg/UpdateParams request type. */
+/**
+ * MsgUpdateParams is the Msg/UpdateParams request type.
+ * @name MsgUpdateParams
+ * @package cosmos.consensus.v1
+ * @see proto type: cosmos.consensus.v1.MsgUpdateParams
+ */
 export interface MsgUpdateParams {
-  /** authority is the address that controls the module (defaults to x/gov unless overwritten). */
+  /**
+   * authority is the address that controls the module (defaults to x/gov unless overwritten).
+   */
   authority: string;
   /**
    * params defines the x/consensus parameters to update.
@@ -15,16 +23,25 @@ export interface MsgUpdateParams {
   block?: BlockParams;
   evidence?: EvidenceParams;
   validator?: ValidatorParams;
-  /** Since: cosmos-sdk 0.50 */
+  /**
+   * Since: cosmos-sdk 0.50
+   */
   abci?: ABCIParams;
 }
 export interface MsgUpdateParamsProtoMsg {
   typeUrl: "/cosmos.consensus.v1.MsgUpdateParams";
   value: Uint8Array;
 }
-/** MsgUpdateParams is the Msg/UpdateParams request type. */
+/**
+ * MsgUpdateParams is the Msg/UpdateParams request type.
+ * @name MsgUpdateParamsAmino
+ * @package cosmos.consensus.v1
+ * @see proto type: cosmos.consensus.v1.MsgUpdateParams
+ */
 export interface MsgUpdateParamsAmino {
-  /** authority is the address that controls the module (defaults to x/gov unless overwritten). */
+  /**
+   * authority is the address that controls the module (defaults to x/gov unless overwritten).
+   */
   authority: string;
   /**
    * params defines the x/consensus parameters to update.
@@ -36,7 +53,9 @@ export interface MsgUpdateParamsAmino {
   block?: BlockParamsAmino;
   evidence?: EvidenceParamsAmino;
   validator?: ValidatorParamsAmino;
-  /** Since: cosmos-sdk 0.50 */
+  /**
+   * Since: cosmos-sdk 0.50
+   */
   abci?: ABCIParamsAmino;
 }
 export interface MsgUpdateParamsAminoMsg {
@@ -46,6 +65,9 @@ export interface MsgUpdateParamsAminoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
+ * @name MsgUpdateParamsResponse
+ * @package cosmos.consensus.v1
+ * @see proto type: cosmos.consensus.v1.MsgUpdateParamsResponse
  */
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
@@ -55,6 +77,9 @@ export interface MsgUpdateParamsResponseProtoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
+ * @name MsgUpdateParamsResponseAmino
+ * @package cosmos.consensus.v1
+ * @see proto type: cosmos.consensus.v1.MsgUpdateParamsResponse
  */
 export interface MsgUpdateParamsResponseAmino {}
 export interface MsgUpdateParamsResponseAminoMsg {
@@ -70,6 +95,12 @@ function createBaseMsgUpdateParams(): MsgUpdateParams {
     abci: undefined
   };
 }
+/**
+ * MsgUpdateParams is the Msg/UpdateParams request type.
+ * @name MsgUpdateParams
+ * @package cosmos.consensus.v1
+ * @see proto type: cosmos.consensus.v1.MsgUpdateParams
+ */
 export const MsgUpdateParams = {
   typeUrl: "/cosmos.consensus.v1.MsgUpdateParams",
   aminoType: "cosmos-sdk/x/consensus/MsgUpdateParams",
@@ -185,6 +216,9 @@ export const MsgUpdateParams = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(MsgUpdateParams.typeUrl)) {
+      return;
+    }
     BlockParams.registerTypeUrl();
     EvidenceParams.registerTypeUrl();
     ValidatorParams.registerTypeUrl();
@@ -194,6 +228,13 @@ export const MsgUpdateParams = {
 function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
   return {};
 }
+/**
+ * MsgUpdateParamsResponse defines the response structure for executing a
+ * MsgUpdateParams message.
+ * @name MsgUpdateParamsResponse
+ * @package cosmos.consensus.v1
+ * @see proto type: cosmos.consensus.v1.MsgUpdateParamsResponse
+ */
 export const MsgUpdateParamsResponse = {
   typeUrl: "/cosmos.consensus.v1.MsgUpdateParamsResponse",
   aminoType: "cosmos-sdk/MsgUpdateParamsResponse",

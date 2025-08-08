@@ -1,6 +1,0 @@
-import { SigningClientResolver } from "../../../helper-func-types";
-import { MsgSend, MsgMultiSend, MsgUpdateParams, MsgSetSendEnabled } from "./tx";
-export declare const createSend: (clientResolver?: SigningClientResolver) => (signerAddress: string, message: MsgSend, fee: import("../../../helper-func-types").StdFee | "auto", memo: string) => Promise<import("../../../helper-func-types").DeliverTxResponse>;
-export declare const createMultiSend: (clientResolver?: SigningClientResolver) => (signerAddress: string, message: MsgMultiSend, fee: import("../../../helper-func-types").StdFee | "auto", memo: string) => Promise<import("../../../helper-func-types").DeliverTxResponse>;
-export declare const createUpdateParams: (clientResolver?: SigningClientResolver) => (signerAddress: string, message: MsgUpdateParams, fee: import("../../../helper-func-types").StdFee | "auto", memo: string) => Promise<import("../../../helper-func-types").DeliverTxResponse>;
-export declare const createSetSendEnabled: (clientResolver?: SigningClientResolver) => (signerAddress: string, message: MsgSetSendEnabled, fee: import("../../../helper-func-types").StdFee | "auto", memo: string) => Promise<import("../../../helper-func-types").DeliverTxResponse>;
