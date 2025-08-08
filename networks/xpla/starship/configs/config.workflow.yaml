@@ -1,5 +1,5 @@
 name: xpla
-version: v1.8.0-rc0
+version: v1.8.0
 
 chains:
   - id: dimension_37-1
