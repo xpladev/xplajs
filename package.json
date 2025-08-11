@@ -7,7 +7,7 @@
   "scripts": {
     "codegen": "ts-node ./scripts/codegen.ts",
     "proto": "telescope download --config ./scripts/xpla.protod.config.json",
-    "codegen:evm": "sh ./scripts/gen-precompiles.sh",
+    "codegen:evm": "sh ./scripts/get-precompiles.sh",
     "build": "lerna run build --stream",
     "symlink": "symlink-workspace --logLevel error"
   },
