@@ -3,9 +3,12 @@
   "version": "1.8.0-rc.0",
   "description": "XPLA precompiled contract interfaces and types",
   "files": [
-    "**/*.sol"
+    "**/*.sol",
+    "/build/contracts/*.json"
   ],
   "scripts": {
+    "compile": "hardhat compile",
+    "clean": "hardhat clean",
     "prepublishOnly": "echo 'Solidity package - no build required'"
   },
   "keywords": [
@@ -21,6 +24,5 @@
     "type": "git",
     "url": "git@github.com:xpladev/xplajs.git",
     "directory": "contracts"
-  },
-  "devDependencies": {}
+  }
 }
