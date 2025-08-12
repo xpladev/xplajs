@@ -9,7 +9,8 @@
     "proto": "telescope download --config ./scripts/xpla.protod.config.json",
     "codegen:evm": "sh ./scripts/get-precompiles.sh",
     "build": "lerna run build --stream",
-    "symlink": "symlink-workspace --logLevel error"
+    "symlink": "symlink-workspace --logLevel error",
+    "prepack": "sh ./scripts/prepack.sh"
   },
   "workspaces": [
     "libs/*",
@@ -33,6 +34,10 @@
     "symlink-workspace": "^1.9.0",
     "ts-jest": "^29.1.1",
     "@typechain/ethers-v6": "^0.5.1",
-    "typechain": "^8.3.2"
+    "typechain": "^8.3.2",
+    "hardhat": "^2.26.2",
+    "hardhat-exposed": "^0.3.19",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
   }
 }
