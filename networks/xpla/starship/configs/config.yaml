@@ -10,6 +10,7 @@ chains:
       rest: 1317
       rpc: 26657
       faucet: 8007
+      evm-http-jsonrpc: 8545
 
   - id: cosmoshub-4
     name: cosmoshub
