@@ -1,0 +1,51 @@
+{
+  "name": "@xpla/evm",
+  "version": "1.8.0-rc.0",
+  "description": "TypeChain generated TypeScript interfaces for XPLA EVM smart contracts",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "npm run clean && tsc && tsc -p tsconfig.esm.json",
+    "clean": "rimraf dist",
+    "prepublishOnly": "npm run build",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "xpla",
+    "evm",
+    "ethereum",
+    "solidity",
+    "typechain",
+    "typescript",
+    "smart-contracts",
+    "blockchain"
+  ],
+  "author": "Joowon Yun <joowon@delightlabs.io>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xpladev/xplajs.git",
+    "directory": "libs/evm"
+  },
+  "bugs": {
+    "url": "https://github.com/xpladev/xplajs/issues"
+  },
+  "homepage": "https://github.com/xpladev/xplajs#readme",
+  "peerDependencies": {
+    "ethers": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
+  
