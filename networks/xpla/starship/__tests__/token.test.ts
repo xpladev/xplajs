@@ -14,6 +14,7 @@ import { createCosmosEvmSignerConfig, DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '.
 import { getAllBalances, getBalance } from "@interchainjs/cosmos-types/cosmos/bank/v1beta1/query.rpc.func";
 import { send } from "@xpla/xplajs/cosmos/bank/v1beta1/tx.rpc.func";
 import { transfer } from "@xpla/xplajs/ibc/applications/transfer/v1/tx.rpc.func";
+import { getClientStatus } from "@xpla/xplajs/ibc/core/client/v1/query.rpc.func";
 import * as bip39 from 'bip39';
 
 const hdPath = "m/44'/60'/0'/0/0";
@@ -179,9 +180,17 @@ describe('Token transfers', () => {
     const { port_id: sourcePort, channel_id: sourceChannel } =
       ibcInfo!.channels[0].chain_1;
 
+    // Check IBC client status before transfer
+    const queryClient = await createCosmosQueryClient(xplaRpcEndpoint);
+    let clientStatus = await getClientStatus(queryClient, {
+      clientId: '07-tendermint-0'
+    });
+    expect(clientStatus.status).toEqual('Active');
+      
+
     // Transfer xpla tokens via IBC to cosmos chain
-    const currentTime = Math.floor(Date.now()) * 1000000;
-    const timeoutTime = currentTime + 3600 * 1000000000; // 5 minutes
+    const currentTime = Date.now() * 1000000; // Convert to nanoseconds
+    const timeoutTime = currentTime + 3600 * 1000000000; // 1 hour timeout
 
     
     const fee = {
@@ -217,12 +226,7 @@ describe('Token transfers', () => {
       ''
     );
 
-    // Wait for transaction to be confirmed
-    try {
-      await resp.wait();
-    } catch (err) {
-      console.log(err);
-    }
+    await resp.wait();
 
     await sleep(100000);
 
@@ -230,6 +234,7 @@ describe('Token transfers', () => {
       address: cosmosAddress,
       resolveDenom: true,
     });
+
 
     // check balances
     expect(balances.length).toEqual(1);
