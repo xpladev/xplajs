@@ -21,7 +21,7 @@
     "build": "npm run clean; tsc; tsc -p tsconfig.esm.json; npm run copy",
     "build:dev": "npm run clean; tsc --declarationMap; tsc -p tsconfig.esm.json",
     "lint": "eslint . --fix",
-    "starship": "starship start --config ./starship/configs/config.yaml",
+    "starship:run": "sh ../../scripts/run-starship.sh",
     "starship:clean": "starship stop --config ./starship/configs/config.yaml",
     "starship:test": "jest --config ./jest.starship.config.js",
     "starship:debug": "jest --config ./jest.starship.config.js --runInBand --verbose --bail"
@@ -48,10 +48,14 @@
     "xpla"
   ],
   "devDependencies": {
+    "@interchainjs/encoding": "^1.13.5",
     "@types/jest": "^29.5.14",
+    "@xpla/evm": "^1.8.0-rc.0",
+    "bech32": "^2.0.0",
     "dotenv": "^16.4.5",
+    "ethers": "^6.13.5",
     "jest": "^29.5.0",
-    "ts-jest": "^29.1.0",
-    "starshipjs": "^2.4.0"
+    "starshipjs": "^2.4.0",
+    "ts-jest": "^29.1.0"
   }
 }
