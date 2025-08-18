@@ -1,4 +1,5 @@
 import { HardhatUserConfig } from "hardhat/config";
+import "@typechain/hardhat";
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -12,6 +13,11 @@ const config: HardhatUserConfig = {
   },
   paths: {
     sources: "contracts",
+  },
+  typechain: {
+    outDir: "libs/evm/src",
+    target: "ethers-v6",
+    alwaysGenerateOverloads: true,
   },
 };
 
