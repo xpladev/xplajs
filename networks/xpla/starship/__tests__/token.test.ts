@@ -219,11 +219,13 @@ describe('Token transfers', () => {
     // Wait for transaction to be confirmed
     try {
       await resp.wait();
+      console.log('IBC transfer transaction confirmed');
     } catch (err) {
-      console.log(err);
+      console.log('IBC transfer error:', err);
+      throw err;
     }
 
-    await sleep(30000);
+    await sleep(5000);
 
     const { balances } = await getAllBalances(await cosmosRpcEndpoint(), {
       address: cosmosAddress,
