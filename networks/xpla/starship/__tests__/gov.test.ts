@@ -3,7 +3,7 @@
 import './setup.test';
 
 import { Asset } from '@chain-registry/types';
-import { AminoSigner, DirectSigner, ICosmosQueryClient, createCosmosQueryClient } from '@interchainjs/cosmos';
+import { AminoSigner, DirectSigner, createCosmosQueryClient } from '@interchainjs/cosmos';
 import {
   toConverters,
   toEncoders,
@@ -29,7 +29,7 @@ import { BigNumber } from 'bignumber.js';
 import { useChain } from 'starshipjs';
 
 import { EthSecp256k1HDWallet } from '../../src/wallets/ethSecp256k1hd';
-import { createCosmosEvmSignerConfig, DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '../../src/signers/config';
+import { DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '../../src/signers/config';
 import { OfflineAminoSigner, OfflineDirectSigner } from '@interchainjs/cosmos/signers/types';
 import { getBalance } from "@interchainjs/cosmos-types/cosmos/bank/v1beta1/query.rpc.func";
 import { getProposal, getVote } from "@interchainjs/cosmos-types/cosmos/gov/v1beta1/query.rpc.func";
@@ -37,6 +37,7 @@ import { getValidators } from "@interchainjs/cosmos-types/cosmos/staking/v1beta1
 import { delegate } from "@xpla/xplajs/cosmos/staking/v1beta1/tx.rpc.func";
 import { submitProposal, vote } from "@xpla/xplajs/cosmos/gov/v1beta1/tx.rpc.func";
 import * as bip39 from 'bip39';
+import { getProposals } from '@xpla/xplajs';
 
 
 const hdPath = "m/44'/60'/0'/0/0";
@@ -100,10 +101,10 @@ describe('Governance tests for xpla', () => {
     };
 
     // Merge with DEFAULT_COSMOS_EVM_SIGNER_CONFIG for complete configuration
-    const signerConfig = createCosmosEvmSignerConfig({
+    const signerConfig = {
       ...DEFAULT_COSMOS_EVM_SIGNER_CONFIG,
       ...baseSignerConfig
-    });
+    };
 
     directSigner = new DirectSigner(directOfflineSigner, signerConfig);
     directSigner.addEncoders(toEncoders(MsgDelegate, TextProposal, MsgSubmitProposal, MsgVote));

@@ -9,7 +9,7 @@ import {
   sleep,
 } from '@interchainjs/utils';
 
-import { ICosmosQueryClient, createCosmosQueryClient } from '@interchainjs/cosmos';
+import { createCosmosQueryClient } from '@interchainjs/cosmos';
 import {
   BondStatus,
   bondStatusToJSON,
@@ -19,7 +19,7 @@ import { BigNumber } from 'bignumber.js'; // Using `fromWallet` to construct Sig
 import { useChain } from 'starshipjs';
 
 import { EthSecp256k1HDWallet } from '../../src/wallets/ethSecp256k1hd';
-import { createCosmosEvmSignerConfig, DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '../../src/signers/config';
+import { DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '../../src/signers/config';
 import { getBalance } from "@interchainjs/cosmos-types/cosmos/bank/v1beta1/query.rpc.func";
 import { getValidators, getDelegation } from "@interchainjs/cosmos-types/cosmos/staking/v1beta1/query.rpc.func";
 import { delegate } from "@xpla/xplajs/cosmos/staking/v1beta1/tx.rpc.func";
@@ -52,11 +52,11 @@ describe('Staking tokens testing', () => {
 
     const mnemonic = bip39.generateMnemonic();
 
-    // Use EthSecp256k1HDWallet with Ethereum HD path for Injective compatibility
+    // Use EthSecp256k1HDWallet with Ethereum HD path for XPLA compatibility
     wallet = await EthSecp256k1HDWallet.fromMnemonic(mnemonic, {
       derivations: [{
         prefix: commonPrefix,
-        hdPath: hdPath, // Ethereum-style HD path for Injective
+        hdPath: hdPath, // Ethereum-style HD path for XPLA
       }]
     });
 
@@ -69,7 +69,7 @@ describe('Staking tokens testing', () => {
 
     // Query client is properly configured with all required methods
 
-    // Use Injective-specific signer configuration with proper defaults
+    // Use XPLA-specific signer configuration with proper defaults
     let actualChainId = 'xpla-1'; // default fallback
     try {
       const status = await queryClient.getStatus();
@@ -88,10 +88,10 @@ describe('Staking tokens testing', () => {
 
     // Merge with DEFAULT_COSMOS_EVM_SIGNER_CONFIG for complete configuration
     // Override signature format to use compact format for compatibility
-    const signerConfig = createCosmosEvmSignerConfig({
+    const signerConfig = {
       ...DEFAULT_COSMOS_EVM_SIGNER_CONFIG,
       ...baseSignerConfig
-    });
+    };
 
     directSigner = new DirectSigner(offlineSigner, signerConfig);
     directSigner.addEncoders(toEncoders(MsgDelegate));

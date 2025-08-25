@@ -2,7 +2,7 @@ import './setup.test';
 
 import { ChainInfo } from '@chain-registry/client';
 import { Asset } from '@chain-registry/types';
-import { DirectSigner, ICosmosQueryClient, createCosmosQueryClient } from '@interchainjs/cosmos';
+import { DirectSigner, createCosmosQueryClient } from '@interchainjs/cosmos';
 import { toEncoders } from '@interchainjs/cosmos/utils';
 import { sleep } from '@interchainjs/utils';
 import { MsgSend } from 'interchainjs/cosmos/bank/v1beta1/tx';
@@ -10,7 +10,7 @@ import { MsgTransfer } from '@xpla/xplajs/ibc/applications/transfer/v1/tx';
 import { useChain } from 'starshipjs';
 
 import { EthSecp256k1HDWallet } from '@xpla/xpla/wallets/ethSecp256k1hd';
-import { createCosmosEvmSignerConfig, DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '../../src/signers/config';
+import { DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '../../src/signers/config';
 import { getAllBalances, getBalance } from "@interchainjs/cosmos-types/cosmos/bank/v1beta1/query.rpc.func";
 import { send } from "@xpla/xplajs/cosmos/bank/v1beta1/tx.rpc.func";
 import { transfer } from "@xpla/xplajs/ibc/applications/transfer/v1/tx.rpc.func";
@@ -38,11 +38,11 @@ describe('Token transfers', () => {
 
     const mnemonic = bip39.generateMnemonic();
 
-    // Use EthSecp256k1HDWallet with Ethereum HD path for Xpla compatibility
+    // Use EthSecp256k1HDWallet with Ethereum HD path for XPLA compatibility
     const wallet = await EthSecp256k1HDWallet.fromMnemonic(mnemonic, {
       derivations: [{
         prefix: commonPrefix,
-        hdPath: hdPath, // Ethereum-style HD path for Xpla
+        hdPath: hdPath, // Ethereum-style HD path for XPLA
       }]
     });
     const offlineSigner = await wallet.toOfflineDirectSigner();
@@ -65,11 +65,10 @@ describe('Token transfers', () => {
       addressPrefix: commonPrefix
     };
 
-    // Merge with DEFAULT_COSMOS_EVM_SIGNER_CONFIG for complete configuration
-    const signerConfig = createCosmosEvmSignerConfig({
+    const signerConfig = {
       ...DEFAULT_COSMOS_EVM_SIGNER_CONFIG,
       ...baseSignerConfig
-    });
+    };
 
     directSigner = new DirectSigner(offlineSigner, signerConfig);
     directSigner.addEncoders(toEncoders(MsgSend, MsgTransfer));
@@ -224,7 +223,7 @@ describe('Token transfers', () => {
       console.log(err);
     }
 
-    await sleep(100000);
+    await sleep(30000);
 
     const { balances } = await getAllBalances(await cosmosRpcEndpoint(), {
       address: cosmosAddress,

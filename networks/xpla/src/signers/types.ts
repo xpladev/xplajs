@@ -36,7 +36,7 @@ import {
     sequence?: bigint;
     /** Signer address */
     signerAddress?: string;
-    /** Address prefix (default: 'inj') */
+    /** Address prefix (default: 'xpla') */
     addressPrefix?: string;
     /** Message hashing configuration */
     message?: {
