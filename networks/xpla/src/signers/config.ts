@@ -2,6 +2,7 @@ import { PRESET_COSMOS_EVM_SIGNATURE_FORMATS } from './signature-processor';
 import deepmerge from 'deepmerge';
 import { CosmosCryptoSecp256k1PubKey as Secp256k1PubKey } from '@interchainjs/cosmos-types';
 import { EncodedMessage, DocOptions, CosmosSignerConfig } from '@interchainjs/cosmos';
+import Decimal from 'decimal.js';
 
 /**
  * Encode public key for CosmosEvm
@@ -22,8 +23,11 @@ export const encodeCosmosEvmPublicKey = (publicKey: Uint8Array): EncodedMessage 
  */
 export const DEFAULT_COSMOS_EVM_SIGNER_CONFIG: Partial<DocOptions> = {
   // FeeOptions - Gas and fee calculation defaults for CosmosEvm
-  multiplier: 1.5, // Higher gas multiplier for CosmosEvm due to EVM compatibility
-  gasPrice: 'average', // Use average gas price from network
+  multiplier: 1.3, // Higher gas multiplier for CosmosEvm due to EVM compatibility
+  gasPrice: {
+    amount: new Decimal("280000000000"),
+    denom: "axpla"
+  }, // Use average gas price from network
 
   // SignOptions - CosmosEvm-specific signing and address defaults
   addressPrefix: 'xpla', // xpla address prefix
