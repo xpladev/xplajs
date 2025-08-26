@@ -140,7 +140,7 @@ export function resolveCosmosEvmSignatureFormat(
       if (defaultFn) {
         return resolveCosmosEvmSignatureFormat(defaultFn);
       } else {
-        throw new Error(`Unknown COSMOS_EVM signature format: ${formatFn}`);
+        throw new Error(`Unknown CosmosEvm signature format: ${formatFn}`);
       }
     }
     return PRESET_COSMOS_EVM_SIGNATURE_FORMATS[formatFn];
@@ -166,8 +166,8 @@ export class CosmosEvmSignatureProcessor {
   ): Uint8Array {
     // First try to resolve as CosmosEvm-specific format
     if (typeof format === 'string' && PRESET_COSMOS_EVM_SIGNATURE_FORMATS[format]) {
-      const evmFormatFn = resolveCosmosEvmSignatureFormat(format, 'compact');
-      return evmFormatFn ? evmFormatFn(signature) : signature;
+      const cosmosEvmFormatFn = resolveCosmosEvmSignatureFormat(format, 'compact');
+      return cosmosEvmFormatFn ? cosmosEvmFormatFn(signature) : signature;
     }
 
     // Fall back to generic signature format resolution
@@ -250,5 +250,3 @@ export class EthSecp256k1Signature {
  * Represents the Key class mentioned in the original requirements
  */
 export type Key = BaseCryptoBytes;
-
-

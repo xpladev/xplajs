@@ -4,9 +4,8 @@ import { Secp256k1HDWallet } from '@interchainjs/cosmos/wallets/secp256k1hd';
 import * as bip39 from 'bip39';
 import { PrivateKey, registerAddressStrategy } from '@interchainjs/auth';
 import { createCosmosEvmConfig } from '../auth/config';
-import { COSMOS_EVM_ADDRESS_STRATEGY } from '../auth/strategy';
 import deepmerge from 'deepmerge';
-import { ETHEREUM_ADDRESS_STRATEGY } from '@interchainjs/ethereum';
+import { COSMOS_EVM_ADDRESS_STRATEGY } from '../auth/strategy';
 
 // Register the cosmos evm address strategy
 registerAddressStrategy(COSMOS_EVM_ADDRESS_STRATEGY);

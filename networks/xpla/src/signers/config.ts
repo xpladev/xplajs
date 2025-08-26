@@ -1,8 +1,7 @@
 import { PRESET_COSMOS_EVM_SIGNATURE_FORMATS } from './signature-processor';
-import { CosmosEvmDocOptions, CosmosEvmSignerConfig } from './types';
 import deepmerge from 'deepmerge';
-import { PubKey as Secp256k1PubKey } from '@interchainjs/cosmos-types/cosmos/crypto/secp256k1/keys';
-import { EncodedMessage } from '@interchainjs/cosmos/signers/types';
+import { CosmosCryptoSecp256k1PubKey as Secp256k1PubKey } from '@interchainjs/cosmos-types';
+import { EncodedMessage, DocOptions, CosmosSignerConfig } from '@interchainjs/cosmos';
 
 /**
  * Encode public key for CosmosEvm
@@ -21,13 +20,13 @@ export const encodeCosmosEvmPublicKey = (publicKey: Uint8Array): EncodedMessage 
  * Default configuration for CosmosEvm signers
  * Provides CosmosEvm-specific defaults for fee calculation, signing options, and transaction options
  */
-export const DEFAULT_COSMOS_EVM_SIGNER_CONFIG: Partial<CosmosEvmDocOptions> = {
+export const DEFAULT_COSMOS_EVM_SIGNER_CONFIG: Partial<DocOptions> = {
   // FeeOptions - Gas and fee calculation defaults for CosmosEvm
-  multiplier: 1.5, // Higher gas multiplier for CosmosEvm due to COSMOS_EVM compatibility
+  multiplier: 1.5, // Higher gas multiplier for CosmosEvm due to EVM compatibility
   gasPrice: 'average', // Use average gas price from network
 
   // SignOptions - CosmosEvm-specific signing and address defaults
-  addressPrefix: 'xpla', // CosmosEvm address prefix
+  addressPrefix: 'xpla', // xpla address prefix
   message: {
     hash: 'keccak256' // CosmosEvm uses keccak256 for Ethereum compatibility
   },
@@ -51,7 +50,7 @@ export const DEFAULT_COSMOS_EVM_SIGNER_CONFIG: Partial<CosmosEvmDocOptions> = {
  * @param userConfig - User-provided configuration (must include required EndpointOptions)
  * @returns Complete CosmosSignerConfig with CosmosEvm defaults applied
  */
-export function createCosmosEvmSignerConfig(userConfig: CosmosEvmSignerConfig): CosmosEvmSignerConfig {
+export function createCosmosEvmSignerConfig(userConfig: CosmosSignerConfig): CosmosSignerConfig {
   // Ensure required EndpointOptions are present
   if (!userConfig.queryClient) {
     throw new Error('queryClient is required in signer configuration');
@@ -65,7 +64,7 @@ export function createCosmosEvmSignerConfig(userConfig: CosmosEvmSignerConfig): 
     arrayMerge: (_destinationArray, sourceArray) => sourceArray,
     // Clone to avoid mutations
     clone: true
-  }) as CosmosEvmSignerConfig;
+  }) as CosmosSignerConfig;
 
   mergedConfig.queryClient = queryClient;
 
@@ -80,11 +79,11 @@ export function createCosmosEvmSignerConfig(userConfig: CosmosEvmSignerConfig): 
  * @returns Merged configuration for the operation
  */
 export function mergeCosmosEvmSignerOptions(
-  baseConfig: CosmosEvmSignerConfig,
-  operationOptions: Partial<CosmosEvmDocOptions> = {}
-): CosmosEvmDocOptions {
+  baseConfig: CosmosSignerConfig,
+  operationOptions: Partial<DocOptions> = {}
+): DocOptions {
   return deepmerge(baseConfig, operationOptions, {
     arrayMerge: (_destinationArray, sourceArray) => sourceArray,
     clone: true
-  }) as CosmosEvmDocOptions;
+  }) as DocOptions;
 }

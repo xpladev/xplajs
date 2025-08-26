@@ -1683,17 +1683,30 @@
     "@interchainjs/math" "1.13.0"
     "@interchainjs/utils" "1.13.0"
 
-"@interchainjs/auth@1.13.0", "@interchainjs/auth@^1.13.0":
-  version "1.13.0"
-  resolved "https://registry.npmjs.org/@interchainjs/auth/-/auth-1.13.0.tgz"
-  integrity sha512-GEGtz9mcjXRCyiej01LWFTZGyQ7g1XeQ/TJDNmZozOjgHhG+uE/FHQE2KN0HTL5A9p8VEkrJKaLgckKQslSgZA==
+"@interchainjs/amino@1.17.2":
+  version "1.17.2"
+  resolved "https://registry.yarnpkg.com/@interchainjs/amino/-/amino-1.17.2.tgz#b920c028773ecd97490ee85dcf6cb7d21a31578c"
+  integrity sha512-bTzs0wusSd9kqNQz+udiskkJClyHl8sz0VPBoddQVDxMRGP28XD9BDNQTcvW0sxarzBfCsDxJIhG2zDouZJYNA==
   dependencies:
-    "@interchainjs/crypto" "1.13.0"
-    "@interchainjs/types" "1.13.0"
-    "@interchainjs/utils" "1.13.0"
+    "@interchainjs/crypto" "1.17.2"
+    "@interchainjs/encoding" "1.17.2"
+    "@interchainjs/math" "1.17.2"
+    "@interchainjs/utils" "1.17.2"
+
+"@interchainjs/auth@1.17.2":
+  version "1.17.2"
+  resolved "https://registry.yarnpkg.com/@interchainjs/auth/-/auth-1.17.2.tgz#908c7da132aa35e7c909864abdb4109fc60d88a4"
+  integrity sha512-YTRVj4YMVT+nn6IGhNkIkYQJBNApO603X/7aNXITR+qZZF4wz8ij9f7lAqlIVHZrKDisey6gMHQ4yxsZvrMODg==
+  dependencies:
+    "@interchainjs/crypto" "1.17.2"
+    "@interchainjs/types" "1.17.2"
+    "@interchainjs/utils" "1.17.2"
     "@noble/curves" "^1.1.0"
     "@noble/hashes" "^1.3.1"
     "@scure/bip32" "^1.0.10"
+    bech32 "^2.0.0"
+    elliptic "^6.5.4"
+    libsodium-wrappers-sumo "^0.7.11"
 
 "@interchainjs/cosmos-types@1.13.0", "@interchainjs/cosmos-types@^1.13.0":
   version "1.13.0"
@@ -1704,7 +1717,36 @@
     "@interchainjs/types" "1.13.0"
     "@interchainjs/utils" "1.13.0"
 
-"@interchainjs/cosmos@1.13.0", "@interchainjs/cosmos@^1.13.0":
+"@interchainjs/cosmos-types@1.17.2":
+  version "1.17.2"
+  resolved "https://registry.yarnpkg.com/@interchainjs/cosmos-types/-/cosmos-types-1.17.2.tgz#b68f7a30ecf51bddd7cbfe0e359cb867852757e2"
+  integrity sha512-rEK2Gx6OA+VBswuZi9jHtYZ/7pewbk9IiB9VAw3085BEURWlfejRAsEKb/Ck3R4aOuvoqquROYr07OFR+rEY1Q==
+  dependencies:
+    "@interchainjs/math" "1.17.2"
+    "@interchainjs/types" "1.17.2"
+    "@interchainjs/utils" "1.17.2"
+
+"@interchainjs/cosmos@1.17.2":
+  version "1.17.2"
+  resolved "https://registry.yarnpkg.com/@interchainjs/cosmos/-/cosmos-1.17.2.tgz#cfbb36f9a88951f1f1ae8092836c85cb667c48d6"
+  integrity sha512-vgTEiipJlFlMgh3/4lL7nSAoiBu/SLn7lggAIEI5cIYjstppt6YRY9QO3EY0gcS4uGZEgr4hsoDN7/sPRgJGxA==
+  dependencies:
+    "@interchainjs/auth" "1.17.2"
+    "@interchainjs/cosmos-types" "1.17.2"
+    "@interchainjs/crypto" "1.17.2"
+    "@interchainjs/encoding" "1.17.2"
+    "@interchainjs/types" "1.17.2"
+    "@interchainjs/utils" "1.17.2"
+    "@noble/curves" "^1.1.0"
+    "@noble/hashes" "^1.3.1"
+    bech32 "^1.1.4"
+    bignumber.js "^9.1.0"
+    bip39 "^3.1.0"
+    decimal.js "^10.4.3"
+    deepmerge "4.2.2"
+    ws "^8.14.0"
+
+"@interchainjs/cosmos@^1.13.0":
   version "1.13.0"
   resolved "https://registry.npmjs.org/@interchainjs/cosmos/-/cosmos-1.13.0.tgz"
   integrity sha512-LpBsM0vvtssWgPNyq280+vvX7PVRa+ML1MGjeRf74ohHTihgj3SYBjy0FCKV5cq5XdWIs/Y5QL1mzUWopETeDw==
@@ -1732,6 +1774,19 @@
     elliptic "^6.5.4"
     libsodium-wrappers-sumo "^0.7.11"
 
+"@interchainjs/crypto@1.17.2":
+  version "1.17.2"
+  resolved "https://registry.yarnpkg.com/@interchainjs/crypto/-/crypto-1.17.2.tgz#a43ba58a4de66236b14ed0167dc36d1ba77a9432"
+  integrity sha512-1P1ifj74SpcrjenULchGesWGHXJ8sMqccuNxSUu+Rmly5Oo8GLB9RAQzu1sJDqkLLCPchiREUeNJL7E0jlVUwg==
+  dependencies:
+    "@interchainjs/encoding" "1.17.2"
+    "@interchainjs/math" "1.17.2"
+    "@interchainjs/utils" "1.17.2"
+    "@noble/hashes" "^1"
+    bn.js "^5.2.0"
+    elliptic "^6.5.4"
+    libsodium-wrappers-sumo "^0.7.11"
+
 "@interchainjs/encoding@1.13.0", "@interchainjs/encoding@^1.13.0":
   version "1.13.0"
   resolved "https://registry.npmjs.org/@interchainjs/encoding/-/encoding-1.13.0.tgz"
@@ -1742,18 +1797,29 @@
     bech32 "^1.1.4"
     readonly-date "^1.0.0"
 
-"@interchainjs/ethereum@1.13.0", "@interchainjs/ethereum@^1.13.0":
-  version "1.13.0"
-  resolved "https://registry.npmjs.org/@interchainjs/ethereum/-/ethereum-1.13.0.tgz"
-  integrity sha512-T+5A7dtyParm3fnWo07cCJ63wXwLDOfIKl6EGmeD+sJ9XCliYaSe9gkPP3vqLS4+MxqHqLv9MoVTS4/Y3jxjzg==
+"@interchainjs/encoding@1.17.2":
+  version "1.17.2"
+  resolved "https://registry.yarnpkg.com/@interchainjs/encoding/-/encoding-1.17.2.tgz#f324cec26d8f31ec95b9826eec733c99d5f83bfc"
+  integrity sha512-8/f5z8ncGwMcWATmJf2YL30rg4V+5eQMbdbu5o8uEMQeL+GccUIn+VZ3a6aD1+5jQXFoOQitchEo8dN/ORJjww==
+  dependencies:
+    "@interchainjs/math" "1.17.2"
+    base64-js "^1.3.0"
+    bech32 "^1.1.4"
+    readonly-date "^1.0.0"
+
+"@interchainjs/ethereum@1.17.2":
+  version "1.17.2"
+  resolved "https://registry.yarnpkg.com/@interchainjs/ethereum/-/ethereum-1.17.2.tgz#c52070b46477780cc0ec8ddaf0affcd98a466581"
+  integrity sha512-jT7yQUkDZiLxh6hjil2u70fmFG2oTd2Xy8v4vXRhjw6ny8LXyCOapvcM8XbY+Y0Mlwo8vAKzaUrcokUZyCylTQ==
   dependencies:
     "@ethersproject/bignumber" "^5.7.0"
     "@ethersproject/bytes" "^5.7.0"
     "@ethersproject/hash" "^5.7.0"
     "@ethersproject/transactions" "^5.7.0"
-    "@interchainjs/auth" "1.13.0"
-    "@interchainjs/types" "1.13.0"
-    "@interchainjs/utils" "1.13.0"
+    "@interchainjs/auth" "1.17.2"
+    "@interchainjs/types" "1.17.2"
+    "@interchainjs/utils" "1.17.2"
+    "@noble/curves" "^1.1.0"
     "@noble/hashes" "^1.3.1"
     bip39 "^3.1.0"
     deepmerge "4.2.2"
@@ -1767,7 +1833,25 @@
   dependencies:
     bn.js "^5.2.0"
 
-"@interchainjs/pubkey@1.13.0", "@interchainjs/pubkey@^1.13.0":
+"@interchainjs/math@1.17.2":
+  version "1.17.2"
+  resolved "https://registry.yarnpkg.com/@interchainjs/math/-/math-1.17.2.tgz#5c0875cbb8ab922dbf03fde96949ab030bdc953d"
+  integrity sha512-kQwXPGZANw1MvZ5V+xOAqJSPWrCEVN1zxex7NJ9Rryyv3IsGXy4PBqUKewMAEB5VZEcKC9RwAqV/RyHAvj9YpQ==
+  dependencies:
+    bn.js "^5.2.0"
+
+"@interchainjs/pubkey@1.17.2":
+  version "1.17.2"
+  resolved "https://registry.yarnpkg.com/@interchainjs/pubkey/-/pubkey-1.17.2.tgz#46fbc881a1266d7b6fe61326e23f2b8070bd9243"
+  integrity sha512-7kwxoNB8oWkkPrTaPWcafh987Vbjg/YpBg/QuKWnmaf66xqNLD3u2Z5Ptp7VZsmuZbhsYuQf0vwEpPqWC/d7og==
+  dependencies:
+    "@interchainjs/amino" "1.17.2"
+    "@interchainjs/cosmos-types" "1.17.2"
+    "@interchainjs/encoding" "1.17.2"
+    "@interchainjs/math" "1.17.2"
+    "@interchainjs/types" "1.17.2"
+
+"@interchainjs/pubkey@^1.13.0":
   version "1.13.0"
   resolved "https://registry.npmjs.org/@interchainjs/pubkey/-/pubkey-1.13.0.tgz"
   integrity sha512-QPphTwjqsrXMVLzyY1ItDwuwKtDGAwJsteWMmMq8xoiMyMyQX8RhfbeRXYAMxTVbuj2bSUu64iqcLvj5OaUy/g==
@@ -1785,12 +1869,28 @@
   dependencies:
     decimal.js "^10.4.3"
 
+"@interchainjs/types@1.17.2":
+  version "1.17.2"
+  resolved "https://registry.yarnpkg.com/@interchainjs/types/-/types-1.17.2.tgz#849651c64046cf047bed88911be6f62db1bc5feb"
+  integrity sha512-EUs7Ix01yNB6Xt+B767P2+cCBJBov9Z4XNRhBTqYpBTuv7IoWQhLb0Hm7VQdBR5H0jC/ohz2hIsMiV8LA+OTUQ==
+  dependencies:
+    decimal.js "^10.4.3"
+
 "@interchainjs/utils@1.13.0", "@interchainjs/utils@^1.13.0":
   version "1.13.0"
   resolved "https://registry.npmjs.org/@interchainjs/utils/-/utils-1.13.0.tgz"
   integrity sha512-BiFNUMYl89XBmvhyGYeiieCGA4VvU1P/LXXGDCfmsuQ4DYcE5nhWp2RiUvcu26pd4JI8LKou/hmEps1pTD/dCQ==
   dependencies:
     "@interchainjs/types" "1.13.0"
+    bech32 "^2.0.0"
+    decimal.js "^10.4.3"
+
+"@interchainjs/utils@1.17.2":
+  version "1.17.2"
+  resolved "https://registry.yarnpkg.com/@interchainjs/utils/-/utils-1.17.2.tgz#fe4ad72fd3580c3abb1bfbe40f3aaa6407a1eaa9"
+  integrity sha512-Z/F7O2kRMyit7gu+W/TpCvL/T2uGFD34IpqhMgmEj0vVD7SPObHppS9DYV/OdJTdgCfe6Azcdjvtl08v0c+kSA==
+  dependencies:
+    "@interchainjs/types" "1.17.2"
     bech32 "^2.0.0"
     decimal.js "^10.4.3"
 
@@ -3360,6 +3460,11 @@ bignumber.js@9.1.2:
   version "9.1.2"
   resolved "https://registry.npmjs.org/bignumber.js/-/bignumber.js-9.1.2.tgz"
   integrity sha512-2/mKyZH9K85bzOEfhXDBFZTGd1CTs+5IHpeFQo9luiBG7hghdC851Pj2WAhb6E3R6b9tZj/XKhbg4fum+Kepug==
+
+bignumber.js@^9.1.0:
+  version "9.3.1"
+  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-9.3.1.tgz#759c5aaddf2ffdc4f154f7b493e1c8770f88c4d7"
+  integrity sha512-Ko0uX15oIUS7wJ3Rb30Fs6SkVbLmPBAKdlm7q9+ak9bbIeFf0MwuBsQV6z7+X768/cHsfg+WlysDWJcmthjsjQ==
 
 bin-links@^4.0.1:
   version "4.0.4"
@@ -5248,19 +5353,20 @@ inquirerer@^1.9.0:
     js-yaml "^4.1.0"
     minimist "^1.2.8"
 
-interchainjs@^1.13.0:
-  version "1.13.0"
-  resolved "https://registry.npmjs.org/interchainjs/-/interchainjs-1.13.0.tgz"
-  integrity sha512-GjoF26B2uY6uEEs+JhuSBc8G+VsxX3QBzJNvzXsjxeC6EybMloZeo5jB/V5nNqtXsJ9Jaz9bIImjOM4lL5Oe2A==
+interchainjs@1.17.2:
+  version "1.17.2"
+  resolved "https://registry.yarnpkg.com/interchainjs/-/interchainjs-1.17.2.tgz#6fbf38240424b8776a9d3325434035b4d8e557ca"
+  integrity sha512-YT/n6aLZ5kTCNONtCrh63QvP1svH1lC54WoSCVHmYvxwB5ZfvWFHszVfvRES1IrsyttnbY3fikt7AYnLg8bAMA==
   dependencies:
-    "@interchainjs/cosmos" "1.13.0"
-    "@interchainjs/cosmos-types" "1.13.0"
-    "@interchainjs/encoding" "1.13.0"
-    "@interchainjs/ethereum" "1.13.0"
-    "@interchainjs/math" "1.13.0"
-    "@interchainjs/pubkey" "1.13.0"
-    "@interchainjs/types" "1.13.0"
-    "@interchainjs/utils" "1.13.0"
+    "@interchainjs/cosmos" "1.17.2"
+    "@interchainjs/cosmos-types" "1.17.2"
+    "@interchainjs/crypto" "1.17.2"
+    "@interchainjs/encoding" "1.17.2"
+    "@interchainjs/ethereum" "1.17.2"
+    "@interchainjs/math" "1.17.2"
+    "@interchainjs/pubkey" "1.17.2"
+    "@interchainjs/types" "1.17.2"
+    "@interchainjs/utils" "1.17.2"
     "@noble/hashes" "^1.3.1"
     decimal.js "^10.4.3"
 
@@ -8842,6 +8948,11 @@ ws@^7:
   version "7.5.10"
   resolved "https://registry.npmjs.org/ws/-/ws-7.5.10.tgz"
   integrity sha512-+dbF1tHwZpXcbOJdVOkzLDxZP1ailvSxM6ZweXTegylPny803bFhA+vqBYw4s31NSAk4S2Qz+AKXK9a4wkdjcQ==
+
+ws@^8.14.0:
+  version "8.18.3"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-8.18.3.tgz#b56b88abffde62791c639170400c93dcb0c95472"
+  integrity sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==
 
 xstream@^11.14.0:
   version "11.14.0"
