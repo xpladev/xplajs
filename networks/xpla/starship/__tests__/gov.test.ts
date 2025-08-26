@@ -17,10 +17,6 @@ import {
   VoteOption,
 } from 'interchainjs/cosmos/gov/v1beta1/gov';
 import {
-  MsgSubmitProposal,
-  MsgVote,
-} from 'interchainjs/cosmos/gov/v1beta1/tx';
-import {
   BondStatus,
   bondStatusToJSON,
 } from 'interchainjs/cosmos/staking/v1beta1/staking';
@@ -28,16 +24,10 @@ import { MsgDelegate } from 'interchainjs/cosmos/staking/v1beta1/tx';
 import { BigNumber } from 'bignumber.js';
 import { useChain } from 'starshipjs';
 
-import { EthSecp256k1HDWallet } from '../../src/wallets/ethSecp256k1hd';
-import { DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '../../src/signers/config';
-import { OfflineAminoSigner, OfflineDirectSigner } from '@interchainjs/cosmos/signers/types';
-import { getBalance } from "@interchainjs/cosmos-types/cosmos/bank/v1beta1/query.rpc.func";
-import { getProposal, getVote } from "@interchainjs/cosmos-types/cosmos/gov/v1beta1/query.rpc.func";
-import { getValidators } from "@interchainjs/cosmos-types/cosmos/staking/v1beta1/query.rpc.func";
-import { delegate } from "@xpla/xplajs/cosmos/staking/v1beta1/tx.rpc.func";
-import { submitProposal, vote } from "@xpla/xplajs/cosmos/gov/v1beta1/tx.rpc.func";
+import { EthSecp256k1HDWallet, DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '@xpla/xpla';
+import { OfflineAminoSigner, OfflineDirectSigner } from '@interchainjs/cosmos';
+import { getBalance, getProposal, getVote, getValidators, delegate, submitProposal, vote, MsgSubmitProposal, MsgVote } from "@xpla/xplajs";
 import * as bip39 from 'bip39';
-import { getProposals } from '@xpla/xplajs';
 
 
 const hdPath = "m/44'/60'/0'/0/0";
@@ -262,10 +252,12 @@ describe('Governance tests for xpla', () => {
           denom: denom,
         },
       ],
-      content: {
-        typeUrl: '/cosmos.gov.v1beta1.TextProposal',
-        value: TextProposal.encode(contentMsg).finish(),
-      },
+      messages: [
+        {
+          typeUrl: '/cosmos.gov.v1beta1.TextProposal',
+          value: TextProposal.encode(contentMsg).finish(),
+        },
+      ],
     });
 
     const fee = {
@@ -304,7 +296,7 @@ describe('Governance tests for xpla', () => {
       proposalId: BigInt(proposalId),
     });
 
-    expect(result.proposal.proposalId.toString()).toEqual(proposalId);
+    expect(result.proposal.id.toString()).toEqual(proposalId);
   }, 200000);
 
   it('vote on proposal using direct', async () => {

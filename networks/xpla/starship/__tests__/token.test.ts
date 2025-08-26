@@ -5,15 +5,10 @@ import { Asset } from '@chain-registry/types';
 import { DirectSigner, createCosmosQueryClient } from '@interchainjs/cosmos';
 import { toEncoders } from '@interchainjs/cosmos/utils';
 import { sleep } from '@interchainjs/utils';
-import { MsgSend } from 'interchainjs/cosmos/bank/v1beta1/tx';
-import { MsgTransfer } from '@xpla/xplajs/ibc/applications/transfer/v1/tx';
 import { useChain } from 'starshipjs';
 
-import { EthSecp256k1HDWallet } from '@xpla/xpla/wallets/ethSecp256k1hd';
-import { DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '../../src/signers/config';
-import { getAllBalances, getBalance } from "@interchainjs/cosmos-types/cosmos/bank/v1beta1/query.rpc.func";
-import { send } from "@xpla/xplajs/cosmos/bank/v1beta1/tx.rpc.func";
-import { transfer } from "@xpla/xplajs/ibc/applications/transfer/v1/tx.rpc.func";
+import { EthSecp256k1HDWallet, DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '@xpla/xpla';
+import { getAllBalances, getBalance, send, transfer, MsgSend, MsgTransfer } from "@xpla/xplajs";
 import * as bip39 from 'bip39';
 
 const hdPath = "m/44'/60'/0'/0/0";

@@ -4,7 +4,6 @@ import './setup.test';
 
 import { Asset } from '@chain-registry/types';
 import { DirectSigner, AminoSigner } from '@interchainjs/cosmos';
-import { toEncoders, toConverters } from '@interchainjs/cosmos/utils';
 import {
   sleep,
 } from '@interchainjs/utils';
@@ -14,15 +13,11 @@ import {
   BondStatus,
   bondStatusToJSON,
 } from 'interchainjs/cosmos/staking/v1beta1/staking';
-import { MsgDelegate } from 'interchainjs/cosmos/staking/v1beta1/tx';
 import { BigNumber } from 'bignumber.js'; // Using `fromWallet` to construct Signer
 import { useChain } from 'starshipjs';
 
-import { EthSecp256k1HDWallet } from '../../src/wallets/ethSecp256k1hd';
-import { DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '../../src/signers/config';
-import { getBalance } from "@interchainjs/cosmos-types/cosmos/bank/v1beta1/query.rpc.func";
-import { getValidators, getDelegation } from "@interchainjs/cosmos-types/cosmos/staking/v1beta1/query.rpc.func";
-import { delegate } from "@xpla/xplajs/cosmos/staking/v1beta1/tx.rpc.func";
+import { EthSecp256k1HDWallet, DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '@xpla/xpla';
+import { getBalance, delegate, getValidators, getDelegation, MsgDelegate } from "@xpla/xplajs";
 import * as bip39 from 'bip39';
 
 const hdPath = "m/44'/60'/0'/0/0";
@@ -94,12 +89,9 @@ describe('Staking tokens testing', () => {
     };
 
     directSigner = new DirectSigner(offlineSigner, signerConfig);
-    directSigner.addEncoders(toEncoders(MsgDelegate));
 
     // Also create amino signer as backup
     aminoSigner = new AminoSigner(offlineSigner, signerConfig);
-    aminoSigner.addEncoders(toEncoders(MsgDelegate));
-    aminoSigner.addConverters(toConverters(MsgDelegate));
     const addresses = await offlineSigner.getAccounts();
     address = addresses[0].address;
 
