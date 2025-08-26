@@ -4,6 +4,7 @@ module.exports = {
   maxWorkers: 1,
   preset: 'ts-jest',
   testEnvironment: 'node',
+  testSequencer: '<rootDir>/testSequencer.js',
   transform: {
     '^.+\\.tsx?$': [
       'ts-jest',
