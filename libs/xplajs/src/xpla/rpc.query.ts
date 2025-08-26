@@ -9,17 +9,11 @@ export const createRPCQueryClient = async ({
   const client = new QueryClient(tmClient);
   return {
     cosmos: {
-      app: {
-        v1alpha1: (await import("../cosmos/app/v1alpha1/query.rpc.Query")).createRpcQueryExtension(client)
-      },
       auth: {
         v1beta1: (await import("../cosmos/auth/v1beta1/query.rpc.Query")).createRpcQueryExtension(client)
       },
       authz: {
         v1beta1: (await import("../cosmos/authz/v1beta1/query.rpc.Query")).createRpcQueryExtension(client)
-      },
-      autocli: {
-        v1: (await import("../cosmos/autocli/v1/query.rpc.Query")).createRpcQueryExtension(client)
       },
       bank: {
         v1beta1: (await import("../cosmos/bank/v1beta1/query.rpc.Query")).createRpcQueryExtension(client)
@@ -59,9 +53,6 @@ export const createRPCQueryClient = async ({
       mint: {
         v1beta1: (await import("../cosmos/mint/v1beta1/query.rpc.Query")).createRpcQueryExtension(client)
       },
-      params: {
-        v1beta1: (await import("../cosmos/params/v1beta1/query.rpc.Query")).createRpcQueryExtension(client)
-      },
       slashing: {
         v1beta1: (await import("../cosmos/slashing/v1beta1/query.rpc.Query")).createRpcQueryExtension(client)
       },
@@ -73,6 +64,36 @@ export const createRPCQueryClient = async ({
       },
       upgrade: {
         v1beta1: (await import("../cosmos/upgrade/v1beta1/query.rpc.Query")).createRpcQueryExtension(client)
+      }
+    },
+    cosmwasm: {
+      wasm: {
+        v1: (await import("../cosmwasm/wasm/v1/query.rpc.Query")).createRpcQueryExtension(client)
+      }
+    },
+    ibc: {
+      applications: {
+        interchain_accounts: {
+          host: {
+            v1: (await import("../ibc/applications/interchain_accounts/host/v1/query.rpc.Query")).createRpcQueryExtension(client)
+          }
+        },
+        transfer: {
+          v1: (await import("../ibc/applications/transfer/v1/query.rpc.Query")).createRpcQueryExtension(client)
+        }
+      },
+      core: {
+        channel: {
+          v1: (await import("../ibc/core/channel/v1/query.rpc.Query")).createRpcQueryExtension(client),
+          v2: (await import("../ibc/core/channel/v2/query.rpc.Query")).createRpcQueryExtension(client)
+        },
+        client: {
+          v1: (await import("../ibc/core/client/v1/query.rpc.Query")).createRpcQueryExtension(client),
+          v2: (await import("../ibc/core/client/v2/query.rpc.Query")).createRpcQueryExtension(client)
+        },
+        connection: {
+          v1: (await import("../ibc/core/connection/v1/query.rpc.Query")).createRpcQueryExtension(client)
+        }
       }
     },
     xpla: {

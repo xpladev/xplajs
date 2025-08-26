@@ -81,11 +81,6 @@ export const createLCDClient = async ({
           requestClient
         })
       },
-      params: {
-        v1beta1: new (await import("../cosmos/params/v1beta1/query.lcd")).LCDQueryClient({
-          requestClient
-        })
-      },
       slashing: {
         v1beta1: new (await import("../cosmos/slashing/v1beta1/query.lcd")).LCDQueryClient({
           requestClient
@@ -105,6 +100,52 @@ export const createLCDClient = async ({
         v1beta1: new (await import("../cosmos/upgrade/v1beta1/query.lcd")).LCDQueryClient({
           requestClient
         })
+      }
+    },
+    cosmwasm: {
+      wasm: {
+        v1: new (await import("../cosmwasm/wasm/v1/query.lcd")).LCDQueryClient({
+          requestClient
+        })
+      }
+    },
+    ibc: {
+      applications: {
+        interchain_accounts: {
+          host: {
+            v1: new (await import("../ibc/applications/interchain_accounts/host/v1/query.lcd")).LCDQueryClient({
+              requestClient
+            })
+          }
+        },
+        transfer: {
+          v1: new (await import("../ibc/applications/transfer/v1/query.lcd")).LCDQueryClient({
+            requestClient
+          })
+        }
+      },
+      core: {
+        channel: {
+          v1: new (await import("../ibc/core/channel/v1/query.lcd")).LCDQueryClient({
+            requestClient
+          }),
+          v2: new (await import("../ibc/core/channel/v2/query.lcd")).LCDQueryClient({
+            requestClient
+          })
+        },
+        client: {
+          v1: new (await import("../ibc/core/client/v1/query.lcd")).LCDQueryClient({
+            requestClient
+          }),
+          v2: new (await import("../ibc/core/client/v2/query.lcd")).LCDQueryClient({
+            requestClient
+          })
+        },
+        connection: {
+          v1: new (await import("../ibc/core/connection/v1/query.lcd")).LCDQueryClient({
+            requestClient
+          })
+        }
       }
     },
     xpla: {

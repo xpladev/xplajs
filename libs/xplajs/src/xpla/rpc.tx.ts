@@ -51,6 +51,36 @@ export const createRPCMsgClient = async ({
       v1beta1: new (await import("../cosmos/upgrade/v1beta1/tx.rpc.msg")).MsgClientImpl(rpc)
     }
   },
+  cosmwasm: {
+    wasm: {
+      v1: new (await import("../cosmwasm/wasm/v1/tx.rpc.msg")).MsgClientImpl(rpc)
+    }
+  },
+  ibc: {
+    applications: {
+      interchain_accounts: {
+        host: {
+          v1: new (await import("../ibc/applications/interchain_accounts/host/v1/tx.rpc.msg")).MsgClientImpl(rpc)
+        }
+      },
+      transfer: {
+        v1: new (await import("../ibc/applications/transfer/v1/tx.rpc.msg")).MsgClientImpl(rpc)
+      }
+    },
+    core: {
+      channel: {
+        v1: new (await import("../ibc/core/channel/v1/tx.rpc.msg")).MsgClientImpl(rpc),
+        v2: new (await import("../ibc/core/channel/v2/tx.rpc.msg")).MsgClientImpl(rpc)
+      },
+      client: {
+        v1: new (await import("../ibc/core/client/v1/tx.rpc.msg")).MsgClientImpl(rpc),
+        v2: new (await import("../ibc/core/client/v2/tx.rpc.msg")).MsgClientImpl(rpc)
+      },
+      connection: {
+        v1: new (await import("../ibc/core/connection/v1/tx.rpc.msg")).MsgClientImpl(rpc)
+      }
+    }
+  },
   xpla: {
     burn: {
       v1beta1: new (await import("./burn/v1beta1/tx.rpc.msg")).MsgClientImpl(rpc)
