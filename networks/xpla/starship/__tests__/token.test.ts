@@ -214,7 +214,6 @@ describe('Token transfers', () => {
     // Wait for transaction to be confirmed
     try {
       await resp.wait();
-      console.log('IBC transfer transaction confirmed');
     } catch (err) {
       console.log('IBC transfer error:', err);
       throw err;

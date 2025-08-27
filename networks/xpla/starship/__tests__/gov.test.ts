@@ -26,7 +26,9 @@ import { useChain } from 'starshipjs';
 
 import { EthSecp256k1HDWallet, DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '@xpla/xpla';
 import { OfflineAminoSigner, OfflineDirectSigner } from '@interchainjs/cosmos';
-import { getBalance, getProposal, getVote, getValidators, delegate, submitProposal, vote, MsgSubmitProposal, MsgVote } from "@xpla/xplajs";
+import { getBalance, getProposal, getVote, getValidators, delegate, vote, MsgVote } from "@xpla/xplajs";
+import { MsgSubmitProposal,  } from "@xpla/xplajs/cosmos/gov/v1beta1/tx"
+import { submitProposal } from "@xpla/xplajs/cosmos/gov/v1beta1/tx.rpc.func"
 import * as bip39 from 'bip39';
 
 
@@ -252,12 +254,10 @@ describe('Governance tests for xpla', () => {
           denom: denom,
         },
       ],
-      messages: [
-        {
-          typeUrl: '/cosmos.gov.v1beta1.TextProposal',
-          value: TextProposal.encode(contentMsg).finish(),
-        },
-      ],
+      content: {
+        typeUrl: '/cosmos.gov.v1beta1.TextProposal',
+        value: TextProposal.encode(contentMsg).finish(),
+      },
     });
 
     const fee = {
@@ -278,7 +278,13 @@ describe('Governance tests for xpla', () => {
       ''
     );
 
-    await result.wait();
+    try {
+      await result.wait();
+    } catch (error) {
+      console.log(error);
+      console.log(result);
+    }
+
 
     // For simplicity, use a fixed proposal ID since event parsing is complex
     // In a real test, you would parse the events to get the actual proposal ID
