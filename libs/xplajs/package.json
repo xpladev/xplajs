@@ -1,6 +1,6 @@
 {
   "name": "@xpla/xplajs",
-  "version": "1.8.0-rc.2",
+  "version": "1.8.0",
   "main": "index.js",
   "module": "esm/index.js",
   "author": "Joowon Yun <joowon@delightlabs.io>",
