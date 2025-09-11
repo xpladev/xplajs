@@ -8,9 +8,14 @@ import { encodePubkey, decodePubkey } from "@interchainjs/pubkey";
 /**
  * MsgRegisterVolunteerValidator defines a message to register a new volunteer
  * validator.
+ * @name MsgRegisterVolunteerValidator
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.MsgRegisterVolunteerValidator
  */
 export interface MsgRegisterVolunteerValidator {
-  /** authority is the address of the governance account. */
+  /**
+   * authority is the address of the governance account.
+   */
   authority: string;
   validatorDescription: Description;
   delegatorAddress: string;
@@ -28,9 +33,14 @@ export type MsgRegisterVolunteerValidatorEncoded = Omit<MsgRegisterVolunteerVali
 /**
  * MsgRegisterVolunteerValidator defines a message to register a new volunteer
  * validator.
+ * @name MsgRegisterVolunteerValidatorAmino
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.MsgRegisterVolunteerValidator
  */
 export interface MsgRegisterVolunteerValidatorAmino {
-  /** authority is the address of the governance account. */
+  /**
+   * authority is the address of the governance account.
+   */
   authority: string;
   validator_description: DescriptionAmino;
   delegator_address: string;
@@ -45,6 +55,9 @@ export interface MsgRegisterVolunteerValidatorAminoMsg {
 /**
  * MsgRegisterVolunteerValidatorResponse defines the RegisterVolunteerValidator
  * response.
+ * @name MsgRegisterVolunteerValidatorResponse
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.MsgRegisterVolunteerValidatorResponse
  */
 export interface MsgRegisterVolunteerValidatorResponse {}
 export interface MsgRegisterVolunteerValidatorResponseProtoMsg {
@@ -54,6 +67,9 @@ export interface MsgRegisterVolunteerValidatorResponseProtoMsg {
 /**
  * MsgRegisterVolunteerValidatorResponse defines the RegisterVolunteerValidator
  * response.
+ * @name MsgRegisterVolunteerValidatorResponseAmino
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.MsgRegisterVolunteerValidatorResponse
  */
 export interface MsgRegisterVolunteerValidatorResponseAmino {}
 export interface MsgRegisterVolunteerValidatorResponseAminoMsg {
@@ -63,9 +79,14 @@ export interface MsgRegisterVolunteerValidatorResponseAminoMsg {
 /**
  * MsgUnregisterVolunteerValidator defines a message to unregister a volunteer
  * validator.
+ * @name MsgUnregisterVolunteerValidator
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.MsgUnregisterVolunteerValidator
  */
 export interface MsgUnregisterVolunteerValidator {
-  /** authority is the address of the governance account. */
+  /**
+   * authority is the address of the governance account.
+   */
   authority: string;
   validatorAddress: string;
 }
@@ -76,9 +97,14 @@ export interface MsgUnregisterVolunteerValidatorProtoMsg {
 /**
  * MsgUnregisterVolunteerValidator defines a message to unregister a volunteer
  * validator.
+ * @name MsgUnregisterVolunteerValidatorAmino
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.MsgUnregisterVolunteerValidator
  */
 export interface MsgUnregisterVolunteerValidatorAmino {
-  /** authority is the address of the governance account. */
+  /**
+   * authority is the address of the governance account.
+   */
   authority: string;
   validator_address: string;
 }
@@ -89,6 +115,9 @@ export interface MsgUnregisterVolunteerValidatorAminoMsg {
 /**
  * MsgUnregisterVolunteerValidatorResponse defines the
  * UnregisterVolunteerValidator response.
+ * @name MsgUnregisterVolunteerValidatorResponse
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.MsgUnregisterVolunteerValidatorResponse
  */
 export interface MsgUnregisterVolunteerValidatorResponse {}
 export interface MsgUnregisterVolunteerValidatorResponseProtoMsg {
@@ -98,6 +127,9 @@ export interface MsgUnregisterVolunteerValidatorResponseProtoMsg {
 /**
  * MsgUnregisterVolunteerValidatorResponse defines the
  * UnregisterVolunteerValidator response.
+ * @name MsgUnregisterVolunteerValidatorResponseAmino
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.MsgUnregisterVolunteerValidatorResponse
  */
 export interface MsgUnregisterVolunteerValidatorResponseAmino {}
 export interface MsgUnregisterVolunteerValidatorResponseAminoMsg {
@@ -114,6 +146,13 @@ function createBaseMsgRegisterVolunteerValidator(): MsgRegisterVolunteerValidato
     amount: Coin.fromPartial({})
   };
 }
+/**
+ * MsgRegisterVolunteerValidator defines a message to register a new volunteer
+ * validator.
+ * @name MsgRegisterVolunteerValidator
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.MsgRegisterVolunteerValidator
+ */
 export const MsgRegisterVolunteerValidator = {
   typeUrl: "/xpla.volunteer.v1beta1.MsgRegisterVolunteerValidator",
   aminoType: "xpladev/MsgRegisterVolunteerValidator",
@@ -240,12 +279,22 @@ export const MsgRegisterVolunteerValidator = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(MsgRegisterVolunteerValidator.typeUrl)) {
+      return;
+    }
     Coin.registerTypeUrl();
   }
 };
 function createBaseMsgRegisterVolunteerValidatorResponse(): MsgRegisterVolunteerValidatorResponse {
   return {};
 }
+/**
+ * MsgRegisterVolunteerValidatorResponse defines the RegisterVolunteerValidator
+ * response.
+ * @name MsgRegisterVolunteerValidatorResponse
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.MsgRegisterVolunteerValidatorResponse
+ */
 export const MsgRegisterVolunteerValidatorResponse = {
   typeUrl: "/xpla.volunteer.v1beta1.MsgRegisterVolunteerValidatorResponse",
   is(o: any): o is MsgRegisterVolunteerValidatorResponse {
@@ -306,6 +355,13 @@ function createBaseMsgUnregisterVolunteerValidator(): MsgUnregisterVolunteerVali
     validatorAddress: ""
   };
 }
+/**
+ * MsgUnregisterVolunteerValidator defines a message to unregister a volunteer
+ * validator.
+ * @name MsgUnregisterVolunteerValidator
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.MsgUnregisterVolunteerValidator
+ */
 export const MsgUnregisterVolunteerValidator = {
   typeUrl: "/xpla.volunteer.v1beta1.MsgUnregisterVolunteerValidator",
   aminoType: "xpladev/MsgUnregisterVolunteerValidator",
@@ -392,6 +448,13 @@ export const MsgUnregisterVolunteerValidator = {
 function createBaseMsgUnregisterVolunteerValidatorResponse(): MsgUnregisterVolunteerValidatorResponse {
   return {};
 }
+/**
+ * MsgUnregisterVolunteerValidatorResponse defines the
+ * UnregisterVolunteerValidator response.
+ * @name MsgUnregisterVolunteerValidatorResponse
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.MsgUnregisterVolunteerValidatorResponse
+ */
 export const MsgUnregisterVolunteerValidatorResponse = {
   typeUrl: "/xpla.volunteer.v1beta1.MsgUnregisterVolunteerValidatorResponse",
   is(o: any): o is MsgUnregisterVolunteerValidatorResponse {

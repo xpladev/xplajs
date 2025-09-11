@@ -1,52 +1,74 @@
-import { buildTx, SigningClientResolver } from "../../../../helper-func-types";
-import { toEncoders, toConverters } from "@interchainjs/cosmos/utils";
-import { MsgCreateClient, MsgUpdateClient, MsgUpgradeClient, MsgSubmitMisbehaviour, MsgRecoverClient, MsgIBCSoftwareUpgrade, MsgUpdateParams } from "./tx";
-export const createCreateClient = (clientResolver?: SigningClientResolver) => buildTx<MsgCreateClient>({
-  clientResolver,
-  typeUrl: MsgCreateClient.typeUrl,
-  encoders: toEncoders(MsgCreateClient),
-  converters: toConverters(MsgCreateClient),
-  deps: [MsgCreateClient]
+import { buildTx } from "../../../../helper-func-types";
+import { MsgCreateClient, MsgUpdateClient, MsgUpgradeClient, MsgSubmitMisbehaviour, MsgRecoverClient, MsgIBCSoftwareUpgrade, MsgUpdateParams, MsgDeleteClientCreator } from "./tx";
+/**
+ * CreateClient defines a rpc handler method for MsgCreateClient.
+ * @name createClient
+ * @package ibc.core.client.v1
+ * @see proto service: ibc.core.client.v1.CreateClient
+ */
+export const createClient = buildTx<MsgCreateClient>({
+  msg: MsgCreateClient
 });
-export const createUpdateClient = (clientResolver?: SigningClientResolver) => buildTx<MsgUpdateClient>({
-  clientResolver,
-  typeUrl: MsgUpdateClient.typeUrl,
-  encoders: toEncoders(MsgUpdateClient),
-  converters: toConverters(MsgUpdateClient),
-  deps: [MsgUpdateClient]
+/**
+ * UpdateClient defines a rpc handler method for MsgUpdateClient.
+ * @name updateClient
+ * @package ibc.core.client.v1
+ * @see proto service: ibc.core.client.v1.UpdateClient
+ */
+export const updateClient = buildTx<MsgUpdateClient>({
+  msg: MsgUpdateClient
 });
-export const createUpgradeClient = (clientResolver?: SigningClientResolver) => buildTx<MsgUpgradeClient>({
-  clientResolver,
-  typeUrl: MsgUpgradeClient.typeUrl,
-  encoders: toEncoders(MsgUpgradeClient),
-  converters: toConverters(MsgUpgradeClient),
-  deps: [MsgUpgradeClient]
+/**
+ * UpgradeClient defines a rpc handler method for MsgUpgradeClient.
+ * @name upgradeClient
+ * @package ibc.core.client.v1
+ * @see proto service: ibc.core.client.v1.UpgradeClient
+ */
+export const upgradeClient = buildTx<MsgUpgradeClient>({
+  msg: MsgUpgradeClient
 });
-export const createSubmitMisbehaviour = (clientResolver?: SigningClientResolver) => buildTx<MsgSubmitMisbehaviour>({
-  clientResolver,
-  typeUrl: MsgSubmitMisbehaviour.typeUrl,
-  encoders: toEncoders(MsgSubmitMisbehaviour),
-  converters: toConverters(MsgSubmitMisbehaviour),
-  deps: [MsgSubmitMisbehaviour]
+/**
+ * SubmitMisbehaviour defines a rpc handler method for MsgSubmitMisbehaviour.
+ * @name submitMisbehaviour
+ * @package ibc.core.client.v1
+ * @see proto service: ibc.core.client.v1.SubmitMisbehaviour
+ */
+export const submitMisbehaviour = buildTx<MsgSubmitMisbehaviour>({
+  msg: MsgSubmitMisbehaviour
 });
-export const createRecoverClient = (clientResolver?: SigningClientResolver) => buildTx<MsgRecoverClient>({
-  clientResolver,
-  typeUrl: MsgRecoverClient.typeUrl,
-  encoders: toEncoders(MsgRecoverClient),
-  converters: toConverters(MsgRecoverClient),
-  deps: [MsgRecoverClient]
+/**
+ * RecoverClient defines a rpc handler method for MsgRecoverClient.
+ * @name recoverClient
+ * @package ibc.core.client.v1
+ * @see proto service: ibc.core.client.v1.RecoverClient
+ */
+export const recoverClient = buildTx<MsgRecoverClient>({
+  msg: MsgRecoverClient
 });
-export const createIBCSoftwareUpgrade = (clientResolver?: SigningClientResolver) => buildTx<MsgIBCSoftwareUpgrade>({
-  clientResolver,
-  typeUrl: MsgIBCSoftwareUpgrade.typeUrl,
-  encoders: toEncoders(MsgIBCSoftwareUpgrade),
-  converters: toConverters(MsgIBCSoftwareUpgrade),
-  deps: [MsgIBCSoftwareUpgrade]
+/**
+ * IBCSoftwareUpgrade defines a rpc handler method for MsgIBCSoftwareUpgrade.
+ * @name iBCSoftwareUpgrade
+ * @package ibc.core.client.v1
+ * @see proto service: ibc.core.client.v1.IBCSoftwareUpgrade
+ */
+export const iBCSoftwareUpgrade = buildTx<MsgIBCSoftwareUpgrade>({
+  msg: MsgIBCSoftwareUpgrade
 });
-export const createUpdateClientParams = (clientResolver?: SigningClientResolver) => buildTx<MsgUpdateParams>({
-  clientResolver,
-  typeUrl: MsgUpdateParams.typeUrl,
-  encoders: toEncoders(MsgUpdateParams),
-  converters: toConverters(MsgUpdateParams),
-  deps: [MsgUpdateParams]
+/**
+ * UpdateClientParams defines a rpc handler method for MsgUpdateParams.
+ * @name updateClientParams
+ * @package ibc.core.client.v1
+ * @see proto service: ibc.core.client.v1.UpdateClientParams
+ */
+export const updateClientParams = buildTx<MsgUpdateParams>({
+  msg: MsgUpdateParams
+});
+/**
+ * DeleteClientCreator defines a rpc handler method for MsgDeleteClientCreator.
+ * @name deleteClientCreator
+ * @package ibc.core.client.v1
+ * @see proto service: ibc.core.client.v1.DeleteClientCreator
+ */
+export const deleteClientCreator = buildTx<MsgDeleteClientCreator>({
+  msg: MsgDeleteClientCreator
 });

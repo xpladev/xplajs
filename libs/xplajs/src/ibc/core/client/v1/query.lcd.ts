@@ -1,6 +1,6 @@
 import { setPaginationParams } from "../../../../helpers";
 import { LCDClient } from "@cosmology/lcd";
-import { QueryClientStateRequest, QueryClientStateResponse, QueryClientStatesRequest, QueryClientStatesResponse, QueryConsensusStateRequest, QueryConsensusStateResponse, QueryConsensusStatesRequest, QueryConsensusStatesResponse, QueryConsensusStateHeightsRequest, QueryConsensusStateHeightsResponse, QueryClientStatusRequest, QueryClientStatusResponse, QueryClientParamsRequest, QueryClientParamsResponse, QueryUpgradedClientStateRequest, QueryUpgradedClientStateResponse, QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse } from "./query";
+import { QueryClientStateRequest, QueryClientStateResponse, QueryClientStatesRequest, QueryClientStatesResponse, QueryConsensusStateRequest, QueryConsensusStateResponse, QueryConsensusStatesRequest, QueryConsensusStatesResponse, QueryConsensusStateHeightsRequest, QueryConsensusStateHeightsResponse, QueryClientStatusRequest, QueryClientStatusResponse, QueryClientParamsRequest, QueryClientParamsResponse, QueryClientCreatorRequest, QueryClientCreatorResponse, QueryUpgradedClientStateRequest, QueryUpgradedClientStateResponse, QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse } from "./query";
 export class LCDQueryClient {
   req: LCDClient;
   constructor({
@@ -72,6 +72,11 @@ export class LCDQueryClient {
   clientParams = async (_params: QueryClientParamsRequest = {}): Promise<QueryClientParamsResponse> => {
     const endpoint = `ibc/core/client/v1/params`;
     return await this.req.get<QueryClientParamsResponse>(endpoint);
+  };
+  /* ClientCreator queries the creator of a given client. */
+  clientCreator = async (params: QueryClientCreatorRequest): Promise<QueryClientCreatorResponse> => {
+    const endpoint = `ibc/core/client/v1/client_creator/${params.clientId}`;
+    return await this.req.get<QueryClientCreatorResponse>(endpoint);
   };
   /* UpgradedClientState queries an Upgraded IBC light client. */
   upgradedClientState = async (_params: QueryUpgradedClientStateRequest = {}): Promise<QueryUpgradedClientStateResponse> => {

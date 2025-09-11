@@ -1,17 +1,25 @@
-import { buildTx, SigningClientResolver } from "../../../helper-func-types";
-import { toEncoders, toConverters } from "@interchainjs/cosmos/utils";
+import { buildTx } from "../../../helper-func-types";
 import { MsgUnjail, MsgUpdateParams } from "./tx";
-export const createUnjail = (clientResolver?: SigningClientResolver) => buildTx<MsgUnjail>({
-  clientResolver,
-  typeUrl: MsgUnjail.typeUrl,
-  encoders: toEncoders(MsgUnjail),
-  converters: toConverters(MsgUnjail),
-  deps: [MsgUnjail]
+/**
+ * Unjail defines a method for unjailing a jailed validator, thus returning
+ * them into the bonded validator set, so they can begin receiving provisions
+ * and rewards again.
+ * @name unjail
+ * @package cosmos.slashing.v1beta1
+ * @see proto service: cosmos.slashing.v1beta1.Unjail
+ */
+export const unjail = buildTx<MsgUnjail>({
+  msg: MsgUnjail
 });
-export const createUpdateParams = (clientResolver?: SigningClientResolver) => buildTx<MsgUpdateParams>({
-  clientResolver,
-  typeUrl: MsgUpdateParams.typeUrl,
-  encoders: toEncoders(MsgUpdateParams),
-  converters: toConverters(MsgUpdateParams),
-  deps: [MsgUpdateParams]
+/**
+ * UpdateParams defines a governance operation for updating the x/slashing module
+ * parameters. The authority defaults to the x/gov module account.
+ * 
+ * Since: cosmos-sdk 0.47
+ * @name updateParams
+ * @package cosmos.slashing.v1beta1
+ * @see proto service: cosmos.slashing.v1beta1.UpdateParams
+ */
+export const updateParams = buildTx<MsgUpdateParams>({
+  msg: MsgUpdateParams
 });

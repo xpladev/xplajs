@@ -1,17 +1,25 @@
-import { buildTx, SigningClientResolver } from "../../../helper-func-types";
-import { toEncoders, toConverters } from "@interchainjs/cosmos/utils";
+import { buildTx } from "../../../helper-func-types";
 import { MsgSoftwareUpgrade, MsgCancelUpgrade } from "./tx";
-export const createSoftwareUpgrade = (clientResolver?: SigningClientResolver) => buildTx<MsgSoftwareUpgrade>({
-  clientResolver,
-  typeUrl: MsgSoftwareUpgrade.typeUrl,
-  encoders: toEncoders(MsgSoftwareUpgrade),
-  converters: toConverters(MsgSoftwareUpgrade),
-  deps: [MsgSoftwareUpgrade]
+/**
+ * SoftwareUpgrade is a governance operation for initiating a software upgrade.
+ * 
+ * Since: cosmos-sdk 0.46
+ * @name softwareUpgrade
+ * @package cosmos.upgrade.v1beta1
+ * @see proto service: cosmos.upgrade.v1beta1.SoftwareUpgrade
+ */
+export const softwareUpgrade = buildTx<MsgSoftwareUpgrade>({
+  msg: MsgSoftwareUpgrade
 });
-export const createCancelUpgrade = (clientResolver?: SigningClientResolver) => buildTx<MsgCancelUpgrade>({
-  clientResolver,
-  typeUrl: MsgCancelUpgrade.typeUrl,
-  encoders: toEncoders(MsgCancelUpgrade),
-  converters: toConverters(MsgCancelUpgrade),
-  deps: [MsgCancelUpgrade]
+/**
+ * CancelUpgrade is a governance operation for cancelling a previously
+ * approved software upgrade.
+ * 
+ * Since: cosmos-sdk 0.46
+ * @name cancelUpgrade
+ * @package cosmos.upgrade.v1beta1
+ * @see proto service: cosmos.upgrade.v1beta1.CancelUpgrade
+ */
+export const cancelUpgrade = buildTx<MsgCancelUpgrade>({
+  msg: MsgCancelUpgrade
 });

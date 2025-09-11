@@ -1,17 +1,21 @@
-import { buildTx, SigningClientResolver } from "../../../helper-func-types";
-import { toEncoders, toConverters } from "@interchainjs/cosmos/utils";
+import { buildTx } from "../../../helper-func-types";
 import { MsgRegisterVolunteerValidator, MsgUnregisterVolunteerValidator } from "./tx";
-export const createRegisterVolunteerValidator = (clientResolver?: SigningClientResolver) => buildTx<MsgRegisterVolunteerValidator>({
-  clientResolver,
-  typeUrl: MsgRegisterVolunteerValidator.typeUrl,
-  encoders: toEncoders(MsgRegisterVolunteerValidator),
-  converters: toConverters(MsgRegisterVolunteerValidator),
-  deps: [MsgRegisterVolunteerValidator]
+/**
+ * RegisterVolunteerValidator defines a method to register a new volunteer
+ * validator.
+ * @name registerVolunteerValidator
+ * @package xpla.volunteer.v1beta1
+ * @see proto service: xpla.volunteer.v1beta1.RegisterVolunteerValidator
+ */
+export const registerVolunteerValidator = buildTx<MsgRegisterVolunteerValidator>({
+  msg: MsgRegisterVolunteerValidator
 });
-export const createUnregisterVolunteerValidator = (clientResolver?: SigningClientResolver) => buildTx<MsgUnregisterVolunteerValidator>({
-  clientResolver,
-  typeUrl: MsgUnregisterVolunteerValidator.typeUrl,
-  encoders: toEncoders(MsgUnregisterVolunteerValidator),
-  converters: toConverters(MsgUnregisterVolunteerValidator),
-  deps: [MsgUnregisterVolunteerValidator]
+/**
+ * UnregisterVolunteerValidator defines a method to unregister a volunteer
+ * @name unregisterVolunteerValidator
+ * @package xpla.volunteer.v1beta1
+ * @see proto service: xpla.volunteer.v1beta1.UnregisterVolunteerValidator
+ */
+export const unregisterVolunteerValidator = buildTx<MsgUnregisterVolunteerValidator>({
+  msg: MsgUnregisterVolunteerValidator
 });

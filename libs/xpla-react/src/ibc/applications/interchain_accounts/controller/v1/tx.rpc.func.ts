@@ -1,24 +1,29 @@
-import { buildTx, SigningClientResolver } from "../../../../../helper-func-types";
-import { toEncoders, toConverters } from "@interchainjs/cosmos/utils";
+import { buildTx } from "../../../../../helper-func-types";
 import { MsgRegisterInterchainAccount, MsgSendTx, MsgUpdateParams } from "./tx";
-export const createRegisterInterchainAccount = (clientResolver?: SigningClientResolver) => buildTx<MsgRegisterInterchainAccount>({
-  clientResolver,
-  typeUrl: MsgRegisterInterchainAccount.typeUrl,
-  encoders: toEncoders(MsgRegisterInterchainAccount),
-  converters: toConverters(MsgRegisterInterchainAccount),
-  deps: [MsgRegisterInterchainAccount]
+/**
+ * RegisterInterchainAccount defines a rpc handler for MsgRegisterInterchainAccount.
+ * @name registerInterchainAccount
+ * @package ibc.applications.interchain_accounts.controller.v1
+ * @see proto service: ibc.applications.interchain_accounts.controller.v1.RegisterInterchainAccount
+ */
+export const registerInterchainAccount = buildTx<MsgRegisterInterchainAccount>({
+  msg: MsgRegisterInterchainAccount
 });
-export const createSendTx = (clientResolver?: SigningClientResolver) => buildTx<MsgSendTx>({
-  clientResolver,
-  typeUrl: MsgSendTx.typeUrl,
-  encoders: toEncoders(MsgSendTx),
-  converters: toConverters(MsgSendTx),
-  deps: [MsgSendTx]
+/**
+ * SendTx defines a rpc handler for MsgSendTx.
+ * @name sendTx
+ * @package ibc.applications.interchain_accounts.controller.v1
+ * @see proto service: ibc.applications.interchain_accounts.controller.v1.SendTx
+ */
+export const sendTx = buildTx<MsgSendTx>({
+  msg: MsgSendTx
 });
-export const createUpdateParams = (clientResolver?: SigningClientResolver) => buildTx<MsgUpdateParams>({
-  clientResolver,
-  typeUrl: MsgUpdateParams.typeUrl,
-  encoders: toEncoders(MsgUpdateParams),
-  converters: toConverters(MsgUpdateParams),
-  deps: [MsgUpdateParams]
+/**
+ * UpdateParams defines a rpc handler for MsgUpdateParams.
+ * @name updateParams
+ * @package ibc.applications.interchain_accounts.controller.v1
+ * @see proto service: ibc.applications.interchain_accounts.controller.v1.UpdateParams
+ */
+export const updateParams = buildTx<MsgUpdateParams>({
+  msg: MsgUpdateParams
 });

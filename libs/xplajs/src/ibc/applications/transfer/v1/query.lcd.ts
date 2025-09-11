@@ -1,6 +1,6 @@
 import { setPaginationParams } from "../../../../helpers";
 import { LCDClient } from "@cosmology/lcd";
-import { QueryDenomTracesRequest, QueryDenomTracesResponse, QueryDenomTraceRequest, QueryDenomTraceResponse, QueryParamsRequest, QueryParamsResponse, QueryDenomHashRequest, QueryDenomHashResponse, QueryEscrowAddressRequest, QueryEscrowAddressResponse, QueryTotalEscrowForDenomRequest, QueryTotalEscrowForDenomResponse } from "./query";
+import { QueryParamsRequest, QueryParamsResponse, QueryDenomsRequest, QueryDenomsResponse, QueryDenomRequest, QueryDenomResponse, QueryDenomHashRequest, QueryDenomHashResponse, QueryEscrowAddressRequest, QueryEscrowAddressResponse, QueryTotalEscrowForDenomRequest, QueryTotalEscrowForDenomResponse } from "./query";
 export class LCDQueryClient {
   req: LCDClient;
   constructor({
@@ -10,34 +10,34 @@ export class LCDQueryClient {
   }) {
     this.req = requestClient;
   }
-  /* DenomTraces queries all denomination traces. */
-  denomTraces = async (params: QueryDenomTracesRequest = {
+  /* Params queries all parameters of the ibc-transfer module. */
+  params = async (_params: QueryParamsRequest = {}): Promise<QueryParamsResponse> => {
+    const endpoint = `ibc/apps/transfer/v1/params`;
+    return await this.req.get<QueryParamsResponse>(endpoint);
+  };
+  /* Denoms queries all denominations */
+  denoms = async (params: QueryDenomsRequest = {
     pagination: undefined
-  }): Promise<QueryDenomTracesResponse> => {
+  }): Promise<QueryDenomsResponse> => {
     const options: any = {
       params: {}
     };
     if (typeof params?.pagination !== "undefined") {
       setPaginationParams(options, params.pagination);
     }
-    const endpoint = `ibc/apps/transfer/v1/denom_traces`;
-    return await this.req.get<QueryDenomTracesResponse>(endpoint, options);
+    const endpoint = `ibc/apps/transfer/v1/denoms`;
+    return await this.req.get<QueryDenomsResponse>(endpoint, options);
   };
-  /* DenomTrace queries a denomination trace information. */
-  denomTrace = async (params: QueryDenomTraceRequest): Promise<QueryDenomTraceResponse> => {
+  /* Denom queries a denomination */
+  denom = async (params: QueryDenomRequest): Promise<QueryDenomResponse> => {
     const options: any = {
       params: {}
     };
     if (typeof params?.hash !== "undefined") {
       options.params.hash = params.hash;
     }
-    const endpoint = `ibc/apps/transfer/v1/denom_traces/${params.hash}`;
-    return await this.req.get<QueryDenomTraceResponse>(endpoint, options);
-  };
-  /* Params queries all parameters of the ibc-transfer module. */
-  params = async (_params: QueryParamsRequest = {}): Promise<QueryParamsResponse> => {
-    const endpoint = `ibc/apps/transfer/v1/params`;
-    return await this.req.get<QueryParamsResponse>(endpoint);
+    const endpoint = `ibc/apps/transfer/v1/denoms/${params.hash}`;
+    return await this.req.get<QueryDenomResponse>(endpoint, options);
   };
   /* DenomHash queries a denomination hash information. */
   denomHash = async (params: QueryDenomHashRequest): Promise<QueryDenomHashResponse> => {
@@ -63,7 +63,7 @@ export class LCDQueryClient {
     if (typeof params?.denom !== "undefined") {
       options.params.denom = params.denom;
     }
-    const endpoint = `ibc/apps/transfer/v1/denoms/${params.denom}/total_escrow`;
+    const endpoint = `ibc/apps/transfer/v1/total_escrow/${params.denom}`;
     return await this.req.get<QueryTotalEscrowForDenomResponse>(endpoint, options);
   };
 }

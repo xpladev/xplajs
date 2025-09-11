@@ -1,13 +1,19 @@
 import { Params, ParamsAmino } from "./mint";
 import { BinaryReader, BinaryWriter } from "../../../binary";
+import { GlobalDecoderRegistry } from "../../../registry";
 import { DeepPartial } from "../../../helpers";
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
  * 
  * Since: cosmos-sdk 0.47
+ * @name MsgUpdateParams
+ * @package cosmos.mint.v1beta1
+ * @see proto type: cosmos.mint.v1beta1.MsgUpdateParams
  */
 export interface MsgUpdateParams {
-  /** authority is the address that controls the module (defaults to x/gov unless overwritten). */
+  /**
+   * authority is the address that controls the module (defaults to x/gov unless overwritten).
+   */
   authority: string;
   /**
    * params defines the x/mint parameters to update.
@@ -24,9 +30,14 @@ export interface MsgUpdateParamsProtoMsg {
  * MsgUpdateParams is the Msg/UpdateParams request type.
  * 
  * Since: cosmos-sdk 0.47
+ * @name MsgUpdateParamsAmino
+ * @package cosmos.mint.v1beta1
+ * @see proto type: cosmos.mint.v1beta1.MsgUpdateParams
  */
 export interface MsgUpdateParamsAmino {
-  /** authority is the address that controls the module (defaults to x/gov unless overwritten). */
+  /**
+   * authority is the address that controls the module (defaults to x/gov unless overwritten).
+   */
   authority: string;
   /**
    * params defines the x/mint parameters to update.
@@ -44,6 +55,9 @@ export interface MsgUpdateParamsAminoMsg {
  * MsgUpdateParams message.
  * 
  * Since: cosmos-sdk 0.47
+ * @name MsgUpdateParamsResponse
+ * @package cosmos.mint.v1beta1
+ * @see proto type: cosmos.mint.v1beta1.MsgUpdateParamsResponse
  */
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
@@ -55,6 +69,9 @@ export interface MsgUpdateParamsResponseProtoMsg {
  * MsgUpdateParams message.
  * 
  * Since: cosmos-sdk 0.47
+ * @name MsgUpdateParamsResponseAmino
+ * @package cosmos.mint.v1beta1
+ * @see proto type: cosmos.mint.v1beta1.MsgUpdateParamsResponse
  */
 export interface MsgUpdateParamsResponseAmino {}
 export interface MsgUpdateParamsResponseAminoMsg {
@@ -67,6 +84,14 @@ function createBaseMsgUpdateParams(): MsgUpdateParams {
     params: Params.fromPartial({})
   };
 }
+/**
+ * MsgUpdateParams is the Msg/UpdateParams request type.
+ * 
+ * Since: cosmos-sdk 0.47
+ * @name MsgUpdateParams
+ * @package cosmos.mint.v1beta1
+ * @see proto type: cosmos.mint.v1beta1.MsgUpdateParams
+ */
 export const MsgUpdateParams = {
   typeUrl: "/cosmos.mint.v1beta1.MsgUpdateParams",
   aminoType: "cosmos-sdk/x/mint/MsgUpdateParams",
@@ -149,12 +174,24 @@ export const MsgUpdateParams = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(MsgUpdateParams.typeUrl)) {
+      return;
+    }
     Params.registerTypeUrl();
   }
 };
 function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
   return {};
 }
+/**
+ * MsgUpdateParamsResponse defines the response structure for executing a
+ * MsgUpdateParams message.
+ * 
+ * Since: cosmos-sdk 0.47
+ * @name MsgUpdateParamsResponse
+ * @package cosmos.mint.v1beta1
+ * @see proto type: cosmos.mint.v1beta1.MsgUpdateParamsResponse
+ */
 export const MsgUpdateParamsResponse = {
   typeUrl: "/cosmos.mint.v1beta1.MsgUpdateParamsResponse",
   aminoType: "cosmos-sdk/MsgUpdateParamsResponse",

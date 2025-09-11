@@ -1,9 +1,16 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { Decimal } from "@interchainjs/math";
 import { DeepPartial } from "../../../helpers";
-/** Params defines the EVM module parameters */
+/**
+ * Params defines the EVM module parameters
+ * @name Params
+ * @package ethermint.feemarket.v1
+ * @see proto type: ethermint.feemarket.v1.Params
+ */
 export interface Params {
-  /** no_base_fee forces the EIP-1559 base fee to 0 (needed for 0 price calls) */
+  /**
+   * no_base_fee forces the EIP-1559 base fee to 0 (needed for 0 price calls)
+   */
   noBaseFee: boolean;
   /**
    * base_fee_change_denominator bounds the amount the base fee can change
@@ -15,11 +22,17 @@ export interface Params {
    * have.
    */
   elasticityMultiplier: number;
-  /** enable_height defines at which block height the base fee calculation is enabled. */
+  /**
+   * enable_height defines at which block height the base fee calculation is enabled.
+   */
   enableHeight: bigint;
-  /** base_fee for EIP-1559 blocks. */
+  /**
+   * base_fee for EIP-1559 blocks.
+   */
   baseFee: string;
-  /** min_gas_price defines the minimum gas price value for cosmos and eth transactions */
+  /**
+   * min_gas_price defines the minimum gas price value for cosmos and eth transactions
+   */
   minGasPrice: string;
   /**
    * min_gas_multiplier bounds the minimum gas used to be charged
@@ -31,9 +44,16 @@ export interface ParamsProtoMsg {
   typeUrl: "/ethermint.feemarket.v1.Params";
   value: Uint8Array;
 }
-/** Params defines the EVM module parameters */
+/**
+ * Params defines the EVM module parameters
+ * @name ParamsAmino
+ * @package ethermint.feemarket.v1
+ * @see proto type: ethermint.feemarket.v1.Params
+ */
 export interface ParamsAmino {
-  /** no_base_fee forces the EIP-1559 base fee to 0 (needed for 0 price calls) */
+  /**
+   * no_base_fee forces the EIP-1559 base fee to 0 (needed for 0 price calls)
+   */
   no_base_fee: boolean;
   /**
    * base_fee_change_denominator bounds the amount the base fee can change
@@ -45,11 +65,17 @@ export interface ParamsAmino {
    * have.
    */
   elasticity_multiplier: number;
-  /** enable_height defines at which block height the base fee calculation is enabled. */
+  /**
+   * enable_height defines at which block height the base fee calculation is enabled.
+   */
   enable_height: string;
-  /** base_fee for EIP-1559 blocks. */
+  /**
+   * base_fee for EIP-1559 blocks.
+   */
   base_fee: string;
-  /** min_gas_price defines the minimum gas price value for cosmos and eth transactions */
+  /**
+   * min_gas_price defines the minimum gas price value for cosmos and eth transactions
+   */
   min_gas_price: string;
   /**
    * min_gas_multiplier bounds the minimum gas used to be charged
@@ -72,6 +98,12 @@ function createBaseParams(): Params {
     minGasMultiplier: ""
   };
 }
+/**
+ * Params defines the EVM module parameters
+ * @name Params
+ * @package ethermint.feemarket.v1
+ * @see proto type: ethermint.feemarket.v1.Params
+ */
 export const Params = {
   typeUrl: "/ethermint.feemarket.v1.Params",
   aminoType: "ethermint/x/feemarket/Params",

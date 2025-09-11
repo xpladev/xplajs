@@ -1,15 +1,33 @@
 import { buildUseQuery } from "../../../react-query";
 import { QueryParamsRequest, QueryParamsResponse, QueryInflationRequest, QueryInflationResponse, QueryAnnualProvisionsRequest, QueryAnnualProvisionsResponse } from "./query";
-import { createGetParams, createGetInflation, createGetAnnualProvisions } from "./query.rpc.func";
+import { getParams, getInflation, getAnnualProvisions } from "./query.rpc.func";
+/**
+ * Params returns the total set of minting parameters.
+ * @name useGetParams
+ * @package cosmos.mint.v1beta1
+ * @see proto service: cosmos.mint.v1beta1.Params
+ */
 export const useGetParams = buildUseQuery<QueryParamsRequest, QueryParamsResponse>({
-  builderQueryFn: createGetParams,
+  builderQueryFn: getParams,
   queryKeyPrefix: "ParamsQuery"
 });
+/**
+ * Inflation returns the current minting inflation value.
+ * @name useGetInflation
+ * @package cosmos.mint.v1beta1
+ * @see proto service: cosmos.mint.v1beta1.Inflation
+ */
 export const useGetInflation = buildUseQuery<QueryInflationRequest, QueryInflationResponse>({
-  builderQueryFn: createGetInflation,
+  builderQueryFn: getInflation,
   queryKeyPrefix: "InflationQuery"
 });
+/**
+ * AnnualProvisions current minting annual provisions value.
+ * @name useGetAnnualProvisions
+ * @package cosmos.mint.v1beta1
+ * @see proto service: cosmos.mint.v1beta1.AnnualProvisions
+ */
 export const useGetAnnualProvisions = buildUseQuery<QueryAnnualProvisionsRequest, QueryAnnualProvisionsResponse>({
-  builderQueryFn: createGetAnnualProvisions,
+  builderQueryFn: getAnnualProvisions,
   queryKeyPrefix: "AnnualProvisionsQuery"
 });

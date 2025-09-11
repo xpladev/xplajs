@@ -1,7 +1,13 @@
 import { VolunteerValidator, VolunteerValidatorAmino } from "./volunteervalidator";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial } from "../../../helpers";
-/** GenesisState defines the volunteer module's genesis state. */
+import { GlobalDecoderRegistry } from "../../../registry";
+/**
+ * GenesisState defines the volunteer module's genesis state.
+ * @name GenesisState
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.GenesisState
+ */
 export interface GenesisState {
   volunteerValidators: VolunteerValidator[];
 }
@@ -9,7 +15,12 @@ export interface GenesisStateProtoMsg {
   typeUrl: "/xpla.volunteer.v1beta1.GenesisState";
   value: Uint8Array;
 }
-/** GenesisState defines the volunteer module's genesis state. */
+/**
+ * GenesisState defines the volunteer module's genesis state.
+ * @name GenesisStateAmino
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.GenesisState
+ */
 export interface GenesisStateAmino {
   volunteer_validators: VolunteerValidatorAmino[];
 }
@@ -22,6 +33,12 @@ function createBaseGenesisState(): GenesisState {
     volunteerValidators: []
   };
 }
+/**
+ * GenesisState defines the volunteer module's genesis state.
+ * @name GenesisState
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.GenesisState
+ */
 export const GenesisState = {
   typeUrl: "/xpla.volunteer.v1beta1.GenesisState",
   is(o: any): o is GenesisState {
@@ -88,6 +105,9 @@ export const GenesisState = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(GenesisState.typeUrl)) {
+      return;
+    }
     VolunteerValidator.registerTypeUrl();
   }
 };

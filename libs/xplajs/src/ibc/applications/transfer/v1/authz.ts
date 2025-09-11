@@ -2,15 +2,28 @@ import { Coin, CoinAmino } from "../../../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
 import { DeepPartial } from "../../../../helpers";
 import { GlobalDecoderRegistry } from "../../../../registry";
-/** Allocation defines the spend limit for a particular port and channel */
+/**
+ * Allocation defines the spend limit for a particular port and channel
+ * @name Allocation
+ * @package ibc.applications.transfer.v1
+ * @see proto type: ibc.applications.transfer.v1.Allocation
+ */
 export interface Allocation {
-  /** the port on which the packet will be sent */
+  /**
+   * the port on which the packet will be sent
+   */
   sourcePort: string;
-  /** the channel by which the packet will be sent */
+  /**
+   * the channel by which the packet will be sent
+   */
   sourceChannel: string;
-  /** spend limitation on the channel */
+  /**
+   * spend limitation on the channel
+   */
   spendLimit: Coin[];
-  /** allow list of receivers, an empty allow list permits any receiver address */
+  /**
+   * allow list of receivers, an empty allow list permits any receiver address
+   */
   allowList: string[];
   /**
    * allow list of memo strings, an empty list prohibits all memo strings;
@@ -22,15 +35,28 @@ export interface AllocationProtoMsg {
   typeUrl: "/ibc.applications.transfer.v1.Allocation";
   value: Uint8Array;
 }
-/** Allocation defines the spend limit for a particular port and channel */
+/**
+ * Allocation defines the spend limit for a particular port and channel
+ * @name AllocationAmino
+ * @package ibc.applications.transfer.v1
+ * @see proto type: ibc.applications.transfer.v1.Allocation
+ */
 export interface AllocationAmino {
-  /** the port on which the packet will be sent */
+  /**
+   * the port on which the packet will be sent
+   */
   source_port: string;
-  /** the channel by which the packet will be sent */
+  /**
+   * the channel by which the packet will be sent
+   */
   source_channel: string;
-  /** spend limitation on the channel */
+  /**
+   * spend limitation on the channel
+   */
   spend_limit: CoinAmino[];
-  /** allow list of receivers, an empty allow list permits any receiver address */
+  /**
+   * allow list of receivers, an empty allow list permits any receiver address
+   */
   allow_list: string[];
   /**
    * allow list of memo strings, an empty list prohibits all memo strings;
@@ -45,9 +71,14 @@ export interface AllocationAminoMsg {
 /**
  * TransferAuthorization allows the grantee to spend up to spend_limit coins from
  * the granter's account for ibc transfer on a specific channel
+ * @name TransferAuthorization
+ * @package ibc.applications.transfer.v1
+ * @see proto type: ibc.applications.transfer.v1.TransferAuthorization
  */
 export interface TransferAuthorization {
-  /** port and channel amounts */
+  /**
+   * port and channel amounts
+   */
   allocations: Allocation[];
 }
 export interface TransferAuthorizationProtoMsg {
@@ -57,9 +88,14 @@ export interface TransferAuthorizationProtoMsg {
 /**
  * TransferAuthorization allows the grantee to spend up to spend_limit coins from
  * the granter's account for ibc transfer on a specific channel
+ * @name TransferAuthorizationAmino
+ * @package ibc.applications.transfer.v1
+ * @see proto type: ibc.applications.transfer.v1.TransferAuthorization
  */
 export interface TransferAuthorizationAmino {
-  /** port and channel amounts */
+  /**
+   * port and channel amounts
+   */
   allocations: AllocationAmino[];
 }
 export interface TransferAuthorizationAminoMsg {
@@ -75,6 +111,12 @@ function createBaseAllocation(): Allocation {
     allowedPacketData: []
   };
 }
+/**
+ * Allocation defines the spend limit for a particular port and channel
+ * @name Allocation
+ * @package ibc.applications.transfer.v1
+ * @see proto type: ibc.applications.transfer.v1.Allocation
+ */
 export const Allocation = {
   typeUrl: "/ibc.applications.transfer.v1.Allocation",
   aminoType: "cosmos-sdk/Allocation",
@@ -196,6 +238,9 @@ export const Allocation = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(Allocation.typeUrl)) {
+      return;
+    }
     Coin.registerTypeUrl();
   }
 };
@@ -204,6 +249,13 @@ function createBaseTransferAuthorization(): TransferAuthorization {
     allocations: []
   };
 }
+/**
+ * TransferAuthorization allows the grantee to spend up to spend_limit coins from
+ * the granter's account for ibc transfer on a specific channel
+ * @name TransferAuthorization
+ * @package ibc.applications.transfer.v1
+ * @see proto type: ibc.applications.transfer.v1.TransferAuthorization
+ */
 export const TransferAuthorization = {
   typeUrl: "/ibc.applications.transfer.v1.TransferAuthorization",
   aminoType: "cosmos-sdk/TransferAuthorization",
@@ -277,6 +329,9 @@ export const TransferAuthorization = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(TransferAuthorization.typeUrl)) {
+      return;
+    }
     GlobalDecoderRegistry.register(TransferAuthorization.typeUrl, TransferAuthorization);
     GlobalDecoderRegistry.registerAminoProtoMapping(TransferAuthorization.aminoType, TransferAuthorization.typeUrl);
     Allocation.registerTypeUrl();

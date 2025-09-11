@@ -1,15 +1,15 @@
 import { TxRpc } from "../../../../types";
 import { BinaryReader } from "../../../../binary";
 import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryDenomTracesRequest, QueryDenomTracesResponse, QueryDenomTraceRequest, QueryDenomTraceResponse, QueryParamsRequest, QueryParamsResponse, QueryDenomHashRequest, QueryDenomHashResponse, QueryEscrowAddressRequest, QueryEscrowAddressResponse, QueryTotalEscrowForDenomRequest, QueryTotalEscrowForDenomResponse } from "./query";
+import { QueryParamsRequest, QueryParamsResponse, QueryDenomsRequest, QueryDenomsResponse, QueryDenomRequest, QueryDenomResponse, QueryDenomHashRequest, QueryDenomHashResponse, QueryEscrowAddressRequest, QueryEscrowAddressResponse, QueryTotalEscrowForDenomRequest, QueryTotalEscrowForDenomResponse } from "./query";
 /** Query provides defines the gRPC querier service. */
 export interface Query {
-  /** DenomTraces queries all denomination traces. */
-  denomTraces(request?: QueryDenomTracesRequest): Promise<QueryDenomTracesResponse>;
-  /** DenomTrace queries a denomination trace information. */
-  denomTrace(request: QueryDenomTraceRequest): Promise<QueryDenomTraceResponse>;
   /** Params queries all parameters of the ibc-transfer module. */
   params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
+  /** Denoms queries all denominations */
+  denoms(request?: QueryDenomsRequest): Promise<QueryDenomsResponse>;
+  /** Denom queries a denomination */
+  denom(request: QueryDenomRequest): Promise<QueryDenomResponse>;
   /** DenomHash queries a denomination hash information. */
   denomHash(request: QueryDenomHashRequest): Promise<QueryDenomHashResponse>;
   /** EscrowAddress returns the escrow address for a particular port and channel id. */
@@ -22,25 +22,25 @@ export class QueryClientImpl implements Query {
   constructor(rpc: TxRpc) {
     this.rpc = rpc;
   }
-  /* DenomTraces queries all denomination traces. */
-  denomTraces = async (request: QueryDenomTracesRequest = {
-    pagination: undefined
-  }): Promise<QueryDenomTracesResponse> => {
-    const data = QueryDenomTracesRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.applications.transfer.v1.Query", "DenomTraces", data);
-    return promise.then(data => QueryDenomTracesResponse.decode(new BinaryReader(data)));
-  };
-  /* DenomTrace queries a denomination trace information. */
-  denomTrace = async (request: QueryDenomTraceRequest): Promise<QueryDenomTraceResponse> => {
-    const data = QueryDenomTraceRequest.encode(request).finish();
-    const promise = this.rpc.request("ibc.applications.transfer.v1.Query", "DenomTrace", data);
-    return promise.then(data => QueryDenomTraceResponse.decode(new BinaryReader(data)));
-  };
   /* Params queries all parameters of the ibc-transfer module. */
   params = async (request: QueryParamsRequest = {}): Promise<QueryParamsResponse> => {
     const data = QueryParamsRequest.encode(request).finish();
     const promise = this.rpc.request("ibc.applications.transfer.v1.Query", "Params", data);
     return promise.then(data => QueryParamsResponse.decode(new BinaryReader(data)));
+  };
+  /* Denoms queries all denominations */
+  denoms = async (request: QueryDenomsRequest = {
+    pagination: undefined
+  }): Promise<QueryDenomsResponse> => {
+    const data = QueryDenomsRequest.encode(request).finish();
+    const promise = this.rpc.request("ibc.applications.transfer.v1.Query", "Denoms", data);
+    return promise.then(data => QueryDenomsResponse.decode(new BinaryReader(data)));
+  };
+  /* Denom queries a denomination */
+  denom = async (request: QueryDenomRequest): Promise<QueryDenomResponse> => {
+    const data = QueryDenomRequest.encode(request).finish();
+    const promise = this.rpc.request("ibc.applications.transfer.v1.Query", "Denom", data);
+    return promise.then(data => QueryDenomResponse.decode(new BinaryReader(data)));
   };
   /* DenomHash queries a denomination hash information. */
   denomHash = async (request: QueryDenomHashRequest): Promise<QueryDenomHashResponse> => {
@@ -65,14 +65,14 @@ export const createRpcQueryExtension = (base: QueryClient) => {
   const rpc = createProtobufRpcClient(base);
   const queryService = new QueryClientImpl(rpc);
   return {
-    denomTraces(request?: QueryDenomTracesRequest): Promise<QueryDenomTracesResponse> {
-      return queryService.denomTraces(request);
-    },
-    denomTrace(request: QueryDenomTraceRequest): Promise<QueryDenomTraceResponse> {
-      return queryService.denomTrace(request);
-    },
     params(request?: QueryParamsRequest): Promise<QueryParamsResponse> {
       return queryService.params(request);
+    },
+    denoms(request?: QueryDenomsRequest): Promise<QueryDenomsResponse> {
+      return queryService.denoms(request);
+    },
+    denom(request: QueryDenomRequest): Promise<QueryDenomResponse> {
+      return queryService.denom(request);
     },
     denomHash(request: QueryDenomHashRequest): Promise<QueryDenomHashResponse> {
       return queryService.denomHash(request);

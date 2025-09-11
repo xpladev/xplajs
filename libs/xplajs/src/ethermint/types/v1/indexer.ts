@@ -1,19 +1,32 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial } from "../../../helpers";
-/** TxResult is the value stored in eth tx indexer */
+/**
+ * TxResult is the value stored in eth tx indexer
+ * @name TxResult
+ * @package ethermint.types.v1
+ * @see proto type: ethermint.types.v1.TxResult
+ */
 export interface TxResult {
-  /** height of the blockchain */
+  /**
+   * height of the blockchain
+   */
   height: bigint;
-  /** tx_index of the cosmos transaction */
+  /**
+   * tx_index of the cosmos transaction
+   */
   txIndex: number;
-  /** msg_index in a batch transaction */
+  /**
+   * msg_index in a batch transaction
+   */
   msgIndex: number;
   /**
    * eth_tx_index is the index in the list of valid eth tx in the block,
    * aka. the transaction list returned by eth_getBlock api.
    */
   ethTxIndex: number;
-  /** failed is true if the eth transaction did not go succeed */
+  /**
+   * failed is true if the eth transaction did not go succeed
+   */
   failed: boolean;
   /**
    * gas_used by the transaction. If it exceeds the block gas limit,
@@ -30,20 +43,33 @@ export interface TxResultProtoMsg {
   typeUrl: "/ethermint.types.v1.TxResult";
   value: Uint8Array;
 }
-/** TxResult is the value stored in eth tx indexer */
+/**
+ * TxResult is the value stored in eth tx indexer
+ * @name TxResultAmino
+ * @package ethermint.types.v1
+ * @see proto type: ethermint.types.v1.TxResult
+ */
 export interface TxResultAmino {
-  /** height of the blockchain */
+  /**
+   * height of the blockchain
+   */
   height: string;
-  /** tx_index of the cosmos transaction */
+  /**
+   * tx_index of the cosmos transaction
+   */
   tx_index: number;
-  /** msg_index in a batch transaction */
+  /**
+   * msg_index in a batch transaction
+   */
   msg_index: number;
   /**
    * eth_tx_index is the index in the list of valid eth tx in the block,
    * aka. the transaction list returned by eth_getBlock api.
    */
   eth_tx_index: number;
-  /** failed is true if the eth transaction did not go succeed */
+  /**
+   * failed is true if the eth transaction did not go succeed
+   */
   failed: boolean;
   /**
    * gas_used by the transaction. If it exceeds the block gas limit,
@@ -71,6 +97,12 @@ function createBaseTxResult(): TxResult {
     cumulativeGasUsed: BigInt(0)
   };
 }
+/**
+ * TxResult is the value stored in eth tx indexer
+ * @name TxResult
+ * @package ethermint.types.v1
+ * @see proto type: ethermint.types.v1.TxResult
+ */
 export const TxResult = {
   typeUrl: "/ethermint.types.v1.TxResult",
   is(o: any): o is TxResult {

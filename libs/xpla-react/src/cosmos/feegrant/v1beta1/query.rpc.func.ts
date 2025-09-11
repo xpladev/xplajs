@@ -1,26 +1,43 @@
-import { RpcResolver, buildQuery } from "../../../helper-func-types";
+import { buildQuery } from "../../../helper-func-types";
 import { QueryAllowanceRequest, QueryAllowanceResponse, QueryAllowancesRequest, QueryAllowancesResponse, QueryAllowancesByGranterRequest, QueryAllowancesByGranterResponse } from "./query";
-export const createGetAllowance = (clientResolver?: RpcResolver) => buildQuery<QueryAllowanceRequest, QueryAllowanceResponse>({
+/**
+ * Allowance returns granted allwance to the grantee by the granter.
+ * @name getAllowance
+ * @package cosmos.feegrant.v1beta1
+ * @see proto service: cosmos.feegrant.v1beta1.Allowance
+ */
+export const getAllowance = buildQuery<QueryAllowanceRequest, QueryAllowanceResponse>({
   encode: QueryAllowanceRequest.encode,
   decode: QueryAllowanceResponse.decode,
   service: "cosmos.feegrant.v1beta1.Query",
   method: "Allowance",
-  clientResolver,
   deps: [QueryAllowanceRequest, QueryAllowanceResponse]
 });
-export const createGetAllowances = (clientResolver?: RpcResolver) => buildQuery<QueryAllowancesRequest, QueryAllowancesResponse>({
+/**
+ * Allowances returns all the grants for the given grantee address.
+ * @name getAllowances
+ * @package cosmos.feegrant.v1beta1
+ * @see proto service: cosmos.feegrant.v1beta1.Allowances
+ */
+export const getAllowances = buildQuery<QueryAllowancesRequest, QueryAllowancesResponse>({
   encode: QueryAllowancesRequest.encode,
   decode: QueryAllowancesResponse.decode,
   service: "cosmos.feegrant.v1beta1.Query",
   method: "Allowances",
-  clientResolver,
   deps: [QueryAllowancesRequest, QueryAllowancesResponse]
 });
-export const createGetAllowancesByGranter = (clientResolver?: RpcResolver) => buildQuery<QueryAllowancesByGranterRequest, QueryAllowancesByGranterResponse>({
+/**
+ * AllowancesByGranter returns all the grants given by an address
+ * 
+ * Since: cosmos-sdk 0.46
+ * @name getAllowancesByGranter
+ * @package cosmos.feegrant.v1beta1
+ * @see proto service: cosmos.feegrant.v1beta1.AllowancesByGranter
+ */
+export const getAllowancesByGranter = buildQuery<QueryAllowancesByGranterRequest, QueryAllowancesByGranterResponse>({
   encode: QueryAllowancesByGranterRequest.encode,
   decode: QueryAllowancesByGranterResponse.decode,
   service: "cosmos.feegrant.v1beta1.Query",
   method: "AllowancesByGranter",
-  clientResolver,
   deps: [QueryAllowancesByGranterRequest, QueryAllowancesByGranterResponse]
 });

@@ -1,7 +1,12 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { Decimal } from "@interchainjs/math";
 import { DeepPartial } from "../../../helpers";
-/** Params defines the set of params for the reward module. */
+/**
+ * Params defines the set of params for the reward module.
+ * @name Params
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.Params
+ */
 export interface Params {
   feePoolRate: string;
   communityPoolRate: string;
@@ -13,7 +18,12 @@ export interface ParamsProtoMsg {
   typeUrl: "/xpla.reward.v1beta1.Params";
   value: Uint8Array;
 }
-/** Params defines the set of params for the reward module. */
+/**
+ * Params defines the set of params for the reward module.
+ * @name ParamsAmino
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.Params
+ */
 export interface ParamsAmino {
   fee_pool_rate: string;
   community_pool_rate: string;
@@ -34,6 +44,12 @@ function createBaseParams(): Params {
     rewardDistributeAccount: ""
   };
 }
+/**
+ * Params defines the set of params for the reward module.
+ * @name Params
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.Params
+ */
 export const Params = {
   typeUrl: "/xpla.reward.v1beta1.Params",
   aminoType: "xpladev/x/reward/Params",

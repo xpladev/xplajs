@@ -5,8 +5,13 @@ import { BinaryReader, BinaryWriter } from "../../../binary";
 import { GlobalDecoderRegistry } from "../../../registry";
 import { DeepPartial } from "../../../helpers";
 import { encodePubkey, decodePubkey } from "@interchainjs/pubkey";
-/** RegisterVolunteerValidatorProposal */
-/** @deprecated */
+/**
+ * RegisterVolunteerValidatorProposal
+ * @name RegisterVolunteerValidatorProposal
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.RegisterVolunteerValidatorProposal
+ * @deprecated
+ */
 export interface RegisterVolunteerValidatorProposal {
   title: string;
   description: string;
@@ -23,8 +28,13 @@ export interface RegisterVolunteerValidatorProposalProtoMsg {
 export type RegisterVolunteerValidatorProposalEncoded = Omit<RegisterVolunteerValidatorProposal, "pubkey"> & {
   pubkey?: AnyProtoMsg | undefined;
 };
-/** RegisterVolunteerValidatorProposal */
-/** @deprecated */
+/**
+ * RegisterVolunteerValidatorProposal
+ * @name RegisterVolunteerValidatorProposalAmino
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.RegisterVolunteerValidatorProposal
+ * @deprecated
+ */
 export interface RegisterVolunteerValidatorProposalAmino {
   title: string;
   description: string;
@@ -38,8 +48,13 @@ export interface RegisterVolunteerValidatorProposalAminoMsg {
   type: "xpladev/RegisterVolunteerValidatorProposal";
   value: RegisterVolunteerValidatorProposalAmino;
 }
-/** RegisterVolunteerValidatorProposalWithDeposit */
-/** @deprecated */
+/**
+ * RegisterVolunteerValidatorProposalWithDeposit
+ * @name RegisterVolunteerValidatorProposalWithDeposit
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.RegisterVolunteerValidatorProposalWithDeposit
+ * @deprecated
+ */
 export interface RegisterVolunteerValidatorProposalWithDeposit {
   title: string;
   description: string;
@@ -57,8 +72,13 @@ export interface RegisterVolunteerValidatorProposalWithDepositProtoMsg {
 export type RegisterVolunteerValidatorProposalWithDepositEncoded = Omit<RegisterVolunteerValidatorProposalWithDeposit, "pubkey"> & {
   pubkey?: AnyProtoMsg | undefined;
 };
-/** RegisterVolunteerValidatorProposalWithDeposit */
-/** @deprecated */
+/**
+ * RegisterVolunteerValidatorProposalWithDeposit
+ * @name RegisterVolunteerValidatorProposalWithDepositAmino
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.RegisterVolunteerValidatorProposalWithDeposit
+ * @deprecated
+ */
 export interface RegisterVolunteerValidatorProposalWithDepositAmino {
   title: string;
   description: string;
@@ -73,8 +93,13 @@ export interface RegisterVolunteerValidatorProposalWithDepositAminoMsg {
   type: "xpladev/RegisterVolunteerValidatorProposalWithDeposit";
   value: RegisterVolunteerValidatorProposalWithDepositAmino;
 }
-/** UnregisterVolunteerValidatorProposal */
-/** @deprecated */
+/**
+ * UnregisterVolunteerValidatorProposal
+ * @name UnregisterVolunteerValidatorProposal
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.UnregisterVolunteerValidatorProposal
+ * @deprecated
+ */
 export interface UnregisterVolunteerValidatorProposal {
   title: string;
   description: string;
@@ -84,8 +109,13 @@ export interface UnregisterVolunteerValidatorProposalProtoMsg {
   typeUrl: "/xpla.volunteer.v1beta1.UnregisterVolunteerValidatorProposal";
   value: Uint8Array;
 }
-/** UnregisterVolunteerValidatorProposal */
-/** @deprecated */
+/**
+ * UnregisterVolunteerValidatorProposal
+ * @name UnregisterVolunteerValidatorProposalAmino
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.UnregisterVolunteerValidatorProposal
+ * @deprecated
+ */
 export interface UnregisterVolunteerValidatorProposalAmino {
   title: string;
   description: string;
@@ -95,8 +125,13 @@ export interface UnregisterVolunteerValidatorProposalAminoMsg {
   type: "xpladev/UnregisterVolunteerValidatorProposal";
   value: UnregisterVolunteerValidatorProposalAmino;
 }
-/** UnregisterVolunteerValidatorProposalWithDeposit */
-/** @deprecated */
+/**
+ * UnregisterVolunteerValidatorProposalWithDeposit
+ * @name UnregisterVolunteerValidatorProposalWithDeposit
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.UnregisterVolunteerValidatorProposalWithDeposit
+ * @deprecated
+ */
 export interface UnregisterVolunteerValidatorProposalWithDeposit {
   title: string;
   description: string;
@@ -107,8 +142,13 @@ export interface UnregisterVolunteerValidatorProposalWithDepositProtoMsg {
   typeUrl: "/xpla.volunteer.v1beta1.UnregisterVolunteerValidatorProposalWithDeposit";
   value: Uint8Array;
 }
-/** UnregisterVolunteerValidatorProposalWithDeposit */
-/** @deprecated */
+/**
+ * UnregisterVolunteerValidatorProposalWithDeposit
+ * @name UnregisterVolunteerValidatorProposalWithDepositAmino
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.UnregisterVolunteerValidatorProposalWithDeposit
+ * @deprecated
+ */
 export interface UnregisterVolunteerValidatorProposalWithDepositAmino {
   title: string;
   description: string;
@@ -130,6 +170,13 @@ function createBaseRegisterVolunteerValidatorProposal(): RegisterVolunteerValida
     amount: Coin.fromPartial({})
   };
 }
+/**
+ * RegisterVolunteerValidatorProposal
+ * @name RegisterVolunteerValidatorProposal
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.RegisterVolunteerValidatorProposal
+ * @deprecated
+ */
 export const RegisterVolunteerValidatorProposal = {
   typeUrl: "/xpla.volunteer.v1beta1.RegisterVolunteerValidatorProposal",
   aminoType: "xpladev/RegisterVolunteerValidatorProposal",
@@ -267,6 +314,9 @@ export const RegisterVolunteerValidatorProposal = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(RegisterVolunteerValidatorProposal.typeUrl)) {
+      return;
+    }
     Coin.registerTypeUrl();
   }
 };
@@ -282,6 +332,13 @@ function createBaseRegisterVolunteerValidatorProposalWithDeposit(): RegisterVolu
     deposit: ""
   };
 }
+/**
+ * RegisterVolunteerValidatorProposalWithDeposit
+ * @name RegisterVolunteerValidatorProposalWithDeposit
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.RegisterVolunteerValidatorProposalWithDeposit
+ * @deprecated
+ */
 export const RegisterVolunteerValidatorProposalWithDeposit = {
   typeUrl: "/xpla.volunteer.v1beta1.RegisterVolunteerValidatorProposalWithDeposit",
   aminoType: "xpladev/RegisterVolunteerValidatorProposalWithDeposit",
@@ -430,6 +487,9 @@ export const RegisterVolunteerValidatorProposalWithDeposit = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(RegisterVolunteerValidatorProposalWithDeposit.typeUrl)) {
+      return;
+    }
     Coin.registerTypeUrl();
   }
 };
@@ -440,6 +500,13 @@ function createBaseUnregisterVolunteerValidatorProposal(): UnregisterVolunteerVa
     validatorAddress: ""
   };
 }
+/**
+ * UnregisterVolunteerValidatorProposal
+ * @name UnregisterVolunteerValidatorProposal
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.UnregisterVolunteerValidatorProposal
+ * @deprecated
+ */
 export const UnregisterVolunteerValidatorProposal = {
   typeUrl: "/xpla.volunteer.v1beta1.UnregisterVolunteerValidatorProposal",
   aminoType: "xpladev/UnregisterVolunteerValidatorProposal",
@@ -542,6 +609,13 @@ function createBaseUnregisterVolunteerValidatorProposalWithDeposit(): Unregister
     deposit: ""
   };
 }
+/**
+ * UnregisterVolunteerValidatorProposalWithDeposit
+ * @name UnregisterVolunteerValidatorProposalWithDeposit
+ * @package xpla.volunteer.v1beta1
+ * @see proto type: xpla.volunteer.v1beta1.UnregisterVolunteerValidatorProposalWithDeposit
+ * @deprecated
+ */
 export const UnregisterVolunteerValidatorProposalWithDeposit = {
   typeUrl: "/xpla.volunteer.v1beta1.UnregisterVolunteerValidatorProposalWithDeposit",
   aminoType: "xpladev/UnregisterVolunteerValidatorProposalWithDeposit",

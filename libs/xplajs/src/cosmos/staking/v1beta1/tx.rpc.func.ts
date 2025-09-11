@@ -1,52 +1,73 @@
-import { buildTx, SigningClientResolver } from "../../../helper-func-types";
-import { toEncoders, toConverters } from "@interchainjs/cosmos/utils";
+import { buildTx } from "../../../helper-func-types";
 import { MsgCreateValidator, MsgEditValidator, MsgDelegate, MsgBeginRedelegate, MsgUndelegate, MsgCancelUnbondingDelegation, MsgUpdateParams } from "./tx";
-export const createCreateValidator = (clientResolver?: SigningClientResolver) => buildTx<MsgCreateValidator>({
-  clientResolver,
-  typeUrl: MsgCreateValidator.typeUrl,
-  encoders: toEncoders(MsgCreateValidator),
-  converters: toConverters(MsgCreateValidator),
-  deps: [MsgCreateValidator]
+/**
+ * CreateValidator defines a method for creating a new validator.
+ * @name createValidator
+ * @package cosmos.staking.v1beta1
+ * @see proto service: cosmos.staking.v1beta1.CreateValidator
+ */
+export const createValidator = buildTx<MsgCreateValidator>({
+  msg: MsgCreateValidator
 });
-export const createEditValidator = (clientResolver?: SigningClientResolver) => buildTx<MsgEditValidator>({
-  clientResolver,
-  typeUrl: MsgEditValidator.typeUrl,
-  encoders: toEncoders(MsgEditValidator),
-  converters: toConverters(MsgEditValidator),
-  deps: [MsgEditValidator]
+/**
+ * EditValidator defines a method for editing an existing validator.
+ * @name editValidator
+ * @package cosmos.staking.v1beta1
+ * @see proto service: cosmos.staking.v1beta1.EditValidator
+ */
+export const editValidator = buildTx<MsgEditValidator>({
+  msg: MsgEditValidator
 });
-export const createDelegate = (clientResolver?: SigningClientResolver) => buildTx<MsgDelegate>({
-  clientResolver,
-  typeUrl: MsgDelegate.typeUrl,
-  encoders: toEncoders(MsgDelegate),
-  converters: toConverters(MsgDelegate),
-  deps: [MsgDelegate]
+/**
+ * Delegate defines a method for performing a delegation of coins
+ * from a delegator to a validator.
+ * @name delegate
+ * @package cosmos.staking.v1beta1
+ * @see proto service: cosmos.staking.v1beta1.Delegate
+ */
+export const delegate = buildTx<MsgDelegate>({
+  msg: MsgDelegate
 });
-export const createBeginRedelegate = (clientResolver?: SigningClientResolver) => buildTx<MsgBeginRedelegate>({
-  clientResolver,
-  typeUrl: MsgBeginRedelegate.typeUrl,
-  encoders: toEncoders(MsgBeginRedelegate),
-  converters: toConverters(MsgBeginRedelegate),
-  deps: [MsgBeginRedelegate]
+/**
+ * BeginRedelegate defines a method for performing a redelegation
+ * of coins from a delegator and source validator to a destination validator.
+ * @name beginRedelegate
+ * @package cosmos.staking.v1beta1
+ * @see proto service: cosmos.staking.v1beta1.BeginRedelegate
+ */
+export const beginRedelegate = buildTx<MsgBeginRedelegate>({
+  msg: MsgBeginRedelegate
 });
-export const createUndelegate = (clientResolver?: SigningClientResolver) => buildTx<MsgUndelegate>({
-  clientResolver,
-  typeUrl: MsgUndelegate.typeUrl,
-  encoders: toEncoders(MsgUndelegate),
-  converters: toConverters(MsgUndelegate),
-  deps: [MsgUndelegate]
+/**
+ * Undelegate defines a method for performing an undelegation from a
+ * delegate and a validator.
+ * @name undelegate
+ * @package cosmos.staking.v1beta1
+ * @see proto service: cosmos.staking.v1beta1.Undelegate
+ */
+export const undelegate = buildTx<MsgUndelegate>({
+  msg: MsgUndelegate
 });
-export const createCancelUnbondingDelegation = (clientResolver?: SigningClientResolver) => buildTx<MsgCancelUnbondingDelegation>({
-  clientResolver,
-  typeUrl: MsgCancelUnbondingDelegation.typeUrl,
-  encoders: toEncoders(MsgCancelUnbondingDelegation),
-  converters: toConverters(MsgCancelUnbondingDelegation),
-  deps: [MsgCancelUnbondingDelegation]
+/**
+ * CancelUnbondingDelegation defines a method for performing canceling the unbonding delegation
+ * and delegate back to previous validator.
+ * 
+ * Since: cosmos-sdk 0.46
+ * @name cancelUnbondingDelegation
+ * @package cosmos.staking.v1beta1
+ * @see proto service: cosmos.staking.v1beta1.CancelUnbondingDelegation
+ */
+export const cancelUnbondingDelegation = buildTx<MsgCancelUnbondingDelegation>({
+  msg: MsgCancelUnbondingDelegation
 });
-export const createUpdateParams = (clientResolver?: SigningClientResolver) => buildTx<MsgUpdateParams>({
-  clientResolver,
-  typeUrl: MsgUpdateParams.typeUrl,
-  encoders: toEncoders(MsgUpdateParams),
-  converters: toConverters(MsgUpdateParams),
-  deps: [MsgUpdateParams]
+/**
+ * UpdateParams defines an operation for updating the x/staking module
+ * parameters.
+ * Since: cosmos-sdk 0.47
+ * @name updateParams
+ * @package cosmos.staking.v1beta1
+ * @see proto service: cosmos.staking.v1beta1.UpdateParams
+ */
+export const updateParams = buildTx<MsgUpdateParams>({
+  msg: MsgUpdateParams
 });

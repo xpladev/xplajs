@@ -3,13 +3,24 @@ import { Params, ParamsAmino, AccessTuple, AccessTupleAmino, Log, LogAmino } fro
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { GlobalDecoderRegistry } from "../../../registry";
 import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../helpers";
-/** MsgEthereumTx encapsulates an Ethereum transaction as an SDK message. */
+/**
+ * MsgEthereumTx encapsulates an Ethereum transaction as an SDK message.
+ * @name MsgEthereumTx
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.MsgEthereumTx
+ */
 export interface MsgEthereumTx {
-  /** data is inner transaction data of the Ethereum transaction */
+  /**
+   * data is inner transaction data of the Ethereum transaction
+   */
   data?: Any;
-  /** size is the encoded storage size of the transaction (DEPRECATED) */
+  /**
+   * size is the encoded storage size of the transaction (DEPRECATED)
+   */
   size: number;
-  /** hash of the transaction in hex format */
+  /**
+   * hash of the transaction in hex format
+   */
   hash: string;
   /**
    * from is the ethereum signer address in hex format. This address value is checked
@@ -22,13 +33,24 @@ export interface MsgEthereumTxProtoMsg {
   typeUrl: "/ethermint.evm.v1.MsgEthereumTx";
   value: Uint8Array;
 }
-/** MsgEthereumTx encapsulates an Ethereum transaction as an SDK message. */
+/**
+ * MsgEthereumTx encapsulates an Ethereum transaction as an SDK message.
+ * @name MsgEthereumTxAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.MsgEthereumTx
+ */
 export interface MsgEthereumTxAmino {
-  /** data is inner transaction data of the Ethereum transaction */
+  /**
+   * data is inner transaction data of the Ethereum transaction
+   */
   data?: AnyAmino;
-  /** size is the encoded storage size of the transaction (DEPRECATED) */
+  /**
+   * size is the encoded storage size of the transaction (DEPRECATED)
+   */
   size: number;
-  /** hash of the transaction in hex format */
+  /**
+   * hash of the transaction in hex format
+   */
   hash: string;
   /**
    * from is the ethereum signer address in hex format. This address value is checked
@@ -45,25 +67,46 @@ export interface MsgEthereumTxAminoMsg {
  * LegacyTx is the transaction data of regular Ethereum transactions.
  * NOTE: All non-protected transactions (i.e non EIP155 signed) will fail if the
  * AllowUnprotectedTxs parameter is disabled.
+ * @name LegacyTx
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.LegacyTx
  */
 export interface LegacyTx {
-  /** nonce corresponds to the account nonce (transaction sequence). */
+  /**
+   * nonce corresponds to the account nonce (transaction sequence).
+   */
   nonce: bigint;
-  /** gas_price defines the value for each gas unit */
+  /**
+   * gas_price defines the value for each gas unit
+   */
   gasPrice: string;
-  /** gas defines the gas limit defined for the transaction. */
+  /**
+   * gas defines the gas limit defined for the transaction.
+   */
   gas: bigint;
-  /** to is the hex formatted address of the recipient */
+  /**
+   * to is the hex formatted address of the recipient
+   */
   to: string;
-  /** value defines the unsigned integer value of the transaction amount. */
+  /**
+   * value defines the unsigned integer value of the transaction amount.
+   */
   value: string;
-  /** data is the data payload bytes of the transaction. */
+  /**
+   * data is the data payload bytes of the transaction.
+   */
   data: Uint8Array;
-  /** v defines the signature value */
+  /**
+   * v defines the signature value
+   */
   v: Uint8Array;
-  /** r defines the signature value */
+  /**
+   * r defines the signature value
+   */
   r: Uint8Array;
-  /** s define the signature value */
+  /**
+   * s define the signature value
+   */
   s: Uint8Array;
 }
 export interface LegacyTxProtoMsg {
@@ -74,164 +117,312 @@ export interface LegacyTxProtoMsg {
  * LegacyTx is the transaction data of regular Ethereum transactions.
  * NOTE: All non-protected transactions (i.e non EIP155 signed) will fail if the
  * AllowUnprotectedTxs parameter is disabled.
+ * @name LegacyTxAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.LegacyTx
  */
 export interface LegacyTxAmino {
-  /** nonce corresponds to the account nonce (transaction sequence). */
+  /**
+   * nonce corresponds to the account nonce (transaction sequence).
+   */
   nonce: string;
-  /** gas_price defines the value for each gas unit */
+  /**
+   * gas_price defines the value for each gas unit
+   */
   gas_price: string;
-  /** gas defines the gas limit defined for the transaction. */
+  /**
+   * gas defines the gas limit defined for the transaction.
+   */
   gas: string;
-  /** to is the hex formatted address of the recipient */
+  /**
+   * to is the hex formatted address of the recipient
+   */
   to: string;
-  /** value defines the unsigned integer value of the transaction amount. */
+  /**
+   * value defines the unsigned integer value of the transaction amount.
+   */
   value: string;
-  /** data is the data payload bytes of the transaction. */
+  /**
+   * data is the data payload bytes of the transaction.
+   */
   data: string;
-  /** v defines the signature value */
+  /**
+   * v defines the signature value
+   */
   v: string;
-  /** r defines the signature value */
+  /**
+   * r defines the signature value
+   */
   r: string;
-  /** s define the signature value */
+  /**
+   * s define the signature value
+   */
   s: string;
 }
 export interface LegacyTxAminoMsg {
   type: "/ethermint.evm.v1.LegacyTx";
   value: LegacyTxAmino;
 }
-/** AccessListTx is the data of EIP-2930 access list transactions. */
+/**
+ * AccessListTx is the data of EIP-2930 access list transactions.
+ * @name AccessListTx
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.AccessListTx
+ */
 export interface AccessListTx {
-  /** chain_id of the destination EVM chain */
+  /**
+   * chain_id of the destination EVM chain
+   */
   chainId: string;
-  /** nonce corresponds to the account nonce (transaction sequence). */
+  /**
+   * nonce corresponds to the account nonce (transaction sequence).
+   */
   nonce: bigint;
-  /** gas_price defines the value for each gas unit */
+  /**
+   * gas_price defines the value for each gas unit
+   */
   gasPrice: string;
-  /** gas defines the gas limit defined for the transaction. */
+  /**
+   * gas defines the gas limit defined for the transaction.
+   */
   gas: bigint;
-  /** to is the recipient address in hex format */
+  /**
+   * to is the recipient address in hex format
+   */
   to: string;
-  /** value defines the unsigned integer value of the transaction amount. */
+  /**
+   * value defines the unsigned integer value of the transaction amount.
+   */
   value: string;
-  /** data is the data payload bytes of the transaction. */
+  /**
+   * data is the data payload bytes of the transaction.
+   */
   data: Uint8Array;
-  /** accesses is an array of access tuples */
+  /**
+   * accesses is an array of access tuples
+   */
   accesses: AccessTuple[];
-  /** v defines the signature value */
+  /**
+   * v defines the signature value
+   */
   v: Uint8Array;
-  /** r defines the signature value */
+  /**
+   * r defines the signature value
+   */
   r: Uint8Array;
-  /** s define the signature value */
+  /**
+   * s define the signature value
+   */
   s: Uint8Array;
 }
 export interface AccessListTxProtoMsg {
   typeUrl: "/ethermint.evm.v1.AccessListTx";
   value: Uint8Array;
 }
-/** AccessListTx is the data of EIP-2930 access list transactions. */
+/**
+ * AccessListTx is the data of EIP-2930 access list transactions.
+ * @name AccessListTxAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.AccessListTx
+ */
 export interface AccessListTxAmino {
-  /** chain_id of the destination EVM chain */
+  /**
+   * chain_id of the destination EVM chain
+   */
   chain_id: string;
-  /** nonce corresponds to the account nonce (transaction sequence). */
+  /**
+   * nonce corresponds to the account nonce (transaction sequence).
+   */
   nonce: string;
-  /** gas_price defines the value for each gas unit */
+  /**
+   * gas_price defines the value for each gas unit
+   */
   gas_price: string;
-  /** gas defines the gas limit defined for the transaction. */
+  /**
+   * gas defines the gas limit defined for the transaction.
+   */
   gas: string;
-  /** to is the recipient address in hex format */
+  /**
+   * to is the recipient address in hex format
+   */
   to: string;
-  /** value defines the unsigned integer value of the transaction amount. */
+  /**
+   * value defines the unsigned integer value of the transaction amount.
+   */
   value: string;
-  /** data is the data payload bytes of the transaction. */
+  /**
+   * data is the data payload bytes of the transaction.
+   */
   data: string;
-  /** accesses is an array of access tuples */
+  /**
+   * accesses is an array of access tuples
+   */
   accesses: AccessTupleAmino[];
-  /** v defines the signature value */
+  /**
+   * v defines the signature value
+   */
   v: string;
-  /** r defines the signature value */
+  /**
+   * r defines the signature value
+   */
   r: string;
-  /** s define the signature value */
+  /**
+   * s define the signature value
+   */
   s: string;
 }
 export interface AccessListTxAminoMsg {
   type: "/ethermint.evm.v1.AccessListTx";
   value: AccessListTxAmino;
 }
-/** DynamicFeeTx is the data of EIP-1559 dynamic fee transactions. */
+/**
+ * DynamicFeeTx is the data of EIP-1559 dynamic fee transactions.
+ * @name DynamicFeeTx
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.DynamicFeeTx
+ */
 export interface DynamicFeeTx {
-  /** chain_id of the destination EVM chain */
+  /**
+   * chain_id of the destination EVM chain
+   */
   chainId: string;
-  /** nonce corresponds to the account nonce (transaction sequence). */
+  /**
+   * nonce corresponds to the account nonce (transaction sequence).
+   */
   nonce: bigint;
-  /** gas_tip_cap defines the max value for the gas tip */
+  /**
+   * gas_tip_cap defines the max value for the gas tip
+   */
   gasTipCap: string;
-  /** gas_fee_cap defines the max value for the gas fee */
+  /**
+   * gas_fee_cap defines the max value for the gas fee
+   */
   gasFeeCap: string;
-  /** gas defines the gas limit defined for the transaction. */
+  /**
+   * gas defines the gas limit defined for the transaction.
+   */
   gas: bigint;
-  /** to is the hex formatted address of the recipient */
+  /**
+   * to is the hex formatted address of the recipient
+   */
   to: string;
-  /** value defines the transaction amount. */
+  /**
+   * value defines the transaction amount.
+   */
   value: string;
-  /** data is the data payload bytes of the transaction. */
+  /**
+   * data is the data payload bytes of the transaction.
+   */
   data: Uint8Array;
-  /** accesses is an array of access tuples */
+  /**
+   * accesses is an array of access tuples
+   */
   accesses: AccessTuple[];
-  /** v defines the signature value */
+  /**
+   * v defines the signature value
+   */
   v: Uint8Array;
-  /** r defines the signature value */
+  /**
+   * r defines the signature value
+   */
   r: Uint8Array;
-  /** s define the signature value */
+  /**
+   * s define the signature value
+   */
   s: Uint8Array;
 }
 export interface DynamicFeeTxProtoMsg {
   typeUrl: "/ethermint.evm.v1.DynamicFeeTx";
   value: Uint8Array;
 }
-/** DynamicFeeTx is the data of EIP-1559 dynamic fee transactions. */
+/**
+ * DynamicFeeTx is the data of EIP-1559 dynamic fee transactions.
+ * @name DynamicFeeTxAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.DynamicFeeTx
+ */
 export interface DynamicFeeTxAmino {
-  /** chain_id of the destination EVM chain */
+  /**
+   * chain_id of the destination EVM chain
+   */
   chain_id: string;
-  /** nonce corresponds to the account nonce (transaction sequence). */
+  /**
+   * nonce corresponds to the account nonce (transaction sequence).
+   */
   nonce: string;
-  /** gas_tip_cap defines the max value for the gas tip */
+  /**
+   * gas_tip_cap defines the max value for the gas tip
+   */
   gas_tip_cap: string;
-  /** gas_fee_cap defines the max value for the gas fee */
+  /**
+   * gas_fee_cap defines the max value for the gas fee
+   */
   gas_fee_cap: string;
-  /** gas defines the gas limit defined for the transaction. */
+  /**
+   * gas defines the gas limit defined for the transaction.
+   */
   gas: string;
-  /** to is the hex formatted address of the recipient */
+  /**
+   * to is the hex formatted address of the recipient
+   */
   to: string;
-  /** value defines the transaction amount. */
+  /**
+   * value defines the transaction amount.
+   */
   value: string;
-  /** data is the data payload bytes of the transaction. */
+  /**
+   * data is the data payload bytes of the transaction.
+   */
   data: string;
-  /** accesses is an array of access tuples */
+  /**
+   * accesses is an array of access tuples
+   */
   accesses: AccessTupleAmino[];
-  /** v defines the signature value */
+  /**
+   * v defines the signature value
+   */
   v: string;
-  /** r defines the signature value */
+  /**
+   * r defines the signature value
+   */
   r: string;
-  /** s define the signature value */
+  /**
+   * s define the signature value
+   */
   s: string;
 }
 export interface DynamicFeeTxAminoMsg {
   type: "/ethermint.evm.v1.DynamicFeeTx";
   value: DynamicFeeTxAmino;
 }
-/** ExtensionOptionsEthereumTx is an extension option for ethereum transactions */
+/**
+ * ExtensionOptionsEthereumTx is an extension option for ethereum transactions
+ * @name ExtensionOptionsEthereumTx
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.ExtensionOptionsEthereumTx
+ */
 export interface ExtensionOptionsEthereumTx {}
 export interface ExtensionOptionsEthereumTxProtoMsg {
   typeUrl: "/ethermint.evm.v1.ExtensionOptionsEthereumTx";
   value: Uint8Array;
 }
-/** ExtensionOptionsEthereumTx is an extension option for ethereum transactions */
+/**
+ * ExtensionOptionsEthereumTx is an extension option for ethereum transactions
+ * @name ExtensionOptionsEthereumTxAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.ExtensionOptionsEthereumTx
+ */
 export interface ExtensionOptionsEthereumTxAmino {}
 export interface ExtensionOptionsEthereumTxAminoMsg {
   type: "/ethermint.evm.v1.ExtensionOptionsEthereumTx";
   value: ExtensionOptionsEthereumTxAmino;
 }
-/** MsgEthereumTxResponse defines the Msg/EthereumTx response type. */
+/**
+ * MsgEthereumTxResponse defines the Msg/EthereumTx response type.
+ * @name MsgEthereumTxResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.MsgEthereumTxResponse
+ */
 export interface MsgEthereumTxResponse {
   /**
    * hash of the ethereum transaction in hex format. This hash differs from the
@@ -249,16 +440,25 @@ export interface MsgEthereumTxResponse {
    * opcode)
    */
   ret: Uint8Array;
-  /** vm_error is the error returned by vm execution */
+  /**
+   * vm_error is the error returned by vm execution
+   */
   vmError: string;
-  /** gas_used specifies how much gas was consumed by the transaction */
+  /**
+   * gas_used specifies how much gas was consumed by the transaction
+   */
   gasUsed: bigint;
 }
 export interface MsgEthereumTxResponseProtoMsg {
   typeUrl: "/ethermint.evm.v1.MsgEthereumTxResponse";
   value: Uint8Array;
 }
-/** MsgEthereumTxResponse defines the Msg/EthereumTx response type. */
+/**
+ * MsgEthereumTxResponse defines the Msg/EthereumTx response type.
+ * @name MsgEthereumTxResponseAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.MsgEthereumTxResponse
+ */
 export interface MsgEthereumTxResponseAmino {
   /**
    * hash of the ethereum transaction in hex format. This hash differs from the
@@ -276,18 +476,29 @@ export interface MsgEthereumTxResponseAmino {
    * opcode)
    */
   ret: string;
-  /** vm_error is the error returned by vm execution */
+  /**
+   * vm_error is the error returned by vm execution
+   */
   vm_error: string;
-  /** gas_used specifies how much gas was consumed by the transaction */
+  /**
+   * gas_used specifies how much gas was consumed by the transaction
+   */
   gas_used: string;
 }
 export interface MsgEthereumTxResponseAminoMsg {
   type: "/ethermint.evm.v1.MsgEthereumTxResponse";
   value: MsgEthereumTxResponseAmino;
 }
-/** MsgUpdateParams defines a Msg for updating the x/evm module parameters. */
+/**
+ * MsgUpdateParams defines a Msg for updating the x/evm module parameters.
+ * @name MsgUpdateParams
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.MsgUpdateParams
+ */
 export interface MsgUpdateParams {
-  /** authority is the address of the governance account. */
+  /**
+   * authority is the address of the governance account.
+   */
   authority: string;
   /**
    * params defines the x/evm parameters to update.
@@ -299,9 +510,16 @@ export interface MsgUpdateParamsProtoMsg {
   typeUrl: "/ethermint.evm.v1.MsgUpdateParams";
   value: Uint8Array;
 }
-/** MsgUpdateParams defines a Msg for updating the x/evm module parameters. */
+/**
+ * MsgUpdateParams defines a Msg for updating the x/evm module parameters.
+ * @name MsgUpdateParamsAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.MsgUpdateParams
+ */
 export interface MsgUpdateParamsAmino {
-  /** authority is the address of the governance account. */
+  /**
+   * authority is the address of the governance account.
+   */
   authority: string;
   /**
    * params defines the x/evm parameters to update.
@@ -316,6 +534,9 @@ export interface MsgUpdateParamsAminoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
+ * @name MsgUpdateParamsResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.MsgUpdateParamsResponse
  */
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
@@ -325,6 +546,9 @@ export interface MsgUpdateParamsResponseProtoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
+ * @name MsgUpdateParamsResponseAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.MsgUpdateParamsResponse
  */
 export interface MsgUpdateParamsResponseAmino {}
 export interface MsgUpdateParamsResponseAminoMsg {
@@ -339,6 +563,12 @@ function createBaseMsgEthereumTx(): MsgEthereumTx {
     from: ""
   };
 }
+/**
+ * MsgEthereumTx encapsulates an Ethereum transaction as an SDK message.
+ * @name MsgEthereumTx
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.MsgEthereumTx
+ */
 export const MsgEthereumTx = {
   typeUrl: "/ethermint.evm.v1.MsgEthereumTx",
   aminoType: "ethermint/MsgEthereumTx",
@@ -457,6 +687,14 @@ function createBaseLegacyTx(): LegacyTx {
     s: new Uint8Array()
   };
 }
+/**
+ * LegacyTx is the transaction data of regular Ethereum transactions.
+ * NOTE: All non-protected transactions (i.e non EIP155 signed) will fail if the
+ * AllowUnprotectedTxs parameter is disabled.
+ * @name LegacyTx
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.LegacyTx
+ */
 export const LegacyTx = {
   typeUrl: "/ethermint.evm.v1.LegacyTx",
   is(o: any): o is LegacyTx {
@@ -609,6 +847,9 @@ export const LegacyTx = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(LegacyTx.typeUrl)) {
+      return;
+    }
     GlobalDecoderRegistry.register(LegacyTx.typeUrl, LegacyTx);
   }
 };
@@ -627,6 +868,12 @@ function createBaseAccessListTx(): AccessListTx {
     s: new Uint8Array()
   };
 }
+/**
+ * AccessListTx is the data of EIP-2930 access list transactions.
+ * @name AccessListTx
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.AccessListTx
+ */
 export const AccessListTx = {
   typeUrl: "/ethermint.evm.v1.AccessListTx",
   is(o: any): o is AccessListTx {
@@ -803,6 +1050,9 @@ export const AccessListTx = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(AccessListTx.typeUrl)) {
+      return;
+    }
     GlobalDecoderRegistry.register(AccessListTx.typeUrl, AccessListTx);
     AccessTuple.registerTypeUrl();
   }
@@ -823,6 +1073,12 @@ function createBaseDynamicFeeTx(): DynamicFeeTx {
     s: new Uint8Array()
   };
 }
+/**
+ * DynamicFeeTx is the data of EIP-1559 dynamic fee transactions.
+ * @name DynamicFeeTx
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.DynamicFeeTx
+ */
 export const DynamicFeeTx = {
   typeUrl: "/ethermint.evm.v1.DynamicFeeTx",
   is(o: any): o is DynamicFeeTx {
@@ -1010,6 +1266,9 @@ export const DynamicFeeTx = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(DynamicFeeTx.typeUrl)) {
+      return;
+    }
     GlobalDecoderRegistry.register(DynamicFeeTx.typeUrl, DynamicFeeTx);
     AccessTuple.registerTypeUrl();
   }
@@ -1017,6 +1276,12 @@ export const DynamicFeeTx = {
 function createBaseExtensionOptionsEthereumTx(): ExtensionOptionsEthereumTx {
   return {};
 }
+/**
+ * ExtensionOptionsEthereumTx is an extension option for ethereum transactions
+ * @name ExtensionOptionsEthereumTx
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.ExtensionOptionsEthereumTx
+ */
 export const ExtensionOptionsEthereumTx = {
   typeUrl: "/ethermint.evm.v1.ExtensionOptionsEthereumTx",
   is(o: any): o is ExtensionOptionsEthereumTx {
@@ -1080,6 +1345,12 @@ function createBaseMsgEthereumTxResponse(): MsgEthereumTxResponse {
     gasUsed: BigInt(0)
   };
 }
+/**
+ * MsgEthereumTxResponse defines the Msg/EthereumTx response type.
+ * @name MsgEthereumTxResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.MsgEthereumTxResponse
+ */
 export const MsgEthereumTxResponse = {
   typeUrl: "/ethermint.evm.v1.MsgEthereumTxResponse",
   is(o: any): o is MsgEthereumTxResponse {
@@ -1190,6 +1461,9 @@ export const MsgEthereumTxResponse = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(MsgEthereumTxResponse.typeUrl)) {
+      return;
+    }
     Log.registerTypeUrl();
   }
 };
@@ -1199,6 +1473,12 @@ function createBaseMsgUpdateParams(): MsgUpdateParams {
     params: Params.fromPartial({})
   };
 }
+/**
+ * MsgUpdateParams defines a Msg for updating the x/evm module parameters.
+ * @name MsgUpdateParams
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.MsgUpdateParams
+ */
 export const MsgUpdateParams = {
   typeUrl: "/ethermint.evm.v1.MsgUpdateParams",
   aminoType: "ethermint/x/evm/MsgUpdateParams",
@@ -1281,12 +1561,22 @@ export const MsgUpdateParams = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(MsgUpdateParams.typeUrl)) {
+      return;
+    }
     Params.registerTypeUrl();
   }
 };
 function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
   return {};
 }
+/**
+ * MsgUpdateParamsResponse defines the response structure for executing a
+ * MsgUpdateParams message.
+ * @name MsgUpdateParamsResponse
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.MsgUpdateParamsResponse
+ */
 export const MsgUpdateParamsResponse = {
   typeUrl: "/ethermint.evm.v1.MsgUpdateParamsResponse",
   is(o: any): o is MsgUpdateParamsResponse {

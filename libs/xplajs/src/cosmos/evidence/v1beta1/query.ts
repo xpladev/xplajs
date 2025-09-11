@@ -2,13 +2,19 @@ import { PageRequest, PageRequestAmino, PageResponse, PageResponseAmino } from "
 import { Any, AnyAmino } from "../../../google/protobuf/any";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../helpers";
-/** QueryEvidenceRequest is the request type for the Query/Evidence RPC method. */
+import { GlobalDecoderRegistry } from "../../../registry";
+/**
+ * QueryEvidenceRequest is the request type for the Query/Evidence RPC method.
+ * @name QueryEvidenceRequest
+ * @package cosmos.evidence.v1beta1
+ * @see proto type: cosmos.evidence.v1beta1.QueryEvidenceRequest
+ */
 export interface QueryEvidenceRequest {
   /**
    * evidence_hash defines the hash of the requested evidence.
    * Deprecated: Use hash, a HEX encoded string, instead.
+   * @deprecated
    */
-  /** @deprecated */
   evidenceHash: Uint8Array;
   /**
    * hash defines the evidence hash of the requested evidence.
@@ -21,13 +27,18 @@ export interface QueryEvidenceRequestProtoMsg {
   typeUrl: "/cosmos.evidence.v1beta1.QueryEvidenceRequest";
   value: Uint8Array;
 }
-/** QueryEvidenceRequest is the request type for the Query/Evidence RPC method. */
+/**
+ * QueryEvidenceRequest is the request type for the Query/Evidence RPC method.
+ * @name QueryEvidenceRequestAmino
+ * @package cosmos.evidence.v1beta1
+ * @see proto type: cosmos.evidence.v1beta1.QueryEvidenceRequest
+ */
 export interface QueryEvidenceRequestAmino {
   /**
    * evidence_hash defines the hash of the requested evidence.
    * Deprecated: Use hash, a HEX encoded string, instead.
+   * @deprecated
    */
-  /** @deprecated */
   evidence_hash: string;
   /**
    * hash defines the evidence hash of the requested evidence.
@@ -40,18 +51,32 @@ export interface QueryEvidenceRequestAminoMsg {
   type: "cosmos-sdk/QueryEvidenceRequest";
   value: QueryEvidenceRequestAmino;
 }
-/** QueryEvidenceResponse is the response type for the Query/Evidence RPC method. */
+/**
+ * QueryEvidenceResponse is the response type for the Query/Evidence RPC method.
+ * @name QueryEvidenceResponse
+ * @package cosmos.evidence.v1beta1
+ * @see proto type: cosmos.evidence.v1beta1.QueryEvidenceResponse
+ */
 export interface QueryEvidenceResponse {
-  /** evidence returns the requested evidence. */
+  /**
+   * evidence returns the requested evidence.
+   */
   evidence?: Any;
 }
 export interface QueryEvidenceResponseProtoMsg {
   typeUrl: "/cosmos.evidence.v1beta1.QueryEvidenceResponse";
   value: Uint8Array;
 }
-/** QueryEvidenceResponse is the response type for the Query/Evidence RPC method. */
+/**
+ * QueryEvidenceResponse is the response type for the Query/Evidence RPC method.
+ * @name QueryEvidenceResponseAmino
+ * @package cosmos.evidence.v1beta1
+ * @see proto type: cosmos.evidence.v1beta1.QueryEvidenceResponse
+ */
 export interface QueryEvidenceResponseAmino {
-  /** evidence returns the requested evidence. */
+  /**
+   * evidence returns the requested evidence.
+   */
   evidence?: AnyAmino;
 }
 export interface QueryEvidenceResponseAminoMsg {
@@ -61,9 +86,14 @@ export interface QueryEvidenceResponseAminoMsg {
 /**
  * QueryEvidenceRequest is the request type for the Query/AllEvidence RPC
  * method.
+ * @name QueryAllEvidenceRequest
+ * @package cosmos.evidence.v1beta1
+ * @see proto type: cosmos.evidence.v1beta1.QueryAllEvidenceRequest
  */
 export interface QueryAllEvidenceRequest {
-  /** pagination defines an optional pagination for the request. */
+  /**
+   * pagination defines an optional pagination for the request.
+   */
   pagination?: PageRequest;
 }
 export interface QueryAllEvidenceRequestProtoMsg {
@@ -73,9 +103,14 @@ export interface QueryAllEvidenceRequestProtoMsg {
 /**
  * QueryEvidenceRequest is the request type for the Query/AllEvidence RPC
  * method.
+ * @name QueryAllEvidenceRequestAmino
+ * @package cosmos.evidence.v1beta1
+ * @see proto type: cosmos.evidence.v1beta1.QueryAllEvidenceRequest
  */
 export interface QueryAllEvidenceRequestAmino {
-  /** pagination defines an optional pagination for the request. */
+  /**
+   * pagination defines an optional pagination for the request.
+   */
   pagination?: PageRequestAmino;
 }
 export interface QueryAllEvidenceRequestAminoMsg {
@@ -85,11 +120,18 @@ export interface QueryAllEvidenceRequestAminoMsg {
 /**
  * QueryAllEvidenceResponse is the response type for the Query/AllEvidence RPC
  * method.
+ * @name QueryAllEvidenceResponse
+ * @package cosmos.evidence.v1beta1
+ * @see proto type: cosmos.evidence.v1beta1.QueryAllEvidenceResponse
  */
 export interface QueryAllEvidenceResponse {
-  /** evidence returns all evidences. */
+  /**
+   * evidence returns all evidences.
+   */
   evidence: Any[];
-  /** pagination defines the pagination in the response. */
+  /**
+   * pagination defines the pagination in the response.
+   */
   pagination?: PageResponse;
 }
 export interface QueryAllEvidenceResponseProtoMsg {
@@ -99,11 +141,18 @@ export interface QueryAllEvidenceResponseProtoMsg {
 /**
  * QueryAllEvidenceResponse is the response type for the Query/AllEvidence RPC
  * method.
+ * @name QueryAllEvidenceResponseAmino
+ * @package cosmos.evidence.v1beta1
+ * @see proto type: cosmos.evidence.v1beta1.QueryAllEvidenceResponse
  */
 export interface QueryAllEvidenceResponseAmino {
-  /** evidence returns all evidences. */
+  /**
+   * evidence returns all evidences.
+   */
   evidence: AnyAmino[];
-  /** pagination defines the pagination in the response. */
+  /**
+   * pagination defines the pagination in the response.
+   */
   pagination?: PageResponseAmino;
 }
 export interface QueryAllEvidenceResponseAminoMsg {
@@ -116,6 +165,12 @@ function createBaseQueryEvidenceRequest(): QueryEvidenceRequest {
     hash: ""
   };
 }
+/**
+ * QueryEvidenceRequest is the request type for the Query/Evidence RPC method.
+ * @name QueryEvidenceRequest
+ * @package cosmos.evidence.v1beta1
+ * @see proto type: cosmos.evidence.v1beta1.QueryEvidenceRequest
+ */
 export const QueryEvidenceRequest = {
   typeUrl: "/cosmos.evidence.v1beta1.QueryEvidenceRequest",
   aminoType: "cosmos-sdk/QueryEvidenceRequest",
@@ -204,6 +259,12 @@ function createBaseQueryEvidenceResponse(): QueryEvidenceResponse {
     evidence: undefined
   };
 }
+/**
+ * QueryEvidenceResponse is the response type for the Query/Evidence RPC method.
+ * @name QueryEvidenceResponse
+ * @package cosmos.evidence.v1beta1
+ * @see proto type: cosmos.evidence.v1beta1.QueryEvidenceResponse
+ */
 export const QueryEvidenceResponse = {
   typeUrl: "/cosmos.evidence.v1beta1.QueryEvidenceResponse",
   aminoType: "cosmos-sdk/QueryEvidenceResponse",
@@ -281,6 +342,13 @@ function createBaseQueryAllEvidenceRequest(): QueryAllEvidenceRequest {
     pagination: undefined
   };
 }
+/**
+ * QueryEvidenceRequest is the request type for the Query/AllEvidence RPC
+ * method.
+ * @name QueryAllEvidenceRequest
+ * @package cosmos.evidence.v1beta1
+ * @see proto type: cosmos.evidence.v1beta1.QueryAllEvidenceRequest
+ */
 export const QueryAllEvidenceRequest = {
   typeUrl: "/cosmos.evidence.v1beta1.QueryAllEvidenceRequest",
   aminoType: "cosmos-sdk/QueryAllEvidenceRequest",
@@ -352,6 +420,9 @@ export const QueryAllEvidenceRequest = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(QueryAllEvidenceRequest.typeUrl)) {
+      return;
+    }
     PageRequest.registerTypeUrl();
   }
 };
@@ -361,6 +432,13 @@ function createBaseQueryAllEvidenceResponse(): QueryAllEvidenceResponse {
     pagination: undefined
   };
 }
+/**
+ * QueryAllEvidenceResponse is the response type for the Query/AllEvidence RPC
+ * method.
+ * @name QueryAllEvidenceResponse
+ * @package cosmos.evidence.v1beta1
+ * @see proto type: cosmos.evidence.v1beta1.QueryAllEvidenceResponse
+ */
 export const QueryAllEvidenceResponse = {
   typeUrl: "/cosmos.evidence.v1beta1.QueryAllEvidenceResponse",
   aminoType: "cosmos-sdk/QueryAllEvidenceResponse",
@@ -445,6 +523,9 @@ export const QueryAllEvidenceResponse = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(QueryAllEvidenceResponse.typeUrl)) {
+      return;
+    }
     PageResponse.registerTypeUrl();
   }
 };

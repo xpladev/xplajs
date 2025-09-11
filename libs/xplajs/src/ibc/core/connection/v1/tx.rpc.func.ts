@@ -1,38 +1,49 @@
-import { buildTx, SigningClientResolver } from "../../../../helper-func-types";
-import { toEncoders, toConverters } from "@interchainjs/cosmos/utils";
+import { buildTx } from "../../../../helper-func-types";
 import { MsgConnectionOpenInit, MsgConnectionOpenTry, MsgConnectionOpenAck, MsgConnectionOpenConfirm, MsgUpdateParams } from "./tx";
-export const createConnectionOpenInit = (clientResolver?: SigningClientResolver) => buildTx<MsgConnectionOpenInit>({
-  clientResolver,
-  typeUrl: MsgConnectionOpenInit.typeUrl,
-  encoders: toEncoders(MsgConnectionOpenInit),
-  converters: toConverters(MsgConnectionOpenInit),
-  deps: [MsgConnectionOpenInit]
+/**
+ * ConnectionOpenInit defines a rpc handler method for MsgConnectionOpenInit.
+ * @name connectionOpenInit
+ * @package ibc.core.connection.v1
+ * @see proto service: ibc.core.connection.v1.ConnectionOpenInit
+ */
+export const connectionOpenInit = buildTx<MsgConnectionOpenInit>({
+  msg: MsgConnectionOpenInit
 });
-export const createConnectionOpenTry = (clientResolver?: SigningClientResolver) => buildTx<MsgConnectionOpenTry>({
-  clientResolver,
-  typeUrl: MsgConnectionOpenTry.typeUrl,
-  encoders: toEncoders(MsgConnectionOpenTry),
-  converters: toConverters(MsgConnectionOpenTry),
-  deps: [MsgConnectionOpenTry]
+/**
+ * ConnectionOpenTry defines a rpc handler method for MsgConnectionOpenTry.
+ * @name connectionOpenTry
+ * @package ibc.core.connection.v1
+ * @see proto service: ibc.core.connection.v1.ConnectionOpenTry
+ */
+export const connectionOpenTry = buildTx<MsgConnectionOpenTry>({
+  msg: MsgConnectionOpenTry
 });
-export const createConnectionOpenAck = (clientResolver?: SigningClientResolver) => buildTx<MsgConnectionOpenAck>({
-  clientResolver,
-  typeUrl: MsgConnectionOpenAck.typeUrl,
-  encoders: toEncoders(MsgConnectionOpenAck),
-  converters: toConverters(MsgConnectionOpenAck),
-  deps: [MsgConnectionOpenAck]
+/**
+ * ConnectionOpenAck defines a rpc handler method for MsgConnectionOpenAck.
+ * @name connectionOpenAck
+ * @package ibc.core.connection.v1
+ * @see proto service: ibc.core.connection.v1.ConnectionOpenAck
+ */
+export const connectionOpenAck = buildTx<MsgConnectionOpenAck>({
+  msg: MsgConnectionOpenAck
 });
-export const createConnectionOpenConfirm = (clientResolver?: SigningClientResolver) => buildTx<MsgConnectionOpenConfirm>({
-  clientResolver,
-  typeUrl: MsgConnectionOpenConfirm.typeUrl,
-  encoders: toEncoders(MsgConnectionOpenConfirm),
-  converters: toConverters(MsgConnectionOpenConfirm),
-  deps: [MsgConnectionOpenConfirm]
+/**
+ * ConnectionOpenConfirm defines a rpc handler method for
+ * MsgConnectionOpenConfirm.
+ * @name connectionOpenConfirm
+ * @package ibc.core.connection.v1
+ * @see proto service: ibc.core.connection.v1.ConnectionOpenConfirm
+ */
+export const connectionOpenConfirm = buildTx<MsgConnectionOpenConfirm>({
+  msg: MsgConnectionOpenConfirm
 });
-export const createUpdateConnectionParams = (clientResolver?: SigningClientResolver) => buildTx<MsgUpdateParams>({
-  clientResolver,
-  typeUrl: MsgUpdateParams.typeUrl,
-  encoders: toEncoders(MsgUpdateParams),
-  converters: toConverters(MsgUpdateParams),
-  deps: [MsgUpdateParams]
+/**
+ * UpdateConnectionParams defines a rpc handler method for
+ * MsgUpdateParams.
+ * @name updateConnectionParams
+ * @package ibc.core.connection.v1
+ * @see proto service: ibc.core.connection.v1.UpdateConnectionParams
+ */
+export const updateConnectionParams = buildTx<MsgUpdateParams>({
+  msg: MsgUpdateParams
 });

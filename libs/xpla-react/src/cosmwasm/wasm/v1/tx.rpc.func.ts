@@ -1,122 +1,181 @@
-import { buildTx, SigningClientResolver } from "../../../helper-func-types";
-import { toEncoders, toConverters } from "@interchainjs/cosmos/utils";
+import { buildTx } from "../../../helper-func-types";
 import { MsgStoreCode, MsgInstantiateContract, MsgInstantiateContract2, MsgExecuteContract, MsgMigrateContract, MsgUpdateAdmin, MsgClearAdmin, MsgUpdateInstantiateConfig, MsgUpdateParams, MsgSudoContract, MsgPinCodes, MsgUnpinCodes, MsgStoreAndInstantiateContract, MsgRemoveCodeUploadParamsAddresses, MsgAddCodeUploadParamsAddresses, MsgStoreAndMigrateContract, MsgUpdateContractLabel } from "./tx";
-export const createStoreCode = (clientResolver?: SigningClientResolver) => buildTx<MsgStoreCode>({
-  clientResolver,
-  typeUrl: MsgStoreCode.typeUrl,
-  encoders: toEncoders(MsgStoreCode),
-  converters: toConverters(MsgStoreCode),
-  deps: [MsgStoreCode]
+/**
+ * StoreCode to submit Wasm code to the system
+ * @name storeCode
+ * @package cosmwasm.wasm.v1
+ * @see proto service: cosmwasm.wasm.v1.StoreCode
+ */
+export const storeCode = buildTx<MsgStoreCode>({
+  msg: MsgStoreCode
 });
-export const createInstantiateContract = (clientResolver?: SigningClientResolver) => buildTx<MsgInstantiateContract>({
-  clientResolver,
-  typeUrl: MsgInstantiateContract.typeUrl,
-  encoders: toEncoders(MsgInstantiateContract),
-  converters: toConverters(MsgInstantiateContract),
-  deps: [MsgInstantiateContract]
+/**
+ * InstantiateContract creates a new smart contract instance for the given
+ *  code id.
+ * @name instantiateContract
+ * @package cosmwasm.wasm.v1
+ * @see proto service: cosmwasm.wasm.v1.InstantiateContract
+ */
+export const instantiateContract = buildTx<MsgInstantiateContract>({
+  msg: MsgInstantiateContract
 });
-export const createInstantiateContract2 = (clientResolver?: SigningClientResolver) => buildTx<MsgInstantiateContract2>({
-  clientResolver,
-  typeUrl: MsgInstantiateContract2.typeUrl,
-  encoders: toEncoders(MsgInstantiateContract2),
-  converters: toConverters(MsgInstantiateContract2),
-  deps: [MsgInstantiateContract2]
+/**
+ * InstantiateContract2 creates a new smart contract instance for the given
+ *  code id with a predictable address
+ * @name instantiateContract2
+ * @package cosmwasm.wasm.v1
+ * @see proto service: cosmwasm.wasm.v1.InstantiateContract2
+ */
+export const instantiateContract2 = buildTx<MsgInstantiateContract2>({
+  msg: MsgInstantiateContract2
 });
-export const createExecuteContract = (clientResolver?: SigningClientResolver) => buildTx<MsgExecuteContract>({
-  clientResolver,
-  typeUrl: MsgExecuteContract.typeUrl,
-  encoders: toEncoders(MsgExecuteContract),
-  converters: toConverters(MsgExecuteContract),
-  deps: [MsgExecuteContract]
+/**
+ * Execute submits the given message data to a smart contract
+ * @name executeContract
+ * @package cosmwasm.wasm.v1
+ * @see proto service: cosmwasm.wasm.v1.ExecuteContract
+ */
+export const executeContract = buildTx<MsgExecuteContract>({
+  msg: MsgExecuteContract
 });
-export const createMigrateContract = (clientResolver?: SigningClientResolver) => buildTx<MsgMigrateContract>({
-  clientResolver,
-  typeUrl: MsgMigrateContract.typeUrl,
-  encoders: toEncoders(MsgMigrateContract),
-  converters: toConverters(MsgMigrateContract),
-  deps: [MsgMigrateContract]
+/**
+ * Migrate runs a code upgrade/ downgrade for a smart contract
+ * @name migrateContract
+ * @package cosmwasm.wasm.v1
+ * @see proto service: cosmwasm.wasm.v1.MigrateContract
+ */
+export const migrateContract = buildTx<MsgMigrateContract>({
+  msg: MsgMigrateContract
 });
-export const createUpdateAdmin = (clientResolver?: SigningClientResolver) => buildTx<MsgUpdateAdmin>({
-  clientResolver,
-  typeUrl: MsgUpdateAdmin.typeUrl,
-  encoders: toEncoders(MsgUpdateAdmin),
-  converters: toConverters(MsgUpdateAdmin),
-  deps: [MsgUpdateAdmin]
+/**
+ * UpdateAdmin sets a new admin for a smart contract
+ * @name updateAdmin
+ * @package cosmwasm.wasm.v1
+ * @see proto service: cosmwasm.wasm.v1.UpdateAdmin
+ */
+export const updateAdmin = buildTx<MsgUpdateAdmin>({
+  msg: MsgUpdateAdmin
 });
-export const createClearAdmin = (clientResolver?: SigningClientResolver) => buildTx<MsgClearAdmin>({
-  clientResolver,
-  typeUrl: MsgClearAdmin.typeUrl,
-  encoders: toEncoders(MsgClearAdmin),
-  converters: toConverters(MsgClearAdmin),
-  deps: [MsgClearAdmin]
+/**
+ * ClearAdmin removes any admin stored for a smart contract
+ * @name clearAdmin
+ * @package cosmwasm.wasm.v1
+ * @see proto service: cosmwasm.wasm.v1.ClearAdmin
+ */
+export const clearAdmin = buildTx<MsgClearAdmin>({
+  msg: MsgClearAdmin
 });
-export const createUpdateInstantiateConfig = (clientResolver?: SigningClientResolver) => buildTx<MsgUpdateInstantiateConfig>({
-  clientResolver,
-  typeUrl: MsgUpdateInstantiateConfig.typeUrl,
-  encoders: toEncoders(MsgUpdateInstantiateConfig),
-  converters: toConverters(MsgUpdateInstantiateConfig),
-  deps: [MsgUpdateInstantiateConfig]
+/**
+ * UpdateInstantiateConfig updates instantiate config for a smart contract
+ * @name updateInstantiateConfig
+ * @package cosmwasm.wasm.v1
+ * @see proto service: cosmwasm.wasm.v1.UpdateInstantiateConfig
+ */
+export const updateInstantiateConfig = buildTx<MsgUpdateInstantiateConfig>({
+  msg: MsgUpdateInstantiateConfig
 });
-export const createUpdateParams = (clientResolver?: SigningClientResolver) => buildTx<MsgUpdateParams>({
-  clientResolver,
-  typeUrl: MsgUpdateParams.typeUrl,
-  encoders: toEncoders(MsgUpdateParams),
-  converters: toConverters(MsgUpdateParams),
-  deps: [MsgUpdateParams]
+/**
+ * UpdateParams defines a governance operation for updating the x/wasm
+ * module parameters. The authority is defined in the keeper.
+ * 
+ * Since: 0.40
+ * @name updateParams
+ * @package cosmwasm.wasm.v1
+ * @see proto service: cosmwasm.wasm.v1.UpdateParams
+ */
+export const updateParams = buildTx<MsgUpdateParams>({
+  msg: MsgUpdateParams
 });
-export const createSudoContract = (clientResolver?: SigningClientResolver) => buildTx<MsgSudoContract>({
-  clientResolver,
-  typeUrl: MsgSudoContract.typeUrl,
-  encoders: toEncoders(MsgSudoContract),
-  converters: toConverters(MsgSudoContract),
-  deps: [MsgSudoContract]
+/**
+ * SudoContract defines a governance operation for calling sudo
+ * on a contract. The authority is defined in the keeper.
+ * 
+ * Since: 0.40
+ * @name sudoContract
+ * @package cosmwasm.wasm.v1
+ * @see proto service: cosmwasm.wasm.v1.SudoContract
+ */
+export const sudoContract = buildTx<MsgSudoContract>({
+  msg: MsgSudoContract
 });
-export const createPinCodes = (clientResolver?: SigningClientResolver) => buildTx<MsgPinCodes>({
-  clientResolver,
-  typeUrl: MsgPinCodes.typeUrl,
-  encoders: toEncoders(MsgPinCodes),
-  converters: toConverters(MsgPinCodes),
-  deps: [MsgPinCodes]
+/**
+ * PinCodes defines a governance operation for pinning a set of
+ * code ids in the wasmvm cache. The authority is defined in the keeper.
+ * 
+ * Since: 0.40
+ * @name pinCodes
+ * @package cosmwasm.wasm.v1
+ * @see proto service: cosmwasm.wasm.v1.PinCodes
+ */
+export const pinCodes = buildTx<MsgPinCodes>({
+  msg: MsgPinCodes
 });
-export const createUnpinCodes = (clientResolver?: SigningClientResolver) => buildTx<MsgUnpinCodes>({
-  clientResolver,
-  typeUrl: MsgUnpinCodes.typeUrl,
-  encoders: toEncoders(MsgUnpinCodes),
-  converters: toConverters(MsgUnpinCodes),
-  deps: [MsgUnpinCodes]
+/**
+ * UnpinCodes defines a governance operation for unpinning a set of
+ * code ids in the wasmvm cache. The authority is defined in the keeper.
+ * 
+ * Since: 0.40
+ * @name unpinCodes
+ * @package cosmwasm.wasm.v1
+ * @see proto service: cosmwasm.wasm.v1.UnpinCodes
+ */
+export const unpinCodes = buildTx<MsgUnpinCodes>({
+  msg: MsgUnpinCodes
 });
-export const createStoreAndInstantiateContract = (clientResolver?: SigningClientResolver) => buildTx<MsgStoreAndInstantiateContract>({
-  clientResolver,
-  typeUrl: MsgStoreAndInstantiateContract.typeUrl,
-  encoders: toEncoders(MsgStoreAndInstantiateContract),
-  converters: toConverters(MsgStoreAndInstantiateContract),
-  deps: [MsgStoreAndInstantiateContract]
+/**
+ * StoreAndInstantiateContract defines a governance operation for storing
+ * and instantiating the contract. The authority is defined in the keeper.
+ * 
+ * Since: 0.40
+ * @name storeAndInstantiateContract
+ * @package cosmwasm.wasm.v1
+ * @see proto service: cosmwasm.wasm.v1.StoreAndInstantiateContract
+ */
+export const storeAndInstantiateContract = buildTx<MsgStoreAndInstantiateContract>({
+  msg: MsgStoreAndInstantiateContract
 });
-export const createRemoveCodeUploadParamsAddresses = (clientResolver?: SigningClientResolver) => buildTx<MsgRemoveCodeUploadParamsAddresses>({
-  clientResolver,
-  typeUrl: MsgRemoveCodeUploadParamsAddresses.typeUrl,
-  encoders: toEncoders(MsgRemoveCodeUploadParamsAddresses),
-  converters: toConverters(MsgRemoveCodeUploadParamsAddresses),
-  deps: [MsgRemoveCodeUploadParamsAddresses]
+/**
+ * RemoveCodeUploadParamsAddresses defines a governance operation for
+ * removing addresses from code upload params.
+ * The authority is defined in the keeper.
+ * @name removeCodeUploadParamsAddresses
+ * @package cosmwasm.wasm.v1
+ * @see proto service: cosmwasm.wasm.v1.RemoveCodeUploadParamsAddresses
+ */
+export const removeCodeUploadParamsAddresses = buildTx<MsgRemoveCodeUploadParamsAddresses>({
+  msg: MsgRemoveCodeUploadParamsAddresses
 });
-export const createAddCodeUploadParamsAddresses = (clientResolver?: SigningClientResolver) => buildTx<MsgAddCodeUploadParamsAddresses>({
-  clientResolver,
-  typeUrl: MsgAddCodeUploadParamsAddresses.typeUrl,
-  encoders: toEncoders(MsgAddCodeUploadParamsAddresses),
-  converters: toConverters(MsgAddCodeUploadParamsAddresses),
-  deps: [MsgAddCodeUploadParamsAddresses]
+/**
+ * AddCodeUploadParamsAddresses defines a governance operation for
+ * adding addresses to code upload params.
+ * The authority is defined in the keeper.
+ * @name addCodeUploadParamsAddresses
+ * @package cosmwasm.wasm.v1
+ * @see proto service: cosmwasm.wasm.v1.AddCodeUploadParamsAddresses
+ */
+export const addCodeUploadParamsAddresses = buildTx<MsgAddCodeUploadParamsAddresses>({
+  msg: MsgAddCodeUploadParamsAddresses
 });
-export const createStoreAndMigrateContract = (clientResolver?: SigningClientResolver) => buildTx<MsgStoreAndMigrateContract>({
-  clientResolver,
-  typeUrl: MsgStoreAndMigrateContract.typeUrl,
-  encoders: toEncoders(MsgStoreAndMigrateContract),
-  converters: toConverters(MsgStoreAndMigrateContract),
-  deps: [MsgStoreAndMigrateContract]
+/**
+ * StoreAndMigrateContract defines a governance operation for storing
+ * and migrating the contract. The authority is defined in the keeper.
+ * 
+ * Since: 0.42
+ * @name storeAndMigrateContract
+ * @package cosmwasm.wasm.v1
+ * @see proto service: cosmwasm.wasm.v1.StoreAndMigrateContract
+ */
+export const storeAndMigrateContract = buildTx<MsgStoreAndMigrateContract>({
+  msg: MsgStoreAndMigrateContract
 });
-export const createUpdateContractLabel = (clientResolver?: SigningClientResolver) => buildTx<MsgUpdateContractLabel>({
-  clientResolver,
-  typeUrl: MsgUpdateContractLabel.typeUrl,
-  encoders: toEncoders(MsgUpdateContractLabel),
-  converters: toConverters(MsgUpdateContractLabel),
-  deps: [MsgUpdateContractLabel]
+/**
+ * UpdateContractLabel sets a new label for a smart contract
+ * 
+ * Since: 0.43
+ * @name updateContractLabel
+ * @package cosmwasm.wasm.v1
+ * @see proto service: cosmwasm.wasm.v1.UpdateContractLabel
+ */
+export const updateContractLabel = buildTx<MsgUpdateContractLabel>({
+  msg: MsgUpdateContractLabel
 });

@@ -1,7 +1,13 @@
 import { Params, ParamsAmino, CodeInfo, CodeInfoAmino, ContractInfo, ContractInfoAmino, Model, ModelAmino, ContractCodeHistoryEntry, ContractCodeHistoryEntryAmino } from "./types";
 import { BinaryReader, BinaryWriter } from "../../../binary";
+import { GlobalDecoderRegistry } from "../../../registry";
 import { DeepPartial, bytesFromBase64, base64FromBytes } from "../../../helpers";
-/** GenesisState - genesis state of x/wasm */
+/**
+ * GenesisState - genesis state of x/wasm
+ * @name GenesisState
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.GenesisState
+ */
 export interface GenesisState {
   params: Params;
   codes: Code[];
@@ -12,7 +18,12 @@ export interface GenesisStateProtoMsg {
   typeUrl: "/cosmwasm.wasm.v1.GenesisState";
   value: Uint8Array;
 }
-/** GenesisState - genesis state of x/wasm */
+/**
+ * GenesisState - genesis state of x/wasm
+ * @name GenesisStateAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.GenesisState
+ */
 export interface GenesisStateAmino {
   params: ParamsAmino;
   codes: CodeAmino[];
@@ -23,31 +34,50 @@ export interface GenesisStateAminoMsg {
   type: "wasm/GenesisState";
   value: GenesisStateAmino;
 }
-/** Code struct encompasses CodeInfo and CodeBytes */
+/**
+ * Code struct encompasses CodeInfo and CodeBytes
+ * @name Code
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.Code
+ */
 export interface Code {
   codeId: bigint;
   codeInfo: CodeInfo;
   codeBytes: Uint8Array;
-  /** Pinned to wasmvm cache */
+  /**
+   * Pinned to wasmvm cache
+   */
   pinned: boolean;
 }
 export interface CodeProtoMsg {
   typeUrl: "/cosmwasm.wasm.v1.Code";
   value: Uint8Array;
 }
-/** Code struct encompasses CodeInfo and CodeBytes */
+/**
+ * Code struct encompasses CodeInfo and CodeBytes
+ * @name CodeAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.Code
+ */
 export interface CodeAmino {
   code_id: string;
   code_info: CodeInfoAmino;
   code_bytes: string;
-  /** Pinned to wasmvm cache */
+  /**
+   * Pinned to wasmvm cache
+   */
   pinned: boolean;
 }
 export interface CodeAminoMsg {
   type: "wasm/Code";
   value: CodeAmino;
 }
-/** Contract struct encompasses ContractAddress, ContractInfo, and ContractState */
+/**
+ * Contract struct encompasses ContractAddress, ContractInfo, and ContractState
+ * @name Contract
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.Contract
+ */
 export interface Contract {
   contractAddress: string;
   contractInfo: ContractInfo;
@@ -58,7 +88,12 @@ export interface ContractProtoMsg {
   typeUrl: "/cosmwasm.wasm.v1.Contract";
   value: Uint8Array;
 }
-/** Contract struct encompasses ContractAddress, ContractInfo, and ContractState */
+/**
+ * Contract struct encompasses ContractAddress, ContractInfo, and ContractState
+ * @name ContractAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.Contract
+ */
 export interface ContractAmino {
   contract_address: string;
   contract_info: ContractInfoAmino;
@@ -69,7 +104,12 @@ export interface ContractAminoMsg {
   type: "wasm/Contract";
   value: ContractAmino;
 }
-/** Sequence key and value of an id generation counter */
+/**
+ * Sequence key and value of an id generation counter
+ * @name Sequence
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.Sequence
+ */
 export interface Sequence {
   idKey: Uint8Array;
   value: bigint;
@@ -78,7 +118,12 @@ export interface SequenceProtoMsg {
   typeUrl: "/cosmwasm.wasm.v1.Sequence";
   value: Uint8Array;
 }
-/** Sequence key and value of an id generation counter */
+/**
+ * Sequence key and value of an id generation counter
+ * @name SequenceAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.Sequence
+ */
 export interface SequenceAmino {
   id_key: string;
   value: string;
@@ -95,6 +140,12 @@ function createBaseGenesisState(): GenesisState {
     sequences: []
   };
 }
+/**
+ * GenesisState - genesis state of x/wasm
+ * @name GenesisState
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.GenesisState
+ */
 export const GenesisState = {
   typeUrl: "/cosmwasm.wasm.v1.GenesisState",
   aminoType: "wasm/GenesisState",
@@ -205,6 +256,9 @@ export const GenesisState = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(GenesisState.typeUrl)) {
+      return;
+    }
     Params.registerTypeUrl();
     Code.registerTypeUrl();
     Contract.registerTypeUrl();
@@ -219,6 +273,12 @@ function createBaseCode(): Code {
     pinned: false
   };
 }
+/**
+ * Code struct encompasses CodeInfo and CodeBytes
+ * @name Code
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.Code
+ */
 export const Code = {
   typeUrl: "/cosmwasm.wasm.v1.Code",
   aminoType: "wasm/Code",
@@ -323,6 +383,9 @@ export const Code = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(Code.typeUrl)) {
+      return;
+    }
     CodeInfo.registerTypeUrl();
   }
 };
@@ -334,6 +397,12 @@ function createBaseContract(): Contract {
     contractCodeHistory: []
   };
 }
+/**
+ * Contract struct encompasses ContractAddress, ContractInfo, and ContractState
+ * @name Contract
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.Contract
+ */
 export const Contract = {
   typeUrl: "/cosmwasm.wasm.v1.Contract",
   aminoType: "wasm/Contract",
@@ -442,6 +511,9 @@ export const Contract = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(Contract.typeUrl)) {
+      return;
+    }
     ContractInfo.registerTypeUrl();
     Model.registerTypeUrl();
     ContractCodeHistoryEntry.registerTypeUrl();
@@ -453,6 +525,12 @@ function createBaseSequence(): Sequence {
     value: BigInt(0)
   };
 }
+/**
+ * Sequence key and value of an id generation counter
+ * @name Sequence
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.Sequence
+ */
 export const Sequence = {
   typeUrl: "/cosmwasm.wasm.v1.Sequence",
   aminoType: "wasm/Sequence",

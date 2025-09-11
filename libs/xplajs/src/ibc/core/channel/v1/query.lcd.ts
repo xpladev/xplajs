@@ -1,6 +1,6 @@
 import { setPaginationParams } from "../../../../helpers";
 import { LCDClient } from "@cosmology/lcd";
-import { QueryChannelRequest, QueryChannelResponse, QueryChannelsRequest, QueryChannelsResponse, QueryConnectionChannelsRequest, QueryConnectionChannelsResponse, QueryChannelClientStateRequest, QueryChannelClientStateResponse, QueryChannelConsensusStateRequest, QueryChannelConsensusStateResponse, QueryPacketCommitmentRequest, QueryPacketCommitmentResponse, QueryPacketCommitmentsRequest, QueryPacketCommitmentsResponse, QueryPacketReceiptRequest, QueryPacketReceiptResponse, QueryPacketAcknowledgementRequest, QueryPacketAcknowledgementResponse, QueryPacketAcknowledgementsRequest, QueryPacketAcknowledgementsResponse, QueryUnreceivedPacketsRequest, QueryUnreceivedPacketsResponse, QueryUnreceivedAcksRequest, QueryUnreceivedAcksResponse, QueryNextSequenceReceiveRequest, QueryNextSequenceReceiveResponse, QueryNextSequenceSendRequest, QueryNextSequenceSendResponse, QueryUpgradeErrorRequest, QueryUpgradeErrorResponse, QueryUpgradeRequest, QueryUpgradeResponse, QueryChannelParamsRequest, QueryChannelParamsResponse } from "./query";
+import { QueryChannelRequest, QueryChannelResponse, QueryChannelsRequest, QueryChannelsResponse, QueryConnectionChannelsRequest, QueryConnectionChannelsResponse, QueryChannelClientStateRequest, QueryChannelClientStateResponse, QueryChannelConsensusStateRequest, QueryChannelConsensusStateResponse, QueryPacketCommitmentRequest, QueryPacketCommitmentResponse, QueryPacketCommitmentsRequest, QueryPacketCommitmentsResponse, QueryPacketReceiptRequest, QueryPacketReceiptResponse, QueryPacketAcknowledgementRequest, QueryPacketAcknowledgementResponse, QueryPacketAcknowledgementsRequest, QueryPacketAcknowledgementsResponse, QueryUnreceivedPacketsRequest, QueryUnreceivedPacketsResponse, QueryUnreceivedAcksRequest, QueryUnreceivedAcksResponse, QueryNextSequenceReceiveRequest, QueryNextSequenceReceiveResponse, QueryNextSequenceSendRequest, QueryNextSequenceSendResponse } from "./query";
 export class LCDQueryClient {
   req: LCDClient;
   constructor({
@@ -116,20 +116,5 @@ export class LCDQueryClient {
   nextSequenceSend = async (params: QueryNextSequenceSendRequest): Promise<QueryNextSequenceSendResponse> => {
     const endpoint = `ibc/core/channel/v1/channels/${params.channelId}/ports/${params.portId}/next_sequence_send`;
     return await this.req.get<QueryNextSequenceSendResponse>(endpoint);
-  };
-  /* UpgradeError returns the error receipt if the upgrade handshake failed. */
-  upgradeError = async (params: QueryUpgradeErrorRequest): Promise<QueryUpgradeErrorResponse> => {
-    const endpoint = `ibc/core/channel/v1/channels/${params.channelId}/ports/${params.portId}/upgrade_error`;
-    return await this.req.get<QueryUpgradeErrorResponse>(endpoint);
-  };
-  /* Upgrade returns the upgrade for a given port and channel id. */
-  upgrade = async (params: QueryUpgradeRequest): Promise<QueryUpgradeResponse> => {
-    const endpoint = `ibc/core/channel/v1/channels/${params.channelId}/ports/${params.portId}/upgrade`;
-    return await this.req.get<QueryUpgradeResponse>(endpoint);
-  };
-  /* ChannelParams queries all parameters of the ibc channel submodule. */
-  channelParams = async (_params: QueryChannelParamsRequest = {}): Promise<QueryChannelParamsResponse> => {
-    const endpoint = `ibc/core/channel/v1/params`;
-    return await this.req.get<QueryChannelParamsResponse>(endpoint);
   };
 }

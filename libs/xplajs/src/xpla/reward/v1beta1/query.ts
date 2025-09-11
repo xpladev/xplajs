@@ -2,30 +2,55 @@ import { Params, ParamsAmino } from "./reward";
 import { Coin, CoinAmino } from "../../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial } from "../../../helpers";
-/** QueryParamsRequest is the request type for the Query/Params RPC method. */
+import { GlobalDecoderRegistry } from "../../../registry";
+/**
+ * QueryParamsRequest is the request type for the Query/Params RPC method.
+ * @name QueryParamsRequest
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.QueryParamsRequest
+ */
 export interface QueryParamsRequest {}
 export interface QueryParamsRequestProtoMsg {
   typeUrl: "/xpla.reward.v1beta1.QueryParamsRequest";
   value: Uint8Array;
 }
-/** QueryParamsRequest is the request type for the Query/Params RPC method. */
+/**
+ * QueryParamsRequest is the request type for the Query/Params RPC method.
+ * @name QueryParamsRequestAmino
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.QueryParamsRequest
+ */
 export interface QueryParamsRequestAmino {}
 export interface QueryParamsRequestAminoMsg {
   type: "/xpla.reward.v1beta1.QueryParamsRequest";
   value: QueryParamsRequestAmino;
 }
-/** QueryParamsResponse is the response type for the Query/Params RPC method. */
+/**
+ * QueryParamsResponse is the response type for the Query/Params RPC method.
+ * @name QueryParamsResponse
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.QueryParamsResponse
+ */
 export interface QueryParamsResponse {
-  /** params defines the parameters of the module. */
+  /**
+   * params defines the parameters of the module.
+   */
   params: Params;
 }
 export interface QueryParamsResponseProtoMsg {
   typeUrl: "/xpla.reward.v1beta1.QueryParamsResponse";
   value: Uint8Array;
 }
-/** QueryParamsResponse is the response type for the Query/Params RPC method. */
+/**
+ * QueryParamsResponse is the response type for the Query/Params RPC method.
+ * @name QueryParamsResponseAmino
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.QueryParamsResponse
+ */
 export interface QueryParamsResponseAmino {
-  /** params defines the parameters of the module. */
+  /**
+   * params defines the parameters of the module.
+   */
   params: ParamsAmino;
 }
 export interface QueryParamsResponseAminoMsg {
@@ -35,6 +60,9 @@ export interface QueryParamsResponseAminoMsg {
 /**
  * QueryPoolRequest is the request type for the Query/Pool RPC
  * method.
+ * @name QueryPoolRequest
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.QueryPoolRequest
  */
 export interface QueryPoolRequest {}
 export interface QueryPoolRequestProtoMsg {
@@ -44,6 +72,9 @@ export interface QueryPoolRequestProtoMsg {
 /**
  * QueryPoolRequest is the request type for the Query/Pool RPC
  * method.
+ * @name QueryPoolRequestAmino
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.QueryPoolRequest
  */
 export interface QueryPoolRequestAmino {}
 export interface QueryPoolRequestAminoMsg {
@@ -53,9 +84,14 @@ export interface QueryPoolRequestAminoMsg {
 /**
  * QueryPoolResponse is the response type for the Query/Pool
  * RPC method.
+ * @name QueryPoolResponse
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.QueryPoolResponse
  */
 export interface QueryPoolResponse {
-  /** pool defines reward pool's coins. */
+  /**
+   * pool defines reward pool's coins.
+   */
   pool: Coin[];
 }
 export interface QueryPoolResponseProtoMsg {
@@ -65,9 +101,14 @@ export interface QueryPoolResponseProtoMsg {
 /**
  * QueryPoolResponse is the response type for the Query/Pool
  * RPC method.
+ * @name QueryPoolResponseAmino
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.QueryPoolResponse
  */
 export interface QueryPoolResponseAmino {
-  /** pool defines reward pool's coins. */
+  /**
+   * pool defines reward pool's coins.
+   */
   pool: CoinAmino[];
 }
 export interface QueryPoolResponseAminoMsg {
@@ -77,6 +118,12 @@ export interface QueryPoolResponseAminoMsg {
 function createBaseQueryParamsRequest(): QueryParamsRequest {
   return {};
 }
+/**
+ * QueryParamsRequest is the request type for the Query/Params RPC method.
+ * @name QueryParamsRequest
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.QueryParamsRequest
+ */
 export const QueryParamsRequest = {
   typeUrl: "/xpla.reward.v1beta1.QueryParamsRequest",
   is(o: any): o is QueryParamsRequest {
@@ -136,6 +183,12 @@ function createBaseQueryParamsResponse(): QueryParamsResponse {
     params: Params.fromPartial({})
   };
 }
+/**
+ * QueryParamsResponse is the response type for the Query/Params RPC method.
+ * @name QueryParamsResponse
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.QueryParamsResponse
+ */
 export const QueryParamsResponse = {
   typeUrl: "/xpla.reward.v1beta1.QueryParamsResponse",
   is(o: any): o is QueryParamsResponse {
@@ -200,12 +253,22 @@ export const QueryParamsResponse = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(QueryParamsResponse.typeUrl)) {
+      return;
+    }
     Params.registerTypeUrl();
   }
 };
 function createBaseQueryPoolRequest(): QueryPoolRequest {
   return {};
 }
+/**
+ * QueryPoolRequest is the request type for the Query/Pool RPC
+ * method.
+ * @name QueryPoolRequest
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.QueryPoolRequest
+ */
 export const QueryPoolRequest = {
   typeUrl: "/xpla.reward.v1beta1.QueryPoolRequest",
   is(o: any): o is QueryPoolRequest {
@@ -265,6 +328,13 @@ function createBaseQueryPoolResponse(): QueryPoolResponse {
     pool: []
   };
 }
+/**
+ * QueryPoolResponse is the response type for the Query/Pool
+ * RPC method.
+ * @name QueryPoolResponse
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.QueryPoolResponse
+ */
 export const QueryPoolResponse = {
   typeUrl: "/xpla.reward.v1beta1.QueryPoolResponse",
   is(o: any): o is QueryPoolResponse {
@@ -331,6 +401,9 @@ export const QueryPoolResponse = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(QueryPoolResponse.typeUrl)) {
+      return;
+    }
     Coin.registerTypeUrl();
   }
 };

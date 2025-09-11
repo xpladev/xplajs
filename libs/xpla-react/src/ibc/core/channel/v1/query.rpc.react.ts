@@ -1,71 +1,151 @@
 import { buildUseQuery } from "../../../../react-query";
-import { QueryChannelRequest, QueryChannelResponse, QueryChannelsRequest, QueryChannelsResponse, QueryConnectionChannelsRequest, QueryConnectionChannelsResponse, QueryChannelClientStateRequest, QueryChannelClientStateResponse, QueryChannelConsensusStateRequest, QueryChannelConsensusStateResponse, QueryPacketCommitmentRequest, QueryPacketCommitmentResponse, QueryPacketCommitmentsRequest, QueryPacketCommitmentsResponse, QueryPacketReceiptRequest, QueryPacketReceiptResponse, QueryPacketAcknowledgementRequest, QueryPacketAcknowledgementResponse, QueryPacketAcknowledgementsRequest, QueryPacketAcknowledgementsResponse, QueryUnreceivedPacketsRequest, QueryUnreceivedPacketsResponse, QueryUnreceivedAcksRequest, QueryUnreceivedAcksResponse, QueryNextSequenceReceiveRequest, QueryNextSequenceReceiveResponse, QueryNextSequenceSendRequest, QueryNextSequenceSendResponse, QueryUpgradeErrorRequest, QueryUpgradeErrorResponse, QueryUpgradeRequest, QueryUpgradeResponse, QueryChannelParamsRequest, QueryChannelParamsResponse } from "./query";
-import { createGetChannel, createGetChannels, createGetConnectionChannels, createGetChannelClientState, createGetChannelConsensusState, createGetPacketCommitment, createGetPacketCommitments, createGetPacketReceipt, createGetPacketAcknowledgement, createGetPacketAcknowledgements, createGetUnreceivedPackets, createGetUnreceivedAcks, createGetNextSequenceReceive, createGetNextSequenceSend, createGetUpgradeError, createGetUpgrade, createGetChannelParams } from "./query.rpc.func";
+import { QueryChannelRequest, QueryChannelResponse, QueryChannelsRequest, QueryChannelsResponse, QueryConnectionChannelsRequest, QueryConnectionChannelsResponse, QueryChannelClientStateRequest, QueryChannelClientStateResponse, QueryChannelConsensusStateRequest, QueryChannelConsensusStateResponse, QueryPacketCommitmentRequest, QueryPacketCommitmentResponse, QueryPacketCommitmentsRequest, QueryPacketCommitmentsResponse, QueryPacketReceiptRequest, QueryPacketReceiptResponse, QueryPacketAcknowledgementRequest, QueryPacketAcknowledgementResponse, QueryPacketAcknowledgementsRequest, QueryPacketAcknowledgementsResponse, QueryUnreceivedPacketsRequest, QueryUnreceivedPacketsResponse, QueryUnreceivedAcksRequest, QueryUnreceivedAcksResponse, QueryNextSequenceReceiveRequest, QueryNextSequenceReceiveResponse, QueryNextSequenceSendRequest, QueryNextSequenceSendResponse } from "./query";
+import { getChannel, getChannels, getConnectionChannels, getChannelClientState, getChannelConsensusState, getPacketCommitment, getPacketCommitments, getPacketReceipt, getPacketAcknowledgement, getPacketAcknowledgements, getUnreceivedPackets, getUnreceivedAcks, getNextSequenceReceive, getNextSequenceSend } from "./query.rpc.func";
+/**
+ * Channel queries an IBC Channel.
+ * @name useGetChannel
+ * @package ibc.core.channel.v1
+ * @see proto service: ibc.core.channel.v1.Channel
+ */
 export const useGetChannel = buildUseQuery<QueryChannelRequest, QueryChannelResponse>({
-  builderQueryFn: createGetChannel,
+  builderQueryFn: getChannel,
   queryKeyPrefix: "ChannelQuery"
 });
+/**
+ * Channels queries all the IBC channels of a chain.
+ * @name useGetChannels
+ * @package ibc.core.channel.v1
+ * @see proto service: ibc.core.channel.v1.Channels
+ */
 export const useGetChannels = buildUseQuery<QueryChannelsRequest, QueryChannelsResponse>({
-  builderQueryFn: createGetChannels,
+  builderQueryFn: getChannels,
   queryKeyPrefix: "ChannelsQuery"
 });
+/**
+ * ConnectionChannels queries all the channels associated with a connection
+ * end.
+ * @name useGetConnectionChannels
+ * @package ibc.core.channel.v1
+ * @see proto service: ibc.core.channel.v1.ConnectionChannels
+ */
 export const useGetConnectionChannels = buildUseQuery<QueryConnectionChannelsRequest, QueryConnectionChannelsResponse>({
-  builderQueryFn: createGetConnectionChannels,
+  builderQueryFn: getConnectionChannels,
   queryKeyPrefix: "ConnectionChannelsQuery"
 });
+/**
+ * ChannelClientState queries for the client state for the channel associated
+ * with the provided channel identifiers.
+ * @name useGetChannelClientState
+ * @package ibc.core.channel.v1
+ * @see proto service: ibc.core.channel.v1.ChannelClientState
+ */
 export const useGetChannelClientState = buildUseQuery<QueryChannelClientStateRequest, QueryChannelClientStateResponse>({
-  builderQueryFn: createGetChannelClientState,
+  builderQueryFn: getChannelClientState,
   queryKeyPrefix: "ChannelClientStateQuery"
 });
+/**
+ * ChannelConsensusState queries for the consensus state for the channel
+ * associated with the provided channel identifiers.
+ * @name useGetChannelConsensusState
+ * @package ibc.core.channel.v1
+ * @see proto service: ibc.core.channel.v1.ChannelConsensusState
+ */
 export const useGetChannelConsensusState = buildUseQuery<QueryChannelConsensusStateRequest, QueryChannelConsensusStateResponse>({
-  builderQueryFn: createGetChannelConsensusState,
+  builderQueryFn: getChannelConsensusState,
   queryKeyPrefix: "ChannelConsensusStateQuery"
 });
+/**
+ * PacketCommitment queries a stored packet commitment hash.
+ * @name useGetPacketCommitment
+ * @package ibc.core.channel.v1
+ * @see proto service: ibc.core.channel.v1.PacketCommitment
+ */
 export const useGetPacketCommitment = buildUseQuery<QueryPacketCommitmentRequest, QueryPacketCommitmentResponse>({
-  builderQueryFn: createGetPacketCommitment,
+  builderQueryFn: getPacketCommitment,
   queryKeyPrefix: "PacketCommitmentQuery"
 });
+/**
+ * PacketCommitments returns all the packet commitments hashes associated
+ * with a channel.
+ * @name useGetPacketCommitments
+ * @package ibc.core.channel.v1
+ * @see proto service: ibc.core.channel.v1.PacketCommitments
+ */
 export const useGetPacketCommitments = buildUseQuery<QueryPacketCommitmentsRequest, QueryPacketCommitmentsResponse>({
-  builderQueryFn: createGetPacketCommitments,
+  builderQueryFn: getPacketCommitments,
   queryKeyPrefix: "PacketCommitmentsQuery"
 });
+/**
+ * PacketReceipt queries if a given packet sequence has been received on the
+ * queried chain
+ * @name useGetPacketReceipt
+ * @package ibc.core.channel.v1
+ * @see proto service: ibc.core.channel.v1.PacketReceipt
+ */
 export const useGetPacketReceipt = buildUseQuery<QueryPacketReceiptRequest, QueryPacketReceiptResponse>({
-  builderQueryFn: createGetPacketReceipt,
+  builderQueryFn: getPacketReceipt,
   queryKeyPrefix: "PacketReceiptQuery"
 });
+/**
+ * PacketAcknowledgement queries a stored packet acknowledgement hash.
+ * @name useGetPacketAcknowledgement
+ * @package ibc.core.channel.v1
+ * @see proto service: ibc.core.channel.v1.PacketAcknowledgement
+ */
 export const useGetPacketAcknowledgement = buildUseQuery<QueryPacketAcknowledgementRequest, QueryPacketAcknowledgementResponse>({
-  builderQueryFn: createGetPacketAcknowledgement,
+  builderQueryFn: getPacketAcknowledgement,
   queryKeyPrefix: "PacketAcknowledgementQuery"
 });
+/**
+ * PacketAcknowledgements returns all the packet acknowledgements associated
+ * with a channel.
+ * @name useGetPacketAcknowledgements
+ * @package ibc.core.channel.v1
+ * @see proto service: ibc.core.channel.v1.PacketAcknowledgements
+ */
 export const useGetPacketAcknowledgements = buildUseQuery<QueryPacketAcknowledgementsRequest, QueryPacketAcknowledgementsResponse>({
-  builderQueryFn: createGetPacketAcknowledgements,
+  builderQueryFn: getPacketAcknowledgements,
   queryKeyPrefix: "PacketAcknowledgementsQuery"
 });
+/**
+ * UnreceivedPackets returns all the unreceived IBC packets associated with a
+ * channel and sequences.
+ * @name useGetUnreceivedPackets
+ * @package ibc.core.channel.v1
+ * @see proto service: ibc.core.channel.v1.UnreceivedPackets
+ */
 export const useGetUnreceivedPackets = buildUseQuery<QueryUnreceivedPacketsRequest, QueryUnreceivedPacketsResponse>({
-  builderQueryFn: createGetUnreceivedPackets,
+  builderQueryFn: getUnreceivedPackets,
   queryKeyPrefix: "UnreceivedPacketsQuery"
 });
+/**
+ * UnreceivedAcks returns all the unreceived IBC acknowledgements associated
+ * with a channel and sequences.
+ * @name useGetUnreceivedAcks
+ * @package ibc.core.channel.v1
+ * @see proto service: ibc.core.channel.v1.UnreceivedAcks
+ */
 export const useGetUnreceivedAcks = buildUseQuery<QueryUnreceivedAcksRequest, QueryUnreceivedAcksResponse>({
-  builderQueryFn: createGetUnreceivedAcks,
+  builderQueryFn: getUnreceivedAcks,
   queryKeyPrefix: "UnreceivedAcksQuery"
 });
+/**
+ * NextSequenceReceive returns the next receive sequence for a given channel.
+ * @name useGetNextSequenceReceive
+ * @package ibc.core.channel.v1
+ * @see proto service: ibc.core.channel.v1.NextSequenceReceive
+ */
 export const useGetNextSequenceReceive = buildUseQuery<QueryNextSequenceReceiveRequest, QueryNextSequenceReceiveResponse>({
-  builderQueryFn: createGetNextSequenceReceive,
+  builderQueryFn: getNextSequenceReceive,
   queryKeyPrefix: "NextSequenceReceiveQuery"
 });
+/**
+ * NextSequenceSend returns the next send sequence for a given channel.
+ * @name useGetNextSequenceSend
+ * @package ibc.core.channel.v1
+ * @see proto service: ibc.core.channel.v1.NextSequenceSend
+ */
 export const useGetNextSequenceSend = buildUseQuery<QueryNextSequenceSendRequest, QueryNextSequenceSendResponse>({
-  builderQueryFn: createGetNextSequenceSend,
+  builderQueryFn: getNextSequenceSend,
   queryKeyPrefix: "NextSequenceSendQuery"
-});
-export const useGetUpgradeError = buildUseQuery<QueryUpgradeErrorRequest, QueryUpgradeErrorResponse>({
-  builderQueryFn: createGetUpgradeError,
-  queryKeyPrefix: "UpgradeErrorQuery"
-});
-export const useGetUpgrade = buildUseQuery<QueryUpgradeRequest, QueryUpgradeResponse>({
-  builderQueryFn: createGetUpgrade,
-  queryKeyPrefix: "UpgradeQuery"
-});
-export const useGetChannelParams = buildUseQuery<QueryChannelParamsRequest, QueryChannelParamsResponse>({
-  builderQueryFn: createGetChannelParams,
-  queryKeyPrefix: "ChannelParamsQuery"
 });

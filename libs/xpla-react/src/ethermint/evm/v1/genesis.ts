@@ -1,22 +1,41 @@
 import { Params, ParamsAmino, State, StateAmino } from "./evm";
 import { BinaryReader, BinaryWriter } from "../../../binary";
+import { GlobalDecoderRegistry } from "../../../registry";
 import { DeepPartial } from "../../../helpers";
-/** GenesisState defines the evm module's genesis state. */
+/**
+ * GenesisState defines the evm module's genesis state.
+ * @name GenesisState
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.GenesisState
+ */
 export interface GenesisState {
-  /** accounts is an array containing the ethereum genesis accounts. */
+  /**
+   * accounts is an array containing the ethereum genesis accounts.
+   */
   accounts: GenesisAccount[];
-  /** params defines all the parameters of the module. */
+  /**
+   * params defines all the parameters of the module.
+   */
   params: Params;
 }
 export interface GenesisStateProtoMsg {
   typeUrl: "/ethermint.evm.v1.GenesisState";
   value: Uint8Array;
 }
-/** GenesisState defines the evm module's genesis state. */
+/**
+ * GenesisState defines the evm module's genesis state.
+ * @name GenesisStateAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.GenesisState
+ */
 export interface GenesisStateAmino {
-  /** accounts is an array containing the ethereum genesis accounts. */
+  /**
+   * accounts is an array containing the ethereum genesis accounts.
+   */
   accounts: GenesisAccountAmino[];
-  /** params defines all the parameters of the module. */
+  /**
+   * params defines all the parameters of the module.
+   */
   params: ParamsAmino;
 }
 export interface GenesisStateAminoMsg {
@@ -27,13 +46,22 @@ export interface GenesisStateAminoMsg {
  * GenesisAccount defines an account to be initialized in the genesis state.
  * Its main difference between with Geth's GenesisAccount is that it uses a
  * custom storage type and that it doesn't contain the private key field.
+ * @name GenesisAccount
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.GenesisAccount
  */
 export interface GenesisAccount {
-  /** address defines an ethereum hex formated address of an account */
+  /**
+   * address defines an ethereum hex formated address of an account
+   */
   address: string;
-  /** code defines the hex bytes of the account code. */
+  /**
+   * code defines the hex bytes of the account code.
+   */
   code: string;
-  /** storage defines the set of state key values for the account. */
+  /**
+   * storage defines the set of state key values for the account.
+   */
   storage: State[];
 }
 export interface GenesisAccountProtoMsg {
@@ -44,13 +72,22 @@ export interface GenesisAccountProtoMsg {
  * GenesisAccount defines an account to be initialized in the genesis state.
  * Its main difference between with Geth's GenesisAccount is that it uses a
  * custom storage type and that it doesn't contain the private key field.
+ * @name GenesisAccountAmino
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.GenesisAccount
  */
 export interface GenesisAccountAmino {
-  /** address defines an ethereum hex formated address of an account */
+  /**
+   * address defines an ethereum hex formated address of an account
+   */
   address: string;
-  /** code defines the hex bytes of the account code. */
+  /**
+   * code defines the hex bytes of the account code.
+   */
   code: string;
-  /** storage defines the set of state key values for the account. */
+  /**
+   * storage defines the set of state key values for the account.
+   */
   storage: StateAmino[];
 }
 export interface GenesisAccountAminoMsg {
@@ -63,6 +100,12 @@ function createBaseGenesisState(): GenesisState {
     params: Params.fromPartial({})
   };
 }
+/**
+ * GenesisState defines the evm module's genesis state.
+ * @name GenesisState
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.GenesisState
+ */
 export const GenesisState = {
   typeUrl: "/ethermint.evm.v1.GenesisState",
   is(o: any): o is GenesisState {
@@ -140,6 +183,9 @@ export const GenesisState = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(GenesisState.typeUrl)) {
+      return;
+    }
     GenesisAccount.registerTypeUrl();
     Params.registerTypeUrl();
   }
@@ -151,6 +197,14 @@ function createBaseGenesisAccount(): GenesisAccount {
     storage: []
   };
 }
+/**
+ * GenesisAccount defines an account to be initialized in the genesis state.
+ * Its main difference between with Geth's GenesisAccount is that it uses a
+ * custom storage type and that it doesn't contain the private key field.
+ * @name GenesisAccount
+ * @package ethermint.evm.v1
+ * @see proto type: ethermint.evm.v1.GenesisAccount
+ */
 export const GenesisAccount = {
   typeUrl: "/ethermint.evm.v1.GenesisAccount",
   is(o: any): o is GenesisAccount {
@@ -239,6 +293,9 @@ export const GenesisAccount = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(GenesisAccount.typeUrl)) {
+      return;
+    }
     State.registerTypeUrl();
   }
 };

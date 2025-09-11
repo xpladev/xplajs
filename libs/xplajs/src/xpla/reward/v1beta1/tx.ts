@@ -2,9 +2,13 @@ import { Coin, CoinAmino } from "../../../cosmos/base/v1beta1/coin";
 import { Params, ParamsAmino } from "./reward";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { DeepPartial } from "../../../helpers";
+import { GlobalDecoderRegistry } from "../../../registry";
 /**
  * MsgFundRewardPool allows an account to directly
  * fund the reward pool.
+ * @name MsgFundRewardPool
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.MsgFundRewardPool
  */
 export interface MsgFundRewardPool {
   amount: Coin[];
@@ -17,6 +21,9 @@ export interface MsgFundRewardPoolProtoMsg {
 /**
  * MsgFundRewardPool allows an account to directly
  * fund the reward pool.
+ * @name MsgFundRewardPoolAmino
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.MsgFundRewardPool
  */
 export interface MsgFundRewardPoolAmino {
   amount: CoinAmino[];
@@ -26,13 +33,23 @@ export interface MsgFundRewardPoolAminoMsg {
   type: "xpladev/MsgFundRewardPool";
   value: MsgFundRewardPoolAmino;
 }
-/** MsgFundRewardPoolResponse defines the Msg/FundRewardPool response type. */
+/**
+ * MsgFundRewardPoolResponse defines the Msg/FundRewardPool response type.
+ * @name MsgFundRewardPoolResponse
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.MsgFundRewardPoolResponse
+ */
 export interface MsgFundRewardPoolResponse {}
 export interface MsgFundRewardPoolResponseProtoMsg {
   typeUrl: "/xpla.reward.v1beta1.MsgFundRewardPoolResponse";
   value: Uint8Array;
 }
-/** MsgFundRewardPoolResponse defines the Msg/FundRewardPool response type. */
+/**
+ * MsgFundRewardPoolResponse defines the Msg/FundRewardPool response type.
+ * @name MsgFundRewardPoolResponseAmino
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.MsgFundRewardPoolResponse
+ */
 export interface MsgFundRewardPoolResponseAmino {}
 export interface MsgFundRewardPoolResponseAminoMsg {
   type: "/xpla.reward.v1beta1.MsgFundRewardPoolResponse";
@@ -41,9 +58,14 @@ export interface MsgFundRewardPoolResponseAminoMsg {
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type for reward parameters.
  * Since: cosmos-sdk 0.47
+ * @name MsgUpdateParams
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.MsgUpdateParams
  */
 export interface MsgUpdateParams {
-  /** authority is the address of the governance account. */
+  /**
+   * authority is the address of the governance account.
+   */
   authority: string;
   /**
    * params defines the x/evm parameters to update.
@@ -58,9 +80,14 @@ export interface MsgUpdateParamsProtoMsg {
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type for reward parameters.
  * Since: cosmos-sdk 0.47
+ * @name MsgUpdateParamsAmino
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.MsgUpdateParams
  */
 export interface MsgUpdateParamsAmino {
-  /** authority is the address of the governance account. */
+  /**
+   * authority is the address of the governance account.
+   */
   authority: string;
   /**
    * params defines the x/evm parameters to update.
@@ -76,6 +103,9 @@ export interface MsgUpdateParamsAminoMsg {
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
  * Since: cosmos-sdk 0.47
+ * @name MsgUpdateParamsResponse
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.MsgUpdateParamsResponse
  */
 export interface MsgUpdateParamsResponse {}
 export interface MsgUpdateParamsResponseProtoMsg {
@@ -86,6 +116,9 @@ export interface MsgUpdateParamsResponseProtoMsg {
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
  * Since: cosmos-sdk 0.47
+ * @name MsgUpdateParamsResponseAmino
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.MsgUpdateParamsResponse
  */
 export interface MsgUpdateParamsResponseAmino {}
 export interface MsgUpdateParamsResponseAminoMsg {
@@ -98,6 +131,13 @@ function createBaseMsgFundRewardPool(): MsgFundRewardPool {
     depositor: ""
   };
 }
+/**
+ * MsgFundRewardPool allows an account to directly
+ * fund the reward pool.
+ * @name MsgFundRewardPool
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.MsgFundRewardPool
+ */
 export const MsgFundRewardPool = {
   typeUrl: "/xpla.reward.v1beta1.MsgFundRewardPool",
   aminoType: "xpladev/MsgFundRewardPool",
@@ -182,12 +222,21 @@ export const MsgFundRewardPool = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(MsgFundRewardPool.typeUrl)) {
+      return;
+    }
     Coin.registerTypeUrl();
   }
 };
 function createBaseMsgFundRewardPoolResponse(): MsgFundRewardPoolResponse {
   return {};
 }
+/**
+ * MsgFundRewardPoolResponse defines the Msg/FundRewardPool response type.
+ * @name MsgFundRewardPoolResponse
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.MsgFundRewardPoolResponse
+ */
 export const MsgFundRewardPoolResponse = {
   typeUrl: "/xpla.reward.v1beta1.MsgFundRewardPoolResponse",
   is(o: any): o is MsgFundRewardPoolResponse {
@@ -248,6 +297,13 @@ function createBaseMsgUpdateParams(): MsgUpdateParams {
     params: Params.fromPartial({})
   };
 }
+/**
+ * MsgUpdateParams is the Msg/UpdateParams request type for reward parameters.
+ * Since: cosmos-sdk 0.47
+ * @name MsgUpdateParams
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.MsgUpdateParams
+ */
 export const MsgUpdateParams = {
   typeUrl: "/xpla.reward.v1beta1.MsgUpdateParams",
   aminoType: "xpladev/x/reward/MsgUpdateParams",
@@ -330,12 +386,23 @@ export const MsgUpdateParams = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(MsgUpdateParams.typeUrl)) {
+      return;
+    }
     Params.registerTypeUrl();
   }
 };
 function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
   return {};
 }
+/**
+ * MsgUpdateParamsResponse defines the response structure for executing a
+ * MsgUpdateParams message.
+ * Since: cosmos-sdk 0.47
+ * @name MsgUpdateParamsResponse
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.MsgUpdateParamsResponse
+ */
 export const MsgUpdateParamsResponse = {
   typeUrl: "/xpla.reward.v1beta1.MsgUpdateParamsResponse",
   is(o: any): o is MsgUpdateParamsResponse {

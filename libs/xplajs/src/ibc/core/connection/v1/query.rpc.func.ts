@@ -1,50 +1,83 @@
-import { RpcResolver, buildQuery } from "../../../../helper-func-types";
+import { buildQuery } from "../../../../helper-func-types";
 import { QueryConnectionRequest, QueryConnectionResponse, QueryConnectionsRequest, QueryConnectionsResponse, QueryClientConnectionsRequest, QueryClientConnectionsResponse, QueryConnectionClientStateRequest, QueryConnectionClientStateResponse, QueryConnectionConsensusStateRequest, QueryConnectionConsensusStateResponse, QueryConnectionParamsRequest, QueryConnectionParamsResponse } from "./query";
-export const createGetConnection = (clientResolver?: RpcResolver) => buildQuery<QueryConnectionRequest, QueryConnectionResponse>({
+/**
+ * Connection queries an IBC connection end.
+ * @name getConnection
+ * @package ibc.core.connection.v1
+ * @see proto service: ibc.core.connection.v1.Connection
+ */
+export const getConnection = buildQuery<QueryConnectionRequest, QueryConnectionResponse>({
   encode: QueryConnectionRequest.encode,
   decode: QueryConnectionResponse.decode,
   service: "ibc.core.connection.v1.Query",
   method: "Connection",
-  clientResolver,
   deps: [QueryConnectionRequest, QueryConnectionResponse]
 });
-export const createGetConnections = (clientResolver?: RpcResolver) => buildQuery<QueryConnectionsRequest, QueryConnectionsResponse>({
+/**
+ * Connections queries all the IBC connections of a chain.
+ * @name getConnections
+ * @package ibc.core.connection.v1
+ * @see proto service: ibc.core.connection.v1.Connections
+ */
+export const getConnections = buildQuery<QueryConnectionsRequest, QueryConnectionsResponse>({
   encode: QueryConnectionsRequest.encode,
   decode: QueryConnectionsResponse.decode,
   service: "ibc.core.connection.v1.Query",
   method: "Connections",
-  clientResolver,
   deps: [QueryConnectionsRequest, QueryConnectionsResponse]
 });
-export const createGetClientConnections = (clientResolver?: RpcResolver) => buildQuery<QueryClientConnectionsRequest, QueryClientConnectionsResponse>({
+/**
+ * ClientConnections queries the connection paths associated with a client
+ * state.
+ * @name getClientConnections
+ * @package ibc.core.connection.v1
+ * @see proto service: ibc.core.connection.v1.ClientConnections
+ */
+export const getClientConnections = buildQuery<QueryClientConnectionsRequest, QueryClientConnectionsResponse>({
   encode: QueryClientConnectionsRequest.encode,
   decode: QueryClientConnectionsResponse.decode,
   service: "ibc.core.connection.v1.Query",
   method: "ClientConnections",
-  clientResolver,
   deps: [QueryClientConnectionsRequest, QueryClientConnectionsResponse]
 });
-export const createGetConnectionClientState = (clientResolver?: RpcResolver) => buildQuery<QueryConnectionClientStateRequest, QueryConnectionClientStateResponse>({
+/**
+ * ConnectionClientState queries the client state associated with the
+ * connection.
+ * @name getConnectionClientState
+ * @package ibc.core.connection.v1
+ * @see proto service: ibc.core.connection.v1.ConnectionClientState
+ */
+export const getConnectionClientState = buildQuery<QueryConnectionClientStateRequest, QueryConnectionClientStateResponse>({
   encode: QueryConnectionClientStateRequest.encode,
   decode: QueryConnectionClientStateResponse.decode,
   service: "ibc.core.connection.v1.Query",
   method: "ConnectionClientState",
-  clientResolver,
   deps: [QueryConnectionClientStateRequest, QueryConnectionClientStateResponse]
 });
-export const createGetConnectionConsensusState = (clientResolver?: RpcResolver) => buildQuery<QueryConnectionConsensusStateRequest, QueryConnectionConsensusStateResponse>({
+/**
+ * ConnectionConsensusState queries the consensus state associated with the
+ * connection.
+ * @name getConnectionConsensusState
+ * @package ibc.core.connection.v1
+ * @see proto service: ibc.core.connection.v1.ConnectionConsensusState
+ */
+export const getConnectionConsensusState = buildQuery<QueryConnectionConsensusStateRequest, QueryConnectionConsensusStateResponse>({
   encode: QueryConnectionConsensusStateRequest.encode,
   decode: QueryConnectionConsensusStateResponse.decode,
   service: "ibc.core.connection.v1.Query",
   method: "ConnectionConsensusState",
-  clientResolver,
   deps: [QueryConnectionConsensusStateRequest, QueryConnectionConsensusStateResponse]
 });
-export const createGetConnectionParams = (clientResolver?: RpcResolver) => buildQuery<QueryConnectionParamsRequest, QueryConnectionParamsResponse>({
+/**
+ * ConnectionParams queries all parameters of the ibc connection submodule.
+ * @name getConnectionParams
+ * @package ibc.core.connection.v1
+ * @see proto service: ibc.core.connection.v1.ConnectionParams
+ */
+export const getConnectionParams = buildQuery<QueryConnectionParamsRequest, QueryConnectionParamsResponse>({
   encode: QueryConnectionParamsRequest.encode,
   decode: QueryConnectionParamsResponse.decode,
   service: "ibc.core.connection.v1.Query",
   method: "ConnectionParams",
-  clientResolver,
   deps: [QueryConnectionParamsRequest, QueryConnectionParamsResponse]
 });

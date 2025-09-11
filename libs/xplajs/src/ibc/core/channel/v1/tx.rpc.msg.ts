@@ -1,6 +1,6 @@
 import { TxRpc } from "../../../../types";
 import { BinaryReader } from "../../../../binary";
-import { MsgChannelOpenInit, MsgChannelOpenInitResponse, MsgChannelOpenTry, MsgChannelOpenTryResponse, MsgChannelOpenAck, MsgChannelOpenAckResponse, MsgChannelOpenConfirm, MsgChannelOpenConfirmResponse, MsgChannelCloseInit, MsgChannelCloseInitResponse, MsgChannelCloseConfirm, MsgChannelCloseConfirmResponse, MsgRecvPacket, MsgRecvPacketResponse, MsgTimeout, MsgTimeoutResponse, MsgTimeoutOnClose, MsgTimeoutOnCloseResponse, MsgAcknowledgement, MsgAcknowledgementResponse, MsgChannelUpgradeInit, MsgChannelUpgradeInitResponse, MsgChannelUpgradeTry, MsgChannelUpgradeTryResponse, MsgChannelUpgradeAck, MsgChannelUpgradeAckResponse, MsgChannelUpgradeConfirm, MsgChannelUpgradeConfirmResponse, MsgChannelUpgradeOpen, MsgChannelUpgradeOpenResponse, MsgChannelUpgradeTimeout, MsgChannelUpgradeTimeoutResponse, MsgChannelUpgradeCancel, MsgChannelUpgradeCancelResponse, MsgUpdateParams, MsgUpdateParamsResponse, MsgPruneAcknowledgements, MsgPruneAcknowledgementsResponse } from "./tx";
+import { MsgChannelOpenInit, MsgChannelOpenInitResponse, MsgChannelOpenTry, MsgChannelOpenTryResponse, MsgChannelOpenAck, MsgChannelOpenAckResponse, MsgChannelOpenConfirm, MsgChannelOpenConfirmResponse, MsgChannelCloseInit, MsgChannelCloseInitResponse, MsgChannelCloseConfirm, MsgChannelCloseConfirmResponse, MsgRecvPacket, MsgRecvPacketResponse, MsgTimeout, MsgTimeoutResponse, MsgTimeoutOnClose, MsgTimeoutOnCloseResponse, MsgAcknowledgement, MsgAcknowledgementResponse } from "./tx";
 /** Msg defines the ibc/channel Msg service. */
 export interface Msg {
   /** ChannelOpenInit defines a rpc handler method for MsgChannelOpenInit. */
@@ -26,24 +26,6 @@ export interface Msg {
   timeoutOnClose(request: MsgTimeoutOnClose): Promise<MsgTimeoutOnCloseResponse>;
   /** Acknowledgement defines a rpc handler method for MsgAcknowledgement. */
   acknowledgement(request: MsgAcknowledgement): Promise<MsgAcknowledgementResponse>;
-  /** ChannelUpgradeInit defines a rpc handler method for MsgChannelUpgradeInit. */
-  channelUpgradeInit(request: MsgChannelUpgradeInit): Promise<MsgChannelUpgradeInitResponse>;
-  /** ChannelUpgradeTry defines a rpc handler method for MsgChannelUpgradeTry. */
-  channelUpgradeTry(request: MsgChannelUpgradeTry): Promise<MsgChannelUpgradeTryResponse>;
-  /** ChannelUpgradeAck defines a rpc handler method for MsgChannelUpgradeAck. */
-  channelUpgradeAck(request: MsgChannelUpgradeAck): Promise<MsgChannelUpgradeAckResponse>;
-  /** ChannelUpgradeConfirm defines a rpc handler method for MsgChannelUpgradeConfirm. */
-  channelUpgradeConfirm(request: MsgChannelUpgradeConfirm): Promise<MsgChannelUpgradeConfirmResponse>;
-  /** ChannelUpgradeOpen defines a rpc handler method for MsgChannelUpgradeOpen. */
-  channelUpgradeOpen(request: MsgChannelUpgradeOpen): Promise<MsgChannelUpgradeOpenResponse>;
-  /** ChannelUpgradeTimeout defines a rpc handler method for MsgChannelUpgradeTimeout. */
-  channelUpgradeTimeout(request: MsgChannelUpgradeTimeout): Promise<MsgChannelUpgradeTimeoutResponse>;
-  /** ChannelUpgradeCancel defines a rpc handler method for MsgChannelUpgradeCancel. */
-  channelUpgradeCancel(request: MsgChannelUpgradeCancel): Promise<MsgChannelUpgradeCancelResponse>;
-  /** UpdateChannelParams defines a rpc handler method for MsgUpdateParams. */
-  updateChannelParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
-  /** PruneAcknowledgements defines a rpc handler method for MsgPruneAcknowledgements. */
-  pruneAcknowledgements(request: MsgPruneAcknowledgements): Promise<MsgPruneAcknowledgementsResponse>;
 }
 export class MsgClientImpl implements Msg {
   private readonly rpc: TxRpc;
@@ -110,60 +92,6 @@ export class MsgClientImpl implements Msg {
     const data = MsgAcknowledgement.encode(request).finish();
     const promise = this.rpc.request("ibc.core.channel.v1.Msg", "Acknowledgement", data);
     return promise.then(data => MsgAcknowledgementResponse.decode(new BinaryReader(data)));
-  };
-  /* ChannelUpgradeInit defines a rpc handler method for MsgChannelUpgradeInit. */
-  channelUpgradeInit = async (request: MsgChannelUpgradeInit): Promise<MsgChannelUpgradeInitResponse> => {
-    const data = MsgChannelUpgradeInit.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelUpgradeInit", data);
-    return promise.then(data => MsgChannelUpgradeInitResponse.decode(new BinaryReader(data)));
-  };
-  /* ChannelUpgradeTry defines a rpc handler method for MsgChannelUpgradeTry. */
-  channelUpgradeTry = async (request: MsgChannelUpgradeTry): Promise<MsgChannelUpgradeTryResponse> => {
-    const data = MsgChannelUpgradeTry.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelUpgradeTry", data);
-    return promise.then(data => MsgChannelUpgradeTryResponse.decode(new BinaryReader(data)));
-  };
-  /* ChannelUpgradeAck defines a rpc handler method for MsgChannelUpgradeAck. */
-  channelUpgradeAck = async (request: MsgChannelUpgradeAck): Promise<MsgChannelUpgradeAckResponse> => {
-    const data = MsgChannelUpgradeAck.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelUpgradeAck", data);
-    return promise.then(data => MsgChannelUpgradeAckResponse.decode(new BinaryReader(data)));
-  };
-  /* ChannelUpgradeConfirm defines a rpc handler method for MsgChannelUpgradeConfirm. */
-  channelUpgradeConfirm = async (request: MsgChannelUpgradeConfirm): Promise<MsgChannelUpgradeConfirmResponse> => {
-    const data = MsgChannelUpgradeConfirm.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelUpgradeConfirm", data);
-    return promise.then(data => MsgChannelUpgradeConfirmResponse.decode(new BinaryReader(data)));
-  };
-  /* ChannelUpgradeOpen defines a rpc handler method for MsgChannelUpgradeOpen. */
-  channelUpgradeOpen = async (request: MsgChannelUpgradeOpen): Promise<MsgChannelUpgradeOpenResponse> => {
-    const data = MsgChannelUpgradeOpen.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelUpgradeOpen", data);
-    return promise.then(data => MsgChannelUpgradeOpenResponse.decode(new BinaryReader(data)));
-  };
-  /* ChannelUpgradeTimeout defines a rpc handler method for MsgChannelUpgradeTimeout. */
-  channelUpgradeTimeout = async (request: MsgChannelUpgradeTimeout): Promise<MsgChannelUpgradeTimeoutResponse> => {
-    const data = MsgChannelUpgradeTimeout.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelUpgradeTimeout", data);
-    return promise.then(data => MsgChannelUpgradeTimeoutResponse.decode(new BinaryReader(data)));
-  };
-  /* ChannelUpgradeCancel defines a rpc handler method for MsgChannelUpgradeCancel. */
-  channelUpgradeCancel = async (request: MsgChannelUpgradeCancel): Promise<MsgChannelUpgradeCancelResponse> => {
-    const data = MsgChannelUpgradeCancel.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelUpgradeCancel", data);
-    return promise.then(data => MsgChannelUpgradeCancelResponse.decode(new BinaryReader(data)));
-  };
-  /* UpdateChannelParams defines a rpc handler method for MsgUpdateParams. */
-  updateChannelParams = async (request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> => {
-    const data = MsgUpdateParams.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "UpdateChannelParams", data);
-    return promise.then(data => MsgUpdateParamsResponse.decode(new BinaryReader(data)));
-  };
-  /* PruneAcknowledgements defines a rpc handler method for MsgPruneAcknowledgements. */
-  pruneAcknowledgements = async (request: MsgPruneAcknowledgements): Promise<MsgPruneAcknowledgementsResponse> => {
-    const data = MsgPruneAcknowledgements.encode(request).finish();
-    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "PruneAcknowledgements", data);
-    return promise.then(data => MsgPruneAcknowledgementsResponse.decode(new BinaryReader(data)));
   };
 }
 export const createClientImpl = (rpc: TxRpc) => {

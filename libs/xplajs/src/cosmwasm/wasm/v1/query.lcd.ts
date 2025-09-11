@@ -1,6 +1,6 @@
 import { setPaginationParams } from "../../../helpers";
 import { LCDClient } from "@cosmology/lcd";
-import { QueryContractInfoRequest, QueryContractInfoResponse, QueryContractHistoryRequest, QueryContractHistoryResponse, QueryContractsByCodeRequest, QueryContractsByCodeResponse, QueryAllContractStateRequest, QueryAllContractStateResponse, QueryRawContractStateRequest, QueryRawContractStateResponse, QuerySmartContractStateRequest, QuerySmartContractStateResponse, QueryCodeRequest, QueryCodeResponse, QueryCodesRequest, QueryCodesResponse, QueryPinnedCodesRequest, QueryPinnedCodesResponse, QueryParamsRequest, QueryParamsResponse, QueryContractsByCreatorRequest, QueryContractsByCreatorResponse, QueryBuildAddressRequest, QueryBuildAddressResponse } from "./query";
+import { QueryContractInfoRequest, QueryContractInfoResponse, QueryContractHistoryRequest, QueryContractHistoryResponse, QueryContractsByCodeRequest, QueryContractsByCodeResponse, QueryAllContractStateRequest, QueryAllContractStateResponse, QueryRawContractStateRequest, QueryRawContractStateResponse, QuerySmartContractStateRequest, QuerySmartContractStateResponse, QueryCodeRequest, QueryCodeResponse, QueryCodesRequest, QueryCodesResponse, QueryCodeInfoRequest, QueryCodeInfoResponse, QueryPinnedCodesRequest, QueryPinnedCodesResponse, QueryParamsRequest, QueryParamsResponse, QueryContractsByCreatorRequest, QueryContractsByCreatorResponse, QueryWasmLimitsConfigRequest, QueryWasmLimitsConfigResponse, QueryBuildAddressRequest, QueryBuildAddressResponse } from "./query";
 export class LCDQueryClient {
   req: LCDClient;
   constructor({
@@ -58,7 +58,7 @@ export class LCDQueryClient {
     const endpoint = `cosmwasm/wasm/v1/contract/${params.address}/smart/${params.queryData}`;
     return await this.req.get<QuerySmartContractStateResponse>(endpoint);
   };
-  /* Code gets the binary code and metadata for a singe wasm code */
+  /* Code gets the binary code and metadata for a single wasm code */
   code = async (params: QueryCodeRequest): Promise<QueryCodeResponse> => {
     const endpoint = `cosmwasm/wasm/v1/code/${params.codeId}`;
     return await this.req.get<QueryCodeResponse>(endpoint);
@@ -75,6 +75,11 @@ export class LCDQueryClient {
     }
     const endpoint = `cosmwasm/wasm/v1/code`;
     return await this.req.get<QueryCodesResponse>(endpoint, options);
+  };
+  /* CodeInfo gets the metadata for a single wasm code */
+  codeInfo = async (params: QueryCodeInfoRequest): Promise<QueryCodeInfoResponse> => {
+    const endpoint = `cosmwasm/wasm/v1/code-info/${params.codeId}`;
+    return await this.req.get<QueryCodeInfoResponse>(endpoint);
   };
   /* PinnedCodes gets the pinned code ids */
   pinnedCodes = async (params: QueryPinnedCodesRequest = {
@@ -104,6 +109,12 @@ export class LCDQueryClient {
     }
     const endpoint = `cosmwasm/wasm/v1/contracts/creator/${params.creatorAddress}`;
     return await this.req.get<QueryContractsByCreatorResponse>(endpoint, options);
+  };
+  /* WasmLimitsConfig gets the configured limits for static validation of Wasm
+   files, encoded in JSON. */
+  wasmLimitsConfig = async (_params: QueryWasmLimitsConfigRequest = {}): Promise<QueryWasmLimitsConfigResponse> => {
+    const endpoint = `cosmwasm/wasm/v1/wasm-limits-config`;
+    return await this.req.get<QueryWasmLimitsConfigResponse>(endpoint);
   };
   /* BuildAddress builds a contract address */
   buildAddress = async (params: QueryBuildAddressRequest): Promise<QueryBuildAddressResponse> => {

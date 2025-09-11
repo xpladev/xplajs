@@ -1,17 +1,23 @@
-import { buildTx, SigningClientResolver } from "../../../helper-func-types";
-import { toEncoders, toConverters } from "@interchainjs/cosmos/utils";
+import { buildTx } from "../../../helper-func-types";
 import { MsgFundRewardPool, MsgUpdateParams } from "./tx";
-export const createFundRewardPool = (clientResolver?: SigningClientResolver) => buildTx<MsgFundRewardPool>({
-  clientResolver,
-  typeUrl: MsgFundRewardPool.typeUrl,
-  encoders: toEncoders(MsgFundRewardPool),
-  converters: toConverters(MsgFundRewardPool),
-  deps: [MsgFundRewardPool]
+/**
+ * MsgFundRewardPool defines a method to allow an account to directly
+ * fund the reward pool.
+ * @name fundRewardPool
+ * @package xpla.reward.v1beta1
+ * @see proto service: xpla.reward.v1beta1.FundRewardPool
+ */
+export const fundRewardPool = buildTx<MsgFundRewardPool>({
+  msg: MsgFundRewardPool
 });
-export const createUpdateParams = (clientResolver?: SigningClientResolver) => buildTx<MsgUpdateParams>({
-  clientResolver,
-  typeUrl: MsgUpdateParams.typeUrl,
-  encoders: toEncoders(MsgUpdateParams),
-  converters: toConverters(MsgUpdateParams),
-  deps: [MsgUpdateParams]
+/**
+ * UpdateParams defined a governance operation for updating the x/reward
+ * module parameters. The authority is hard-coded to the Cosmos SDK x/gov
+ * module account
+ * @name updateParams
+ * @package xpla.reward.v1beta1
+ * @see proto service: xpla.reward.v1beta1.UpdateParams
+ */
+export const updateParams = buildTx<MsgUpdateParams>({
+  msg: MsgUpdateParams
 });

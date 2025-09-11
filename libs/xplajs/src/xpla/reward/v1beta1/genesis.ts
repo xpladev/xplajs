@@ -1,18 +1,33 @@
 import { Params, ParamsAmino } from "./reward";
 import { BinaryReader, BinaryWriter } from "../../../binary";
+import { GlobalDecoderRegistry } from "../../../registry";
 import { DeepPartial } from "../../../helpers";
-/** GenesisState defines the reward module's genesis state. */
+/**
+ * GenesisState defines the reward module's genesis state.
+ * @name GenesisState
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.GenesisState
+ */
 export interface GenesisState {
-  /** params defines all the paramaters of the module. */
+  /**
+   * params defines all the paramaters of the module.
+   */
   params: Params;
 }
 export interface GenesisStateProtoMsg {
   typeUrl: "/xpla.reward.v1beta1.GenesisState";
   value: Uint8Array;
 }
-/** GenesisState defines the reward module's genesis state. */
+/**
+ * GenesisState defines the reward module's genesis state.
+ * @name GenesisStateAmino
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.GenesisState
+ */
 export interface GenesisStateAmino {
-  /** params defines all the paramaters of the module. */
+  /**
+   * params defines all the paramaters of the module.
+   */
   params: ParamsAmino;
 }
 export interface GenesisStateAminoMsg {
@@ -24,6 +39,12 @@ function createBaseGenesisState(): GenesisState {
     params: Params.fromPartial({})
   };
 }
+/**
+ * GenesisState defines the reward module's genesis state.
+ * @name GenesisState
+ * @package xpla.reward.v1beta1
+ * @see proto type: xpla.reward.v1beta1.GenesisState
+ */
 export const GenesisState = {
   typeUrl: "/xpla.reward.v1beta1.GenesisState",
   is(o: any): o is GenesisState {
@@ -88,6 +109,9 @@ export const GenesisState = {
     };
   },
   registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(GenesisState.typeUrl)) {
+      return;
+    }
     Params.registerTypeUrl();
   }
 };

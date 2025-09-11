@@ -1,17 +1,20 @@
-import { buildTx, SigningClientResolver } from "../../../../helper-func-types";
-import { toEncoders, toConverters } from "@interchainjs/cosmos/utils";
+import { buildTx } from "../../../../helper-func-types";
 import { MsgTransfer, MsgUpdateParams } from "./tx";
-export const createTransfer = (clientResolver?: SigningClientResolver) => buildTx<MsgTransfer>({
-  clientResolver,
-  typeUrl: MsgTransfer.typeUrl,
-  encoders: toEncoders(MsgTransfer),
-  converters: toConverters(MsgTransfer),
-  deps: [MsgTransfer]
+/**
+ * Transfer defines a rpc handler method for MsgTransfer.
+ * @name transfer
+ * @package ibc.applications.transfer.v1
+ * @see proto service: ibc.applications.transfer.v1.Transfer
+ */
+export const transfer = buildTx<MsgTransfer>({
+  msg: MsgTransfer
 });
-export const createUpdateParams = (clientResolver?: SigningClientResolver) => buildTx<MsgUpdateParams>({
-  clientResolver,
-  typeUrl: MsgUpdateParams.typeUrl,
-  encoders: toEncoders(MsgUpdateParams),
-  converters: toConverters(MsgUpdateParams),
-  deps: [MsgUpdateParams]
+/**
+ * UpdateParams defines a rpc handler for MsgUpdateParams.
+ * @name updateParams
+ * @package ibc.applications.transfer.v1
+ * @see proto service: ibc.applications.transfer.v1.UpdateParams
+ */
+export const updateParams = buildTx<MsgUpdateParams>({
+  msg: MsgUpdateParams
 });
