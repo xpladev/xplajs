@@ -8,7 +8,7 @@ import { sleep } from '@interchainjs/utils';
 import { useChain } from 'starshipjs';
 
 import { EthSecp256k1HDWallet, DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '@xpla/xpla';
-import { getAllBalances, getBalance, send, transfer, MsgSend, MsgTransfer } from "@xpla/xplajs";
+import { getAllBalances, getBalance, send, transfer, MsgSend, MsgTransfer, getClientStatus } from "@xpla/xplajs";
 import * as bip39 from 'bip39';
 
 const hdPath = "m/44'/60'/0'/0/0";
