@@ -38,6 +38,11 @@ jobs:
         with:
           config: networks/xpla/starship/configs/config.workflow.yaml
 
+      - name: evm rpc port fowarding
+        id: evm-rpc-port-fowarding
+        run: |
+          kubectl port-forward pods/dimension-262144-1-genesis-0 8545:8545 --namespace ${{ steps.starship-infra.outputs.namespace }} > /dev/null 2>&1 &
+
       - name: Run E2E Tests
         run: |
           cd networks/xpla

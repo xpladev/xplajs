@@ -8,7 +8,7 @@ import { sleep } from '@interchainjs/utils';
 import { useChain } from 'starshipjs';
 
 import { EthSecp256k1HDWallet, DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '@xpla/xpla';
-import { getAllBalances, getBalance, send, transfer, MsgSend, MsgTransfer } from "@xpla/xplajs";
+import { getAllBalances, getBalance, send, transfer, MsgSend, MsgTransfer, getClientStatus } from "@xpla/xplajs";
 import * as bip39 from 'bip39';
 
 const hdPath = "m/44'/60'/0'/0/0";
@@ -173,9 +173,17 @@ describe('Token transfers', () => {
     const { port_id: sourcePort, channel_id: sourceChannel } =
       ibcInfo!.channels[0].chain_1;
 
+    // Check IBC client status before transfer
+    const queryClient = await createCosmosQueryClient(xplaRpcEndpoint);
+    let clientStatus = await getClientStatus(queryClient, {
+      clientId: '07-tendermint-0'
+    });
+    expect(clientStatus.status).toEqual('Active');
+      
+
     // Transfer xpla tokens via IBC to cosmos chain
-    const currentTime = Math.floor(Date.now()) * 1000000;
-    const timeoutTime = currentTime + 3600 * 1000000000; // 5 minutes
+    const currentTime = Date.now() * 1000000; // Convert to nanoseconds
+    const timeoutTime = currentTime + 3600 * 1000000000; // 1 hour timeout
 
     
     const fee = {
@@ -225,6 +233,7 @@ describe('Token transfers', () => {
       address: cosmosAddress,
       resolveDenom: true,
     });
+
 
     // check balances
     expect(balances.length).toEqual(1);

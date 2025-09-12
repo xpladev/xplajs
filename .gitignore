@@ -2,3 +2,6 @@
 **/.DS_Store
 **/dist
 lerna-debug.log
+artifacts/
+cache/
+contracts/build/

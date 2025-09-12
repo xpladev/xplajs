@@ -1,0 +1,28 @@
+{
+  "name": "@xpla/contracts",
+  "version": "1.8.0",
+  "description": "XPLA precompiled contract interfaces and types",
+  "files": [
+    "**/*.sol",
+    "/build/contracts/*.json"
+  ],
+  "scripts": {
+    "compile": "hardhat compile",
+    "clean": "hardhat clean",
+    "prepublishOnly": "echo 'Solidity package - no build required'"
+  },
+  "keywords": [
+    "xpla",
+    "cosmos",
+    "blockchain",
+    "smart-contracts",
+    "precompiles"
+  ],
+  "author": "Joowon Yun <joowon@delightlabs.io>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:xpladev/xplajs.git",
+    "directory": "contracts"
+  }
+}
