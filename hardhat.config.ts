@@ -17,7 +17,7 @@ const config: HardhatUserConfig = {
   typechain: {
     outDir: "libs/evm/src",
     target: "ethers-v6",
-    alwaysGenerateOverloads: true,
+    alwaysGenerateOverloads: false,
   },
 };
 
