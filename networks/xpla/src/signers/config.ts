@@ -24,11 +24,7 @@ export const encodeCosmosEvmPublicKey = (publicKey: Uint8Array): EncodedMessage 
 export const DEFAULT_COSMOS_EVM_SIGNER_CONFIG: Partial<DocOptions> = {
   // FeeOptions - Gas and fee calculation defaults for CosmosEvm
   multiplier: 1.3, // Higher gas multiplier for CosmosEvm due to EVM compatibility
-  gasPrice: {
-    amount: new Decimal("280000000000"),
-    denom: "axpla"
-  }, // Use average gas price from network
-
+  gasPrice: "280000000000axpla", // Use average gas price from network
   // SignOptions - CosmosEvm-specific signing and address defaults
   addressPrefix: 'xpla', // xpla address prefix
   message: {
