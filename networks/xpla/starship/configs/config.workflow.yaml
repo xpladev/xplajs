@@ -2,9 +2,9 @@ name: xpla
 version: v1.8.0
 
 chains:
-  - id: dimension_262144-1
+  - id: dimension_37-1
     name: xpla
-    image: ghcr.io/hyperweb-io/starship/xpla:v1.8.0-rc0
+    image: ghcr.io/hyperweb-io/starship/xpla:v1.8.0
     numValidators: 1
     ports:
       rest: 1317
@@ -31,6 +31,7 @@ chains:
 
   - id: cosmoshub-4
     name: cosmoshub
+    image: ghcr.io/hyperweb-io/starship/gaia:v21.0.1
     numValidators: 1
     ports:
       rest: 1313
@@ -46,12 +47,12 @@ relayers:
     image: ghcr.io/hyperweb-io/starship/hermes:1.13.1
     replicas: 1
     chains:
-      - dimension_262144-1
+      - dimension_37-1
       - cosmoshub-4
     config:
       mode:
-       packets:
-          clear_interval: 10000
+       clients:
+        misbehaviour: false
       event_source:
         mode: "pull"
     resources:

@@ -231,7 +231,7 @@ describe('Token transfers', () => {
 
     const { balances } = await getAllBalances(await cosmosRpcEndpoint(), {
       address: cosmosAddress,
-      resolveDenom: true,
+      resolveDenom: false,
     });
 
 
