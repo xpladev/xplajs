@@ -9,6 +9,24 @@
     "dist",
     "README.md"
   ],
+  "exports": {
+    ".": {
+      "import": "./esm/index.js",
+      "require": "./index.js",
+      "types": "./index.d.ts"
+    },
+    "./*": {
+      "import": "./esm/*.js",
+      "require": "./*.js",
+      "types": "./*.d.ts"
+    },
+    "./*.js": {
+      "import": "./esm/*.js",
+      "require": "./*.js",
+      "types": "./*.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "build": "npm run clean && tsc && tsc -p tsconfig.esm.json",
     "clean": "rimraf dist",
@@ -48,4 +66,3 @@
     "access": "public"
   }
 }
-  
