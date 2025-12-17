@@ -7,7 +7,7 @@ import { AminoSigner, DirectSigner, createCosmosQueryClient } from '@interchainj
 import {
   toConverters,
   toEncoders,
-} from '@interchainjs/cosmos/utils';
+} from '@interchainjs/cosmos';
 import {
   sleep,
 } from '@interchainjs/utils';
@@ -24,7 +24,8 @@ import { MsgDelegate } from 'interchainjs/cosmos/staking/v1beta1/tx';
 import { BigNumber } from 'bignumber.js';
 import { useChain } from 'starshipjs';
 
-import { EthSecp256k1HDWallet, DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '@xpla/xpla';
+import { EthSecp256k1HDWallet } from '../../src/wallets/ethSecp256k1hd';
+import { DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '../../src/signers/config';
 import { OfflineAminoSigner, OfflineDirectSigner } from '@interchainjs/cosmos';
 import { getBalance, getProposal, getVote, getValidators, delegate, vote, MsgVote } from "@xpla/xplajs";
 import { MsgSubmitProposal,  } from "@xpla/xplajs/cosmos/gov/v1beta1/tx"

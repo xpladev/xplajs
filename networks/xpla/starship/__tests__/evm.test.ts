@@ -7,7 +7,7 @@ import { DirectSigner, ICosmosQueryClient, createCosmosQueryClient, toEncoders }
 import { sleep } from '@interchainjs/utils';
 import { useChain } from 'starshipjs';
 
-import { EthSecp256k1HDWallet } from '@xpla/xpla/wallets/ethSecp256k1hd';
+import { EthSecp256k1HDWallet } from '../../src/wallets/ethSecp256k1hd';
 import { createCosmosEvmSignerConfig, DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '../../src/signers/config';
 import * as bip39 from 'bip39';
 import { createPrecompileBank, createPrecompileStaking, createPrecompileWasm } from '@xpla/evm/precompiles';
