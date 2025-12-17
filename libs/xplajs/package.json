@@ -14,6 +14,24 @@
     "access": "public",
     "directory": "dist"
   },
+  "exports": {
+    ".": {
+      "import": "./esm/index.js",
+      "require": "./index.js",
+      "types": "./index.d.ts"
+    },
+    "./*": {
+      "import": "./esm/*.js",
+      "require": "./*.js",
+      "types": "./*.d.ts"
+    },
+    "./*.js": {
+      "import": "./esm/*.js",
+      "require": "./*.js",
+      "types": "./*.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
   "dependencies": {
     "@cosmjs/stargate": "^0.33.0",
     "@cosmology/lcd": "^0.14.4",

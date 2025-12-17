@@ -2,13 +2,27 @@
   "name": "@xpla/evm",
   "version": "1.8.0",
   "description": "TypeChain generated TypeScript interfaces for XPLA EVM smart contracts",
-  "main": "dist/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "README.md"
-  ],
+  "main": "index.js",
+  "module": "esm/index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./esm/index.js",
+      "require": "./index.js",
+      "types": "./index.d.ts"
+    },
+    "./*": {
+      "import": "./esm/*.js",
+      "require": "./*.js",
+      "types": "./*.d.ts"
+    },
+    "./*.js": {
+      "import": "./esm/*.js",
+      "require": "./*.js",
+      "types": "./*.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "build": "npm run clean && tsc && tsc -p tsconfig.esm.json",
     "clean": "rimraf dist",
@@ -45,7 +59,7 @@
     "typescript": "^5.0.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "dist"
   }
 }
-  
