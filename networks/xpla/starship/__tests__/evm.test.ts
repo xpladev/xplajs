@@ -15,7 +15,7 @@ import { CoinStruct } from '@xpla/evm/IBank';
 import { getAddress, getBytes, HDNodeWallet, hexlify, JsonRpcProvider, JsonRpcSigner, Wallet } from 'ethers';
 import { fromBech32, toBech32 } from '@interchainjs/encoding';
 import { PageRequestStruct } from '@xpla/evm/StakingI';
-import { getCode, storeCode } from '@xpla/xplajs';
+import { storeCodeCosmwasmWasmV1 } from '@xpla/xplajs';
 import { MsgStoreCode } from "@xpla/xplajs/cosmwasm/wasm/v1/tx"
 import * as fs from 'fs';
 import * as path from 'path';
@@ -167,7 +167,7 @@ describe('Token transfers', () => {
       wasmByteCode,
     })
 
-    const result = await storeCode(
+    const result = await storeCodeCosmwasmWasmV1(
       directSigner,
       address,
       msg,

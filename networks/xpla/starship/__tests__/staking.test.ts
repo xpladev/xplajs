@@ -18,7 +18,7 @@ import { useChain } from 'starshipjs';
 
 import { EthSecp256k1HDWallet } from '../../src/wallets/ethSecp256k1hd';
 import { DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '../../src/signers/config';
-import { getBalance, delegate, getValidators, getDelegation, MsgDelegate } from "@xpla/xplajs";
+import { getBalanceCosmosBankV1beta1, delegate, getValidators, getDelegation, MsgDelegate } from "@xpla/xplajs";
 import * as bip39 from 'bip39';
 
 const hdPath = "m/44'/60'/0'/0/0";
@@ -107,7 +107,7 @@ describe('Staking tokens testing', () => {
     // Create query client for balance check
     const queryClient = await createCosmosQueryClient(xplaRpcEndpoint);
 
-    const { balance } = await getBalance(queryClient, {
+    const { balance } = await getBalanceCosmosBankV1beta1(queryClient, {
       address,
       denom,
     });
@@ -151,7 +151,7 @@ describe('Staking tokens testing', () => {
     expect(allValidators.length).toBeGreaterThan(0);
     validatorAddress = allValidators[0].operatorAddress;
 
-    const { balance } = await getBalance(queryClient, {
+    const { balance } = await getBalanceCosmosBankV1beta1(queryClient, {
       address,
       denom,
     });
