@@ -3,12 +3,13 @@ import './setup.test';
 import { ChainInfo } from '@chain-registry/client';
 import { Asset } from '@chain-registry/types';
 import { DirectSigner, createCosmosQueryClient } from '@interchainjs/cosmos';
-import { toEncoders } from '@interchainjs/cosmos/utils';
+import { toEncoders } from '@interchainjs/cosmos';
 import { sleep } from '@interchainjs/utils';
 import { useChain } from 'starshipjs';
 
-import { EthSecp256k1HDWallet, DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '@xpla/xpla';
-import { getAllBalances, getBalance, send, transfer, MsgSend, MsgTransfer, getClientStatus } from "@xpla/xplajs";
+import { EthSecp256k1HDWallet } from '../../src/wallets/ethSecp256k1hd';
+import { DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '../../src/signers/config';
+import { getAllBalances, getBalanceCosmosBankV1beta1, send, transfer, MsgSend, MsgTransfer, getClientStatus } from "@xpla/xplajs";
 import * as bip39 from 'bip39';
 
 const hdPath = "m/44'/60'/0'/0/0";
@@ -79,7 +80,7 @@ describe('Token transfers', () => {
     // Create query client for balance check
     const queryClient = await createCosmosQueryClient(xplaRpcEndpoint);
 
-    const { balance } = await getBalance(queryClient, {
+    const { balance } = await getBalanceCosmosBankV1beta1(queryClient, {
       address: address,
       denom,
     });
@@ -138,7 +139,7 @@ describe('Token transfers', () => {
     // Create query client for balance check
     const queryClient = await createCosmosQueryClient(xplaRpcEndpoint);
 
-    const { balance } = await getBalance(queryClient, { address: address2, denom });
+    const { balance } = await getBalanceCosmosBankV1beta1(queryClient, { address: address2, denom });
 
     expect(balance!.amount).toEqual(token.amount);
     expect(balance!.denom).toEqual(denom);

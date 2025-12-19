@@ -7,7 +7,7 @@ import { AminoSigner, DirectSigner, createCosmosQueryClient } from '@interchainj
 import {
   toConverters,
   toEncoders,
-} from '@interchainjs/cosmos/utils';
+} from '@interchainjs/cosmos';
 import {
   sleep,
 } from '@interchainjs/utils';
@@ -24,9 +24,10 @@ import { MsgDelegate } from 'interchainjs/cosmos/staking/v1beta1/tx';
 import { BigNumber } from 'bignumber.js';
 import { useChain } from 'starshipjs';
 
-import { EthSecp256k1HDWallet, DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '@xpla/xpla';
+import { EthSecp256k1HDWallet } from '../../src/wallets/ethSecp256k1hd';
+import { DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '../../src/signers/config';
 import { OfflineAminoSigner, OfflineDirectSigner } from '@interchainjs/cosmos';
-import { getBalance, getProposal, getVote, getValidators, delegate, vote, MsgVote } from "@xpla/xplajs";
+import { getBalanceCosmosBankV1beta1, getProposalCosmosGovV1, getVoteCosmosGovV1, getValidators, delegate, voteCosmosGovV1, CosmosGovV1MsgVote } from "@xpla/xplajs";
 import { MsgSubmitProposal,  } from "@xpla/xplajs/cosmos/gov/v1beta1/tx"
 import { submitProposal } from "@xpla/xplajs/cosmos/gov/v1beta1/tx.rpc.func"
 import * as bip39 from 'bip39';
@@ -99,11 +100,11 @@ describe('Governance tests for xpla', () => {
     };
 
     directSigner = new DirectSigner(directOfflineSigner, signerConfig);
-    directSigner.addEncoders(toEncoders(MsgDelegate, TextProposal, MsgSubmitProposal, MsgVote));
+    directSigner.addEncoders(toEncoders(MsgDelegate, TextProposal, MsgSubmitProposal, CosmosGovV1MsgVote));
 
     aminoSigner = new AminoSigner(aminoOfflineSigner, signerConfig);
-    aminoSigner.addEncoders(toEncoders(MsgDelegate, TextProposal, MsgSubmitProposal, MsgVote));
-    aminoSigner.addConverters(toConverters(MsgDelegate, TextProposal, MsgSubmitProposal, MsgVote));
+    aminoSigner.addEncoders(toEncoders(MsgDelegate, TextProposal, MsgSubmitProposal, CosmosGovV1MsgVote));
+    aminoSigner.addConverters(toConverters(MsgDelegate, TextProposal, MsgSubmitProposal, CosmosGovV1MsgVote));
 
     const directAddresses = await directOfflineSigner.getAccounts();
     const aminoAddresses = await aminoOfflineSigner.getAccounts();
@@ -126,7 +127,7 @@ describe('Governance tests for xpla', () => {
     // Create query client for balance check
     const queryClient = await createCosmosQueryClient(xplaRpcEndpoint);
 
-    const { balance } = await getBalance(queryClient, {
+    const { balance } = await getBalanceCosmosBankV1beta1(queryClient, {
       address: directAddress,
       denom,
     });
@@ -138,7 +139,7 @@ describe('Governance tests for xpla', () => {
     // Create query client for balance check
     const queryClient = await createCosmosQueryClient(xplaRpcEndpoint);
 
-    const { balance } = await getBalance(queryClient, {
+    const { balance } = await getBalanceCosmosBankV1beta1(queryClient, {
       address: aminoAddress,
       denom,
     });
@@ -150,7 +151,7 @@ describe('Governance tests for xpla', () => {
     // Create query client for balance check
     const queryClient = await createCosmosQueryClient(xplaRpcEndpoint);
 
-    const { balance } = await getBalance(queryClient, {
+    const { balance } = await getBalanceCosmosBankV1beta1(queryClient, {
       address: directOfflineAddress,
       denom,
     });
@@ -162,7 +163,7 @@ describe('Governance tests for xpla', () => {
     // Create query client for balance check
     const queryClient = await createCosmosQueryClient(xplaRpcEndpoint);
 
-    const { balance } = await getBalance(queryClient, {
+    const { balance } = await getBalanceCosmosBankV1beta1(queryClient, {
       address: aminoOfflineAddress,
       denom,
     });
@@ -191,7 +192,7 @@ describe('Governance tests for xpla', () => {
     // Create query client for balance check
     const queryClient = await createCosmosQueryClient(xplaRpcEndpoint);
 
-    const { balance } = await getBalance(queryClient, {
+    const { balance } = await getBalanceCosmosBankV1beta1(queryClient, {
       address: testingOfflineAddress,
       denom,
     });
@@ -232,7 +233,7 @@ describe('Governance tests for xpla', () => {
     // Create query client for balance check
     const queryClient = await createCosmosQueryClient(xplaRpcEndpoint);
 
-    const { balance } = await getBalance(queryClient, {
+    const { balance } = await getBalanceCosmosBankV1beta1(queryClient, {
       address: testingOfflineAddress,
       denom,
     });
@@ -298,7 +299,7 @@ describe('Governance tests for xpla', () => {
     // Create query client for proposal query
     const queryClient = await createCosmosQueryClient(xplaRpcEndpoint);
 
-    const result = await getProposal(queryClient, {
+    const result = await getProposalCosmosGovV1(queryClient, {
       proposalId: BigInt(proposalId),
     });
 
@@ -307,7 +308,7 @@ describe('Governance tests for xpla', () => {
 
   it('vote on proposal using direct', async () => {
     // Vote on proposal from direct address
-    const msgVote = MsgVote.fromPartial({
+    const msgVote = CosmosGovV1MsgVote.fromPartial({
       proposalId: BigInt(proposalId),
       voter: directAddress,
       option: VoteOption.VOTE_OPTION_YES,
@@ -323,7 +324,7 @@ describe('Governance tests for xpla', () => {
       gas: '550000',
     };
 
-    const result = await vote(
+    const result = await voteCosmosGovV1(
       directSigner,
       directAddress,
       msgVote,
@@ -338,7 +339,7 @@ describe('Governance tests for xpla', () => {
     // Create query client for vote query
     const queryClient = await createCosmosQueryClient(xplaRpcEndpoint);
 
-    const { vote } = await getVote(queryClient, {
+    const { vote } = await getVoteCosmosGovV1(queryClient, {
       proposalId: BigInt(proposalId),
       voter: directAddress,
     });
@@ -352,7 +353,7 @@ describe('Governance tests for xpla', () => {
 
   it('vote on proposal using amino', async () => {
     // Vote on proposal from amino address
-    const msgVote = MsgVote.fromPartial({
+    const msgVote = CosmosGovV1MsgVote.fromPartial({
       proposalId: BigInt(proposalId),
       voter: aminoAddress,
       option: VoteOption.VOTE_OPTION_NO,
@@ -368,7 +369,7 @@ describe('Governance tests for xpla', () => {
       gas: '550000',
     };
 
-    const result = await vote(
+    const result = await voteCosmosGovV1(
       aminoSigner,
       aminoAddress,
       msgVote,
@@ -383,7 +384,7 @@ describe('Governance tests for xpla', () => {
     // Create query client for vote query
     const queryClient = await createCosmosQueryClient(xplaRpcEndpoint);
 
-    const { vote } = await getVote(queryClient, {
+    const { vote } = await getVoteCosmosGovV1(queryClient, {
       proposalId: BigInt(proposalId),
       voter: aminoAddress,
     });
@@ -399,7 +400,7 @@ describe('Governance tests for xpla', () => {
     // Create query client for proposal query
     const queryClient = await createCosmosQueryClient(xplaRpcEndpoint);
 
-    const { proposal } = await getProposal(queryClient, {
+    const { proposal } = await getProposalCosmosGovV1(queryClient, {
       proposalId: BigInt(proposalId),
     });
 

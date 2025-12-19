@@ -1,8 +1,9 @@
 import { PRESET_COSMOS_EVM_SIGNATURE_FORMATS } from './signature-processor';
 import deepmerge from 'deepmerge';
-import { CosmosCryptoSecp256k1PubKey as Secp256k1PubKey } from '@interchainjs/cosmos-types';
+import { Any, CosmosCryptoSecp256k1PubKey as Secp256k1PubKey } from '@interchainjs/cosmos-types';
 import { EncodedMessage, DocOptions, CosmosSignerConfig } from '@interchainjs/cosmos';
 import Decimal from 'decimal.js';
+import { encodeSecp256k1Pubkey, Pubkey } from '@interchainjs/amino';
 
 /**
  * Encode public key for CosmosEvm
@@ -42,7 +43,17 @@ export const DEFAULT_COSMOS_EVM_SIGNER_CONFIG: Partial<DocOptions> = {
   nonCriticalExtensionOptions: [], // No non-critical extension options by default
 
   // Public key encoding - CosmosEvm specific
-  encodePublicKey: encodeCosmosEvmPublicKey
+  encodePublicKey: encodeCosmosEvmPublicKey,
+  pubkeyDecoders: {
+    '/cosmos.evm.crypto.v1.ethsecp256k1.PubKey': (pubkey: Any): Pubkey => {
+      const { key } = Secp256k1PubKey.decode(pubkey.value);
+      return encodeSecp256k1Pubkey(key);
+    },
+    '/ethermint.crypto.v1.ethsecp256k1.PubKey': (pubkey: Any): Pubkey => {
+      const { key } = Secp256k1PubKey.decode(pubkey.value);
+      return encodeSecp256k1Pubkey(key);
+    }
+  }
 };
 
 /**
