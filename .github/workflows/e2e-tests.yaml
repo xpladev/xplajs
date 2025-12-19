@@ -38,10 +38,33 @@ jobs:
         with:
           config: networks/xpla/starship/configs/config.workflow.yaml
 
+      - name: Wait for pod readiness
+        run: |
+          NAMESPACE="${{ steps.starship-infra.outputs.namespace }}"
+          for i in {1..60}; do
+            POD_NAME=$(kubectl get pods -n $NAMESPACE -o jsonpath='{.items[*].metadata.name}' | tr ' ' '\n' | grep -E 'dimension-.*-genesis-0' | head -1)
+            if [ -n "$POD_NAME" ]; then
+              kubectl wait --for=condition=ready pod/$POD_NAME --namespace $NAMESPACE --timeout=300s && break
+            fi
+            [ $i -eq 60 ] && exit 1
+            sleep 5
+          done
+
       - name: evm rpc port fowarding
         id: evm-rpc-port-fowarding
         run: |
-          kubectl port-forward pods/dimension-262144-1-genesis-0 8545:8545 --namespace ${{ steps.starship-infra.outputs.namespace }} > /dev/null 2>&1 &
+          NAMESPACE="${{ steps.starship-infra.outputs.namespace }}"
+          POD_NAME=$(kubectl get pods -n $NAMESPACE -o jsonpath='{.items[*].metadata.name}' | tr ' ' '\n' | grep -E 'dimension-.*-genesis-0' | head -1)
+          [ -z "$POD_NAME" ] && exit 1
+          kubectl port-forward pod/$POD_NAME 8545:8545 --namespace $NAMESPACE > /tmp/port-forward.log 2>&1 &
+          PF_PID=$!
+          sleep 3
+          kill -0 $PF_PID 2>/dev/null || (cat /tmp/port-forward.log && exit 1)
+          for i in {1..30}; do
+            curl -s -f -X POST http://127.0.0.1:8545 -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' > /dev/null 2>&1 && break
+            [ $i -eq 30 ] && (cat /tmp/port-forward.log && exit 1)
+            sleep 2
+          done
 
       - name: Run E2E Tests
         run: |
