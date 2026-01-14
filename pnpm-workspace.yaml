@@ -4,12 +4,14 @@ packages:
   - 'networks/*'
 
 catalog:
+  '@chain-registry/types': '^2.0.138'
   '@cosmjs/stargate': '0.33.1'
   '@cosmjs/tendermint-rpc': '0.33.1'
   '@interchainjs/auth': '1.19.1'
   '@interchainjs/amino': '1.19.1'
   '@interchainjs/cosmos': '1.19.2'
   '@interchainjs/cosmos-types': '1.19.1'
+  '@interchainjs/crypto': '1.19.1'
   '@interchainjs/encoding': '1.18.1'
   '@interchainjs/ethereum': '1.19.1'
   '@interchainjs/math': '1.18.1'
@@ -17,7 +19,6 @@ catalog:
   '@interchainjs/types': '1.19.1'
   '@interchainjs/utils': '1.19.1'
   '@types/node': '22'
-  '@xpla/xplajs': '1.8.0'
   'interchainjs': '^1.19.0'
   'lerna': '9'
   'typescript': '^5.9.2'
