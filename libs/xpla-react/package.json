@@ -18,19 +18,19 @@
   },
   "exports": {
     ".": {
+      "types": "./index.d.ts",
       "import": "./esm/index.js",
-      "require": "./index.js",
-      "types": "./index.d.ts"
+      "require": "./index.js"
     },
     "./*": {
+      "types": "./*.d.ts",
       "import": "./esm/*.js",
-      "require": "./*.js",
-      "types": "./*.d.ts"
+      "require": "./*.js"
     },
     "./*.js": {
+      "types": "./*.d.ts",
       "import": "./esm/*.js",
-      "require": "./*.js",
-      "types": "./*.d.ts"
+      "require": "./*.js"
     },
     "./package.json": "./package.json"
   },
@@ -42,17 +42,19 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
-    "@interchainjs/cosmos": "^1.19.2",
-    "@interchainjs/cosmos-types": "^1.19.1",
-    "@interchainjs/encoding": "^1.18.1",
-    "@interchainjs/pubkey": "^1.19.1",
-    "@interchainjs/types": "^1.19.1",
-    "@interchainjs/utils": "^1.19.0",
+    "@interchainjs/cosmos": "catalog:",
+    "@interchainjs/cosmos-types": "catalog:",
+    "@interchainjs/encoding": "catalog:",
+    "@interchainjs/math": "catalog:",
+    "@interchainjs/pubkey": "catalog:",
+    "@interchainjs/types": "catalog:",
+    "@interchainjs/utils": "catalog:",
     "@noble/hashes": "^1.3.1",
     "decimal.js": "^10.4.3"
   },
   "devDependencies": {
-    "@tanstack/react-query": "4.29.1"
+    "@tanstack/react-query": "4.29.1",
+    "@types/node": "catalog:"
   },
   "peerDependencies": {
     "@tanstack/react-query": "4.29.1"

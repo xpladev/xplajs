@@ -1,5 +1,3 @@
-/// <reference types="@types/jest" />
-
 import './setup.test';
 
 import { Asset } from '@chain-registry/types';
@@ -32,6 +30,7 @@ import { MsgSubmitProposal,  } from "@xpla/xplajs/cosmos/gov/v1beta1/tx"
 import { submitProposal } from "@xpla/xplajs/cosmos/gov/v1beta1/tx.rpc.func"
 import * as bip39 from 'bip39';
 
+import { describe, it, expect, beforeAll } from 'vitest';
 
 const hdPath = "m/44'/60'/0'/0/0";
 

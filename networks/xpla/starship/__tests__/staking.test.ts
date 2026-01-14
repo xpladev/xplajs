@@ -1,5 +1,3 @@
-/// <reference types="@types/jest" />
-
 import './setup.test';
 
 import { Asset } from '@chain-registry/types';
@@ -20,6 +18,8 @@ import { EthSecp256k1HDWallet } from '../../src/wallets/ethSecp256k1hd';
 import { DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '../../src/signers/config';
 import { getBalanceCosmosBankV1beta1, delegate, getValidators, getDelegation, MsgDelegate } from "@xpla/xplajs";
 import * as bip39 from 'bip39';
+
+import { describe, it, expect, beforeAll } from 'vitest';
 
 const hdPath = "m/44'/60'/0'/0/0";
 
