@@ -61,6 +61,10 @@ catalogs:
       specifier: ^5.9.2
       version: 5.9.3
 
+overrides:
+  libsodium-wrappers-sumo: 0.8.0
+  libsodium-sumo: 0.8.0
+
 importers:
 
   .:
@@ -3749,11 +3753,11 @@ packages:
     resolution: {integrity: sha512-tNcU3cLH7toloAzhOOrBDhjzgbxpyuYvkf+BPPnnJCdc5EIcdJ8JcT+SglvCQKKyZ6m9dVXtCVlJcA6csxKdEA==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  libsodium-sumo@0.7.16:
-    resolution: {integrity: sha512-x6atrz2AdXCJg6G709x9W9TTJRI6/0NcL5dD0l5GGVqNE48UJmDsjO4RUWYTeyXXUpg+NXZ2SHECaZnFRYzwGA==}
+  libsodium-sumo@0.8.0:
+    resolution: {integrity: sha512-Afy7Ya+jUT+JeBx93Vk83tFhmhOjLN521dVPYKi/KiLdHoSsa2j7qf9gxZmvo0HpVxlqhdrLX6nHhVPrfMqRhA==}
 
-  libsodium-wrappers-sumo@0.7.16:
-    resolution: {integrity: sha512-gR0JEFPeN3831lB9+ogooQk0KH4K5LSMIO5Prd5Q5XYR2wHFtZfPg0eP7t1oJIWq+UIzlU4WVeBxZ97mt28tXw==}
+  libsodium-wrappers-sumo@0.8.0:
+    resolution: {integrity: sha512-IZAtgHPFnggh9tZNc1F3KgT3fkEcKeiUFh4Af1peH8zlK8A7EB7BcHianoS6IKIzpV28XbhmB/Rh9u7xHwy75g==}
 
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
@@ -6331,7 +6335,7 @@ snapshots:
       '@noble/hashes': 1.8.0
       bn.js: 5.2.2
       elliptic: 6.6.1
-      libsodium-wrappers-sumo: 0.7.16
+      libsodium-wrappers-sumo: 0.8.0
 
   '@cosmjs/encoding@0.33.1':
     dependencies:
@@ -6891,7 +6895,7 @@ snapshots:
       '@scure/bip32': 1.7.0
       bech32: 2.0.0
       elliptic: 6.6.1
-      libsodium-wrappers-sumo: 0.7.16
+      libsodium-wrappers-sumo: 0.8.0
     transitivePeerDependencies:
       - '@chain-registry/v2'
       - '@chain-registry/v2-types'
@@ -6961,7 +6965,7 @@ snapshots:
       '@noble/hashes': 1.8.0
       bn.js: 5.2.2
       elliptic: 6.6.1
-      libsodium-wrappers-sumo: 0.7.16
+      libsodium-wrappers-sumo: 0.8.0
     transitivePeerDependencies:
       - '@chain-registry/v2'
       - '@chain-registry/v2-types'
@@ -9745,11 +9749,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  libsodium-sumo@0.7.16: {}
+  libsodium-sumo@0.8.0: {}
 
-  libsodium-wrappers-sumo@0.7.16:
+  libsodium-wrappers-sumo@0.8.0:
     dependencies:
-      libsodium-sumo: 0.7.16
+      libsodium-sumo: 0.8.0
 
   lines-and-columns@1.2.4: {}
 
