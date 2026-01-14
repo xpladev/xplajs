@@ -12,6 +12,7 @@ export default defineConfig({
     },
   },
   test: {
+    hookTimeout: 150000,
     testTimeout: 150000,
     maxWorkers: 1,
     globals: true,
