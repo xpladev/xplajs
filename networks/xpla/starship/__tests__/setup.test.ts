@@ -1,6 +1,8 @@
 import path from 'path';
 import { ConfigContext, useRegistry } from 'starshipjs';
 
+import { it, beforeAll } from 'vitest';
+
 beforeAll(async () => {
   const configFile = path.join(__dirname, '..', 'configs', 'config.yaml');
   ConfigContext.setConfigFile(configFile);
