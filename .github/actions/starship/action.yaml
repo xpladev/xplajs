@@ -41,26 +41,6 @@ outputs:
 runs:
   using: composite
   steps:
-    - name: Create yarn.lock and package.json file if not exists
-      if: inputs.cli-version != '0.0.0' # Skip if cli-version is 0.0.0, expected to be used for local testing
-      run: |
-        if [ ! -f $GITHUB_WORKSPACE/yarn.lock ]; then
-          echo 'Creating temporary yarn.lock file'
-          echo '' > $GITHUB_WORKSPACE/yarn.lock
-        fi
-        if [ ! -f $GITHUB_WORKSPACE/package.json ]; then
-          echo 'Creating temporary package.json file'
-          echo '{}' > $GITHUB_WORKSPACE/package.json
-        fi
-      shell: bash
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      if: inputs.cli-version != '0.0.0' # Skip if cli-version is 0.0.0, expected to be used for local testing
-      with:
-        node-version: '20.x'
-        cache: 'yarn'
-
     - name: Setup helm
       uses: azure/setup-helm@v3
       with:
@@ -110,10 +90,10 @@ runs:
       env:
         INPUT_NAMESPACE: ${{ inputs.namespace }}
 
-    - name: Setup starshipjs client
-      if: inputs.cli-version != '0.0.0' # Skip if cli-version is 0.0.0, expected to be used for local testing
+    - name: Setup starship cli
+      if: inputs.cli-version != '0.0.0'
       run: |
-        yarn global add @starship-ci/cli@${{ inputs.cli-version }}
+        npm install -g @starship-ci/cli@${{ inputs.cli-version }}
       shell: bash
 
     - name: Verify starship cli
