@@ -2,25 +2,25 @@
   "name": "@xpla/evm",
   "version": "1.8.0",
   "description": "TypeChain generated TypeScript interfaces for XPLA EVM smart contracts",
-  "main": "index.cjs",
-  "module": "index.js",
-  "types": "index.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "exports": {
     ".": {
-      "import": "./index.js",
-      "require": "./index.cjs",
-      "types": "./index.d.ts"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
     },
     "./*": {
-      "import": "./*.js",
-      "require": "./*.cjs",
-      "types": "./*.d.ts"
+      "import": "./dist/*.js",
+      "require": "./dist/*.cjs",
+      "types": "./dist/*.d.ts"
     },
     "./*.js": {
-      "import": "./*.js",
-      "require": "./*.cjs",
-      "types": "./*.d.ts"
+      "import": "./dist/*.js",
+      "require": "./dist/*.cjs",
+      "types": "./dist/*.d.ts"
     },
     "./package.json": "./package.json"
   },
