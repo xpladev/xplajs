@@ -2,9 +2,10 @@
   "name": "@xpla/xpla-react",
   "version": "1.8.1",
   "description": "xpla-react is a JavaScript library providing react query hooks for interacting with xpla sdk.",
-  "main": "index.js",
-  "module": "esm/index.js",
+  "main": "index.cjs",
+  "module": "index.js",
   "types": "index.d.ts",
+  "type": "module",
   "author": "Joowon Yun <joowon@delightlabs.io>",
   "homepage": "https://github.com/xpladev/xplajs",
   "repository": {
@@ -13,32 +14,31 @@
   },
   "license": "MIT",
   "publishConfig": {
-    "access": "public",
-    "directory": "dist"
+    "access": "public"
   },
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "import": "./esm/index.js",
-      "require": "./index.js"
+      "import": "./index.js",
+      "require": "./index.cjs"
     },
     "./*": {
       "types": "./*.d.ts",
-      "import": "./esm/*.js",
-      "require": "./*.js"
+      "import": "./*.js",
+      "require": "./*.cjs"
     },
     "./*.js": {
       "types": "./*.d.ts",
-      "import": "./esm/*.js",
-      "require": "./*.js"
+      "import": "./*.js",
+      "require": "./*.cjs"
     },
     "./package.json": "./package.json"
   },
   "scripts": {
-    "copy": "copyfiles -f README.md package.json dist",
-    "clean": "rimraf dist/**",
-    "build": "npm run clean; tsc; tsc -p tsconfig.esm.json; npm run copy",
-    "build:dev": "npm run clean; tsc --declarationMap; tsc -p tsconfig.esm.json",
+    "build": "tsdown",
     "lint": "eslint . --fix"
   },
   "dependencies": {
@@ -54,7 +54,8 @@
   },
   "devDependencies": {
     "@tanstack/react-query": "4.29.1",
-    "@types/node": "catalog:"
+    "@types/node": "catalog:",
+    "tsdown": "catalog:"
   },
   "peerDependencies": {
     "@tanstack/react-query": "4.29.1"

@@ -2,6 +2,7 @@
   "name": "xplajs",
   "version": "1.8.0",
   "private": true,
+  "type": "module",
   "main": "index.js",
   "repository": "git@github.com:xpladev/xplajs.git",
   "scripts": {
@@ -26,13 +27,12 @@
     "@starship-ci/cli": "^2.9.0",
     "@typechain/ethers-v6": "^0.5.1",
     "@typechain/hardhat": "^9.1.0",
-    "copyfiles": "^2.4.1",
     "deepmerge": "4.2.2",
     "hardhat": "^2.26.2",
     "lerna": "catalog:",
-    "rimraf": "4.4.1",
     "starshipjs": "^2.4.0",
     "ts-node": "^10.9.2",
+    "tsdown": "catalog:",
     "typechain": "^8.3.2",
     "typescript": "catalog:"
   },
