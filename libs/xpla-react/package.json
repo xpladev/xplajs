@@ -2,9 +2,10 @@
   "name": "@xpla/xpla-react",
   "version": "1.8.1",
   "description": "xpla-react is a JavaScript library providing react query hooks for interacting with xpla sdk.",
-  "main": "index.js",
-  "module": "esm/index.js",
-  "types": "index.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
   "author": "Joowon Yun <joowon@delightlabs.io>",
   "homepage": "https://github.com/xpladev/xplajs",
   "repository": {
@@ -13,46 +14,48 @@
   },
   "license": "MIT",
   "publishConfig": {
-    "access": "public",
-    "directory": "dist"
+    "access": "public"
   },
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
-      "import": "./esm/index.js",
-      "require": "./index.js",
-      "types": "./index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./*": {
-      "import": "./esm/*.js",
-      "require": "./*.js",
-      "types": "./*.d.ts"
+      "types": "./dist/*.d.ts",
+      "import": "./dist/*.js",
+      "require": "./dist/*.cjs"
     },
     "./*.js": {
-      "import": "./esm/*.js",
-      "require": "./*.js",
-      "types": "./*.d.ts"
+      "types": "./dist/*.d.ts",
+      "import": "./dist/*.js",
+      "require": "./dist/*.cjs"
     },
     "./package.json": "./package.json"
   },
   "scripts": {
-    "copy": "copyfiles -f README.md package.json dist",
-    "clean": "rimraf dist/**",
-    "build": "npm run clean; tsc; tsc -p tsconfig.esm.json; npm run copy",
-    "build:dev": "npm run clean; tsc --declarationMap; tsc -p tsconfig.esm.json",
+    "build": "tsdown",
     "lint": "eslint . --fix"
   },
   "dependencies": {
-    "@interchainjs/cosmos": "^1.19.2",
-    "@interchainjs/cosmos-types": "^1.19.1",
-    "@interchainjs/encoding": "^1.18.1",
-    "@interchainjs/pubkey": "^1.19.1",
-    "@interchainjs/types": "^1.19.1",
-    "@interchainjs/utils": "^1.19.0",
+    "@interchainjs/cosmos": "catalog:",
+    "@interchainjs/cosmos-types": "catalog:",
+    "@interchainjs/encoding": "catalog:",
+    "@interchainjs/math": "catalog:",
+    "@interchainjs/pubkey": "catalog:",
+    "@interchainjs/types": "catalog:",
+    "@interchainjs/utils": "catalog:",
     "@noble/hashes": "^1.3.1",
     "decimal.js": "^10.4.3"
   },
   "devDependencies": {
-    "@tanstack/react-query": "4.29.1"
+    "@tanstack/react-query": "4.29.1",
+    "@types/node": "catalog:",
+    "tsdown": "catalog:"
   },
   "peerDependencies": {
     "@tanstack/react-query": "4.29.1"

@@ -20,6 +20,8 @@ import { MsgStoreCode } from "@xpla/xplajs/cosmwasm/wasm/v1/tx"
 import * as fs from 'fs';
 import * as path from 'path';
 
+import { describe, it, expect, beforeAll } from 'vitest';
+
 const hdPath = "m/44'/60'/0'/0/0";
 const RPC_URL = 'http://127.0.0.1:8545';
 

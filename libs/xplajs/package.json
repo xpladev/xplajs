@@ -1,48 +1,55 @@
 {
   "name": "@xpla/xplajs",
   "version": "1.8.1",
-  "main": "index.js",
-  "module": "esm/index.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "type": "module",
   "author": "Joowon Yun <joowon@delightlabs.io>",
   "homepage": "https://github.com/xpladev/xplajs",
   "scripts": {
-    "copy": "copyfiles -f README.md package.json dist",
-    "clean": "rimraf dist/**",
-    "build": "npm run clean; tsc; tsc -p tsconfig.esm.json; npm run copy"
+    "build": "tsdown"
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "dist"
+    "access": "public"
   },
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
-      "import": "./esm/index.js",
-      "require": "./index.js",
-      "types": "./index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./*": {
-      "import": "./esm/*.js",
-      "require": "./*.js",
-      "types": "./*.d.ts"
+      "types": "./dist/*.d.ts",
+      "import": "./dist/*.js",
+      "require": "./dist/*.cjs"
     },
     "./*.js": {
-      "import": "./esm/*.js",
-      "require": "./*.js",
-      "types": "./*.d.ts"
+      "types": "./dist/*.d.ts",
+      "import": "./dist/*.js",
+      "require": "./dist/*.cjs"
     },
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@cosmjs/stargate": "^0.33.0",
+    "@cosmjs/stargate": "catalog:",
+    "@cosmjs/tendermint-rpc": "catalog:",
     "@cosmology/lcd": "^0.14.4",
-    "@interchainjs/cosmos": "^1.19.2",
-    "@interchainjs/cosmos-types": "^1.19.1",
-    "@interchainjs/encoding": "^1.18.1",
-    "@interchainjs/pubkey": "^1.19.1",
-    "@interchainjs/types": "^1.19.1",
-    "@interchainjs/utils": "^1.19.1",
+    "@interchainjs/cosmos": "catalog:",
+    "@interchainjs/cosmos-types": "catalog:",
+    "@interchainjs/encoding": "catalog:",
+    "@interchainjs/math": "catalog:",
+    "@interchainjs/pubkey": "catalog:",
+    "@interchainjs/types": "catalog:",
+    "@interchainjs/utils": "catalog:",
     "@noble/hashes": "^1.3.1",
+    "@types/node": "catalog:",
     "decimal.js": "^10.4.3"
+  },
+  "devDependencies": {
+    "tsdown": "catalog:"
   },
   "license": "MIT",
   "description": ""
