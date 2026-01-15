@@ -54,8 +54,6 @@
     "@interchainjs/ethereum": "catalog:",
     "@interchainjs/types": "catalog:",
     "@interchainjs/utils": "catalog:",
-    "@xpla/evm": "workspace:*",
-    "@xpla/xplajs": "workspace:*",
     "@noble/hashes": "^1.3.1",
     "bech32": "^2.0.0",
     "bignumber.js": "^9.1.0",
@@ -71,11 +69,13 @@
   "devDependencies": {
     "@chain-registry/types": "catalog:",
     "@interchainjs/encoding": "catalog:",
-    "@xpla/evm": "^1.8.0",
+    "@xpla/evm": "workspace:*",
+    "@xpla/xplajs": "workspace:*",
     "bech32": "^2.0.0",
     "dotenv": "^16.4.5",
     "ethers": "^6.13.5",
     "starshipjs": "^2.4.0",
-    "vitest": "^4.0.17"
+    "vitest": "^4.0.17",
+    "viem": "^2.44.2"
   }
 }
