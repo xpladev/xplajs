@@ -2,8 +2,8 @@ name: Run XPLA E2E Tests
 
 on:
   push:
-      branches:
-        - main
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -17,24 +17,26 @@ jobs:
       - name: Checkout Repository 📝
         uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20.x"
-          cache: "yarn"
+          node-version: '22.x'
+          cache: 'pnpm'
 
       - name: Install Root Dependencies
-        run: yarn
-
-      - name: Symlink Workspace
-        run: yarn symlink
+        run: pnpm install
 
       - name: Build Packages
-        run: yarn build
+        run: pnpm build
 
       - name: Set Up Starship Infrastructure
         id: starship-infra
-        uses: hyperweb-io/starship-action@1.0.0
+        uses: ./.github/actions/starship
         with:
           config: networks/xpla/starship/configs/config.workflow.yaml
 
@@ -68,5 +70,4 @@ jobs:
 
       - name: Run E2E Tests
         run: |
-          cd networks/xpla
-          yarn starship:test
+          pnpm --filter @xpla/xpla run starship:test
