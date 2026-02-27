@@ -7,7 +7,7 @@ xpla_branch=$(jq '.repos[] | select(.owner == "xpladev" and .repo == "xpla") | .
 evm_branch=$(jq '.repos[] | select(.owner == "cosmos" and .repo == "evm") | .branch' "$json_file" | tr -d '"')
 
 if [ -z "$xpla_branch" ] || [ -z "$evm_branch" ]; then
-  echo "No git-modules file. Run 'yarn proto' first."
+  echo "No git-modules file. Run 'pnpm proto' first."
   exit 1
 fi
 

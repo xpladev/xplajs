@@ -12,6 +12,8 @@ import { DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '../../src/signers/config';
 import { getAllBalances, getBalanceCosmosBankV1beta1, send, transfer, MsgSend, MsgTransfer, getClientStatus } from "@xpla/xplajs";
 import * as bip39 from 'bip39';
 
+import { describe, it, expect, beforeAll } from 'vitest';
+
 const hdPath = "m/44'/60'/0'/0/0";
 
 describe('Token transfers', () => {
