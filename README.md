@@ -13,14 +13,14 @@ This project is a Typescript library for interacting with the XPLA blockchain. I
 
 ### Git modules & Proto generate
 ```
-$ yarn proto
+$ pnpm proto
 ```
 
 ### Code generate xplajs & xpla-react
 ```sh
-$ yarn codegen:xpla
+$ pnpm codegen:xpla
 ```
 ### Build
 ```sh
-$ yarn build
+$ pnpm build
 ```
