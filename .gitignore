@@ -5,3 +5,4 @@ lerna-debug.log
 artifacts/
 cache/
 contracts/build/
+.pnpm-store/
