@@ -8,14 +8,14 @@
   "type": "module",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.cjs"
     },
     "./precompiles": {
+      "types": "./dist/precompiles/index.d.ts",
       "import": "./dist/precompiles/index.js",
-      "require": "./dist/precompiles/index.cjs",
-      "types": "./dist/precompiles/index.d.ts"
+      "require": "./dist/precompiles/index.cjs"
     },
     "./package.json": "./package.json"
   },
