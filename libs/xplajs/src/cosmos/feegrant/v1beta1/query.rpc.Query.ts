@@ -8,11 +8,7 @@ export interface Query {
   allowance(request: QueryAllowanceRequest): Promise<QueryAllowanceResponse>;
   /** Allowances returns all the grants for the given grantee address. */
   allowances(request: QueryAllowancesRequest): Promise<QueryAllowancesResponse>;
-  /**
-   * AllowancesByGranter returns all the grants given by an address
-   * 
-   * Since: cosmos-sdk 0.46
-   */
+  /** AllowancesByGranter returns all the grants given by an address */
   allowancesByGranter(request: QueryAllowancesByGranterRequest): Promise<QueryAllowancesByGranterResponse>;
 }
 export class QueryClientImpl implements Query {
@@ -32,9 +28,7 @@ export class QueryClientImpl implements Query {
     const promise = this.rpc.request("cosmos.feegrant.v1beta1.Query", "Allowances", data);
     return promise.then(data => QueryAllowancesResponse.decode(new BinaryReader(data)));
   };
-  /* AllowancesByGranter returns all the grants given by an address
-  
-   Since: cosmos-sdk 0.46 */
+  /* AllowancesByGranter returns all the grants given by an address */
   allowancesByGranter = async (request: QueryAllowancesByGranterRequest): Promise<QueryAllowancesByGranterResponse> => {
     const data = QueryAllowancesByGranterRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.feegrant.v1beta1.Query", "AllowancesByGranter", data);

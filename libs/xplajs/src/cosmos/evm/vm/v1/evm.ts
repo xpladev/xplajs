@@ -59,11 +59,6 @@ export interface Params {
    */
   extraEips: bigint[];
   /**
-   * allow_unprotected_txs defines if replay-protected (i.e non EIP155
-   * signed) transactions can be executed on the state machine.
-   */
-  allowUnprotectedTxs: boolean;
-  /**
    * evm_channels is the list of channel identifiers from EVM compatible chains
    */
   evmChannels: string[];
@@ -76,6 +71,8 @@ export interface Params {
    * precompiled contracts that are active
    */
   activeStaticPrecompiles: string[];
+  historyServeWindow: bigint;
+  extendedDenomOptions?: ExtendedDenomOptions;
 }
 export interface ParamsProtoMsg {
   typeUrl: "/cosmos.evm.vm.v1.Params";
@@ -98,11 +95,6 @@ export interface ParamsAmino {
    */
   extra_eips: string[];
   /**
-   * allow_unprotected_txs defines if replay-protected (i.e non EIP155
-   * signed) transactions can be executed on the state machine.
-   */
-  allow_unprotected_txs: boolean;
-  /**
    * evm_channels is the list of channel identifiers from EVM compatible chains
    */
   evm_channels: string[];
@@ -115,10 +107,36 @@ export interface ParamsAmino {
    * precompiled contracts that are active
    */
   active_static_precompiles: string[];
+  history_serve_window: string;
+  extended_denom_options?: ExtendedDenomOptionsAmino;
 }
 export interface ParamsAminoMsg {
   type: "cosmos/evm/x/vm/Params";
   value: ParamsAmino;
+}
+/**
+ * @name ExtendedDenomOptions
+ * @package cosmos.evm.vm.v1
+ * @see proto type: cosmos.evm.vm.v1.ExtendedDenomOptions
+ */
+export interface ExtendedDenomOptions {
+  extendedDenom: string;
+}
+export interface ExtendedDenomOptionsProtoMsg {
+  typeUrl: "/cosmos.evm.vm.v1.ExtendedDenomOptions";
+  value: Uint8Array;
+}
+/**
+ * @name ExtendedDenomOptionsAmino
+ * @package cosmos.evm.vm.v1
+ * @see proto type: cosmos.evm.vm.v1.ExtendedDenomOptions
+ */
+export interface ExtendedDenomOptionsAmino {
+  extended_denom: string;
+}
+export interface ExtendedDenomOptionsAminoMsg {
+  type: "cosmos-sdk/ExtendedDenomOptions";
+  value: ExtendedDenomOptionsAmino;
 }
 /**
  * AccessControl defines the permission policy of the EVM
@@ -586,6 +604,10 @@ export interface Log {
    * through a filter query.
    */
   removed: boolean;
+  /**
+   * block_timestamp is the timestamp of the block in which the transaction was
+   */
+  blockTimestamp: bigint;
 }
 export interface LogProtoMsg {
   typeUrl: "/cosmos.evm.vm.v1.Log";
@@ -641,6 +663,10 @@ export interface LogAmino {
    * through a filter query.
    */
   removed: boolean;
+  /**
+   * block_timestamp is the timestamp of the block in which the transaction was
+   */
+  block_timestamp: string;
 }
 export interface LogAminoMsg {
   type: "cosmos-sdk/Log";
@@ -878,14 +904,95 @@ export interface TraceConfigAminoMsg {
   type: "cosmos-sdk/TraceConfig";
   value: TraceConfigAmino;
 }
+/**
+ * Preinstall defines a contract that is preinstalled on-chain with a specific
+ * contract address and bytecode
+ * @name Preinstall
+ * @package cosmos.evm.vm.v1
+ * @see proto type: cosmos.evm.vm.v1.Preinstall
+ */
+export interface Preinstall {
+  /**
+   * name of the preinstall contract
+   */
+  name: string;
+  /**
+   * address in hex format of the preinstall contract
+   */
+  address: string;
+  /**
+   * code in hex format for the preinstall contract
+   */
+  code: string;
+}
+export interface PreinstallProtoMsg {
+  typeUrl: "/cosmos.evm.vm.v1.Preinstall";
+  value: Uint8Array;
+}
+/**
+ * Preinstall defines a contract that is preinstalled on-chain with a specific
+ * contract address and bytecode
+ * @name PreinstallAmino
+ * @package cosmos.evm.vm.v1
+ * @see proto type: cosmos.evm.vm.v1.Preinstall
+ */
+export interface PreinstallAmino {
+  /**
+   * name of the preinstall contract
+   */
+  name: string;
+  /**
+   * address in hex format of the preinstall contract
+   */
+  address: string;
+  /**
+   * code in hex format for the preinstall contract
+   */
+  code: string;
+}
+export interface PreinstallAminoMsg {
+  type: "cosmos-sdk/Preinstall";
+  value: PreinstallAmino;
+}
+/**
+ * @name EvmCoinInfo
+ * @package cosmos.evm.vm.v1
+ * @see proto type: cosmos.evm.vm.v1.EvmCoinInfo
+ */
+export interface EvmCoinInfo {
+  denom: string;
+  extendedDenom: string;
+  displayDenom: string;
+  decimals: number;
+}
+export interface EvmCoinInfoProtoMsg {
+  typeUrl: "/cosmos.evm.vm.v1.EvmCoinInfo";
+  value: Uint8Array;
+}
+/**
+ * @name EvmCoinInfoAmino
+ * @package cosmos.evm.vm.v1
+ * @see proto type: cosmos.evm.vm.v1.EvmCoinInfo
+ */
+export interface EvmCoinInfoAmino {
+  denom: string;
+  extended_denom: string;
+  display_denom: string;
+  decimals: number;
+}
+export interface EvmCoinInfoAminoMsg {
+  type: "cosmos-sdk/EvmCoinInfo";
+  value: EvmCoinInfoAmino;
+}
 function createBaseParams(): Params {
   return {
     evmDenom: "",
     extraEips: [],
-    allowUnprotectedTxs: false,
     evmChannels: [],
     accessControl: AccessControl.fromPartial({}),
-    activeStaticPrecompiles: []
+    activeStaticPrecompiles: [],
+    historyServeWindow: BigInt(0),
+    extendedDenomOptions: undefined
   };
 }
 /**
@@ -898,10 +1005,10 @@ export const Params = {
   typeUrl: "/cosmos.evm.vm.v1.Params",
   aminoType: "cosmos/evm/x/vm/Params",
   is(o: any): o is Params {
-    return o && (o.$typeUrl === Params.typeUrl || typeof o.evmDenom === "string" && Array.isArray(o.extraEips) && (!o.extraEips.length || typeof o.extraEips[0] === "bigint") && typeof o.allowUnprotectedTxs === "boolean" && Array.isArray(o.evmChannels) && (!o.evmChannels.length || typeof o.evmChannels[0] === "string") && AccessControl.is(o.accessControl) && Array.isArray(o.activeStaticPrecompiles) && (!o.activeStaticPrecompiles.length || typeof o.activeStaticPrecompiles[0] === "string"));
+    return o && (o.$typeUrl === Params.typeUrl || typeof o.evmDenom === "string" && Array.isArray(o.extraEips) && (!o.extraEips.length || typeof o.extraEips[0] === "bigint") && Array.isArray(o.evmChannels) && (!o.evmChannels.length || typeof o.evmChannels[0] === "string") && AccessControl.is(o.accessControl) && Array.isArray(o.activeStaticPrecompiles) && (!o.activeStaticPrecompiles.length || typeof o.activeStaticPrecompiles[0] === "string") && typeof o.historyServeWindow === "bigint");
   },
   isAmino(o: any): o is ParamsAmino {
-    return o && (o.$typeUrl === Params.typeUrl || typeof o.evm_denom === "string" && Array.isArray(o.extra_eips) && (!o.extra_eips.length || typeof o.extra_eips[0] === "bigint") && typeof o.allow_unprotected_txs === "boolean" && Array.isArray(o.evm_channels) && (!o.evm_channels.length || typeof o.evm_channels[0] === "string") && AccessControl.isAmino(o.access_control) && Array.isArray(o.active_static_precompiles) && (!o.active_static_precompiles.length || typeof o.active_static_precompiles[0] === "string"));
+    return o && (o.$typeUrl === Params.typeUrl || typeof o.evm_denom === "string" && Array.isArray(o.extra_eips) && (!o.extra_eips.length || typeof o.extra_eips[0] === "bigint") && Array.isArray(o.evm_channels) && (!o.evm_channels.length || typeof o.evm_channels[0] === "string") && AccessControl.isAmino(o.access_control) && Array.isArray(o.active_static_precompiles) && (!o.active_static_precompiles.length || typeof o.active_static_precompiles[0] === "string") && typeof o.history_serve_window === "bigint");
   },
   encode(message: Params, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     if (message.evmDenom !== "") {
@@ -912,9 +1019,6 @@ export const Params = {
       writer.int64(v);
     }
     writer.ldelim();
-    if (message.allowUnprotectedTxs === true) {
-      writer.uint32(40).bool(message.allowUnprotectedTxs);
-    }
     for (const v of message.evmChannels) {
       writer.uint32(58).string(v!);
     }
@@ -923,6 +1027,12 @@ export const Params = {
     }
     for (const v of message.activeStaticPrecompiles) {
       writer.uint32(74).string(v!);
+    }
+    if (message.historyServeWindow !== BigInt(0)) {
+      writer.uint32(80).uint64(message.historyServeWindow);
+    }
+    if (message.extendedDenomOptions !== undefined) {
+      ExtendedDenomOptions.encode(message.extendedDenomOptions, writer.uint32(90).fork()).ldelim();
     }
     return writer;
   },
@@ -946,9 +1056,6 @@ export const Params = {
             message.extraEips.push(reader.int64());
           }
           break;
-        case 5:
-          message.allowUnprotectedTxs = reader.bool();
-          break;
         case 7:
           message.evmChannels.push(reader.string());
           break;
@@ -957,6 +1064,12 @@ export const Params = {
           break;
         case 9:
           message.activeStaticPrecompiles.push(reader.string());
+          break;
+        case 10:
+          message.historyServeWindow = reader.uint64();
+          break;
+        case 11:
+          message.extendedDenomOptions = ExtendedDenomOptions.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -969,10 +1082,11 @@ export const Params = {
     const message = createBaseParams();
     message.evmDenom = object.evmDenom ?? "";
     message.extraEips = object.extraEips?.map(e => BigInt(e.toString())) || [];
-    message.allowUnprotectedTxs = object.allowUnprotectedTxs ?? false;
     message.evmChannels = object.evmChannels?.map(e => e) || [];
     message.accessControl = object.accessControl !== undefined && object.accessControl !== null ? AccessControl.fromPartial(object.accessControl) : undefined;
     message.activeStaticPrecompiles = object.activeStaticPrecompiles?.map(e => e) || [];
+    message.historyServeWindow = object.historyServeWindow !== undefined && object.historyServeWindow !== null ? BigInt(object.historyServeWindow.toString()) : BigInt(0);
+    message.extendedDenomOptions = object.extendedDenomOptions !== undefined && object.extendedDenomOptions !== null ? ExtendedDenomOptions.fromPartial(object.extendedDenomOptions) : undefined;
     return message;
   },
   fromAmino(object: ParamsAmino): Params {
@@ -981,14 +1095,17 @@ export const Params = {
       message.evmDenom = object.evm_denom;
     }
     message.extraEips = object.extra_eips?.map(e => BigInt(e)) || [];
-    if (object.allow_unprotected_txs !== undefined && object.allow_unprotected_txs !== null) {
-      message.allowUnprotectedTxs = object.allow_unprotected_txs;
-    }
     message.evmChannels = object.evm_channels?.map(e => e) || [];
     if (object.access_control !== undefined && object.access_control !== null) {
       message.accessControl = AccessControl.fromAmino(object.access_control);
     }
     message.activeStaticPrecompiles = object.active_static_precompiles?.map(e => e) || [];
+    if (object.history_serve_window !== undefined && object.history_serve_window !== null) {
+      message.historyServeWindow = BigInt(object.history_serve_window);
+    }
+    if (object.extended_denom_options !== undefined && object.extended_denom_options !== null) {
+      message.extendedDenomOptions = ExtendedDenomOptions.fromAmino(object.extended_denom_options);
+    }
     return message;
   },
   toAmino(message: Params): ParamsAmino {
@@ -999,7 +1116,6 @@ export const Params = {
     } else {
       obj.extra_eips = message.extraEips;
     }
-    obj.allow_unprotected_txs = message.allowUnprotectedTxs === false ? undefined : message.allowUnprotectedTxs;
     if (message.evmChannels) {
       obj.evm_channels = message.evmChannels.map(e => e);
     } else {
@@ -1011,6 +1127,8 @@ export const Params = {
     } else {
       obj.active_static_precompiles = message.activeStaticPrecompiles;
     }
+    obj.history_serve_window = message.historyServeWindow !== BigInt(0) ? message.historyServeWindow?.toString() : undefined;
+    obj.extended_denom_options = message.extendedDenomOptions ? ExtendedDenomOptions.toAmino(message.extendedDenomOptions) : undefined;
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {
@@ -1039,7 +1157,90 @@ export const Params = {
       return;
     }
     AccessControl.registerTypeUrl();
+    ExtendedDenomOptions.registerTypeUrl();
   }
+};
+function createBaseExtendedDenomOptions(): ExtendedDenomOptions {
+  return {
+    extendedDenom: ""
+  };
+}
+/**
+ * @name ExtendedDenomOptions
+ * @package cosmos.evm.vm.v1
+ * @see proto type: cosmos.evm.vm.v1.ExtendedDenomOptions
+ */
+export const ExtendedDenomOptions = {
+  typeUrl: "/cosmos.evm.vm.v1.ExtendedDenomOptions",
+  aminoType: "cosmos-sdk/ExtendedDenomOptions",
+  is(o: any): o is ExtendedDenomOptions {
+    return o && (o.$typeUrl === ExtendedDenomOptions.typeUrl || typeof o.extendedDenom === "string");
+  },
+  isAmino(o: any): o is ExtendedDenomOptionsAmino {
+    return o && (o.$typeUrl === ExtendedDenomOptions.typeUrl || typeof o.extended_denom === "string");
+  },
+  encode(message: ExtendedDenomOptions, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    if (message.extendedDenom !== "") {
+      writer.uint32(10).string(message.extendedDenom);
+    }
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): ExtendedDenomOptions {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseExtendedDenomOptions();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.extendedDenom = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object: DeepPartial<ExtendedDenomOptions>): ExtendedDenomOptions {
+    const message = createBaseExtendedDenomOptions();
+    message.extendedDenom = object.extendedDenom ?? "";
+    return message;
+  },
+  fromAmino(object: ExtendedDenomOptionsAmino): ExtendedDenomOptions {
+    const message = createBaseExtendedDenomOptions();
+    if (object.extended_denom !== undefined && object.extended_denom !== null) {
+      message.extendedDenom = object.extended_denom;
+    }
+    return message;
+  },
+  toAmino(message: ExtendedDenomOptions): ExtendedDenomOptionsAmino {
+    const obj: any = {};
+    obj.extended_denom = message.extendedDenom === "" ? undefined : message.extendedDenom;
+    return obj;
+  },
+  fromAminoMsg(object: ExtendedDenomOptionsAminoMsg): ExtendedDenomOptions {
+    return ExtendedDenomOptions.fromAmino(object.value);
+  },
+  toAminoMsg(message: ExtendedDenomOptions): ExtendedDenomOptionsAminoMsg {
+    return {
+      type: "cosmos-sdk/ExtendedDenomOptions",
+      value: ExtendedDenomOptions.toAmino(message)
+    };
+  },
+  fromProtoMsg(message: ExtendedDenomOptionsProtoMsg): ExtendedDenomOptions {
+    return ExtendedDenomOptions.decode(message.value);
+  },
+  toProto(message: ExtendedDenomOptions): Uint8Array {
+    return ExtendedDenomOptions.encode(message).finish();
+  },
+  toProtoMsg(message: ExtendedDenomOptions): ExtendedDenomOptionsProtoMsg {
+    return {
+      typeUrl: "/cosmos.evm.vm.v1.ExtendedDenomOptions",
+      value: ExtendedDenomOptions.encode(message).finish()
+    };
+  },
+  registerTypeUrl() {}
 };
 function createBaseAccessControl(): AccessControl {
   return {
@@ -1808,7 +2009,8 @@ function createBaseLog(): Log {
     txIndex: BigInt(0),
     blockHash: "",
     index: BigInt(0),
-    removed: false
+    removed: false,
+    blockTimestamp: BigInt(0)
   };
 }
 /**
@@ -1826,10 +2028,10 @@ export const Log = {
   typeUrl: "/cosmos.evm.vm.v1.Log",
   aminoType: "cosmos-sdk/Log",
   is(o: any): o is Log {
-    return o && (o.$typeUrl === Log.typeUrl || typeof o.address === "string" && Array.isArray(o.topics) && (!o.topics.length || typeof o.topics[0] === "string") && (o.data instanceof Uint8Array || typeof o.data === "string") && typeof o.blockNumber === "bigint" && typeof o.txHash === "string" && typeof o.txIndex === "bigint" && typeof o.blockHash === "string" && typeof o.index === "bigint" && typeof o.removed === "boolean");
+    return o && (o.$typeUrl === Log.typeUrl || typeof o.address === "string" && Array.isArray(o.topics) && (!o.topics.length || typeof o.topics[0] === "string") && (o.data instanceof Uint8Array || typeof o.data === "string") && typeof o.blockNumber === "bigint" && typeof o.txHash === "string" && typeof o.txIndex === "bigint" && typeof o.blockHash === "string" && typeof o.index === "bigint" && typeof o.removed === "boolean" && typeof o.blockTimestamp === "bigint");
   },
   isAmino(o: any): o is LogAmino {
-    return o && (o.$typeUrl === Log.typeUrl || typeof o.address === "string" && Array.isArray(o.topics) && (!o.topics.length || typeof o.topics[0] === "string") && (o.data instanceof Uint8Array || typeof o.data === "string") && typeof o.block_number === "bigint" && typeof o.tx_hash === "string" && typeof o.tx_index === "bigint" && typeof o.block_hash === "string" && typeof o.index === "bigint" && typeof o.removed === "boolean");
+    return o && (o.$typeUrl === Log.typeUrl || typeof o.address === "string" && Array.isArray(o.topics) && (!o.topics.length || typeof o.topics[0] === "string") && (o.data instanceof Uint8Array || typeof o.data === "string") && typeof o.block_number === "bigint" && typeof o.tx_hash === "string" && typeof o.tx_index === "bigint" && typeof o.block_hash === "string" && typeof o.index === "bigint" && typeof o.removed === "boolean" && typeof o.block_timestamp === "bigint");
   },
   encode(message: Log, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     if (message.address !== "") {
@@ -1858,6 +2060,9 @@ export const Log = {
     }
     if (message.removed === true) {
       writer.uint32(72).bool(message.removed);
+    }
+    if (message.blockTimestamp !== BigInt(0)) {
+      writer.uint32(80).uint64(message.blockTimestamp);
     }
     return writer;
   },
@@ -1895,6 +2100,9 @@ export const Log = {
         case 9:
           message.removed = reader.bool();
           break;
+        case 10:
+          message.blockTimestamp = reader.uint64();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -1913,6 +2121,7 @@ export const Log = {
     message.blockHash = object.blockHash ?? "";
     message.index = object.index !== undefined && object.index !== null ? BigInt(object.index.toString()) : BigInt(0);
     message.removed = object.removed ?? false;
+    message.blockTimestamp = object.blockTimestamp !== undefined && object.blockTimestamp !== null ? BigInt(object.blockTimestamp.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: LogAmino): Log {
@@ -1942,6 +2151,9 @@ export const Log = {
     if (object.removed !== undefined && object.removed !== null) {
       message.removed = object.removed;
     }
+    if (object.block_timestamp !== undefined && object.block_timestamp !== null) {
+      message.blockTimestamp = BigInt(object.block_timestamp);
+    }
     return message;
   },
   toAmino(message: Log): LogAmino {
@@ -1959,6 +2171,7 @@ export const Log = {
     obj.block_hash = message.blockHash ?? "";
     obj.index = message.index ? message.index?.toString() : "0";
     obj.removed = message.removed === false ? undefined : message.removed;
+    obj.block_timestamp = message.blockTimestamp ? message.blockTimestamp?.toString() : "0";
     return obj;
   },
   fromAminoMsg(object: LogAminoMsg): Log {
@@ -2436,4 +2649,230 @@ export const TraceConfig = {
     }
     ChainConfig.registerTypeUrl();
   }
+};
+function createBasePreinstall(): Preinstall {
+  return {
+    name: "",
+    address: "",
+    code: ""
+  };
+}
+/**
+ * Preinstall defines a contract that is preinstalled on-chain with a specific
+ * contract address and bytecode
+ * @name Preinstall
+ * @package cosmos.evm.vm.v1
+ * @see proto type: cosmos.evm.vm.v1.Preinstall
+ */
+export const Preinstall = {
+  typeUrl: "/cosmos.evm.vm.v1.Preinstall",
+  aminoType: "cosmos-sdk/Preinstall",
+  is(o: any): o is Preinstall {
+    return o && (o.$typeUrl === Preinstall.typeUrl || typeof o.name === "string" && typeof o.address === "string" && typeof o.code === "string");
+  },
+  isAmino(o: any): o is PreinstallAmino {
+    return o && (o.$typeUrl === Preinstall.typeUrl || typeof o.name === "string" && typeof o.address === "string" && typeof o.code === "string");
+  },
+  encode(message: Preinstall, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    if (message.name !== "") {
+      writer.uint32(10).string(message.name);
+    }
+    if (message.address !== "") {
+      writer.uint32(18).string(message.address);
+    }
+    if (message.code !== "") {
+      writer.uint32(26).string(message.code);
+    }
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): Preinstall {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBasePreinstall();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.name = reader.string();
+          break;
+        case 2:
+          message.address = reader.string();
+          break;
+        case 3:
+          message.code = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object: DeepPartial<Preinstall>): Preinstall {
+    const message = createBasePreinstall();
+    message.name = object.name ?? "";
+    message.address = object.address ?? "";
+    message.code = object.code ?? "";
+    return message;
+  },
+  fromAmino(object: PreinstallAmino): Preinstall {
+    const message = createBasePreinstall();
+    if (object.name !== undefined && object.name !== null) {
+      message.name = object.name;
+    }
+    if (object.address !== undefined && object.address !== null) {
+      message.address = object.address;
+    }
+    if (object.code !== undefined && object.code !== null) {
+      message.code = object.code;
+    }
+    return message;
+  },
+  toAmino(message: Preinstall): PreinstallAmino {
+    const obj: any = {};
+    obj.name = message.name === "" ? undefined : message.name;
+    obj.address = message.address === "" ? undefined : message.address;
+    obj.code = message.code === "" ? undefined : message.code;
+    return obj;
+  },
+  fromAminoMsg(object: PreinstallAminoMsg): Preinstall {
+    return Preinstall.fromAmino(object.value);
+  },
+  toAminoMsg(message: Preinstall): PreinstallAminoMsg {
+    return {
+      type: "cosmos-sdk/Preinstall",
+      value: Preinstall.toAmino(message)
+    };
+  },
+  fromProtoMsg(message: PreinstallProtoMsg): Preinstall {
+    return Preinstall.decode(message.value);
+  },
+  toProto(message: Preinstall): Uint8Array {
+    return Preinstall.encode(message).finish();
+  },
+  toProtoMsg(message: Preinstall): PreinstallProtoMsg {
+    return {
+      typeUrl: "/cosmos.evm.vm.v1.Preinstall",
+      value: Preinstall.encode(message).finish()
+    };
+  },
+  registerTypeUrl() {}
+};
+function createBaseEvmCoinInfo(): EvmCoinInfo {
+  return {
+    denom: "",
+    extendedDenom: "",
+    displayDenom: "",
+    decimals: 0
+  };
+}
+/**
+ * @name EvmCoinInfo
+ * @package cosmos.evm.vm.v1
+ * @see proto type: cosmos.evm.vm.v1.EvmCoinInfo
+ */
+export const EvmCoinInfo = {
+  typeUrl: "/cosmos.evm.vm.v1.EvmCoinInfo",
+  aminoType: "cosmos-sdk/EvmCoinInfo",
+  is(o: any): o is EvmCoinInfo {
+    return o && (o.$typeUrl === EvmCoinInfo.typeUrl || typeof o.denom === "string" && typeof o.extendedDenom === "string" && typeof o.displayDenom === "string" && typeof o.decimals === "number");
+  },
+  isAmino(o: any): o is EvmCoinInfoAmino {
+    return o && (o.$typeUrl === EvmCoinInfo.typeUrl || typeof o.denom === "string" && typeof o.extended_denom === "string" && typeof o.display_denom === "string" && typeof o.decimals === "number");
+  },
+  encode(message: EvmCoinInfo, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    if (message.denom !== "") {
+      writer.uint32(10).string(message.denom);
+    }
+    if (message.extendedDenom !== "") {
+      writer.uint32(18).string(message.extendedDenom);
+    }
+    if (message.displayDenom !== "") {
+      writer.uint32(26).string(message.displayDenom);
+    }
+    if (message.decimals !== 0) {
+      writer.uint32(32).uint32(message.decimals);
+    }
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): EvmCoinInfo {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseEvmCoinInfo();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.denom = reader.string();
+          break;
+        case 2:
+          message.extendedDenom = reader.string();
+          break;
+        case 3:
+          message.displayDenom = reader.string();
+          break;
+        case 4:
+          message.decimals = reader.uint32();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object: DeepPartial<EvmCoinInfo>): EvmCoinInfo {
+    const message = createBaseEvmCoinInfo();
+    message.denom = object.denom ?? "";
+    message.extendedDenom = object.extendedDenom ?? "";
+    message.displayDenom = object.displayDenom ?? "";
+    message.decimals = object.decimals ?? 0;
+    return message;
+  },
+  fromAmino(object: EvmCoinInfoAmino): EvmCoinInfo {
+    const message = createBaseEvmCoinInfo();
+    if (object.denom !== undefined && object.denom !== null) {
+      message.denom = object.denom;
+    }
+    if (object.extended_denom !== undefined && object.extended_denom !== null) {
+      message.extendedDenom = object.extended_denom;
+    }
+    if (object.display_denom !== undefined && object.display_denom !== null) {
+      message.displayDenom = object.display_denom;
+    }
+    if (object.decimals !== undefined && object.decimals !== null) {
+      message.decimals = object.decimals;
+    }
+    return message;
+  },
+  toAmino(message: EvmCoinInfo): EvmCoinInfoAmino {
+    const obj: any = {};
+    obj.denom = message.denom === "" ? undefined : message.denom;
+    obj.extended_denom = message.extendedDenom === "" ? undefined : message.extendedDenom;
+    obj.display_denom = message.displayDenom === "" ? undefined : message.displayDenom;
+    obj.decimals = message.decimals === 0 ? undefined : message.decimals;
+    return obj;
+  },
+  fromAminoMsg(object: EvmCoinInfoAminoMsg): EvmCoinInfo {
+    return EvmCoinInfo.fromAmino(object.value);
+  },
+  toAminoMsg(message: EvmCoinInfo): EvmCoinInfoAminoMsg {
+    return {
+      type: "cosmos-sdk/EvmCoinInfo",
+      value: EvmCoinInfo.toAmino(message)
+    };
+  },
+  fromProtoMsg(message: EvmCoinInfoProtoMsg): EvmCoinInfo {
+    return EvmCoinInfo.decode(message.value);
+  },
+  toProto(message: EvmCoinInfo): Uint8Array {
+    return EvmCoinInfo.encode(message).finish();
+  },
+  toProtoMsg(message: EvmCoinInfo): EvmCoinInfoProtoMsg {
+    return {
+      typeUrl: "/cosmos.evm.vm.v1.EvmCoinInfo",
+      value: EvmCoinInfo.encode(message).finish()
+    };
+  },
+  registerTypeUrl() {}
 };

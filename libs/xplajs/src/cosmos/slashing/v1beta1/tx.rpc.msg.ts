@@ -12,8 +12,6 @@ export interface Msg {
   /**
    * UpdateParams defines a governance operation for updating the x/slashing module
    * parameters. The authority defaults to the x/gov module account.
-   * 
-   * Since: cosmos-sdk 0.47
    */
   updateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
 }
@@ -31,9 +29,7 @@ export class MsgClientImpl implements Msg {
     return promise.then(data => MsgUnjailResponse.decode(new BinaryReader(data)));
   };
   /* UpdateParams defines a governance operation for updating the x/slashing module
-   parameters. The authority defaults to the x/gov module account.
-  
-   Since: cosmos-sdk 0.47 */
+   parameters. The authority defaults to the x/gov module account. */
   updateParams = async (request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> => {
     const data = MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request("cosmos.slashing.v1beta1.Msg", "UpdateParams", data);

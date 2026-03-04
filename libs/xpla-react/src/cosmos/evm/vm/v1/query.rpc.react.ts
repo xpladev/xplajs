@@ -1,7 +1,7 @@
 import { MsgEthereumTxResponse } from "./tx";
 import { buildUseQuery } from "../../../../react-query";
-import { QueryAccountRequest, QueryAccountResponse, QueryCosmosAccountRequest, QueryCosmosAccountResponse, QueryValidatorAccountRequest, QueryValidatorAccountResponse, QueryBalanceRequest, QueryBalanceResponse, QueryStorageRequest, QueryStorageResponse, QueryCodeRequest, QueryCodeResponse, QueryParamsRequest, QueryParamsResponse, EthCallRequest, EstimateGasResponse, QueryTraceTxRequest, QueryTraceTxResponse, QueryTraceBlockRequest, QueryTraceBlockResponse, QueryBaseFeeRequest, QueryBaseFeeResponse, QueryConfigRequest, QueryConfigResponse, QueryGlobalMinGasPriceRequest, QueryGlobalMinGasPriceResponse } from "./query";
-import { getAccount, getCosmosAccount, getValidatorAccount, getBalance, getStorage, getCode, getParams, getEthCall, getEstimateGas, getTraceTx, getTraceBlock, getBaseFee, getConfig, getGlobalMinGasPrice } from "./query.rpc.func";
+import { QueryAccountRequest, QueryAccountResponse, QueryCosmosAccountRequest, QueryCosmosAccountResponse, QueryValidatorAccountRequest, QueryValidatorAccountResponse, QueryBalanceRequest, QueryBalanceResponse, QueryStorageRequest, QueryStorageResponse, QueryCodeRequest, QueryCodeResponse, QueryParamsRequest, QueryParamsResponse, EthCallRequest, EstimateGasResponse, QueryTraceTxRequest, QueryTraceTxResponse, QueryTraceBlockRequest, QueryTraceBlockResponse, QueryTraceCallRequest, QueryTraceCallResponse, QueryBaseFeeRequest, QueryBaseFeeResponse, QueryConfigRequest, QueryConfigResponse, QueryGlobalMinGasPriceRequest, QueryGlobalMinGasPriceResponse } from "./query";
+import { getAccount, getCosmosAccount, getValidatorAccount, getBalance, getStorage, getCode, getParams, getEthCall, getEstimateGas, getTraceTx, getTraceBlock, getTraceCall, getBaseFee, getConfig, getGlobalMinGasPrice } from "./query.rpc.func";
 /**
  * Account queries an Ethereum account.
  * @name useGetAccount
@@ -114,6 +114,16 @@ export const useGetTraceTx = buildUseQuery<QueryTraceTxRequest, QueryTraceTxResp
 export const useGetTraceBlock = buildUseQuery<QueryTraceBlockRequest, QueryTraceBlockResponse>({
   builderQueryFn: getTraceBlock,
   queryKeyPrefix: "TraceBlockQuery"
+});
+/**
+ * TraceCall implements the `debug_traceCall` rpc api
+ * @name useGetTraceCall
+ * @package cosmos.evm.vm.v1
+ * @see proto service: cosmos.evm.vm.v1.TraceCall
+ */
+export const useGetTraceCall = buildUseQuery<QueryTraceCallRequest, QueryTraceCallResponse>({
+  builderQueryFn: getTraceCall,
+  queryKeyPrefix: "TraceCallQuery"
 });
 /**
  * BaseFee queries the base fee of the parent block of the current block,

@@ -6,8 +6,6 @@ export interface Msg {
   /**
    * UpdateParams defines a (governance) operation for updating the x/auth module
    * parameters. The authority defaults to the x/gov module account.
-   * 
-   * Since: cosmos-sdk 0.47
    */
   updateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
 }
@@ -17,9 +15,7 @@ export class MsgClientImpl implements Msg {
     this.rpc = rpc;
   }
   /* UpdateParams defines a (governance) operation for updating the x/auth module
-   parameters. The authority defaults to the x/gov module account.
-  
-   Since: cosmos-sdk 0.47 */
+   parameters. The authority defaults to the x/gov module account. */
   updateParams = async (request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> => {
     const data = MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request("cosmos.auth.v1beta1.Msg", "UpdateParams", data);

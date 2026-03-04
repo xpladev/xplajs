@@ -25,7 +25,11 @@ export interface Query {
   delegatorValidators(request: QueryDelegatorValidatorsRequest): Promise<QueryDelegatorValidatorsResponse>;
   /** DelegatorWithdrawAddress queries withdraw address of a delegator. */
   delegatorWithdrawAddress(request: QueryDelegatorWithdrawAddressRequest): Promise<QueryDelegatorWithdrawAddressResponse>;
-  /** CommunityPool queries the community pool coins. */
+  /**
+   * CommunityPool queries the community pool coins.
+   * 
+   * WARNING: This query will fail if an external community pool is used.
+   */
   communityPool(request?: QueryCommunityPoolRequest): Promise<QueryCommunityPoolResponse>;
 }
 export class QueryClientImpl implements Query {
@@ -88,7 +92,9 @@ export class QueryClientImpl implements Query {
     const promise = this.rpc.request("cosmos.distribution.v1beta1.Query", "DelegatorWithdrawAddress", data);
     return promise.then(data => QueryDelegatorWithdrawAddressResponse.decode(new BinaryReader(data)));
   };
-  /* CommunityPool queries the community pool coins. */
+  /* CommunityPool queries the community pool coins.
+  
+   WARNING: This query will fail if an external community pool is used. */
   communityPool = async (request: QueryCommunityPoolRequest = {}): Promise<QueryCommunityPoolResponse> => {
     const data = QueryCommunityPoolRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.distribution.v1beta1.Query", "CommunityPool", data);

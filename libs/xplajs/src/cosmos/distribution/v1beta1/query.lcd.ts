@@ -68,7 +68,9 @@ export class LCDQueryClient {
     const endpoint = `cosmos/distribution/v1beta1/delegators/${params.delegatorAddress}/withdraw_address`;
     return await this.req.get<QueryDelegatorWithdrawAddressResponse>(endpoint);
   };
-  /* CommunityPool queries the community pool coins. */
+  /* CommunityPool queries the community pool coins.
+  
+   WARNING: This query will fail if an external community pool is used. */
   communityPool = async (_params: QueryCommunityPoolRequest = {}): Promise<QueryCommunityPoolResponse> => {
     const endpoint = `cosmos/distribution/v1beta1/community_pool`;
     return await this.req.get<QueryCommunityPoolResponse>(endpoint);

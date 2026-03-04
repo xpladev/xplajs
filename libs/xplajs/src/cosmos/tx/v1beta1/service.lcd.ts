@@ -41,9 +41,7 @@ export class LCDQueryClient {
     const endpoint = `cosmos/tx/v1beta1/txs`;
     return await this.req.get<GetTxsEventResponse>(endpoint, options);
   };
-  /* GetBlockWithTxs fetches a block with decoded txs.
-  
-   Since: cosmos-sdk 0.45.2 */
+  /* GetBlockWithTxs fetches a block with decoded txs. */
   getBlockWithTxs = async (params: GetBlockWithTxsRequest): Promise<GetBlockWithTxsResponse> => {
     const options: any = {
       params: {}

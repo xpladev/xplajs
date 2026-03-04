@@ -17,17 +17,9 @@ export interface Query {
    * (https://github.com/cosmos/ibc-go/blob/2c880a22e9f9cc75f62b527ca94aa75ce1106001/proto/ibc/core/client/v1/query.proto#L54)
    */
   upgradedConsensusState(request: QueryUpgradedConsensusStateRequest): Promise<QueryUpgradedConsensusStateResponse>;
-  /**
-   * ModuleVersions queries the list of module versions from state.
-   * 
-   * Since: cosmos-sdk 0.43
-   */
+  /** ModuleVersions queries the list of module versions from state. */
   moduleVersions(request: QueryModuleVersionsRequest): Promise<QueryModuleVersionsResponse>;
-  /**
-   * Returns the account with authority to conduct upgrades
-   * 
-   * Since: cosmos-sdk 0.46
-   */
+  /** Returns the account with authority to conduct upgrades */
   authority(request?: QueryAuthorityRequest): Promise<QueryAuthorityResponse>;
 }
 export class QueryClientImpl implements Query {
@@ -58,17 +50,13 @@ export class QueryClientImpl implements Query {
     const promise = this.rpc.request("cosmos.upgrade.v1beta1.Query", "UpgradedConsensusState", data);
     return promise.then(data => QueryUpgradedConsensusStateResponse.decode(new BinaryReader(data)));
   };
-  /* ModuleVersions queries the list of module versions from state.
-  
-   Since: cosmos-sdk 0.43 */
+  /* ModuleVersions queries the list of module versions from state. */
   moduleVersions = async (request: QueryModuleVersionsRequest): Promise<QueryModuleVersionsResponse> => {
     const data = QueryModuleVersionsRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.upgrade.v1beta1.Query", "ModuleVersions", data);
     return promise.then(data => QueryModuleVersionsResponse.decode(new BinaryReader(data)));
   };
-  /* Returns the account with authority to conduct upgrades
-  
-   Since: cosmos-sdk 0.46 */
+  /* Returns the account with authority to conduct upgrades */
   authority = async (request: QueryAuthorityRequest = {}): Promise<QueryAuthorityResponse> => {
     const data = QueryAuthorityRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.upgrade.v1beta1.Query", "Authority", data);

@@ -9,51 +9,25 @@ export interface Query {
    * 
    * When called from another module, this query might consume a high amount of
    * gas if the pagination field is incorrectly set.
-   * 
-   * Since: cosmos-sdk 0.43
    */
   accounts(request?: QueryAccountsRequest): Promise<QueryAccountsResponse>;
   /** Account returns account details based on address. */
   account(request: QueryAccountRequest): Promise<QueryAccountResponse>;
-  /**
-   * AccountAddressByID returns account address based on account number.
-   * 
-   * Since: cosmos-sdk 0.46.2
-   */
+  /** AccountAddressByID returns account address based on account number. */
   accountAddressByID(request: QueryAccountAddressByIDRequest): Promise<QueryAccountAddressByIDResponse>;
   /** Params queries all parameters. */
   params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
-  /**
-   * ModuleAccounts returns all the existing module accounts.
-   * 
-   * Since: cosmos-sdk 0.46
-   */
+  /** ModuleAccounts returns all the existing module accounts. */
   moduleAccounts(request?: QueryModuleAccountsRequest): Promise<QueryModuleAccountsResponse>;
   /** ModuleAccountByName returns the module account info by module name */
   moduleAccountByName(request: QueryModuleAccountByNameRequest): Promise<QueryModuleAccountByNameResponse>;
-  /**
-   * Bech32Prefix queries bech32Prefix
-   * 
-   * Since: cosmos-sdk 0.46
-   */
+  /** Bech32Prefix queries bech32Prefix */
   bech32Prefix(request?: Bech32PrefixRequest): Promise<Bech32PrefixResponse>;
-  /**
-   * AddressBytesToString converts Account Address bytes to string
-   * 
-   * Since: cosmos-sdk 0.46
-   */
+  /** AddressBytesToString converts Account Address bytes to string */
   addressBytesToString(request: AddressBytesToStringRequest): Promise<AddressBytesToStringResponse>;
-  /**
-   * AddressStringToBytes converts Address string to bytes
-   * 
-   * Since: cosmos-sdk 0.46
-   */
+  /** AddressStringToBytes converts Address string to bytes */
   addressStringToBytes(request: AddressStringToBytesRequest): Promise<AddressStringToBytesResponse>;
-  /**
-   * AccountInfo queries account info which is common to all account types.
-   * 
-   * Since: cosmos-sdk 0.47
-   */
+  /** AccountInfo queries account info which is common to all account types. */
   accountInfo(request: QueryAccountInfoRequest): Promise<QueryAccountInfoResponse>;
 }
 export class QueryClientImpl implements Query {
@@ -64,9 +38,7 @@ export class QueryClientImpl implements Query {
   /* Accounts returns all the existing accounts.
   
    When called from another module, this query might consume a high amount of
-   gas if the pagination field is incorrectly set.
-  
-   Since: cosmos-sdk 0.43 */
+   gas if the pagination field is incorrectly set. */
   accounts = async (request: QueryAccountsRequest = {
     pagination: undefined
   }): Promise<QueryAccountsResponse> => {
@@ -80,9 +52,7 @@ export class QueryClientImpl implements Query {
     const promise = this.rpc.request("cosmos.auth.v1beta1.Query", "Account", data);
     return promise.then(data => QueryAccountResponse.decode(new BinaryReader(data)));
   };
-  /* AccountAddressByID returns account address based on account number.
-  
-   Since: cosmos-sdk 0.46.2 */
+  /* AccountAddressByID returns account address based on account number. */
   accountAddressByID = async (request: QueryAccountAddressByIDRequest): Promise<QueryAccountAddressByIDResponse> => {
     const data = QueryAccountAddressByIDRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.auth.v1beta1.Query", "AccountAddressByID", data);
@@ -94,9 +64,7 @@ export class QueryClientImpl implements Query {
     const promise = this.rpc.request("cosmos.auth.v1beta1.Query", "Params", data);
     return promise.then(data => QueryParamsResponse.decode(new BinaryReader(data)));
   };
-  /* ModuleAccounts returns all the existing module accounts.
-  
-   Since: cosmos-sdk 0.46 */
+  /* ModuleAccounts returns all the existing module accounts. */
   moduleAccounts = async (request: QueryModuleAccountsRequest = {}): Promise<QueryModuleAccountsResponse> => {
     const data = QueryModuleAccountsRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.auth.v1beta1.Query", "ModuleAccounts", data);
@@ -108,33 +76,25 @@ export class QueryClientImpl implements Query {
     const promise = this.rpc.request("cosmos.auth.v1beta1.Query", "ModuleAccountByName", data);
     return promise.then(data => QueryModuleAccountByNameResponse.decode(new BinaryReader(data)));
   };
-  /* Bech32Prefix queries bech32Prefix
-  
-   Since: cosmos-sdk 0.46 */
+  /* Bech32Prefix queries bech32Prefix */
   bech32Prefix = async (request: Bech32PrefixRequest = {}): Promise<Bech32PrefixResponse> => {
     const data = Bech32PrefixRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.auth.v1beta1.Query", "Bech32Prefix", data);
     return promise.then(data => Bech32PrefixResponse.decode(new BinaryReader(data)));
   };
-  /* AddressBytesToString converts Account Address bytes to string
-  
-   Since: cosmos-sdk 0.46 */
+  /* AddressBytesToString converts Account Address bytes to string */
   addressBytesToString = async (request: AddressBytesToStringRequest): Promise<AddressBytesToStringResponse> => {
     const data = AddressBytesToStringRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.auth.v1beta1.Query", "AddressBytesToString", data);
     return promise.then(data => AddressBytesToStringResponse.decode(new BinaryReader(data)));
   };
-  /* AddressStringToBytes converts Address string to bytes
-  
-   Since: cosmos-sdk 0.46 */
+  /* AddressStringToBytes converts Address string to bytes */
   addressStringToBytes = async (request: AddressStringToBytesRequest): Promise<AddressStringToBytesResponse> => {
     const data = AddressStringToBytesRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.auth.v1beta1.Query", "AddressStringToBytes", data);
     return promise.then(data => AddressStringToBytesResponse.decode(new BinaryReader(data)));
   };
-  /* AccountInfo queries account info which is common to all account types.
-  
-   Since: cosmos-sdk 0.47 */
+  /* AccountInfo queries account info which is common to all account types. */
   accountInfo = async (request: QueryAccountInfoRequest): Promise<QueryAccountInfoResponse> => {
     const data = QueryAccountInfoRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.auth.v1beta1.Query", "AccountInfo", data);

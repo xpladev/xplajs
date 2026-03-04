@@ -20,8 +20,6 @@ export interface Service {
    * ABCIQuery defines a query handler that supports ABCI queries directly to the
    * application, bypassing Tendermint completely. The ABCI query must contain
    * a valid and supported path, including app, custom, p2p, and store.
-   * 
-   * Since: cosmos-sdk 0.46
    */
   aBCIQuery(request: ABCIQueryRequest): Promise<ABCIQueryResponse>;
 }
@@ -70,9 +68,7 @@ export class ServiceClientImpl implements Service {
   };
   /* ABCIQuery defines a query handler that supports ABCI queries directly to the
    application, bypassing Tendermint completely. The ABCI query must contain
-   a valid and supported path, including app, custom, p2p, and store.
-  
-   Since: cosmos-sdk 0.46 */
+   a valid and supported path, including app, custom, p2p, and store. */
   aBCIQuery = async (request: ABCIQueryRequest): Promise<ABCIQueryResponse> => {
     const data = ABCIQueryRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.base.tendermint.v1beta1.Service", "ABCIQuery", data);

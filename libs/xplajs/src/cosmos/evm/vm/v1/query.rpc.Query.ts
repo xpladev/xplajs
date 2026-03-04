@@ -2,7 +2,7 @@ import { MsgEthereumTxResponse } from "./tx";
 import { TxRpc } from "../../../../types";
 import { BinaryReader } from "../../../../binary";
 import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryAccountRequest, QueryAccountResponse, QueryCosmosAccountRequest, QueryCosmosAccountResponse, QueryValidatorAccountRequest, QueryValidatorAccountResponse, QueryBalanceRequest, QueryBalanceResponse, QueryStorageRequest, QueryStorageResponse, QueryCodeRequest, QueryCodeResponse, QueryParamsRequest, QueryParamsResponse, EthCallRequest, EstimateGasResponse, QueryTraceTxRequest, QueryTraceTxResponse, QueryTraceBlockRequest, QueryTraceBlockResponse, QueryBaseFeeRequest, QueryBaseFeeResponse, QueryConfigRequest, QueryConfigResponse, QueryGlobalMinGasPriceRequest, QueryGlobalMinGasPriceResponse } from "./query";
+import { QueryAccountRequest, QueryAccountResponse, QueryCosmosAccountRequest, QueryCosmosAccountResponse, QueryValidatorAccountRequest, QueryValidatorAccountResponse, QueryBalanceRequest, QueryBalanceResponse, QueryStorageRequest, QueryStorageResponse, QueryCodeRequest, QueryCodeResponse, QueryParamsRequest, QueryParamsResponse, EthCallRequest, EstimateGasResponse, QueryTraceTxRequest, QueryTraceTxResponse, QueryTraceBlockRequest, QueryTraceBlockResponse, QueryTraceCallRequest, QueryTraceCallResponse, QueryBaseFeeRequest, QueryBaseFeeResponse, QueryConfigRequest, QueryConfigResponse, QueryGlobalMinGasPriceRequest, QueryGlobalMinGasPriceResponse } from "./query";
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Account queries an Ethereum account. */
@@ -36,6 +36,8 @@ export interface Query {
    * `debug_traceBlockByHash` rpc api
    */
   traceBlock(request: QueryTraceBlockRequest): Promise<QueryTraceBlockResponse>;
+  /** TraceCall implements the `debug_traceCall` rpc api */
+  traceCall(request: QueryTraceCallRequest): Promise<QueryTraceCallResponse>;
   /**
    * BaseFee queries the base fee of the parent block of the current block,
    * it's similar to feemarket module's method, but also checks london hardfork
@@ -126,6 +128,12 @@ export class QueryClientImpl implements Query {
     const promise = this.rpc.request("cosmos.evm.vm.v1.Query", "TraceBlock", data);
     return promise.then(data => QueryTraceBlockResponse.decode(new BinaryReader(data)));
   };
+  /* TraceCall implements the `debug_traceCall` rpc api */
+  traceCall = async (request: QueryTraceCallRequest): Promise<QueryTraceCallResponse> => {
+    const data = QueryTraceCallRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.evm.vm.v1.Query", "TraceCall", data);
+    return promise.then(data => QueryTraceCallResponse.decode(new BinaryReader(data)));
+  };
   /* BaseFee queries the base fee of the parent block of the current block,
    it's similar to feemarket module's method, but also checks london hardfork
    status. */
@@ -186,6 +194,9 @@ export const createRpcQueryExtension = (base: QueryClient) => {
     },
     traceBlock(request: QueryTraceBlockRequest): Promise<QueryTraceBlockResponse> {
       return queryService.traceBlock(request);
+    },
+    traceCall(request: QueryTraceCallRequest): Promise<QueryTraceCallResponse> {
+      return queryService.traceCall(request);
     },
     baseFee(request?: QueryBaseFeeRequest): Promise<QueryBaseFeeResponse> {
       return queryService.baseFee(request);

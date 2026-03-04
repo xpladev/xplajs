@@ -9,11 +9,7 @@ export interface Query {
    * key.
    */
   params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
-  /**
-   * Subspaces queries for all registered subspaces and all keys for a subspace.
-   * 
-   * Since: cosmos-sdk 0.46
-   */
+  /** Subspaces queries for all registered subspaces and all keys for a subspace. */
   subspaces(request?: QuerySubspacesRequest): Promise<QuerySubspacesResponse>;
 }
 export class QueryClientImpl implements Query {
@@ -28,9 +24,7 @@ export class QueryClientImpl implements Query {
     const promise = this.rpc.request("cosmos.params.v1beta1.Query", "Params", data);
     return promise.then(data => QueryParamsResponse.decode(new BinaryReader(data)));
   };
-  /* Subspaces queries for all registered subspaces and all keys for a subspace.
-  
-   Since: cosmos-sdk 0.46 */
+  /* Subspaces queries for all registered subspaces and all keys for a subspace. */
   subspaces = async (request: QuerySubspacesRequest = {}): Promise<QuerySubspacesResponse> => {
     const data = QuerySubspacesRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.params.v1beta1.Query", "Subspaces", data);

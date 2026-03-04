@@ -1,4 +1,4 @@
-import { Params, ParamsAmino, State, StateAmino } from "./evm";
+import { Params, ParamsAmino, Preinstall, PreinstallAmino, State, StateAmino } from "./evm";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
 import { GlobalDecoderRegistry } from "../../../../registry";
 import { DeepPartial } from "../../../../helpers";
@@ -17,6 +17,10 @@ export interface GenesisState {
    * params defines all the parameters of the module.
    */
   params: Params;
+  /**
+   * preinstalls defines a set of predefined contracts
+   */
+  preinstalls: Preinstall[];
 }
 export interface GenesisStateProtoMsg {
   typeUrl: "/cosmos.evm.vm.v1.GenesisState";
@@ -37,6 +41,10 @@ export interface GenesisStateAmino {
    * params defines all the parameters of the module.
    */
   params: ParamsAmino;
+  /**
+   * preinstalls defines a set of predefined contracts
+   */
+  preinstalls: PreinstallAmino[];
 }
 export interface GenesisStateAminoMsg {
   type: "cosmos-sdk/GenesisState";
@@ -97,7 +105,8 @@ export interface GenesisAccountAminoMsg {
 function createBaseGenesisState(): GenesisState {
   return {
     accounts: [],
-    params: Params.fromPartial({})
+    params: Params.fromPartial({}),
+    preinstalls: []
   };
 }
 /**
@@ -110,10 +119,10 @@ export const GenesisState = {
   typeUrl: "/cosmos.evm.vm.v1.GenesisState",
   aminoType: "cosmos-sdk/GenesisState",
   is(o: any): o is GenesisState {
-    return o && (o.$typeUrl === GenesisState.typeUrl || Array.isArray(o.accounts) && (!o.accounts.length || GenesisAccount.is(o.accounts[0])) && Params.is(o.params));
+    return o && (o.$typeUrl === GenesisState.typeUrl || Array.isArray(o.accounts) && (!o.accounts.length || GenesisAccount.is(o.accounts[0])) && Params.is(o.params) && Array.isArray(o.preinstalls) && (!o.preinstalls.length || Preinstall.is(o.preinstalls[0])));
   },
   isAmino(o: any): o is GenesisStateAmino {
-    return o && (o.$typeUrl === GenesisState.typeUrl || Array.isArray(o.accounts) && (!o.accounts.length || GenesisAccount.isAmino(o.accounts[0])) && Params.isAmino(o.params));
+    return o && (o.$typeUrl === GenesisState.typeUrl || Array.isArray(o.accounts) && (!o.accounts.length || GenesisAccount.isAmino(o.accounts[0])) && Params.isAmino(o.params) && Array.isArray(o.preinstalls) && (!o.preinstalls.length || Preinstall.isAmino(o.preinstalls[0])));
   },
   encode(message: GenesisState, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     for (const v of message.accounts) {
@@ -121,6 +130,9 @@ export const GenesisState = {
     }
     if (message.params !== undefined) {
       Params.encode(message.params, writer.uint32(18).fork()).ldelim();
+    }
+    for (const v of message.preinstalls) {
+      Preinstall.encode(v!, writer.uint32(26).fork()).ldelim();
     }
     return writer;
   },
@@ -137,6 +149,9 @@ export const GenesisState = {
         case 2:
           message.params = Params.decode(reader, reader.uint32());
           break;
+        case 3:
+          message.preinstalls.push(Preinstall.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -148,6 +163,7 @@ export const GenesisState = {
     const message = createBaseGenesisState();
     message.accounts = object.accounts?.map(e => GenesisAccount.fromPartial(e)) || [];
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
+    message.preinstalls = object.preinstalls?.map(e => Preinstall.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
@@ -156,6 +172,7 @@ export const GenesisState = {
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromAmino(object.params);
     }
+    message.preinstalls = object.preinstalls?.map(e => Preinstall.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: GenesisState): GenesisStateAmino {
@@ -166,6 +183,11 @@ export const GenesisState = {
       obj.accounts = message.accounts;
     }
     obj.params = message.params ? Params.toAmino(message.params) : Params.toAmino(Params.fromPartial({}));
+    if (message.preinstalls) {
+      obj.preinstalls = message.preinstalls.map(e => e ? Preinstall.toAmino(e) : undefined);
+    } else {
+      obj.preinstalls = message.preinstalls;
+    }
     return obj;
   },
   fromAminoMsg(object: GenesisStateAminoMsg): GenesisState {
@@ -195,6 +217,7 @@ export const GenesisState = {
     }
     GenesisAccount.registerTypeUrl();
     Params.registerTypeUrl();
+    Preinstall.registerTypeUrl();
   }
 };
 function createBaseGenesisAccount(): GenesisAccount {

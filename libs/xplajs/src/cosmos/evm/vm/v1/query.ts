@@ -668,6 +668,10 @@ export interface EthCallRequest {
    * chain_id is the eip155 chain id parsed from the requested block header
    */
   chainId: bigint;
+  /**
+   * state overrides encoded as json
+   */
+  overrides: Uint8Array;
 }
 export interface EthCallRequestProtoMsg {
   typeUrl: "/cosmos.evm.vm.v1.EthCallRequest";
@@ -696,6 +700,10 @@ export interface EthCallRequestAmino {
    * chain_id is the eip155 chain id parsed from the requested block header
    */
   chain_id: string;
+  /**
+   * state overrides encoded as json
+   */
+  overrides: string;
 }
 export interface EthCallRequestAminoMsg {
   type: "cosmos-sdk/EthCallRequest";
@@ -1000,6 +1008,126 @@ export interface QueryTraceBlockResponseAmino {
 export interface QueryTraceBlockResponseAminoMsg {
   type: "cosmos-sdk/QueryTraceBlockResponse";
   value: QueryTraceBlockResponseAmino;
+}
+/**
+ * QueryTraceCallRequest defines TraceCall request
+ * @name QueryTraceCallRequest
+ * @package cosmos.evm.vm.v1
+ * @see proto type: cosmos.evm.vm.v1.QueryTraceCallRequest
+ */
+export interface QueryTraceCallRequest {
+  /**
+   * args uses the same json format as the json rpc api.
+   */
+  args: Uint8Array;
+  /**
+   * gas_cap defines the default gas cap to be used
+   */
+  gasCap: bigint;
+  /**
+   * proposer_address of the requested block in hex format
+   */
+  proposerAddress: Uint8Array;
+  /**
+   * trace_config holds extra parameters to trace functions.
+   */
+  traceConfig?: TraceConfig;
+  /**
+   * block_number of requested transaction
+   */
+  blockNumber: bigint;
+  /**
+   * block_hash of requested transaction
+   */
+  blockHash: string;
+  /**
+   * block_time of requested transaction
+   */
+  blockTime: Date;
+  /**
+   * chain_id is the the eip155 chain id parsed from the requested block header
+   */
+  chainId: bigint;
+}
+export interface QueryTraceCallRequestProtoMsg {
+  typeUrl: "/cosmos.evm.vm.v1.QueryTraceCallRequest";
+  value: Uint8Array;
+}
+/**
+ * QueryTraceCallRequest defines TraceCall request
+ * @name QueryTraceCallRequestAmino
+ * @package cosmos.evm.vm.v1
+ * @see proto type: cosmos.evm.vm.v1.QueryTraceCallRequest
+ */
+export interface QueryTraceCallRequestAmino {
+  /**
+   * args uses the same json format as the json rpc api.
+   */
+  args: string;
+  /**
+   * gas_cap defines the default gas cap to be used
+   */
+  gas_cap: string;
+  /**
+   * proposer_address of the requested block in hex format
+   */
+  proposer_address: string;
+  /**
+   * trace_config holds extra parameters to trace functions.
+   */
+  trace_config?: TraceConfigAmino;
+  /**
+   * block_number of requested transaction
+   */
+  block_number: string;
+  /**
+   * block_hash of requested transaction
+   */
+  block_hash: string;
+  /**
+   * block_time of requested transaction
+   */
+  block_time: string;
+  /**
+   * chain_id is the the eip155 chain id parsed from the requested block header
+   */
+  chain_id: string;
+}
+export interface QueryTraceCallRequestAminoMsg {
+  type: "cosmos-sdk/QueryTraceCallRequest";
+  value: QueryTraceCallRequestAmino;
+}
+/**
+ * QueryTraceCallResponse defines TraceCall response
+ * @name QueryTraceCallResponse
+ * @package cosmos.evm.vm.v1
+ * @see proto type: cosmos.evm.vm.v1.QueryTraceCallResponse
+ */
+export interface QueryTraceCallResponse {
+  /**
+   * data is the response serialized in bytes
+   */
+  data: Uint8Array;
+}
+export interface QueryTraceCallResponseProtoMsg {
+  typeUrl: "/cosmos.evm.vm.v1.QueryTraceCallResponse";
+  value: Uint8Array;
+}
+/**
+ * QueryTraceCallResponse defines TraceCall response
+ * @name QueryTraceCallResponseAmino
+ * @package cosmos.evm.vm.v1
+ * @see proto type: cosmos.evm.vm.v1.QueryTraceCallResponse
+ */
+export interface QueryTraceCallResponseAmino {
+  /**
+   * data is the response serialized in bytes
+   */
+  data: string;
+}
+export interface QueryTraceCallResponseAminoMsg {
+  type: "cosmos-sdk/QueryTraceCallResponse";
+  value: QueryTraceCallResponseAmino;
 }
 /**
  * QueryBaseFeeRequest defines the request type for querying the EIP1559 base
@@ -2723,7 +2851,8 @@ function createBaseEthCallRequest(): EthCallRequest {
     args: new Uint8Array(),
     gasCap: BigInt(0),
     proposerAddress: new Uint8Array(),
-    chainId: BigInt(0)
+    chainId: BigInt(0),
+    overrides: new Uint8Array()
   };
 }
 /**
@@ -2736,10 +2865,10 @@ export const EthCallRequest = {
   typeUrl: "/cosmos.evm.vm.v1.EthCallRequest",
   aminoType: "cosmos-sdk/EthCallRequest",
   is(o: any): o is EthCallRequest {
-    return o && (o.$typeUrl === EthCallRequest.typeUrl || (o.args instanceof Uint8Array || typeof o.args === "string") && typeof o.gasCap === "bigint" && (o.proposerAddress instanceof Uint8Array || typeof o.proposerAddress === "string") && typeof o.chainId === "bigint");
+    return o && (o.$typeUrl === EthCallRequest.typeUrl || (o.args instanceof Uint8Array || typeof o.args === "string") && typeof o.gasCap === "bigint" && (o.proposerAddress instanceof Uint8Array || typeof o.proposerAddress === "string") && typeof o.chainId === "bigint" && (o.overrides instanceof Uint8Array || typeof o.overrides === "string"));
   },
   isAmino(o: any): o is EthCallRequestAmino {
-    return o && (o.$typeUrl === EthCallRequest.typeUrl || (o.args instanceof Uint8Array || typeof o.args === "string") && typeof o.gas_cap === "bigint" && (o.proposer_address instanceof Uint8Array || typeof o.proposer_address === "string") && typeof o.chain_id === "bigint");
+    return o && (o.$typeUrl === EthCallRequest.typeUrl || (o.args instanceof Uint8Array || typeof o.args === "string") && typeof o.gas_cap === "bigint" && (o.proposer_address instanceof Uint8Array || typeof o.proposer_address === "string") && typeof o.chain_id === "bigint" && (o.overrides instanceof Uint8Array || typeof o.overrides === "string"));
   },
   encode(message: EthCallRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     if (message.args.length !== 0) {
@@ -2753,6 +2882,9 @@ export const EthCallRequest = {
     }
     if (message.chainId !== BigInt(0)) {
       writer.uint32(32).int64(message.chainId);
+    }
+    if (message.overrides.length !== 0) {
+      writer.uint32(42).bytes(message.overrides);
     }
     return writer;
   },
@@ -2775,6 +2907,9 @@ export const EthCallRequest = {
         case 4:
           message.chainId = reader.int64();
           break;
+        case 5:
+          message.overrides = reader.bytes();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -2788,6 +2923,7 @@ export const EthCallRequest = {
     message.gasCap = object.gasCap !== undefined && object.gasCap !== null ? BigInt(object.gasCap.toString()) : BigInt(0);
     message.proposerAddress = object.proposerAddress ?? new Uint8Array();
     message.chainId = object.chainId !== undefined && object.chainId !== null ? BigInt(object.chainId.toString()) : BigInt(0);
+    message.overrides = object.overrides ?? new Uint8Array();
     return message;
   },
   fromAmino(object: EthCallRequestAmino): EthCallRequest {
@@ -2804,6 +2940,9 @@ export const EthCallRequest = {
     if (object.chain_id !== undefined && object.chain_id !== null) {
       message.chainId = BigInt(object.chain_id);
     }
+    if (object.overrides !== undefined && object.overrides !== null) {
+      message.overrides = bytesFromBase64(object.overrides);
+    }
     return message;
   },
   toAmino(message: EthCallRequest): EthCallRequestAmino {
@@ -2812,6 +2951,7 @@ export const EthCallRequest = {
     obj.gas_cap = message.gasCap !== BigInt(0) ? message.gasCap?.toString() : undefined;
     obj.proposer_address = message.proposerAddress ? base64FromBytes(message.proposerAddress) : undefined;
     obj.chain_id = message.chainId !== BigInt(0) ? message.chainId?.toString() : undefined;
+    obj.overrides = message.overrides ? base64FromBytes(message.overrides) : undefined;
     return obj;
   },
   fromAminoMsg(object: EthCallRequestAminoMsg): EthCallRequest {
@@ -3468,6 +3608,261 @@ export const QueryTraceBlockResponse = {
     return {
       typeUrl: "/cosmos.evm.vm.v1.QueryTraceBlockResponse",
       value: QueryTraceBlockResponse.encode(message).finish()
+    };
+  },
+  registerTypeUrl() {}
+};
+function createBaseQueryTraceCallRequest(): QueryTraceCallRequest {
+  return {
+    args: new Uint8Array(),
+    gasCap: BigInt(0),
+    proposerAddress: new Uint8Array(),
+    traceConfig: undefined,
+    blockNumber: BigInt(0),
+    blockHash: "",
+    blockTime: new Date(),
+    chainId: BigInt(0)
+  };
+}
+/**
+ * QueryTraceCallRequest defines TraceCall request
+ * @name QueryTraceCallRequest
+ * @package cosmos.evm.vm.v1
+ * @see proto type: cosmos.evm.vm.v1.QueryTraceCallRequest
+ */
+export const QueryTraceCallRequest = {
+  typeUrl: "/cosmos.evm.vm.v1.QueryTraceCallRequest",
+  aminoType: "cosmos-sdk/QueryTraceCallRequest",
+  is(o: any): o is QueryTraceCallRequest {
+    return o && (o.$typeUrl === QueryTraceCallRequest.typeUrl || (o.args instanceof Uint8Array || typeof o.args === "string") && typeof o.gasCap === "bigint" && (o.proposerAddress instanceof Uint8Array || typeof o.proposerAddress === "string") && typeof o.blockNumber === "bigint" && typeof o.blockHash === "string" && Timestamp.is(o.blockTime) && typeof o.chainId === "bigint");
+  },
+  isAmino(o: any): o is QueryTraceCallRequestAmino {
+    return o && (o.$typeUrl === QueryTraceCallRequest.typeUrl || (o.args instanceof Uint8Array || typeof o.args === "string") && typeof o.gas_cap === "bigint" && (o.proposer_address instanceof Uint8Array || typeof o.proposer_address === "string") && typeof o.block_number === "bigint" && typeof o.block_hash === "string" && Timestamp.isAmino(o.block_time) && typeof o.chain_id === "bigint");
+  },
+  encode(message: QueryTraceCallRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    if (message.args.length !== 0) {
+      writer.uint32(10).bytes(message.args);
+    }
+    if (message.gasCap !== BigInt(0)) {
+      writer.uint32(16).uint64(message.gasCap);
+    }
+    if (message.proposerAddress.length !== 0) {
+      writer.uint32(26).bytes(message.proposerAddress);
+    }
+    if (message.traceConfig !== undefined) {
+      TraceConfig.encode(message.traceConfig, writer.uint32(34).fork()).ldelim();
+    }
+    if (message.blockNumber !== BigInt(0)) {
+      writer.uint32(40).int64(message.blockNumber);
+    }
+    if (message.blockHash !== "") {
+      writer.uint32(50).string(message.blockHash);
+    }
+    if (message.blockTime !== undefined) {
+      Timestamp.encode(toTimestamp(message.blockTime), writer.uint32(58).fork()).ldelim();
+    }
+    if (message.chainId !== BigInt(0)) {
+      writer.uint32(64).int64(message.chainId);
+    }
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): QueryTraceCallRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryTraceCallRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.args = reader.bytes();
+          break;
+        case 2:
+          message.gasCap = reader.uint64();
+          break;
+        case 3:
+          message.proposerAddress = reader.bytes();
+          break;
+        case 4:
+          message.traceConfig = TraceConfig.decode(reader, reader.uint32());
+          break;
+        case 5:
+          message.blockNumber = reader.int64();
+          break;
+        case 6:
+          message.blockHash = reader.string();
+          break;
+        case 7:
+          message.blockTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 8:
+          message.chainId = reader.int64();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object: DeepPartial<QueryTraceCallRequest>): QueryTraceCallRequest {
+    const message = createBaseQueryTraceCallRequest();
+    message.args = object.args ?? new Uint8Array();
+    message.gasCap = object.gasCap !== undefined && object.gasCap !== null ? BigInt(object.gasCap.toString()) : BigInt(0);
+    message.proposerAddress = object.proposerAddress ?? new Uint8Array();
+    message.traceConfig = object.traceConfig !== undefined && object.traceConfig !== null ? TraceConfig.fromPartial(object.traceConfig) : undefined;
+    message.blockNumber = object.blockNumber !== undefined && object.blockNumber !== null ? BigInt(object.blockNumber.toString()) : BigInt(0);
+    message.blockHash = object.blockHash ?? "";
+    message.blockTime = object.blockTime ?? undefined;
+    message.chainId = object.chainId !== undefined && object.chainId !== null ? BigInt(object.chainId.toString()) : BigInt(0);
+    return message;
+  },
+  fromAmino(object: QueryTraceCallRequestAmino): QueryTraceCallRequest {
+    const message = createBaseQueryTraceCallRequest();
+    if (object.args !== undefined && object.args !== null) {
+      message.args = bytesFromBase64(object.args);
+    }
+    if (object.gas_cap !== undefined && object.gas_cap !== null) {
+      message.gasCap = BigInt(object.gas_cap);
+    }
+    if (object.proposer_address !== undefined && object.proposer_address !== null) {
+      message.proposerAddress = bytesFromBase64(object.proposer_address);
+    }
+    if (object.trace_config !== undefined && object.trace_config !== null) {
+      message.traceConfig = TraceConfig.fromAmino(object.trace_config);
+    }
+    if (object.block_number !== undefined && object.block_number !== null) {
+      message.blockNumber = BigInt(object.block_number);
+    }
+    if (object.block_hash !== undefined && object.block_hash !== null) {
+      message.blockHash = object.block_hash;
+    }
+    if (object.block_time !== undefined && object.block_time !== null) {
+      message.blockTime = fromTimestamp(Timestamp.fromAmino(object.block_time));
+    }
+    if (object.chain_id !== undefined && object.chain_id !== null) {
+      message.chainId = BigInt(object.chain_id);
+    }
+    return message;
+  },
+  toAmino(message: QueryTraceCallRequest): QueryTraceCallRequestAmino {
+    const obj: any = {};
+    obj.args = message.args ? base64FromBytes(message.args) : undefined;
+    obj.gas_cap = message.gasCap !== BigInt(0) ? message.gasCap?.toString() : undefined;
+    obj.proposer_address = message.proposerAddress ? base64FromBytes(message.proposerAddress) : undefined;
+    obj.trace_config = message.traceConfig ? TraceConfig.toAmino(message.traceConfig) : undefined;
+    obj.block_number = message.blockNumber !== BigInt(0) ? message.blockNumber?.toString() : undefined;
+    obj.block_hash = message.blockHash === "" ? undefined : message.blockHash;
+    obj.block_time = message.blockTime ? Timestamp.toAmino(toTimestamp(message.blockTime)) : undefined;
+    obj.chain_id = message.chainId !== BigInt(0) ? message.chainId?.toString() : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryTraceCallRequestAminoMsg): QueryTraceCallRequest {
+    return QueryTraceCallRequest.fromAmino(object.value);
+  },
+  toAminoMsg(message: QueryTraceCallRequest): QueryTraceCallRequestAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryTraceCallRequest",
+      value: QueryTraceCallRequest.toAmino(message)
+    };
+  },
+  fromProtoMsg(message: QueryTraceCallRequestProtoMsg): QueryTraceCallRequest {
+    return QueryTraceCallRequest.decode(message.value);
+  },
+  toProto(message: QueryTraceCallRequest): Uint8Array {
+    return QueryTraceCallRequest.encode(message).finish();
+  },
+  toProtoMsg(message: QueryTraceCallRequest): QueryTraceCallRequestProtoMsg {
+    return {
+      typeUrl: "/cosmos.evm.vm.v1.QueryTraceCallRequest",
+      value: QueryTraceCallRequest.encode(message).finish()
+    };
+  },
+  registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(QueryTraceCallRequest.typeUrl)) {
+      return;
+    }
+    TraceConfig.registerTypeUrl();
+  }
+};
+function createBaseQueryTraceCallResponse(): QueryTraceCallResponse {
+  return {
+    data: new Uint8Array()
+  };
+}
+/**
+ * QueryTraceCallResponse defines TraceCall response
+ * @name QueryTraceCallResponse
+ * @package cosmos.evm.vm.v1
+ * @see proto type: cosmos.evm.vm.v1.QueryTraceCallResponse
+ */
+export const QueryTraceCallResponse = {
+  typeUrl: "/cosmos.evm.vm.v1.QueryTraceCallResponse",
+  aminoType: "cosmos-sdk/QueryTraceCallResponse",
+  is(o: any): o is QueryTraceCallResponse {
+    return o && (o.$typeUrl === QueryTraceCallResponse.typeUrl || o.data instanceof Uint8Array || typeof o.data === "string");
+  },
+  isAmino(o: any): o is QueryTraceCallResponseAmino {
+    return o && (o.$typeUrl === QueryTraceCallResponse.typeUrl || o.data instanceof Uint8Array || typeof o.data === "string");
+  },
+  encode(message: QueryTraceCallResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    if (message.data.length !== 0) {
+      writer.uint32(10).bytes(message.data);
+    }
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): QueryTraceCallResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryTraceCallResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.data = reader.bytes();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object: DeepPartial<QueryTraceCallResponse>): QueryTraceCallResponse {
+    const message = createBaseQueryTraceCallResponse();
+    message.data = object.data ?? new Uint8Array();
+    return message;
+  },
+  fromAmino(object: QueryTraceCallResponseAmino): QueryTraceCallResponse {
+    const message = createBaseQueryTraceCallResponse();
+    if (object.data !== undefined && object.data !== null) {
+      message.data = bytesFromBase64(object.data);
+    }
+    return message;
+  },
+  toAmino(message: QueryTraceCallResponse): QueryTraceCallResponseAmino {
+    const obj: any = {};
+    obj.data = message.data ? base64FromBytes(message.data) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryTraceCallResponseAminoMsg): QueryTraceCallResponse {
+    return QueryTraceCallResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message: QueryTraceCallResponse): QueryTraceCallResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/QueryTraceCallResponse",
+      value: QueryTraceCallResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message: QueryTraceCallResponseProtoMsg): QueryTraceCallResponse {
+    return QueryTraceCallResponse.decode(message.value);
+  },
+  toProto(message: QueryTraceCallResponse): Uint8Array {
+    return QueryTraceCallResponse.encode(message).finish();
+  },
+  toProtoMsg(message: QueryTraceCallResponse): QueryTraceCallResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.evm.vm.v1.QueryTraceCallResponse",
+      value: QueryTraceCallResponse.encode(message).finish()
     };
   },
   registerTypeUrl() {}
