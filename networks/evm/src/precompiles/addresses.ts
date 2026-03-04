@@ -4,18 +4,7 @@ import type { Address } from 'viem';
  * XPLA EVM precompile contract addresses.
  * @see https://explorer.conx.xyz/
  */
-export const PRECOMPILE_ADDRESSES: {
-  Auth: Address;
-  Bank: Address;
-  Wasm: Address;
-  WasmDelegate: Address;
-  P256: Address;
-  Bech32: Address;
-  Distribution: Address;
-  Gov: Address;
-  Slashing: Address;
-  Staking: Address;
-} = {
+export const PRECOMPILE_ADDRESSES = {
   Auth: '0x1000000000000000000000000000000000000005',
   Bank: '0x1000000000000000000000000000000000000001',
   Wasm: '0x1000000000000000000000000000000000000004',
@@ -26,6 +15,17 @@ export const PRECOMPILE_ADDRESSES: {
   Gov: '0x0000000000000000000000000000000000000805',
   Slashing: '0x0000000000000000000000000000000000000806',
   Staking: '0x0000000000000000000000000000000000000800',
+} as const satisfies {
+  Auth: Address;
+  Bank: Address;
+  Wasm: Address;
+  WasmDelegate: Address;
+  P256: Address;
+  Bech32: Address;
+  Distribution: Address;
+  Gov: Address;
+  Slashing: Address;
+  Staking: Address;
 };
 
 export type PrecompileAddress = (typeof PRECOMPILE_ADDRESSES)[keyof typeof PRECOMPILE_ADDRESSES];
