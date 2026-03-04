@@ -4,7 +4,7 @@ version: v1.8.0
 chains:
   - id: dimension_37-1
     name: xpla
-    image: ghcr.io/hyperweb-io/starship/xpla:v1.8.0
+    image: ghcr.io/hyperweb-io/starship/xpla:v1.9.0-rc0
     numValidators: 1
     ports:
       rest: 1317
@@ -28,7 +28,23 @@ chains:
               "0x1000000000000000000000000000000000000001",
               "0x1000000000000000000000000000000000000004"
             ]
-
+        bank:
+            denom_metadata:
+              - description: "The native staking token for xpla."
+                denom_units:
+                  - denom: axpla
+                    exponent: 0
+                    aliases:
+                      - attoxpla
+                  - denom: xpla
+                    exponent: 18
+                    aliases: []
+                base: axpla
+                display: xpla
+                name: "Test XPLA Token"
+                symbol: XPLA
+                uri: ""
+                uri_hash: ""
   - id: cosmoshub-4
     name: cosmoshub
     image: ghcr.io/hyperweb-io/starship/gaia:v21.0.1

@@ -8,10 +8,7 @@
   "scripts": {
     "proto": "telescope download --config ./scripts/xpla.protod.config.json",
     "codegen": "ts-node ./scripts/codegen.ts",
-    "codegen:sol": "sh ./scripts/get-precompiles.sh",
-    "codegen:evm": "hardhat typechain",
-    "build": "lerna run build --stream",
-    "prepack": "sh ./scripts/prepack.sh"
+    "build": "lerna run build --stream"
   },
   "workspaces": [
     "libs/*",
@@ -25,16 +22,12 @@
     "@chain-registry/v2": "^1.71.216",
     "@hyperweb/telescope": "^1.17.0",
     "@starship-ci/cli": "^2.9.0",
-    "@typechain/ethers-v6": "^0.5.1",
-    "@typechain/hardhat": "^9.1.0",
     "deepmerge": "4.2.2",
-    "hardhat": "^2.26.2",
     "lerna": "catalog:",
     "rimraf": "4.4.1",
     "starshipjs": "^2.4.0",
     "ts-node": "^10.9.2",
     "tsdown": "catalog:",
-    "typechain": "^8.3.2",
     "typescript": "catalog:"
   },
   "pnpm": {
@@ -43,5 +36,5 @@
       "libsodium-sumo": "0.8.0"
     }
   },
-  "packageManager": "pnpm@10.27.0+sha512.72d699da16b1179c14ba9e64dc71c9a40988cbdc65c264cb0e489db7de917f20dcf4d64d8723625f2969ba52d4b7e2a1170682d9ac2a5dcaeaab732b7e16f04a"
+  "packageManager": "pnpm@10.30.3"
 }
