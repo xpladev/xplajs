@@ -1,10 +1,10 @@
 {
     "repos": [
-      { "owner": "cosmos", "repo": "cosmos-sdk", "branch": "release/v0.50.x" },
-      { "owner": "cosmos", "repo": "ibc-go", "branch": "release/v10.3.x" },
-      { "owner": "cosmos", "repo": "evm", "branch": "release/v0.3.x" },
-      { "owner": "cosmwasm", "repo": "wasmd", "branch": "releases/v0.54.x" },
-      { "owner": "xpladev", "repo": "xpla", "branch": "release/v1.8.x" },
+      { "owner": "cosmos", "repo": "cosmos-sdk", "branch": "release/v0.53.x" },
+      { "owner": "cosmos", "repo": "ibc-go", "branch": "release/v10.5.x" },
+      { "owner": "cosmos", "repo": "evm", "branch": "release/v0.6.x" },
+      { "owner": "cosmwasm", "repo": "wasmd", "branch": "release/v0.60.x" },
+      { "owner": "xpladev", "repo": "xpla", "branch": "release/v1.9.x" },
       { "owner": "xpladev", "repo": "ethermint", "branch": "release/v0.24.x-xpla" }
     ],
     "protoDirMapping": {
