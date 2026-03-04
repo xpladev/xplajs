@@ -7,7 +7,7 @@
   "repository": "git@github.com:xpladev/xplajs.git",
   "scripts": {
     "proto": "telescope download --config ./scripts/xpla.protod.config.json",
-    "codegen": "ts-node ./scripts/codegen.ts",
+    "codegen": "tsx ./scripts/codegen.cts",
     "build": "lerna run build --stream"
   },
   "workspaces": [
@@ -26,8 +26,8 @@
     "lerna": "catalog:",
     "rimraf": "4.4.1",
     "starshipjs": "^2.4.0",
-    "ts-node": "^10.9.2",
     "tsdown": "catalog:",
+    "tsx": "4.21.0",
     "typescript": "catalog:"
   },
   "pnpm": {
