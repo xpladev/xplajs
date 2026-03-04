@@ -195,11 +195,11 @@ importers:
   networks/evm:
     dependencies:
       '@xpla/contracts':
-        specifier: 1.9.0-rc2
-        version: 1.9.0-rc2
+        specifier: 1.9.0-rc3
+        version: 1.9.0-rc3
       cosmos-evm-contracts:
-        specifier: ^0.0.1
-        version: 0.0.1
+        specifier: ^0.0.7
+        version: 0.0.7
     devDependencies:
       '@types/node':
         specifier: ^20.0.0
@@ -2212,8 +2212,8 @@ packages:
   '@vitest/utils@4.0.18':
     resolution: {integrity: sha512-msMRKLMVLWygpK3u2Hybgi4MNjcYJvwTb0Ru09+fOyCXIgT5raYP041DRRdiJiI3k/2U6SEbAETB3YtBrUkCFA==}
 
-  '@xpla/contracts@1.9.0-rc2':
-    resolution: {integrity: sha512-9Lwk4W6lpocMV5asRf3yG5c8z5DTVke2CKsTx700gxXVvzgm/4XsxHgrxaQc4XHTkj0ry4j+2rt0Wxw9U2BWHA==}
+  '@xpla/contracts@1.9.0-rc3':
+    resolution: {integrity: sha512-MNAY7AgnXYIGX0PrjafdslIhak8eMqduPfNgiFgfZiE9xuunt0uoBuZ1uv7AEQGSmr0wqnW+WoHwM8CGku5jUQ==}
 
   '@yarnpkg/lockfile@1.1.0':
     resolution: {integrity: sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==}
@@ -2735,8 +2735,8 @@ packages:
   cosmjs-types@0.9.0:
     resolution: {integrity: sha512-MN/yUe6mkJwHnCFfsNPeCfXVhyxHYW6c/xDUzrSbBycYzw++XvWDMJArXp2pLdgD6FQ8DW79vkPjeNKVrXaHeQ==}
 
-  cosmos-evm-contracts@0.0.1:
-    resolution: {integrity: sha512-YMPlJJPvVLTlU52jS+RCOHutrVlH/b0f6QHXf6UbSZI1cgJ17raSnoNpksvR7PW86mmYTx3WbPcYvSSe/mLX4A==}
+  cosmos-evm-contracts@0.0.7:
+    resolution: {integrity: sha512-6j6EQtjz+te7uB0CAnd/g+qpmRwOZrsNUbhAvi4mm9Sql5cLP4nfV9SmFLSWhXWp8MpTaRbq2wJGHk2eLnGrPQ==}
 
   create-require@1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
@@ -7703,9 +7703,9 @@ snapshots:
       '@vitest/pretty-format': 4.0.18
       tinyrainbow: 3.0.3
 
-  '@xpla/contracts@1.9.0-rc2':
+  '@xpla/contracts@1.9.0-rc3':
     dependencies:
-      cosmos-evm-contracts: 0.0.1
+      cosmos-evm-contracts: 0.0.7
 
   '@yarnpkg/lockfile@1.1.0': {}
 
@@ -8223,7 +8223,7 @@ snapshots:
 
   cosmjs-types@0.9.0: {}
 
-  cosmos-evm-contracts@0.0.1:
+  cosmos-evm-contracts@0.0.7:
     dependencies:
       '@account-abstraction/contracts': 0.8.0
 

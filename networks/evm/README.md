@@ -24,15 +24,11 @@ const client = createPublicClient({
 
 ### Precompile addresses and ABI
 
+Each precompile is exported as `{ abi, address }` for use with viem (full type inference for `writeContract` / `readContract`):
+
 ```ts
-import {
-  PRECOMPILE_ADDRESSES,
-  BANK_PRECOMPILE_ABI,
-  STAKING_PRECOMPILE_ABI,
-  type CoinStruct,
-  type PageRequestStruct,
-} from '@xpla/evm/precompiles';
-import { getContract, createPublicClient, http } from 'viem';
+import { bank, type CoinStruct, type PageRequestStruct } from '@xpla/evm/precompiles';
+import { getContract, createPublicClient, http, writeContract } from 'viem';
 import { conxMainnet } from '@xpla/evm';
 
 const publicClient = createPublicClient({
@@ -40,12 +36,16 @@ const publicClient = createPublicClient({
   transport: http(),
 });
 const bankContract = getContract({
-  address: PRECOMPILE_ADDRESSES.Bank,
-  abi: BANK_PRECOMPILE_ABI,
+  ...bank,
   client: publicClient,
 });
 const balance = await bankContract.read.balance([address, denom]);
+
+// writeContract with inferred function names and args
+await writeContract(publicClient, { ...bank, functionName: 'send', args: [/* ... */] });
 ```
+
+Legacy: `PRECOMPILE_ADDRESSES` and `*_PRECOMPILE_ABI` constants are still exported but deprecated; prefer `auth`, `bank`, `wasm`, `bech32`, `distribution`, `gov`, `slashing`, `staking`.
 
 ## ABI sources
 

@@ -8,13 +8,14 @@ export {
 } from './chain';
 export {
   PRECOMPILE_ADDRESSES,
-  AUTH_PRECOMPILE_ABI,
-  BANK_PRECOMPILE_ABI,
-  WASM_PRECOMPILE_ABI,
-  BECH32_PRECOMPILE_ABI,
-  DISTRIBUTION_PRECOMPILE_ABI,
-  GOV_PRECOMPILE_ABI,
-  SLASHING_PRECOMPILE_ABI,
-  STAKING_PRECOMPILE_ABI,
+  auth,
+  bank,
+  wasm,
+  wasmDelegate,
+  bech32,
+  distribution,
+  gov,
+  slashing,
+  staking,
 } from './precompiles/index';
-export type { PrecompileAddress, CoinStruct, PageRequestStruct } from './precompiles/index';
+export type { PrecompileAddress } from './precompiles/index';

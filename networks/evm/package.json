@@ -45,8 +45,8 @@
     "viem": "2.x"
   },
   "dependencies": {
-    "@xpla/contracts": "1.9.0-rc2",
-    "cosmos-evm-contracts": "^0.0.1"
+    "@xpla/contracts": "1.9.0-rc3",
+    "cosmos-evm-contracts": "^0.0.7"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

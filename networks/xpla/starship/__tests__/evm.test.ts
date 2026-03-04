@@ -9,13 +9,7 @@ import { useChain } from 'starshipjs';
 import { EthSecp256k1HDWallet } from '../../src/wallets/ethSecp256k1hd';
 import { createCosmosEvmSignerConfig, DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '../../src/signers/config';
 import * as bip39 from 'bip39';
-import {
-  PRECOMPILE_ADDRESSES,
-  BANK_PRECOMPILE_ABI,
-  STAKING_PRECOMPILE_ABI,
-  WASM_PRECOMPILE_ABI,
-  type CoinStruct,
-} from '@xpla/evm/precompiles';
+import { bank, staking, wasm } from '@xpla/evm/precompiles';
 import { conxLocal } from '@xpla/evm';
 import { fromBech32, toBech32 } from '@interchainjs/encoding';
 import { storeCodeCosmwasmWasmV1 } from '@xpla/xplajs';
@@ -117,12 +111,11 @@ describe('Token transfers', () => {
   }, 200000);
 
   it('precompile bank', async () => {
-    const amount: CoinStruct = { denom, amount: '1' };
+    const amount = { denom, amount: 1n };
     const hash = await walletClient.writeContract({
       account: walletAccount,
       chain,
-      address: PRECOMPILE_ADDRESSES.Bank,
-      abi: BANK_PRECOMPILE_ABI,
+      ...bank,
       functionName: 'send',
       args: [hexAddress, hexAddress2, [amount]],
     });
@@ -141,14 +134,12 @@ describe('Token transfers', () => {
       countTotal: false,
       reverse: false,
     };
-    const validatorsResult = await publicClient.readContract({
-      address: PRECOMPILE_ADDRESSES.Staking,
-      abi: STAKING_PRECOMPILE_ABI,
+    const [validatorsList] = await publicClient.readContract({
+      ...staking,
       functionName: 'validators',
       args: ['BOND_STATUS_BONDED', page],
       authorizationList: [],
-    }) as [Array<{ operatorAddress: string }>, unknown] | { validators: Array<{ operatorAddress: string }> };
-    const validatorsList = Array.isArray(validatorsResult) ? validatorsResult[0] : validatorsResult.validators;
+    });
     const operatorAddressHex = validatorsList[0].operatorAddress;
     const hexForBytes = operatorAddressHex.startsWith('0x') ? (operatorAddressHex as `0x${string}`) : (`0x${operatorAddressHex}` as `0x${string}`);
     const operatorAddressBech32 = toBech32('xplavaloper', hexToBytes(hexForBytes));
@@ -156,22 +147,20 @@ describe('Token transfers', () => {
     const hash = await walletClient.writeContract({
       account: walletAccount,
       chain,
-      address: PRECOMPILE_ADDRESSES.Staking,
-      abi: STAKING_PRECOMPILE_ABI,
+      ...staking,
       functionName: 'delegate',
       args: [hexAddress, operatorAddressBech32, 1000000000000000000n],
     });
     await sleep(2000);
     await publicClient.waitForTransactionReceipt({ hash });
 
-    const delegation = await publicClient.readContract({
-      address: PRECOMPILE_ADDRESSES.Staking,
-      abi: STAKING_PRECOMPILE_ABI,
+    const [, delegationBalance] = await publicClient.readContract({
+      ...staking,
       functionName: 'delegation',
       args: [hexAddress, operatorAddressBech32],
       authorizationList: [],
-    }) as [bigint, { amount: bigint }];
-    expect(delegation[1].amount).toEqual(1000000000000000000n);
+    });
+    expect(delegationBalance.amount).toEqual(1000000000000000000n);
   }, 200000);
 
   it('precompile wasm', async () => {
@@ -198,8 +187,7 @@ describe('Token transfers', () => {
     const instantiateHash = await walletClient.writeContract({
       account: walletAccount,
       chain,
-      address: PRECOMPILE_ADDRESSES.Wasm,
-      abi: WASM_PRECOMPILE_ABI,
+      ...wasm,
       functionName: 'instantiateContract',
       args: [hexAddress, hexAddress, BigInt(codeId ?? 0), 'counter', bytesToHex(instantiateMsg) as `0x${string}`, []],
     });
@@ -218,8 +206,7 @@ describe('Token transfers', () => {
 
     const queryData = new Uint8Array(Buffer.from(`{"get_count": {}}`));
     const beforeRes = await publicClient.readContract({
-      address: PRECOMPILE_ADDRESSES.Wasm,
-      abi: WASM_PRECOMPILE_ABI,
+      ...wasm,
       functionName: 'smartContractState',
       args: [contractAddressHexString, bytesToHex(queryData) as `0x${string}`],
       authorizationList: [],
@@ -233,8 +220,7 @@ describe('Token transfers', () => {
     const executeHash = await walletClient.writeContract({
       account: walletAccount,
       chain,
-      address: PRECOMPILE_ADDRESSES.Wasm,
-      abi: WASM_PRECOMPILE_ABI,
+      ...wasm,
       functionName: 'executeContract',
       args: [hexAddress, contractAddressHexString, bytesToHex(executeMsg) as `0x${string}`, []],
     });
@@ -242,8 +228,7 @@ describe('Token transfers', () => {
     await publicClient.waitForTransactionReceipt({ hash: executeHash });
 
     const afterRes = await publicClient.readContract({
-      address: PRECOMPILE_ADDRESSES.Wasm,
-      abi: WASM_PRECOMPILE_ABI,
+      ...wasm,
       functionName: 'smartContractState',
       args: [contractAddressHexString, bytesToHex(queryData) as `0x${string}`],
       authorizationList: [],
