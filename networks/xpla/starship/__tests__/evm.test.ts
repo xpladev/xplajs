@@ -24,6 +24,8 @@ import {
   hexToBytes,
   bytesToHex,
   type Address,
+  hexToString,
+  stringToHex,
 } from 'viem';
 import { mnemonicToAccount } from 'viem/accounts';
 
@@ -96,7 +98,7 @@ describe('Token transfers', () => {
 
   it('cosmos address & evm address', () => {
     const { data: hexByteAddress } = fromBech32(address);
-    const addressToHex = getAddress(bytesToHex(hexByteAddress) as `0x${string}`);
+    const addressToHex = getAddress(bytesToHex(hexByteAddress));
     expect(hexAddress).toEqual(addressToHex);
 
     const bech32Address = toBech32(commonPrefix, hexByteAddress);
@@ -105,7 +107,7 @@ describe('Token transfers', () => {
 
   it('check address has tokens', async () => {
     const { data: hexByteAddress } = fromBech32(address);
-    const addr = getAddress(bytesToHex(hexByteAddress) as `0x${string}`);
+    const addr = getAddress(bytesToHex(hexByteAddress));
     const balance = await publicClient.getBalance({ address: addr });
     expect(balance).toEqual(100000000000000000000n);
   }, 200000);
@@ -119,7 +121,6 @@ describe('Token transfers', () => {
       functionName: 'send',
       args: [hexAddress, hexAddress2, [amount]],
     });
-    await sleep(2000);
     await publicClient.waitForTransactionReceipt({ hash });
 
     const balance = await publicClient.getBalance({ address: hexAddress2 });
@@ -141,7 +142,9 @@ describe('Token transfers', () => {
       authorizationList: [],
     });
     const operatorAddressHex = validatorsList[0].operatorAddress;
-    const hexForBytes = operatorAddressHex.startsWith('0x') ? (operatorAddressHex as `0x${string}`) : (`0x${operatorAddressHex}` as `0x${string}`);
+    const hexForBytes = operatorAddressHex.startsWith('0x')
+      ? (operatorAddressHex as `0x${string}`)
+      : (`0x${operatorAddressHex}` as `0x${string}`);
     const operatorAddressBech32 = toBech32('xplavaloper', hexToBytes(hexForBytes));
 
     const hash = await walletClient.writeContract({
@@ -151,7 +154,6 @@ describe('Token transfers', () => {
       functionName: 'delegate',
       args: [hexAddress, operatorAddressBech32, 1000000000000000000n],
     });
-    await sleep(2000);
     await publicClient.waitForTransactionReceipt({ hash });
 
     const [, delegationBalance] = await publicClient.readContract({
@@ -183,15 +185,14 @@ describe('Token transfers', () => {
       ?.find((e) => e.type === 'store_code')
       ?.attributes?.find((a) => a.key === 'code_id')?.value;
 
-    const instantiateMsg = new Uint8Array(Buffer.from(`{"count": 0}`));
+    const instantiateMsg = stringToHex(`{"count": 0}`);
     const instantiateHash = await walletClient.writeContract({
       account: walletAccount,
       chain,
       ...wasm,
       functionName: 'instantiateContract',
-      args: [hexAddress, hexAddress, BigInt(codeId ?? 0), 'counter', bytesToHex(instantiateMsg) as `0x${string}`, []],
+      args: [hexAddress, hexAddress, BigInt(codeId ?? 0), 'counter', instantiateMsg, []],
     });
-    await sleep(2000);
     const receipt = await publicClient.waitForTransactionReceipt({ hash: instantiateHash });
 
     const blockResults = await queryClient.getBlockResults(Number(receipt.blockNumber));
@@ -202,27 +203,26 @@ describe('Token transfers', () => {
 
     let contractAddressHex = fromBech32(contractAddress!).data;
     contractAddressHex = contractAddressHex.slice(12, contractAddressHex.length);
-    const contractAddressHexString = bytesToHex(contractAddressHex) as `0x${string}`;
+    const contractAddressHexString = bytesToHex(contractAddressHex);
 
-    const queryData = new Uint8Array(Buffer.from(`{"get_count": {}}`));
+    const queryData = stringToHex(`{"get_count": {}}`);
     const beforeRes = await publicClient.readContract({
       ...wasm,
       functionName: 'smartContractState',
-      args: [contractAddressHexString, bytesToHex(queryData) as `0x${string}`],
+      args: [contractAddressHexString, queryData],
       authorizationList: [],
     });
-    const beforeHexString = typeof beforeRes === 'string' && beforeRes.startsWith('0x') ? beforeRes.slice(2) : String(beforeRes);
-    const beforeBytes = new Uint8Array(Buffer.from(beforeHexString, 'hex'));
-    const { count: beforeCount } = JSON.parse(new TextDecoder().decode(beforeBytes));
+
+    const { count: beforeCount } = JSON.parse(hexToString(beforeRes));
     expect(beforeCount).toEqual(0);
 
-    const executeMsg = new Uint8Array(Buffer.from(`{"increment": {}}`));
+    const executeMsg = stringToHex(`{"increment": {}}`);
     const executeHash = await walletClient.writeContract({
       account: walletAccount,
       chain,
       ...wasm,
       functionName: 'executeContract',
-      args: [hexAddress, contractAddressHexString, bytesToHex(executeMsg) as `0x${string}`, []],
+      args: [hexAddress, contractAddressHexString, executeMsg, []],
     });
     await sleep(1000);
     await publicClient.waitForTransactionReceipt({ hash: executeHash });
@@ -230,12 +230,11 @@ describe('Token transfers', () => {
     const afterRes = await publicClient.readContract({
       ...wasm,
       functionName: 'smartContractState',
-      args: [contractAddressHexString, bytesToHex(queryData) as `0x${string}`],
+      args: [contractAddressHexString, queryData],
       authorizationList: [],
     });
-    const afterHexString = typeof afterRes === 'string' && afterRes.startsWith('0x') ? afterRes.slice(2) : String(afterRes);
-    const afterBytes = new Uint8Array(Buffer.from(afterHexString, 'hex'));
-    const { count: afterCount } = JSON.parse(new TextDecoder().decode(afterBytes));
+ 
+    const { count: afterCount } = JSON.parse(hexToString(afterRes));
     expect(afterCount).toEqual(1);
   }, 200000);
 });
