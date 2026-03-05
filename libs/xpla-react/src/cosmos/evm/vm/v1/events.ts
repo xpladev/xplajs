@@ -24,7 +24,7 @@ export interface EventEthereumTx {
    */
   gasUsed: string;
   /**
-   * hash is the Tendermint hash of the transaction
+   * hash is the CometBFT hash of the transaction
    */
   hash: string;
   /**
@@ -64,7 +64,7 @@ export interface EventEthereumTxAmino {
    */
   gas_used: string;
   /**
-   * hash is the Tendermint hash of the transaction
+   * hash is the CometBFT hash of the transaction
    */
   hash: string;
   /**

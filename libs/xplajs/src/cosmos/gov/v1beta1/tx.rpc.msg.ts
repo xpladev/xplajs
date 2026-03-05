@@ -7,11 +7,7 @@ export interface Msg {
   submitProposal(request: MsgSubmitProposal): Promise<MsgSubmitProposalResponse>;
   /** Vote defines a method to add a vote on a specific proposal. */
   vote(request: MsgVote): Promise<MsgVoteResponse>;
-  /**
-   * VoteWeighted defines a method to add a weighted vote on a specific proposal.
-   * 
-   * Since: cosmos-sdk 0.43
-   */
+  /** VoteWeighted defines a method to add a weighted vote on a specific proposal. */
   voteWeighted(request: MsgVoteWeighted): Promise<MsgVoteWeightedResponse>;
   /** Deposit defines a method to add deposit on a specific proposal. */
   deposit(request: MsgDeposit): Promise<MsgDepositResponse>;
@@ -33,9 +29,7 @@ export class MsgClientImpl implements Msg {
     const promise = this.rpc.request("cosmos.gov.v1beta1.Msg", "Vote", data);
     return promise.then(data => MsgVoteResponse.decode(new BinaryReader(data)));
   };
-  /* VoteWeighted defines a method to add a weighted vote on a specific proposal.
-  
-   Since: cosmos-sdk 0.43 */
+  /* VoteWeighted defines a method to add a weighted vote on a specific proposal. */
   voteWeighted = async (request: MsgVoteWeighted): Promise<MsgVoteWeightedResponse> => {
     const data = MsgVoteWeighted.encode(request).finish();
     const promise = this.rpc.request("cosmos.gov.v1beta1.Msg", "VoteWeighted", data);

@@ -1,0 +1,24 @@
+name: 'Setup and Build'
+description: 'Install pnpm, Node.js, dependencies, and build packages'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        run_install: false
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22.x'
+        cache: 'pnpm'
+
+    - name: Install Root Dependencies
+      shell: bash
+      run: pnpm install
+
+    - name: Build Packages
+      shell: bash
+      run: pnpm build

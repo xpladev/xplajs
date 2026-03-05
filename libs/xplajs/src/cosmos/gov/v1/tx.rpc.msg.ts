@@ -19,15 +19,9 @@ export interface Msg {
   /**
    * UpdateParams defines a governance operation for updating the x/gov module
    * parameters. The authority is defined in the keeper.
-   * 
-   * Since: cosmos-sdk 0.47
    */
   updateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
-  /**
-   * CancelProposal defines a method to cancel governance proposal
-   * 
-   * Since: cosmos-sdk 0.50
-   */
+  /** CancelProposal defines a method to cancel governance proposal */
   cancelProposal(request: MsgCancelProposal): Promise<MsgCancelProposalResponse>;
 }
 export class MsgClientImpl implements Msg {
@@ -67,17 +61,13 @@ export class MsgClientImpl implements Msg {
     return promise.then(data => MsgDepositResponse.decode(new BinaryReader(data)));
   };
   /* UpdateParams defines a governance operation for updating the x/gov module
-   parameters. The authority is defined in the keeper.
-  
-   Since: cosmos-sdk 0.47 */
+   parameters. The authority is defined in the keeper. */
   updateParams = async (request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> => {
     const data = MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request("cosmos.gov.v1.Msg", "UpdateParams", data);
     return promise.then(data => MsgUpdateParamsResponse.decode(new BinaryReader(data)));
   };
-  /* CancelProposal defines a method to cancel governance proposal
-  
-   Since: cosmos-sdk 0.50 */
+  /* CancelProposal defines a method to cancel governance proposal */
   cancelProposal = async (request: MsgCancelProposal): Promise<MsgCancelProposalResponse> => {
     const data = MsgCancelProposal.encode(request).finish();
     const promise = this.rpc.request("cosmos.gov.v1.Msg", "CancelProposal", data);

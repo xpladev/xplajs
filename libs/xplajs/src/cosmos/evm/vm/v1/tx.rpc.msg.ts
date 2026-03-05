@@ -1,6 +1,6 @@
 import { TxRpc } from "../../../../types";
 import { BinaryReader } from "../../../../binary";
-import { MsgEthereumTx, MsgEthereumTxResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx";
+import { MsgEthereumTx, MsgEthereumTxResponse, MsgUpdateParams, MsgUpdateParamsResponse, MsgRegisterPreinstalls, MsgRegisterPreinstallsResponse } from "./tx";
 /** Msg defines the evm Msg service. */
 export interface Msg {
   /** EthereumTx defines a method submitting Ethereum transactions. */
@@ -11,6 +11,12 @@ export interface Msg {
    * account
    */
   updateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
+  /**
+   * RegisterPreinstalls defines a governance operation for directly registering
+   * preinstalled contracts in the EVM. The authority is the same as is used for
+   * Params updates.
+   */
+  registerPreinstalls(request: MsgRegisterPreinstalls): Promise<MsgRegisterPreinstallsResponse>;
 }
 export class MsgClientImpl implements Msg {
   private readonly rpc: TxRpc;
@@ -30,6 +36,14 @@ export class MsgClientImpl implements Msg {
     const data = MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request("cosmos.evm.vm.v1.Msg", "UpdateParams", data);
     return promise.then(data => MsgUpdateParamsResponse.decode(new BinaryReader(data)));
+  };
+  /* RegisterPreinstalls defines a governance operation for directly registering
+   preinstalled contracts in the EVM. The authority is the same as is used for
+   Params updates. */
+  registerPreinstalls = async (request: MsgRegisterPreinstalls): Promise<MsgRegisterPreinstallsResponse> => {
+    const data = MsgRegisterPreinstalls.encode(request).finish();
+    const promise = this.rpc.request("cosmos.evm.vm.v1.Msg", "RegisterPreinstalls", data);
+    return promise.then(data => MsgRegisterPreinstallsResponse.decode(new BinaryReader(data)));
   };
 }
 export const createClientImpl = (rpc: TxRpc) => {

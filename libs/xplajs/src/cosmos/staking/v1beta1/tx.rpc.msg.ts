@@ -25,14 +25,11 @@ export interface Msg {
   /**
    * CancelUnbondingDelegation defines a method for performing canceling the unbonding delegation
    * and delegate back to previous validator.
-   * 
-   * Since: cosmos-sdk 0.46
    */
   cancelUnbondingDelegation(request: MsgCancelUnbondingDelegation): Promise<MsgCancelUnbondingDelegationResponse>;
   /**
    * UpdateParams defines an operation for updating the x/staking module
    * parameters.
-   * Since: cosmos-sdk 0.47
    */
   updateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
 }
@@ -75,17 +72,14 @@ export class MsgClientImpl implements Msg {
     return promise.then(data => MsgUndelegateResponse.decode(new BinaryReader(data)));
   };
   /* CancelUnbondingDelegation defines a method for performing canceling the unbonding delegation
-   and delegate back to previous validator.
-  
-   Since: cosmos-sdk 0.46 */
+   and delegate back to previous validator. */
   cancelUnbondingDelegation = async (request: MsgCancelUnbondingDelegation): Promise<MsgCancelUnbondingDelegationResponse> => {
     const data = MsgCancelUnbondingDelegation.encode(request).finish();
     const promise = this.rpc.request("cosmos.staking.v1beta1.Msg", "CancelUnbondingDelegation", data);
     return promise.then(data => MsgCancelUnbondingDelegationResponse.decode(new BinaryReader(data)));
   };
   /* UpdateParams defines an operation for updating the x/staking module
-   parameters.
-   Since: cosmos-sdk 0.47 */
+   parameters. */
   updateParams = async (request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> => {
     const data = MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request("cosmos.staking.v1beta1.Msg", "UpdateParams", data);

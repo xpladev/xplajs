@@ -56,9 +56,7 @@ export class LCDQueryClient {
   };
   /* ABCIQuery defines a query handler that supports ABCI queries directly to the
    application, bypassing Tendermint completely. The ABCI query must contain
-   a valid and supported path, including app, custom, p2p, and store.
-  
-   Since: cosmos-sdk 0.46 */
+   a valid and supported path, including app, custom, p2p, and store. */
   aBCIQuery = async (params: ABCIQueryRequest): Promise<ABCIQueryResponse> => {
     const options: any = {
       params: {}

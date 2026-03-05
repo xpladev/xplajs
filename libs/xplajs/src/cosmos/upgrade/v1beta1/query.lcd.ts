@@ -29,9 +29,7 @@ export class LCDQueryClient {
     const endpoint = `cosmos/upgrade/v1beta1/upgraded_consensus_state/${params.lastHeight}`;
     return await this.req.get<QueryUpgradedConsensusStateResponse>(endpoint);
   };
-  /* ModuleVersions queries the list of module versions from state.
-  
-   Since: cosmos-sdk 0.43 */
+  /* ModuleVersions queries the list of module versions from state. */
   moduleVersions = async (params: QueryModuleVersionsRequest): Promise<QueryModuleVersionsResponse> => {
     const options: any = {
       params: {}
@@ -42,9 +40,7 @@ export class LCDQueryClient {
     const endpoint = `cosmos/upgrade/v1beta1/module_versions`;
     return await this.req.get<QueryModuleVersionsResponse>(endpoint, options);
   };
-  /* Returns the account with authority to conduct upgrades
-  
-   Since: cosmos-sdk 0.46 */
+  /* Returns the account with authority to conduct upgrades */
   authority = async (_params: QueryAuthorityRequest = {}): Promise<QueryAuthorityResponse> => {
     const endpoint = `cosmos/upgrade/v1beta1/authority`;
     return await this.req.get<QueryAuthorityResponse>(endpoint);

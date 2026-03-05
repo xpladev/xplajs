@@ -1,6 +1,6 @@
 import { MsgEthereumTxResponse } from "./tx";
 import { LCDClient } from "@cosmology/lcd";
-import { QueryAccountRequest, QueryAccountResponse, QueryCosmosAccountRequest, QueryCosmosAccountResponse, QueryValidatorAccountRequest, QueryValidatorAccountResponse, QueryBalanceRequest, QueryBalanceResponse, QueryStorageRequest, QueryStorageResponse, QueryCodeRequest, QueryCodeResponse, QueryParamsRequest, QueryParamsResponse, EthCallRequest, EstimateGasResponse, QueryTraceTxRequest, QueryTraceTxResponse, QueryTraceBlockRequest, QueryTraceBlockResponse, QueryBaseFeeRequest, QueryBaseFeeResponse, QueryConfigRequest, QueryConfigResponse, QueryGlobalMinGasPriceRequest, QueryGlobalMinGasPriceResponse } from "./query";
+import { QueryAccountRequest, QueryAccountResponse, QueryCosmosAccountRequest, QueryCosmosAccountResponse, QueryValidatorAccountRequest, QueryValidatorAccountResponse, QueryBalanceRequest, QueryBalanceResponse, QueryStorageRequest, QueryStorageResponse, QueryCodeRequest, QueryCodeResponse, QueryParamsRequest, QueryParamsResponse, EthCallRequest, EstimateGasResponse, QueryTraceTxRequest, QueryTraceTxResponse, QueryTraceBlockRequest, QueryTraceBlockResponse, QueryTraceCallRequest, QueryTraceCallResponse, QueryBaseFeeRequest, QueryBaseFeeResponse, QueryConfigRequest, QueryConfigResponse, QueryGlobalMinGasPriceRequest, QueryGlobalMinGasPriceResponse } from "./query";
 export class LCDQueryClient {
   req: LCDClient;
   constructor({
@@ -64,6 +64,9 @@ export class LCDQueryClient {
     if (typeof params?.chainId !== "undefined") {
       options.params.chain_id = params.chainId;
     }
+    if (typeof params?.overrides !== "undefined") {
+      options.params.overrides = params.overrides;
+    }
     const endpoint = `cosmos/evm/vm/v1/eth_call`;
     return await this.req.get<MsgEthereumTxResponse>(endpoint, options);
   };
@@ -83,6 +86,9 @@ export class LCDQueryClient {
     }
     if (typeof params?.chainId !== "undefined") {
       options.params.chain_id = params.chainId;
+    }
+    if (typeof params?.overrides !== "undefined") {
+      options.params.overrides = params.overrides;
     }
     const endpoint = `cosmos/evm/vm/v1/estimate_gas`;
     return await this.req.get<EstimateGasResponse>(endpoint, options);
@@ -154,6 +160,38 @@ export class LCDQueryClient {
     }
     const endpoint = `cosmos/evm/vm/v1/trace_block`;
     return await this.req.get<QueryTraceBlockResponse>(endpoint, options);
+  };
+  /* TraceCall implements the `debug_traceCall` rpc api */
+  traceCall = async (params: QueryTraceCallRequest): Promise<QueryTraceCallResponse> => {
+    const options: any = {
+      params: {}
+    };
+    if (typeof params?.args !== "undefined") {
+      options.params.args = params.args;
+    }
+    if (typeof params?.gasCap !== "undefined") {
+      options.params.gas_cap = params.gasCap;
+    }
+    if (typeof params?.proposerAddress !== "undefined") {
+      options.params.proposer_address = params.proposerAddress;
+    }
+    if (typeof params?.traceConfig !== "undefined") {
+      options.params.trace_config = params.traceConfig;
+    }
+    if (typeof params?.blockNumber !== "undefined") {
+      options.params.block_number = params.blockNumber;
+    }
+    if (typeof params?.blockHash !== "undefined") {
+      options.params.block_hash = params.blockHash;
+    }
+    if (typeof params?.blockTime !== "undefined") {
+      options.params.block_time = params.blockTime;
+    }
+    if (typeof params?.chainId !== "undefined") {
+      options.params.chain_id = params.chainId;
+    }
+    const endpoint = `cosmos/evm/vm/v1/trace_call`;
+    return await this.req.get<QueryTraceCallResponse>(endpoint, options);
   };
   /* BaseFee queries the base fee of the parent block of the current block,
    it's similar to feemarket module's method, but also checks london hardfork

@@ -1,6 +1,6 @@
 import { MsgEthereumTxResponse } from "./tx";
 import { buildQuery } from "../../../../helper-func-types";
-import { QueryAccountRequest, QueryAccountResponse, QueryCosmosAccountRequest, QueryCosmosAccountResponse, QueryValidatorAccountRequest, QueryValidatorAccountResponse, QueryBalanceRequest, QueryBalanceResponse, QueryStorageRequest, QueryStorageResponse, QueryCodeRequest, QueryCodeResponse, QueryParamsRequest, QueryParamsResponse, EthCallRequest, EstimateGasResponse, QueryTraceTxRequest, QueryTraceTxResponse, QueryTraceBlockRequest, QueryTraceBlockResponse, QueryBaseFeeRequest, QueryBaseFeeResponse, QueryConfigRequest, QueryConfigResponse, QueryGlobalMinGasPriceRequest, QueryGlobalMinGasPriceResponse } from "./query";
+import { QueryAccountRequest, QueryAccountResponse, QueryCosmosAccountRequest, QueryCosmosAccountResponse, QueryValidatorAccountRequest, QueryValidatorAccountResponse, QueryBalanceRequest, QueryBalanceResponse, QueryStorageRequest, QueryStorageResponse, QueryCodeRequest, QueryCodeResponse, QueryParamsRequest, QueryParamsResponse, EthCallRequest, EstimateGasResponse, QueryTraceTxRequest, QueryTraceTxResponse, QueryTraceBlockRequest, QueryTraceBlockResponse, QueryTraceCallRequest, QueryTraceCallResponse, QueryBaseFeeRequest, QueryBaseFeeResponse, QueryConfigRequest, QueryConfigResponse, QueryGlobalMinGasPriceRequest, QueryGlobalMinGasPriceResponse } from "./query";
 /**
  * Account queries an Ethereum account.
  * @name getAccount
@@ -146,6 +146,19 @@ export const getTraceBlock = buildQuery<QueryTraceBlockRequest, QueryTraceBlockR
   service: "cosmos.evm.vm.v1.Query",
   method: "TraceBlock",
   deps: [QueryTraceBlockRequest, QueryTraceBlockResponse]
+});
+/**
+ * TraceCall implements the `debug_traceCall` rpc api
+ * @name getTraceCall
+ * @package cosmos.evm.vm.v1
+ * @see proto service: cosmos.evm.vm.v1.TraceCall
+ */
+export const getTraceCall = buildQuery<QueryTraceCallRequest, QueryTraceCallResponse>({
+  encode: QueryTraceCallRequest.encode,
+  decode: QueryTraceCallResponse.decode,
+  service: "cosmos.evm.vm.v1.Query",
+  method: "TraceCall",
+  deps: [QueryTraceCallRequest, QueryTraceCallResponse]
 });
 /**
  * BaseFee queries the base fee of the parent block of the current block,

@@ -18,5 +18,5 @@ export * from "./react-query";
 export * from "./varint";
 export * from "./utf8";
 export * from "./binary";
-export * from "./types";
+export type * from "./types";
 export * from "./registry";

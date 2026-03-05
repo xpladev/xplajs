@@ -6,8 +6,6 @@ export interface Msg {
   /**
    * UpdateParams defines a governance operation for updating the x/consensus module parameters.
    * The authority is defined in the keeper.
-   * 
-   * Since: cosmos-sdk 0.47
    */
   updateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
 }
@@ -17,9 +15,7 @@ export class MsgClientImpl implements Msg {
     this.rpc = rpc;
   }
   /* UpdateParams defines a governance operation for updating the x/consensus module parameters.
-   The authority is defined in the keeper.
-  
-   Since: cosmos-sdk 0.47 */
+   The authority is defined in the keeper. */
   updateParams = async (request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> => {
     const data = MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request("cosmos.consensus.v1.Msg", "UpdateParams", data);

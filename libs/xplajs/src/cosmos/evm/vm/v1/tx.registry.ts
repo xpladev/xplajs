@@ -1,6 +1,6 @@
 import { TelescopeGeneratedType } from "../../../../types";
-import { MsgEthereumTx, MsgUpdateParams } from "./tx";
-export const registry: ReadonlyArray<[string, TelescopeGeneratedType<any, any, any>]> = [["/cosmos.evm.vm.v1.MsgEthereumTx", MsgEthereumTx], ["/cosmos.evm.vm.v1.MsgUpdateParams", MsgUpdateParams]];
+import { MsgEthereumTx, MsgUpdateParams, MsgRegisterPreinstalls } from "./tx";
+export const registry: ReadonlyArray<[string, TelescopeGeneratedType<any, any, any>]> = [["/cosmos.evm.vm.v1.MsgEthereumTx", MsgEthereumTx], ["/cosmos.evm.vm.v1.MsgUpdateParams", MsgUpdateParams], ["/cosmos.evm.vm.v1.MsgRegisterPreinstalls", MsgRegisterPreinstalls]];
 export const MessageComposer = {
   encoded: {
     ethereumTx(value: MsgEthereumTx) {
@@ -13,6 +13,12 @@ export const MessageComposer = {
       return {
         typeUrl: "/cosmos.evm.vm.v1.MsgUpdateParams",
         value: MsgUpdateParams.encode(value).finish()
+      };
+    },
+    registerPreinstalls(value: MsgRegisterPreinstalls) {
+      return {
+        typeUrl: "/cosmos.evm.vm.v1.MsgRegisterPreinstalls",
+        value: MsgRegisterPreinstalls.encode(value).finish()
       };
     }
   },
@@ -28,6 +34,12 @@ export const MessageComposer = {
         typeUrl: "/cosmos.evm.vm.v1.MsgUpdateParams",
         value
       };
+    },
+    registerPreinstalls(value: MsgRegisterPreinstalls) {
+      return {
+        typeUrl: "/cosmos.evm.vm.v1.MsgRegisterPreinstalls",
+        value
+      };
     }
   },
   fromPartial: {
@@ -41,6 +53,12 @@ export const MessageComposer = {
       return {
         typeUrl: "/cosmos.evm.vm.v1.MsgUpdateParams",
         value: MsgUpdateParams.fromPartial(value)
+      };
+    },
+    registerPreinstalls(value: MsgRegisterPreinstalls) {
+      return {
+        typeUrl: "/cosmos.evm.vm.v1.MsgRegisterPreinstalls",
+        value: MsgRegisterPreinstalls.fromPartial(value)
       };
     }
   }

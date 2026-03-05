@@ -1,14 +1,16 @@
 {
   "name": "xplajs",
-  "version": "1.8.0",
+  "version": "1.9.0-rc0",
   "private": true,
   "type": "module",
   "main": "index.js",
   "repository": "git@github.com:xpladev/xplajs.git",
   "scripts": {
     "proto": "telescope download --config ./scripts/xpla.protod.config.json",
-    "codegen": "tsx ./scripts/codegen.cts",
-    "build": "lerna run build --stream"
+    "codegen": "tsx ./scripts/codegen.cts && pnpm run codegen:fix",
+    "codegen:fix": "eslint --config eslint.codegen.config.js --fix libs/*/src networks/*/src",
+    "build": "lerna run build --stream",
+    "test:module-resolve": "vitest run"
   },
   "workspaces": [
     "libs/*",
@@ -22,13 +24,18 @@
     "@chain-registry/v2": "^1.71.216",
     "@hyperweb/telescope": "^1.17.0",
     "@starship-ci/cli": "^2.9.0",
+    "@typescript-eslint/eslint-plugin": "^8.56.1",
+    "@typescript-eslint/parser": "^8.56.1",
     "deepmerge": "4.2.2",
+    "eslint": "^10.0.2",
     "lerna": "catalog:",
     "rimraf": "4.4.1",
     "starshipjs": "^2.4.0",
     "tsdown": "catalog:",
     "tsx": "4.21.0",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "typescript-eslint": "^8.56.1",
+    "vitest": "catalog:"
   },
   "pnpm": {
     "overrides": {

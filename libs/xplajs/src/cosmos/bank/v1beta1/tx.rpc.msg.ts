@@ -10,8 +10,6 @@ export interface Msg {
   /**
    * UpdateParams defines a governance operation for updating the x/bank module parameters.
    * The authority is defined in the keeper.
-   * 
-   * Since: cosmos-sdk 0.47
    */
   updateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
   /**
@@ -19,8 +17,6 @@ export interface Msg {
    * on any number of Denoms. Only the entries to add or update should be
    * included. Entries that already exist in the store, but that aren't
    * included in this message, will be left unchanged.
-   * 
-   * Since: cosmos-sdk 0.47
    */
   setSendEnabled(request: MsgSetSendEnabled): Promise<MsgSetSendEnabledResponse>;
 }
@@ -42,9 +38,7 @@ export class MsgClientImpl implements Msg {
     return promise.then(data => MsgMultiSendResponse.decode(new BinaryReader(data)));
   };
   /* UpdateParams defines a governance operation for updating the x/bank module parameters.
-   The authority is defined in the keeper.
-  
-   Since: cosmos-sdk 0.47 */
+   The authority is defined in the keeper. */
   updateParams = async (request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> => {
     const data = MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request("cosmos.bank.v1beta1.Msg", "UpdateParams", data);
@@ -53,9 +47,7 @@ export class MsgClientImpl implements Msg {
   /* SetSendEnabled is a governance operation for setting the SendEnabled flag
    on any number of Denoms. Only the entries to add or update should be
    included. Entries that already exist in the store, but that aren't
-   included in this message, will be left unchanged.
-  
-   Since: cosmos-sdk 0.47 */
+   included in this message, will be left unchanged. */
   setSendEnabled = async (request: MsgSetSendEnabled): Promise<MsgSetSendEnabledResponse> => {
     const data = MsgSetSendEnabled.encode(request).finish();
     const promise = this.rpc.request("cosmos.bank.v1beta1.Msg", "SetSendEnabled", data);
