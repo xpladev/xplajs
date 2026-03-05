@@ -23,3 +23,4 @@ catalog:
   'lerna': '^9.0.3'
   'typescript': '^5.9.3'
   'tsdown': '^0.21.0-beta.2'
+  'vitest': '^4.0.17'
