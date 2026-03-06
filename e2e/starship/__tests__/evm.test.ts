@@ -6,8 +6,7 @@ import { DirectSigner, createCosmosQueryClient, toEncoders } from '@interchainjs
 import { sleep } from '@interchainjs/utils';
 import { useChain } from 'starshipjs';
 
-import { EthSecp256k1HDWallet } from '../../src/wallets/ethSecp256k1hd';
-import { createCosmosEvmSignerConfig, DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '../../src/signers/config';
+import { EthSecp256k1HDWallet, createCosmosEvmSignerConfig, DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '@xpla/xpla';
 import * as bip39 from 'bip39';
 import { bank, staking, wasm } from '@xpla/evm/precompiles';
 import { conxLocal } from '@xpla/evm';
@@ -16,6 +15,9 @@ import { storeCodeCosmwasmWasmV1 } from '@xpla/xplajs';
 import { MsgStoreCode } from '@xpla/xplajs/cosmwasm/wasm/v1/tx';
 import * as fs from 'fs';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 import {
   createPublicClient,
   createWalletClient,

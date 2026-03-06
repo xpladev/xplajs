@@ -7,8 +7,7 @@ import { toEncoders } from '@interchainjs/cosmos';
 import { sleep } from '@interchainjs/utils';
 import { useChain } from 'starshipjs';
 
-import { EthSecp256k1HDWallet } from '../../src/wallets/ethSecp256k1hd';
-import { DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '../../src/signers/config';
+import { EthSecp256k1HDWallet, DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '@xpla/xpla';
 import { getAllBalances, getBalanceCosmosBankV1beta1, send, transfer, MsgSend, MsgTransfer, getClientStatus } from "@xpla/xplajs";
 import * as bip39 from 'bip39';
 

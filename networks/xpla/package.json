@@ -38,11 +38,7 @@
   },
   "scripts": {
     "build": "tsdown",
-    "lint": "eslint . --fix",
-    "starship:run": "sh ../../scripts/run-starship.sh",
-    "starship:clean": "starship stop --config ./starship/configs/config.yaml",
-    "starship:test": "vitest",
-    "starship:debug": "vitest --bail"
+    "lint": "eslint . --fix"
   },
   "dependencies": {
     "@ethersproject/transactions": "^5.7.0",

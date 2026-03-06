@@ -10,9 +10,11 @@
     "codegen": "tsx ./scripts/codegen.cts && pnpm run codegen:fix",
     "codegen:fix": "eslint --config eslint.codegen.config.js --fix libs/*/src networks/*/src",
     "build": "lerna run build --stream",
-    "test:module-resolve": "vitest run"
+    "test:module-resolve": "pnpm --filter @xpla/e2e run test:module-resolve",
+    "starship:test": "pnpm --filter @xpla/e2e run starship:test"
   },
   "workspaces": [
+    "e2e",
     "libs/*",
     "networks/*"
   ],
@@ -23,19 +25,16 @@
     "@chain-registry/client": "1.18.1",
     "@chain-registry/v2": "^1.71.216",
     "@hyperweb/telescope": "^1.17.0",
-    "@starship-ci/cli": "^2.9.0",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@typescript-eslint/parser": "^8.56.1",
     "deepmerge": "4.2.2",
     "eslint": "^10.0.2",
     "lerna": "catalog:",
     "rimraf": "4.4.1",
-    "starshipjs": "^2.4.0",
     "tsdown": "catalog:",
     "tsx": "4.21.0",
     "typescript": "catalog:",
-    "typescript-eslint": "^8.56.1",
-    "vitest": "catalog:"
+    "typescript-eslint": "^8.56.1"
   },
   "pnpm": {
     "overrides": {
