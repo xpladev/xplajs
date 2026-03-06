@@ -18,7 +18,7 @@ $ pnpm proto
 
 ### Code generate xplajs & xpla-react
 ```sh
-$ pnpm codegen:xpla
+$ pnpm codegen
 ```
 ### Build
 ```sh
