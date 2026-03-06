@@ -1,0 +1,36 @@
+{
+  "name": "@xpla/e2e",
+  "version": "1.9.0-rc0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:module": "vitest run --project module",
+    "test:starship": "vitest run --project starship",
+    "test:starship:debug": "vitest --bail --project starship",
+    "starship:run": "sh ./starship/run-starship.sh",
+    "starship:clean": "starship stop --config ./starship/configs/config.yaml"
+  },
+  "devDependencies": {
+    "@chain-registry/client": "1.18.1",
+    "@chain-registry/types": "catalog:",
+    "@interchainjs/cosmos": "catalog:",
+    "@interchainjs/cosmos-types": "catalog:",
+    "@interchainjs/crypto": "catalog:",
+    "@interchainjs/encoding": "catalog:",
+    "@interchainjs/ethereum": "catalog:",
+    "@interchainjs/types": "catalog:",
+    "@interchainjs/utils": "catalog:",
+    "@starship-ci/cli": "^2.9.0",
+    "@xpla/evm": "workspace:*",
+    "@xpla/xpla": "workspace:*",
+    "@xpla/xpla-react": "workspace:*",
+    "@xpla/xplajs": "workspace:*",
+    "bignumber.js": "^9.1.0",
+    "bip39": "^3.1.0",
+    "interchainjs": "catalog:",
+    "starshipjs": "^2.4.0",
+    "viem": "^2.21.0",
+    "vitest": "catalog:"
+  }
+}

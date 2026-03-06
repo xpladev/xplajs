@@ -1,10 +1,12 @@
 import { execSync } from "node:child_process";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join, resolve } from "node:path";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { describe, test, beforeAll, afterAll } from "vitest";
 
-const ROOT = resolve(__dirname, "../..");
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const ROOT = resolve(__dirname, "../../..");
 
 interface PackageDef {
   name: string;
