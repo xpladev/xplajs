@@ -213,11 +213,11 @@ importers:
   networks/evm:
     dependencies:
       '@xpla/contracts':
-        specifier: 1.9.0-rc8
-        version: 1.9.0-rc8
+        specifier: ^1.9.0-rc10
+        version: 1.9.0-rc9
       cosmos-evm-contracts:
-        specifier: ^0.0.9
-        version: 0.0.9
+        specifier: ^0.0.12
+        version: 0.0.12
     devDependencies:
       '@types/node':
         specifier: ^20.0.0
@@ -2331,8 +2331,8 @@ packages:
   '@vitest/utils@4.0.18':
     resolution: {integrity: sha512-msMRKLMVLWygpK3u2Hybgi4MNjcYJvwTb0Ru09+fOyCXIgT5raYP041DRRdiJiI3k/2U6SEbAETB3YtBrUkCFA==}
 
-  '@xpla/contracts@1.9.0-rc8':
-    resolution: {integrity: sha512-YZ91bbScLGq1RiCW6e03RhfCXBwbn7DaN3prdWE5ZmECDuCca9tgdGBhJ5tCBAurKLVStFvtrBRD2jc7o1h+Kg==}
+  '@xpla/contracts@1.9.0-rc9':
+    resolution: {integrity: sha512-HcYJu4JYsyKFsk+5I4WbAAgR2wptPWXxeSTZjGq+HZoKhE31uDPh3DShuVfQ2NRW4Vf4zehCD1QHbOQIVwEofA==}
 
   '@yarnpkg/lockfile@1.1.0':
     resolution: {integrity: sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==}
@@ -2865,8 +2865,11 @@ packages:
     resolution: {integrity: sha512-kDSkgHpRTrg1413jCNehT3P21+EBxZWFMBr9JEzVfmPiNdtuwAoLAkCYo7c7i/pTakAwyHsXbxOg8kkD+AN33w==}
     engines: {node: '>=20.19'}
 
-  cosmos-evm-contracts@0.0.9:
-    resolution: {integrity: sha512-j0frDjvXWxaRSBlrc4VM3++qEHiwKoGAO9hUBHjKp9hlp86ljWyZJKs1VD/rdddVQhAibrYED1DRjbyenk4ITQ==}
+  cosmos-evm-contracts@0.0.11:
+    resolution: {integrity: sha512-l8Mft799vLrbgeDQH17dt70JwzKNtyzij2uM0Qgzm5wawEQvxYSOUnYRmjTQ+ithGd3xGliHBzz+Pg17OAr3ww==}
+
+  cosmos-evm-contracts@0.0.12:
+    resolution: {integrity: sha512-rxQuJWtHtrkyTNSFYfvYE0WyvIMm1a5i1Fh+llZYJ9dzab8dMzqEPL6zGh5bjUKWV8soo7u1H9OsufokW5SB/Q==}
 
   cross-fetch@3.2.0:
     resolution: {integrity: sha512-Q+xVJLoGOeIMXZmbUK4HYk+69cQH6LudR0Vu/pRm2YlU/hDV9CiS0gKUMaWY5f2NeUH9C1nV3bsTlCo0FsTV1Q==}
@@ -8082,9 +8085,9 @@ snapshots:
       '@vitest/pretty-format': 4.0.18
       tinyrainbow: 3.0.3
 
-  '@xpla/contracts@1.9.0-rc8':
+  '@xpla/contracts@1.9.0-rc9':
     dependencies:
-      cosmos-evm-contracts: 0.0.9
+      cosmos-evm-contracts: 0.0.11
 
   '@yarnpkg/lockfile@1.1.0': {}
 
@@ -8618,7 +8621,11 @@ snapshots:
 
   cosmjs-types@0.11.0: {}
 
-  cosmos-evm-contracts@0.0.9:
+  cosmos-evm-contracts@0.0.11:
+    dependencies:
+      '@account-abstraction/contracts': 0.8.0
+
+  cosmos-evm-contracts@0.0.12:
     dependencies:
       '@account-abstraction/contracts': 0.8.0
 
