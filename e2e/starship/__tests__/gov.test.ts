@@ -1,5 +1,3 @@
-import './setup.test';
-
 import { Asset } from '@chain-registry/types';
 import { AminoSigner, DirectSigner, createCosmosQueryClient } from '@interchainjs/cosmos';
 import {

@@ -18,6 +18,9 @@ catalogs:
     '@interchainjs/amino':
       specifier: ^1.21.0
       version: 1.21.0
+    '@interchainjs/auth':
+      specifier: ^1.21.0
+      version: 1.21.0
     '@interchainjs/cosmos':
       specifier: ^1.21.0
       version: 1.21.0
@@ -286,6 +289,9 @@ importers:
   networks/xpla:
     dependencies:
       '@interchainjs/amino':
+        specifier: 'catalog:'
+        version: 1.21.0(@chain-registry/v2-types@0.53.146)(@chain-registry/v2@1.71.237)
+      '@interchainjs/auth':
         specifier: 'catalog:'
         version: 1.21.0(@chain-registry/v2-types@0.53.146)(@chain-registry/v2@1.71.237)
       '@interchainjs/cosmos':

@@ -4,11 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test:module-resolve": "vitest run --config vitest.config.ts",
-    "starship:run": "sh ../scripts/run-starship.sh",
-    "starship:clean": "starship stop --config ./starship/configs/config.yaml",
-    "starship:test": "vitest --config vitest.starship.config.ts",
-    "starship:debug": "vitest --bail --config vitest.starship.config.ts"
+    "test": "vitest run",
+    "test:module": "vitest run --project module",
+    "test:starship": "vitest run --project starship",
+    "test:starship:debug": "vitest --bail --project starship",
+    "starship:run": "sh ./starship/run-starship.sh",
+    "starship:clean": "starship stop --config ./starship/configs/config.yaml"
   },
   "devDependencies": {
     "@chain-registry/client": "1.18.1",

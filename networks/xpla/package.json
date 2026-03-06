@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "@interchainjs/amino": "catalog:",
+    "@interchainjs/auth": "catalog:",
     "@interchainjs/cosmos": "catalog:",
     "@interchainjs/cosmos-types": "catalog:",
     "@interchainjs/types": "catalog:",

@@ -10,8 +10,10 @@
     "codegen": "tsx ./scripts/codegen.cts && pnpm run codegen:fix",
     "codegen:fix": "eslint --config eslint.codegen.config.js --fix libs/*/src networks/*/src",
     "build": "lerna run build --stream",
-    "test:module-resolve": "pnpm --filter @xpla/e2e run test:module-resolve",
-    "starship:test": "pnpm --filter @xpla/e2e run starship:test"
+    "test:module": "pnpm --filter @xpla/e2e run test:module",
+    "test:starship": "pnpm --filter @xpla/e2e run test:starship",
+    "starship:run": "pnpm --filter @xpla/e2e run starship:run",
+    "starship:clean": "pnpm --filter @xpla/e2e run starship:clean"
   },
   "workspaces": [
     "e2e",

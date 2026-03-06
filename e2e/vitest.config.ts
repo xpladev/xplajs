@@ -2,9 +2,23 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
-    testTimeout: 180_000,
-    hookTimeout: 180_000,
-    globals: true,
-    include: ['module-resolve/**/*.test.ts'],
+    projects: [
+      {
+        test: {
+          name: 'module',
+          include: ['module/__tests__/**/*.test.ts'],
+        },
+      },
+      {
+        test: {
+          name: 'starship',
+          include: ['starship/__tests__/**/*.test.ts'],
+          setupFiles: ['./starship/setup.ts'],
+          testTimeout: 200_000,
+          hookTimeout: 200_000,
+          fileParallelism: false,
+        },
+      },
+    ],
   },
 });

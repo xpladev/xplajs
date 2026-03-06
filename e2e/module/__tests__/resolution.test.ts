@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import { describe, test, beforeAll, afterAll } from "vitest";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = resolve(__dirname, "../..");
+const ROOT = resolve(__dirname, "../../..");
 
 interface PackageDef {
   name: string;
