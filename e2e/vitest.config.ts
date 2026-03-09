@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitest/config';
+import { TestSequencer } from './testSequencer';
 
 export default defineConfig({
   test: {
@@ -17,6 +18,9 @@ export default defineConfig({
           testTimeout: 200_000,
           hookTimeout: 200_000,
           fileParallelism: false,
+          sequence: {
+            sequencer: TestSequencer,
+          },
         },
       },
     ],
