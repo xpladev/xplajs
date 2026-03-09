@@ -2,7 +2,6 @@ import { PRESET_COSMOS_EVM_SIGNATURE_FORMATS } from './signature-processor';
 import deepmerge from 'deepmerge';
 import { Any, CosmosCryptoSecp256k1PubKey as Secp256k1PubKey } from '@interchainjs/cosmos-types';
 import { EncodedMessage, DocOptions, CosmosSignerConfig } from '@interchainjs/cosmos';
-import Decimal from 'decimal.js';
 import { encodeSecp256k1Pubkey, Pubkey } from '@interchainjs/amino';
 
 /**

@@ -1,5 +1,3 @@
-import './setup.test';
-
 import { Asset } from '@chain-registry/types';
 import { DirectSigner, AminoSigner } from '@interchainjs/cosmos';
 import {
@@ -14,8 +12,7 @@ import {
 import { BigNumber } from 'bignumber.js'; // Using `fromWallet` to construct Signer
 import { useChain } from 'starshipjs';
 
-import { EthSecp256k1HDWallet } from '../../src/wallets/ethSecp256k1hd';
-import { DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '../../src/signers/config';
+import { EthSecp256k1HDWallet, DEFAULT_COSMOS_EVM_SIGNER_CONFIG } from '@xpla/xpla';
 import { getBalanceCosmosBankV1beta1, delegate, getValidators, getDelegation, MsgDelegate } from "@xpla/xplajs";
 import * as bip39 from 'bip39';
 

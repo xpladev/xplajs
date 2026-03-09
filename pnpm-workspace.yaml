@@ -1,5 +1,6 @@
 packages:
   - 'contracts'
+  - 'e2e'
   - 'libs/*'
   - 'networks/*'
 
