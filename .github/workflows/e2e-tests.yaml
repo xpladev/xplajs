@@ -35,7 +35,7 @@ jobs:
 
       - name: Set Up Starship Infrastructure
         id: starship-infra
-        uses: ./.github/actions/starship
+        uses: hyperweb-io/starship-action@1.1.0
         with:
           config: e2e/starship/configs/config.workflow.yaml
 
