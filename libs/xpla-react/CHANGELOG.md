@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/xpladev/xplajs/compare/@xpla/xpla-react@1.9.0-rc0...@xpla/xpla-react@1.9.0) (2026-03-27)
+
+**Note:** Version bump only for package @xpla/xpla-react
+
+
+
+
+
 # [1.7.0-beta.11](https://github.com/xpladev/xplajs/compare/@xpla/xpla-react@1.7.0-beta.10...@xpla/xpla-react@1.7.0-beta.11) (2025-03-10)
 
 
