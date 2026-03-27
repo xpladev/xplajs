@@ -2,9 +2,6 @@
   "lerna": "9",
   "conventionalCommits": true,
   "npmClient": "pnpm",
-  "npmClientArgs": [
-    "--no-lockfile"
-  ],
   "packages": [
     "libs/*",
     "networks/*"

@@ -4,7 +4,7 @@ version: v1.8.0
 chains:
   - id: dimension_37-1
     name: xpla
-    image: ghcr.io/hyperweb-io/starship/xpla:v1.9.0-rc0
+    image: ghcr.io/hyperweb-io/starship/xpla:v1.9.0
     numValidators: 1
     ports:
       rest: 1317
@@ -46,7 +46,7 @@ chains:
 
   - id: cosmoshub-4
     name: cosmoshub
-    image: ghcr.io/hyperweb-io/starship/gaia:v21.0.1
+    image: ghcr.io/hyperweb-io/starship/gaia:v27.0.0
     numValidators: 1
     ports:
       rest: 1313
