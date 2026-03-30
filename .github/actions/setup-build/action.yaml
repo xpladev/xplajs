@@ -19,6 +19,10 @@ runs:
       shell: bash
       run: pnpm install
 
+    - name: Type Check
+      shell: bash
+      run: pnpm typecheck
+
     - name: Build Packages
       shell: bash
       run: pnpm build

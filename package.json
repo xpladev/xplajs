@@ -9,6 +9,7 @@
     "proto": "telescope download --config ./scripts/xpla.protod.config.json",
     "codegen": "tsx ./scripts/codegen.cts && pnpm run codegen:fix",
     "codegen:fix": "eslint --config eslint.codegen.config.js --fix libs/*/src networks/*/src",
+    "typecheck": "pnpm -r run typecheck",
     "build": "lerna run build --stream",
     "test:module": "pnpm --filter @xpla/e2e run test:module",
     "test:starship": "pnpm --filter @xpla/e2e run test:starship",

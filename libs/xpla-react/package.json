@@ -39,6 +39,7 @@
   },
   "scripts": {
     "build": "tsdown",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint . --fix"
   },
   "dependencies": {
