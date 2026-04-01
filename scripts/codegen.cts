@@ -161,6 +161,7 @@ telescope({
     },
     "rpcClients": {
       "enabled": true,
+      "useConnectComet": true,
       "scoped": [
         {
           "dir": "xpla",
