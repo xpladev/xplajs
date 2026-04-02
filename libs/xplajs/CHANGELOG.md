@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.1](https://github.com/xpladev/xplajs/compare/@xpla/xplajs@1.9.0...@xpla/xplajs@1.9.1) (2026-04-02)
+
+
+### Bug Fixes
+
+* add missing typecheck after tsdown migration ([c4726c3](https://github.com/xpladev/xplajs/commit/c4726c30bdb702875d219bbbd8f25c66c11391f1))
+
+
+
+
+
 # [1.9.0](https://github.com/JoowonYun/xplajs/compare/@xpla/xplajs@1.9.0-rc0...@xpla/xplajs@1.9.0) (2026-03-27)
 
 **Note:** Version bump only for package @xpla/xplajs
