@@ -8,6 +8,8 @@
     "test:module": "vitest run --project module",
     "test:starship": "vitest run --project starship",
     "test:starship:debug": "vitest --bail --project starship",
+    "test:cosmock": "vitest run --project cosmock",
+    "test:cosmock:debug": "vitest --bail --project cosmock",
     "starship:run": "sh ./starship/run-starship.sh",
     "starship:clean": "starship stop --config ./starship/configs/config.yaml"
   },
@@ -28,6 +30,7 @@
     "@xpla/xplajs": "workspace:*",
     "bignumber.js": "^9.1.0",
     "bip39": "^3.1.0",
+    "cosmock": "0.3.3",
     "interchainjs": "catalog:",
     "starshipjs": "^2.4.0",
     "viem": "^2.21.0",

@@ -23,6 +23,15 @@ export default defineConfig({
           },
         },
       },
+      {
+        test: {
+          name: 'cosmock',
+          include: ['cosmock/__tests__/**/*.test.ts'],
+          globalSetup: ['./cosmock/global-setup.ts'],
+          testTimeout: 30_000,
+          hookTimeout: 60_000,
+        },
+      },
     ],
   },
 });
