@@ -38,6 +38,8 @@ describe('Governance tests for xpla', () => {
   let aminoOfflineSigner: OfflineAminoSigner;
   let directAddress: string;
   let aminoAddress: string;
+  let directOfflineAddress: string;
+  let aminoOfflineAddress: string;
   let testingOfflineAddress: string;
 
   let proposalId: string;
@@ -70,7 +72,9 @@ describe('Governance tests for xpla', () => {
     const aminoAddresses = await aminoOfflineSigner.getAccounts();
     directAddress = directAddresses[0].address;
     aminoAddress = aminoAddresses[0].address;
-    testingOfflineAddress = aminoAddress;
+    directOfflineAddress = directAddress;
+    aminoOfflineAddress = aminoAddress;
+    testingOfflineAddress = aminoOfflineAddress;
 
     await faucet('gov', directAddress, GOV_FUND_AMOUNT);
   }, 200000);
@@ -91,6 +95,24 @@ describe('Governance tests for xpla', () => {
       denom,
     });
     // Direct and amino share the same wallet/derivation — same address, same funds.
+    expect(parseInt(balance!.amount)).toBeGreaterThan(0);
+  }, 200000);
+
+  it('check direct offline address has tokens', async () => {
+    const queryClient = await createCosmosQueryClient(xplaRpcEndpoint);
+    const { balance } = await getBalanceCosmosBankV1beta1(queryClient, {
+      address: directOfflineAddress,
+      denom,
+    });
+    expect(parseInt(balance!.amount)).toBeGreaterThan(0);
+  }, 200000);
+
+  it('check amino offline address has tokens', async () => {
+    const queryClient = await createCosmosQueryClient(xplaRpcEndpoint);
+    const { balance } = await getBalanceCosmosBankV1beta1(queryClient, {
+      address: aminoOfflineAddress,
+      denom,
+    });
     expect(parseInt(balance!.amount)).toBeGreaterThan(0);
   }, 200000);
 
@@ -127,6 +149,15 @@ describe('Governance tests for xpla', () => {
 
     const result = await delegate(aminoSigner, testingOfflineAddress, msgDelegate, fee, '');
     await result.wait();
+  }, 200000);
+
+  it('check direct address has tokens', async () => {
+    const queryClient = await createCosmosQueryClient(xplaRpcEndpoint);
+    const { balance } = await getBalanceCosmosBankV1beta1(queryClient, {
+      address: testingOfflineAddress,
+      denom,
+    });
+    expect(parseInt(balance!.amount)).toBeGreaterThan(0);
   }, 200000);
 
   it('submit a txt proposal', async () => {
@@ -195,6 +226,34 @@ describe('Governance tests for xpla', () => {
     expect(vote.proposalId.toString()).toEqual(proposalId);
     expect(vote.voter).toEqual(directAddress);
     vote.options.some(option => option.option === VoteOption.VOTE_OPTION_YES);
+  }, 200000);
+
+  it('vote on proposal using amino', async () => {
+    const msgVote = CosmosGovV1MsgVote.fromPartial({
+      proposalId: BigInt(proposalId),
+      voter: aminoAddress,
+      option: VoteOption.VOTE_OPTION_NO,
+    });
+
+    const fee = {
+      amount: [{ denom, amount: '100000' }],
+      gas: '550000',
+    };
+
+    const result = await voteCosmosGovV1(aminoSigner, aminoAddress, msgVote, fee, '');
+    await result.wait();
+  }, 200000);
+
+  it('verify amino vote', async () => {
+    const queryClient = await createCosmosQueryClient(xplaRpcEndpoint);
+    const { vote } = await getVoteCosmosGovV1(queryClient, {
+      proposalId: BigInt(proposalId),
+      voter: aminoAddress,
+    });
+
+    expect(vote.proposalId.toString()).toEqual(proposalId);
+    expect(vote.voter).toEqual(aminoAddress);
+    vote.options.some(option => option.option === VoteOption.VOTE_OPTION_NO);
   }, 200000);
 
   it('verify proposal passed', async () => {
