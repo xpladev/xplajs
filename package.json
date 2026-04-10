@@ -13,6 +13,7 @@
     "build": "lerna run build --stream",
     "test:module": "pnpm --filter @xpla/e2e run test:module",
     "test:starship": "pnpm --filter @xpla/e2e run test:starship",
+    "test:cosmock": "pnpm --filter @xpla/e2e run test:cosmock",
     "starship:run": "pnpm --filter @xpla/e2e run starship:run",
     "starship:clean": "pnpm --filter @xpla/e2e run starship:clean"
   },
