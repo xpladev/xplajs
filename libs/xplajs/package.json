@@ -1,6 +1,6 @@
 {
   "name": "@xpla/xplajs",
-  "version": "1.10.0",
+  "version": "1.14.0",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "type": "module",
