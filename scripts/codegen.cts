@@ -70,6 +70,10 @@ export const options: TelescopeInput = {
       },
       nameMappers: {
         Query: {
+          // Keep the existing node getStatus/useGetStatus exports unambiguous.
+          "xpla.dynamicdeflation.v1beta1.Status": {
+            funcBody: () => "getDynamicDeflationStatus"
+          },
           "cosmos.tx.v1beta1.GetTx": {
             funcBody: "unchanged"
           },
@@ -125,24 +129,36 @@ const useModules = [
   "cosmos.tx.v1beta1",
   "cosmos.upgrade.v1beta1",
   "cosmwasm.wasm.v1",
-  "ibc.application.interchain_accounts.controller.v1",
+  "ibc.applications.interchain_accounts.controller.v1",
   "ibc.applications.interchain_accounts.host.v1",
-  "ibc.applications.interchain_accounts.transfer.v1",
   "ibc.applications.transfer.v1",
   "ibc.core.channel.v1",
   "ibc.core.channel.v2",
   "ibc.core.client.v1",
   "ibc.core.client.v2",
   "ibc.core.connection.v1",
-  "ibc.core.connection.v2",
   "ibc.core.port.v1",
-  "ibc.lightclients.cosmos.v1",
-  "ibc.lightclients.evm.v1",
+  "ibc.lightclients.tendermint.v1",
   "xpla.burn.v1beta1",
+  "xpla.dynamicdeflation.v1beta1",
   "xpla.reward.v1beta1",
   "xpla.volunteer.v1beta1",
-  "xpla.reward.v1beta1",
 ]
+
+function scopeDynamicDeflationQueryKeys() {
+  // Telescope 2.2.4 uses only the RPC method name for every module's hook key.
+  // Scope the newly added hooks without changing existing consumers' cache keys.
+  const path = join(__dirname, '../libs/xpla-react/src/xpla/dynamicdeflation/v1beta1/query.rpc.react.ts');
+  const content = readFileSync(path, 'utf8');
+  const pattern = /queryKeyPrefix: "(\w+)Query"/g;
+  const methods = [...content.matchAll(pattern)].map((match) => match[1]);
+  const expected = ['Params', 'CurrentPeriod', 'Status'];
+  if (methods.length !== expected.length || expected.some((method) => !methods.includes(method))) {
+    throw new Error('Unexpected dynamic deflation React query keys; update the generator mapping');
+  }
+  writeFileSync(path, content.replace(pattern, (_, method: string) =>
+    `queryKeyPrefix: "xpla.dynamicdeflation.v1beta1.${method}"`));
+}
 
 // xplajs
 telescope({
@@ -190,6 +206,7 @@ telescope({
   }),
 })
   .then(() => {
+    scopeDynamicDeflationQueryKeys();
     console.log('✨ all done!');
   })
   .catch((e) => {

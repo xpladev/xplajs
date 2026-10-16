@@ -1,11 +1,11 @@
 {
     "repos": [
-      { "owner": "cosmos", "repo": "cosmos-sdk", "branch": "release/v0.53.x" },
-      { "owner": "cosmos", "repo": "ibc-go", "branch": "release/v10.5.x" },
-      { "owner": "cosmos", "repo": "evm", "branch": "release/v0.6.x" },
-      { "owner": "cosmwasm", "repo": "wasmd", "branch": "release/v0.60.x" },
-      { "owner": "xpladev", "repo": "xpla", "branch": "release/v1.9.x" },
-      { "owner": "xpladev", "repo": "ethermint", "branch": "release/v0.24.x-xpla" }
+      { "owner": "xpladev", "repo": "cosmos-sdk", "branch": "v0.53.6-xpla-2" },
+      { "owner": "cosmos", "repo": "ibc-go", "branch": "v10.5.0" },
+      { "owner": "DELIGHT-LABS", "repo": "evm", "branch": "v0.6.3-xpla.2" },
+      { "owner": "CosmWasm", "repo": "wasmd", "branch": "v0.60.9" },
+      { "owner": "xpladev", "repo": "xpla", "branch": "v1.14.0-rc4" },
+      { "owner": "xpladev", "repo": "ethermint", "branch": "v0.24.0-xpla" }
     ],
     "protoDirMapping": {
       "gogo/protobuf/master": ".",
@@ -13,7 +13,7 @@
       "protocolbuffers/protobuf/main": "src"
     },
     "outDir": "protos/xplajs",
-    "ssh": true,
+    "ssh": false,
     "tempRepoDir": "git-modules",
     "targets": [
       "cosmos/upgrade/**/*.proto",
