@@ -8,6 +8,7 @@
     "test:module": "vitest run --project module",
     "test:starship": "vitest run --project starship",
     "test:starship:debug": "vitest --bail --project starship",
+    "starship:build": "node ./starship/prepare-image.mjs",
     "starship:run": "sh ./starship/run-starship.sh",
     "starship:clean": "starship stop --config ./starship/configs/config.yaml"
   },
