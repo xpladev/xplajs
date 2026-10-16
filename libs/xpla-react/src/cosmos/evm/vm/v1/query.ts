@@ -669,7 +669,7 @@ export interface EthCallRequest {
    */
   chainId: bigint;
   /**
-   * state overrides encoded as json
+   * overrides contains state overrides encoded as json
    */
   overrides: Uint8Array;
 }
@@ -701,7 +701,7 @@ export interface EthCallRequestAmino {
    */
   chain_id: string;
   /**
-   * state overrides encoded as json
+   * overrides contains state overrides encoded as json
    */
   overrides: string;
 }
@@ -1048,6 +1048,10 @@ export interface QueryTraceCallRequest {
    * chain_id is the the eip155 chain id parsed from the requested block header
    */
   chainId: bigint;
+  /**
+   * overrides contains state overrides in JSON format
+   */
+  overrides: Uint8Array;
 }
 export interface QueryTraceCallRequestProtoMsg {
   typeUrl: "/cosmos.evm.vm.v1.QueryTraceCallRequest";
@@ -1092,6 +1096,10 @@ export interface QueryTraceCallRequestAmino {
    * chain_id is the the eip155 chain id parsed from the requested block header
    */
   chain_id: string;
+  /**
+   * overrides contains state overrides in JSON format
+   */
+  overrides: string;
 }
 export interface QueryTraceCallRequestAminoMsg {
   type: "cosmos-sdk/QueryTraceCallRequest";
@@ -3621,7 +3629,8 @@ function createBaseQueryTraceCallRequest(): QueryTraceCallRequest {
     blockNumber: BigInt(0),
     blockHash: "",
     blockTime: new Date(),
-    chainId: BigInt(0)
+    chainId: BigInt(0),
+    overrides: new Uint8Array()
   };
 }
 /**
@@ -3634,10 +3643,10 @@ export const QueryTraceCallRequest = {
   typeUrl: "/cosmos.evm.vm.v1.QueryTraceCallRequest",
   aminoType: "cosmos-sdk/QueryTraceCallRequest",
   is(o: any): o is QueryTraceCallRequest {
-    return o && (o.$typeUrl === QueryTraceCallRequest.typeUrl || (o.args instanceof Uint8Array || typeof o.args === "string") && typeof o.gasCap === "bigint" && (o.proposerAddress instanceof Uint8Array || typeof o.proposerAddress === "string") && typeof o.blockNumber === "bigint" && typeof o.blockHash === "string" && Timestamp.is(o.blockTime) && typeof o.chainId === "bigint");
+    return o && (o.$typeUrl === QueryTraceCallRequest.typeUrl || (o.args instanceof Uint8Array || typeof o.args === "string") && typeof o.gasCap === "bigint" && (o.proposerAddress instanceof Uint8Array || typeof o.proposerAddress === "string") && typeof o.blockNumber === "bigint" && typeof o.blockHash === "string" && Timestamp.is(o.blockTime) && typeof o.chainId === "bigint" && (o.overrides instanceof Uint8Array || typeof o.overrides === "string"));
   },
   isAmino(o: any): o is QueryTraceCallRequestAmino {
-    return o && (o.$typeUrl === QueryTraceCallRequest.typeUrl || (o.args instanceof Uint8Array || typeof o.args === "string") && typeof o.gas_cap === "bigint" && (o.proposer_address instanceof Uint8Array || typeof o.proposer_address === "string") && typeof o.block_number === "bigint" && typeof o.block_hash === "string" && Timestamp.isAmino(o.block_time) && typeof o.chain_id === "bigint");
+    return o && (o.$typeUrl === QueryTraceCallRequest.typeUrl || (o.args instanceof Uint8Array || typeof o.args === "string") && typeof o.gas_cap === "bigint" && (o.proposer_address instanceof Uint8Array || typeof o.proposer_address === "string") && typeof o.block_number === "bigint" && typeof o.block_hash === "string" && Timestamp.isAmino(o.block_time) && typeof o.chain_id === "bigint" && (o.overrides instanceof Uint8Array || typeof o.overrides === "string"));
   },
   encode(message: QueryTraceCallRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     if (message.args.length !== 0) {
@@ -3663,6 +3672,9 @@ export const QueryTraceCallRequest = {
     }
     if (message.chainId !== BigInt(0)) {
       writer.uint32(64).int64(message.chainId);
+    }
+    if (message.overrides.length !== 0) {
+      writer.uint32(74).bytes(message.overrides);
     }
     return writer;
   },
@@ -3697,6 +3709,9 @@ export const QueryTraceCallRequest = {
         case 8:
           message.chainId = reader.int64();
           break;
+        case 9:
+          message.overrides = reader.bytes();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -3714,6 +3729,7 @@ export const QueryTraceCallRequest = {
     message.blockHash = object.blockHash ?? "";
     message.blockTime = object.blockTime ?? undefined;
     message.chainId = object.chainId !== undefined && object.chainId !== null ? BigInt(object.chainId.toString()) : BigInt(0);
+    message.overrides = object.overrides ?? new Uint8Array();
     return message;
   },
   fromAmino(object: QueryTraceCallRequestAmino): QueryTraceCallRequest {
@@ -3742,6 +3758,9 @@ export const QueryTraceCallRequest = {
     if (object.chain_id !== undefined && object.chain_id !== null) {
       message.chainId = BigInt(object.chain_id);
     }
+    if (object.overrides !== undefined && object.overrides !== null) {
+      message.overrides = bytesFromBase64(object.overrides);
+    }
     return message;
   },
   toAmino(message: QueryTraceCallRequest): QueryTraceCallRequestAmino {
@@ -3754,6 +3773,7 @@ export const QueryTraceCallRequest = {
     obj.block_hash = message.blockHash === "" ? undefined : message.blockHash;
     obj.block_time = message.blockTime ? Timestamp.toAmino(toTimestamp(message.blockTime)) : undefined;
     obj.chain_id = message.chainId !== BigInt(0) ? message.chainId?.toString() : undefined;
+    obj.overrides = message.overrides ? base64FromBytes(message.overrides) : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryTraceCallRequestAminoMsg): QueryTraceCallRequest {

@@ -10,3 +10,4 @@ export { distribution } from './distribution';
 export { gov } from './gov';
 export { slashing } from './slashing';
 export { staking } from './staking';
+export { ics20 } from './ics20';

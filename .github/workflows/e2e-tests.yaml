@@ -20,6 +20,9 @@ jobs:
       - name: Setup and Build
         uses: ./.github/actions/setup-build
 
+      - name: Test Starship Image Preparation
+        run: node --test e2e/starship/prepare-image.test.mjs
+
       - name: Run Module Resolve Tests
         run: pnpm test:module
 
@@ -33,11 +36,25 @@ jobs:
       - name: Setup and Build
         uses: ./.github/actions/setup-build
 
+      - name: Create Starship Cluster
+        uses: helm/kind-action@v1.8.0
+        with:
+          cluster_name: kind-starship
+
+      - name: Prepare Starship Image
+        env:
+          STARSHIP_CONFIG: config.workflow.yaml
+          STARSHIP_KIND_CLUSTER: kind-starship
+        run: |
+          pnpm starship:build
+          kind get kubeconfig --name kind-starship > "$RUNNER_TEMP/starship.kubeconfig"
+
       - name: Set Up Starship Infrastructure
         id: starship-infra
         uses: hyperweb-io/starship-action@1.1.0
         with:
           config: e2e/starship/configs/config.workflow.yaml
+          kubeconfig: ${{ runner.temp }}/starship.kubeconfig
 
       - name: Wait for pod readiness
         run: |
@@ -68,5 +85,7 @@ jobs:
           done
 
       - name: Run E2E Tests
+        env:
+          STARSHIP_CONFIG: config.workflow.yaml
         run: |
           pnpm test:starship

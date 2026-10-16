@@ -42,7 +42,7 @@ const msg = MsgSend.fromPartial({
 })
 
 const fee: StdFee = {
-  amount: [{amount: "28000000000000000", denom: "axpla"}],
+  amount: [{amount: "1000000000000000000", denom: "axpla"}],
   gas: "100000"
 }
 
@@ -77,7 +77,7 @@ const msg = MsgSend.fromPartial({
 })
 
 const fee: StdFee = {
-  amount: [{amount: "28000000000000000", denom: "axpla"}],
+  amount: [{amount: "1000000000000000000", denom: "axpla"}],
   gas: "100000"
 }
 

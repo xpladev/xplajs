@@ -112,6 +112,11 @@ export const createLCDClient = async ({
     ibc: {
       applications: {
         interchain_accounts: {
+          controller: {
+            v1: new (await import("../ibc/applications/interchain_accounts/controller/v1/query.lcd")).LCDQueryClient({
+              requestClient
+            })
+          },
           host: {
             v1: new (await import("../ibc/applications/interchain_accounts/host/v1/query.lcd")).LCDQueryClient({
               requestClient
@@ -151,6 +156,11 @@ export const createLCDClient = async ({
     xpla: {
       burn: {
         v1beta1: new (await import("./burn/v1beta1/query.lcd")).LCDQueryClient({
+          requestClient
+        })
+      },
+      dynamicdeflation: {
+        v1beta1: new (await import("./dynamicdeflation/v1beta1/query.lcd")).LCDQueryClient({
           requestClient
         })
       },

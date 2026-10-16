@@ -190,6 +190,9 @@ export class LCDQueryClient {
     if (typeof params?.chainId !== "undefined") {
       options.params.chain_id = params.chainId;
     }
+    if (typeof params?.overrides !== "undefined") {
+      options.params.overrides = params.overrides;
+    }
     const endpoint = `cosmos/evm/vm/v1/trace_call`;
     return await this.req.get<QueryTraceCallResponse>(endpoint, options);
   };

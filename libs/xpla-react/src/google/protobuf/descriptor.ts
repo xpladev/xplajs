@@ -25,6 +25,7 @@ export enum Edition {
    */
   EDITION_2023 = 1000,
   EDITION_2024 = 1001,
+  EDITION_2026 = 1002,
   /** EDITION_UNSTABLE - A placeholder edition for developing and testing unscheduled features. */
   EDITION_UNSTABLE = 9999,
   /**
@@ -65,6 +66,9 @@ export function editionFromJSON(object: any): Edition {
     case 1001:
     case "EDITION_2024":
       return Edition.EDITION_2024;
+    case 1002:
+    case "EDITION_2026":
+      return Edition.EDITION_2026;
     case 9999:
     case "EDITION_UNSTABLE":
       return Edition.EDITION_UNSTABLE;
@@ -106,6 +110,8 @@ export function editionToJSON(object: Edition): string {
       return "EDITION_2023";
     case Edition.EDITION_2024:
       return "EDITION_2024";
+    case Edition.EDITION_2026:
+      return "EDITION_2026";
     case Edition.EDITION_UNSTABLE:
       return "EDITION_UNSTABLE";
     case Edition.EDITION_1_TEST_ONLY:
@@ -876,6 +882,7 @@ export enum FeatureSet_EnforceNamingStyle {
   ENFORCE_NAMING_STYLE_UNKNOWN = 0,
   STYLE2024 = 1,
   STYLE_LEGACY = 2,
+  STYLE2026 = 3,
   UNRECOGNIZED = -1,
 }
 export const FeatureSet_EnforceNamingStyleAmino = FeatureSet_EnforceNamingStyle;
@@ -890,6 +897,9 @@ export function featureSet_EnforceNamingStyleFromJSON(object: any): FeatureSet_E
     case 2:
     case "STYLE_LEGACY":
       return FeatureSet_EnforceNamingStyle.STYLE_LEGACY;
+    case 3:
+    case "STYLE2026":
+      return FeatureSet_EnforceNamingStyle.STYLE2026;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -904,6 +914,8 @@ export function featureSet_EnforceNamingStyleToJSON(object: FeatureSet_EnforceNa
       return "STYLE2024";
     case FeatureSet_EnforceNamingStyle.STYLE_LEGACY:
       return "STYLE_LEGACY";
+    case FeatureSet_EnforceNamingStyle.STYLE2026:
+      return "STYLE2026";
     case FeatureSet_EnforceNamingStyle.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
@@ -962,6 +974,53 @@ export function featureSet_VisibilityFeature_DefaultSymbolVisibilityToJSON(objec
     case FeatureSet_VisibilityFeature_DefaultSymbolVisibility.STRICT:
       return "STRICT";
     case FeatureSet_VisibilityFeature_DefaultSymbolVisibility.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+export enum FeatureSet_ProtoLimitsFeature_EnforceProtoLimits {
+  PROTO_LIMITS_UNKNOWN = 0,
+  /**
+   * LEGACY_NO_EXPLICIT_LIMITS - Default pre-EDITION_2026: there are no limit enforcement at the protoc
+   * level. Practical limits still exist, but they will tend to fail while
+   * compiling protoc-generated code, and these limits tend to be language
+   * or toolchain specific.
+   */
+  LEGACY_NO_EXPLICIT_LIMITS = 1,
+  /**
+   * PROTO_LIMITS2026 - A set of limits enforced by Edition 2026 by default. For a detailed
+   * list of all the limits please consult the Edition 2026 documentation.
+   */
+  PROTO_LIMITS2026 = 2,
+  UNRECOGNIZED = -1,
+}
+export const FeatureSet_ProtoLimitsFeature_EnforceProtoLimitsAmino = FeatureSet_ProtoLimitsFeature_EnforceProtoLimits;
+export function featureSet_ProtoLimitsFeature_EnforceProtoLimitsFromJSON(object: any): FeatureSet_ProtoLimitsFeature_EnforceProtoLimits {
+  switch (object) {
+    case 0:
+    case "PROTO_LIMITS_UNKNOWN":
+      return FeatureSet_ProtoLimitsFeature_EnforceProtoLimits.PROTO_LIMITS_UNKNOWN;
+    case 1:
+    case "LEGACY_NO_EXPLICIT_LIMITS":
+      return FeatureSet_ProtoLimitsFeature_EnforceProtoLimits.LEGACY_NO_EXPLICIT_LIMITS;
+    case 2:
+    case "PROTO_LIMITS2026":
+      return FeatureSet_ProtoLimitsFeature_EnforceProtoLimits.PROTO_LIMITS2026;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return FeatureSet_ProtoLimitsFeature_EnforceProtoLimits.UNRECOGNIZED;
+  }
+}
+export function featureSet_ProtoLimitsFeature_EnforceProtoLimitsToJSON(object: FeatureSet_ProtoLimitsFeature_EnforceProtoLimits): string {
+  switch (object) {
+    case FeatureSet_ProtoLimitsFeature_EnforceProtoLimits.PROTO_LIMITS_UNKNOWN:
+      return "PROTO_LIMITS_UNKNOWN";
+    case FeatureSet_ProtoLimitsFeature_EnforceProtoLimits.LEGACY_NO_EXPLICIT_LIMITS:
+      return "LEGACY_NO_EXPLICIT_LIMITS";
+    case FeatureSet_ProtoLimitsFeature_EnforceProtoLimits.PROTO_LIMITS2026:
+      return "PROTO_LIMITS2026";
+    case FeatureSet_ProtoLimitsFeature_EnforceProtoLimits.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
   }
@@ -3195,6 +3254,26 @@ export interface FeatureSet_VisibilityFeatureAminoMsg {
   value: FeatureSet_VisibilityFeatureAmino;
 }
 /**
+ * @name FeatureSet_ProtoLimitsFeature
+ * @package google.protobuf
+ * @see proto type: google.protobuf.ProtoLimitsFeature
+ */
+export interface FeatureSet_ProtoLimitsFeature {}
+export interface FeatureSet_ProtoLimitsFeatureProtoMsg {
+  typeUrl: "/google.protobuf.ProtoLimitsFeature";
+  value: Uint8Array;
+}
+/**
+ * @name FeatureSet_ProtoLimitsFeatureAmino
+ * @package google.protobuf
+ * @see proto type: google.protobuf.FeatureSet_ProtoLimitsFeature
+ */
+export interface FeatureSet_ProtoLimitsFeatureAmino {}
+export interface FeatureSet_ProtoLimitsFeatureAminoMsg {
+  type: "/google.protobuf.ProtoLimitsFeature";
+  value: FeatureSet_ProtoLimitsFeatureAmino;
+}
+/**
  * A compiled specification for the defaults of a set of features.  These
  * messages are generated from FeatureSet extensions and can be used to seed
  * feature resolution. The resolution with this object becomes a simple search
@@ -3442,6 +3521,49 @@ export interface SourceCodeInfo_Location {
    *   [ 4, 3, 2, 7 ]
    * this path refers to the whole field declaration (from the beginning
    * of the label to the terminating semicolon).
+   * 
+   * For options, the path refers to the interpreted option in the descriptor.
+   * E.g., for a custom option `(my_opt) = "foo"` on a message using extension
+   * number 10101, the path is:
+   *   [ 4, 3, 7, 10101 ]
+   * refers to:
+   *   file.message_type(3)     // 4, 3
+   *       .options()           // 7
+   *       .my_opt()            // 10101
+   * 
+   * Option parts, e.g. name and value are also appended using field numbers
+   * from `UninterpretedOption`, which deviates from the actual
+   * FileDescriptorProto path and uses negative values.
+   * E.g., for `(my_opt) = "foo"` the name `(my_opt)` is:
+   *   [ 4, 3, 7, 10101, -2 ]
+   * where -2 is negative of `UninterpretedOption.name`.
+   * The value "foo" is:
+   *   [ 4, 3, 7, 10101, -7 ]
+   * where -7 is the negative of `UninterpretedOption.string_value`.
+   * 
+   * For complex options (e.g., "(my_opt) = {a: 100}"), the path
+   * will include -UninterpretedOption.aggregate_value (field number -8) as a
+   * marker for each level of nesting.
+   * 
+   * For example, given:
+   *   option (my_opt) = {a: 100};
+   * 
+   * The path for the `a` identifier would look like:
+   *   [ 4, 3, 7, 10101, -8, 1, -2 ]
+   * 
+   * And for the value 100:
+   *   [ 4, 3, 7, 10101, -8, 1, -4 ]
+   * 
+   * Where:
+   *   -8: UninterpretedOption.aggregate_value marker
+   *    1: The field number of "a" inside "my_opt"
+   *   -2: UninterpretedOption.name
+   *   -4: UninterpretedOption.positive_int_value
+   * 
+   * We use negative values for UninterpretedOption due to keep it backward
+   * compatible with pre-existing undocumented behavior where options using
+   * dot-notation (e.g. `(my_opt).a = 100`) also produce a path like
+   * [ 4, 3, 7, 10101, 1] that spans the entire option.
    */
   path: number[];
   /**
@@ -3539,6 +3661,49 @@ export interface SourceCodeInfo_LocationAmino {
    *   [ 4, 3, 2, 7 ]
    * this path refers to the whole field declaration (from the beginning
    * of the label to the terminating semicolon).
+   * 
+   * For options, the path refers to the interpreted option in the descriptor.
+   * E.g., for a custom option `(my_opt) = "foo"` on a message using extension
+   * number 10101, the path is:
+   *   [ 4, 3, 7, 10101 ]
+   * refers to:
+   *   file.message_type(3)     // 4, 3
+   *       .options()           // 7
+   *       .my_opt()            // 10101
+   * 
+   * Option parts, e.g. name and value are also appended using field numbers
+   * from `UninterpretedOption`, which deviates from the actual
+   * FileDescriptorProto path and uses negative values.
+   * E.g., for `(my_opt) = "foo"` the name `(my_opt)` is:
+   *   [ 4, 3, 7, 10101, -2 ]
+   * where -2 is negative of `UninterpretedOption.name`.
+   * The value "foo" is:
+   *   [ 4, 3, 7, 10101, -7 ]
+   * where -7 is the negative of `UninterpretedOption.string_value`.
+   * 
+   * For complex options (e.g., "(my_opt) = {a: 100}"), the path
+   * will include -UninterpretedOption.aggregate_value (field number -8) as a
+   * marker for each level of nesting.
+   * 
+   * For example, given:
+   *   option (my_opt) = {a: 100};
+   * 
+   * The path for the `a` identifier would look like:
+   *   [ 4, 3, 7, 10101, -8, 1, -2 ]
+   * 
+   * And for the value 100:
+   *   [ 4, 3, 7, 10101, -8, 1, -4 ]
+   * 
+   * Where:
+   *   -8: UninterpretedOption.aggregate_value marker
+   *    1: The field number of "a" inside "my_opt"
+   *   -2: UninterpretedOption.name
+   *   -4: UninterpretedOption.positive_int_value
+   * 
+   * We use negative values for UninterpretedOption due to keep it backward
+   * compatible with pre-existing undocumented behavior where options using
+   * dot-notation (e.g. `(my_opt).a = 100`) also produce a path like
+   * [ 4, 3, 7, 10101, 1] that spans the entire option.
    */
   path: number[];
   /**
@@ -7610,6 +7775,68 @@ export const FeatureSet_VisibilityFeature = {
     return {
       typeUrl: "/google.protobuf.VisibilityFeature",
       value: FeatureSet_VisibilityFeature.encode(message).finish()
+    };
+  },
+  registerTypeUrl() {}
+};
+function createBaseFeatureSet_ProtoLimitsFeature(): FeatureSet_ProtoLimitsFeature {
+  return {};
+}
+/**
+ * @name FeatureSet_ProtoLimitsFeature
+ * @package google.protobuf
+ * @see proto type: google.protobuf.ProtoLimitsFeature
+ */
+export const FeatureSet_ProtoLimitsFeature = {
+  typeUrl: "/google.protobuf.ProtoLimitsFeature",
+  is(o: any): o is FeatureSet_ProtoLimitsFeature {
+    return o && o.$typeUrl === FeatureSet_ProtoLimitsFeature.typeUrl;
+  },
+  isAmino(o: any): o is FeatureSet_ProtoLimitsFeatureAmino {
+    return o && o.$typeUrl === FeatureSet_ProtoLimitsFeature.typeUrl;
+  },
+  encode(_: FeatureSet_ProtoLimitsFeature, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): FeatureSet_ProtoLimitsFeature {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseFeatureSet_ProtoLimitsFeature();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(_: DeepPartial<FeatureSet_ProtoLimitsFeature>): FeatureSet_ProtoLimitsFeature {
+    const message = createBaseFeatureSet_ProtoLimitsFeature();
+    return message;
+  },
+  fromAmino(_: FeatureSet_ProtoLimitsFeatureAmino): FeatureSet_ProtoLimitsFeature {
+    const message = createBaseFeatureSet_ProtoLimitsFeature();
+    return message;
+  },
+  toAmino(_: FeatureSet_ProtoLimitsFeature): FeatureSet_ProtoLimitsFeatureAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: FeatureSet_ProtoLimitsFeatureAminoMsg): FeatureSet_ProtoLimitsFeature {
+    return FeatureSet_ProtoLimitsFeature.fromAmino(object.value);
+  },
+  fromProtoMsg(message: FeatureSet_ProtoLimitsFeatureProtoMsg): FeatureSet_ProtoLimitsFeature {
+    return FeatureSet_ProtoLimitsFeature.decode(message.value);
+  },
+  toProto(message: FeatureSet_ProtoLimitsFeature): Uint8Array {
+    return FeatureSet_ProtoLimitsFeature.encode(message).finish();
+  },
+  toProtoMsg(message: FeatureSet_ProtoLimitsFeature): FeatureSet_ProtoLimitsFeatureProtoMsg {
+    return {
+      typeUrl: "/google.protobuf.ProtoLimitsFeature",
+      value: FeatureSet_ProtoLimitsFeature.encode(message).finish()
     };
   },
   registerTypeUrl() {}

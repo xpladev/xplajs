@@ -1,4 +1,4 @@
-import { execSync } from "node:child_process";
+import { execFileSync, execSync } from "node:child_process";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
@@ -27,6 +27,8 @@ const PACKAGES: PackageDef[] = [
       "./cosmos/bank/v1beta1/tx",
       "./cosmwasm/wasm/v1/tx",
       "./xpla/volunteer/v1beta1/tx",
+      "./xpla/dynamicdeflation/v1beta1/query.rpc.func",
+      "./ethermint/types/v1/account",
     ],
   },
   {
@@ -45,7 +47,7 @@ const PACKAGES: PackageDef[] = [
     name: "@xpla/xpla-react",
     dir: "libs/xpla-react",
     peerDeps: ["@tanstack/react-query@4", "react@18", "react-dom@18"],
-    subpaths: ["."],
+    subpaths: [".", "./xpla/dynamicdeflation/v1beta1/query.rpc.react"],
   },
 ];
 
@@ -166,5 +168,70 @@ if (keys.length === 0) { process.exit(1); }
     );
 
     run(`node ${testFile}`, { cwd: tmpDir });
+  });
+});
+
+describe("v1.14 public API", () => {
+  test("isolates dynamic deflation hook caches from existing modules", () => {
+    execFileSync(process.execPath, ["-e", `
+      const assert = require('node:assert/strict');
+      const sdkRequire = require('node:module').createRequire(require.resolve('@xpla/xpla-react'));
+      const React = sdkRequire('react');
+      const { renderToString } = sdkRequire('react-dom/server');
+      const { QueryClient, QueryClientProvider } = sdkRequire('@tanstack/react-query');
+      const dynamic = require('@xpla/xpla-react/xpla/dynamicdeflation/v1beta1/query.rpc.react');
+      const node = require('@xpla/xpla-react/cosmos/base/node/v1beta1/query.rpc.react');
+      const fees = require('@xpla/xpla-react/cosmos/evm/feemarket/v1/query.rpc.react');
+      for (const [existingHook, newHook, cached] of [
+        [node.useGetStatus, dynamic.useGetDynamicDeflationStatus, { height: '100' }],
+        [fees.useGetParams, dynamic.useGetParams, { params: { baseFee: '1000' } }],
+      ]) {
+        const queryClient = new QueryClient({ defaultOptions: { queries: { cacheTime: Infinity } } });
+        function View() {
+          const existing = existingHook({ request: {}, options: { enabled: false, initialData: cached } });
+          const added = newHook({ request: {}, options: { enabled: false } });
+          assert.equal(existing.data, cached);
+          assert.equal(added.data, undefined);
+          return null;
+        }
+        try {
+          renderToString(React.createElement(QueryClientProvider, { client: queryClient }, React.createElement(View)));
+          assert.equal(queryClient.getQueryCache().getAll().length, 2);
+        } finally {
+          queryClient.clear();
+        }
+      }
+    `], { cwd: tmpDir, stdio: "pipe" });
+  });
+
+  test("keeps node status exports alongside dynamic deflation queries", () => {
+    execFileSync(process.execPath, ["-e", `
+      const assert = require('node:assert/strict');
+      for (const name of ['@xpla/xplajs', '@xpla/xpla-react']) {
+        const sdk = require(name);
+        assert.equal(sdk.getStatus, require(name + '/cosmos/base/node/v1beta1/query.rpc.func').getStatus);
+        assert.equal(typeof sdk.getDynamicDeflationStatus, 'function');
+      }
+      assert.equal(typeof require('@xpla/xpla-react').useGetStatus, 'function');
+    `], { cwd: tmpDir, stdio: "pipe" });
+  });
+
+  test("exports the rc4 ICS20 precompile from both entrypoints", () => {
+    execFileSync(process.execPath, ["-e", `
+      const assert = require('node:assert/strict');
+      for (const name of ['@xpla/evm', '@xpla/evm/precompiles']) {
+        const { ics20 } = require(name);
+        assert.equal(ics20.address, '0x0000000000000000000000000000000000000802');
+        assert(ics20.abi.some(entry => entry.type === 'function' && entry.name === 'transfer'));
+      }
+    `], { cwd: tmpDir, stdio: "pipe" });
+  });
+
+  test("uses the minimum gas price set by the v1.14 upgrade", () => {
+    execFileSync(process.execPath, ["-e", `
+      const assert = require('node:assert/strict');
+      const { DEFAULT_COSMOS_EVM_SIGNER_CONFIG } = require('@xpla/xpla');
+      assert.equal(DEFAULT_COSMOS_EVM_SIGNER_CONFIG.gasPrice, '10000000000000axpla');
+    `], { cwd: tmpDir, stdio: "pipe" });
   });
 });

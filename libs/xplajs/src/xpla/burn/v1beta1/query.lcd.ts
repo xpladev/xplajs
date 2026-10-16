@@ -1,3 +1,4 @@
+import { setPaginationParams } from "../../../helpers";
 import { LCDClient } from "@cosmology/lcd";
 import { QueryOngoingProposalsRequest, QueryOngoingProposalsResponse, QueryOngoingProposalRequest, QueryOngoingProposalResponse } from "./query";
 export class LCDQueryClient {
@@ -10,9 +11,17 @@ export class LCDQueryClient {
     this.req = requestClient;
   }
   /* Query all ongoing burn proposals */
-  ongoingProposals = async (_params: QueryOngoingProposalsRequest = {}): Promise<QueryOngoingProposalsResponse> => {
+  ongoingProposals = async (params: QueryOngoingProposalsRequest = {
+    pagination: undefined
+  }): Promise<QueryOngoingProposalsResponse> => {
+    const options: any = {
+      params: {}
+    };
+    if (typeof params?.pagination !== "undefined") {
+      setPaginationParams(options, params.pagination);
+    }
     const endpoint = `xpla/burn/v1beta1/ongoing_proposals`;
-    return await this.req.get<QueryOngoingProposalsResponse>(endpoint);
+    return await this.req.get<QueryOngoingProposalsResponse>(endpoint, options);
   };
   /* Query a specific ongoing burn proposal by ID */
   ongoingProposal = async (params: QueryOngoingProposalRequest): Promise<QueryOngoingProposalResponse> => {

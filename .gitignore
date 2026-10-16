@@ -6,3 +6,4 @@ artifacts/
 cache/
 contracts/build/
 .pnpm-store/
+git-modules/

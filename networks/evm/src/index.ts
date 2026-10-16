@@ -15,6 +15,7 @@ export {
   bech32,
   distribution,
   gov,
+  ics20,
   slashing,
   staking,
 } from './precompiles/index';
