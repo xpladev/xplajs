@@ -100,15 +100,16 @@ export interface MsgEthereumTxResponse {
    */
   gasUsed: bigint;
   /**
-   * max_used_gas specifies the gas consumed by the transaction, not including refunds
+   * max_used_gas specifies the gas consumed by the transaction, not including
+   * refunds
    */
   maxUsedGas: bigint;
   /**
-   * include the block hash for json-rpc to use
+   * block_hash is included for json-rpc to use
    */
   blockHash: Uint8Array;
   /**
-   * include the block timestamp for json-rpc to use
+   * block_timestamp is included for json-rpc to use
    */
   blockTimestamp: bigint;
 }
@@ -148,15 +149,16 @@ export interface MsgEthereumTxResponseAmino {
    */
   gas_used: string;
   /**
-   * max_used_gas specifies the gas consumed by the transaction, not including refunds
+   * max_used_gas specifies the gas consumed by the transaction, not including
+   * refunds
    */
   max_used_gas: string;
   /**
-   * include the block hash for json-rpc to use
+   * block_hash is included for json-rpc to use
    */
   block_hash: string;
   /**
-   * include the block timestamp for json-rpc to use
+   * block_timestamp is included for json-rpc to use
    */
   block_timestamp: string;
 }

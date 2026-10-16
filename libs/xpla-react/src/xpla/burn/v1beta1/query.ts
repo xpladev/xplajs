@@ -1,8 +1,9 @@
+import { PageRequest, PageRequestAmino, PageResponse, PageResponseAmino } from "../../../cosmos/base/query/v1beta1/pagination";
 import { BurnProposal, BurnProposalAmino } from "./burn";
 import { Coin, CoinAmino } from "../../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { DeepPartial } from "../../../helpers";
 import { GlobalDecoderRegistry } from "../../../registry";
+import { DeepPartial } from "../../../helpers";
 /**
  * QueryOngoingProposalsRequest is the request type for the
  * Query/OngoingProposals RPC method.
@@ -10,7 +11,12 @@ import { GlobalDecoderRegistry } from "../../../registry";
  * @package xpla.burn.v1beta1
  * @see proto type: xpla.burn.v1beta1.QueryOngoingProposalsRequest
  */
-export interface QueryOngoingProposalsRequest {}
+export interface QueryOngoingProposalsRequest {
+  /**
+   * pagination defines an optional pagination for the request.
+   */
+  pagination?: PageRequest;
+}
 export interface QueryOngoingProposalsRequestProtoMsg {
   typeUrl: "/xpla.burn.v1beta1.QueryOngoingProposalsRequest";
   value: Uint8Array;
@@ -22,7 +28,12 @@ export interface QueryOngoingProposalsRequestProtoMsg {
  * @package xpla.burn.v1beta1
  * @see proto type: xpla.burn.v1beta1.QueryOngoingProposalsRequest
  */
-export interface QueryOngoingProposalsRequestAmino {}
+export interface QueryOngoingProposalsRequestAmino {
+  /**
+   * pagination defines an optional pagination for the request.
+   */
+  pagination?: PageRequestAmino;
+}
 export interface QueryOngoingProposalsRequestAminoMsg {
   type: "/xpla.burn.v1beta1.QueryOngoingProposalsRequest";
   value: QueryOngoingProposalsRequestAmino;
@@ -36,6 +47,10 @@ export interface QueryOngoingProposalsRequestAminoMsg {
  */
 export interface QueryOngoingProposalsResponse {
   proposals: BurnProposal[];
+  /**
+   * pagination defines the pagination in the response.
+   */
+  pagination?: PageResponse;
 }
 export interface QueryOngoingProposalsResponseProtoMsg {
   typeUrl: "/xpla.burn.v1beta1.QueryOngoingProposalsResponse";
@@ -50,6 +65,10 @@ export interface QueryOngoingProposalsResponseProtoMsg {
  */
 export interface QueryOngoingProposalsResponseAmino {
   proposals: BurnProposalAmino[];
+  /**
+   * pagination defines the pagination in the response.
+   */
+  pagination?: PageResponseAmino;
 }
 export interface QueryOngoingProposalsResponseAminoMsg {
   type: "/xpla.burn.v1beta1.QueryOngoingProposalsResponse";
@@ -114,7 +133,9 @@ export interface QueryOngoingProposalResponseAminoMsg {
   value: QueryOngoingProposalResponseAmino;
 }
 function createBaseQueryOngoingProposalsRequest(): QueryOngoingProposalsRequest {
-  return {};
+  return {
+    pagination: undefined
+  };
 }
 /**
  * QueryOngoingProposalsRequest is the request type for the
@@ -131,7 +152,10 @@ export const QueryOngoingProposalsRequest = {
   isAmino(o: any): o is QueryOngoingProposalsRequestAmino {
     return o && o.$typeUrl === QueryOngoingProposalsRequest.typeUrl;
   },
-  encode(_: QueryOngoingProposalsRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+  encode(message: QueryOngoingProposalsRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
     return writer;
   },
   decode(input: BinaryReader | Uint8Array, length?: number): QueryOngoingProposalsRequest {
@@ -141,6 +165,9 @@ export const QueryOngoingProposalsRequest = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -148,16 +175,21 @@ export const QueryOngoingProposalsRequest = {
     }
     return message;
   },
-  fromPartial(_: DeepPartial<QueryOngoingProposalsRequest>): QueryOngoingProposalsRequest {
+  fromPartial(object: DeepPartial<QueryOngoingProposalsRequest>): QueryOngoingProposalsRequest {
     const message = createBaseQueryOngoingProposalsRequest();
+    message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
   },
-  fromAmino(_: QueryOngoingProposalsRequestAmino): QueryOngoingProposalsRequest {
+  fromAmino(object: QueryOngoingProposalsRequestAmino): QueryOngoingProposalsRequest {
     const message = createBaseQueryOngoingProposalsRequest();
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromAmino(object.pagination);
+    }
     return message;
   },
-  toAmino(_: QueryOngoingProposalsRequest): QueryOngoingProposalsRequestAmino {
+  toAmino(message: QueryOngoingProposalsRequest): QueryOngoingProposalsRequestAmino {
     const obj: any = {};
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryOngoingProposalsRequestAminoMsg): QueryOngoingProposalsRequest {
@@ -175,11 +207,17 @@ export const QueryOngoingProposalsRequest = {
       value: QueryOngoingProposalsRequest.encode(message).finish()
     };
   },
-  registerTypeUrl() {}
+  registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(QueryOngoingProposalsRequest.typeUrl)) {
+      return;
+    }
+    PageRequest.registerTypeUrl();
+  }
 };
 function createBaseQueryOngoingProposalsResponse(): QueryOngoingProposalsResponse {
   return {
-    proposals: []
+    proposals: [],
+    pagination: undefined
   };
 }
 /**
@@ -201,6 +239,9 @@ export const QueryOngoingProposalsResponse = {
     for (const v of message.proposals) {
       BurnProposal.encode(v!, writer.uint32(10).fork()).ldelim();
     }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
     return writer;
   },
   decode(input: BinaryReader | Uint8Array, length?: number): QueryOngoingProposalsResponse {
@@ -213,6 +254,9 @@ export const QueryOngoingProposalsResponse = {
         case 1:
           message.proposals.push(BurnProposal.decode(reader, reader.uint32()));
           break;
+        case 2:
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -223,11 +267,15 @@ export const QueryOngoingProposalsResponse = {
   fromPartial(object: DeepPartial<QueryOngoingProposalsResponse>): QueryOngoingProposalsResponse {
     const message = createBaseQueryOngoingProposalsResponse();
     message.proposals = object.proposals?.map(e => BurnProposal.fromPartial(e)) || [];
+    message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
   },
   fromAmino(object: QueryOngoingProposalsResponseAmino): QueryOngoingProposalsResponse {
     const message = createBaseQueryOngoingProposalsResponse();
     message.proposals = object.proposals?.map(e => BurnProposal.fromAmino(e)) || [];
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromAmino(object.pagination);
+    }
     return message;
   },
   toAmino(message: QueryOngoingProposalsResponse): QueryOngoingProposalsResponseAmino {
@@ -237,6 +285,7 @@ export const QueryOngoingProposalsResponse = {
     } else {
       obj.proposals = message.proposals;
     }
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryOngoingProposalsResponseAminoMsg): QueryOngoingProposalsResponse {
@@ -259,6 +308,7 @@ export const QueryOngoingProposalsResponse = {
       return;
     }
     BurnProposal.registerTypeUrl();
+    PageResponse.registerTypeUrl();
   }
 };
 function createBaseQueryOngoingProposalRequest(): QueryOngoingProposalRequest {

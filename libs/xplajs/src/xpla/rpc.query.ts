@@ -74,6 +74,9 @@ export const createRPCQueryClient = async ({
     ibc: {
       applications: {
         interchain_accounts: {
+          controller: {
+            v1: (await import("../ibc/applications/interchain_accounts/controller/v1/query.rpc.Query")).createRpcQueryExtension(client)
+          },
           host: {
             v1: (await import("../ibc/applications/interchain_accounts/host/v1/query.rpc.Query")).createRpcQueryExtension(client)
           }
@@ -99,6 +102,9 @@ export const createRPCQueryClient = async ({
     xpla: {
       burn: {
         v1beta1: (await import("./burn/v1beta1/query.rpc.Query")).createRpcQueryExtension(client)
+      },
+      dynamicdeflation: {
+        v1beta1: (await import("./dynamicdeflation/v1beta1/query.rpc.Query")).createRpcQueryExtension(client)
       },
       reward: {
         v1beta1: (await import("./reward/v1beta1/query.rpc.Query")).createRpcQueryExtension(client)

@@ -15,7 +15,9 @@ export class QueryClientImpl implements Query {
     this.rpc = rpc;
   }
   /* Query all ongoing burn proposals */
-  ongoingProposals = async (request: QueryOngoingProposalsRequest = {}): Promise<QueryOngoingProposalsResponse> => {
+  ongoingProposals = async (request: QueryOngoingProposalsRequest = {
+    pagination: undefined
+  }): Promise<QueryOngoingProposalsResponse> => {
     const data = QueryOngoingProposalsRequest.encode(request).finish();
     const promise = this.rpc.request("xpla.burn.v1beta1.Query", "OngoingProposals", data);
     return promise.then(data => QueryOngoingProposalsResponse.decode(new BinaryReader(data)));

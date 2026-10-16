@@ -59,6 +59,9 @@ export const createRPCMsgClient = async ({
   ibc: {
     applications: {
       interchain_accounts: {
+        controller: {
+          v1: new (await import("../ibc/applications/interchain_accounts/controller/v1/tx.rpc.msg")).MsgClientImpl(rpc)
+        },
         host: {
           v1: new (await import("../ibc/applications/interchain_accounts/host/v1/tx.rpc.msg")).MsgClientImpl(rpc)
         }
@@ -84,6 +87,9 @@ export const createRPCMsgClient = async ({
   xpla: {
     burn: {
       v1beta1: new (await import("./burn/v1beta1/tx.rpc.msg")).MsgClientImpl(rpc)
+    },
+    dynamicdeflation: {
+      v1beta1: new (await import("./dynamicdeflation/v1beta1/tx.rpc.msg")).MsgClientImpl(rpc)
     },
     reward: {
       v1beta1: new (await import("./reward/v1beta1/tx.rpc.msg")).MsgClientImpl(rpc)

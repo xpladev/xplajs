@@ -71,7 +71,14 @@ export interface Params {
    * precompiled contracts that are active
    */
   activeStaticPrecompiles: string[];
+  /**
+   * history_serve_window defines the block range for serving historical EVM
+   * state
+   */
   historyServeWindow: bigint;
+  /**
+   * extended_denom_options defines the extended denom options for the EVM
+   */
   extendedDenomOptions?: ExtendedDenomOptions;
 }
 export interface ParamsProtoMsg {
@@ -107,7 +114,14 @@ export interface ParamsAmino {
    * precompiled contracts that are active
    */
   active_static_precompiles: string[];
+  /**
+   * history_serve_window defines the block range for serving historical EVM
+   * state
+   */
   history_serve_window: string;
+  /**
+   * extended_denom_options defines the extended denom options for the EVM
+   */
   extended_denom_options?: ExtendedDenomOptionsAmino;
 }
 export interface ParamsAminoMsg {
@@ -115,11 +129,15 @@ export interface ParamsAminoMsg {
   value: ParamsAmino;
 }
 /**
+ * ExtendedDenomOptions defines the extended denom options for the EVM
  * @name ExtendedDenomOptions
  * @package cosmos.evm.vm.v1
  * @see proto type: cosmos.evm.vm.v1.ExtendedDenomOptions
  */
 export interface ExtendedDenomOptions {
+  /**
+   * extended_denom defines the extended denom used by the EVM
+   */
   extendedDenom: string;
 }
 export interface ExtendedDenomOptionsProtoMsg {
@@ -127,11 +145,15 @@ export interface ExtendedDenomOptionsProtoMsg {
   value: Uint8Array;
 }
 /**
+ * ExtendedDenomOptions defines the extended denom options for the EVM
  * @name ExtendedDenomOptionsAmino
  * @package cosmos.evm.vm.v1
  * @see proto type: cosmos.evm.vm.v1.ExtendedDenomOptions
  */
 export interface ExtendedDenomOptionsAmino {
+  /**
+   * extended_denom defines the extended denom used by the EVM
+   */
   extended_denom: string;
 }
 export interface ExtendedDenomOptionsAminoMsg {
@@ -955,14 +977,28 @@ export interface PreinstallAminoMsg {
   value: PreinstallAmino;
 }
 /**
+ * EvmCoinInfo defines the EVM coin denomination metadata
  * @name EvmCoinInfo
  * @package cosmos.evm.vm.v1
  * @see proto type: cosmos.evm.vm.v1.EvmCoinInfo
  */
 export interface EvmCoinInfo {
+  /**
+   * denom defines the base coin denomination
+   */
   denom: string;
+  /**
+   * extended_denom defines the extended EVM coin denomination
+   */
   extendedDenom: string;
+  /**
+   * display_denom defines the display denomination
+   */
   displayDenom: string;
+  /**
+   * decimals is now deprecated and will be removed in a future release. When it
+   * is removed we will assume the evm token denom is 18 decimal precision.
+   */
   decimals: number;
 }
 export interface EvmCoinInfoProtoMsg {
@@ -970,14 +1006,28 @@ export interface EvmCoinInfoProtoMsg {
   value: Uint8Array;
 }
 /**
+ * EvmCoinInfo defines the EVM coin denomination metadata
  * @name EvmCoinInfoAmino
  * @package cosmos.evm.vm.v1
  * @see proto type: cosmos.evm.vm.v1.EvmCoinInfo
  */
 export interface EvmCoinInfoAmino {
+  /**
+   * denom defines the base coin denomination
+   */
   denom: string;
+  /**
+   * extended_denom defines the extended EVM coin denomination
+   */
   extended_denom: string;
+  /**
+   * display_denom defines the display denomination
+   */
   display_denom: string;
+  /**
+   * decimals is now deprecated and will be removed in a future release. When it
+   * is removed we will assume the evm token denom is 18 decimal precision.
+   */
   decimals: number;
 }
 export interface EvmCoinInfoAminoMsg {
@@ -1166,6 +1216,7 @@ function createBaseExtendedDenomOptions(): ExtendedDenomOptions {
   };
 }
 /**
+ * ExtendedDenomOptions defines the extended denom options for the EVM
  * @name ExtendedDenomOptions
  * @package cosmos.evm.vm.v1
  * @see proto type: cosmos.evm.vm.v1.ExtendedDenomOptions
@@ -2767,6 +2818,7 @@ function createBaseEvmCoinInfo(): EvmCoinInfo {
   };
 }
 /**
+ * EvmCoinInfo defines the EVM coin denomination metadata
  * @name EvmCoinInfo
  * @package cosmos.evm.vm.v1
  * @see proto type: cosmos.evm.vm.v1.EvmCoinInfo

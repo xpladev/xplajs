@@ -1,4 +1,6 @@
+import { PageRequest, PageRequestAmino, PageResponse, PageResponseAmino } from "../../../cosmos/base/query/v1beta1/pagination";
 import { BinaryReader, BinaryWriter } from "../../../binary";
+import { GlobalDecoderRegistry } from "../../../registry";
 import { DeepPartial } from "../../../helpers";
 /**
  * QueryVolunteerValidatorsRequest
@@ -6,7 +8,12 @@ import { DeepPartial } from "../../../helpers";
  * @package xpla.volunteer.v1beta1
  * @see proto type: xpla.volunteer.v1beta1.QueryVolunteerValidatorsRequest
  */
-export interface QueryVolunteerValidatorsRequest {}
+export interface QueryVolunteerValidatorsRequest {
+  /**
+   * pagination defines an optional pagination for the request.
+   */
+  pagination?: PageRequest;
+}
 export interface QueryVolunteerValidatorsRequestProtoMsg {
   typeUrl: "/xpla.volunteer.v1beta1.QueryVolunteerValidatorsRequest";
   value: Uint8Array;
@@ -17,7 +24,12 @@ export interface QueryVolunteerValidatorsRequestProtoMsg {
  * @package xpla.volunteer.v1beta1
  * @see proto type: xpla.volunteer.v1beta1.QueryVolunteerValidatorsRequest
  */
-export interface QueryVolunteerValidatorsRequestAmino {}
+export interface QueryVolunteerValidatorsRequestAmino {
+  /**
+   * pagination defines an optional pagination for the request.
+   */
+  pagination?: PageRequestAmino;
+}
 export interface QueryVolunteerValidatorsRequestAminoMsg {
   type: "/xpla.volunteer.v1beta1.QueryVolunteerValidatorsRequest";
   value: QueryVolunteerValidatorsRequestAmino;
@@ -30,6 +42,10 @@ export interface QueryVolunteerValidatorsRequestAminoMsg {
  */
 export interface QueryVolunteerValidatorsResponse {
   volunteerValidators: string[];
+  /**
+   * pagination defines the pagination in the response.
+   */
+  pagination?: PageResponse;
 }
 export interface QueryVolunteerValidatorsResponseProtoMsg {
   typeUrl: "/xpla.volunteer.v1beta1.QueryVolunteerValidatorsResponse";
@@ -43,13 +59,19 @@ export interface QueryVolunteerValidatorsResponseProtoMsg {
  */
 export interface QueryVolunteerValidatorsResponseAmino {
   volunteer_validators: string[];
+  /**
+   * pagination defines the pagination in the response.
+   */
+  pagination?: PageResponseAmino;
 }
 export interface QueryVolunteerValidatorsResponseAminoMsg {
   type: "/xpla.volunteer.v1beta1.QueryVolunteerValidatorsResponse";
   value: QueryVolunteerValidatorsResponseAmino;
 }
 function createBaseQueryVolunteerValidatorsRequest(): QueryVolunteerValidatorsRequest {
-  return {};
+  return {
+    pagination: undefined
+  };
 }
 /**
  * QueryVolunteerValidatorsRequest
@@ -65,7 +87,10 @@ export const QueryVolunteerValidatorsRequest = {
   isAmino(o: any): o is QueryVolunteerValidatorsRequestAmino {
     return o && o.$typeUrl === QueryVolunteerValidatorsRequest.typeUrl;
   },
-  encode(_: QueryVolunteerValidatorsRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+  encode(message: QueryVolunteerValidatorsRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
     return writer;
   },
   decode(input: BinaryReader | Uint8Array, length?: number): QueryVolunteerValidatorsRequest {
@@ -75,6 +100,9 @@ export const QueryVolunteerValidatorsRequest = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -82,16 +110,21 @@ export const QueryVolunteerValidatorsRequest = {
     }
     return message;
   },
-  fromPartial(_: DeepPartial<QueryVolunteerValidatorsRequest>): QueryVolunteerValidatorsRequest {
+  fromPartial(object: DeepPartial<QueryVolunteerValidatorsRequest>): QueryVolunteerValidatorsRequest {
     const message = createBaseQueryVolunteerValidatorsRequest();
+    message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
     return message;
   },
-  fromAmino(_: QueryVolunteerValidatorsRequestAmino): QueryVolunteerValidatorsRequest {
+  fromAmino(object: QueryVolunteerValidatorsRequestAmino): QueryVolunteerValidatorsRequest {
     const message = createBaseQueryVolunteerValidatorsRequest();
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromAmino(object.pagination);
+    }
     return message;
   },
-  toAmino(_: QueryVolunteerValidatorsRequest): QueryVolunteerValidatorsRequestAmino {
+  toAmino(message: QueryVolunteerValidatorsRequest): QueryVolunteerValidatorsRequestAmino {
     const obj: any = {};
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryVolunteerValidatorsRequestAminoMsg): QueryVolunteerValidatorsRequest {
@@ -109,11 +142,17 @@ export const QueryVolunteerValidatorsRequest = {
       value: QueryVolunteerValidatorsRequest.encode(message).finish()
     };
   },
-  registerTypeUrl() {}
+  registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(QueryVolunteerValidatorsRequest.typeUrl)) {
+      return;
+    }
+    PageRequest.registerTypeUrl();
+  }
 };
 function createBaseQueryVolunteerValidatorsResponse(): QueryVolunteerValidatorsResponse {
   return {
-    volunteerValidators: []
+    volunteerValidators: [],
+    pagination: undefined
   };
 }
 /**
@@ -134,6 +173,9 @@ export const QueryVolunteerValidatorsResponse = {
     for (const v of message.volunteerValidators) {
       writer.uint32(10).string(v!);
     }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
     return writer;
   },
   decode(input: BinaryReader | Uint8Array, length?: number): QueryVolunteerValidatorsResponse {
@@ -146,6 +188,9 @@ export const QueryVolunteerValidatorsResponse = {
         case 1:
           message.volunteerValidators.push(reader.string());
           break;
+        case 2:
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -156,11 +201,15 @@ export const QueryVolunteerValidatorsResponse = {
   fromPartial(object: DeepPartial<QueryVolunteerValidatorsResponse>): QueryVolunteerValidatorsResponse {
     const message = createBaseQueryVolunteerValidatorsResponse();
     message.volunteerValidators = object.volunteerValidators?.map(e => e) || [];
+    message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
   },
   fromAmino(object: QueryVolunteerValidatorsResponseAmino): QueryVolunteerValidatorsResponse {
     const message = createBaseQueryVolunteerValidatorsResponse();
     message.volunteerValidators = object.volunteer_validators?.map(e => e) || [];
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromAmino(object.pagination);
+    }
     return message;
   },
   toAmino(message: QueryVolunteerValidatorsResponse): QueryVolunteerValidatorsResponseAmino {
@@ -170,6 +219,7 @@ export const QueryVolunteerValidatorsResponse = {
     } else {
       obj.volunteer_validators = message.volunteerValidators;
     }
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryVolunteerValidatorsResponseAminoMsg): QueryVolunteerValidatorsResponse {
@@ -187,5 +237,10 @@ export const QueryVolunteerValidatorsResponse = {
       value: QueryVolunteerValidatorsResponse.encode(message).finish()
     };
   },
-  registerTypeUrl() {}
+  registerTypeUrl() {
+    if (!GlobalDecoderRegistry.registerExistingTypeUrl(QueryVolunteerValidatorsResponse.typeUrl)) {
+      return;
+    }
+    PageResponse.registerTypeUrl();
+  }
 };

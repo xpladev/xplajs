@@ -13,7 +13,9 @@ export class QueryClientImpl implements Query {
     this.rpc = rpc;
   }
   /* VolunteerValidators */
-  volunteerValidators = async (request: QueryVolunteerValidatorsRequest = {}): Promise<QueryVolunteerValidatorsResponse> => {
+  volunteerValidators = async (request: QueryVolunteerValidatorsRequest = {
+    pagination: undefined
+  }): Promise<QueryVolunteerValidatorsResponse> => {
     const data = QueryVolunteerValidatorsRequest.encode(request).finish();
     const promise = this.rpc.request("xpla.volunteer.v1beta1.Query", "VolunteerValidators", data);
     return promise.then(data => QueryVolunteerValidatorsResponse.decode(new BinaryReader(data)));
