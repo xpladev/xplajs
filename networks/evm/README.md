@@ -49,8 +49,15 @@ Legacy: `PRECOMPILE_ADDRESSES` and `*_PRECOMPILE_ABI` constants are still export
 
 ## ABI sources
 
-- **@xpla/contracts**: Auth, Bank, Wasm
-- **cosmos-evm-contracts**: Bech32, Distribution, Gov, Slashing, Staking
+- **@xpla/contracts**: Auth, Bank, Wasm (including WasmDelegate)
+- **cosmos-evm-contracts**: Bech32, Distribution, Gov, ICS20, Slashing, Staking
+
+The ABI dependencies are pinned to `@xpla/contracts@1.14.0` and
+`cosmos-evm-contracts@0.0.12` for XPLA `v1.14.0-rc4`. The Cosmos EVM
+precompile ABIs match `DELIGHT-LABS/evm@v0.6.3-xpla.2`.
+
+`ics20` exposes the IBC transfer precompile at
+`0x0000000000000000000000000000000000000802`.
 
 ## Chain IDs
 

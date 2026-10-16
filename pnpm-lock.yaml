@@ -267,10 +267,10 @@ importers:
   networks/evm:
     dependencies:
       '@xpla/contracts':
-        specifier: ^1.9.0-rc10
-        version: 1.9.0-rc9
+        specifier: 1.14.0
+        version: 1.14.0
       cosmos-evm-contracts:
-        specifier: ^0.0.12
+        specifier: 0.0.12
         version: 0.0.12
     devDependencies:
       '@types/node':
@@ -1851,8 +1851,8 @@ packages:
   '@vitest/utils@4.0.18':
     resolution: {integrity: sha512-msMRKLMVLWygpK3u2Hybgi4MNjcYJvwTb0Ru09+fOyCXIgT5raYP041DRRdiJiI3k/2U6SEbAETB3YtBrUkCFA==}
 
-  '@xpla/contracts@1.9.0-rc9':
-    resolution: {integrity: sha512-HcYJu4JYsyKFsk+5I4WbAAgR2wptPWXxeSTZjGq+HZoKhE31uDPh3DShuVfQ2NRW4Vf4zehCD1QHbOQIVwEofA==}
+  '@xpla/contracts@1.14.0':
+    resolution: {integrity: sha512-QI5b4EoNLbkuIL1KAanacFkDVdp6VpNpz+bWjjIJcUi8Xtc/CPwt2P/r5BbLwJSxEXVwl1PuXovTeATWXm9N6Q==}
 
   '@yarnpkg/lockfile@1.1.0':
     resolution: {integrity: sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==}
@@ -6448,7 +6448,7 @@ snapshots:
       '@vitest/pretty-format': 4.0.18
       tinyrainbow: 3.0.3
 
-  '@xpla/contracts@1.9.0-rc9':
+  '@xpla/contracts@1.14.0':
     dependencies:
       cosmos-evm-contracts: 0.0.11
 
