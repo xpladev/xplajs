@@ -12,7 +12,7 @@ chains:
       faucet: 8007
     resources:
       cpu: "0.2"
-      memory: "200M"
+      memory: "500M"
     genesis:
       app_state:
         evm:
@@ -48,6 +48,10 @@ chains:
                 uri_hash: ""
   - id: cosmoshub-4
     name: cosmoshub
+    faucet:
+      resources:
+        cpu: "0.2"
+        memory: "500M"
     image: ghcr.io/hyperweb-io/starship/gaia:v27.0.0
     numValidators: 1
     ports:
@@ -56,7 +60,7 @@ chains:
       faucet: 8003
     resources:
       cpu: "0.2"
-      memory: "200M"
+      memory: "500M"
 
 relayers:
   - name: xpla-cosmos
