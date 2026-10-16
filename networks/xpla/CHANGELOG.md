@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/xpladev/xplajs/compare/@xpla/xpla@1.10.0...@xpla/xpla@1.14.0) (2026-10-16)
+
+
+### Bug Fixes
+
+* **xpla:** use v1.14 minimum gas price ([48cb880](https://github.com/xpladev/xplajs/commit/48cb880b225d6d77872ceff9d372d85137717ce5))
+
+
+
+
+
 # [1.10.0](https://github.com/xpladev/xplajs/compare/@xpla/xpla@1.9.2...@xpla/xpla@1.10.0) (2026-05-20)
 
 **Note:** Version bump only for package @xpla/xpla
